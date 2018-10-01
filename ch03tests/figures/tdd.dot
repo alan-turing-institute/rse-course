@@ -1,0 +1,18 @@
+digraph G {
+
+  writeTest -> checkTest 
+  writeCode -> checkAllTests 
+
+  cleanup -> writeTest [tailport=e, headport=n]
+  checkTest -> writeTest [label="passed", tailport=w, headport=w]
+  checkTest -> writeCode [label="failed"]
+  checkAllTests -> cleanup [label="passed"]
+  checkAllTests -> writeCode [label="failed", tailport=w, headport=w]
+
+  writeTest [shape=box, label="(re-) write test"]
+  writeCode [shape=box, label="write code"]
+  cleanup [shape=box, label="cleanup code, refactor"]
+
+  checkTest [shape=diamond, label="run test"]
+  checkAllTests    [shape=diamond, label="run all tests"]
+}

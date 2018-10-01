@@ -1,0 +1,49 @@
+dist: trusty
+sudo: required
+language: python
+python:
+- '3.6'
+cache:
+  - pip
+  - apt
+addons:
+  apt:
+    packages:
+    - pandoc
+    - texlive-latex-base
+    - texlive-latex-extra
+    - tree
+    - texlive-fonts-recommended
+    - texlive-latex-recommended
+    - texlive-generic-recommended
+    - texlive-xetex
+    - latex-xcolor
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  email: jhetherington@turing.ac.uk
+  keep-history: true
+  local-dir: _site
+  verbose: true
+  on:
+    branch: master
+
+install:
+- pip install --upgrade setuptools wheel
+- pip install -r requirements.txt
+- pip install git+https://github.com/jamespjh/greeter.git
+- pip install git+https://github.com/jakevdp/JSAnimation.git
+- gem install liquid -v 3.0.6
+- gem install jekyll -v 3.1.6
+- gem install redcarpet
+
+script:
+- python -c "import matplotlib.pyplot"
+- make
+before_install:
+- sudo add-apt-repository -y ppa:mc3man/trusty-media
+- sudo apt-get -y update
+- sudo apt-get -y install ffmpeg
+after_success:
