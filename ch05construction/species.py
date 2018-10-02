@@ -1,0 +1,2 @@
+class Species(object):
+     pass
