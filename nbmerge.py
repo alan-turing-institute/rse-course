@@ -12,13 +12,14 @@ import io
 import os
 import sys
 
-from IPython import nbformat
+from nbformat import read as nb_read
+from nbformat import writes as nb_write
 
 def merge_notebooks(filenames, outfile):
     merged = None
     for fname in filenames:
         with io.open(fname, 'r', encoding='utf-8') as f:
-            nb = nbformat.read(f, as_version=4)
+            nb = nb_read(f, as_version=4)
         if merged is None:
             merged = nb
         else:
@@ -29,7 +30,7 @@ def merge_notebooks(filenames, outfile):
     if not hasattr(merged.metadata, 'name'):
         merged.metadata.name = ''
     merged.metadata.name += "_merged"
-    result=nbformat.writes(merged)
+    result = nb_write(merged)
     with io.open(outfile, 'w', encoding='utf-8') as out:
         out.write(result)
 
