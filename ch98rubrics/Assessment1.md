@@ -32,14 +32,9 @@ stating your name, your student number, and the code of the module (MPHYG001).
 Submission
 ----------
 
-You should submit your report and all of your source code so that an independent person can run the code.
-The code and report must be submitted as a single zip or tgz archive of a folder which contains **git** version control information for your project.
-Your report should be included as a PDF file, report.pdf, in the root folder of your archive.
+TBD
 
-All coursework should be submitted electronically through the Moodle for the course.
-There is no need to include your source code
-in your report, but you can refer to it and if necessary reproduce lines if it helps to explain your solution.
-The deadline for submissions is 5pm on 6th January 2017. Marks will be available by 30th January.
+You should submit your report and all of your source code so that an independent person can run the code. The code and report must be submitted as a single zip or tgz archive of a folder which contains **git** version control information for your project. Your report should be included as a PDF file, report.pdf, in the root folder of your archive. There is no need to include your source code in your report, but you can refer to it and if necessary reproduce lines if it helps to explain your solution.
 
 Marks Scheme
 ------------
