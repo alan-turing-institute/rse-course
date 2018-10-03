@@ -145,7 +145,7 @@ Bonus: HPC Carpentry Workshop, december 6-7.
   </tr>
   <tr>
    <td>
-<h3>Scientific file formats 1 (TBD)</h3>
+<h3>Scientific file formats 1</h3>
 <ul>
 <li>Serialisation and Deserialisation</li>
 <li>Domain specific languages</li>
@@ -153,7 +153,7 @@ Bonus: HPC Carpentry Workshop, december 6-7.
 </ul>
    </td>
    <td>
-<h3>Scientific file formats 2 (TBD)</h3>
+<h3>Scientific file formats 2</h3>
 <ul>
 <li>Binary file formats: XDR and HDF5</li>
 <li>Parsers and grammars: Python Lex and Yacc</li>
@@ -171,7 +171,7 @@ Examples and exercises for this course will be provided in Python. Python will b
 
 ##Evaluation
 
-None: you are not graded. You may use provided exercises for self-assessment.
+None: you are not graded. You will be provided with 2 exercises for self-assessment.
 
 Versions
 --------
