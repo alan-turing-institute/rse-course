@@ -1,16 +1,14 @@
 ---
-title: First Continuous Assessment: Packaging Greengraph
+title: Packaging Greengraph
 ---
 
-# MPHYG001 First Continuous Assessment: Packaging Greengraph
+MPHYG001 First Continuous Assessment: Packaging Greengraph
 ==========================================================
 
 Summary
 -------
 
-In an appendix, taken from
-http://development.rc.ucl.ac.uk/training/
-engineering/ch01data/110Capstone.html,
+In an appendix, taken from [here](http://development.rc.ucl.ac.uk/training/engineering/ch01data/110Capstone.html),
 are classes which generate a graph of the proportion of green pixels in a series of satellite images between two points.
 
 Your task is to take this code, and do the work needed to make it into a proper package which could be released,

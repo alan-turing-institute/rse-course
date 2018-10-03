@@ -1,14 +1,14 @@
 ---
-title: Second Continuous Assessment: Refactoring the Bad Boids
+title: Refactoring the Bad Boids
 ---
 
-# MPHYG001 Second Continuous Assessment: Refactoring the Bad Boids
+MPHYG001 Second Continuous Assessment: Refactoring the Bad Boids
 ==========================================================
 
 Summary
 -------
 
-In an appendix, taken from https://github.com/jamespjh/bad-boids,
+In an appendix, taken from [here](https://github.com/jamespjh/bad-boids),
 is a very poor implementation of the Boids flocking example from the course.
 
 Your task is to take this code, and build from it a clean implementation of the

@@ -179,3 +179,5 @@ Versions
 You can find the course notes as HTML via the navigation bar to the left.
 
 The [notes](notes.pdf) are also available in a printable pdf format.
+
+**If you encounter any problem or bug in these materials**, please remember to add an issue to the [course repo](https://github.com/alan-turing-institute/rsd-engineeringcourse), explaining the problem and, potentially, its solution. In this way we can improve the instructions for future users.
