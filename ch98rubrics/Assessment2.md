@@ -1,4 +1,8 @@
-MPHYG001 Second Continuous Assessment: Refactoring the Bad Boids
+---
+title: Second Continuous Assessment: Refactoring the Bad Boids
+---
+
+# MPHYG001 Second Continuous Assessment: Refactoring the Bad Boids
 ==========================================================
 
 Summary
