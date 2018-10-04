@@ -11,6 +11,13 @@ Upgrade OSX
 We do not recommend following this training on older versions of OSX without an app store: upgrade
 to at least OSX Mavericks.
 
+Anaconda
+----------
+
+Download [Anaconda](https://www.anaconda.com/download/#macos) with Python 3.6 version.
+Follow the defaults for the installation.
+
+
 XCode and Command line tools
 ----------------------------
 
@@ -29,7 +36,8 @@ Install [XCode](https://itunes.apple.com/us/app/xcode/id497799835) using the Mac
 
 Then, go to Xcode...Preferences...Downloads... and install the command line tools option.
 
-##Git
+Git
+---
 
 The XCode tools comes with Git so no need to do anything more.
 
@@ -60,10 +68,12 @@ installing homebrew.
 Python
 ------
 
-We recommend installing a complete scientific python distribution. One of these is
-Anaconda.
 
-Please download and install the Python 3.5 version of [Anaconda](https://www.continuum.io/downloads)
+We recommend installing a complete scientific python distribution. One of these is
+[Anaconda](https://www.anaconda.com/distribution/).
+
+Please download and install [Anaconda](https://www.anaconda.com/download/)
+(Python 3.6 version).
 
 
 Python from Homebrew
@@ -109,6 +119,7 @@ pip3 install [package-name]
 *  numpy
 *  scipy
 *  matplotlib
+*  jupyter
 *  ipython[all]
 
 The following packages should be installed automatically as dependencies. But we recommend
@@ -117,22 +128,24 @@ installing them manually just in case.
 *  tornado
 *  jinja2
 *  pyzmq
-*  nose
+*  pytest
 
 
 Editor and shell
 ----------------
 
 The default text editor on OS X *textedit* should be sufficient for our use. Alternatively
-[this link](http://mac.appstorm.net/roundups/office-roundups/top-10-mac-text-editors/) lists a number of other good editors.
-
-A new open source option is Github's Atom editor. You can get it from https://atom.io/
-However, note that this is still in somewhat early development.
+we recommend to use [Visual Studio Code](https://code.visualstudio.com/), [Atom](https://atom.io) or [Sublime Text](https://www.sublimetext.com), plus Vim and Emacs.
 
 To setup git to use *textedit* executing the following in a terminal should do.
 
 ``` bash
 git config --global core.editor /Applications/TextEdit.app/Contents/MacOS/TextEdit
+```
+
+For VS Code:
+``` bash
+git config --global core.editor "code --wait"
 ```
 
 The default terminal on OSX should also be sufficient. If you want a more advanced terminal

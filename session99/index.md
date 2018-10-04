@@ -9,8 +9,9 @@ Introduction
 ------------
 
 This document contains instructions for installation of the packages we'll be using during the
-course. You will be following the training on
-your own machines, so please complete these instructions.
+course. You will be following the training on your own machines, so please complete these instructions.
+
+**If you encounter any problem during insallation** and you manage to solve them (feel free to ask us for help), please remember to add an issue to the [course repo](https://github.com/alan-turing-institute/rsd-engineeringcourse), explaining the problem and solution. In this way we can improve the instructions for future users.
 
 What we're installing
 ---------------------
@@ -23,11 +24,3 @@ documents that combine text and *Python* code, executable with the same browser 
 *pip*, the package installer for *Python*, as well.
 
 For the session on version control, we'll be using *Git* and the *Github* website.
-
-Eduroam
--------
-
-We will be using UCL's [eduroam](http://www.ucl.ac.uk/isd/staff/wireless/eduroam) service to connect
-to the internet for this work.
-
-So you should ensure you have eduroam installed and working.
