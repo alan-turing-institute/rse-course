@@ -242,10 +242,10 @@
 <h2>Python</h2>
 
 <p>We recommend installing a complete scientific python distribution. One of these is
-Anaconda.</p>
+<a href="https://www.anaconda.com/distribution/">Anaconda</a>.</p>
 
-<p>Please download and install <a href="https://www.continuum.io/downloads">Anaconda</a>.
-(Python 3.5 version.)</p>
+<p>Please download and install <a href="https://www.anaconda.com/download/">Anaconda</a>
+(Python 3.6 version).</p>
 
 <h2>Sophos</h2>
 
@@ -262,11 +262,11 @@ The <a href="http://stackoverflow.com/questions/13036197/ipython-notebook-gettin
 <li>output works now :)</li>
 </ul>
 
-<h1>Git</h1>
+<h2>Git</h2>
 
 <p>Install the <a href="http://windows.github.com/">GitHub for Windows client</a>. This comes with both a GUI
-client as well as the <a href="http://msysgit.github.io/">msysgit</a> terminal client which we will use in
-Software Carpentry. You should register with <a href="github.com">Github</a> for an account and sign into the
+client as well as the <a href="https://gitforwindows.org/">Git Bash</a> terminal client which we will use during
+the course. You should register with <a href="https://github.com">Github</a> for an account and sign into the
 GUI client with this account. This will automatically set-up
 <a href="https://help.github.com/articles/generating-ssh-keys#platform-windows">SSH based authentication</a>
 for the terminal client. The terminal client comes in 3 different flavours based on Windows CMD
@@ -282,61 +282,28 @@ client. Sign in with your credentials and:</p>
 <li> And Press Update to save.</li>
 </ul>
 
-<p>Verify that this is working by opening the Git shell. The Shell window should have a title that
+<p>Verify that this is working by opening Git Bash. The Shell window should have a title that
 starts with MINGW32.</p>
 
 <h2>Editor</h2>
 
 <p>Unless you already use a specific editor which you are comfortable with we recommend using
-<a href="http://notepad-plus-plus.org/">Notepad++</a>. Follow the <a href="http://notepad-plus-pl%0Aus.org/">download link.</a></p>
+<a href="https://code.visualstudio.com/">Visual Studio Code</a>.</p>
 
-<p>Using Notepad++ to edit text files including code should be straight forward but in addition you
-should configure git to use notepad++ when writing commit messages (We will learn about these in the
-version control session). The following sections goes through this:</p>
-
-<h2>Finding out where things got installed</h2>
-
-<p>Now, we need to find out where Notepad++ have been installed, this will be either in <code>C:\Program
-Files (x86)</code> or in <code>C:\ProgramFiles</code>. The former is the norm on more modern versions of windows. If
-you have the older version, replace <code>Program Files (x86)</code> with <code>Program Files</code> in the
-instructions below. If you are unsure about this open Windows explore and navigate to the C
-drive. If the C drive contains both a <code>Program Files (x86)</code> and <code>Program Files</code> folder Notepad++ is
-most likely to be installed in <code>Program Files (x86)</code>. Verify this by opening the folder and look for
-a <code>Notepad++</code> subfolder. On a non English widows installation the directories may have different names.
-You should however still use the English names above. Just verify if the directory ends with (x86) or not.</p>
-
-<h2>Telling the shell where to find Notepad++</h2>
-
-<p>We need to tell the new shell installed with git where Notepad++ is.</p>
-
-<p>In order to do this we will edit a Widows environmental Variable called <code>Path</code>
-This is basically a list of directories separated by &#39;;&#39; where the shell will look for
-programs.</p>
-
-<p>To do this:</p>
-
-<ul>
-<li> Open the control panel</li>
-<li> Select system</li>
-<li> Advanced system settings</li>
-<li> Environment Variables</li>
-<li> Select Path and press edit.</li>
-</ul>
-
-<p>This will open a Dialogue box with a long string <code>Variable value:</code>
-At the end of the string you should add <code>;C:\Program Files (x86)\Notepad++</code>
-Where you substitute <code>Program Files (x86)</code> with the directory determined above.</p>
+<p>Using VSCode to edit text files including code should be straight forward but in addition you
+could configure <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">Git Bash</a> and
+<a href="https://code.visualstudio.com/docs/python/python-tutorial">python prompt</a>.</p>
 
 <h2>Testing your install</h2>
 
 <p>Check this works by opening the Github shell. Once you have a terminal open, type</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">which notepad++
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">which code
 </code></pre></div>
-<p>which should produce readout similar to <code>/c/Program Files (x86)/Notepad++/notepad++.exe</code></p>
+<p>which should produce readout similar to <code>/c/Program Files (x86)/Code/Code.exe</code></p>
 
 <p>Also verify the typing:
 <code>bash
-notepad++
+code
 </code>
 opens the editor and the close it again.</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">which git
@@ -344,10 +311,10 @@ opens the editor and the close it again.</p>
 <p>which should produce <code>/bin/git</code>. The <code>which</code>
 command is used to figure out where a given program is located on disk.</p>
 
-<h2>Telling Git about Notepad</h2>
+<h2>Telling Git about VS Code</h2>
 
 <p>Now we need to update the default editor used by Git.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git config <span class="nt">--global</span> core.editor <span class="s2">"'notepad++.exe' -multiInst  -nosession -noPlugin"</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git config <span class="nt">--global</span> core.editor <span class="s2">"code --wait"</span>
 </code></pre></div>
 <p>Note that it is not obvious how to copy and paste text in a Windows terminal including Git Bash.
 Copy and paste can be found by right clicking on the top bar of the window and selecting the

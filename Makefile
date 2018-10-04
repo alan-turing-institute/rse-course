@@ -115,3 +115,15 @@ clean:
 	rm -f ch07dry/datasource*.yaml
 	rm -f ch07dry/example.yaml
 	rm -f notebooks.zip
+	rm -rf ch09*/*.csv
+	rm -rf ch09*/*.hdf5
+	rm -rf ch09*/*.py
+	rm -rf ch09*/*.db
+	rm -rf ch09*/*.out 
+	rm -rf ch09*/*.mol
+	rm -rf ch09*/*.tex
+	rm -rf ch09*/*.ttl
+	rm -rf ch09*/*.mko
+	rm -rf ch09*/*.xml
+	rm -rf ch09*/*.xsd
+	rm -rf ch09*/*.xsl
