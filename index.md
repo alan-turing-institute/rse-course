@@ -18,7 +18,7 @@ In this course, you will move beyond programming, to learn how to construct reli
 
 ##Registration
 
-TBD.
+See email and Turing Complete. First class is open, then registration via Eventbrite.
 
 **This course may not be audited.**
 
@@ -33,14 +33,13 @@ TBD.
 | ------------------------------------- |-----------| -------- | ------ |
 | Introduction to Python                | 12 Oct    | 10am-2pm | Enigma |
 | Research Data in Python               | 26 Oct    | 10am-2pm | Enigma |
-| Version Control                       | 2 Nov     | 10am-2pm | Enigma |
-| Testing your code                     | 9 Nov     | 10am-2pm | Enigma |
-| Software Projects                     | 16 Nov    | 10am-2pm | Enigma |
-| Construction and Design               | 23 Nov    | 10am-2pm | Enigma |
-| Advanced Programming Techniques       | 30 Nov    | 2pm-5pm  | Enigma |
-| Programming for Speed                 | 14 Dec    | 2pm-5pm  | Enigma |
-| Scientific file formats 1             | ?         | ? | ? |
-| Scientific file formats 2             | ?         | ? | ? |
+| Version Control and Testing your code | 2 Nov     | 9:30am-4:30pm | Enigma |
+| Software Projects                     | 9 Nov     | 10am-2pm | Enigma |
+| Construction and Design               | 15 Nov    | 10am-2pm | Enigma |
+| Advanced Programming Techniques       | 30 Nov    | 10am-2pm | Enigma |
+| Programming for Speed                 | 14 Dec    | 10am-2pm  | Enigma |
+| Scientific file formats 1             | January TBD | ? | ? |
+| Scientific file formats 2             | January TBD | ? | ? |
 
 Bonus: HPC Carpentry Workshop, december 6-7.
 
