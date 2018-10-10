@@ -399,7 +399,7 @@ git commit -am <span class="s2">&quot;Add Cadair Idris&quot;</span>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[experiment 430f7c4] Add Cadair Idris
+<pre>[experiment dc6eb38] Add Cadair Idris
  1 file changed, 1 insertion(+)
 </pre>
 </div>
@@ -580,7 +580,8 @@ git push -u origin experiment
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>Permission denied (publickey).
+<pre>Warning: Permanently added the RSA host key for IP address &#39;192.30.253.112&#39; to the list of known hosts.
+Permission denied (publickey).
 fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights
@@ -711,8 +712,8 @@ git branch -vv
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>* experiment 430f7c4 Add Cadair Idris
-  master     a98cb77 Add Glyder
+<pre>* experiment dc6eb38 Add Cadair Idris
+  master     eabddb5 Add Glyder
 </pre>
 </div>
 </div>
@@ -754,9 +755,9 @@ git log master..experiment
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>commit 430f7c472b623c44fa7c64533985f58970b68a78
+<pre>commit dc6eb380492b4e4aaf174c880ab3728e1fdb70ff
 Author: James Hetherington &lt;jamespjh@gmail.com&gt;
-Date:   Tue Oct 9 10:11:21 2018 +0000
+Date:   Wed Oct 10 10:33:02 2018 +0000
 
     Add Cadair Idris
 </pre>
@@ -800,10 +801,10 @@ git log --graph --oneline HEAD~9..HEAD~5
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>* a57f6a9 Add Scotland
-* 914b75b Add wales
-* b88906e Add Helvellyn
-* 59a2f61 Include lakes in the scope
+<pre>* 9554a9e Add wales
+* 3ef7d67 Add Helvellyn
+* 0034eac Include lakes in the scope
+* b55ed7a Add lakeland
 </pre>
 </div>
 </div>
@@ -844,11 +845,11 @@ git log --graph --oneline HEAD~5..HEAD
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>* 430f7c4 Add Cadair Idris
-* a98cb77 Add Glyder
-* 9f425f1 Add another Beacon
-* 392748d Add a beacon
-* 83b7c9f Translating from the Welsh
+<pre>* dc6eb38 Add Cadair Idris
+* eabddb5 Add Glyder
+* 90c11a7 Add another Beacon
+* 58f5709 Add a beacon
+* 0ed13c6 Translating from the Welsh
 </pre>
 </div>
 </div>
@@ -925,7 +926,7 @@ git checkout master
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting Scotland.md
+<pre>Writing Scotland.md
 </pre>
 </div>
 </div>
@@ -944,32 +945,6 @@ git diff Scotland.md
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>diff --git a/Scotland.md b/Scotland.md
-index 9613dda..bf5c643 100644
---- a/Scotland.md
-+++ b/Scotland.md
-@@ -3,3 +3,4 @@ Mountains In Scotland
- 
- * Ben Eighe
- * Cairngorm
-+* Aonach Eagach
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -997,9 +972,60 @@ git commit -am <span class="s2">&quot;Commit Aonach onto master branch&quot;</sp
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 31ae3a8] Commit Aonach onto master branch
- 1 file changed, 1 insertion(+)
+<pre>On branch master
+Untracked files:
+	Scotland.md
+	__pycache__/
+	wsd.py
+
+nothing added to commit but untracked files present
 </pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">CalledProcessError</span>                        Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-19-6982798a43de&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_cell_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;bash&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;git commit -am &#34;Commit Aonach onto master branch&#34;\n&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/interactiveshell.py</span> in <span class="ansi-cyan-fg">run_cell_magic</span><span class="ansi-blue-fg">(self, magic_name, line, cell)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2319</span>             magic_arg_s <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>var_expand<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">,</span> stack_depth<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2320</span>             <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>builtin_trap<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2321</span><span class="ansi-red-fg">                 </span>result <span class="ansi-blue-fg">=</span> fn<span class="ansi-blue-fg">(</span>magic_arg_s<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2322</span>             <span class="ansi-green-fg">return</span> result
+<span class="ansi-green-intense-fg ansi-bold">   2323</span> 
+
+<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magics/script.py</span> in <span class="ansi-cyan-fg">named_script_magic</span><span class="ansi-blue-fg">(line, cell)</span>
+<span class="ansi-green-intense-fg ansi-bold">    140</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    141</span>                 line <span class="ansi-blue-fg">=</span> script
+<span class="ansi-green-fg">--&gt; 142</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>shebang<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    143</span> 
+<span class="ansi-green-intense-fg ansi-bold">    144</span>         <span class="ansi-red-fg"># write a basic docstring:</span>
+
+<span class="ansi-green-fg">&lt;decorator-gen-109&gt;</span> in <span class="ansi-cyan-fg">shebang</span><span class="ansi-blue-fg">(self, line, cell)</span>
+
+<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magic.py</span> in <span class="ansi-cyan-fg">&lt;lambda&gt;</span><span class="ansi-blue-fg">(f, *a, **k)</span>
+<span class="ansi-green-intense-fg ansi-bold">    185</span>     <span class="ansi-red-fg"># but it&#39;s overkill for just that one bit of state.</span>
+<span class="ansi-green-intense-fg ansi-bold">    186</span>     <span class="ansi-green-fg">def</span> magic_deco<span class="ansi-blue-fg">(</span>arg<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 187</span><span class="ansi-red-fg">         </span>call <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">lambda</span> f<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>a<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>k<span class="ansi-blue-fg">:</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>a<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>k<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    188</span> 
+<span class="ansi-green-intense-fg ansi-bold">    189</span>         <span class="ansi-green-fg">if</span> callable<span class="ansi-blue-fg">(</span>arg<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magics/script.py</span> in <span class="ansi-cyan-fg">shebang</span><span class="ansi-blue-fg">(self, line, cell)</span>
+<span class="ansi-green-intense-fg ansi-bold">    243</span>             sys<span class="ansi-blue-fg">.</span>stderr<span class="ansi-blue-fg">.</span>flush<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    244</span>         <span class="ansi-green-fg">if</span> args<span class="ansi-blue-fg">.</span>raise_error <span class="ansi-green-fg">and</span> p<span class="ansi-blue-fg">.</span>returncode<span class="ansi-blue-fg">!=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 245</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> CalledProcessError<span class="ansi-blue-fg">(</span>p<span class="ansi-blue-fg">.</span>returncode<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">,</span> output<span class="ansi-blue-fg">=</span>out<span class="ansi-blue-fg">,</span> stderr<span class="ansi-blue-fg">=</span>err<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    246</span> 
+<span class="ansi-green-intense-fg ansi-bold">    247</span>     <span class="ansi-green-fg">def</span> _run_script<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> p<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">,</span> to_close<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">CalledProcessError</span>: Command &#39;b&#39;git commit -am &#34;Commit Aonach onto master branch&#34;\n&#39;&#39; returned non-zero exit status 1.</pre>
 </div>
 </div>
 
@@ -1038,8 +1064,7 @@ git log --left-right --oneline master...experiment
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt; 31ae3a8 Commit Aonach onto master branch
-&gt; 430f7c4 Add Cadair Idris
+<pre>&gt; dc6eb38 Add Cadair Idris
 </pre>
 </div>
 </div>
@@ -1097,7 +1122,8 @@ git merge experiment
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>  experiment
 * master
-Merge made by the &#39;recursive&#39; strategy.
+Updating eabddb5..dc6eb38
+Fast-forward
  Wales.md | 1 +
  1 file changed, 1 insertion(+)
 </pre>
@@ -1131,12 +1157,9 @@ git log --graph --oneline HEAD~3..HEAD
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>*   9d3c398 Merge branch &#39;experiment&#39;
-|\  
-| * 430f7c4 Add Cadair Idris
-* | 31ae3a8 Commit Aonach onto master branch
-|/  
-* a98cb77 Add Glyder
+<pre>* dc6eb38 Add Cadair Idris
+* eabddb5 Add Glyder
+* 90c11a7 Add another Beacon
 </pre>
 </div>
 </div>
@@ -1208,7 +1231,7 @@ git branch -d experiment
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Deleted branch experiment (was 430f7c4).
+<pre>Deleted branch experiment (was dc6eb38).
 </pre>
 </div>
 </div>
