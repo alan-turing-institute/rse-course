@@ -475,7 +475,7 @@ git bisect good <span class="c1"># We know the master branch state is OK</span>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Your branch is up to date with &#39;origin/master&#39;.
 Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[baba7a391c6397fd18c18f2d6bfdd566853b0742] Comment 500
+[9c01c043fae24b12eb645fb7a6e2413d9d5e1a4f] Comment 500
 </pre>
 </div>
 </div>
@@ -611,51 +611,49 @@ git bisect run python squares.py <span class="m">2</span>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[baba7a391c6397fd18c18f2d6bfdd566853b0742] Comment 500
+[9c01c043fae24b12eb645fb7a6e2413d9d5e1a4f] Comment 500
 running python squares.py 2
 4
 Bisecting: 250 revisions left to test after this (roughly 8 steps)
-[88c8dbc793f61d29cc266ae516b699914e3080fd] Comment 749
+[6696ba7c0fb56c8e8ac9cae6f4eac00c212a4460] Comment 750
 running python squares.py 2
-Bisecting: 124 revisions left to test after this (roughly 7 steps)
-[b844fe9b3c9d8914dd2eb9f914c195ba4388e4cd] Comment 625
+4
+Bisecting: 125 revisions left to test after this (roughly 7 steps)
+[d7e1ccbf106000eb1a5625176080fd00007261d4] Comment 875
 running python squares.py 2
 4
 Bisecting: 62 revisions left to test after this (roughly 6 steps)
-[021f2d17ad29a5342df7c7c59e0cfa8958dff8b8] Comment 687
+[90d740b81281103ad7b91ee43df984366213269e] Comment 938
 running python squares.py 2
 4
 Bisecting: 31 revisions left to test after this (roughly 5 steps)
-[b256865944045ea55a4918810843d7c5767b29a6] Comment 718
+[0683acaeb7313878a99df1a47855688055504000] Comment 968
 running python squares.py 2
-4
 Bisecting: 15 revisions left to test after this (roughly 4 steps)
-[b5f5abe93dfd64d32e6d94243bc972050729d964] Breaking argument type
+[37c3689bab8036f78f6c63aca3ad00156bf94a3c] Comment 953
 running python squares.py 2
+4
 Bisecting: 7 revisions left to test after this (roughly 3 steps)
-[b1032bc0b8f9dcedfa3ef815d98b5c7a721ff762] Comment 726
+[5a9e177132857b94fe67e27d82c0a10d397ced69] Comment 960
 running python squares.py 2
-4
 Bisecting: 3 revisions left to test after this (roughly 2 steps)
-[cb70f2ef2a7a205ab32c034972a831a0fc9e0079] Comment 730
+[beba8d6003ab061dc53fd944dd329e4b1acfab5c] Comment 956
 running python squares.py 2
-4
 Bisecting: 1 revision left to test after this (roughly 1 step)
-[040243c07e7b15da115b065b99c1d491b0f85977] Comment 732
+[57e179f0d0f12e98adb823ae044e4681b6962dd5] Breaking argument type
 running python squares.py 2
-4
 Bisecting: 0 revisions left to test after this (roughly 0 steps)
-[5fce8c659b213e9cb4ce78639fc88ea9f91c0889] Comment 733
+[76886dbf446932c3b2f2893aa2b915daf1beb9c5] Comment 954
 running python squares.py 2
 4
-b5f5abe93dfd64d32e6d94243bc972050729d964 is the first bad commit
-commit b5f5abe93dfd64d32e6d94243bc972050729d964
+57e179f0d0f12e98adb823ae044e4681b6962dd5 is the first bad commit
+commit 57e179f0d0f12e98adb823ae044e4681b6962dd5
 Author: Shawn Siefkas &lt;shawn.siefkas@meredith.com&gt;
 Date:   Thu Nov 14 09:23:55 2013 -0600
 
     Breaking argument type
 
-:100644 100644 363abbda2637e4f132319d7c5cd7ae6231482a53 4961aafc9669b87c19f68970fa29d906ac8bf72e M	squares.py
+:100644 100644 0dc8c313f44d35c8aafb87ccc2d5316c0522b256 44592c2c4606eb19046472720aae21c45d4c75aa M	squares.py
 bisect run success
 </pre>
 </div>
@@ -667,8 +665,16 @@ bisect run success
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>Previous HEAD position was baba7a3... Comment 500
+<pre>Previous HEAD position was 9c01c04... Comment 500
 Switched to branch &#39;buggy&#39;
+Traceback (most recent call last):
+  File &#34;squares.py&#34;, line 9, in &lt;module&gt;
+    print(integer**2)
+TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
+Traceback (most recent call last):
+  File &#34;squares.py&#34;, line 9, in &lt;module&gt;
+    print(integer**2)
+TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
 Traceback (most recent call last):
   File &#34;squares.py&#34;, line 9, in &lt;module&gt;
     print(integer**2)
