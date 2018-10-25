@@ -475,7 +475,7 @@ git bisect good <span class="c1"># We know the master branch state is OK</span>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Your branch is up to date with &#39;origin/master&#39;.
 Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[57e5ab81dd61fc07ff30714cca87b8afaa6975b1] Comment 500
+[0c10ae5d204017f0cb68203fb982c44c24ef7454] Comment 500
 </pre>
 </div>
 </div>
@@ -611,49 +611,48 @@ git bisect run python squares.py <span class="m">2</span>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[57e5ab81dd61fc07ff30714cca87b8afaa6975b1] Comment 500
+[0c10ae5d204017f0cb68203fb982c44c24ef7454] Comment 500
 running python squares.py 2
 4
 Bisecting: 250 revisions left to test after this (roughly 8 steps)
-[4032ae935c1b5a8e73aab96e8a5e4fffb84ff018] Comment 750
+[4d025bb74699066a8d9a99a3bf4d2e37e75b4bdb] Comment 750
 running python squares.py 2
 4
 Bisecting: 125 revisions left to test after this (roughly 7 steps)
-[d0f62044ac0043e7453b68e9fe2d970c1fe6fb05] Comment 874
+[c95913dafb113cc34c563e76e162c66ee4d50b7d] Comment 874
 running python squares.py 2
 Bisecting: 62 revisions left to test after this (roughly 6 steps)
-[f2fcd195076325307df27b0b58de74bd7b7da197] Comment 812
+[b7739c81a0460ed1e5e3ebcd6f157c3979b910db] Comment 811
 running python squares.py 2
-4
-Bisecting: 31 revisions left to test after this (roughly 5 steps)
-[78f333506403ef46c5a4a031944ea2307a6473f4] Comment 843
+Bisecting: 30 revisions left to test after this (roughly 5 steps)
+[d0d30b1a561141da6e473b10d1b9c5ba2fe575f4] Comment 781
 running python squares.py 2
 4
 Bisecting: 15 revisions left to test after this (roughly 4 steps)
-[0bdb40964d0d057db3b5542dc1cee92727e66736] Comment 858
+[88e6ff9b9de2435ebaf3d81157a50ea33288601c] Comment 796
 running python squares.py 2
+4
 Bisecting: 7 revisions left to test after this (roughly 3 steps)
-[041a71ce6f31d358423a0076ed798f253aae4f47] Comment 850
+[e5b7fe6a9adb016e7500682a0c5371a450f37ae8] Comment 803
 running python squares.py 2
 Bisecting: 3 revisions left to test after this (roughly 2 steps)
-[cb174a104359830c396b9d7f926c5b84fb89514e] Comment 847
+[cb6bd8d71a6771df4f6497767c46070bd2d430fe] Comment 799
 running python squares.py 2
-4
 Bisecting: 1 revision left to test after this (roughly 1 step)
-[843aeec2e6b78586f21df7975b8b450b4cf98049] Breaking argument type
-running python squares.py 2
-Bisecting: 0 revisions left to test after this (roughly 0 steps)
-[4ab49808bbb409eaa3b128b58d66d1d7f6329d56] Comment 848
+[4af32423c0ac2c722d096dd53a5b4fb0bcdda278] Comment 798
 running python squares.py 2
 4
-843aeec2e6b78586f21df7975b8b450b4cf98049 is the first bad commit
-commit 843aeec2e6b78586f21df7975b8b450b4cf98049
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[42ed14baa672cd1f5d8fa6959bebb86dae56e89d] Breaking argument type
+running python squares.py 2
+42ed14baa672cd1f5d8fa6959bebb86dae56e89d is the first bad commit
+commit 42ed14baa672cd1f5d8fa6959bebb86dae56e89d
 Author: Shawn Siefkas &lt;shawn.siefkas@meredith.com&gt;
 Date:   Thu Nov 14 09:23:55 2013 -0600
 
     Breaking argument type
 
-:100644 100644 56ac9544bf686a688657d3aff4766d420b263c74 392bba884f06daa6206625d2d77366d25ced8419 M	squares.py
+:100644 100644 7f91b4957fba1d0c35f41cf819f8e957e32d457b 27c02d12ec1c2eee39559e3f2e4353ef4f4d9c27 M	squares.py
 bisect run success
 </pre>
 </div>
@@ -665,8 +664,12 @@ bisect run success
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>Previous HEAD position was 57e5ab8... Comment 500
+<pre>Previous HEAD position was 0c10ae5... Comment 500
 Switched to branch &#39;buggy&#39;
+Traceback (most recent call last):
+  File &#34;squares.py&#34;, line 9, in &lt;module&gt;
+    print(integer**2)
+TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
 Traceback (most recent call last):
   File &#34;squares.py&#34;, line 9, in &lt;module&gt;
     print(integer**2)
