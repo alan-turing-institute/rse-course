@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import sys
 
-integer = sys.argv[1]
+integer = int(sys.argv[1])
 
 print(integer**2)
 
@@ -808,3 +808,29 @@ print(integer**2)
 #Comment 796
 #Comment 797
 #Comment 798
+#Comment 799
+#Comment 800
+#Comment 801
+#Comment 802
+#Comment 803
+#Comment 804
+#Comment 805
+#Comment 806
+#Comment 807
+#Comment 808
+#Comment 809
+#Comment 810
+#Comment 811
+#Comment 812
+#Comment 813
+#Comment 814
+#Comment 815
+#Comment 816
+#Comment 817
+#Comment 818
+#Comment 819
+#Comment 820
+#Comment 821
+#Comment 822
+#Comment 823
+#Comment 824
