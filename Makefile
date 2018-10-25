@@ -38,7 +38,7 @@ default: _site
 	jupyter nbconvert --to notebook --nbformat 2 --stdout $< > $@
 
 %.nbconvert.ipynb: %.ipynb
-	jupyter nbconvert --to notebook --allow-errors --ExecutePreprocessor.timeout=120 --execute --stdout $< > $@
+	jupyter nbconvert --to notebook --allow-errors --ExecutePreprocessor.timeout=320 --execute --stdout $< > $@
 
 notes.pdf: combined.ipynb Makefile
 	jupyter nbconvert --to pdf --template latex.tplx $<
