@@ -457,6 +457,7 @@ git stash apply
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
+git tag --delete v1.0
 git tag -a v1.0 -m <span class="s2">&quot;Release 1.0&quot;</span>
 git push --tags
 </pre></div>
@@ -475,9 +476,10 @@ git push --tags
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>To https://github.com/alan-turing-institute/github-example.git
+<pre>error: tag &#39;v1.0&#39; not found.
+To https://github.com/alan-turing-institute/github-example.git
  ! [rejected]        v1.0 -&gt; v1.0 (already exists)
-error: failed to push some refs to &#39;https://5d2b05c99e65eb933181b14f99f09f278ae425c2@github.com/alan-turing-institute/github-example.git&#39;
+error: failed to push some refs to &#39;https://e2d5776146a6de3c6cced1c72983e8e91548069d@github.com/alan-turing-institute/github-example.git&#39;
 hint: Updates were rejected because the tag already exists in the remote.
 </pre>
 </div>
@@ -492,8 +494,8 @@ hint: Updates were rejected because the tag already exists in the remote.
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">CalledProcessError</span>                        Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-5-30c586933bd0&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_cell_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;bash&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;git tag -a v1.0 -m &#34;Release 1.0&#34;\ngit push --tags\n&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">&lt;ipython-input-5-77f6e8f92dbf&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_cell_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;bash&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;git tag --delete v1.0\ngit tag -a v1.0 -m &#34;Release 1.0&#34;\ngit push --tags\n&#39;</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/interactiveshell.py</span> in <span class="ansi-cyan-fg">run_cell_magic</span><span class="ansi-blue-fg">(self, magic_name, line, cell)</span>
 <span class="ansi-green-intense-fg ansi-bold">   2319</span>             magic_arg_s <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>var_expand<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">,</span> stack_depth<span class="ansi-blue-fg">)</span>
@@ -525,7 +527,7 @@ hint: Updates were rejected because the tag already exists in the remote.
 <span class="ansi-green-intense-fg ansi-bold">    246</span> 
 <span class="ansi-green-intense-fg ansi-bold">    247</span>     <span class="ansi-green-fg">def</span> _run_script<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> p<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">,</span> to_close<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
 
-<span class="ansi-red-fg">CalledProcessError</span>: Command &#39;b&#39;git tag -a v1.0 -m &#34;Release 1.0&#34;\ngit push --tags\n&#39;&#39; returned non-zero exit status 1.</pre>
+<span class="ansi-red-fg">CalledProcessError</span>: Command &#39;b&#39;git tag --delete v1.0\ngit tag -a v1.0 -m &#34;Release 1.0&#34;\ngit push --tags\n&#39;&#39; returned non-zero exit status 1.</pre>
 </div>
 </div>
 
@@ -593,7 +595,7 @@ git commit -am <span class="s2">&quot;Add Pennines&quot;</span>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 40af2f3] Add Pennines
+<pre>[master 63e3190] Add Pennines
  1 file changed, 5 insertions(+)
  create mode 100644 Pennines.md
 </pre>
@@ -635,7 +637,7 @@ git log v1.0.. --graph --oneline
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>* 40af2f3 Add Pennines
+<pre>* 63e3190 Add Pennines
 </pre>
 </div>
 </div>
@@ -800,7 +802,7 @@ git status
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>On branch master
-Your branch is ahead of &#39;origin/master&#39; by 2 commits.
+Your branch is ahead of &#39;origin/master&#39; by 4 commits.
   (use &#34;git push&#34; to publish your local commits)
 
 Untracked files:
@@ -808,7 +810,6 @@ Untracked files:
 
 	Makefile
 	Pennines.pdf
-	Scotland.md
 	Scotland.pdf
 	Wales.pdf
 	__pycache__/
@@ -889,7 +890,7 @@ git status
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>On branch master
-Your branch is ahead of &#39;origin/master&#39; by 2 commits.
+Your branch is ahead of &#39;origin/master&#39; by 4 commits.
   (use &#34;git push&#34; to publish your local commits)
 
 Untracked files:
@@ -897,7 +898,6 @@ Untracked files:
 
 	.gitignore
 	Makefile
-	Scotland.md
 	__pycache__/
 	wsd.py
 
@@ -936,7 +936,7 @@ git push
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 60253cf] Add a makefile and ignore generated files
+<pre>[master b8e96e3] Add a makefile and ignore generated files
  2 files changed, 9 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 Makefile
@@ -951,7 +951,7 @@ git push
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To https://github.com/alan-turing-institute/github-example.git
-   4bad93f..60253cf  master -&gt; master
+   caf0a4a..b8e96e3  master -&gt; master
 </pre>
 </div>
 </div>
@@ -1201,7 +1201,7 @@ git commit -am <span class="s2">&quot;Add github pages YAML frontmatter&quot;</s
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 65d728e] Add github pages YAML frontmatter
+<pre>[master 7016241] Add github pages YAML frontmatter
  1 file changed, 7 insertions(+), 4 deletions(-)
 </pre>
 </div>
@@ -1271,7 +1271,7 @@ git push -uf origin gh-pages
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Switched to a new branch &#39;gh-pages&#39;
 To https://github.com/alan-turing-institute/github-example.git
- + ea69650...65d728e gh-pages -&gt; gh-pages (forced update)
+ + 65d728e...7016241 gh-pages -&gt; gh-pages (forced update)
 </pre>
 </div>
 </div>
