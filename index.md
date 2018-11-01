@@ -3,7 +3,7 @@ title: Research Software Engineering with Python
 layout: default
 ---
 
-# MPHYG001: Research Software Engineering with Python
+# Research Software Engineering with Python
 
 ##Introduction
 
