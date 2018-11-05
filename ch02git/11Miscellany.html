@@ -320,7 +320,6 @@ For this, you can use the <code>git stash</code> command, like in the following 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
-git stash
 git pull
 </pre></div>
 
@@ -338,8 +337,7 @@ git pull
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>No local changes to save
-Already up to date.
+<pre>Already up to date.
 </pre>
 </div>
 </div>
@@ -452,115 +450,15 @@ git stash apply
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-git push --delete origin v1.0
-git tag --delete v1.0
-git tag -a v1.0 -m <span class="s2">&quot;Release 1.0&quot;</span>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span>git tag -a v1.0 -m <span class="s2">&quot;Release 1.0&quot;</span>
 git push --tags
 </pre></div>
 
-    </div>
 </div>
 </div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>error: unable to delete &#39;v1.0&#39;: remote ref does not exist
-error: failed to push some refs to &#39;https://31b0e899dc9535d92510b4f496e59152aa4d3b8d@github.com/alan-turing-institute/github-example.git&#39;
-error: tag &#39;v1.0&#39; not found.
-To https://github.com/alan-turing-institute/github-example.git
- * [new tag]         v1.0 -&gt; v1.0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> Pennines.md
-
-<span class="n">Mountains</span> <span class="n">In</span> <span class="n">the</span> <span class="n">Pennines</span>
-<span class="o">========================</span>
-
-<span class="o">*</span> <span class="n">Cross</span> <span class="n">Fell</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Writing Pennines.md
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-git add Pennines.md
-git commit -am <span class="s2">&quot;Add Pennines&quot;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[master aec7a6d] Add Pennines
- 1 file changed, 5 insertions(+)
- create mode 100644 Pennines.md
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -570,37 +468,14 @@ git commit -am <span class="s2">&quot;Add Pennines&quot;</span>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-git log v1.0.. --graph --oneline
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span>git log v1.0.. --graph --oneline
 </pre></div>
 
-    </div>
 </div>
 </div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>* aec7a6d Add Pennines
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -643,7 +518,7 @@ git log v1.0.. --graph --oneline
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> Makefile
@@ -682,7 +557,7 @@ git log v1.0.. --graph --oneline
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -706,7 +581,6 @@ make
 <pre>make[1]: Entering directory `/home/travis/build/alan-turing-institute/rsd-engineeringcourse/ch02git/learning_git/git_example&#39;
 pandoc index.md -o index.pdf
 pandoc lakeland.md -o lakeland.pdf
-pandoc Pennines.md -o Pennines.pdf
 pandoc Scotland.md -o Scotland.pdf
 pandoc Wales.md -o Wales.pdf
 make[1]: Leaving directory `/home/travis/build/alan-turing-institute/rsd-engineeringcourse/ch02git/learning_git/git_example&#39;
@@ -736,7 +610,7 @@ make[1]: Leaving directory `/home/travis/build/alan-turing-institute/rsd-enginee
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -758,14 +632,13 @@ git status
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>On branch master
-Your branch is ahead of &#39;origin/master&#39; by 4 commits.
+Your branch is ahead of &#39;origin/master&#39; by 3 commits.
   (use &#34;git push&#34; to publish your local commits)
 
 Untracked files:
   (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
 
 	Makefile
-	Pennines.pdf
 	Scotland.pdf
 	Wales.pdf
 	__pycache__/
@@ -792,7 +665,7 @@ nothing added to commit but untracked files present (use &#34;git add&#34; to tr
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> .gitignore
@@ -824,7 +697,7 @@ nothing added to commit but untracked files present (use &#34;git add&#34; to tr
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -846,7 +719,7 @@ git status
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>On branch master
-Your branch is ahead of &#39;origin/master&#39; by 4 commits.
+Your branch is ahead of &#39;origin/master&#39; by 3 commits.
   (use &#34;git push&#34; to publish your local commits)
 
 Untracked files:
@@ -868,7 +741,7 @@ nothing added to commit but untracked files present (use &#34;git add&#34; to tr
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -892,7 +765,7 @@ git push
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 2e00d7d] Add a makefile and ignore generated files
+<pre>[master 243a759] Add a makefile and ignore generated files
  2 files changed, 9 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 Makefile
@@ -907,7 +780,7 @@ git push
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To https://github.com/alan-turing-institute/github-example.git
-   656cac0..2e00d7d  master -&gt; master
+   b3ed94f..243a759  master -&gt; master
 </pre>
 </div>
 </div>
@@ -933,7 +806,7 @@ git push
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -954,8 +827,7 @@ git clean -fX
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Removing Pennines.pdf
-Removing Scotland.pdf
+<pre>Removing Scotland.pdf
 Removing Wales.pdf
 Removing index.pdf
 Removing lakeland.pdf
@@ -969,7 +841,7 @@ Removing lakeland.pdf
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -993,7 +865,6 @@ ls
 <pre>index.md
 lakeland.md
 Makefile
-Pennines.md
 __pycache__
 Scotland.md
 Wales.md
@@ -1097,7 +968,7 @@ yes or no for each hunk.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> index.md
@@ -1136,7 +1007,7 @@ yes or no for each hunk.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -1157,7 +1028,7 @@ git commit -am <span class="s2">&quot;Add github pages YAML frontmatter&quot;</s
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 3a5bb19] Add github pages YAML frontmatter
+<pre>[master 0ac0cfd] Add github pages YAML frontmatter
  1 file changed, 7 insertions(+), 4 deletions(-)
 </pre>
 </div>
@@ -1178,7 +1049,7 @@ git commit -am <span class="s2">&quot;Add github pages YAML frontmatter&quot;</s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
@@ -1191,7 +1062,7 @@ git commit -am <span class="s2">&quot;Add github pages YAML frontmatter&quot;</s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -1227,7 +1098,7 @@ git push -uf origin gh-pages
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Switched to a new branch &#39;gh-pages&#39;
 To https://github.com/alan-turing-institute/github-example.git
- + 653d19d...3a5bb19 gh-pages -&gt; gh-pages (forced update)
+ + 3a5bb19...0ac0cfd gh-pages -&gt; gh-pages (forced update)
 </pre>
 </div>
 </div>
