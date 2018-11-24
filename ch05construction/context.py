@@ -4,6 +4,8 @@ class CompMock(Mock):
         return CompMock()
     def __lt__(self,b):
         return True
+    def __abs__(self):
+        return CompMock()
 array=[]
 agt=[]
 ws=[]
@@ -18,8 +20,8 @@ import numpy as np
 average=np.mean
 hawk=CompMock()
 starling=CompMock()
-sInput="2.0"
-input ="2.0"
+sEntry="2.0"
+entry ="2.0"
 iOffset=1
 offset =1
 anothervariable=1
