@@ -36,11 +36,10 @@ See email and Turing Complete. First class is open, then registration via Eventb
 | Research Data in Python and Version Control | 2 Nov | 9:30am-4:30pm | Enigma |
 | Testing your code                     | 9 Nov     | 10am-1pm | Enigma |
 | Software Projects                     | 15 Nov    | 10am-1pm | Enigma |
-| Construction and Design               | 30 Nov    | 10am-1pm | Enigma |
-| Advanced Programming Techniques       | 14 Dec    | 2-4pm    | Enigma |
-| Programming for Speed                 | 11 Jan    | 10am-1pm | Enigma |
-| Scientific file formats 1             | 18 Jan    | 10am-1pm | Enigma |
-| Scientific file formats 2             | 25 Jan    | 10am-1pm | Enigma |
+| Construction and Design               | 11 Jan    | 10am-1pm | Enigma |
+| Advanced Programming Techniques       | 18 Jan    | 10am-1pm | Enigma |
+| Programming for Speed                 | 25 Jan    | 10am-1pm | Enigma |
+| Scientific file formats 1 and 2       | 22 Feb    | 10am-2pm | Enigma |
 
 Bonus: HPC Carpentry Workshop, december 6-7.
 
