@@ -802,7 +802,8 @@ constructors.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span> <span class="nf">add_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room</span><span class="p">):</span>
-        <span class="n">room</span><span class="o">.</span><span class="n">maze</span> <span class="o">=</span> <span class="bp">self</span>  <span class="c1"># The Room needs to know which Maze it is a part of</span>
+        <span class="n">room</span><span class="o">.</span><span class="n">maze</span> <span class="o">=</span> <span class="bp">self</span>  <span class="c1"># The Room needs to know </span>
+                          <span class="c1"># which Maze it is a part of</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">[</span><span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">room</span>
 
     <span class="k">def</span> <span class="nf">occupants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1074,19 +1075,19 @@ Bob goes jump to the garden
 livingroom: Sue Clare
 garden: James Bob
 
-Sue goes north to the kitchen
-Clare goes upstairs to the bedroom
+Sue goes upstairs to the bedroom
+Clare goes outside to the garden
 James goes inside to the livingroom
 Bob goes inside to the livingroom
 
 livingroom: James Bob
-kitchen: Sue
-bedroom: Clare
+garden: Clare
+bedroom: Sue
 
-James goes outside to the garden
+James goes north to the kitchen
 Bob goes outside to the garden
-Sue goes south to the livingroom
-Clare goes downstairs to the livingroom
+Clare goes inside to the livingroom
+Sue goes jump to the garden
 
 </pre>
 </div>
@@ -1121,8 +1122,8 @@ we can use arrays instead of dictionaries, but we have to first define all our r
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span> <span class="o">=</span> <span class="p">[]</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span> <span class="o">=</span> <span class="p">[]</span>        
+        
     <span class="k">def</span> <span class="nf">add_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
@@ -1147,9 +1148,9 @@ we can use arrays instead of dictionaries, but we have to first define all our r
             <span class="n">occupant</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">house</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="n">house</span><span class="o">.</span><span class="n">wander</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wander</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
@@ -1374,26 +1375,25 @@ Clare is in the garden
 
 James goes north to the kitchen
 Sue goes inside to the livingroom
-Bob goes jump to the garden
-Clare goes inside to the livingroom
+Bob goes downstairs to the livingroom
 
 James is in the kitchen
 Sue is in the livingroom
+Bob is in the livingroom
+Clare is in the garden
+
+Sue goes upstairs to the bedroom
+Bob goes outside to the garden
+Clare goes inside to the livingroom
+
+James is in the kitchen
+Sue is in the bedroom
 Bob is in the garden
 Clare is in the livingroom
 
-Sue goes outside to the garden
-Bob goes inside to the livingroom
-Clare goes upstairs to the bedroom
-
-James is in the kitchen
-Sue is in the garden
-Bob is in the livingroom
-Clare is in the bedroom
-
 James goes south to the livingroom
-Bob goes north to the kitchen
-Clare goes jump to the garden
+Sue goes jump to the garden
+Clare goes north to the kitchen
 
 </pre>
 </div>
