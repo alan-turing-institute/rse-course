@@ -387,7 +387,7 @@ git push -uf origin master <span class="c1"># I have an extra `f` switch here.</
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To https://github.com/alan-turing-institute/github-example.git
- + 8fad172...9712b54 master -&gt; master (forced update)
+ + b78ca30...03e1d59 master -&gt; master (forced update)
 </pre>
 </div>
 </div>
@@ -499,11 +499,11 @@ git push -uf origin master <span class="c1"># I have an extra `f` switch here.</
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> lakeland.md
-Lakeland  
-========   
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> lakeland.md
+<span class="n">Lakeland</span>  
+<span class="o">========</span>   
   
-Cumbria has some pretty hills, and lakes too.  
+<span class="n">Cumbria</span> <span class="n">has</span> <span class="n">some</span> <span class="n">pretty</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">lakes</span> <span class="n">too</span><span class="o">.</span>  
 </pre></div>
 
     </div>
@@ -554,7 +554,8 @@ Cumbria has some pretty hills, and lakes too.
 <pre>Lakeland  
 ========   
   
-Cumbria has some pretty hills, and lakes too.  </pre>
+Cumbria has some pretty hills, and lakes too.  
+</pre>
 </div>
 </div>
 
@@ -605,6 +606,52 @@ nothing added to commit but untracked files present
 </div>
 </div>
 
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">CalledProcessError</span>                        Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-b38098616040&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_cell_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;bash&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;git commit -am &#34;Try to add Lakeland&#34;\n&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/interactiveshell.py</span> in <span class="ansi-cyan-fg">run_cell_magic</span><span class="ansi-blue-fg">(self, magic_name, line, cell)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2321</span>             magic_arg_s <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>var_expand<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">,</span> stack_depth<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2322</span>             <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>builtin_trap<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2323</span><span class="ansi-red-fg">                 </span>result <span class="ansi-blue-fg">=</span> fn<span class="ansi-blue-fg">(</span>magic_arg_s<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2324</span>             <span class="ansi-green-fg">return</span> result
+<span class="ansi-green-intense-fg ansi-bold">   2325</span> 
+
+<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magics/script.py</span> in <span class="ansi-cyan-fg">named_script_magic</span><span class="ansi-blue-fg">(line, cell)</span>
+<span class="ansi-green-intense-fg ansi-bold">    140</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    141</span>                 line <span class="ansi-blue-fg">=</span> script
+<span class="ansi-green-fg">--&gt; 142</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>shebang<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    143</span> 
+<span class="ansi-green-intense-fg ansi-bold">    144</span>         <span class="ansi-red-fg"># write a basic docstring:</span>
+
+<span class="ansi-green-fg">&lt;decorator-gen-109&gt;</span> in <span class="ansi-cyan-fg">shebang</span><span class="ansi-blue-fg">(self, line, cell)</span>
+
+<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magic.py</span> in <span class="ansi-cyan-fg">&lt;lambda&gt;</span><span class="ansi-blue-fg">(f, *a, **k)</span>
+<span class="ansi-green-intense-fg ansi-bold">    185</span>     <span class="ansi-red-fg"># but it&#39;s overkill for just that one bit of state.</span>
+<span class="ansi-green-intense-fg ansi-bold">    186</span>     <span class="ansi-green-fg">def</span> magic_deco<span class="ansi-blue-fg">(</span>arg<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 187</span><span class="ansi-red-fg">         </span>call <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">lambda</span> f<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>a<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>k<span class="ansi-blue-fg">:</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>a<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>k<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    188</span> 
+<span class="ansi-green-intense-fg ansi-bold">    189</span>         <span class="ansi-green-fg">if</span> callable<span class="ansi-blue-fg">(</span>arg<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magics/script.py</span> in <span class="ansi-cyan-fg">shebang</span><span class="ansi-blue-fg">(self, line, cell)</span>
+<span class="ansi-green-intense-fg ansi-bold">    243</span>             sys<span class="ansi-blue-fg">.</span>stderr<span class="ansi-blue-fg">.</span>flush<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    244</span>         <span class="ansi-green-fg">if</span> args<span class="ansi-blue-fg">.</span>raise_error <span class="ansi-green-fg">and</span> p<span class="ansi-blue-fg">.</span>returncode<span class="ansi-blue-fg">!=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 245</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> CalledProcessError<span class="ansi-blue-fg">(</span>p<span class="ansi-blue-fg">.</span>returncode<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">,</span> output<span class="ansi-blue-fg">=</span>out<span class="ansi-blue-fg">,</span> stderr<span class="ansi-blue-fg">=</span>err<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    246</span> 
+<span class="ansi-green-intense-fg ansi-bold">    247</span>     <span class="ansi-green-fg">def</span> _run_script<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> p<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">,</span> to_close<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">CalledProcessError</span>: Command &#39;b&#39;git commit -am &#34;Try to add Lakeland&#34;\n&#39;&#39; returned non-zero exit status 1.</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -648,7 +695,7 @@ git commit -am <span class="s2">&quot;Add lakeland&quot;</span>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master abb5d5c] Add lakeland
+<pre>[master 86cf371] Add lakeland
  1 file changed, 4 insertions(+)
  create mode 100644 lakeland.md
 </pre>
@@ -691,7 +738,7 @@ git push
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To https://github.com/alan-turing-institute/github-example.git
-   9712b54..abb5d5c  master -&gt; master
+   03e1d59..86cf371  master -&gt; master
 </pre>
 </div>
 </div>
@@ -728,14 +775,14 @@ git push
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> lakeland.md
-Lakeland  
-========   
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> lakeland.md
+<span class="n">Lakeland</span>  
+<span class="o">========</span>   
   
-Cumbria has some pretty hills, and lakes too
+<span class="n">Cumbria</span> <span class="n">has</span> <span class="n">some</span> <span class="n">pretty</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">lakes</span> <span class="n">too</span>
 
-Mountains:
-* Helvellyn
+<span class="n">Mountains</span><span class="p">:</span>
+<span class="o">*</span> <span class="n">Helvellyn</span>
 </pre></div>
 
     </div>
@@ -766,12 +813,12 @@ Mountains:
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> index.md
-Mountains and Lakes in the UK   
-===================   
-Engerland is not very mountainous.
-But has some tall hills, and maybe a
-mountain or two depending on your definition.
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> index.md
+<span class="n">Mountains</span> <span class="ow">and</span> <span class="n">Lakes</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">UK</span>   
+<span class="o">===================</span>   
+<span class="n">Engerland</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">very</span> <span class="n">mountainous</span><span class="o">.</span>
+<span class="n">But</span> <span class="n">has</span> <span class="n">some</span> <span class="n">tall</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">maybe</span> <span class="n">a</span>
+<span class="n">mountain</span> <span class="ow">or</span> <span class="n">two</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">your</span> <span class="n">definition</span><span class="o">.</span>
 </pre></div>
 
     </div>
@@ -877,7 +924,7 @@ git commit -m <span class="s2">&quot;Include lakes in the scope&quot;</span>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 81053a7] Include lakes in the scope
+<pre>[master b5f225b] Include lakes in the scope
  1 file changed, 4 insertions(+), 3 deletions(-)
 </pre>
 </div>
@@ -918,7 +965,7 @@ git commit -am <span class="s2">&quot;Add Helvellyn&quot;</span>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master f17277d] Add Helvellyn
+<pre>[master 563f95e] Add Helvellyn
  1 file changed, 4 insertions(+), 1 deletion(-)
 </pre>
 </div>
@@ -951,13 +998,13 @@ git log --oneline
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>f17277d Add Helvellyn
-81053a7 Include lakes in the scope
-abb5d5c Add lakeland
-9712b54 Revert &#34;Add a lie about a mountain&#34;
-25c4200 Change title
-d3fbfcb Add a lie about a mountain
-956936c First commit of discourse on UK topography
+<pre>563f95e Add Helvellyn
+b5f225b Include lakes in the scope
+86cf371 Add lakeland
+03e1d59 Revert &#34;Add a lie about a mountain&#34;
+d4a9132 Change title
+cb67f8a Add a lie about a mountain
+a2f6abf First commit of discourse on UK topography
 </pre>
 </div>
 </div>
@@ -990,7 +1037,7 @@ git push
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To https://github.com/alan-turing-institute/github-example.git
-   abb5d5c..f17277d  master -&gt; master
+   86cf371..563f95e  master -&gt; master
 </pre>
 </div>
 </div>

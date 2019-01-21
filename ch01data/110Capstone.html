@@ -290,32 +290,32 @@ mkdir -p greengraph  <span class="c1"># Create the folder for the module (on mac
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> greengraph/graph.py
-import numpy as np
-import geopy
-from .map import Map
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> greengraph/graph.py
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopy</span>
+<span class="kn">from</span> <span class="nn">.map</span> <span class="k">import</span> <span class="n">Map</span>
 
 
-class Greengraph(object):
-    def __init__(self, start, end):
-        self.start = start
-        self.end = end
-        self.geocoder = geopy.geocoders.Yandex(lang=&quot;en_US&quot;)
+<span class="k">class</span> <span class="nc">Greengraph</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geocoder</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">geocoders</span><span class="o">.</span><span class="n">Yandex</span><span class="p">(</span><span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en_US&quot;</span><span class="p">)</span>
 
-    def geolocate(self, place):
-        return self.geocoder.geocode(place, exactly_one=False)[0][1]
+    <span class="k">def</span> <span class="nf">geolocate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">place</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocoder</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="n">place</span><span class="p">,</span> <span class="n">exactly_one</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 
-    def location_sequence(self, start, end, steps):
-        lats = np.linspace(start[0], end[0], steps)
-        longs = np.linspace(start[1], end[1], steps)
-        return np.vstack([lats, longs]).transpose()
+    <span class="k">def</span> <span class="nf">location_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+        <span class="n">lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">steps</span><span class="p">)</span>
+        <span class="n">longs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">steps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">lats</span><span class="p">,</span> <span class="n">longs</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 
-    def green_between(self, steps):
-        return [Map(*location).count_green()
-                for location in self.location_sequence(
-                    self.geolocate(self.start),
-                    self.geolocate(self.end),
-                    steps)]
+    <span class="k">def</span> <span class="nf">green_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Map</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">count_green</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">location_sequence</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">geolocate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">geolocate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">),</span>
+                    <span class="n">steps</span><span class="p">)]</span>
 </pre></div>
 
     </div>
@@ -346,47 +346,47 @@ class Greengraph(object):
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> greengraph/map.py
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> greengraph/map.py
 
-import numpy as np
-from io import BytesIO
-import imageio as img
-import requests
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">imageio</span> <span class="k">as</span> <span class="nn">img</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-class Map(object):
-    def __init__(self, lat, long, satellite=True, zoom=10,
-                 size=(400, 400), sensor=False):
-        base = &quot;https://static-maps.yandex.ru/1.x/?&quot;
+<span class="k">class</span> <span class="nc">Map</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">sensor</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;https://static-maps.yandex.ru/1.x/?&quot;</span>
 
-        params = dict(
-            z=zoom,
-            size=str(size[0]) + &quot;,&quot; + str(size[1]),
-            ll=str(long) + &quot;,&quot; + str(lat),
-            l=&quot;sat&quot; if satellite else &quot;map&quot;,
-            lang=&quot;en_US&quot;
-        )
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">z</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">ll</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">long</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>
+            <span class="n">l</span><span class="o">=</span><span class="s2">&quot;sat&quot;</span> <span class="k">if</span> <span class="n">satellite</span> <span class="k">else</span> <span class="s2">&quot;map&quot;</span><span class="p">,</span>
+            <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en_US&quot;</span>
+        <span class="p">)</span>
 
-        self.image = requests.get(
-            base, params=params).content  # Fetch our PNG image data
-        content = BytesIO(self.image)
-        self.pixels = img.imread(content) # Parse our PNG image as a numpy array
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">base</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># Fetch our PNG image data</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="c1"># Parse our PNG image as a numpy array</span>
         
-    def green(self, threshold):
-        # Use NumPy to build an element-by-element logical array
-        greener_than_red = self.pixels[:, :, 1] &gt; threshold * self.pixels[:, :, 0]
-        greener_than_blue = self.pixels[:, :, 1] &gt; threshold * self.pixels[:, :, 2]
-        green = np.logical_and(greener_than_red, greener_than_blue)
-        return green
+    <span class="k">def</span> <span class="nf">green</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+        <span class="c1"># Use NumPy to build an element-by-element logical array</span>
+        <span class="n">greener_than_red</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">greener_than_blue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">green</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">greener_than_red</span><span class="p">,</span> <span class="n">greener_than_blue</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">green</span>
 
-    def count_green(self, threshold=1.1):
-        return np.sum(self.green(threshold))
+    <span class="k">def</span> <span class="nf">count_green</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1.1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">green</span><span class="p">(</span><span class="n">threshold</span><span class="p">))</span>
 
-    def show_green(data, threshold=1.1):
-        green = self.green(threshold)
-        out = green[:, :, np.newaxis] * array([0, 1, 0])[np.newaxis, np.newaxis, :]
-        buffer = BytesIO()
-        result = img.imwrite(buffer, out, format=&#39;png&#39;)
-        return buffer.getvalue()
+    <span class="k">def</span> <span class="nf">show_green</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1.1</span><span class="p">):</span>
+        <span class="n">green</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">green</span><span class="p">(</span><span class="n">threshold</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">green</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -417,8 +417,8 @@ class Map(object):
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> greengraph/__init__.py
-from .graph import Greengraph
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> greengraph/__init__.py
+<span class="kn">from</span> <span class="nn">.graph</span> <span class="k">import</span> <span class="n">Greengraph</span>
 </pre></div>
 
     </div>
@@ -493,7 +493,7 @@ from .graph import Greengraph
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x2b831d1d55f8&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x2ac01c3ee208&gt;]</pre>
 </div>
 
 </div>

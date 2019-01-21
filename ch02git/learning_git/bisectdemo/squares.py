@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import sys
 
-integer = sys.argv[1]
+integer = int(sys.argv[1])
 
 print(integer**2)
 
@@ -814,3 +814,75 @@ print(integer**2)
 #Comment 802
 #Comment 803
 #Comment 804
+#Comment 805
+#Comment 806
+#Comment 807
+#Comment 808
+#Comment 809
+#Comment 810
+#Comment 811
+#Comment 812
+#Comment 813
+#Comment 814
+#Comment 815
+#Comment 816
+#Comment 817
+#Comment 818
+#Comment 819
+#Comment 820
+#Comment 821
+#Comment 822
+#Comment 823
+#Comment 824
+#Comment 825
+#Comment 826
+#Comment 827
+#Comment 828
+#Comment 829
+#Comment 830
+#Comment 831
+#Comment 832
+#Comment 833
+#Comment 834
+#Comment 835
+#Comment 836
+#Comment 837
+#Comment 838
+#Comment 839
+#Comment 840
+#Comment 841
+#Comment 842
+#Comment 843
+#Comment 844
+#Comment 845
+#Comment 846
+#Comment 847
+#Comment 848
+#Comment 849
+#Comment 850
+#Comment 851
+#Comment 852
+#Comment 853
+#Comment 854
+#Comment 855
+#Comment 856
+#Comment 857
+#Comment 858
+#Comment 859
+#Comment 860
+#Comment 861
+#Comment 862
+#Comment 863
+#Comment 864
+#Comment 865
+#Comment 866
+#Comment 867
+#Comment 868
+#Comment 869
+#Comment 870
+#Comment 871
+#Comment 872
+#Comment 873
+#Comment 874
+#Comment 875
+#Comment 876

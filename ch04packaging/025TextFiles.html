@@ -316,49 +316,49 @@ We can do this by writing text files with a .py extension, and then <code>import
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> mazetool/maze.py
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/maze.py
 
-from .room import Room
-from .person import Person
+<span class="kn">from</span> <span class="nn">.room</span> <span class="k">import</span> <span class="n">Room</span>
+<span class="kn">from</span> <span class="nn">.person</span> <span class="k">import</span> <span class="n">Person</span>
 
-class Maze(object):
-    def __init__(self, name):
-        self.name = name
-        self.rooms = []
-        self.occupants = []
+<span class="k">class</span> <span class="nc">Maze</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span> <span class="o">=</span> <span class="p">[]</span>
         
-    def add_room(self, name, capacity):
-        result = Room(name, capacity)
-        self.rooms.append(result)
-        return result
+    <span class="k">def</span> <span class="nf">add_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
         
-    def add_exit(self, name, source, target, reverse= None):
-        source.add_exit(name, target)
-        if reverse:
-            target.add_exit(reverse, source)
+    <span class="k">def</span> <span class="nf">add_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">add_exit</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+            <span class="n">target</span><span class="o">.</span><span class="n">add_exit</span><span class="p">(</span><span class="n">reverse</span><span class="p">,</span> <span class="n">source</span><span class="p">)</span>
             
-    def add_occupant(self, name, room):
-        self.occupants.append(Person(name, room))
-        room.occupancy += 1
+    <span class="k">def</span> <span class="nf">add_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">room</span><span class="p">))</span>
+        <span class="n">room</span><span class="o">.</span><span class="n">occupancy</span> <span class="o">+=</span> <span class="mi">1</span>
     
-    def wander(self):
-        &quot;Move all the people in a random direction&quot;
-        for occupant in self.occupants:
-            occupant.wander()
+    <span class="k">def</span> <span class="nf">wander</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Move all the people in a random direction&quot;</span>
+        <span class="k">for</span> <span class="n">occupant</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">:</span>
+            <span class="n">occupant</span><span class="o">.</span><span class="n">wander</span><span class="p">()</span>
                 
-    def describe(self):
-        for occupant in self.occupants:
-            occupant.describe()
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">occupant</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">:</span>
+            <span class="n">occupant</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
             
-    def step(self):
-        house.describe()
-        print()
-        house.wander()
-        print()
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">house</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="n">house</span><span class="o">.</span><span class="n">wander</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">()</span>
         
-    def simulate(self, steps):
-        for _ in range(steps):
-            self.step()
+    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -389,31 +389,31 @@ class Maze(object):
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> mazetool/room.py
-from .exit import Exit
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/room.py
+<span class="kn">from</span> <span class="nn">.exit</span> <span class="k">import</span> <span class="n">Exit</span>
 
 
-class Room(object):
-    def __init__(self, name, capacity):
-        self.name = name
-        self.capacity = capacity
-        self.occupancy = 0
-        self.exits = []
+<span class="k">class</span> <span class="nc">Room</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupancy</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exits</span> <span class="o">=</span> <span class="p">[]</span>
         
-    def has_space(self):
-        return self.occupancy &lt; self.capacity
+    <span class="k">def</span> <span class="nf">has_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupancy</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span>
     
-    def available_exits(self):
-        return [exit for exit in self.exits if exit.valid() ]
+    <span class="k">def</span> <span class="nf">available_exits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">exit</span> <span class="k">for</span> <span class="n">exit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exits</span> <span class="k">if</span> <span class="n">exit</span><span class="o">.</span><span class="n">valid</span><span class="p">()</span> <span class="p">]</span>
             
-    def random_valid_exit(self):
-        import random
-        if not self.available_exits():
-            return None
-        return random.choice(self.available_exits())
+    <span class="k">def</span> <span class="nf">random_valid_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">random</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_exits</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">available_exits</span><span class="p">())</span>
     
-    def add_exit(self, name, target):
-        self.exits.append(Exit(name, target))
+    <span class="k">def</span> <span class="nf">add_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Exit</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
     
 </pre></div>
 
@@ -445,27 +445,27 @@ class Room(object):
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> mazetool/person.py
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/person.py
 
-class Person(object):
-    def __init__(self, name, room = None):
-        self.name=name
-        self.room=room
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">=</span><span class="n">room</span>
     
-    def use(self, exit):
-        self.room.occupancy -= 1
-        destination=exit.target
-        destination.occupancy +=1
-        self.room=destination
-        print(self.name, &quot;goes&quot;, exit.name, &quot;to the&quot;, destination.name)
+    <span class="k">def</span> <span class="nf">use</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exit</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">occupancy</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">destination</span><span class="o">=</span><span class="n">exit</span><span class="o">.</span><span class="n">target</span>
+        <span class="n">destination</span><span class="o">.</span><span class="n">occupancy</span> <span class="o">+=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">=</span><span class="n">destination</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;goes&quot;</span><span class="p">,</span> <span class="n">exit</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;to the&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
     
-    def wander(self):
-        exit = self.room.random_valid_exit()
-        if exit:
-            self.use(exit)
+    <span class="k">def</span> <span class="nf">wander</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">exit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">random_valid_exit</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">exit</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
             
-    def describe(self):
-        print(self.name, &quot;is in the&quot;, self.room.name)
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;is in the&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -496,15 +496,15 @@ class Person(object):
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> mazetool/exit.py
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/exit.py
 
-class Exit(object):
-    def __init__(self, name, target):
-        self.name = name
-        self.target = target
+<span class="k">class</span> <span class="nc">Exit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target</span>
     
-    def valid(self):
-        return self.target.has_space()
+    <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">has_space</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -544,8 +544,8 @@ we have to make a special file called <code>__init__.py</code>. If you import th
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> mazetool/__init__.py
-from .maze import Maze # Python 3 relative import
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/__init__.py
+<span class="kn">from</span> <span class="nn">.maze</span> <span class="k">import</span> <span class="n">Maze</span> <span class="c1"># Python 3 relative import</span>
 </pre></div>
 
     </div>
@@ -611,7 +611,7 @@ from .maze import Maze # Python 3 relative import
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-7-1bba859a6fb8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-7-1bba859a6fb8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>myhouse<span class="ansi-blue-fg">=</span>Maze<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;My New House&#39;</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">NameError</span>: name &#39;Maze&#39; is not defined</pre>
