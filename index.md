@@ -16,9 +16,6 @@ In this course, you will move beyond programming, to learn how to construct reli
 * We have provided [setup](session99) instructions for installing the software needed for the course on your computer.
 * Eligibility: This course is for Turing PhD students. Turing researchers might join too if capacity allows.
 
-##Registration
-
-See email and Turing Complete. First class is open, then registration via Eventbrite.
 
 
 ##Instructors
