@@ -20,28 +20,13 @@ In this course, you will move beyond programming, to learn how to construct reli
 
 See email and Turing Complete. First class is open, then registration via Eventbrite.
 
-**This course may not be audited.**
 
 ##Instructors
 
 * [James Hetherington](https://www.turing.ac.uk/people/researchers/james-hetherington)
-* [Giovanni Colavizza](https://www.turing.ac.uk/people/researchers/giovanni-colavizza)
 
-##Schedule
 
-| Class                                 | Date      | When     | Where  |
-| ------------------------------------- |-----------| -------- | ------ |
-| Introduction to Python                | 12 Oct    | 10am-1pm | Enigma |
-| Research Data in Python               | 26 Oct    | 10am-1pm | Enigma |
-| Research Data in Python and Version Control | 2 Nov | 9:30am-4:30pm | Enigma |
-| Testing your code                     | 9 Nov     | 10am-1pm | Enigma |
-| Software Projects                     | 15 Nov    | 10am-1pm | Enigma |
-| Construction and Design               | 11 Jan    | 10am-1pm | Enigma |
-| Advanced Programming Techniques       | 18 Jan    | 10am-1pm | Enigma |
-| Programming for Speed                 | 25 Jan    | 10am-1pm | Enigma |
-| Scientific file formats 1 and 2       | 22 Feb    | 10am-2pm | Enigma |
 
-Bonus: HPC Carpentry Workshop, december 6-7.
 
 ##Synopsis
 
