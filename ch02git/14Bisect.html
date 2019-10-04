@@ -463,6 +463,37 @@ git bisect good <span class="c1"># We know the master branch state is OK</span>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Your branch is up to date with &#39;origin/master&#39;.
+Bisecting: 500 revisions left to test after this (roughly 9 steps)
+[5f98f11ae6dfe1904ec24bbcc124fe02e4f2e495] Comment 499
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Switched to branch &#39;master&#39;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -555,7 +586,7 @@ Date:   Thu Nov <span class="m">14</span> <span class="m">09</span>:23:55 <span 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -580,47 +611,48 @@ git bisect run python squares.py <span class="m">2</span>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[b169c7082723bccb3e617deb203fc9964f6afdc0] Comment 500
+[5f98f11ae6dfe1904ec24bbcc124fe02e4f2e495] Comment 499
+running python squares.py 2
+Bisecting: 249 revisions left to test after this (roughly 8 steps)
+[f2fe1cdaef4b3513b59e20b5276e6eaaeed626f3] Comment 250
 running python squares.py 2
 4
-Bisecting: 250 revisions left to test after this (roughly 8 steps)
-[4a8885a2796a3d007c196f57f72e934430fb686d] Comment 750
+Bisecting: 124 revisions left to test after this (roughly 7 steps)
+[1222a775103fbf3f0746916b6a36189b02a851fe] Comment 374
 running python squares.py 2
-4
-Bisecting: 125 revisions left to test after this (roughly 7 steps)
-[f434d22cacaf5a80b14e9de9f87cb3ad07e76382] Comment 875
-running python squares.py 2
-4
 Bisecting: 62 revisions left to test after this (roughly 6 steps)
-[97434f52f2d40d910946eacc2f0f2374b40fa4f6] Comment 937
+[89777e4f39ade48d3a118e1e66a432b61e76812e] Comment 312
 running python squares.py 2
+4
 Bisecting: 31 revisions left to test after this (roughly 5 steps)
-[70b469370a5aaa3bb339bfde069ee2c4052b114f] Comment 905
+[3547372b8da4d87b89d81fc33b8451ea477c942c] Comment 343
 running python squares.py 2
+4
 Bisecting: 15 revisions left to test after this (roughly 4 steps)
-[cf1abb255bb70df6b919458781b67c7a30187b82] Comment 889
+[f38a713eabd35b77eb5c7697f254f602d5196e18] Comment 358
 running python squares.py 2
 Bisecting: 7 revisions left to test after this (roughly 3 steps)
-[81e93a99db64e63558ceec772e50d99758ffd02a] Comment 881
-running python squares.py 2
-Bisecting: 3 revisions left to test after this (roughly 2 steps)
-[e97367749f9892736b78841e5891cddc8abbeab1] Comment 877
-running python squares.py 2
-Bisecting: 0 revisions left to test after this (roughly 1 step)
-[b803946c94f09165796299065147acffc5f0a774] Breaking argument type
-running python squares.py 2
-Bisecting: 0 revisions left to test after this (roughly 0 steps)
-[b1274e723ed32a5742cd463781f11c15e0c26a3d] Comment 876
+[283b32897e164228d6bc7734cb5010bca54448fe] Comment 351
 running python squares.py 2
 4
-b803946c94f09165796299065147acffc5f0a774 is the first bad commit
-commit b803946c94f09165796299065147acffc5f0a774
+Bisecting: 3 revisions left to test after this (roughly 2 steps)
+[3d0b19f58f75ef0a19ac2769f90de59456d08ca1] Comment 354
+running python squares.py 2
+Bisecting: 1 revision left to test after this (roughly 1 step)
+[b10f8cd54a37b576a5403bec9751b4aa6d1ef470] Comment 353
+running python squares.py 2
+4
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[1281ccc51b0a59aaeda476191ff115b191afab8b] Breaking argument type
+running python squares.py 2
+1281ccc51b0a59aaeda476191ff115b191afab8b is the first bad commit
+commit 1281ccc51b0a59aaeda476191ff115b191afab8b
 Author: Shawn Siefkas &lt;shawn.siefkas@meredith.com&gt;
 Date:   Thu Nov 14 09:23:55 2013 -0600
 
     Breaking argument type
 
-:100644 100644 3eb1287e59ddbdfa96e34d09d13e8775edb6e476 64c3699607ac061f33f9de84230db701ba31dcef M	squares.py
+:100644 100644 d177285cd236b502b9133160b32097ae118da367 dfcb1065e4976f39a59dc19d7675256dcafb9ab6 M	squares.py
 bisect run success
 </pre>
 </div>
@@ -632,10 +664,8 @@ bisect run success
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>Traceback (most recent call last):
-  File &#34;squares.py&#34;, line 9, in &lt;module&gt;
-    print(integer**2)
-TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
+<pre>Previous HEAD position was 5f98f11... Comment 499
+Switched to branch &#39;buggy&#39;
 Traceback (most recent call last):
   File &#34;squares.py&#34;, line 9, in &lt;module&gt;
     print(integer**2)
