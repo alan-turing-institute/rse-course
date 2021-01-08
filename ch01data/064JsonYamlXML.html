@@ -651,7 +651,7 @@ looks a bit like a Javascript (or Python) data literal.</p>
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mydata</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.yaml&#39;</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mydata</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.yaml&#39;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mydata</span><span class="p">)</span>
 </pre></div>
 
@@ -674,21 +674,17 @@ looks a bit like a Javascript (or Python) data literal.</p>
 </div>
 </div>
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/home/travis/virtualenv/python3.6.3/lib/python3.6/site-packages/ipykernel_launcher.py:1: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
-  &#34;&#34;&#34;Entry point for launching an IPython kernel.
-</pre>
 </div>
 </div>
 
 </div>
-</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Supplementary Materials:</strong> <code>yaml.safe_load</code> is preferred over <code>yaml.load</code> to avoid executing arbitrary code in untrusted files. See <a href="https://github.com/yaml/pyyaml/wiki/PyYAML-yaml.load(input">here</a>-Deprecation) for details.</p>
 
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -713,7 +709,7 @@ you can control this choice:</p>
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">mydata</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -730,9 +726,7 @@ you can control this choice:</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>somekey:
-- a list
-- with values
+<pre>{somekey: [a list, with values]}
 
 </pre>
 </div>

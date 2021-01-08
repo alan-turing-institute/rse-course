@@ -7,7 +7,7 @@ class Greengraph(object):
     def __init__(self, start, end):
         self.start = start
         self.end = end
-        self.geocoder = geopy.geocoders.Yandex(lang="en_US")
+        self.geocoder = geopy.geocoders.Nominatim(user_agent="rsd-course")
 
     def geolocate(self, place):
         return self.geocoder.geocode(place, exactly_one=False)[0][1]
