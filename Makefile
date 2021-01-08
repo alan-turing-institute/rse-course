@@ -29,7 +29,7 @@ default: _site
 	dot $< -T png -o $@
 
 %.png: %.uml Makefile
-   java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
+	java -Djava.awt.headless=true -jar plantuml.jar -p < $< > $@
 
 %.html: %.nbconvert.ipynb Makefile jekyll.tpl
 	jupyter nbconvert --to html  --template jekyll.tpl --stdout $< > $@
@@ -119,7 +119,7 @@ clean:
 	rm -rf ch09*/*.hdf5
 	rm -rf ch09*/*.py
 	rm -rf ch09*/*.db
-	rm -rf ch09*/*.out 
+	rm -rf ch09*/*.out
 	rm -rf ch09*/*.mol
 	rm -rf ch09*/*.tex
 	rm -rf ch09*/*.ttl
