@@ -318,11 +318,11 @@ We can do this by writing text files with a .py extension, and then <code>import
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/maze.py
 
-<span class="kn">from</span> <span class="nn">.room</span> <span class="k">import</span> <span class="n">Room</span>
-<span class="kn">from</span> <span class="nn">.person</span> <span class="k">import</span> <span class="n">Person</span>
+<span class="kn">from</span> <span class="nn">.room</span> <span class="kn">import</span> <span class="n">Room</span>
+<span class="kn">from</span> <span class="nn">.person</span> <span class="kn">import</span> <span class="n">Person</span>
 
 <span class="k">class</span> <span class="nc">Maze</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span> <span class="o">=</span> <span class="p">[]</span>
@@ -390,11 +390,11 @@ We can do this by writing text files with a .py extension, and then <code>import
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/room.py
-<span class="kn">from</span> <span class="nn">.exit</span> <span class="k">import</span> <span class="n">Exit</span>
+<span class="kn">from</span> <span class="nn">.exit</span> <span class="kn">import</span> <span class="n">Exit</span>
 
 
 <span class="k">class</span> <span class="nc">Room</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">occupancy</span> <span class="o">=</span> <span class="mi">0</span>
@@ -448,7 +448,7 @@ We can do this by writing text files with a .py extension, and then <code>import
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/person.py
 
 <span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">=</span><span class="n">room</span>
     
@@ -499,7 +499,7 @@ We can do this by writing text files with a .py extension, and then <code>import
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/exit.py
 
 <span class="k">class</span> <span class="nc">Exit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target</span>
     
@@ -545,7 +545,7 @@ we have to make a special file called <code>__init__.py</code>. If you import th
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> mazetool/__init__.py
-<span class="kn">from</span> <span class="nn">.maze</span> <span class="k">import</span> <span class="n">Maze</span> <span class="c1"># Python 3 relative import</span>
+<span class="kn">from</span> <span class="nn">.maze</span> <span class="kn">import</span> <span class="n">Maze</span> <span class="c1"># Python 3 relative import</span>
 </pre></div>
 
     </div>
@@ -681,7 +681,7 @@ we have to make a special file called <code>__init__.py</code>. If you import th
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mazetool</span> <span class="k">import</span> <span class="n">Maze</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mazetool</span> <span class="kn">import</span> <span class="n">Maze</span>
 </pre></div>
 
     </div>

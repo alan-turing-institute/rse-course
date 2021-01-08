@@ -329,7 +329,7 @@ the assignment with, say, a class constructor and a buy operation:</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Basket</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">def</span> <span class="nf">buy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -387,7 +387,7 @@ just a loop over all the variables we want to initialise:</p>
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="k">import</span> <span class="n">raises</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">raises</span>
 <span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">NameError</span><span class="p">):</span>
     <span class="n">baskets</span> <span class="o">=</span> <span class="p">[</span><span class="n">bananas</span><span class="p">,</span> <span class="n">apples</span><span class="p">,</span> <span class="n">oranges</span><span class="p">,</span> <span class="n">kiwis</span><span class="p">]</span>
 </pre></div>
@@ -432,7 +432,7 @@ just a loop over all the variables we want to initialise:</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;__main__.Basket at 0x2b47fb98cd30&gt;</pre>
+<pre>&lt;__main__.Basket at 0x2aaca4c0da20&gt;</pre>
 </div>
 
 </div>
@@ -834,7 +834,7 @@ it becomes a member function!</p>
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">setattr</span><span class="p">(</span><span class="n">Boring</span><span class="p">,</span> <span class="s1">&#39;describe&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.name}</span><span class="s2"> is </span><span class="si">{self.age}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">setattr</span><span class="p">(</span><span class="n">Boring</span><span class="p">,</span> <span class="s1">&#39;describe&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -899,7 +899,7 @@ it becomes a member function!</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;bound method &lt;lambda&gt; of &lt;__main__.Boring object at 0x2b47fb98cb00&gt;&gt;</pre>
+<pre>&lt;bound method &lt;lambda&gt; of &lt;__main__.Boring object at 0x2aaca53fad30&gt;&gt;</pre>
 </div>
 
 </div>
@@ -1059,7 +1059,7 @@ it becomes a member function!</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>1944</pre>
+<pre>1946</pre>
 </div>
 
 </div>
@@ -1092,7 +1092,7 @@ it becomes a member function!</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;bound method broken_birth_year of &lt;__main__.Boring object at 0x2b47fb98cb00&gt;&gt;</pre>
+<pre>&lt;bound method broken_birth_year of &lt;__main__.Boring object at 0x2aaca53fad30&gt;&gt;</pre>
 </div>
 
 </div>
@@ -1158,11 +1158,11 @@ programmatic creation of function-local variables is a flaw in Python.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="n">children_count</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="n">children_count</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;self&#39;</span><span class="p">:</span> 
                 <span class="k">continue</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Setting self.</span><span class="si">{name}</span><span class="s2"> to </span><span class="si">{value}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting self.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </pre></div>
 
@@ -1262,7 +1262,7 @@ Remember, your objective when programming is to produce code which is <strong>de
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="n">children_count</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="n">children_count</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">job</span> <span class="o">=</span> <span class="n">job</span>

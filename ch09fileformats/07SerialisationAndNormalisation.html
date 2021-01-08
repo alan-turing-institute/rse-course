@@ -262,15 +262,15 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
         
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
         
 <span class="k">class</span> <span class="nc">Molecule</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">=</span> <span class="p">{}</span> <span class="c1"># Map from element to number of that element in the molecule</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="n">mass</span>
         
@@ -287,13 +287,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;_{&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;}&quot;</span>
     
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
             <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">+</span><span class="n">Molecule</span><span class="o">.</span><span class="n">as_subscript</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">])</span>
              <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">])</span>
   
 <span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span> <span class="c1"># Map from reactants to stoichiometries</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span> <span class="c1"># Map from products to stoichiometries</span>
         
@@ -315,17 +315,17 @@
             <span class="p">[</span><span class="n">Reaction</span><span class="o">.</span><span class="n">print_if_not_one</span><span class="p">(</span><span class="n">side</span><span class="p">[</span><span class="n">molecule</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
              <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">side</span><span class="p">])</span>
         
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">Reaction</span><span class="o">.</span><span class="n">side_as_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">)</span><span class="o">+</span>
         <span class="s2">&quot; </span><span class="se">\\</span><span class="s2">rightarrow &quot;</span><span class="o">+</span><span class="n">Reaction</span><span class="o">.</span><span class="n">side_as_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">))</span>
     
 <span class="k">class</span> <span class="nc">System</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaction</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reaction</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">)</span>
 </pre></div>
 
@@ -396,7 +396,7 @@
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
 <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">combustion</span><span class="p">)))</span>
 </pre></div>
 
@@ -908,7 +908,7 @@ right across our thinking about data representation, whether these are dataframe
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="k">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">ForeignKey</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">ForeignKey</span>
 <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
 <span class="n">molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;molecules&#39;</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
                   <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
@@ -965,23 +965,23 @@ right across our thinking about data representation, whether these are dataframe
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2019-11-08 12:09:41,029 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test plain returns&#39; AS VARCHAR(60)) AS anon_1
-2019-11-08 12:09:41,030 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,032 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test unicode returns&#39; AS VARCHAR(60)) AS anon_1
-2019-11-08 12:09:41,032 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,034 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;molecules&#34;)
-2019-11-08 12:09:41,034 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,037 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;molecules&#34;)
-2019-11-08 12:09:41,037 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,038 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;atoms&#34;)
-2019-11-08 12:09:41,039 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,040 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;atoms&#34;)
-2019-11-08 12:09:41,040 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,041 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;atoms_molecules&#34;)
-2019-11-08 12:09:41,042 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,042 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;atoms_molecules&#34;)
-2019-11-08 12:09:41,043 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,044 INFO sqlalchemy.engine.base.Engine 
+<pre>2021-01-08 11:49:45,732 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test plain returns&#39; AS VARCHAR(60)) AS anon_1
+2021-01-08 11:49:45,733 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,735 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test unicode returns&#39; AS VARCHAR(60)) AS anon_1
+2021-01-08 11:49:45,736 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,737 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;molecules&#34;)
+2021-01-08 11:49:45,738 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,739 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;molecules&#34;)
+2021-01-08 11:49:45,740 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,741 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;atoms&#34;)
+2021-01-08 11:49:45,741 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,742 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;atoms&#34;)
+2021-01-08 11:49:45,742 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,743 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;atoms_molecules&#34;)
+2021-01-08 11:49:45,743 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,746 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;atoms_molecules&#34;)
+2021-01-08 11:49:45,746 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,748 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE molecules (
 	name VARCHAR NOT NULL, 
 	mass FLOAT, 
@@ -989,9 +989,9 @@ CREATE TABLE molecules (
 )
 
 
-2019-11-08 12:09:41,045 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,054 INFO sqlalchemy.engine.base.Engine COMMIT
-2019-11-08 12:09:41,055 INFO sqlalchemy.engine.base.Engine 
+2021-01-08 11:49:45,748 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,756 INFO sqlalchemy.engine.base.Engine COMMIT
+2021-01-08 11:49:45,757 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE atoms (
 	symbol VARCHAR NOT NULL, 
 	number INTEGER, 
@@ -999,9 +999,9 @@ CREATE TABLE atoms (
 )
 
 
-2019-11-08 12:09:41,056 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,062 INFO sqlalchemy.engine.base.Engine COMMIT
-2019-11-08 12:09:41,063 INFO sqlalchemy.engine.base.Engine 
+2021-01-08 11:49:45,758 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,763 INFO sqlalchemy.engine.base.Engine COMMIT
+2021-01-08 11:49:45,765 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE atoms_molecules (
 	atom VARCHAR, 
 	molecule VARCHAR, 
@@ -1011,8 +1011,8 @@ CREATE TABLE atoms_molecules (
 )
 
 
-2019-11-08 12:09:41,064 INFO sqlalchemy.engine.base.Engine ()
-2019-11-08 12:09:41,070 INFO sqlalchemy.engine.base.Engine COMMIT
+2021-01-08 11:49:45,765 INFO sqlalchemy.engine.base.Engine ()
+2021-01-08 11:49:45,772 INFO sqlalchemy.engine.base.Engine COMMIT
 MetaData(bind=None)
 </pre>
 </div>
@@ -1110,7 +1110,7 @@ MetaData(bind=None)
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlalchemy.engine.result.ResultProxy at 0x2adf9cfd79e8&gt;</pre>
+<pre>&lt;sqlalchemy.engine.result.ResultProxy at 0x2b38198456a0&gt;</pre>
 </div>
 
 </div>
@@ -1132,7 +1132,7 @@ MetaData(bind=None)
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.sql</span> <span class="k">import</span> <span class="n">select</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.sql</span> <span class="kn">import</span> <span class="n">select</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">select</span><span class="p">([</span><span class="n">molecules</span><span class="p">])</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 </pre></div>
@@ -1210,7 +1210,7 @@ MetaData(bind=None)
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlalchemy.engine.result.ResultProxy at 0x2adf9d0290f0&gt;</pre>
+<pre>&lt;sqlalchemy.engine.result.ResultProxy at 0x2b3819885240&gt;</pre>
 </div>
 
 </div>
@@ -1343,9 +1343,9 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="k">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="k">import</span> <span class="n">relationship</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="k">import</span> <span class="n">declarative_base</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
 <span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
 
 <span class="k">class</span> <span class="nc">Element</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
@@ -1491,7 +1491,7 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="k">import</span> <span class="n">sessionmaker</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
 <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
 <span class="n">session</span><span class="o">=</span><span class="n">Session</span><span class="p">()</span>
 </pre></div>
@@ -1839,7 +1839,7 @@ file format to represent our dataset.</p>
 <div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="n">atoms</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;atoms.csv&#39;</span><span class="p">))</span>
 <span class="n">atoms</span>
 </pre></div>

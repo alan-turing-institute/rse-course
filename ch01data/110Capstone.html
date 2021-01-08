@@ -293,11 +293,11 @@ mkdir -p greengraph  <span class="c1"># Create the folder for the module (on mac
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> greengraph/graph.py
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopy</span>
-<span class="kn">from</span> <span class="nn">.map</span> <span class="k">import</span> <span class="n">Map</span>
+<span class="kn">from</span> <span class="nn">.map</span> <span class="kn">import</span> <span class="n">Map</span>
 
 
 <span class="k">class</span> <span class="nc">Greengraph</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geocoder</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">geocoders</span><span class="o">.</span><span class="n">Yandex</span><span class="p">(</span><span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en_US&quot;</span><span class="p">)</span>
@@ -349,12 +349,12 @@ mkdir -p greengraph  <span class="c1"># Create the folder for the module (on mac
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> greengraph/map.py
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
 <span class="kn">import</span> <span class="nn">imageio</span> <span class="k">as</span> <span class="nn">img</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="k">class</span> <span class="nc">Map</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">sensor</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;https://static-maps.yandex.ru/1.x/?&quot;</span>
 
@@ -418,7 +418,7 @@ mkdir -p greengraph  <span class="c1"># Create the folder for the module (on mac
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> greengraph/__init__.py
-<span class="kn">from</span> <span class="nn">.graph</span> <span class="k">import</span> <span class="n">Greengraph</span>
+<span class="kn">from</span> <span class="nn">.graph</span> <span class="kn">import</span> <span class="n">Greengraph</span>
 </pre></div>
 
     </div>
@@ -456,8 +456,8 @@ mkdir -p greengraph  <span class="c1"># Create the folder for the module (on mac
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">greengraph</span> <span class="k">import</span> <span class="n">Greengraph</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">greengraph</span> <span class="kn">import</span> <span class="n">Greengraph</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="n">mygraph</span> <span class="o">=</span> <span class="n">Greengraph</span><span class="p">(</span><span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;Chicago&#39;</span><span class="p">)</span>
@@ -480,76 +480,21 @@ mkdir -p greengraph  <span class="c1"># Create the folder for the module (on mac
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">HTTPError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/geopy/geocoders/base.py</span> in <span class="ansi-cyan-fg">_call_geocoder</span><span class="ansi-blue-fg">(self, url, timeout, raw, requester, deserializer, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    354</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 355</span><span class="ansi-red-fg">             </span>page <span class="ansi-blue-fg">=</span> requester<span class="ansi-blue-fg">(</span>req<span class="ansi-blue-fg">,</span> timeout<span class="ansi-blue-fg">=</span>timeout<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    356</span>         <span class="ansi-green-fg">except</span> Exception <span class="ansi-green-fg">as</span> error<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/opt/python/3.6.3/lib/python3.6/urllib/request.py</span> in <span class="ansi-cyan-fg">open</span><span class="ansi-blue-fg">(self, fullurl, data, timeout)</span>
-<span class="ansi-green-intense-fg ansi-bold">    531</span>             meth <span class="ansi-blue-fg">=</span> getattr<span class="ansi-blue-fg">(</span>processor<span class="ansi-blue-fg">,</span> meth_name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 532</span><span class="ansi-red-fg">             </span>response <span class="ansi-blue-fg">=</span> meth<span class="ansi-blue-fg">(</span>req<span class="ansi-blue-fg">,</span> response<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    533</span> 
-
-<span class="ansi-green-fg">/opt/python/3.6.3/lib/python3.6/urllib/request.py</span> in <span class="ansi-cyan-fg">http_response</span><span class="ansi-blue-fg">(self, request, response)</span>
-<span class="ansi-green-intense-fg ansi-bold">    641</span>             response = self.parent.error(
-<span class="ansi-green-fg">--&gt; 642</span><span class="ansi-red-fg">                 &#39;http&#39;, request, response, code, msg, hdrs)
-</span><span class="ansi-green-intense-fg ansi-bold">    643</span> 
-
-<span class="ansi-green-fg">/opt/python/3.6.3/lib/python3.6/urllib/request.py</span> in <span class="ansi-cyan-fg">error</span><span class="ansi-blue-fg">(self, proto, *args)</span>
-<span class="ansi-green-intense-fg ansi-bold">    569</span>             args <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span>dict<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;default&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;http_error_default&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">+</span> orig_args
-<span class="ansi-green-fg">--&gt; 570</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_call_chain<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    571</span> 
-
-<span class="ansi-green-fg">/opt/python/3.6.3/lib/python3.6/urllib/request.py</span> in <span class="ansi-cyan-fg">_call_chain</span><span class="ansi-blue-fg">(self, chain, kind, meth_name, *args)</span>
-<span class="ansi-green-intense-fg ansi-bold">    503</span>             func <span class="ansi-blue-fg">=</span> getattr<span class="ansi-blue-fg">(</span>handler<span class="ansi-blue-fg">,</span> meth_name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 504</span><span class="ansi-red-fg">             </span>result <span class="ansi-blue-fg">=</span> func<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    505</span>             <span class="ansi-green-fg">if</span> result <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/opt/python/3.6.3/lib/python3.6/urllib/request.py</span> in <span class="ansi-cyan-fg">http_error_default</span><span class="ansi-blue-fg">(self, req, fp, code, msg, hdrs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    649</span>     <span class="ansi-green-fg">def</span> http_error_default<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> req<span class="ansi-blue-fg">,</span> fp<span class="ansi-blue-fg">,</span> code<span class="ansi-blue-fg">,</span> msg<span class="ansi-blue-fg">,</span> hdrs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 650</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> HTTPError<span class="ansi-blue-fg">(</span>req<span class="ansi-blue-fg">.</span>full_url<span class="ansi-blue-fg">,</span> code<span class="ansi-blue-fg">,</span> msg<span class="ansi-blue-fg">,</span> hdrs<span class="ansi-blue-fg">,</span> fp<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    651</span> 
-
-<span class="ansi-red-fg">HTTPError</span>: HTTP Error 403: Forbidden
-
-During handling of the above exception, another exception occurred:
-
-<span class="ansi-red-fg">GeocoderInsufficientPrivileges</span>            Traceback (most recent call last)
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
 <span class="ansi-green-fg">&lt;ipython-input-5-a69e6d6508d4&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_line_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;matplotlib&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;inline&#39;</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">      4</span> 
-<span class="ansi-green-intense-fg ansi-bold">      5</span> mygraph <span class="ansi-blue-fg">=</span> Greengraph<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;New York&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Chicago&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>data <span class="ansi-blue-fg">=</span> mygraph<span class="ansi-blue-fg">.</span>green_between<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">20</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> </span>mygraph <span class="ansi-blue-fg">=</span> Greengraph<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;New York&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Chicago&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> data <span class="ansi-blue-fg">=</span> mygraph<span class="ansi-blue-fg">.</span>green_between<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">20</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">~/build/alan-turing-institute/rsd-engineeringcourse/ch01data/greengraph/graph.py</span> in <span class="ansi-cyan-fg">green_between</span><span class="ansi-blue-fg">(self, steps)</span>
-<span class="ansi-green-intense-fg ansi-bold">     21</span>         return [Map(*location).count_green()
-<span class="ansi-green-intense-fg ansi-bold">     22</span>                 for location in self.location_sequence(
-<span class="ansi-green-fg">---&gt; 23</span><span class="ansi-red-fg">                     </span>self<span class="ansi-blue-fg">.</span>geolocate<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>start<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">     24</span>                     self<span class="ansi-blue-fg">.</span>geolocate<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>end<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">     25</span>                     steps)]
-
-<span class="ansi-green-fg">~/build/alan-turing-institute/rsd-engineeringcourse/ch01data/greengraph/graph.py</span> in <span class="ansi-cyan-fg">geolocate</span><span class="ansi-blue-fg">(self, place)</span>
+<span class="ansi-green-fg">~/build/alan-turing-institute/rsd-engineeringcourse/ch01data/greengraph/graph.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, start, end)</span>
+<span class="ansi-green-intense-fg ansi-bold">      8</span>         self<span class="ansi-blue-fg">.</span>start <span class="ansi-blue-fg">=</span> start
+<span class="ansi-green-intense-fg ansi-bold">      9</span>         self<span class="ansi-blue-fg">.</span>end <span class="ansi-blue-fg">=</span> end
+<span class="ansi-green-fg">---&gt; 10</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>geocoder <span class="ansi-blue-fg">=</span> geopy<span class="ansi-blue-fg">.</span>geocoders<span class="ansi-blue-fg">.</span>Yandex<span class="ansi-blue-fg">(</span>lang<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;en_US&#34;</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">     11</span> 
 <span class="ansi-green-intense-fg ansi-bold">     12</span>     <span class="ansi-green-fg">def</span> geolocate<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> place<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 13</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>geocoder<span class="ansi-blue-fg">.</span>geocode<span class="ansi-blue-fg">(</span>place<span class="ansi-blue-fg">,</span> exactly_one<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">     14</span> 
-<span class="ansi-green-intense-fg ansi-bold">     15</span>     <span class="ansi-green-fg">def</span> location_sequence<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> start<span class="ansi-blue-fg">,</span> end<span class="ansi-blue-fg">,</span> steps<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
 
-<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/geopy/geocoders/yandex.py</span> in <span class="ansi-cyan-fg">geocode</span><span class="ansi-blue-fg">(self, query, exactly_one, timeout)</span>
-<span class="ansi-green-intense-fg ansi-bold">    114</span>         logger<span class="ansi-blue-fg">.</span>debug<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;%s.geocode: %s&#34;</span><span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>__class__<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    115</span>         return self._parse_json(
-<span class="ansi-green-fg">--&gt; 116</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_call_geocoder<span class="ansi-blue-fg">(</span>url<span class="ansi-blue-fg">,</span> timeout<span class="ansi-blue-fg">=</span>timeout<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    117</span>             exactly_one<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    118</span>         )
-
-<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/geopy/geocoders/base.py</span> in <span class="ansi-cyan-fg">_call_geocoder</span><span class="ansi-blue-fg">(self, url, timeout, raw, requester, deserializer, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    371</span>                                 exc_info=False)
-<span class="ansi-green-intense-fg ansi-bold">    372</span>                 <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 373</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> ERROR_CODE_MAP<span class="ansi-blue-fg">[</span>code<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">(</span>message<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    374</span>                 <span class="ansi-green-fg">except</span> KeyError<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    375</span>                     <span class="ansi-green-fg">raise</span> GeocoderServiceError<span class="ansi-blue-fg">(</span>message<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">GeocoderInsufficientPrivileges</span>: HTTP Error 403: Forbidden</pre>
+<span class="ansi-red-fg">TypeError</span>: __init__() got an unexpected keyword argument &#39;lang&#39;</pre>
 </div>
 </div>
 

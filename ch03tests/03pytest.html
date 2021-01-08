@@ -366,7 +366,7 @@
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="k">import</span> <span class="n">raises</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">raises</span>
 </pre></div>
 
     </div>
@@ -461,7 +461,7 @@ touch saskatchewan/__init__.py
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> saskatchewan/test_overlap.py
-<span class="kn">from</span> <span class="nn">.overlap</span> <span class="k">import</span> <span class="n">overlap</span>
+<span class="kn">from</span> <span class="nn">.overlap</span> <span class="kn">import</span> <span class="n">overlap</span>
 
 <span class="k">def</span> <span class="nf">test_full_overlap</span><span class="p">():</span>
     <span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">4.</span><span class="p">,</span><span class="mf">4.</span><span class="p">),(</span><span class="mf">2.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">3.</span><span class="p">,</span><span class="mf">3.</span><span class="p">))</span> <span class="o">==</span> <span class="mf">1.0</span>
@@ -521,9 +521,9 @@ py.test
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>============================= test session starts ==============================
-platform linux -- Python 3.6.3, pytest-5.2.2, py-1.5.2, pluggy-0.13.0
+platform linux -- Python 3.6.3, pytest-6.2.1, py-1.10.0, pluggy-0.13.1
 rootdir: /home/travis/build/alan-turing-institute/rsd-engineeringcourse/ch03tests/saskatchewan
-plugins: cov-2.8.1
+plugins: cov-2.10.1
 collected 3 items
 
 test_overlap.py ..F                                                      [100%]
@@ -537,7 +537,9 @@ E       assert 0.25 == 0.0
 E        +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))
 
 test_overlap.py:10: AssertionError
-========================= 1 failed, 2 passed in 0.06s ==========================
+=========================== short test summary info ============================
+FAILED test_overlap.py::test_no_overlap - assert 0.25 == 0.0
+========================= 1 failed, 2 passed in 0.04s ==========================
 </pre>
 </div>
 </div>
@@ -555,11 +557,11 @@ test_overlap.py:10: AssertionError
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_cell_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;bash&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;cd saskatchewan\npy.test\n&#39;</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/interactiveshell.py</span> in <span class="ansi-cyan-fg">run_cell_magic</span><span class="ansi-blue-fg">(self, magic_name, line, cell)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2357</span>             <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>builtin_trap<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   2358</span>                 args <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span>magic_arg_s<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 2359</span><span class="ansi-red-fg">                 </span>result <span class="ansi-blue-fg">=</span> fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2360</span>             <span class="ansi-green-fg">return</span> result
-<span class="ansi-green-intense-fg ansi-bold">   2361</span> 
+<span class="ansi-green-intense-fg ansi-bold">   2369</span>             <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>builtin_trap<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   2370</span>                 args <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span>magic_arg_s<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">-&gt; 2371</span><span class="ansi-red-fg">                 </span>result <span class="ansi-blue-fg">=</span> fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2372</span>             <span class="ansi-green-fg">return</span> result
+<span class="ansi-green-intense-fg ansi-bold">   2373</span> 
 
 <span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magics/script.py</span> in <span class="ansi-cyan-fg">named_script_magic</span><span class="ansi-blue-fg">(line, cell)</span>
 <span class="ansi-green-intense-fg ansi-bold">    140</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
@@ -568,7 +570,7 @@ test_overlap.py:10: AssertionError
 <span class="ansi-green-intense-fg ansi-bold">    143</span> 
 <span class="ansi-green-intense-fg ansi-bold">    144</span>         <span class="ansi-red-fg"># write a basic docstring:</span>
 
-<span class="ansi-green-fg">&lt;/home/travis/virtualenv/python3.6.3/lib/python3.6/site-packages/decorator.py:decorator-gen-110&gt;</span> in <span class="ansi-cyan-fg">shebang</span><span class="ansi-blue-fg">(self, line, cell)</span>
+<span class="ansi-green-fg">&lt;decorator-gen-110&gt;</span> in <span class="ansi-cyan-fg">shebang</span><span class="ansi-blue-fg">(self, line, cell)</span>
 
 <span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magic.py</span> in <span class="ansi-cyan-fg">&lt;lambda&gt;</span><span class="ansi-blue-fg">(f, *a, **k)</span>
 <span class="ansi-green-intense-fg ansi-bold">    185</span>     <span class="ansi-red-fg"># but it&#39;s overkill for just that one bit of state.</span>
@@ -779,7 +781,7 @@ test_overlap.py:10: AssertionError
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="k">import</span> <span class="n">approx</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
 <span class="k">assert</span>  <span class="mf">0.7</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">+</span> <span class="mf">1e-7</span><span class="p">)</span> 
 </pre></div>
 
@@ -831,7 +833,7 @@ test_overlap.py:10: AssertionError
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">pi</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">pi</span>
 
 <span class="n">vector_of_reals</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span> <span class="o">*</span> <span class="n">pi</span>
 </pre></div>
@@ -855,8 +857,8 @@ comparison easy:</p>
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">pi</span>
-<span class="kn">from</span> <span class="nn">numpy.testing</span> <span class="k">import</span> <span class="n">assert_allclose</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">numpy.testing</span> <span class="kn">import</span> <span class="n">assert_allclose</span>
 <span class="n">expected</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">1e-12</span><span class="p">])</span> <span class="o">*</span> <span class="n">pi</span>
 <span class="n">actual</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">2e-12</span><span class="p">])</span> <span class="o">*</span> <span class="n">pi</span>
 <span class="n">actual</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1e-6</span>
