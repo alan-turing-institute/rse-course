@@ -12,7 +12,7 @@ We recommend installing a complete scientific python distribution. One of these 
 [Anaconda](https://www.anaconda.com/distribution/).
 
 Please download and install [Anaconda](https://www.anaconda.com/download/)
-(Python 3.6 version).
+(Python 3.8 version).
 
 Sophos
 ------
