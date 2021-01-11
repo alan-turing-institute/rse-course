@@ -41,7 +41,7 @@ Python via Anaconda
 We recommend you use [Anaconda](https://anaconda.org/), a complete independent scientific python distribution.
 
 Download [Anaconda for linux](https://www.anaconda.com/download/#linux) with your web browser, choose
-the python 3.6 version.  Open a terminal window, go to the place where the file was downloaded  and type:
+the python 3.8 version.  Open a terminal window, go to the place where the file was downloaded  and type:
 
 ```bash
 bash Anaconda3-
@@ -104,4 +104,3 @@ git config --global core.editor NameofYourEditorHere
 
 The default shell is usually bash but if not you can get to bash by opening a terminal and typing
 `bash`.
-

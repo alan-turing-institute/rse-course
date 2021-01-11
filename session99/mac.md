@@ -14,7 +14,7 @@ to at least OSX Mavericks.
 Anaconda
 ----------
 
-Download [Anaconda](https://www.anaconda.com/download/#macos) with Python 3.6 version.
+Download [Anaconda](https://www.anaconda.com/download/#macos) with Python 3.8 version.
 Follow the defaults for the installation.
 
 
@@ -73,7 +73,7 @@ We recommend installing a complete scientific python distribution. One of these 
 [Anaconda](https://www.anaconda.com/distribution/).
 
 Please download and install [Anaconda](https://www.anaconda.com/download/)
-(Python 3.6 version).
+(Python 3.8 version).
 
 
 Python from Homebrew
@@ -104,8 +104,10 @@ python --version
 Which should print:
 
 ```
-Python 3.6.1
+Python 3.8.x
 ```
+(where x will be replaced by a version number)
+
 This will result in an installation of `python3` and `pip3` which you can use to have access to the latest python features which will be taught in this course.
 
 Then install additional python packages by executing the following.
