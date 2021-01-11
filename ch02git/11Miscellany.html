@@ -289,6 +289,7 @@ For this, you can use the <code>git stash</code> command, like in the following 
 <span class="o">*</span> <span class="n">Glyder</span> <span class="n">Fawr</span>
 <span class="o">*</span> <span class="n">Fan</span> <span class="n">y</span> <span class="n">Big</span>
 <span class="o">*</span> <span class="n">Cadair</span> <span class="n">Idris</span>
+<span class="o">*</span> <span class="n">Penygader</span>
 </pre></div>
 
     </div>
@@ -317,6 +318,38 @@ For this, you can use the <code>git stash</code> command, like in the following 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+git stash
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Saved working directory and index state WIP on master: a0adba0 Merge branch &#39;experiment&#39;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -356,7 +389,7 @@ git pull
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -376,55 +409,25 @@ git stash apply
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>No stash entries found.
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>On branch master
+Your branch is ahead of &#39;origin/master&#39; by 3 commits.
+  (use &#34;git push&#34; to publish your local commits)
+
+Changes not staged for commit:
+  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
+
+	modified:   Wales.md
+
+Untracked files:
+  (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
+
+	__pycache__/
+	wsd.py
+
+no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">CalledProcessError</span>                        Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-4-c47375944a4e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_cell_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;bash&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;git stash apply\n&#39;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/interactiveshell.py</span> in <span class="ansi-cyan-fg">run_cell_magic</span><span class="ansi-blue-fg">(self, magic_name, line, cell)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2369</span>             <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>builtin_trap<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   2370</span>                 args <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span>magic_arg_s<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 2371</span><span class="ansi-red-fg">                 </span>result <span class="ansi-blue-fg">=</span> fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2372</span>             <span class="ansi-green-fg">return</span> result
-<span class="ansi-green-intense-fg ansi-bold">   2373</span> 
-
-<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magics/script.py</span> in <span class="ansi-cyan-fg">named_script_magic</span><span class="ansi-blue-fg">(line, cell)</span>
-<span class="ansi-green-intense-fg ansi-bold">    140</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    141</span>                 line <span class="ansi-blue-fg">=</span> script
-<span class="ansi-green-fg">--&gt; 142</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>shebang<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    143</span> 
-<span class="ansi-green-intense-fg ansi-bold">    144</span>         <span class="ansi-red-fg"># write a basic docstring:</span>
-
-<span class="ansi-green-fg">&lt;decorator-gen-110&gt;</span> in <span class="ansi-cyan-fg">shebang</span><span class="ansi-blue-fg">(self, line, cell)</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magic.py</span> in <span class="ansi-cyan-fg">&lt;lambda&gt;</span><span class="ansi-blue-fg">(f, *a, **k)</span>
-<span class="ansi-green-intense-fg ansi-bold">    185</span>     <span class="ansi-red-fg"># but it&#39;s overkill for just that one bit of state.</span>
-<span class="ansi-green-intense-fg ansi-bold">    186</span>     <span class="ansi-green-fg">def</span> magic_deco<span class="ansi-blue-fg">(</span>arg<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 187</span><span class="ansi-red-fg">         </span>call <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">lambda</span> f<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>a<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>k<span class="ansi-blue-fg">:</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>a<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>k<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    188</span> 
-<span class="ansi-green-intense-fg ansi-bold">    189</span>         <span class="ansi-green-fg">if</span> callable<span class="ansi-blue-fg">(</span>arg<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.6.3/lib/python3.6/site-packages/IPython/core/magics/script.py</span> in <span class="ansi-cyan-fg">shebang</span><span class="ansi-blue-fg">(self, line, cell)</span>
-<span class="ansi-green-intense-fg ansi-bold">    243</span>             sys<span class="ansi-blue-fg">.</span>stderr<span class="ansi-blue-fg">.</span>flush<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    244</span>         <span class="ansi-green-fg">if</span> args<span class="ansi-blue-fg">.</span>raise_error <span class="ansi-green-fg">and</span> p<span class="ansi-blue-fg">.</span>returncode<span class="ansi-blue-fg">!=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 245</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> CalledProcessError<span class="ansi-blue-fg">(</span>p<span class="ansi-blue-fg">.</span>returncode<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">,</span> output<span class="ansi-blue-fg">=</span>out<span class="ansi-blue-fg">,</span> stderr<span class="ansi-blue-fg">=</span>err<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    246</span> 
-<span class="ansi-green-intense-fg ansi-bold">    247</span>     <span class="ansi-green-fg">def</span> _run_script<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> p<span class="ansi-blue-fg">,</span> cell<span class="ansi-blue-fg">,</span> to_close<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-red-fg">CalledProcessError</span>: Command &#39;b&#39;git stash apply\n&#39;&#39; returned non-zero exit status 1.</pre>
 </div>
 </div>
 
@@ -518,7 +521,7 @@ git push --tags
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> Makefile
@@ -557,7 +560,7 @@ git push --tags
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -610,7 +613,7 @@ make[1]: Leaving directory `/home/travis/build/alan-turing-institute/rsd-enginee
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -635,6 +638,12 @@ git status
 Your branch is ahead of &#39;origin/master&#39; by 3 commits.
   (use &#34;git push&#34; to publish your local commits)
 
+Changes not staged for commit:
+  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
+
+	modified:   Wales.md
+
 Untracked files:
   (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
 
@@ -646,7 +655,7 @@ Untracked files:
 	lakeland.pdf
 	wsd.py
 
-nothing added to commit but untracked files present (use &#34;git add&#34; to track)
+no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
 </pre>
 </div>
 </div>
@@ -665,7 +674,7 @@ nothing added to commit but untracked files present (use &#34;git add&#34; to tr
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> .gitignore
@@ -697,7 +706,7 @@ nothing added to commit but untracked files present (use &#34;git add&#34; to tr
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -722,6 +731,12 @@ git status
 Your branch is ahead of &#39;origin/master&#39; by 3 commits.
   (use &#34;git push&#34; to publish your local commits)
 
+Changes not staged for commit:
+  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
+
+	modified:   Wales.md
+
 Untracked files:
   (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
 
@@ -730,7 +745,7 @@ Untracked files:
 	__pycache__/
 	wsd.py
 
-nothing added to commit but untracked files present (use &#34;git add&#34; to track)
+no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
 </pre>
 </div>
 </div>
@@ -741,7 +756,7 @@ nothing added to commit but untracked files present (use &#34;git add&#34; to tr
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -765,8 +780,8 @@ git push
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 001e698] Add a makefile and ignore generated files
- 2 files changed, 9 insertions(+)
+<pre>[master 1aed3b7] Add a makefile and ignore generated files
+ 3 files changed, 10 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 Makefile
 </pre>
@@ -780,7 +795,7 @@ git push
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To https://github.com/alan-turing-institute/github-example.git
-   163cced..001e698  master -&gt; master
+   b0016e2..1aed3b7  master -&gt; master
 </pre>
 </div>
 </div>
@@ -806,7 +821,7 @@ git push
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -841,7 +856,7 @@ Removing lakeland.pdf
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -968,7 +983,7 @@ yes or no for each hunk.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> index.md
@@ -1007,7 +1022,7 @@ yes or no for each hunk.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -1028,7 +1043,7 @@ git commit -am <span class="s2">&quot;Add github pages YAML frontmatter&quot;</s
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 96f846e] Add github pages YAML frontmatter
+<pre>[master 131ae03] Add github pages YAML frontmatter
  1 file changed, 7 insertions(+), 4 deletions(-)
 </pre>
 </div>
@@ -1049,7 +1064,7 @@ git commit -am <span class="s2">&quot;Add github pages YAML frontmatter&quot;</s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
@@ -1062,7 +1077,7 @@ git commit -am <span class="s2">&quot;Add github pages YAML frontmatter&quot;</s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -1098,7 +1113,7 @@ git push -uf origin gh-pages
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Switched to a new branch &#39;gh-pages&#39;
 To https://github.com/alan-turing-institute/github-example.git
- + 253acc2...96f846e gh-pages -&gt; gh-pages (forced update)
+ + 3cca487...131ae03 gh-pages -&gt; gh-pages (forced update)
 </pre>
 </div>
 </div>

@@ -7,3 +7,4 @@ Mountains In Wales
 * Glyder Fawr
 * Fan y Big
 * Cadair Idris
+* Penygader
