@@ -1,4 +1,4 @@
-##Introduction
+## Introduction
 
 ### Purpose
 
@@ -7,13 +7,13 @@ efficient research software in a collaborative environment. The emphasis is on p
 tips, and technologies to effectively build and maintain complex code.
 This is a intensive, practical course.
 
-##Synopsis
+## Synopsis
 
 ### Lesson 1
 
-* Why use scripting languages? 
+* Why use scripting languages?
 * Python. IPython and the IPython notebook.
-* Programming with lists. Data structures: arrays, dictionaries, and sets. 
+* Programming with lists. Data structures: arrays, dictionaries, and sets.
 * Duck typing.
 * Modules.
 
@@ -102,17 +102,17 @@ This is a intensive, practical course.
 
 ## Course processes
 
-###Prerequisites
+### Prerequisites
 
 Prior knowledge of at least one programming language, including variables, control flow, and functions.
 
-###Exercises
+### Exercises
 
-Examples and exercises for this course will be provided in Python.  
+Examples and exercises for this course will be provided in Python.
 Python will be introduced during this course, but we will assume you can already
 program. That means that you may find supplementary python content useful.
 
-###Setup
+### Setup
 
 You are required to bring your own laptop to the course as the classrooms we are
  using do not have desktop computers.

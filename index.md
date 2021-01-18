@@ -5,27 +5,22 @@ layout: default
 
 # Research Software Engineering with Python
 
-##Introduction
+## Introduction
 
 In this course, you will move beyond programming, to learn how to construct reliable, readable, efficient research software in a collaborative environment. The emphasis is on practical techniques, tips, and technologies to effectively build and maintain complex code. This is a intensive, practical course.
 
-##Pre-requisites
+## Pre-requisites
 
 * Prior knowledge of at least one programming language, including variables, control flow, and functions.
 * You are required to bring your own laptop to the course as the classrooms we are using do not have desktop computers.
 * We have provided [setup](session99) instructions for installing the software needed for the course on your computer.
 * Eligibility: This course is for Turing PhD students. Turing researchers might join too if capacity allows.
 
-
-
-##Instructors
+## Instructors
 
 * [James Hetherington](https://www.turing.ac.uk/people/researchers/james-hetherington)
 
-
-
-
-##Synopsis
+## Synopsis
 
 <table>
  <tbody>
@@ -146,16 +141,15 @@ In this course, you will move beyond programming, to learn how to construct reli
  </tbody>
 </table>
 
-##Exercises
+## Exercises
 
 Examples and exercises for this course will be provided in Python. Python will be introduced during this course, but we will assume you can already program. That means that you may find supplementary python content useful.
 
-##Evaluation
+## Evaluation
 
 None: you are not graded. You will be provided with 2 exercises for self-assessment.
 
-Versions
---------
+## Versions
 
 You can find the course notes as HTML via the navigation bar to the left.
 
