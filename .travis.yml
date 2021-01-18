@@ -1,6 +1,6 @@
 dist: bionic
-sudo: required
 language: python
+os: linux
 python:
 - '3.8'
 cache:
@@ -20,15 +20,16 @@ addons:
     - texlive-xetex
     - lmodern
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: "$GITHUB_TOKEN"
+  cleanup: false
   email: hut23@turing.ac.uk
-  keep-history: true
-  local-dir: _site
-  verbose: true
+  keep_history: true
+  local_dir: _site
   on:
     branch: master
+  provider: pages
+  strategy: git
+  token: "$GITHUB_TOKEN"
+  verbose: true
 install:
 - pip install --upgrade setuptools wheel
 - pip install -r requirements.txt
