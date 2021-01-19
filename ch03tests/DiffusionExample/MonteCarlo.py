@@ -4,7 +4,7 @@ from numpy.random import randint, choice
 
 
 
-class MonteCarlo(object):
+class MonteCarlo:
     """ A simple Monte Carlo implementation """
 
     def __init__(self, energy, density, temperature=1, itermax=1000):

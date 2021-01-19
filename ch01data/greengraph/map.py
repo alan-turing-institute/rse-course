@@ -4,7 +4,7 @@ from io import BytesIO
 import imageio as img
 import requests
 
-class Map(object):
+class Map:
     def __init__(self, lat, long, satellite=True, zoom=10,
                  size=(400, 400), sensor=False):
         base = "https://static-maps.yandex.ru/1.x/?"

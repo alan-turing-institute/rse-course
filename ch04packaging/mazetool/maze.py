@@ -2,7 +2,7 @@
 from .room import Room
 from .person import Person
 
-class Maze(object):
+class Maze:
     def __init__(self, name):
         self.name = name
         self.rooms = []

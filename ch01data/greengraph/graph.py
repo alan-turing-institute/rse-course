@@ -3,7 +3,7 @@ import geopy
 from .map import Map
 
 
-class Greengraph(object):
+class Greengraph:
     def __init__(self, start, end):
         self.start = start
         self.end = end

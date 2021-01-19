@@ -1,2 +1,2 @@
-class One(object):
+class One:
     pass

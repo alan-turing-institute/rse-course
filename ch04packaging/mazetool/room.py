@@ -1,7 +1,7 @@
 from .exit import Exit
 
 
-class Room(object):
+class Room:
     def __init__(self, name, capacity):
         self.name = name
         self.capacity = capacity

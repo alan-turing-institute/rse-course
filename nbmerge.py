@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # From https://gist.github.com/fperez/e2bbc0a208e82e450f69
-# Note, updated version of 
+# Note, updated version of
 # https://github.com/ipython/ipython-in-depth/blob/master/tools/nbmerge.py
 """
 usage:
@@ -15,10 +15,11 @@ import sys
 from nbformat import read as nb_read
 from nbformat import writes as nb_write
 
+
 def merge_notebooks(filenames, outfile):
     merged = None
     for fname in filenames:
-        with io.open(fname, 'r', encoding='utf-8') as f:
+        with io.open(fname, "r", encoding="utf-8") as f:
             nb = nb_read(f, as_version=4)
         if merged is None:
             merged = nb
@@ -27,14 +28,15 @@ def merge_notebooks(filenames, outfile):
             # like an horizontal rule, for example, or some other arbitrary
             # (user specified) markdown cell)
             merged.cells.extend(nb.cells)
-    if not hasattr(merged.metadata, 'name'):
-        merged.metadata.name = ''
+    if not hasattr(merged.metadata, "name"):
+        merged.metadata.name = ""
     merged.metadata.name += "_merged"
     result = nb_write(merged)
-    with io.open(outfile, 'w', encoding='utf-8') as out:
+    with io.open(outfile, "w", encoding="utf-8") as out:
         out.write(result)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     notebooks = sys.argv[1:-1]
     outfile = sys.argv[-1]
     if not notebooks:
