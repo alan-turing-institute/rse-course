@@ -1,10 +1,10 @@
-class MonteCarlo(object):
+class MonteCarlo():
     """ A simple Monte Carlo implementation """
     def __init__(self, temperature=100, itermax=100):
-    
+
         if temperature == 0: raise NotImplementedError("Zero temperature not implemented")
         if temperature < 0e0: raise ValueError("Negative temperature makes no sense")
-      
+
         self.temperature = temperature
         """ Temperature at which to run simulation """
         self.itermax = itermax
@@ -28,13 +28,13 @@ class MonteCarlo(object):
         elif location == len(density) - 1: direction = -1
         else: direction = choice([-1, 1])
 
-        # Now make change 
+        # Now make change
         result = array(density)
         result[location] -= 1
         result[location + direction]  += 1
         return result
 
-    def accept_change(self, prior, successor): 
+    def accept_change(self, prior, successor):
         """ Returns true if should accept change. """
         from numpy import exp
         from numpy.random import uniform
@@ -46,7 +46,7 @@ class MonteCarlo(object):
         from numpy import any, array
 
         density = array(density)
-        if len(density) < 2: 
+        if len(density) < 2:
             raise ValueError("Density is too short")
         # of the right kind (integer). Unless it is zero length, in which case type does not matter.
         if density.dtype.kind != 'i' and len(density) > 0:
@@ -56,7 +56,7 @@ class MonteCarlo(object):
             raise ValueError("Density should be an array of *positive* integers.")
         if density.ndim != 1:
             raise ValueError("Density should be an a *1-dimensional* array of positive integers.")
-        if sum(density) == 0: 
+        if sum(density) == 0:
             raise ValueError("Density is empty.")
 
         iteration = 0
@@ -74,7 +74,7 @@ class MonteCarlo(object):
             iteration += 1
 
     def observe(self, iteration, accepted, density, energy):
-        """ Called at every step to observe simulation. 
+        """ Called at every step to observe simulation.
 
             :returns: True if simulation should keep going.
         """

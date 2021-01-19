@@ -1,12 +1,13 @@
-
 import numpy as np
 from io import BytesIO
 import imageio as img
 import requests
 
-class Map(object):
-    def __init__(self, lat, long, satellite=True, zoom=10,
-                 size=(400, 400), sensor=False):
+
+class Map:
+    def __init__(
+        self, lat, long, satellite=True, zoom=10, size=(400, 400), sensor=False
+    ):
         base = "https://static-maps.yandex.ru/1.x/?"
 
         params = dict(
@@ -14,14 +15,15 @@ class Map(object):
             size=str(size[0]) + "," + str(size[1]),
             ll=str(long) + "," + str(lat),
             l="sat" if satellite else "map",
-            lang="en_US"
+            lang="en_US",
         )
 
         self.image = requests.get(
-            base, params=params).content  # Fetch our PNG image data
+            base, params=params
+        ).content  # Fetch our PNG image data
         content = BytesIO(self.image)
-        self.pixels = img.imread(content) # Parse our PNG image as a numpy array
-        
+        self.pixels = img.imread(content)  # Parse our PNG image as a numpy array
+
     def green(self, threshold):
         # Use NumPy to build an element-by-element logical array
         greener_than_red = self.pixels[:, :, 1] > threshold * self.pixels[:, :, 0]
@@ -36,5 +38,5 @@ class Map(object):
         green = self.green(threshold)
         out = green[:, :, np.newaxis] * array([0, 1, 0])[np.newaxis, np.newaxis, :]
         buffer = BytesIO()
-        result = img.imwrite(buffer, out, format='png')
+        result = img.imwrite(buffer, out, format="png")
         return buffer.getvalue()
