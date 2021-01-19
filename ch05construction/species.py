@@ -1,2 +1,2 @@
-class Species(object):
-     pass
+class Species:
+    pass

@@ -5,6 +5,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def make_figure():
     theta = np.arange(0, 4 * math.pi, 0.1)
     eight = plt.figure()

@@ -3,7 +3,7 @@ import geopy
 from .map import Map
 
 
-class Greengraph(object):
+class Greengraph:
     def __init__(self, start, end):
         self.start = start
         self.end = end
@@ -18,8 +18,9 @@ class Greengraph(object):
         return np.vstack([lats, longs]).transpose()
 
     def green_between(self, steps):
-        return [Map(*location).count_green()
-                for location in self.location_sequence(
-                    self.geolocate(self.start),
-                    self.geolocate(self.end),
-                    steps)]
+        return [
+            Map(*location).count_green()
+            for location in self.location_sequence(
+                self.geolocate(self.start), self.geolocate(self.end), steps
+            )
+        ]
