@@ -287,7 +287,7 @@ but so long as they are <strong>semantically</strong> compatible, I can convert 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The key concept that underpins these tools is the URI: uniform resource <strong>indicator</strong>.</p>
 <p>These look like URLs:</p>
-<p><code>www.hep.ucl.ac.uk/cdt-dis/schema/reaction/element</code></p>
+<p><code>www.turing.ac.uk/rsd-engineering/schema/reaction/element</code></p>
 <p>But, if I load that as a web address, there's nothing there!</p>
 <p>That's fine.</p>
 <p>A UR<strong>N</strong> indicates a <strong>name</strong> for an entity, and, by using organisational web addresses as a prefix,
@@ -320,7 +320,7 @@ XML defines <em>namespaces</em> to resolve this:</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> system.xml
 <span class="o">&lt;</span><span class="err">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="err">?</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">system</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">&quot;http://www.hep.ucl.ac.uk/cdt-dis/schema/reaction&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">system</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">reaction</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">reactants</span><span class="o">&gt;</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">&gt;</span>
@@ -369,7 +369,9 @@ XML defines <em>namespaces</em> to resolve this:</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
-<span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system.xml&#39;</span><span class="p">))</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system.xml&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -399,7 +401,7 @@ XML defines <em>namespaces</em> to resolve this:</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;system xmlns=&#34;http://www.hep.ucl.ac.uk/cdt-dis/schema/reaction&#34;&gt;
+<pre>&lt;system xmlns=&#34;http://www.turing.ac.uk/rsd-engineering/schema/reaction&#34;&gt;
     &lt;reaction&gt;
         &lt;reactants&gt;
             &lt;molecule stoichiometry=&#34;2&#34;&gt;
@@ -472,7 +474,7 @@ XML defines <em>namespaces</em> to resolve this:</p>
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">namespaces</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="s1">&#39;http://www.hep.ucl.ac.uk/cdt-dis/schema/reaction&#39;</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">namespaces</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="s1">&#39;http://www.turing.ac.uk/rsd-engineering/schema/reaction&#39;</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -537,7 +539,7 @@ XML defines <em>namespaces</em> to resolve this:</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> system.xml
 <span class="o">&lt;</span><span class="err">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="err">?</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">r</span><span class="p">:</span><span class="n">system</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">r</span><span class="o">=</span><span class="s2">&quot;http://www.hep.ucl.ac.uk/cdt-dis/schema/reaction&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">r</span><span class="p">:</span><span class="n">system</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">r</span><span class="o">=</span><span class="s2">&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">r</span><span class="p">:</span><span class="n">reaction</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">r</span><span class="p">:</span><span class="n">reactants</span><span class="o">&gt;</span>
             <span class="o">&lt;</span><span class="n">r</span><span class="p">:</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">&gt;</span>
@@ -603,8 +605,8 @@ XML defines <em>namespaces</em> to resolve this:</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> reactions.xsd
 
 <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">schema</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">xs</span><span class="o">=</span><span class="s2">&quot;http://www.w3.org/2001/XMLSchema&quot;</span>
-        <span class="n">targetNamespace</span><span class="o">=</span><span class="s2">&quot;http://www.hep.ucl.ac.uk/cdt-dis/schema/reaction&quot;</span>
-        <span class="n">xmlns</span><span class="p">:</span><span class="n">r</span><span class="o">=</span><span class="s2">&quot;http://www.hep.ucl.ac.uk/cdt-dis/schema/reaction&quot;</span><span class="o">&gt;</span>
+        <span class="n">targetNamespace</span><span class="o">=</span><span class="s2">&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;</span>
+        <span class="n">xmlns</span><span class="p">:</span><span class="n">r</span><span class="o">=</span><span class="s2">&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;</span><span class="o">&gt;</span>
 
 <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;element&quot;</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
@@ -694,7 +696,9 @@ XML defines <em>namespaces</em> to resolve this:</p>
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;reactions.xsd&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;reactions.xsd&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xsdfile</span><span class="p">:</span>
+    <span class="n">schema_xsd</span> <span class="o">=</span> <span class="n">xsdfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">schema_xsd</span><span class="p">))</span>  
 </pre></div>
 
     </div>
@@ -707,7 +711,7 @@ XML defines <em>namespaces</em> to resolve this:</p>
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">schema</span> <span class="o">=</span> <span class="n">schema</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -720,10 +724,30 @@ XML defines <em>namespaces</em> to resolve this:</p>
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system.xml&#39;</span><span class="p">),</span><span class="n">parser</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;lxml.etree._ElementTree object at 0x7f2c84a1ccc0&gt;
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -779,7 +803,7 @@ among others. So, we could redesign our file format to exploit this, by referenc
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> chemistry_template3.mko
 <span class="o">&lt;</span><span class="err">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="err">?</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">system</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">&quot;http://www.hep.ucl.ac.uk/cdt-dis/schema/reaction&quot;</span>
+<span class="o">&lt;</span><span class="n">system</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;</span>
     <span class="n">xmlns</span><span class="p">:</span><span class="n">dbo</span><span class="o">=</span><span class="s2">&quot;http://dbpedia.org/ontology/&quot;</span><span class="o">&gt;</span>
     <span class="o">%</span><span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">reactions</span><span class="p">:</span>
     <span class="o">&lt;</span><span class="n">reaction</span><span class="o">&gt;</span>

@@ -271,12 +271,10 @@
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">mako</span>
-
-<span class="kn">from</span> <span class="nn">parsereactions</span> <span class="kn">import</span> <span class="n">parser</span>
-
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">parsereactions</span> <span class="kn">import</span> <span class="n">parser</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
-<span class="n">system</span><span class="o">=</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system.tex&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="n">system</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.tex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">system</span><span class="p">)))</span>
 </pre></div>
 
@@ -319,18 +317,18 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
         <span class="o">&lt;</span><span class="n">reactants</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{reaction.reactants.molecules[molecule]}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
-                <span class="o">%</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+                <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
                     <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{molecule.elements[element]}</span><span class="s2">&quot;</span><span class="o">/&gt;</span>
-                <span class="o">%</span> <span class="n">endfor</span>
+                <span class="o">%</span><span class="n">endfor</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="n">endfor</span>
         <span class="o">&lt;/</span><span class="n">reactants</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">products</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{reaction.products.molecules[molecule]}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
-            <span class="o">%</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+            <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
                     <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{molecule.elements[element]}</span><span class="s2">&quot;</span><span class="o">/&gt;</span>
-            <span class="o">%</span> <span class="n">endfor</span>
+            <span class="o">%</span><span class="n">endfor</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="n">endfor</span>
         <span class="o">&lt;/</span><span class="n">products</span><span class="o">&gt;</span>
@@ -369,9 +367,22 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mako.template</span> <span class="kn">import</span> <span class="n">Template</span>
 
-<span class="n">mytemplate</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;chemistry_template.mko&#39;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system.xml&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
-    <span class="n">xmlfile</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">mytemplate</span><span class="o">.</span><span class="n">render</span><span class="p">(</span> <span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">system</span><span class="p">))))</span>
+<span class="n">mytemplate</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;chemistry_template.mko&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">xmlfile</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">mytemplate</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">system</span><span class="p">))))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat system.xml
 </pre></div>
 
     </div>
@@ -387,62 +398,52 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-3-6df4e1bc4785&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> mytemplate <span class="ansi-blue-fg">=</span> Template<span class="ansi-blue-fg">(</span>filename<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;chemistry_template.mko&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">with</span> open<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;system.xml&#39;</span><span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">&#39;w&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> xmlfile<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">     </span>xmlfile<span class="ansi-blue-fg">.</span>write<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">(</span>mytemplate<span class="ansi-blue-fg">.</span>render<span class="ansi-blue-fg">(</span> <span class="ansi-blue-fg">**</span>vars<span class="ansi-blue-fg">(</span>system<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.8.1/lib/python3.8/site-packages/mako/template.py</span> in <span class="ansi-cyan-fg">render</span><span class="ansi-blue-fg">(self, *args, **data)</span>
-<span class="ansi-green-intense-fg ansi-bold">    471</span> 
-<span class="ansi-green-intense-fg ansi-bold">    472</span>         &#34;&#34;&#34;
-<span class="ansi-green-fg">--&gt; 473</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> runtime<span class="ansi-blue-fg">.</span>_render<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>callable_<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> data<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    474</span> 
-<span class="ansi-green-intense-fg ansi-bold">    475</span>     <span class="ansi-green-fg">def</span> render_unicode<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>data<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.8.1/lib/python3.8/site-packages/mako/runtime.py</span> in <span class="ansi-cyan-fg">_render</span><span class="ansi-blue-fg">(template, callable_, args, data, as_unicode)</span>
-<span class="ansi-green-intense-fg ansi-bold">    876</span>     context<span class="ansi-blue-fg">.</span>_set_with_template<span class="ansi-blue-fg">(</span>template<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    877</span> 
-<span class="ansi-green-fg">--&gt; 878</span><span class="ansi-red-fg">     _render_context(
-</span><span class="ansi-green-intense-fg ansi-bold">    879</span>         template<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    880</span>         callable_<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.8.1/lib/python3.8/site-packages/mako/runtime.py</span> in <span class="ansi-cyan-fg">_render_context</span><span class="ansi-blue-fg">(tmpl, callable_, context, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    918</span>         <span class="ansi-red-fg"># if main render method, call from the base of the inheritance stack</span>
-<span class="ansi-green-intense-fg ansi-bold">    919</span>         <span class="ansi-blue-fg">(</span>inherit<span class="ansi-blue-fg">,</span> lclcontext<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">=</span> _populate_self_namespace<span class="ansi-blue-fg">(</span>context<span class="ansi-blue-fg">,</span> tmpl<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 920</span><span class="ansi-red-fg">         </span>_exec_template<span class="ansi-blue-fg">(</span>inherit<span class="ansi-blue-fg">,</span> lclcontext<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">=</span>args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">=</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    921</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    922</span>         <span class="ansi-red-fg"># otherwise, call the actual rendering method specified</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.8.1/lib/python3.8/site-packages/mako/runtime.py</span> in <span class="ansi-cyan-fg">_exec_template</span><span class="ansi-blue-fg">(callable_, context, args, kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    945</span>             _render_error<span class="ansi-blue-fg">(</span>template<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">,</span> e<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    946</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 947</span><span class="ansi-red-fg">         </span>callable_<span class="ansi-blue-fg">(</span>context<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    948</span> 
-<span class="ansi-green-intense-fg ansi-bold">    949</span> 
-
-<span class="ansi-green-fg">chemistry_template_mko</span> in <span class="ansi-cyan-fg">render_body</span><span class="ansi-blue-fg">(context, **pageargs)</span>
-
-<span class="ansi-red-fg">AttributeError</span>: &#39;str&#39; object has no attribute &#39;symbol&#39;</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;system&gt;
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+            &lt;molecule stoichiometry=&#34;1&#34;&gt;
+                    &lt;element symbol=&#34;C&#34; number=&#34;6&#34;/&gt;
+                    &lt;element symbol=&#34;H&#34; number=&#34;12&#34;/&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;6&#34;/&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+            &lt;/molecule&gt;
+        &lt;/reactants&gt;
+        &lt;products&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;C&#34; number=&#34;1&#34;/&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
+            &lt;/molecule&gt;
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+            &lt;molecule stoichiometry=&#34;2&#34;&gt;
+                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;1&#34;&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+            &lt;/molecule&gt;
+        &lt;/reactants&gt;
+        &lt;products&gt;
+            &lt;molecule stoichiometry=&#34;2&#34;&gt;
+                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
+            &lt;/molecule&gt;
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+&lt;/system&gt;
+</pre>
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat system.xml
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -483,18 +484,18 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
         <span class="o">&lt;</span><span class="n">reactants</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{reaction.reactants.molecules[molecule]}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
-                <span class="o">%</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+                <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
                     <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]}</span><span class="o">&lt;/</span><span class="n">element</span><span class="o">&gt;</span>
-                <span class="o">%</span> <span class="n">endfor</span>
+                <span class="o">%</span><span class="n">endfor</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="n">endfor</span>
         <span class="o">&lt;/</span><span class="n">reactants</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">products</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{reaction.products.molecules[molecule]}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
-            <span class="o">%</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+            <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
                     <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]}</span><span class="o">&lt;/</span><span class="n">element</span><span class="o">&gt;</span>
-            <span class="o">%</span> <span class="n">endfor</span>
+            <span class="o">%</span><span class="n">endfor</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="n">endfor</span>
         <span class="o">&lt;/</span><span class="n">products</span><span class="o">&gt;</span>
@@ -533,9 +534,22 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mako.template</span> <span class="kn">import</span> <span class="n">Template</span>
 
-<span class="n">mytemplate</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;chemistry_template2.mko&#39;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system2.xml&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
-    <span class="n">xmlfile</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">mytemplate</span><span class="o">.</span><span class="n">render</span><span class="p">(</span> <span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">system</span><span class="p">))))</span>
+<span class="n">mytemplate</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;chemistry_template2.mko&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system2.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">xmlfile</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">mytemplate</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">system</span><span class="p">))))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat system2.xml
 </pre></div>
 
     </div>
@@ -551,62 +565,52 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-6-33b9a5f81e70&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> mytemplate <span class="ansi-blue-fg">=</span> Template<span class="ansi-blue-fg">(</span>filename<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;chemistry_template2.mko&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">with</span> open<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;system2.xml&#39;</span><span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">&#39;w&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> xmlfile<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">     </span>xmlfile<span class="ansi-blue-fg">.</span>write<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">(</span>mytemplate<span class="ansi-blue-fg">.</span>render<span class="ansi-blue-fg">(</span> <span class="ansi-blue-fg">**</span>vars<span class="ansi-blue-fg">(</span>system<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.8.1/lib/python3.8/site-packages/mako/template.py</span> in <span class="ansi-cyan-fg">render</span><span class="ansi-blue-fg">(self, *args, **data)</span>
-<span class="ansi-green-intense-fg ansi-bold">    471</span> 
-<span class="ansi-green-intense-fg ansi-bold">    472</span>         &#34;&#34;&#34;
-<span class="ansi-green-fg">--&gt; 473</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> runtime<span class="ansi-blue-fg">.</span>_render<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>callable_<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> data<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    474</span> 
-<span class="ansi-green-intense-fg ansi-bold">    475</span>     <span class="ansi-green-fg">def</span> render_unicode<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>data<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.8.1/lib/python3.8/site-packages/mako/runtime.py</span> in <span class="ansi-cyan-fg">_render</span><span class="ansi-blue-fg">(template, callable_, args, data, as_unicode)</span>
-<span class="ansi-green-intense-fg ansi-bold">    876</span>     context<span class="ansi-blue-fg">.</span>_set_with_template<span class="ansi-blue-fg">(</span>template<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    877</span> 
-<span class="ansi-green-fg">--&gt; 878</span><span class="ansi-red-fg">     _render_context(
-</span><span class="ansi-green-intense-fg ansi-bold">    879</span>         template<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    880</span>         callable_<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.8.1/lib/python3.8/site-packages/mako/runtime.py</span> in <span class="ansi-cyan-fg">_render_context</span><span class="ansi-blue-fg">(tmpl, callable_, context, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    918</span>         <span class="ansi-red-fg"># if main render method, call from the base of the inheritance stack</span>
-<span class="ansi-green-intense-fg ansi-bold">    919</span>         <span class="ansi-blue-fg">(</span>inherit<span class="ansi-blue-fg">,</span> lclcontext<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">=</span> _populate_self_namespace<span class="ansi-blue-fg">(</span>context<span class="ansi-blue-fg">,</span> tmpl<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 920</span><span class="ansi-red-fg">         </span>_exec_template<span class="ansi-blue-fg">(</span>inherit<span class="ansi-blue-fg">,</span> lclcontext<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">=</span>args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">=</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    921</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    922</span>         <span class="ansi-red-fg"># otherwise, call the actual rendering method specified</span>
-
-<span class="ansi-green-fg">~/virtualenv/python3.8.1/lib/python3.8/site-packages/mako/runtime.py</span> in <span class="ansi-cyan-fg">_exec_template</span><span class="ansi-blue-fg">(callable_, context, args, kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    945</span>             _render_error<span class="ansi-blue-fg">(</span>template<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">,</span> e<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    946</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 947</span><span class="ansi-red-fg">         </span>callable_<span class="ansi-blue-fg">(</span>context<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    948</span> 
-<span class="ansi-green-intense-fg ansi-bold">    949</span> 
-
-<span class="ansi-green-fg">chemistry_template2_mko</span> in <span class="ansi-cyan-fg">render_body</span><span class="ansi-blue-fg">(context, **pageargs)</span>
-
-<span class="ansi-red-fg">AttributeError</span>: &#39;str&#39; object has no attribute &#39;symbol&#39;</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;system&gt;
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+            &lt;molecule stoichiometry=&#34;1&#34;&gt;
+                    &lt;element symbol=&#34;C&#34;&gt;6&lt;/element&gt;
+                    &lt;element symbol=&#34;H&#34;&gt;12&lt;/element&gt;
+                    &lt;element symbol=&#34;O&#34;&gt;6&lt;/element&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;O&#34;&gt;2&lt;/element&gt;
+            &lt;/molecule&gt;
+        &lt;/reactants&gt;
+        &lt;products&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;C&#34;&gt;1&lt;/element&gt;
+                    &lt;element symbol=&#34;O&#34;&gt;2&lt;/element&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;H&#34;&gt;2&lt;/element&gt;
+                    &lt;element symbol=&#34;O&#34;&gt;1&lt;/element&gt;
+            &lt;/molecule&gt;
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+            &lt;molecule stoichiometry=&#34;2&#34;&gt;
+                    &lt;element symbol=&#34;H&#34;&gt;2&lt;/element&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;1&#34;&gt;
+                    &lt;element symbol=&#34;O&#34;&gt;2&lt;/element&gt;
+            &lt;/molecule&gt;
+        &lt;/reactants&gt;
+        &lt;products&gt;
+            &lt;molecule stoichiometry=&#34;2&#34;&gt;
+                    &lt;element symbol=&#34;H&#34;&gt;2&lt;/element&gt;
+                    &lt;element symbol=&#34;O&#34;&gt;1&lt;/element&gt;
+            &lt;/molecule&gt;
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+&lt;/system&gt;
+</pre>
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat system2.xml
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -632,19 +636,10 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system.xml&#39;</span><span class="p">))</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -660,71 +655,49 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;system&gt;
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+            &lt;molecule stoichiometry=&#34;1&#34;&gt;
+                    &lt;element symbol=&#34;C&#34; number=&#34;6&#34;/&gt;
+                    &lt;element symbol=&#34;H&#34; number=&#34;12&#34;/&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;6&#34;/&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+            &lt;/molecule&gt;
+        &lt;/reactants&gt;
+        &lt;products&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;C&#34; number=&#34;1&#34;/&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;6&#34;&gt;
+                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
+            &lt;/molecule&gt;
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+            &lt;molecule stoichiometry=&#34;2&#34;&gt;
+                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&#34;1&#34;&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+            &lt;/molecule&gt;
+        &lt;/reactants&gt;
+        &lt;products&gt;
+            &lt;molecule stoichiometry=&#34;2&#34;&gt;
+                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                    &lt;element symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
+            &lt;/molecule&gt;
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+&lt;/system&gt;
 
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/IPython/core/interactiveshell.py&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3418</span>, in <span class="ansi-magenta-intense-fg ansi-bold">run_code</span>
-    exec(code_obj, self.user_global_ns, self.user_ns)
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-9-67b89becf134&gt;&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1</span>, in <span class="ansi-magenta-intense-fg ansi-bold">&lt;module&gt;</span>
-    tree = etree.parse(open(&#39;system.xml&#39;))
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/etree.pyx&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3521</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree.parse</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1880</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseDocument</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1900</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseFilelikeDocument</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1795</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseDocFromFilelike</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1201</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._BaseParser._parseDocFromFilelike</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">615</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._ParserContext._handleParseResultDoc</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">725</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._handleParseResult</span>
-
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;src/lxml/parser.pxi&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">654</span><span class="ansi-cyan-fg">, in </span><span class="ansi-magenta-fg">lxml.etree._raiseParseError</span>
-
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;/home/travis/build/alan-turing-institute/rsd-engineeringcourse/ch09fileformats/system.xml&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
-<span class="ansi-red-fg">XMLSyntaxError</span><span class="ansi-red-fg">:</span> Document is empty, line 1, column 1
 </pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-10-2bd695001e8a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>etree<span class="ansi-blue-fg">.</span>tostring<span class="ansi-blue-fg">(</span>tree<span class="ansi-blue-fg">,</span> pretty_print<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span> encoding<span class="ansi-blue-fg">=</span>str<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;tree&#39; is not defined</pre>
 </div>
 </div>
 
@@ -742,10 +715,10 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;stoichiometry&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;stoichiometry&quot;</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -758,18 +731,15 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-11-a89836e5168c&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>tree<span class="ansi-blue-fg">.</span>getroot<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>attrib<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;stoichiometry&#39;</span><span class="ansi-blue-fg">]</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;tree&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;6&#39;</pre>
 </div>
+
 </div>
 
 </div>
@@ -793,10 +763,10 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//molecule/element[@number=&quot;1&quot;]/@symbol&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule/element[@number=&#39;1&#39;]/@symbol&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -809,18 +779,15 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-12-9a9f01ed5bc8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>tree<span class="ansi-blue-fg">.</span>xpath<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;//molecule/element[@number=&#34;1&#34;]/@symbol&#39;</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;tree&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;C&#39;, &#39;O&#39;, &#39;O&#39;]</pre>
 </div>
+
 </div>
 
 </div>
@@ -845,10 +812,12 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system2.xml&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//molecule[element=1]//@symbol&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system2.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree2</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tree2</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule[element=1]//@symbol&quot;</span><span class="p">))</span>   
 </pre></div>
 
     </div>
@@ -864,34 +833,8 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/IPython/core/interactiveshell.py&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3418</span>, in <span class="ansi-magenta-intense-fg ansi-bold">run_code</span>
-    exec(code_obj, self.user_global_ns, self.user_ns)
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-13-a5f1b225e455&gt;&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1</span>, in <span class="ansi-magenta-intense-fg ansi-bold">&lt;module&gt;</span>
-    etree.parse(open(&#39;system2.xml&#39;)).xpath(&#39;//molecule[element=1]//@symbol&#39;)
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/etree.pyx&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3521</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree.parse</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1880</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseDocument</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1900</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseFilelikeDocument</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1795</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseDocFromFilelike</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1201</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._BaseParser._parseDocFromFilelike</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">615</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._ParserContext._handleParseResultDoc</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">725</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._handleParseResult</span>
-
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;src/lxml/parser.pxi&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">654</span><span class="ansi-cyan-fg">, in </span><span class="ansi-magenta-fg">lxml.etree._raiseParseError</span>
-
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;/home/travis/build/alan-turing-institute/rsd-engineeringcourse/ch09fileformats/system2.xml&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
-<span class="ansi-red-fg">XMLSyntaxError</span><span class="ansi-red-fg">:</span> Document is empty, line 1, column 1
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;C&#39;, &#39;O&#39;, &#39;H&#39;, &#39;O&#39;, &#39;H&#39;, &#39;O&#39;]
 </pre>
 </div>
 </div>
@@ -903,7 +846,7 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note how we select on text content rather than attributes by using the element tag directly. The above says "for every moelcule where at least one element is present with just a single atom, return all the symbols of all the elements in that molecule."</p>
+<p>Note how we select on text content rather than attributes by using the element tag directly. The above says "for every molecule where at least one element is present with just a single atom, return all the symbols of all the elements in that molecule."</p>
 
 </div>
 </div>
@@ -942,7 +885,7 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> xmltotex.xsl
@@ -1021,10 +964,12 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">transform</span><span class="o">=</span><span class="n">etree</span><span class="o">.</span><span class="n">XSLT</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;xmltotex.xsl&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;xmltotex.xsl&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xslfile</span><span class="p">:</span>
+    <span class="n">transform_xsl</span> <span class="o">=</span> <span class="n">xslfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">transform</span><span class="o">=</span><span class="n">etree</span><span class="o">.</span><span class="n">XSLT</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">transform_xsl</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -1034,7 +979,7 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">tree</span><span class="p">)))</span>
@@ -1053,14 +998,12 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-16-61fb34f0ad1e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>str<span class="ansi-blue-fg">(</span>transform<span class="ansi-blue-fg">(</span>tree<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
+2H_2 + O_2 \rightarrow 2H_2O\\
 
-<span class="ansi-red-fg">NameError</span>: name &#39;tree&#39; is not defined</pre>
+
+</pre>
 </div>
 </div>
 
@@ -1070,7 +1013,7 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">tree</span><span class="p">))))</span>
@@ -1089,15 +1032,15 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-17-2d24b1acdacb&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>display<span class="ansi-blue-fg">(</span>Math<span class="ansi-blue-fg">(</span>str<span class="ansi-blue-fg">(</span>transform<span class="ansi-blue-fg">(</span>tree<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;tree&#39; is not defined</pre>
+
+<div class="output_latex output_subarea ">
+$\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
+2H_2 + O_2 \rightarrow 2H_2O\\
+
+$
 </div>
+
 </div>
 
 </div>
@@ -1122,7 +1065,7 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> reactions.xsd
@@ -1202,36 +1145,40 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;reactions.xsd&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xsdfile</span><span class="p">:</span>
+    <span class="n">schema_xsd</span> <span class="o">=</span> <span class="n">xsdfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">schema_xsd</span><span class="p">))</span>    
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;reactions.xsd&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">schema</span> <span class="o">=</span> <span class="n">schema</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system.xml&#39;</span><span class="p">),</span><span class="n">parser</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1247,34 +1194,8 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/IPython/core/interactiveshell.py&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3418</span>, in <span class="ansi-magenta-intense-fg ansi-bold">run_code</span>
-    exec(code_obj, self.user_global_ns, self.user_ns)
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-21-908014410f7b&gt;&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1</span>, in <span class="ansi-magenta-intense-fg ansi-bold">&lt;module&gt;</span>
-    tree = etree.parse(open(&#39;system.xml&#39;),parser)
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/etree.pyx&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3521</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree.parse</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1880</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseDocument</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1900</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseFilelikeDocument</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1795</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseDocFromFilelike</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1201</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._BaseParser._parseDocFromFilelike</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">615</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._ParserContext._handleParseResultDoc</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">725</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._handleParseResult</span>
-
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;src/lxml/parser.pxi&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">663</span><span class="ansi-cyan-fg">, in </span><span class="ansi-magenta-fg">lxml.etree._raiseParseError</span>
-
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;/home/travis/build/alan-turing-institute/rsd-engineeringcourse/ch09fileformats/system.xml&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
-<span class="ansi-red-fg">XMLSyntaxError</span><span class="ansi-red-fg">:</span> line 1: b&#39;Document is empty&#39;
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;lxml.etree._ElementTree object at 0x7f0214074680&gt;
 </pre>
 </div>
 </div>
@@ -1293,7 +1214,7 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> invalid_system.xml
@@ -1343,10 +1264,12 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;invalid_system.xml&#39;</span><span class="p">),</span><span class="n">parser</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;invalid_system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1369,8 +1292,8 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
   File <span class="ansi-green-intense-fg ansi-bold">&#34;/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/IPython/core/interactiveshell.py&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3418</span>, in <span class="ansi-magenta-intense-fg ansi-bold">run_code</span>
     exec(code_obj, self.user_global_ns, self.user_ns)
 
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-23-84e81d0435a0&gt;&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1</span>, in <span class="ansi-magenta-intense-fg ansi-bold">&lt;module&gt;</span>
-    tree = etree.parse(open(&#39;invalid_system.xml&#39;),parser)
+  File <span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-21-6e51cfadf415&gt;&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">2</span>, in <span class="ansi-magenta-intense-fg ansi-bold">&lt;module&gt;</span>
+    tree = etree.parse(xmlfile, parser)
 
   File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/etree.pyx&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3521</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree.parse</span>
 
