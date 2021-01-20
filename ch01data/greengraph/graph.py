@@ -18,8 +18,9 @@ class Greengraph:
         return np.vstack([lats, longs]).transpose()
 
     def green_between(self, steps):
-        return [Map(*location).count_green()
-                for location in self.location_sequence(
-                    self.geolocate(self.start),
-                    self.geolocate(self.end),
-                    steps)]
+        return [
+            Map(*location).count_green()
+            for location in self.location_sequence(
+                self.geolocate(self.start), self.geolocate(self.end), steps
+            )
+        ]

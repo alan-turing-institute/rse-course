@@ -44,9 +44,9 @@ def test_move_particle_one_over():
         # Make sure any movement is by one
         indices = nonzero(density - new_density)[0]
         assert len(indices) == 2, "densities differ in two places"
-        assert \
-            multiply.reduce((density - new_density)[indices]) == -1, \
-            "densities differ by + and - 1"
+        assert (
+            multiply.reduce((density - new_density)[indices]) == -1
+        ), "densities differ by + and - 1"
 
 
 def test_equal_probability():
@@ -58,9 +58,11 @@ def test_equal_probability():
     density = array([1, 0, 99])
     mc = MonteCarlo(energy, density)
     changes_at_zero = [
-        (density - mc.change_density(density))[0] != 0 for i in range(10000)]
-    assert count_nonzero(changes_at_zero) \
-            == approx(0.01 * len(changes_at_zero), 0.5 * sqrt(len(changes_at_zero)))
+        (density - mc.change_density(density))[0] != 0 for i in range(10000)
+    ]
+    assert count_nonzero(changes_at_zero) == approx(
+        0.01 * len(changes_at_zero), 0.5 * sqrt(len(changes_at_zero))
+    )
 
 
 def test_accept_change():
@@ -81,9 +83,9 @@ def test_accept_change():
     # depending on exponential distribution
     prior, successor = 0.4, 0.5
     accepted = [mc.accept_change(prior, successor) for i in range(10000)]
-    assert count_nonzero(accepted) / float(len(accepted)) \
-        == approx(exp(-(successor - prior) / mc.temperature), 3e0 / sqrt(len(accepted)))
-
+    assert count_nonzero(accepted) / float(len(accepted)) == approx(
+        exp(-(successor - prior) / mc.temperature), 3e0 / sqrt(len(accepted))
+    )
 
 
 def test_main_algorithm():
@@ -91,12 +93,12 @@ def test_main_algorithm():
     from numpy import testing
     from unittest.mock import Mock
 
-    density=[1, 1, 1, 1, 1]
-    energy=MagicMock()
-    mc=MonteCarlo(energy, density, itermax = 5)
+    density = [1, 1, 1, 1, 1]
+    energy = MagicMock()
+    mc = MonteCarlo(energy, density, itermax=5)
 
-    acceptance=[True, True, True, True, True]
-    mc.accept_change=Mock(side_effect = acceptance)
-    mc.random_agent=Mock(side_effect = [0, 1, 2, 3, 4])
-    mc.random_direction=Mock(side_effect = [1, 1, 1, 1, -1])
+    acceptance = [True, True, True, True, True]
+    mc.accept_change = Mock(side_effect=acceptance)
+    mc.random_agent = Mock(side_effect=[0, 1, 2, 3, 4])
+    mc.random_direction = Mock(side_effect=[1, 1, 1, 1, -1])
     np.testing.assert_equal(mc.step()[1], [0, 1, 1, 2, 1])
