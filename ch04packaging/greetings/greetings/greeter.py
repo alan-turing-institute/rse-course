@@ -1,5 +1,4 @@
 def greet(personal, family, title="", polite=False):
-
     """Generate a greeting string for a person.
 
     Parameters
