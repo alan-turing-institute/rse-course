@@ -294,8 +294,8 @@ and all commits required an internet.</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s1">&#39;learning_git&#39;</span><span class="p">)</span>
-<span class="n">working_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;git_example&#39;</span><span class="p">)</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
+<span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
 </pre></div>
 
@@ -310,8 +310,8 @@ and all commits required an internet.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
-git checkout master
-git remote add jamespjh https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git
+git checkout main
+git remote add jack89roberts https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git
 </pre></div>
 
     </div>
@@ -328,7 +328,7 @@ git remote add jamespjh https://<span class="si">${</span><span class="nv">GITHU
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Your branch is ahead of &#39;origin/master&#39; by 1 commit.
+<pre>Your branch is ahead of &#39;origin/main&#39; by 1 commit.
   (use &#34;git push&#34; to publish your local commits)
 </pre>
 </div>
@@ -340,7 +340,7 @@ git remote add jamespjh https://<span class="si">${</span><span class="nv">GITHU
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>Switched to branch &#39;master&#39;
+<pre>Already on &#39;main&#39;
 </pre>
 </div>
 </div>
@@ -353,8 +353,11 @@ git remote add jamespjh https://<span class="si">${</span><span class="nv">GITHU
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Check your remote branches:</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">git</span> <span class="n">remote</span> <span class="o">-</span><span class="n">v</span>
+<div class="highlight"><pre><span></span>&gt; git remote -v
+jack89roberts   https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git <span class="o">(</span>fetch<span class="o">)</span>
+jack89roberts   https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git <span class="o">(</span>push<span class="o">)</span>
+origin  https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/alan-turing-institute/github-example.git <span class="o">(</span>fetch<span class="o">)</span>
+origin  https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/alan-turing-institute/github-example.git <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 
 </div>
@@ -429,7 +432,7 @@ git commit -am <span class="s2">&quot;Add Whernside&quot;</span>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 6f73449] Add Whernside
+<pre>[main cc6cf74] Add Whernside
  1 file changed, 6 insertions(+)
  create mode 100644 Pennines.md
 </pre>
@@ -446,7 +449,7 @@ git commit -am <span class="s2">&quot;Add Whernside&quot;</span>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
-git push -uf jamespjh master
+git push -uf jack89roberts main
 </pre></div>
 
     </div>
@@ -463,7 +466,7 @@ git push -uf jamespjh master
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Branch &#39;master&#39; set up to track remote branch &#39;master&#39; from &#39;jamespjh&#39;.
+<pre>Branch &#39;main&#39; set up to track remote branch &#39;main&#39; from &#39;jack89roberts&#39;.
 </pre>
 </div>
 </div>
@@ -475,7 +478,7 @@ git push -uf jamespjh master
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To https://github.com/jack89roberts/github-example.git
- + 15a3cec...6f73449 master -&gt; master (forced update)
+ + e842713...cc6cf74 main -&gt; main (forced update)
 </pre>
 </div>
 </div>
@@ -499,7 +502,7 @@ git push -uf jamespjh master
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 git fetch
-git log --oneline --left-right jamespjh/master...origin/master
+git log --oneline --left-right jack89roberts/main...origin/main
 </pre></div>
 
     </div>
@@ -516,8 +519,20 @@ git log --oneline --left-right jamespjh/master...origin/master
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt; 6f73449 Add Whernside
-&lt; b5affdc Add github pages YAML frontmatter
+<pre>&lt; cc6cf74 Add Whernside
+&lt; e042e04 Add github pages YAML frontmatter
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>From https://github.com/jack89roberts/github-example
+ * [new branch]      master     -&gt; jack89roberts/master
 </pre>
 </div>
 </div>
@@ -541,7 +556,7 @@ git log --oneline --left-right jamespjh/master...origin/master
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
-git diff --name-only origin/master
+git diff --name-only origin/main
 </pre></div>
 
     </div>
@@ -599,8 +614,7 @@ git branch -vv
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>  gh-pages b5affdc [origin/gh-pages] Add github pages YAML frontmatter
-* master   6f73449 [jamespjh/master] Add Whernside
+<pre>* main cc6cf74 [jack89roberts/main] Add Whernside
 </pre>
 </div>
 </div>
@@ -628,7 +642,7 @@ git branch -vv
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bare_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s1">&#39;bare_repo&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bare_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;bare_repo&quot;</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">git_dir</span><span class="p">)</span>
 </pre></div>
 
@@ -645,7 +659,7 @@ git branch -vv
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 mkdir -p bare_repo
 <span class="nb">cd</span> bare_repo
-git init --bare
+git init --bare --initial-branch<span class="o">=</span>main
 </pre></div>
 
     </div>
@@ -691,7 +705,7 @@ git init --bare
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 git remote add local_bare ../bare_repo
-git push -u local_bare master
+git push -u local_bare main
 </pre></div>
 
     </div>
@@ -708,7 +722,7 @@ git push -u local_bare master
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Branch &#39;master&#39; set up to track remote branch &#39;master&#39; from &#39;local_bare&#39;.
+<pre>Branch &#39;main&#39; set up to track remote branch &#39;main&#39; from &#39;local_bare&#39;.
 </pre>
 </div>
 </div>
@@ -720,7 +734,7 @@ git push -u local_bare master
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To ../bare_repo
- * [new branch]      master -&gt; master
+ * [new branch]      main -&gt; main
 </pre>
 </div>
 </div>
@@ -733,8 +747,13 @@ git push -u local_bare master
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Check your remote branches:</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">git</span> <span class="n">remote</span> <span class="o">-</span><span class="n">v</span>
+<div class="highlight"><pre><span></span>&gt; git remote -v
+jack89roberts   https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git <span class="o">(</span>fetch<span class="o">)</span>
+jack89roberts   https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git <span class="o">(</span>push<span class="o">)</span>
+local_bare  ../bare_repo <span class="o">(</span>fetch<span class="o">)</span>
+local_bare  ../bare_repo <span class="o">(</span>push<span class="o">)</span>
+origin  https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/alan-turing-institute/github-example.git <span class="o">(</span>fetch<span class="o">)</span>
+origin  https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/alan-turing-institute/github-example.git <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 
 </div>

@@ -338,7 +338,7 @@ git stash
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Saved working directory and index state WIP on master: 038e29d Merge branch &#39;experiment&#39;
+<pre>Saved working directory and index state WIP on main: fbab71f Merge branch &#39;experiment&#39; into main
 </pre>
 </div>
 </div>
@@ -433,8 +433,8 @@ git stash apply
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>On branch master
-Your branch is ahead of &#39;origin/master&#39; by 3 commits.
+<pre>On branch main
+Your branch is ahead of &#39;origin/main&#39; by 3 commits.
   (use &#34;git push&#34; to publish your local commits)
 
 Changes not staged for commit:
@@ -655,8 +655,8 @@ git status
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>On branch master
-Your branch is ahead of &#39;origin/master&#39; by 3 commits.
+<pre>On branch main
+Your branch is ahead of &#39;origin/main&#39; by 3 commits.
   (use &#34;git push&#34; to publish your local commits)
 
 Changes not staged for commit:
@@ -746,8 +746,8 @@ git status
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>On branch master
-Your branch is ahead of &#39;origin/master&#39; by 3 commits.
+<pre>On branch main
+Your branch is ahead of &#39;origin/main&#39; by 3 commits.
   (use &#34;git push&#34; to publish your local commits)
 
 Changes not staged for commit:
@@ -797,7 +797,7 @@ git push
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master 45a830c] Add a makefile and ignore generated files
+<pre>[main a3ad6b2] Add a makefile and ignore generated files
  3 files changed, 10 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 Makefile
@@ -812,7 +812,7 @@ git push
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>To https://github.com/alan-turing-institute/github-example.git
-   83b4e09..45a830c  master -&gt; master
+   26a2f72..a3ad6b2  main -&gt; main
 </pre>
 </div>
 </div>
@@ -1060,7 +1060,7 @@ git commit -am <span class="s2">&quot;Add github pages YAML frontmatter&quot;</s
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[master b5affdc] Add github pages YAML frontmatter
+<pre>[main e042e04] Add github pages YAML frontmatter
  1 file changed, 7 insertions(+), 4 deletions(-)
 </pre>
 </div>
@@ -1129,8 +1129,12 @@ git push -uf origin gh-pages
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Switched to a new branch &#39;gh-pages&#39;
+remote: 
+remote: Create a pull request for &#39;gh-pages&#39; on GitHub by visiting:        
+remote:      https://github.com/alan-turing-institute/github-example/pull/new/gh-pages        
+remote: 
 To https://github.com/alan-turing-institute/github-example.git
- + 935b0f3...b5affdc gh-pages -&gt; gh-pages (forced update)
+ * [new branch]      gh-pages -&gt; gh-pages
 </pre>
 </div>
 </div>
@@ -1144,7 +1148,7 @@ To https://github.com/alan-turing-institute/github-example.git
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The first time you do this, GitHub takes a few minutes to generate your pages.</p>
 <p>The website will appear at <code>http://username.github.io/repositoryname</code>, for example:</p>
-<p><a href="http://UCL.github.io/github-example/">http://UCL.github.io/github-example/</a></p>
+<p><a href="http://alan-turing-institute.github.io/github-example/">http://alan-turing-institute.github.io/github-example/</a></p>
 
 </div>
 </div>
@@ -1152,12 +1156,62 @@ To https://github.com/alan-turing-institute/github-example.git
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UCL-layout-for-GitHub-pages">UCL layout for GitHub pages<a class="anchor-link" href="#UCL-layout-for-GitHub-pages">&#182;</a></h3><p>You can use GitHub pages to make HTML layouts, here's an <a href="http://github.com/UCL/ucl-github-pages-example">example of how to do it</a>, 
-and <a href="http://ucl.github.com/ucl-github-pages-example">how it looks</a>. We won't go into the detail of this now, 
-but after the class, you might want to try this.</p>
+<h3 id="Layout-for-GitHub-pages">Layout for GitHub pages<a class="anchor-link" href="#Layout-for-GitHub-pages">&#182;</a></h3><p>You can use GitHub pages to make HTML layouts, here's an <a href="http://github.com/UCL/ucl-github-pages-example">example of how to do it</a>, and <a href="http://ucl.github.com/ucl-github-pages-example">how it looks</a>. We won't go into the detail of this now, but after the class, you might want to try this.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="c1"># Cleanup by removing the gh-pages branch </span>
+git checkout main
+git branch -d gh-pages
+git push --delete origin gh-pages 
+git branch --remote
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Your branch is ahead of &#39;origin/main&#39; by 1 commit.
+  (use &#34;git push&#34; to publish your local commits)
+Deleted branch gh-pages (was e042e04).
+  origin/main
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Switched to branch &#39;main&#39;
+To https://github.com/alan-turing-institute/github-example.git
+ - [deleted]         gh-pages
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
  
 
