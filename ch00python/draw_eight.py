@@ -1,7 +1,6 @@
 # Above line tells the notebook to treat the rest of this
 # cell as content for a file on disk.
 import math
-
 import numpy as np
 import matplotlib.pyplot as plt
 

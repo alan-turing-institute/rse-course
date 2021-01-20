@@ -1,3 +1,4 @@
+
 class Exit:
     def __init__(self, name, target):
         self.name = name
