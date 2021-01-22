@@ -69,7 +69,7 @@ def test_accept_change():
     """ Check that move is accepted if second energy is lower """
     from numpy import sqrt, count_nonzero, exp
 
-    energy = MagicMock
+    energy = MagicMock()
     mc = MonteCarlo(energy, [1, 1, 1], temperature=100.0)
     # Should always be true.
     # But do more than one draw,
