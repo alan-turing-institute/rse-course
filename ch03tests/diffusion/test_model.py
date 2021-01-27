@@ -60,3 +60,4 @@ def test_derivative_no_self_energy():
     expected = 0
     actual = energy(density_plus_one) - energy(density)
     assert expected == actual
+

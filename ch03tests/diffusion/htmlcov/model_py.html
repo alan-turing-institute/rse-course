@@ -53,7 +53,7 @@
 </div>
 <div id="source">
     <p id="t1" class="pln"><span class="n"><a href="#t1">1</a></span><span class="t"><span class="str">"""Simplistic 1-dimensional diffusion model."""</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t2" class="pln"><span class="n"><a href="#t2">2</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t2" class="run"><span class="n"><a href="#t2">2</a></span><span class="t"><span class="key">from</span> <span class="nam">numpy</span> <span class="key">import</span> <span class="nam">array</span><span class="op">,</span> <span class="nam">any</span><span class="op">,</span> <span class="nam">sum</span>&nbsp;</span><span class="r"></span></p>
     <p id="t3" class="pln"><span class="n"><a href="#t3">3</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t4" class="run"><span class="n"><a href="#t4">4</a></span><span class="t"><span class="key">def</span> <span class="nam">energy</span><span class="op">(</span><span class="nam">density</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t5" class="pln"><span class="n"><a href="#t5">5</a></span><span class="t">    <span class="str">"""Energy associated with the diffusion model</span>&nbsp;</span><span class="r"></span></p>
@@ -61,31 +61,30 @@
     <p id="t7" class="pln"><span class="n"><a href="#t7">7</a></span><span class="t"><span class="str">      density: array of positive integers</span>&nbsp;</span><span class="r"></span></p>
     <p id="t8" class="pln"><span class="n"><a href="#t8">8</a></span><span class="t"><span class="str">         Number of particles at each position i in the array/geometry</span>&nbsp;</span><span class="r"></span></p>
     <p id="t9" class="pln"><span class="n"><a href="#t9">9</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t10" class="run"><span class="n"><a href="#t10">10</a></span><span class="t">    <span class="key">from</span> <span class="nam">numpy</span> <span class="key">import</span> <span class="nam">array</span><span class="op">,</span> <span class="nam">any</span><span class="op">,</span> <span class="nam">sum</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t11" class="pln"><span class="n"><a href="#t11">11</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t12" class="pln"><span class="n"><a href="#t12">12</a></span><span class="t">    <span class="com"># Make sure input is an numpy array</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t13" class="run"><span class="n"><a href="#t13">13</a></span><span class="t">    <span class="nam">density</span> <span class="op">=</span> <span class="nam">array</span><span class="op">(</span><span class="nam">density</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t14" class="pln"><span class="n"><a href="#t14">14</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t15" class="pln"><span class="n"><a href="#t15">15</a></span><span class="t">    <span class="com"># ...of the right kind (integer). Unless it is zero length,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t16" class="pln"><span class="n"><a href="#t16">16</a></span><span class="t">    <span class="com">#    in which case type does not matter.</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t17" class="pln"><span class="n"><a href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t18" class="run"><span class="n"><a href="#t18">18</a></span><span class="t">    <span class="key">if</span> <span class="nam">density</span><span class="op">.</span><span class="nam">dtype</span><span class="op">.</span><span class="nam">kind</span> <span class="op">!=</span> <span class="str">"i"</span> <span class="key">and</span> <span class="nam">len</span><span class="op">(</span><span class="nam">density</span><span class="op">)</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t19" class="run"><span class="n"><a href="#t19">19</a></span><span class="t">        <span class="key">raise</span> <span class="nam">TypeError</span><span class="op">(</span><span class="str">"Density should be a array of *integers*."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t20" class="pln"><span class="n"><a href="#t20">20</a></span><span class="t">    <span class="com"># and the right values (positive or null)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t21" class="run"><span class="n"><a href="#t21">21</a></span><span class="t">    <span class="key">if</span> <span class="nam">any</span><span class="op">(</span><span class="nam">density</span> <span class="op">&lt;</span> <span class="num">0</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t22" class="run"><span class="n"><a href="#t22">22</a></span><span class="t">        <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span><span class="str">"Density should be an array of *positive* integers."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t23" class="run"><span class="n"><a href="#t23">23</a></span><span class="t">    <span class="key">if</span> <span class="nam">density</span><span class="op">.</span><span class="nam">ndim</span> <span class="op">!=</span> <span class="num">1</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t24" class="run"><span class="n"><a href="#t24">24</a></span><span class="t">        <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t25" class="pln"><span class="n"><a href="#t25">25</a></span><span class="t">            <span class="str">"Density should be an a *1-dimensional*"</span> <span class="op">+</span> <span class="str">"array of positive integers."</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t26" class="pln"><span class="n"><a href="#t26">26</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t27" class="pln"><span class="n"><a href="#t27">27</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t28" class="run"><span class="n"><a href="#t28">28</a></span><span class="t">    <span class="key">return</span> <span class="nam">sum</span><span class="op">(</span><span class="nam">density</span> <span class="op">*</span> <span class="op">(</span><span class="nam">density</span> <span class="op">-</span> <span class="num">1</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t10" class="pln"><span class="n"><a href="#t10">10</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t11" class="pln"><span class="n"><a href="#t11">11</a></span><span class="t">    <span class="com"># Make sure input is an numpy array</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t12" class="run"><span class="n"><a href="#t12">12</a></span><span class="t">    <span class="nam">density</span> <span class="op">=</span> <span class="nam">array</span><span class="op">(</span><span class="nam">density</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t13" class="pln"><span class="n"><a href="#t13">13</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t14" class="pln"><span class="n"><a href="#t14">14</a></span><span class="t">    <span class="com"># ...of the right kind (integer). Unless it is zero length,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t15" class="pln"><span class="n"><a href="#t15">15</a></span><span class="t">    <span class="com">#    in which case type does not matter.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t16" class="pln"><span class="n"><a href="#t16">16</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t17" class="run"><span class="n"><a href="#t17">17</a></span><span class="t">    <span class="key">if</span> <span class="nam">density</span><span class="op">.</span><span class="nam">dtype</span><span class="op">.</span><span class="nam">kind</span> <span class="op">!=</span> <span class="str">"i"</span> <span class="key">and</span> <span class="nam">len</span><span class="op">(</span><span class="nam">density</span><span class="op">)</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t18" class="run"><span class="n"><a href="#t18">18</a></span><span class="t">        <span class="key">raise</span> <span class="nam">TypeError</span><span class="op">(</span><span class="str">"Density should be a array of *integers*."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t19" class="pln"><span class="n"><a href="#t19">19</a></span><span class="t">    <span class="com"># and the right values (positive or null)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t20" class="run"><span class="n"><a href="#t20">20</a></span><span class="t">    <span class="key">if</span> <span class="nam">any</span><span class="op">(</span><span class="nam">density</span> <span class="op">&lt;</span> <span class="num">0</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t21" class="run"><span class="n"><a href="#t21">21</a></span><span class="t">        <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span><span class="str">"Density should be an array of *positive* integers."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t22" class="run"><span class="n"><a href="#t22">22</a></span><span class="t">    <span class="key">if</span> <span class="nam">density</span><span class="op">.</span><span class="nam">ndim</span> <span class="op">!=</span> <span class="num">1</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t23" class="run"><span class="n"><a href="#t23">23</a></span><span class="t">        <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t24" class="pln"><span class="n"><a href="#t24">24</a></span><span class="t">            <span class="str">"Density should be an a *1-dimensional*"</span> <span class="op">+</span> <span class="str">"array of positive integers."</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t25" class="pln"><span class="n"><a href="#t25">25</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t26" class="pln"><span class="n"><a href="#t26">26</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t27" class="run"><span class="n"><a href="#t27">27</a></span><span class="t">    <span class="key">return</span> <span class="nam">sum</span><span class="op">(</span><span class="nam">density</span> <span class="op">*</span> <span class="op">(</span><span class="nam">density</span> <span class="op">-</span> <span class="num">1</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
-            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3.1</a>,
-            created at 2021-01-22 22:04 +0000
+            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
+            created at 2021-01-27 12:10 +0000
         </p>
     </div>
 </div>

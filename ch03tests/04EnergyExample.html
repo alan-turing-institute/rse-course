@@ -340,8 +340,9 @@ total energy.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="c1">#%%cmd (windows)</span>
 mkdir -p diffusion
-touch diffusion/__init__.py
+touch diffusion/__init__.py <span class="c1">#type nul &gt; diffusion/__init__.py s(windows)</span>
 </pre></div>
 
     </div>
@@ -463,6 +464,7 @@ touch diffusion/__init__.py
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="c1">#%%cmd (windows)</span>
 <span class="nb">cd</span> diffusion
 py.test
 </pre></div>
@@ -510,6 +512,7 @@ test_model.py .                                                          [100%]
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h3><p>Don't look until after you've tried!</p>
+<p>In the spirit of test-driven development let's first consider our tests.</p>
 
 </div>
 </div>
@@ -517,65 +520,6 @@ test_model.py .                                                          [100%]
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> diffusion/model.py
-<span class="sd">&quot;&quot;&quot;Simplistic 1-dimensional diffusion model.&quot;&quot;&quot;</span>
-
-
-<span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="n">density</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Energy associated with the diffusion model</span>
-<span class="sd">    :Parameters:</span>
-<span class="sd">      density: array of positive integers</span>
-<span class="sd">         Number of particles at each position i in the array/geometry</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="nb">any</span><span class="p">,</span> <span class="nb">sum</span>
-
-    <span class="c1"># Make sure input is an numpy array</span>
-    <span class="n">density</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
-
-    <span class="c1"># ...of the right kind (integer). Unless it is zero length,</span>
-    <span class="c1">#    in which case type does not matter.</span>
-
-    <span class="k">if</span> <span class="n">density</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">!=</span> <span class="s2">&quot;i&quot;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Density should be a array of *integers*.&quot;</span><span class="p">)</span>
-    <span class="c1"># and the right values (positive or null)</span>
-    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">density</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Density should be an array of *positive* integers.&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">density</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;Density should be an a *1-dimensional*&quot;</span> <span class="o">+</span> <span class="s2">&quot;array of positive integers.&quot;</span>
-        <span class="p">)</span>
-
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">density</span> <span class="o">*</span> <span class="p">(</span><span class="n">density</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting diffusion/model.py
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> diffusion/test_model.py
@@ -666,12 +610,79 @@ test_model.py .                                                          [100%]
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's write an implementation that passes the tests.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> diffusion/model.py
+<span class="sd">&quot;&quot;&quot;Simplistic 1-dimensional diffusion model.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="nb">any</span><span class="p">,</span> <span class="nb">sum</span>
+
+<span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="n">density</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Energy associated with the diffusion model</span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">      density: array of positive integers</span>
+<span class="sd">         Number of particles at each position i in the array/geometry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Make sure input is an numpy array</span>
+    <span class="n">density</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
+
+    <span class="c1"># ...of the right kind (integer). Unless it is zero length,</span>
+    <span class="c1">#    in which case type does not matter.</span>
+
+    <span class="k">if</span> <span class="n">density</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">!=</span> <span class="s2">&quot;i&quot;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Density should be a array of *integers*.&quot;</span><span class="p">)</span>
+    <span class="c1"># and the right values (positive or null)</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">density</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Density should be an array of *positive* integers.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">density</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Density should be an a *1-dimensional*&quot;</span> <span class="o">+</span> <span class="s2">&quot;array of positive integers.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">density</span> <span class="o">*</span> <span class="p">(</span><span class="n">density</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Overwriting diffusion/model.py
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
+
 <span class="nb">cd</span> diffusion
 py.test
 </pre></div>
@@ -698,7 +709,7 @@ collected 6 items
 
 test_model.py ......                                                     [100%]
 
-============================== 6 passed in 0.14s ===============================
+============================== 6 passed in 0.15s ===============================
 </pre>
 </div>
 </div>
@@ -721,6 +732,7 @@ test_model.py ......                                                     [100%]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="c1">#%%cmd (windows)</span>
 <span class="nb">cd</span> diffusion
 py.test --cov
 </pre></div>
@@ -895,7 +907,7 @@ test_model.py                                                                   
 TOTAL                                                                                                      32570  25427    22%
 
 
-============================== 6 passed in 2.59s ===============================
+============================== 6 passed in 2.74s ===============================
 </pre>
 </div>
 </div>
@@ -918,6 +930,7 @@ TOTAL                                                                           
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="c1">#%%cmd (windows)</span>
 <span class="nb">cd</span> diffusion
 py.test --cov --cov-report html
 </pre></div>
@@ -948,7 +961,7 @@ test_model.py ......                                                     [100%]
 Coverage HTML written to dir htmlcov
 
 
-============================== 6 passed in 5.86s ===============================
+============================== 6 passed in 6.11s ===============================
 </pre>
 </div>
 </div>
