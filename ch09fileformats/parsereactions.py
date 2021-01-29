@@ -1,9 +1,10 @@
 
 # Yacc example
-from system import *
-
 import ply.yacc as yacc
 
+# Get the components of our system
+from system import Element, Molecule, Side, Reaction, System
+    
 # Get the token map from the lexer.  This is required.
 from lexreactions import tokens
 

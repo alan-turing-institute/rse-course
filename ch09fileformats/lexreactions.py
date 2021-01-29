@@ -14,14 +14,14 @@ tokens = (
 )
 
 # Tokens
-
 t_PLUS = r"\+"
 t_SUBSCRIPT = r"_"
 t_LBRACE = r"\{"
 t_RBRACE = r"\}"
 t_TEXNEWLINE = r"\\\\"
 t_ARROW = r"\\rightarrow"
-t_ELEMENT = r"[A-Z][a-z]*?"
+t_ELEMENT = r"[A-Z][a-z]?"
+t_NEWLINE = r"\n+"
 
 
 def t_NUMBER(t):
@@ -33,13 +33,8 @@ def t_NUMBER(t):
 t_ignore = " "
 
 
-def t_NEWLINE(t):
-    r"\n+"
-    return t
-
-
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print(f"Did not recognise character '{t.value[0]:s}' as part of a valid token")
     t.lexer.skip(1)
 
 

@@ -440,7 +440,7 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We could reasonably consider using the latex representation of this as a fileformat for reactions. (Though we need to represent the molecular mass in some way we've not thought of.)</p>
+<p>We could reasonably consider using the LaTeX representation of this as a fileformat for reactions. (Though we need to represent the molecular mass in some way we've not thought of.)</p>
 <p>We've already shown how to <strong>serialise</strong> the data to this representation.
 How hard would it be to <strong>deserialise</strong> it?</p>
 <p>Actually, pretty darn hard.</p>
@@ -485,9 +485,9 @@ representation, which we'll call a <strong>Domain Specific Language</strong>.</p
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> molecules.csv
 <span class="c1"># name, elements, numbers</span>
 
-<span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">;</span><span class="n">O</span> <span class="p">,</span> <span class="mi">1</span><span class="p">;</span><span class="mi">2</span>
-<span class="n">oxygen</span><span class="p">,</span> <span class="n">O</span> <span class="p">,</span> <span class="mi">2</span>
-<span class="n">carbon_dioxide</span><span class="p">,</span> <span class="n">C</span><span class="p">;</span><span class="n">O</span> <span class="p">,</span> <span class="mi">1</span><span class="p">;</span><span class="mi">2</span>
+<span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">;</span><span class="n">O</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span><span class="mi">1</span>
+<span class="n">oxygen</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">carbon_dioxide</span><span class="p">,</span> <span class="n">C</span><span class="p">;</span><span class="n">O</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span><span class="mi">2</span>
 <span class="n">glucose</span><span class="p">,</span> <span class="n">C</span><span class="p">;</span><span class="n">H</span><span class="p">;</span><span class="n">O</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span><span class="mi">12</span><span class="p">;</span><span class="mi">6</span>
 </pre></div>
 
@@ -552,9 +552,9 @@ representation, which we'll call a <strong>Domain Specific Language</strong>.</p
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Writing a parser is, of course, quite easy, but the existence of multiple values in one column is characteristic of a classic error in file-format design: such a file format is said to be NOT <strong>first normal form</strong>.</p>
-<p>There are many reasons why this sucks, but a classic one is that eventually, your separation character within the field will turn up in someone's content, and there'll be all kinds of escaping problems.</p>
-<p>Unfortunately, such things are found in the wild all the time.</p>
+<p>Writing a parser for these files would be very similar to the earthquake problem that you've already encountered.</p>
+<p>However, the existence of multiple values in one column indicates that this file format is NOT <strong>first normal form</strong> (1NF).</p>
+<p><strong>Note:</strong> <em>A table is in first normal form if: every column is unique; no rows are duplicated; each column/row intersection contains only one value.</em></p>
 
 </div>
 </div>
@@ -562,8 +562,8 @@ representation, which we'll call a <strong>Domain Specific Language</strong>.</p
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The art of designing serialisations which work as row-and-column
-value tables for more complex data structures is the core of database design.</p>
+<p>It is not uncommon to encounter file-formats that violate 1NF in the wild. The main problem with them is that you will eventually have to deal with the separation character that you picked (<code>;</code> in this case) turning up in someone's content and you'll need to work out how to escape it.</p>
+<p>The art of designing serialisations which work as row-and-column value tables for more complex data structures is the core of database design.</p>
 
 </div>
 </div>
@@ -591,8 +591,8 @@ value tables for more complex data structures is the core of database design.</p
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> molecules.csv
 <span class="c1"># name, element, number</span>
 
-<span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">1</span>
-<span class="n">water</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">water</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">1</span>
 <span class="n">oxygen</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
 <span class="n">carbon_dioxide</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="mi">1</span>
 <span class="n">carbon_dioxide</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
@@ -669,9 +669,9 @@ value tables for more complex data structures is the core of database design.</p
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>which would allow our data file to be potentially be self-inconsistent, violating the design principle that each
-piece of information should be stated only once. Indeed, this is so obviously stupid that it's hard to imagine doing it,
-but the mistake is so common in the wild that it has a name: such a structure is said to be NOT <strong>second normal form</strong>.</p>
+<p>The existence of the same piece of information in multiple locations (eg. the <code>18.01</code> molecular mass of water) indicates that this file format is NOT <strong>second normal form</strong> (2NF).</p>
+<p>However, this would allow our data file to be potentially be self-inconsistent, violating the design principle that each piece of information should be stated only once. A data structure of this type is said to be NOT <strong>second normal form</strong>.</p>
+<p><strong>Note:</strong> <em>A table is in second normal form if: it is in first normal form; none of its attributes depend on any other attribute except the primary key.</em></p>
 
 </div>
 </div>
@@ -778,8 +778,8 @@ but the mistake is so common in the wild that it has a name: such a structure is
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> atoms_in_molecules.csv
 
 <span class="c1"># rel_number, molecule, symbol, number</span>
-<span class="mi">0</span><span class="p">,</span> <span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">1</span>
-<span class="mi">1</span><span class="p">,</span> <span class="n">water</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
+<span class="mi">0</span><span class="p">,</span> <span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">2</span>
+<span class="mi">1</span><span class="p">,</span> <span class="n">water</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">1</span>
 <span class="mi">2</span><span class="p">,</span> <span class="n">oxygen</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
 </pre></div>
 
@@ -844,7 +844,7 @@ right across our thinking about data representation, whether these are dataframe
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's look at how we would use a simple database in Python to represent atoms and molecules. If you've never seen SQL before, you should attend one of the 'software carpentry' sessions. However, we expect you have, so this builds on raw sql to look at a more python-style way to interact with databases.</p>
+<p>Let's look at how we would use a simple database in Python to represent atoms and molecules. If you've never seen SQL before, you might want to attend an introductory course, such as one of the 'Software Carpentry' sessions. Here we're going to assume some existing knowledge but we will use a Python-style way to interact with databases instead of relying on raw SQL.</p>
 
 </div>
 </div>
@@ -856,7 +856,7 @@ right across our thinking about data representation, whether these are dataframe
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;molecules.db&#39;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;molecules.db&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removing database to start again from scratch&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No DB since this notebook was last run&quot;</span><span class="p">)</span>
@@ -891,7 +891,7 @@ right across our thinking about data representation, whether these are dataframe
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///molecules.db&#39;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///molecules.db&quot;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -902,7 +902,7 @@ right across our thinking about data representation, whether these are dataframe
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Sqlite is a simple very-lightweight database tool - without support for concurrent users - but it's great for little hacks like this. For full-on database work you'll probably want to use <a href="https://www.postgresql.org">https://www.postgresql.org</a> .</p>
+<p>SQLite is a simple very-lightweight database tool - without support for concurrent users - but it's great for little hacks like this. For full-on database work you'll probably want to use a more fully-featured database like <a href="https://www.postgresql.org">https://www.postgresql.org</a>.</p>
 
 </div>
 </div>
@@ -951,8 +951,8 @@ right across our thinking about data representation, whether these are dataframe
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">atoms_in_molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
     <span class="s2">&quot;atoms_molecules&quot;</span><span class="p">,</span>
     <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;atom&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;atoms.symbol&quot;</span><span class="p">)),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;molecule&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;molecules.name&quot;</span><span class="p">)),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;atom&quot;</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;atoms.symbol&quot;</span><span class="p">)),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;molecule&quot;</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;molecules.name&quot;</span><span class="p">)),</span>
     <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -985,23 +985,23 @@ right across our thinking about data representation, whether these are dataframe
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2021-01-27 12:15:33,604 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test plain returns&#39; AS VARCHAR(60)) AS anon_1
-2021-01-27 12:15:33,605 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,606 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test unicode returns&#39; AS VARCHAR(60)) AS anon_1
-2021-01-27 12:15:33,607 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,608 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;molecules&#34;)
-2021-01-27 12:15:33,609 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,610 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;molecules&#34;)
-2021-01-27 12:15:33,610 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,611 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;atoms&#34;)
-2021-01-27 12:15:33,611 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,613 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;atoms&#34;)
-2021-01-27 12:15:33,614 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,614 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;atoms_molecules&#34;)
-2021-01-27 12:15:33,615 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,616 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;atoms_molecules&#34;)
-2021-01-27 12:15:33,616 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,618 INFO sqlalchemy.engine.base.Engine 
+<pre>2021-01-29 12:49:14,418 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test plain returns&#39; AS VARCHAR(60)) AS anon_1
+2021-01-29 12:49:14,419 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,421 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test unicode returns&#39; AS VARCHAR(60)) AS anon_1
+2021-01-29 12:49:14,421 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,423 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;molecules&#34;)
+2021-01-29 12:49:14,423 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,425 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;molecules&#34;)
+2021-01-29 12:49:14,426 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,427 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;atoms&#34;)
+2021-01-29 12:49:14,428 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,429 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;atoms&#34;)
+2021-01-29 12:49:14,429 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,431 INFO sqlalchemy.engine.base.Engine PRAGMA main.table_info(&#34;atoms_molecules&#34;)
+2021-01-29 12:49:14,431 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,432 INFO sqlalchemy.engine.base.Engine PRAGMA temp.table_info(&#34;atoms_molecules&#34;)
+2021-01-29 12:49:14,433 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,434 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE molecules (
 	name VARCHAR NOT NULL, 
 	mass FLOAT, 
@@ -1009,9 +1009,9 @@ CREATE TABLE molecules (
 )
 
 
-2021-01-27 12:15:33,619 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,624 INFO sqlalchemy.engine.base.Engine COMMIT
-2021-01-27 12:15:33,625 INFO sqlalchemy.engine.base.Engine 
+2021-01-29 12:49:14,435 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,443 INFO sqlalchemy.engine.base.Engine COMMIT
+2021-01-29 12:49:14,444 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE atoms (
 	symbol VARCHAR NOT NULL, 
 	number INTEGER, 
@@ -1019,9 +1019,9 @@ CREATE TABLE atoms (
 )
 
 
-2021-01-27 12:15:33,625 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,630 INFO sqlalchemy.engine.base.Engine COMMIT
-2021-01-27 12:15:33,631 INFO sqlalchemy.engine.base.Engine 
+2021-01-29 12:49:14,445 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,450 INFO sqlalchemy.engine.base.Engine COMMIT
+2021-01-29 12:49:14,451 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE atoms_molecules (
 	atom VARCHAR, 
 	molecule VARCHAR, 
@@ -1031,8 +1031,8 @@ CREATE TABLE atoms_molecules (
 )
 
 
-2021-01-27 12:15:33,632 INFO sqlalchemy.engine.base.Engine ()
-2021-01-27 12:15:33,636 INFO sqlalchemy.engine.base.Engine COMMIT
+2021-01-29 12:49:14,451 INFO sqlalchemy.engine.base.Engine ()
+2021-01-29 12:49:14,457 INFO sqlalchemy.engine.base.Engine COMMIT
 MetaData(bind=None)
 </pre>
 </div>
@@ -1097,7 +1097,7 @@ MetaData(bind=None)
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ins</span> <span class="o">=</span> <span class="n">molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;water&#39;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="s1">&#39;18.01&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ins</span> <span class="o">=</span> <span class="n">molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="s2">&quot;18.01&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1130,7 +1130,7 @@ MetaData(bind=None)
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlalchemy.engine.result.ResultProxy at 0x7f4e9cb37460&gt;</pre>
+<pre>&lt;sqlalchemy.engine.result.ResultProxy at 0x7ff9d9fe2fd0&gt;</pre>
 </div>
 
 </div>
@@ -1167,7 +1167,7 @@ MetaData(bind=None)
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="s1">&#39;mass&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="s2">&quot;mass&quot;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -1196,7 +1196,7 @@ MetaData(bind=None)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If we have enough understanding of sql syntax, we can use appropriate <strong>join</strong> statements to find, for example, the mass of all molecules which contain oxygen:</p>
+<p>If we have enough understanding of SQL syntax, we can use appropriate <strong>join</strong> statements to find, for example, the mass of all molecules which contain oxygen:</p>
 
 </div>
 </div>
@@ -1206,12 +1206,12 @@ MetaData(bind=None)
 <div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;oxygen&#39;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="s1">&#39;16.00&#39;</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s1">&#39;water&#39;</span><span class="p">,</span><span class="n">atom</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span><span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s1">&#39;oxygen&#39;</span><span class="p">,</span><span class="n">atom</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span><span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s1">&#39;water&#39;</span><span class="p">,</span><span class="n">atom</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="s2">&quot;32.00&quot;</span><span class="p">))</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -1230,7 +1230,7 @@ MetaData(bind=None)
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlalchemy.engine.result.ResultProxy at 0x7f4e9cb3b730&gt;</pre>
+<pre>&lt;sqlalchemy.engine.result.ResultProxy at 0x7ff9d9fc08b0&gt;</pre>
 </div>
 
 </div>
@@ -1244,11 +1244,17 @@ MetaData(bind=None)
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span><span class="o">=</span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-    <span class="s1">&#39;SELECT mass FROM molecules JOIN atoms_molecules &#39;</span> <span class="o">+</span> 
-    <span class="s1">&#39;ON molecules.name = atoms_molecules.molecule JOIN atoms &#39;</span> <span class="o">+</span>
-    <span class="s1">&#39;ON atoms.symbol = atoms_molecules.atom &#39;</span> <span class="o">+</span>
-    <span class="s1">&#39;WHERE atoms.symbol = &quot;H&quot;&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SELECT mass</span>
+<span class="sd">    FROM   molecules</span>
+<span class="sd">          JOIN atoms_molecules</span>
+<span class="sd">            ON molecules.NAME = atoms_molecules.molecule</span>
+<span class="sd">          JOIN atoms</span>
+<span class="sd">            ON atoms.symbol = atoms_molecules.atom</span>
+<span class="sd">    WHERE  atoms.symbol = &#39;H&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
 </pre></div>
 
@@ -1351,7 +1357,7 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///molecules.db&#39;</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///molecules.db&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1406,10 +1412,10 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">AtomsPerMolecule</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;atoms_per_molecule&#39;</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;atoms_per_molecule&quot;</span>
     <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">atom_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;atoms.symbol&#39;</span><span class="p">))</span>
-    <span class="n">molecule_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;molecules.name&#39;</span><span class="p">))</span>
+    <span class="n">atom_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;atoms.symbol&quot;</span><span class="p">))</span>
+    <span class="n">molecule_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;molecules.name&quot;</span><span class="p">))</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
 </pre></div>
 
@@ -1465,8 +1471,8 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">oxygen</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">oxygen</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">hydrogen</span><span class="p">]</span>
 </pre></div>
 
@@ -1480,9 +1486,9 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">water</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;water&#39;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">18.01</span><span class="p">)</span>
-<span class="n">oxygen_m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;oxygen&#39;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">16.00</span><span class="p">)</span>
-<span class="n">hydrogen_m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;hydrogen&#39;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">2.02</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">water</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">18.01</span><span class="p">)</span>
+<span class="n">oxygen_m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">16.00</span><span class="p">)</span>
+<span class="n">hydrogen_m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;hydrogen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">2.02</span><span class="p">)</span>
 <span class="n">molecules</span> <span class="o">=</span> <span class="p">[</span><span class="n">water</span><span class="p">,</span> <span class="n">oxygen_m</span><span class="p">,</span> <span class="n">hydrogen_m</span><span class="p">]</span>
 </pre></div>
 
@@ -1496,7 +1502,9 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amounts</span> <span class="o">=</span> <span class="p">[</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Note that we are using the `backref` name to construct the `atom_id` and `molecule_id`.</span>
+<span class="c1"># These lookup instances of Element and Molecule that are already in our database</span>
+<span class="n">amounts</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">water</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
     <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">hydrogen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">water</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
     <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">oxygen_m</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
@@ -1515,8 +1523,9 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+
 <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-<span class="n">session</span><span class="o">=</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1634,8 +1643,7 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>However, this is a lecture primarily on file-format design. Databases are one choice, but we often want to make a human-readable
-file format to represent our dataset.</p>
+<p>Databases are often a good choice for storing data, but can only be interacted with programmatically. Often, we want to make a file format to represent our dataset which can be easily replicated or shared. The next part of this module focuses on the design of such file-formats, both binary and <strong>human-readable</strong>.</p>
 
 </div>
 </div>

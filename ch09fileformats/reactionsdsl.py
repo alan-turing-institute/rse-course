@@ -7,7 +7,12 @@ class Element:
     def __str__(self):
         return str(self.symbol)
 
+    def __mul__(self, other):
+        """Let Molecule handle the multiplication"""
+        return (self / 1) * other
+
     def __truediv__(self, number):
+        """`Element / number => Molecule`"""
         res = Molecule()
         res.add_element(self, number)
         return res
@@ -39,6 +44,9 @@ class Molecule:
         )
 
     def __mul__(self, other):
+        """`Molecule * Element => Molecule`
+        `Molecule * Molecule => Molecule`
+        """
         if type(other) == Molecule:
             self.elements.update(other.elements)
         else:
@@ -46,18 +54,20 @@ class Molecule:
         return self
 
     def __rmul__(self, stoich):
+        """`Number * Molecule => Side`"""
         res = Side()
         res.add(self, stoich)
         return res
 
     def __add__(self, other):
+        """`Molecule + X => Side`"""
         if type(other) == Side:
             other.molecules[self] = 1
             return other
-        else:
-            res = Side()
-            res.add(self, 1)
-            res.add(other, 1)
+        res = Side()
+        res.add(self, 1)
+        res.add(other, 1)
+        return res
 
 
 class Side:
@@ -83,6 +93,7 @@ class Side:
         )
 
     def __add__(self, other):
+        """Side + X => Side"""
         self.molecules.update(other.molecules)
         return self
 
@@ -91,7 +102,7 @@ class Side:
         res.reactants = self
         res.products = other
         current_system.add_reaction(res)  # Closure!
-        return "Created"
+        return f"Added: '{res}'"
 
 
 class Reaction:
@@ -112,11 +123,6 @@ class System:
 
     def __str__(self):
         return "\\\\ \n".join(map(str, self.reactions))
-
-
-def elements(mvars, *elements):
-    for element in elements:
-        mvars[element] = Element(element)
 
 
 current_system = System()

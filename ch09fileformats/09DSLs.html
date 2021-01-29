@@ -555,14 +555,14 @@ and atom only gets one object instance, but we solved this by using an appropria
 <span class="p">)</span>
 
 <span class="c1"># Tokens</span>
-
 <span class="n">t_PLUS</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\+&quot;</span>
 <span class="n">t_SUBSCRIPT</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;_&quot;</span>
 <span class="n">t_LBRACE</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\{&quot;</span>
 <span class="n">t_RBRACE</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\}&quot;</span>
 <span class="n">t_TEXNEWLINE</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2">&quot;</span>
 <span class="n">t_ARROW</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">rightarrow&quot;</span>
-<span class="n">t_ELEMENT</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[A-Z][a-z]*?&quot;</span>
+<span class="n">t_ELEMENT</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[A-Z][a-z]?&quot;</span>
+<span class="n">t_NEWLINE</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\n+&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">t_NUMBER</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
@@ -574,13 +574,8 @@ and atom only gets one object instance, but we solved this by using an appropria
 <span class="n">t_ignore</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
 
 
-<span class="k">def</span> <span class="nf">t_NEWLINE</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="sa">r</span><span class="s2">&quot;\n+&quot;</span>
-    <span class="k">return</span> <span class="n">t</span>
-
-
 <span class="k">def</span> <span class="nf">t_error</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Illegal character &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Did not recognise character &#39;</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&#39; as part of a valid token&quot;</span><span class="p">)</span>
     <span class="n">t</span><span class="o">.</span><span class="n">lexer</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
@@ -648,6 +643,38 @@ and atom only gets one object instance, but we solved this by using an appropria
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\ 
+2H_2 + O_2 \rightarrow 2H_2O
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tokens</span>
 </pre></div>
 
@@ -661,7 +688,7 @@ and atom only gets one object instance, but we solved this by using an appropria
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -713,6 +740,72 @@ and atom only gets one object instance, but we solved this by using an appropria
  LexToken(ELEMENT,&#39;O&#39;,1,76)]</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the parser will reject invalid tokens:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lexer</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;2H_2 + O_2 </span><span class="se">\\</span><span class="s2">leftarrow 2H_2O&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tok</span> <span class="o">=</span> <span class="n">lexer</span><span class="o">.</span><span class="n">token</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tok</span><span class="p">:</span>
+        <span class="k">break</span>  <span class="c1"># No more input</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tok</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>LexToken(NUMBER,2,1,0)
+LexToken(ELEMENT,&#39;H&#39;,1,1)
+LexToken(SUBSCRIPT,&#39;_&#39;,1,2)
+LexToken(NUMBER,2,1,3)
+LexToken(PLUS,&#39;+&#39;,1,5)
+LexToken(ELEMENT,&#39;O&#39;,1,7)
+LexToken(SUBSCRIPT,&#39;_&#39;,1,8)
+LexToken(NUMBER,2,1,9)
+Did not recognise character &#39;\&#39; as part of a valid token
+Did not recognise character &#39;l&#39; as part of a valid token
+Did not recognise character &#39;e&#39; as part of a valid token
+Did not recognise character &#39;f&#39; as part of a valid token
+Did not recognise character &#39;t&#39; as part of a valid token
+Did not recognise character &#39;a&#39; as part of a valid token
+Did not recognise character &#39;r&#39; as part of a valid token
+Did not recognise character &#39;r&#39; as part of a valid token
+Did not recognise character &#39;o&#39; as part of a valid token
+Did not recognise character &#39;w&#39; as part of a valid token
+LexToken(NUMBER,2,1,22)
+LexToken(ELEMENT,&#39;H&#39;,1,23)
+LexToken(SUBSCRIPT,&#39;_&#39;,1,24)
+LexToken(NUMBER,2,1,25)
+LexToken(ELEMENT,&#39;O&#39;,1,26)
+</pre>
+</div>
 </div>
 
 </div>
@@ -780,6 +873,14 @@ system : system NEWLINE equation # Or it could be a system then an equation</cod
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>This is an <strong>incredibly</strong> powerful idea. The full grammar for Python 3 can be defined in only a few hundred lines of specification: <a href="https://docs.python.org/3/reference/grammar.html">https://docs.python.org/3/reference/grammar.html</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Parsing-with-Yacc">Parsing with Yacc<a class="anchor-link" href="#Parsing-with-Yacc">&#182;</a></h2>
 </div>
 </div>
@@ -795,18 +896,34 @@ as the individual tokens coalesce into the full grammar.</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In Yacc, each grammar rule is defined by a Python function where the docstring for the function contains the appropriate grammar specification.</p>
+<p>Each function accepts an argument <code>p</code> that is a list of symbols in the grammar. It must implement the actions of that rule. For example:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">p_expression_plus</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s1">&#39;expression : expression PLUS term&#39;</span>
+    <span class="c1">#   ^            ^        ^    ^</span>
+    <span class="c1">#  p[0]         p[1]     p[2] p[3]</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> parsereactions.py
 
 <span class="c1"># Yacc example</span>
-<span class="kn">from</span> <span class="nn">system</span> <span class="kn">import</span> <span class="o">*</span>
-
 <span class="kn">import</span> <span class="nn">ply.yacc</span> <span class="k">as</span> <span class="nn">yacc</span>
 
+<span class="c1"># Get the components of our system</span>
+<span class="kn">from</span> <span class="nn">system</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">Molecule</span><span class="p">,</span> <span class="n">Side</span><span class="p">,</span> <span class="n">Reaction</span><span class="p">,</span> <span class="n">System</span>
+    
 <span class="c1"># Get the token map from the lexer.  This is required.</span>
 <span class="kn">from</span> <span class="nn">lexreactions</span> <span class="kn">import</span> <span class="n">tokens</span>
 
@@ -918,7 +1035,7 @@ as the individual tokens coalesce into the full grammar.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">parsereactions</span> <span class="kn">import</span> <span class="n">parser</span>
@@ -951,20 +1068,139 @@ as the individual tokens coalesce into the full grammar.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#!cat parser.out</span>
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="c1"># Read the first 100 lines from the file</span>
+head -n <span class="m">100</span> parser.out
 </pre></div>
 
     </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S&#39; -&gt; system
+Rule 1     system -&gt; equation
+Rule 2     system -&gt; system TEXNEWLINE NEWLINE equation
+Rule 3     equation -&gt; side ARROW side
+Rule 4     side -&gt; molecules
+Rule 5     molecules -&gt; molecule
+Rule 6     molecules -&gt; NUMBER molecule
+Rule 7     side -&gt; side PLUS molecules
+Rule 8     molecule -&gt; countedelement
+Rule 9     countedelement -&gt; ELEMENT
+Rule 10    countedelement -&gt; ELEMENT atomcount
+Rule 11    molecule -&gt; molecule countedelement
+Rule 12    atomcount -&gt; SUBSCRIPT NUMBER
+Rule 13    atomcount -&gt; SUBSCRIPT LBRACE NUMBER RBRACE
+
+Terminals, with rules where they appear
+
+ARROW                : 3
+ELEMENT              : 9 10
+LBRACE               : 13
+NEWLINE              : 2
+NUMBER               : 6 12 13
+PLUS                 : 7
+RBRACE               : 13
+SUBSCRIPT            : 12 13
+TEXNEWLINE           : 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+atomcount            : 10
+countedelement       : 8 11
+equation             : 1 2
+molecule             : 5 6 11
+molecules            : 4 7
+side                 : 3 3 7
+system               : 2 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S&#39; -&gt; . system
+    (1) system -&gt; . equation
+    (2) system -&gt; . system TEXNEWLINE NEWLINE equation
+    (3) equation -&gt; . side ARROW side
+    (4) side -&gt; . molecules
+    (7) side -&gt; . side PLUS molecules
+    (5) molecules -&gt; . molecule
+    (6) molecules -&gt; . NUMBER molecule
+    (8) molecule -&gt; . countedelement
+    (11) molecule -&gt; . molecule countedelement
+    (9) countedelement -&gt; . ELEMENT
+    (10) countedelement -&gt; . ELEMENT atomcount
+
+    NUMBER          shift and go to state 6
+    ELEMENT         shift and go to state 8
+
+    system                         shift and go to state 1
+    equation                       shift and go to state 2
+    side                           shift and go to state 3
+    molecules                      shift and go to state 4
+    molecule                       shift and go to state 5
+    countedelement                 shift and go to state 7
+
+state 1
+
+    (0) S&#39; -&gt; system .
+    (2) system -&gt; system . TEXNEWLINE NEWLINE equation
+
+    TEXNEWLINE      shift and go to state 9
+
+
+state 2
+
+    (1) system -&gt; equation .
+
+    TEXNEWLINE      reduce using rule 1 (system -&gt; equation .)
+    $end            reduce using rule 1 (system -&gt; equation .)
+
+
+state 3
+
+    (3) equation -&gt; side . ARROW side
+    (7) side -&gt; side . PLUS molecules
+
+    ARROW           shift and go to state 10
+    PLUS            shift and go to state 11
+
+
+state 4
+
+    (4) side -&gt; molecules .
+
+    ARROW           reduce using rule 4 (side -&gt; molecules .)
+    PLUS            reduce using rule 4 (side -&gt; molecules .)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">roundtrip_system</span><span class="p">)))</span>
@@ -998,14 +1234,45 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;system.tex&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">texfile</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.tex&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">texfile</span><span class="p">:</span>
     <span class="n">texfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">roundtrip_system</span><span class="p">))</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat system.tex
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\ 
+2H_2 + O_2 \rightarrow 2H_2O</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -1032,7 +1299,7 @@ by using operator overloading and metaprogramming tricks:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> reactionsdsl.py
@@ -1045,7 +1312,12 @@ by using operator overloading and metaprogramming tricks:</p>
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let Molecule handle the multiplication&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">/</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">other</span>
+
     <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;`Element / number =&gt; Molecule`&quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
         <span class="n">res</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span>
@@ -1077,6 +1349,9 @@ by using operator overloading and metaprogramming tricks:</p>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;`Molecule * Element =&gt; Molecule`</span>
+<span class="sd">        `Molecule * Molecule =&gt; Molecule`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="n">Molecule</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">elements</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1084,18 +1359,20 @@ by using operator overloading and metaprogramming tricks:</p>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stoich</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;`Number * Molecule =&gt; Side`&quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
         <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stoich</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span>
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;`Molecule + X =&gt; Side`&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="n">Side</span><span class="p">:</span>
             <span class="n">other</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="k">return</span> <span class="n">other</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
-            <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
 
 
 <span class="k">class</span> <span class="nc">Side</span><span class="p">:</span>
@@ -1121,6 +1398,7 @@ by using operator overloading and metaprogramming tricks:</p>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Side + X =&gt; Side&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">molecules</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
@@ -1129,7 +1407,7 @@ by using operator overloading and metaprogramming tricks:</p>
         <span class="n">res</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="n">res</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="n">other</span>
         <span class="n">current_system</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>  <span class="c1"># Closure!</span>
-        <span class="k">return</span> <span class="s2">&quot;Created&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Added: &#39;</span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
@@ -1150,11 +1428,6 @@ by using operator overloading and metaprogramming tricks:</p>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">))</span>
-
-
-<span class="k">def</span> <span class="nf">elements</span><span class="p">(</span><span class="n">mvars</span><span class="p">,</span> <span class="o">*</span><span class="n">elements</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
-        <span class="n">mvars</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 
 
 <span class="n">current_system</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
@@ -1185,66 +1458,36 @@ by using operator overloading and metaprogramming tricks:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">reactionsdsl</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">elements</span><span class="p">(</span><span class="nb">globals</span><span class="p">(),</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;O&#39;</span><span class="p">,</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">C</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[17]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;reactionsdsl.Element at 0x7f926426ba00&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">reactionsdsl</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">current_system</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Here we add new symbols to the global scope</span>
+<span class="c1"># This is *not* good practice, we do it here to demonstrate that it is possible to do</span>
+<span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">):</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">O</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">O</span><span class="p">)</span>
@@ -1260,13 +1503,13 @@ by using operator overloading and metaprogramming tricks:</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;Created&#39;</pre>
+<pre>&#34;Added: &#39;2H_2 + O_2 \\rightarrow 2H_2O&#39;&#34;</pre>
 </div>
 
 </div>
@@ -1277,7 +1520,40 @@ by using operator overloading and metaprogramming tricks:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">C</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">O</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">O</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">O</span><span class="p">)</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">C</span> <span class="o">*</span> <span class="p">(</span><span class="n">O</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;Added: &#39;6O_2 + C_6H_{12}O_6 \\rightarrow 6H_2O + 6CO_2&#39;&#34;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">current_system</span><span class="p">)))</span>
@@ -1299,7 +1575,8 @@ by using operator overloading and metaprogramming tricks:</p>
 
 
 <div class="output_latex output_subarea ">
-$\displaystyle 2H_2 + O_2 \rightarrow 2H_2O$
+$\displaystyle 2H_2 + O_2 \rightarrow 2H_2O\\ 
+6O_2 + C_6H_{12}O_6 \rightarrow 6H_2O + 6CO_2$
 </div>
 
 </div>
@@ -1311,8 +1588,7 @@ $\displaystyle 2H_2 + O_2 \rightarrow 2H_2O$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Python is not perfect for this, because it lacks the idea of parenthesis-
-free function dispatch and other things that make internal DSLs pretty.</p>
+<p>Python is not perfect for this, because it lacks the idea of parenthesis-free function dispatch and other things that make internal DSLs pretty.</p>
 
 </div>
 </div>

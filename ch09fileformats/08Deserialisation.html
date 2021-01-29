@@ -251,7 +251,8 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Consider a straightforward YAML serialisation for our model:</p>
+<p>YAML (a recursive acronym for "YAML Ain't Markup Language") is a human-readable data-serialization language.</p>
+<p>We're going to slightly modify our previous model and look at how to serialise it to YAML.</p>
 
 </div>
 </div>
@@ -292,8 +293,7 @@
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">],</span>
             <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">],</span>
-            <span class="s2">&quot;stoichiometries&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-            <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+            <span class="s2">&quot;stoichiometries&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
         <span class="p">}</span>
 
 
@@ -458,13 +458,6 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see that this data structure, although seemingly 
 sensible, is horribly <strong>non-normal</strong>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>The stoichiometries information requires us to align each one to the corresponding molecule in order.</li>
 <li>Each element is described multiple times: we will have to ensure that each mention of <code>C</code> comes back to the same constructed element object.</li>
@@ -478,7 +471,7 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">DeSerialiseStructure</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">YamlDeSerialisingSystem</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">{}</span>
@@ -519,7 +512,7 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">de_serialiser</span> <span class="o">=</span> <span class="n">DeSerialiseStructure</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">de_serialiser</span> <span class="o">=</span> <span class="n">YamlDeSerialisingSystem</span><span class="p">()</span>
 <span class="n">round_trip</span> <span class="o">=</span> <span class="n">de_serialiser</span><span class="o">.</span><span class="n">parse_system</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">to_struct</span><span class="p">())</span>
 </pre></div>
 
@@ -590,9 +583,9 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;C&#39;: &lt;__main__.Element at 0x7ff355166fd0&gt;,
- &#39;H&#39;: &lt;__main__.Element at 0x7ff355166b20&gt;,
- &#39;O&#39;: &lt;__main__.Element at 0x7ff355166820&gt;}</pre>
+<pre>{&#39;C&#39;: &lt;__main__.Element at 0x7f3d78d22bb0&gt;,
+ &#39;H&#39;: &lt;__main__.Element at 0x7f3d78d22d90&gt;,
+ &#39;O&#39;: &lt;__main__.Element at 0x7f3d78d22cd0&gt;}</pre>
 </div>
 
 </div>
@@ -625,11 +618,11 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{((&#39;C&#39;, 6), (&#39;H&#39;, 12), (&#39;O&#39;, 6)): &lt;__main__.Molecule at 0x7ff355166f70&gt;,
- ((&#39;O&#39;, 2),): &lt;__main__.Molecule at 0x7ff3551667f0&gt;,
- ((&#39;C&#39;, 1), (&#39;O&#39;, 2)): &lt;__main__.Molecule at 0x7ff355166b80&gt;,
- ((&#39;H&#39;, 2), (&#39;O&#39;, 1)): &lt;__main__.Molecule at 0x7ff355166a60&gt;,
- ((&#39;H&#39;, 2),): &lt;__main__.Molecule at 0x7ff355166af0&gt;}</pre>
+<pre>{((&#39;C&#39;, 6), (&#39;H&#39;, 12), (&#39;O&#39;, 6)): &lt;__main__.Molecule at 0x7f3d78d22f70&gt;,
+ ((&#39;O&#39;, 2),): &lt;__main__.Molecule at 0x7f3d78d229a0&gt;,
+ ((&#39;C&#39;, 1), (&#39;O&#39;, 2)): &lt;__main__.Molecule at 0x7f3d78d22d60&gt;,
+ ((&#39;H&#39;, 2), (&#39;O&#39;, 1)): &lt;__main__.Molecule at 0x7f3d78d22dc0&gt;,
+ ((&#39;H&#39;, 2),): &lt;__main__.Molecule at 0x7f3d795eceb0&gt;}</pre>
 </div>
 
 </div>
@@ -643,7 +636,7 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">round_trip</span><span class="o">.</span><span class="n">reactions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">round_trip</span><span class="o">.</span><span class="n">reactions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -662,7 +655,7 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;__main__.Molecule at 0x7ff3551667f0&gt;</pre>
+<pre>{&#39;O&#39;: 2}</pre>
 </div>
 
 </div>
@@ -676,7 +669,7 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">round_trip</span><span class="o">.</span><span class="n">reactions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">round_trip</span><span class="o">.</span><span class="n">reactions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -695,7 +688,7 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;__main__.Molecule at 0x7ff3551667f0&gt;</pre>
+<pre>{&#39;O&#39;: 2}</pre>
 </div>
 
 </div>
@@ -707,7 +700,8 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In making this, we ended up choosing primary keys for our datatypes:</p>
+<p>In order to de-serialise this data, we had to construct a unique key to distinguish repeated mentions of the same identical item.</p>
+<p>Effectively, we ended up choosing primary keys for our datatypes:</p>
 
 </div>
 </div>
@@ -752,11 +746,8 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Again, we note that a combination of columns uniquely defining an item
-is a valid  key - there is a key correspondence between
-a candidate key in the database sense and a "hashable" data structure that can be used to a
-key in a <code>dict</code>.</p>
-<p>Note that to make this example even reasonably doable, we didn't add additional data to the objects (mass, rate etc)</p>
+<p>Remembering that a combination of columns uniquely defining an item is a valid  key - there is a key correspondence between a candidate key in the database sense and a "hashable" data structure that can be used to a key in a <code>dict</code>.</p>
+<p>Note that to make this example even reasonably doable, we had to exclude additional data from the objects (mass, rate etc)</p>
 
 </div>
 </div>
@@ -781,13 +772,12 @@ key in a <code>dict</code>.</p>
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SaveSystem</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">YamlSavingSystem</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">element_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-
         <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">symbol</span>
 
     <span class="k">def</span> <span class="nf">molecule_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">):</span>
@@ -844,7 +834,7 @@ key in a <code>dict</code>.</p>
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span> <span class="o">=</span> <span class="n">SaveSystem</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span> <span class="o">=</span> <span class="n">YamlSavingSystem</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
 </pre></div>
 
@@ -919,7 +909,7 @@ the same tables as found for the database model.</p>
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SaveSystemI</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">YamlIntegerKeySavingSystem</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">{}</span>
@@ -987,7 +977,7 @@ the same tables as found for the database model.</p>
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span> <span class="o">=</span> <span class="n">SaveSystemI</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span> <span class="o">=</span> <span class="n">YamlIntegerKeySavingSystem</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
 </pre></div>
 
@@ -1257,6 +1247,68 @@ for objects is a bit clunky.</p>
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">s2</span><span class="o">.</span><span class="n">save</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>elements:
+- C
+- O
+- H
+molecules:
+  0:
+    0: 1
+    1: 2
+  1:
+    1: 1
+    2: 2
+  2:
+    1: 2
+  3:
+    2: 2
+  4:
+    0: 6
+    1: 6
+    2: 12
+reactions:
+- products:
+    0: 6
+    1: 6
+  reactants:
+    2: 6
+    4: 1
+- products:
+    1: 2
+  reactants:
+    2: 1
+    3: 2
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -1267,12 +1319,9 @@ for objects is a bit clunky.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we're getting toward a numerically-based data structure, using
-integers for object keys, we should think about binary serialisation.</p>
-<p>Binary file formats are much smaller than human-readable text based formats,
-so important when handling really big datasets.</p>
-<p>One can compress a textual file format, of course, and with good compression algorithms this will be similar in size to the binary file. (C.f. discussions of Shannon information density!) However,
-this has performance implications.</p>
+<p>Now we're getting toward a numerically-based data structure, using integers for object keys, we should think about binary serialisation.</p>
+<p>Binary file formats are much smaller than human-readable text based formats, so important when handling really big datasets.</p>
+<p>One can compress a textual file format, of course, and with good compression algorithms this will be similar in size to the binary file. (C.f. discussions of Shannon information density!) However, this has performance implications.</p>
 <p>A hand-designed binary format is fast and small, at the loss of human readability.</p>
 
 </div>
@@ -1288,10 +1337,10 @@ this has performance implications.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">FakeSaveBinary</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">FakeBinarySavingSystem</span><span class="p">:</span>
     <span class="c1"># Pretend binary-style writing to a list to make it easier to read at first.</span>
     <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
         <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
@@ -1324,12 +1373,12 @@ this has performance implications.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
 <span class="n">arraybuffer</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">FakeSaveBinary</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">arraybuffer</span><span class="p">)</span>
+<span class="n">FakeBinarySavingSystem</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">arraybuffer</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1339,7 +1388,7 @@ this has performance implications.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">arraybuffer</span>
@@ -1355,7 +1404,7 @@ this has performance implications.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -1419,7 +1468,7 @@ this has performance implications.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Deserialisation is left as an exercise for the reader.</p>
+<p>Deserialisation is left <strong>as an exercise for the reader</strong> :).</p>
 
 </div>
 </div>
@@ -1443,24 +1492,12 @@ each number in one byte:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># First, turn symbol characters to equivalent integers (ascii)</span>
 <span class="n">intarray</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arraybuffer</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">bytearray</span><span class="p">(</span><span class="n">intarray</span><span class="p">)</span>
+<span class="n">intarray</span>
 </pre></div>
 
     </div>
@@ -1479,7 +1516,53 @@ each number in one byte:</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>bytearray(b&#39;\x03COH\x05\x02\x00\x01\x01\x02\x02\x02\x02\x01\x01\x01\x01\x02\x01\x02\x02\x03\x00\x06\x02\x0c\x01\x06\x02\x02\x04\x01\x02\x06\x02\x00\x06\x01\x06\x02\x03\x02\x02\x01\x01\x01\x02&#39;)</pre>
+<pre>[3,
+ 67,
+ 79,
+ 72,
+ 5,
+ 2,
+ 0,
+ 1,
+ 1,
+ 2,
+ 2,
+ 2,
+ 2,
+ 1,
+ 1,
+ 1,
+ 1,
+ 2,
+ 1,
+ 2,
+ 2,
+ 3,
+ 0,
+ 6,
+ 2,
+ 12,
+ 1,
+ 6,
+ 2,
+ 2,
+ 4,
+ 1,
+ 2,
+ 6,
+ 2,
+ 0,
+ 6,
+ 1,
+ 6,
+ 2,
+ 3,
+ 2,
+ 2,
+ 1,
+ 1,
+ 1,
+ 2]</pre>
 </div>
 
 </div>
@@ -1491,6 +1574,39 @@ each number in one byte:</p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">bytearray</span><span class="p">(</span><span class="n">intarray</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>bytearray(b&#39;\x03COH\x05\x02\x00\x01\x01\x02\x02\x02\x02\x01\x01\x01\x01\x02\x01\x02\x02\x03\x00\x06\x02\x0c\x01\x06\x02\x02\x04\x01\x02\x06\x02\x00\x06\x01\x06\x02\x03\x02\x02\x01\x01\x01\x02&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.mol&quot;</span><span class="p">,</span> <span class="s2">&quot;bw&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">binfile</span><span class="p">:</span>
@@ -1515,68 +1631,45 @@ end ('big endian' or 'little endian' data).</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To get around this, we need to use a portable standard for making binary files.</p>
+<p>One possible choice is <strong>XDR</strong> (standing for eXternal Data Representation). XDR is a standard data serialization format that accounts for endian differences between systems.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>One choice is <strong>XDR</strong>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">XDRSavingSystem</span><span class="p">(</span><span class="n">System</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
-        <span class="c1"># Shallow Copy constructor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">elements</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">molecules</span>
-
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-        <span class="kn">import</span> <span class="nn">xdrlib</span>
-
-        <span class="n">buffer</span> <span class="o">=</span> <span class="n">xdrlib</span><span class="o">.</span><span class="n">Packer</span><span class="p">()</span>
-
-        <span class="n">el_symbols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">el_symbols</span><span class="p">,</span> <span class="n">buffer</span><span class="o">.</span><span class="n">pack_string</span><span class="p">)</span>
-        <span class="c1"># AUTOMATICALLY packs the length of the array first!</span>
-
-        <span class="k">def</span> <span class="nf">_pack_pair</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">pack_int</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">pack_int</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-        <span class="k">def</span> <span class="nf">_pack_molecule</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">_pack_pair</span><span class="p">)</span>
-
-        <span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">,</span> <span class="n">_pack_molecule</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">_pack_reaction</span><span class="p">(</span><span class="n">reaction</span><span class="p">):</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">_pack_pair</span><span class="p">)</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">_pack_pair</span><span class="p">)</span>
-
-        <span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">,</span> <span class="n">_pack_reaction</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">buffer</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">xdrsys</span> <span class="o">=</span> <span class="n">XDRSavingSystem</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xdrlib</span>
+
+
+<span class="k">class</span> <span class="nc">XDRSavingSystem</span><span class="p">(</span><span class="n">System</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
+        <span class="c1"># Shallow Copy constructor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">elements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">molecules</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">xdrlib</span><span class="o">.</span><span class="n">Packer</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_pack_pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_int</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_int</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_pack_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_pair</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_pack_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaction</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_pair</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_pair</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">el_symbols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
+        <span class="c1"># Note that pack_array AUTOMATICALLY packs the length of the array first!</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">el_symbols</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_string</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_molecule</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_reaction</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span>
 </pre></div>
 
     </div>
@@ -1589,8 +1682,21 @@ end ('big endian' or 'little endian' data).</p>
 <div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">xdrbuff</span> <span class="o">=</span> <span class="n">xdrsys</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="n">xdrbuff</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">xdrsys</span> <span class="o">=</span> <span class="n">XDRSavingSystem</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">xdrbuffer</span> <span class="o">=</span> <span class="n">xdrsys</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="n">xdrbuffer</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1603,7 +1709,7 @@ end ('big endian' or 'little endian' data).</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -1637,7 +1743,7 @@ you will encounter this kind of unpleasant binary file format in your work.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>However, the recommended approach to building binary file formats is to use HDF5, a much higher level binary file format.</p>
+<p>However, the recommended approach to building binary file formats is to use HDF5 (Hierarchical Data Format), a much higher level binary file format.</p>
 
 </div>
 </div>
@@ -1653,10 +1759,11 @@ It then saves these, and handles all the tedious number-of-field management for 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
 <span class="k">class</span> <span class="nc">HDF5SavingSystem</span><span class="p">(</span><span class="n">System</span><span class="p">):</span>
@@ -1693,8 +1800,6 @@ It then saves these, and handles all the tedious number-of-field management for 
         <span class="k">return</span> <span class="n">reaction_matrix</span>
 
     <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">h5py</span>
-
         <span class="n">hdf</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
         <span class="n">string_type</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">special_dtype</span><span class="p">(</span><span class="n">vlen</span><span class="o">=</span><span class="nb">bytes</span><span class="p">)</span>
         <span class="n">hdf</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
@@ -1712,7 +1817,7 @@ It then saves these, and handles all the tedious number-of-field management for 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span> <span class="o">=</span> <span class="n">HDF5SavingSystem</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
@@ -1725,43 +1830,10 @@ It then saves these, and handles all the tedious number-of-field management for 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">element_symbols</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[31]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[b&#39;C&#39;, b&#39;O&#39;, b&#39;H&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">molecule_matrix</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">element_symbols</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1780,6 +1852,39 @@ It then saves these, and handles all the tedious number-of-field management for 
 
 
 <div class="output_text output_subarea output_execute_result">
+<pre>[b&#39;C&#39;, b&#39;O&#39;, b&#39;H&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">molecule_matrix</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[33]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
 <pre>array([[ 1,  0,  0,  0,  6],
        [ 2,  1,  2,  0,  6],
        [ 0,  2,  0,  2, 12]])</pre>
@@ -1793,7 +1898,7 @@ It then saves these, and handles all the tedious number-of-field management for 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">reaction_matrix</span><span class="p">()</span>
@@ -1809,7 +1914,7 @@ It then saves these, and handles all the tedious number-of-field management for 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[34]:</div>
 
 
 
@@ -1830,37 +1935,33 @@ It then saves these, and handles all the tedious number-of-field management for 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;foo.hdf5&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span>
-<span class="n">hdf_load</span><span class="o">=</span><span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;foo.hdf5&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;foo.hdf5&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that this binary representation is <em>not</em> human readable at all.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hdf_load</span><span class="p">[</span><span class="s1">&#39;reactions&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="c1"># Read the first 100 characters from the file</span>
+head -c <span class="m">100</span> foo.hdf5
 </pre></div>
 
     </div>
@@ -1873,7 +1974,53 @@ It then saves these, and handles all the tedious number-of-field management for 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>�HDF
+
+                    ���������      ��������        `              �       �        </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span>
+<span class="n">hdf_load</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;foo.hdf5&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hdf_load</span><span class="p">[</span><span class="s2">&quot;reactions&quot;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[38]:</div>
 
 
 
