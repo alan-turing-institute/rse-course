@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<system xmlns="http://www.turing.ac.uk/rsd-engineering/schema/reaction"
-    xmlns:dbo="http://dbpedia.org/ontology/">
-    %for reaction in reactions:
+<system xmlns="https://www.turing.ac.uk/rsd-engineering/schema/reaction"
+        xmlns:dbo="https://dbpedia.org/ontology/">
+%for reaction in reactions:
     <reaction>
         <reactants>
         %for molecule in reaction.reactants.molecules:
             <dbo:ChemicalCompound stoichiometry="${reaction.reactants.molecules[molecule]}">
-                % for element in molecule.elements:
+                %for element in molecule.elements:
                     <dbo:ChemicalElement symbol="${element.symbol}"
-                    number="${molecule.elements[element]}"/>
-                % endfor
-            </molecule>
+                                         number="${molecule.elements[element]}"/>
+                %endfor
+            </dbo:ChemicalCompound>
         %endfor
         </reactants>
         <products>
         %for molecule in reaction.products.molecules:
             <dbo:ChemicalCompound stoichiometry="${reaction.products.molecules[molecule]}">
-            % for element in molecule.elements:
-                    <dbo:ChemicalElement symbol="${element.symbol}" number="${molecule.elements[element]}"/>
-            % endfor
-            </molecule>
+            %for element in molecule.elements:
+                <dbo:ChemicalElement symbol="${element.symbol}"
+                                     number="${molecule.elements[element]}"/>
+            %endfor
+            </dbo:ChemicalCompound>
         %endfor
         </products>
     </reaction>
-    %endfor
+%endfor
 </system>

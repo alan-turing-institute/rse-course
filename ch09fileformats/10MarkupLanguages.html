@@ -274,7 +274,8 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">parsereactions</span> <span class="kn">import</span> <span class="n">parser</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
 
-<span class="n">system</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.tex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.tex&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_latex</span><span class="p">:</span>
+    <span class="n">system</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">f_latex</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">system</span><span class="p">)))</span>
 </pre></div>
 
@@ -312,14 +313,14 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> chemistry_template.mko
 <span class="o">&lt;</span><span class="err">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="err">?</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">system</span><span class="o">&gt;</span>
-    <span class="o">%</span><span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">reactions</span><span class="p">:</span>
+<span class="o">%</span><span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">reactions</span><span class="p">:</span>
     <span class="o">&lt;</span><span class="n">reaction</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">reactants</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{reaction.reactants.molecules[molecule]}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
-                <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{molecule.elements[element]}</span><span class="s2">&quot;</span><span class="o">/&gt;</span>
-                <span class="o">%</span><span class="n">endfor</span>
+            <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{molecule.elements[element]}</span><span class="s2">&quot;</span><span class="o">/&gt;</span>
+            <span class="o">%</span><span class="n">endfor</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="n">endfor</span>
         <span class="o">&lt;/</span><span class="n">reactants</span><span class="o">&gt;</span>
@@ -327,13 +328,13 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
         <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{reaction.products.molecules[molecule]}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
             <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{molecule.elements[element]}</span><span class="s2">&quot;</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{molecule.elements[element]}</span><span class="s2">&quot;</span><span class="o">/&gt;</span>
             <span class="o">%</span><span class="n">endfor</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="n">endfor</span>
         <span class="o">&lt;/</span><span class="n">products</span><span class="o">&gt;</span>
     <span class="o">&lt;/</span><span class="n">reaction</span><span class="o">&gt;</span>
-    <span class="o">%</span><span class="n">endfor</span>
+<span class="o">%</span><span class="n">endfor</span>
 <span class="o">&lt;/</span><span class="n">system</span><span class="o">&gt;</span>
 </pre></div>
 
@@ -404,38 +405,38 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     &lt;reaction&gt;
         &lt;reactants&gt;
             &lt;molecule stoichiometry=&#34;1&#34;&gt;
-                    &lt;element symbol=&#34;C&#34; number=&#34;6&#34;/&gt;
-                    &lt;element symbol=&#34;H&#34; number=&#34;12&#34;/&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;6&#34;/&gt;
+                &lt;atom symbol=&#34;C&#34; number=&#34;6&#34;/&gt;
+                &lt;atom symbol=&#34;H&#34; number=&#34;12&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;6&#34;/&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
             &lt;/molecule&gt;
         &lt;/reactants&gt;
         &lt;products&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;C&#34; number=&#34;1&#34;/&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;C&#34; number=&#34;1&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
+                &lt;atom symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
             &lt;/molecule&gt;
         &lt;/products&gt;
     &lt;/reaction&gt;
     &lt;reaction&gt;
         &lt;reactants&gt;
             &lt;molecule stoichiometry=&#34;2&#34;&gt;
-                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;1&#34;&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
             &lt;/molecule&gt;
         &lt;/reactants&gt;
         &lt;products&gt;
             &lt;molecule stoichiometry=&#34;2&#34;&gt;
-                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
+                &lt;atom symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
             &lt;/molecule&gt;
         &lt;/products&gt;
     &lt;/reaction&gt;
@@ -479,14 +480,14 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> chemistry_template2.mko
 <span class="o">&lt;</span><span class="err">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="err">?</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">system</span><span class="o">&gt;</span>
-    <span class="o">%</span><span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">reactions</span><span class="p">:</span>
+<span class="o">%</span><span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">reactions</span><span class="p">:</span>
     <span class="o">&lt;</span><span class="n">reaction</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">reactants</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{reaction.reactants.molecules[molecule]}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
-                <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]}</span><span class="o">&lt;/</span><span class="n">element</span><span class="o">&gt;</span>
-                <span class="o">%</span><span class="n">endfor</span>
+            <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]}</span><span class="o">&lt;/</span><span class="n">atom</span><span class="o">&gt;</span>
+            <span class="o">%</span><span class="n">endfor</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="n">endfor</span>
         <span class="o">&lt;/</span><span class="n">reactants</span><span class="o">&gt;</span>
@@ -494,13 +495,13 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
         <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{reaction.products.molecules[molecule]}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
             <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]}</span><span class="o">&lt;/</span><span class="n">element</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]}</span><span class="o">&lt;/</span><span class="n">atom</span><span class="o">&gt;</span>
             <span class="o">%</span><span class="n">endfor</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">%</span><span class="n">endfor</span>
         <span class="o">&lt;/</span><span class="n">products</span><span class="o">&gt;</span>
     <span class="o">&lt;/</span><span class="n">reaction</span><span class="o">&gt;</span>
-    <span class="o">%</span><span class="n">endfor</span>
+<span class="o">%</span><span class="n">endfor</span>
 <span class="o">&lt;/</span><span class="n">system</span><span class="o">&gt;</span>
 </pre></div>
 
@@ -571,38 +572,38 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     &lt;reaction&gt;
         &lt;reactants&gt;
             &lt;molecule stoichiometry=&#34;1&#34;&gt;
-                    &lt;element symbol=&#34;C&#34;&gt;6&lt;/element&gt;
-                    &lt;element symbol=&#34;H&#34;&gt;12&lt;/element&gt;
-                    &lt;element symbol=&#34;O&#34;&gt;6&lt;/element&gt;
+                &lt;atom symbol=&#34;C&#34;&gt;6&lt;/atom&gt;
+                &lt;atom symbol=&#34;H&#34;&gt;12&lt;/atom&gt;
+                &lt;atom symbol=&#34;O&#34;&gt;6&lt;/atom&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;O&#34;&gt;2&lt;/element&gt;
+                &lt;atom symbol=&#34;O&#34;&gt;2&lt;/atom&gt;
             &lt;/molecule&gt;
         &lt;/reactants&gt;
         &lt;products&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;C&#34;&gt;1&lt;/element&gt;
-                    &lt;element symbol=&#34;O&#34;&gt;2&lt;/element&gt;
+                &lt;atom symbol=&#34;C&#34;&gt;1&lt;/atom&gt;
+                &lt;atom symbol=&#34;O&#34;&gt;2&lt;/atom&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;H&#34;&gt;2&lt;/element&gt;
-                    &lt;element symbol=&#34;O&#34;&gt;1&lt;/element&gt;
+                &lt;atom symbol=&#34;H&#34;&gt;2&lt;/atom&gt;
+                &lt;atom symbol=&#34;O&#34;&gt;1&lt;/atom&gt;
             &lt;/molecule&gt;
         &lt;/products&gt;
     &lt;/reaction&gt;
     &lt;reaction&gt;
         &lt;reactants&gt;
             &lt;molecule stoichiometry=&#34;2&#34;&gt;
-                    &lt;element symbol=&#34;H&#34;&gt;2&lt;/element&gt;
+                &lt;atom symbol=&#34;H&#34;&gt;2&lt;/atom&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;1&#34;&gt;
-                    &lt;element symbol=&#34;O&#34;&gt;2&lt;/element&gt;
+                &lt;atom symbol=&#34;O&#34;&gt;2&lt;/atom&gt;
             &lt;/molecule&gt;
         &lt;/reactants&gt;
         &lt;products&gt;
             &lt;molecule stoichiometry=&#34;2&#34;&gt;
-                    &lt;element symbol=&#34;H&#34;&gt;2&lt;/element&gt;
-                    &lt;element symbol=&#34;O&#34;&gt;1&lt;/element&gt;
+                &lt;atom symbol=&#34;H&#34;&gt;2&lt;/atom&gt;
+                &lt;atom symbol=&#34;O&#34;&gt;1&lt;/atom&gt;
             &lt;/molecule&gt;
         &lt;/products&gt;
     &lt;/reaction&gt;
@@ -637,7 +638,7 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
     <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
 </pre></div>
@@ -660,38 +661,38 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     &lt;reaction&gt;
         &lt;reactants&gt;
             &lt;molecule stoichiometry=&#34;1&#34;&gt;
-                    &lt;element symbol=&#34;C&#34; number=&#34;6&#34;/&gt;
-                    &lt;element symbol=&#34;H&#34; number=&#34;12&#34;/&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;6&#34;/&gt;
+                &lt;atom symbol=&#34;C&#34; number=&#34;6&#34;/&gt;
+                &lt;atom symbol=&#34;H&#34; number=&#34;12&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;6&#34;/&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
             &lt;/molecule&gt;
         &lt;/reactants&gt;
         &lt;products&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;C&#34; number=&#34;1&#34;/&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;C&#34; number=&#34;1&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;6&#34;&gt;
-                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
+                &lt;atom symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
             &lt;/molecule&gt;
         &lt;/products&gt;
     &lt;/reaction&gt;
     &lt;reaction&gt;
         &lt;reactants&gt;
             &lt;molecule stoichiometry=&#34;2&#34;&gt;
-                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
             &lt;/molecule&gt;
             &lt;molecule stoichiometry=&#34;1&#34;&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;2&#34;/&gt;
             &lt;/molecule&gt;
         &lt;/reactants&gt;
         &lt;products&gt;
             &lt;molecule stoichiometry=&#34;2&#34;&gt;
-                    &lt;element symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
-                    &lt;element symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
+                &lt;atom symbol=&#34;H&#34; number=&#34;2&#34;/&gt;
+                &lt;atom symbol=&#34;O&#34; number=&#34;1&#34;/&gt;
             &lt;/molecule&gt;
         &lt;/products&gt;
     &lt;/reaction&gt;
@@ -708,7 +709,7 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can navigage the tree, with each <strong>element</strong> being an iterable yielding its children:</p>
+<p>We can navigate the tree, with each <strong>element</strong> being an iterable yielding its children:</p>
 
 </div>
 </div>
@@ -757,6 +758,55 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>xpath</code> is a sophisticated tool for searching XML DOMs:</p>
+<p>There's a good explanation of how it works here: <a href="https://www.w3schools.com/xml/xml_xpath.asp">https://www.w3schools.com/xml/xml_xpath.asp</a> but the basics are reproduced below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th style="text-align:left">XPath Expression</th>
+<th style="text-align:left">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[1]</code></td>
+<td style="text-align:left">Selects the first <code>book</code> that is the child of a <code>bookstore</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[last()]</code></td>
+<td style="text-align:left">Selects the last <code>book</code> that is the child of a <code>bookstore</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[last()-1]</code></td>
+<td style="text-align:left">Selects the last but one <code>book</code> that is the child of a <code>bookstore</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[position()&lt;3]</code></td>
+<td style="text-align:left">Selects the first two <code>book</code>s that are children of a <code>bookstore</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>//title[@lang]</code></td>
+<td style="text-align:left">Selects all <code>title</code>s that have an attribute named "lang"</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>//title[@lang='en']</code></td>
+<td style="text-align:left">Selects all <code>title</code>s that have a "lang" attribute with a value of "en"</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[price&gt;35.00]</code></td>
+<td style="text-align:left">Selects all <code>book</code>s that are children of a <code>bookstore</code> and have a <code>price</code> with a value greater than 35.00</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[price&gt;35.00]/title</code></td>
+<td style="text-align:left">Selects all the <code>title</code>s of a <code>book</code> of a <code>bookstore</code> that have a <code>price</code> with a value greater than 35.00</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -766,7 +816,10 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule/element[@number=&#39;1&#39;]/@symbol&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># For all molecules</span>
+<span class="c1"># ... with a child atom whose number attribute is &#39;1&#39;</span>
+<span class="c1"># ... return the symbol attribute of that child</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule/atom[@number=&#39;1&#39;]/@symbol&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -797,7 +850,7 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It is useful to understand grammars like these using the "FOR-LET-WHERE-ORDER-RETURN" (Flower) model.</p>
+<p>It is useful to understand grammars like these using the "FOR-LET-WHERE-ORDER-RETURN" (pronounced Flower) model.</p>
 
 </div>
 </div>
@@ -817,7 +870,9 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system2.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
     <span class="n">tree2</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tree2</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule[element=1]//@symbol&quot;</span><span class="p">))</span>   
+<span class="c1"># For all molecules with a child atom whose text is 1</span>
+<span class="c1"># ... return the symbol attribute of any child (however deeply nested)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tree2</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule[atom=1]//@symbol&quot;</span><span class="p">))</span>   
 </pre></div>
 
     </div>
@@ -893,6 +948,7 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
 <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">stylesheet</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;2.0&quot;</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">xsl</span><span class="o">=</span><span class="s2">&quot;http://www.w3.org/1999/XSL/Transform&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">output</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;xml&quot;</span> <span class="n">indent</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span> <span class="n">omit</span><span class="o">-</span><span class="n">xml</span><span class="o">-</span><span class="n">declaration</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span> <span class="o">/&gt;</span>
         
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Decompose</span> <span class="n">reaction</span> <span class="n">into</span> <span class="s2">&quot;reactants </span><span class="se">\r</span><span class="s2">ightarrow products&quot;</span> <span class="o">--&gt;</span>
     <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;//reaction&quot;</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">apply</span><span class="o">-</span><span class="n">templates</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;reactants&quot;</span><span class="o">/&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span> \<span class="n">rightarrow</span> <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span>
@@ -900,42 +956,48 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span>\\<span class="o">&amp;</span><span class="c1">#xa;&lt;/xsl:text&gt;</span>
     <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span><span class="o">&gt;</span>
         
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">For</span> <span class="n">a</span> <span class="n">molecule</span> <span class="n">anywhere</span> <span class="k">except</span> <span class="n">the</span> <span class="n">first</span> <span class="n">position</span> <span class="n">write</span> <span class="s2">&quot; + &quot;</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">molecules</span><span class="o">--&gt;</span>
     <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;//molecule[position()!=1]&quot;</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span> <span class="o">+</span> <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">apply</span><span class="o">-</span><span class="n">templates</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;@stoichiometry&quot;</span><span class="o">/&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">apply</span><span class="o">-</span><span class="n">templates</span><span class="o">/&gt;</span>
     <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span><span class="o">&gt;</span>
-        
+
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">For</span> <span class="n">a</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">first</span> <span class="n">position</span> <span class="n">write</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">molecules</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;//molecule[position()=1]&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">apply</span><span class="o">-</span><span class="n">templates</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;@stoichiometry&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">apply</span><span class="o">-</span><span class="n">templates</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">If</span> <span class="n">the</span> <span class="n">stoichiometry</span> <span class="ow">is</span> <span class="n">one</span> <span class="n">then</span> <span class="n">ignore</span> <span class="n">it</span> <span class="o">--&gt;</span>
     <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;@stoichiometry[.=&#39;1&#39;]&quot;</span><span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">copy</span> <span class="mi">1</span><span class="o">-</span><span class="n">stoichiometries</span> <span class="o">--&gt;</span>
     
     <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Otherwise</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">default</span> <span class="n">template</span> <span class="k">for</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">which</span> <span class="ow">is</span> <span class="n">just</span> <span class="n">to</span> <span class="n">copy</span> <span class="n">value</span> <span class="o">--&gt;</span>
-        
-    <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;//molecule[position()=1]&quot;</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">apply</span><span class="o">-</span><span class="n">templates</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;@* | *&quot;</span><span class="o">/&gt;</span> 
-    <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span><span class="o">&gt;</span>
     
-    <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;//element&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Decompose</span> <span class="n">element</span> <span class="n">into</span> <span class="s2">&quot;symbol number&quot;</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;//atom&quot;</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">value</span><span class="o">-</span><span class="n">of</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;@symbol&quot;</span><span class="o">/&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">apply</span><span class="o">-</span><span class="n">templates</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;@number&quot;</span><span class="o">/&gt;</span>
     <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span><span class="o">&gt;</span>
         
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">If</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">elements</span><span class="o">/</span><span class="n">molecules</span> <span class="ow">is</span> <span class="n">one</span> <span class="n">then</span> <span class="n">ignore</span> <span class="n">it</span> <span class="o">--&gt;</span>        
     <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;@number[.=1]&quot;</span><span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">copy</span> <span class="mi">1</span><span class="o">-</span><span class="n">numbers</span> <span class="o">--&gt;</span>
     
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="o">...</span> <span class="n">otherwise</span> <span class="n">replace</span> <span class="n">it</span> <span class="k">with</span> <span class="s2">&quot;_ value&quot;</span> <span class="o">--&gt;</span>        
     <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;@number[.!=1][10&gt;.]&quot;</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span><span class="n">_</span><span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">value</span><span class="o">-</span><span class="n">of</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="o">/&gt;</span>
     <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span><span class="o">&gt;</span>
         
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">If</span> <span class="n">a</span> <span class="n">number</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="mi">10</span> <span class="n">then</span> <span class="n">wrap</span> <span class="n">it</span> <span class="ow">in</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span> <span class="o">--&gt;</span>        
     <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;@number[.!=1][.&gt;9]&quot;</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span><span class="n">_</span><span class="p">{</span><span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">value</span><span class="o">-</span><span class="n">of</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="o">/&gt;</span>
         <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">text</span><span class="o">&gt;</span>          
     <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span><span class="o">&gt;</span>
         
-    <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;text()&quot;</span> <span class="o">/&gt;</span>
     <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Do</span> <span class="ow">not</span> <span class="n">copy</span> <span class="nb">input</span> <span class="n">whitespace</span> <span class="n">to</span> <span class="n">output</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">xsl</span><span class="p">:</span><span class="n">template</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;text()&quot;</span> <span class="o">/&gt;</span>
 <span class="o">&lt;/</span><span class="n">xsl</span><span class="p">:</span><span class="n">stylesheet</span><span class="o">&gt;</span>
 </pre></div>
 
@@ -969,7 +1031,7 @@ $\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;xmltotex.xsl&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xslfile</span><span class="p">:</span>
     <span class="n">transform_xsl</span> <span class="o">=</span> <span class="n">xslfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">transform</span><span class="o">=</span><span class="n">etree</span><span class="o">.</span><span class="n">XSLT</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">transform_xsl</span><span class="p">))</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XSLT</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">transform_xsl</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -1072,17 +1134,17 @@ $
 
 <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">schema</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">xs</span><span class="o">=</span><span class="s2">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="o">&gt;</span>
 
-<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;element&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;symbol&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:string&quot;</span><span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;number&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:integer&quot;</span><span class="o">/&gt;</span>
-<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;symbol&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:string&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;number&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:integer&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
     
 <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;element&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
         <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;stoichiometry&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:integer&quot;</span><span class="o">/&gt;</span>
     <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
@@ -1091,31 +1153,31 @@ $
 <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reaction&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactants&quot;</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
-                    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
-                <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
-            <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
-        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;products&quot;</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
-                    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
-                <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
-            <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
-        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactants&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;products&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
         <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
     <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
 
 <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;reaction&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
-    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>   
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;reaction&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
     
 <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">schema</span><span class="o">&gt;</span>
 </pre></div>
@@ -1178,7 +1240,8 @@ $
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
     <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+<span class="c1"># For all atoms return their symbol attribute</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//atom/@symbol&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1191,13 +1254,15 @@ $
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;lxml.etree._ElementTree object at 0x7f516634be00&gt;
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;C&#39;, &#39;H&#39;, &#39;O&#39;, &#39;O&#39;, &#39;C&#39;, &#39;O&#39;, &#39;H&#39;, &#39;O&#39;, &#39;H&#39;, &#39;O&#39;, &#39;H&#39;, &#39;O&#39;]</pre>
 </div>
+
 </div>
 
 </div>
@@ -1223,16 +1288,16 @@ $
     <span class="o">&lt;</span><span class="n">reaction</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">reactants</span><span class="o">&gt;</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;two&quot;</span><span class="o">&gt;</span>
-                    <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span>
-                    <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">&lt;/</span><span class="n">reactants</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="n">products</span><span class="o">&gt;</span>
             <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">&gt;</span>
-                    <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
-                    <span class="o">&lt;</span><span class="n">element</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">/&gt;</span>
             <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
         <span class="o">&lt;/</span><span class="n">products</span><span class="o">&gt;</span>
     <span class="o">&lt;/</span><span class="n">reaction</span><span class="o">&gt;</span>
@@ -1267,9 +1332,12 @@ $
 <div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;invalid_system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
-    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;invalid_system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//element//@symbol&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSyntaxError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1285,34 +1353,8 @@ $
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/IPython/core/interactiveshell.py&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3418</span>, in <span class="ansi-magenta-intense-fg ansi-bold">run_code</span>
-    exec(code_obj, self.user_global_ns, self.user_ns)
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-21-6e51cfadf415&gt;&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">2</span>, in <span class="ansi-magenta-intense-fg ansi-bold">&lt;module&gt;</span>
-    tree = etree.parse(xmlfile, parser)
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/etree.pyx&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">3521</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree.parse</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1880</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseDocument</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1900</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseFilelikeDocument</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1795</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._parseDocFromFilelike</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">1201</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._BaseParser._parseDocFromFilelike</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">615</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._ParserContext._handleParseResultDoc</span>
-
-  File <span class="ansi-green-intense-fg ansi-bold">&#34;src/lxml/parser.pxi&#34;</span>, line <span class="ansi-green-intense-fg ansi-bold">725</span>, in <span class="ansi-magenta-intense-fg ansi-bold">lxml.etree._handleParseResult</span>
-
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;src/lxml/parser.pxi&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">654</span><span class="ansi-cyan-fg">, in </span><span class="ansi-magenta-fg">lxml.etree._raiseParseError</span>
-
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;&lt;string&gt;&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">unknown</span>
-<span class="ansi-red-fg">XMLSyntaxError</span><span class="ansi-red-fg">:</span> Element &#39;molecule&#39;, attribute &#39;stoichiometry&#39;: &#39;two&#39; is not a valid value of the atomic type &#39;xs:integer&#39;.
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Element &#39;molecule&#39;, attribute &#39;stoichiometry&#39;: &#39;two&#39; is not a valid value of the atomic type &#39;xs:integer&#39;. (&lt;string&gt;, line 0)
 </pre>
 </div>
 </div>
@@ -1320,6 +1362,14 @@ Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This shows us that the validation has failed and why.</p>
+
+</div>
+</div>
 </div>
  
 

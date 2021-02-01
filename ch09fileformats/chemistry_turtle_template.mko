@@ -5,37 +5,37 @@
         
 [ 
 %for reaction in reactions:
-        disr:hasReaction [
-          %for molecule in reaction.reactants.molecules:
-          disr:hasReactant [
-              % for element in molecule.elements:
-              disr:hasElementQuantity [
-                  disr:countedElement [
-                      a obo:CHEBI_33259;
-                      disr:symbol "${element.symbol}"^^xs:string
-                  ] ;
-                  disr:countOfElement "${molecule.elements[element]}"^^xs:integer
-              ];
-              % endfor
-              a obo:CHEBI_23367
-          ] ;
-          %endfor
-          %for molecule in reaction.products.molecules:
-          disr:hasProduct [
-              % for element in molecule.elements:
-              disr:hasElementQuantity [
-                  disr:countedElement [
-                      a obo:CHEBI_33259;
-                      disr:symbol "${element.symbol}"^^xs:string
-                  ] ;
-                  disr:countOfElement "${molecule.elements[element]}"^^xs:integer
-              ] ;
-              % endfor
-              a obo:CHEBI_23367
-          ] ;
-          %endfor
-          a disr:reaction
-      ] ;
-      %endfor
-    a disr:system
-  ].
+    disr:hasReaction [
+        %for molecule in reaction.reactants.molecules:
+            disr:hasReactant [
+                %for element in molecule.elements:
+                    disr:hasElementQuantity [
+                        disr:countedElement [
+                            a obo:CHEBI_33259;
+                            disr:symbol "${element.symbol}"^^xs:string
+                        ] ;
+                        disr:countOfElement "${molecule.elements[element]}"^^xs:integer
+                    ];
+                %endfor
+                a obo:CHEBI_23367
+            ] ;
+        %endfor
+        %for molecule in reaction.products.molecules:
+            disr:hasProduct [
+                %for element in molecule.elements:
+                    disr:hasElementQuantity [
+                        disr:countedElement [
+                            a obo:CHEBI_33259;
+                            disr:symbol "${element.symbol}"^^xs:string
+                        ] ;
+                        disr:countOfElement "${molecule.elements[element]}"^^xs:integer
+                    ] ;
+                %endfor
+                a obo:CHEBI_23367
+            ] ;
+        %endfor
+        a disr:reaction
+    ] ;
+%endfor
+a disr:system
+].

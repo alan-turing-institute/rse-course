@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <system>
-    %for reaction in reactions:
+%for reaction in reactions:
     <reaction>
         <reactants>
         %for molecule in reaction.reactants.molecules:
             <molecule stoichiometry="${reaction.reactants.molecules[molecule]}">
-                %for element in molecule.elements:
-                    <element symbol="${element.symbol}" number="${molecule.elements[element]}"/>
-                %endfor
+            %for element in molecule.elements:
+                <atom symbol="${element.symbol}" number="${molecule.elements[element]}"/>
+            %endfor
             </molecule>
         %endfor
         </reactants>
@@ -15,11 +15,11 @@
         %for molecule in reaction.products.molecules:
             <molecule stoichiometry="${reaction.products.molecules[molecule]}">
             %for element in molecule.elements:
-                    <element symbol="${element.symbol}" number="${molecule.elements[element]}"/>
+                <atom symbol="${element.symbol}" number="${molecule.elements[element]}"/>
             %endfor
             </molecule>
         %endfor
         </products>
     </reaction>
-    %endfor
+%endfor
 </system>
