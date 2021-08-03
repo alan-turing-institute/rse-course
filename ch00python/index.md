@@ -1,10 +1,8 @@
----
-title: Introduction to Python
----
+# Introduction to Python
 
-* Why use scripting languages? 
+* Why use scripting languages?
 * Python. IPython and the IPython notebook.
-* Data structures: list, dictionaries, and sets. 
+* Data structures: list, dictionaries, and sets.
 * List comprehensions
 * Functions in Python
 * Modules in Python

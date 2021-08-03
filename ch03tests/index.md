@@ -1,6 +1,4 @@
----
-title: Testing
----
+# Testing
 
 * Why test?
 * Unit testing and regression testing

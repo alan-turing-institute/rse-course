@@ -1,6 +1,4 @@
----
-title: Version Control
----
+# Version Control
 
 * Why use version control
 * Solo use of version control

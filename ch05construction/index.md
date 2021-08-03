@@ -1,6 +1,4 @@
----
-title: Construction and Design
----
+# Construction and Design
 
 * Coding conventions
 * Comments

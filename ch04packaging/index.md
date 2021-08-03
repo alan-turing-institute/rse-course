@@ -1,6 +1,4 @@
----
-title: Software Projects
----
+# Software Projects
 
 * Turning your code into a package
 * Releasing code
