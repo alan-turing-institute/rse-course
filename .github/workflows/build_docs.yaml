@@ -1,0 +1,40 @@
+name: Build documentation
+
+# Run workflow on pushes to matching branches
+on:
+  push:
+    branches: [jupyter-book]
+
+# checkout needs 'contents:read'
+# deploy needs 'contents:write'
+permissions:
+  contents: write
+
+jobs:
+  build_docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install required packages
+        run: |
+          sudo apt-get -y install ffmpeg
+          pip install -r requirements.txt
+      - name: Build latest documentation
+        shell: bash
+        run: |
+          make clean
+          make
+      - name: Deploy documentation to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@5dc1d5a192aeb5ab5b7d5a77b7d36aea4a7f5c92 # This is version 4.1.4
+        with:
+          branch: testdocs                     # The branch the action should deploy to.
+          folder: _build                       # The folder the action should deploy.
+          git-config-name: Deployment Bot      # Name of the committer
+          git-config-email: deploy@github.com  # Email of the committer
