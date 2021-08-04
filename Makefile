@@ -107,7 +107,13 @@ clean:
 	rm -f notes.pdf
 	rm -f notes.tex
 	rm -f ch04packaging/greeter.py
+	rm -rf ch*/__pycache__
+	rm -rf ch*/*/__pycache__
+	rm -rf ch*/*/*/__pycache__
+	rm -rf ch*/*/*/*/__pycache__
+	rm -rf ch*/*/*/*/*/__pycache__
 	rm -f ch04packaging/map.png
+	rm -rf ch04packaging/greetings/doc/output/.doctrees
 	rm -f ch05construction/anotherfile.py
 	rm -f ch05construction/config.yaml
 	rm -f ch05construction/context.py

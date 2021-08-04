@@ -4,7 +4,7 @@ from numpy.random import randint, choice
 
 
 class MonteCarlo:
-    """ A simple Monte Carlo implementation """
+    """A simple Monte Carlo implementation"""
 
     def __init__(self, energy, density, temperature=1, itermax=1000):
         from numpy import any, array
@@ -51,7 +51,7 @@ class MonteCarlo:
         return location
 
     def change_density(self, density):
-        """ Move one particle left or right. """
+        """Move one particle left or right."""
 
         location = self.random_agent(density)
 
@@ -72,7 +72,7 @@ class MonteCarlo:
         return result
 
     def accept_change(self, prior, successor):
-        """ Returns true if should accept change. """
+        """Returns true if should accept change."""
         from numpy import exp
         from numpy.random import uniform
 

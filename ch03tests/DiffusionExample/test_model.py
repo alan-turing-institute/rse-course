@@ -4,7 +4,7 @@ from pytest import raises, approx
 
 
 def test_input_sanity():
-    """ Check incorrect input do fail """
+    """Check incorrect input do fail"""
     energy = MagicMock()
 
     with raises(NotImplementedError) as exception:
@@ -25,7 +25,7 @@ def test_input_sanity():
 
 
 def test_move_particle_one_over():
-    """ Check density is change by a particle hopping left or right. """
+    """Check density is change by a particle hopping left or right."""
     from numpy import nonzero, multiply
     from numpy.random import randint
 
@@ -50,7 +50,7 @@ def test_move_particle_one_over():
 
 
 def test_equal_probability():
-    """ Check particles have equal probability of movement. """
+    """Check particles have equal probability of movement."""
     from numpy import array, sqrt, count_nonzero
 
     energy = MagicMock()
@@ -66,10 +66,10 @@ def test_equal_probability():
 
 
 def test_accept_change():
-    """ Check that move is accepted if second energy is lower """
+    """Check that move is accepted if second energy is lower"""
     from numpy import sqrt, count_nonzero, exp
 
-    energy = MagicMock
+    energy = MagicMock()
     mc = MonteCarlo(energy, [1, 1, 1], temperature=100.0)
     # Should always be true.
     # But do more than one draw,
