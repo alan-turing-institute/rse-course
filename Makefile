@@ -1,10 +1,22 @@
-default: _site
+default: html
 
-_site:
+_config.yml:
+	cp docs/_config.yml .
+
+_toc.yml:
+	cp docs/_toc.yml .
+
+index.md:
+	cp docs/index.md .
+
+html: _config.yml _toc.yml index.md
 	jupyter-book build --verbose --keep-going .
 
 clean:
 	rm -rf _build
+	rm -f _config.yml
+	rm -f _toc.yml
+	rm -f index.md
 	rm -f ch*/*.nbconvert.ipynb
 	rm -f ch*/*.pyc
 	rm -f ch*/generated/*.png
@@ -22,8 +34,6 @@ clean:
 	rm -f ch07dry/datasource*.yaml
 	rm -f ch07dry/example.yaml
 	rm -f index.html
-	rm -f indigo
-	rm -f notebooks.zip
 	rm -f notes.pdf
 	rm -f notes.tex
 	rm -rf _site
@@ -33,7 +43,6 @@ clean:
 	rm -rf ch*/*/__pycache__
 	rm -rf ch*/*/*/__pycache__
 	rm -rf ch*/*/*/*/__pycache__
-	rm -rf ch*/*/*/*/*/__pycache__
 	rm -rf ch01python/module1/
 	rm -rf ch04packaging/greetings/doc/output/.doctrees
 	rm -rf ch09*/*.csv
@@ -49,4 +58,3 @@ clean:
 	rm -rf ch09*/*.xsd
 	rm -rf ch09*/*.xsl
 	rm -rf combined*
-	rm -rf images img js css ati_css fonts _includes _layouts favicon* master.zip indigo-jekyll-master
