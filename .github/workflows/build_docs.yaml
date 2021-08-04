@@ -29,10 +29,10 @@ jobs:
       - name: Build latest documentation
         shell: bash
         run: |
-          mv docs/* .
+          cp docs/*.yml .
           make clean
           make
-          mv index.html _build
+          cp docs/index.html _build
       - name: Deploy documentation to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@5dc1d5a192aeb5ab5b7d5a77b7d36aea4a7f5c92 # This is version 4.1.4
         with:

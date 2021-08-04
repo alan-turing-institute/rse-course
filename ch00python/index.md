@@ -6,4 +6,4 @@
 * List comprehensions
 * Functions in Python
 * Modules in Python
-* An introduciton to classes
+* An introduction to classes

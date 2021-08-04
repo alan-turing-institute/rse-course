@@ -1,7 +1,7 @@
 default: _site
 
 _site:
-	jupyter-book build --verbose .
+	jupyter-book build --verbose --keep-going .
 
 clean:
 	rm -rf _build
