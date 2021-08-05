@@ -27,7 +27,7 @@ The XCode tools comes with Git so no need to do anything more.
 
 ## Homebrew
 
-[Homebrew](brew.sh) is a package manager for OSX which enables the installation of a lot of software useful for scientific computing.
+[Homebrew](https://brew.sh) is a package manager for OSX which enables the installation of a lot of software useful for scientific computing.
 It is required for some of the installations below.
 Homebrew requires the Xcode tools above.
 

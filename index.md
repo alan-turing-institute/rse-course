@@ -8,7 +8,7 @@ In this course, you will move beyond programming, to learn how to construct reli
 
 * Prior knowledge of at least one programming language, including variables, control flow, and functions.
 * You are required to bring your own laptop to the course as the classrooms we are using do not have desktop computers.
-* We have provided [setup](session99) instructions for installing the software needed for the course on your computer.
+* We have provided [setup](session99/index.md) instructions for installing the software needed for the course on your computer.
 * Eligibility: This course is for Turing PhD students. Turing researchers might join too if capacity allows.
 
 ## Instructors
