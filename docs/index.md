@@ -25,8 +25,6 @@ None: you are not graded. You will be provided with 2 exercises for self-assessm
 
 ## Versions
 
-You can find the course notes as HTML via the navigation bar to the left.
-
-The [notes](notes.pdf) are also available in a printable pdf format.
+You can browse through course notes as HTML or download them as a printable PDF via the navigation bar to the left.
 
 **If you encounter any problem or bug in these materials**, please remember to add an issue to the [course repo](https://github.com/alan-turing-institute/rsd-engineeringcourse), explaining the problem and, potentially, its solution. In this way we can improve the instructions for future users.

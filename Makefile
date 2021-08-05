@@ -12,6 +12,9 @@ index.md:
 html: _config.yml _toc.yml index.md
 	jupyter-book build --verbose --keep-going .
 
+pdf: _config.yml _toc.yml index.md
+	jupyter-book build --builder pdfhtml --verbose --keep-going .
+
 clean:
 	rm -f _config.yml
 	rm -f _toc.yml
@@ -31,8 +34,6 @@ clean:
 	rm -f ch07dry/*.yaml
 	rm -f index.html
 	rm -f index.md
-	rm -f notes.pdf
-	rm -f notes.tex
 	rm -rf _build
 	rm -rf ch*/__pycache__
 	rm -rf ch*/*/__pycache__
@@ -40,6 +41,7 @@ clean:
 	rm -rf ch*/*/*/*/__pycache__
 	rm -rf ch03tests/diffusion/.pytest_cache
 	rm -rf ch03tests/DiffusionExample/.pytest_cache
+	rm -rf ch04packaging/.pytest_cache
 	rm -rf ch04packaging/greetings/doc/output/
 	rm -rf ch09*/*.csv
 	rm -rf ch09*/*.db
