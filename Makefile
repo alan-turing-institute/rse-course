@@ -25,6 +25,8 @@ clean:
 	rm -f ch01python/eight
 	rm -f ch01python/eight.py
 	rm -f ch01python/pretty.py
+	rm -f ch03tests/diffusion/.coverage
+	rm -f ch03tests/energy_example.py
 	rm -f ch04packaging/greeter.py
 	rm -f ch04packaging/map.png
 	rm -f ch05construction/anotherfile.py
@@ -38,8 +40,7 @@ clean:
 	rm -rf ch*/__pycache__
 	rm -rf ch*/*/__pycache__
 	rm -rf ch*/*/*/__pycache__
-	rm -rf ch*/*/*/*/__pycache__
-	rm -rf ch03tests/diffusion/.pytest_cache
+	rm -rf ch03tests/diffusion/htmlcov
 	rm -rf ch03tests/DiffusionExample/.pytest_cache
 	rm -rf ch03tests/saskatchewan/
 	rm -rf ch04packaging/.pytest_cache
