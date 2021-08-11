@@ -1,6 +1,4 @@
----
-title: Programming for Speed
----
+# Programming for Speed
 
 * Optimisation
 * Profiling

@@ -1,4 +1,5 @@
 """Simplistic 1-dimensional diffusion model."""
+from numpy import array, any, sum
 
 
 def energy(density):
@@ -7,7 +8,6 @@ def energy(density):
       density: array of positive integers
          Number of particles at each position i in the array/geometry
     """
-    from numpy import array, any, sum
 
     # Make sure input is an numpy array
     density = array(density)

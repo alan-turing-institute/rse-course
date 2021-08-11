@@ -1,6 +1,4 @@
----
-title: Advanced Programming Techniques
----
+# Advanced Programming Techniques
 
 * Functional programming
 * Metaprogramming

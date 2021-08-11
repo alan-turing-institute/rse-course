@@ -1,6 +1,4 @@
----
-title: Scientific file formats
----
+# Scientific file formats
 
 * Serialisation and Deserialisation
 * Domain specific languages
