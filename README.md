@@ -1,14 +1,22 @@
-# rsd-engineeringcourse
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Build documentation]](https://github.com/alan-turing-institute/rsd-engineeringcourse/actions/workflows/build_docs.yaml/badge.svg)
+[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Licence: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+# Research Software Engineering Course
 
-Course materials for Turing's Research Software Engineering course. Also see [UCL's](https://github.com/UCL/rsd-engineeringcourse) version of this course.
+Course materials for Turing's Research Software Engineering course.
+Note that this originally started as a fork of the [UCL RSD course](https://github.com/UCL/rsd-engineeringcourse).
 
-## Content
-In this course, you will move beyond programming, to learn how to construct reliable, readable, efficient research software in a collaborative environment.
-The emphasis is on practical techniques, tips, and technologies to effectively build and maintain complex code.
-This is a relatively short course (8-10 half-day modules) which is intensive and relatively practical.
-Examples and exercises for this course will be provided in `Python`.
+## Documentation
+Documentation for the course is hosted at `https://alan-turing-institute.github.io/rsd-engineeringcourse/`.
+You can build the documentation from source by running:
 
-## Prerequisites
-It would be helpful to have experience in one compiled language, such as `C++`, `C`, or `Fortran`, and one dynamic language, such as `Python`, `Ruby`, `Matlab` or `R`, but this is not a requirement.
-Previous experience with version control and/or the Unix shell, for instance from Software Carpentry, would be helpful.
-You should bring your own laptop to the course as there are several hands-on exercise for you to work through.
+```console
+> ./build_docs.sh
+```
+
+## Contributing
+Contributions are always welcome! Please do the following:
+
+- add an issue to the [course repo](https://github.com/alan-turing-institute/rsd-engineeringcourse), explaining the problem and, potentially, its solution.
+- if you know how to fix it, please also open a pull request that contains the fix. By doing this, you will improve the instructions for future users. 🎉
