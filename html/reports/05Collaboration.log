@@ -1,0 +1,67 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nbclient/client.py", line 554, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%%bash
+git add Wales.md
+git commit -m "Add wales"
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mCalledProcessError[0m                        Traceback (most recent call last)
+[0;32m/tmp/ipykernel_7790/3825437270.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_cell_magic[0m[0;34m([0m[0;34m'bash'[0m[0;34m,[0m [0;34m''[0m[0;34m,[0m [0;34m'git add Wales.md\ngit commit -m "Add wales"\n'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_cell_magic[0;34m(self, magic_name, line, cell)[0m
+[1;32m   2401[0m             [0;32mwith[0m [0mself[0m[0;34m.[0m[0mbuiltin_trap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2402[0m                 [0margs[0m [0;34m=[0m [0;34m([0m[0mmagic_arg_s[0m[0;34m,[0m [0mcell[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2403[0;31m                 [0mresult[0m [0;34m=[0m [0mfn[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2404[0m             [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2405[0m [0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/IPython/core/magics/script.py[0m in [0;36mnamed_script_magic[0;34m(line, cell)[0m
+[1;32m    140[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    141[0m                 [0mline[0m [0;34m=[0m [0mscript[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 142[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mshebang[0m[0;34m([0m[0mline[0m[0;34m,[0m [0mcell[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    143[0m [0;34m[0m[0m
+[1;32m    144[0m         [0;31m# write a basic docstring:[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/decorator.py[0m in [0;36mfun[0;34m(*args, **kw)[0m
+[1;32m    230[0m             [0;32mif[0m [0;32mnot[0m [0mkwsyntax[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    231[0m                 [0margs[0m[0;34m,[0m [0mkw[0m [0;34m=[0m [0mfix[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mkw[0m[0;34m,[0m [0msig[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 232[0;31m             [0;32mreturn[0m [0mcaller[0m[0;34m([0m[0mfunc[0m[0;34m,[0m [0;34m*[0m[0;34m([0m[0mextras[0m [0;34m+[0m [0margs[0m[0;34m)[0m[0;34m,[0m [0;34m**[0m[0mkw[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    233[0m     [0mfun[0m[0;34m.[0m[0m__name__[0m [0;34m=[0m [0mfunc[0m[0;34m.[0m[0m__name__[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    234[0m     [0mfun[0m[0;34m.[0m[0m__doc__[0m [0;34m=[0m [0mfunc[0m[0;34m.[0m[0m__doc__[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/IPython/core/magic.py[0m in [0;36m<lambda>[0;34m(f, *a, **k)[0m
+[1;32m    185[0m     [0;31m# but it's overkill for just that one bit of state.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    186[0m     [0;32mdef[0m [0mmagic_deco[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 187[0;31m         [0mcall[0m [0;34m=[0m [0;32mlambda[0m [0mf[0m[0;34m,[0m [0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m:[0m [0mf[0m[0;34m([0m[0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    188[0m [0;34m[0m[0m
+[1;32m    189[0m         [0;32mif[0m [0mcallable[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/IPython/core/magics/script.py[0m in [0;36mshebang[0;34m(self, line, cell)[0m
+[1;32m    243[0m             [0msys[0m[0;34m.[0m[0mstderr[0m[0;34m.[0m[0mflush[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    244[0m         [0;32mif[0m [0margs[0m[0;34m.[0m[0mraise_error[0m [0;32mand[0m [0mp[0m[0;34m.[0m[0mreturncode[0m[0;34m!=[0m[0;36m0[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 245[0;31m             [0;32mraise[0m [0mCalledProcessError[0m[0;34m([0m[0mp[0m[0;34m.[0m[0mreturncode[0m[0;34m,[0m [0mcell[0m[0;34m,[0m [0moutput[0m[0;34m=[0m[0mout[0m[0;34m,[0m [0mstderr[0m[0;34m=[0m[0merr[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    246[0m [0;34m[0m[0m
+[1;32m    247[0m     [0;32mdef[0m [0m_run_script[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mp[0m[0;34m,[0m [0mcell[0m[0;34m,[0m [0mto_close[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mCalledProcessError[0m: Command 'b'git add Wales.md\ngit commit -m "Add wales"\n'' returned non-zero exit status 128.
+CalledProcessError: Command 'b'git add Wales.md\ngit commit -m "Add wales"\n'' returned non-zero exit status 128.
+
