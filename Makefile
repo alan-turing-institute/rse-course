@@ -41,6 +41,7 @@ clean:
 	rm -rf ch*/*/*/*/__pycache__
 	rm -rf ch03tests/diffusion/.pytest_cache
 	rm -rf ch03tests/DiffusionExample/.pytest_cache
+	rm -rf ch03tests/saskatchewan/
 	rm -rf ch04packaging/.pytest_cache
 	rm -rf ch04packaging/greetings/doc/output/
 	rm -rf ch09*/*.csv
