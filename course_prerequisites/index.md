@@ -10,10 +10,9 @@ By doing this you will be helping to improve the instructions for future users! 
 
 ## What we're installing
 
-* the `Python` programming language (version `3.7` or greater)
-* some `Python` software packages that will be used during the course.
-* `git` for the version control module
-* your favourite text editor
+- the `Python` programming language (version `3.7` or greater)
+- some `Python` software packages that will be used during the course.
+- `git` for the version control module
+- your favourite text editor
 
 Please ensure that you have a computer (ideally a laptop) with all of these installed.
-

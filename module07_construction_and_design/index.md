@@ -1,7 +1,7 @@
 # Construction and Design
 
-* Coding conventions
-* Comments
-* Refactoring
-* Object Orientation
-* Design Patterns
+- Coding conventions
+- Comments
+- Refactoring
+- Object Orientation
+- Design Patterns
