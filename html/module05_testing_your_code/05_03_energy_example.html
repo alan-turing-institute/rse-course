@@ -1,0 +1,1266 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classroom exercise: energy calculation &#8212; Research Software Engineering with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mocking" href="05_04_mocking.html" />
+    <link rel="prev" title="Testing frameworks" href="05_02_testing_frameworks.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Research Software Engineering with Python
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/00_linux.html">
+     Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_mac.html">
+     MacOS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_windows.html">
+     Windows
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
+     An example Python data analysis notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_using_functions.html">
+     Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_types.html">
+     Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_containers.html">
+     Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_data_structures.html">
+     Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07answer_maze_model.html">
+     Solution: my Maze Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_control_and_flow.html">
+     Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_iteration.html">
+     Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09answer_maze_counting.html">
+     Solution: counting people in the maze
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00answer_maze_comprehension.html">
+     Solution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_defining_classes.html">
+     Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
+     Working with Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_getting_data_from_the_internet.html">
+     Getting data from the Internet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_fields_and_records.html">
+     Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_structured_data.html">
+     Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01answer_maze_saving.html">
+     Solution: Saving and loading data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_earthquake_exercise.html">
+     Exercise/Example: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02answer_earthquake_exercise.html">
+     Solution: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_plotting_with_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy.html">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
+     The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
+     Recap: Understanding the “Greengraph” Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     Solo work with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
+     Git Stash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
+     Working with multiple remotes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     Debugging With Git Bisect
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Testing
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_00_introduction.html">
+     Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_01_how_to_test.html">
+     How to Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_02_testing_frameworks.html">
+     Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_04_mocking.html">
+     Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_05_using_a_debugger.html">
+     Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_06_continuous_integration.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_pypi_packages.html">
+     Packaging your code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_libraries.html">
+     Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_argparse.html">
+     Argparse
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     Python not in the Notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     Managing software issues
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_coding_conventions.html">
+     Coding Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_comments.html">
+     Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_refactoring.html">
+     Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_object_oriented_design.html">
+     Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_classes.html">
+     Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_design_patterns.html">
+     Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_refactoring_boids.html">
+     Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
+     Metaprogramming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     Performance programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
+     Optimising Mandelbrot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
+     NumPy for Performance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
+     Cython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
+     Scaling for containers and algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     What can go wrong?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
+     Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
+     Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
+     Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
+     Saying the same thing multiple ways
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
+     Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Self Assessment
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../self_assessment/index.html">
+   Assessment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/00_packaging_treasure.html">
+     An Adventure In Packaging: An exercise in research software engineering.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/00assessment.html">
+     Packaging Greengraph
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/01_refactoring_trees.html">
+     Refactoring Trees: An exercise in Research Software Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/01assessment.html">
+     Refactoring the Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/module05_testing_your_code/05_03_energy_example.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/alan-turing-institute/rsd-engineeringcourse"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/alan-turing-institute/rsd-engineeringcourse/issues/new?title=Issue%20on%20page%20%2Fmodule05_testing_your_code/05_03_energy_example.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/alan-turing-institute/rsd-engineeringcourse/edit/master/module05_testing_your_code/05_03_energy_example.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rsd-engineeringcourse/master?urlpath=tree/module05_testing_your_code/05_03_energy_example.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diffusion-model-in-1d">
+   Diffusion model in 1D
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#starting-point">
+   Starting point
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution">
+   Solution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coverage">
+   Coverage
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="classroom-exercise-energy-calculation">
+<h1>Classroom exercise: energy calculation<a class="headerlink" href="#classroom-exercise-energy-calculation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="diffusion-model-in-1d">
+<h2>Diffusion model in 1D<a class="headerlink" href="#diffusion-model-in-1d" title="Permalink to this headline">¶</a></h2>
+<p>Description: A one-dimensional diffusion model. (Could be a gas of particles, or a bunch of crowded people in a corridor, or animals in a valley habitat…)</p>
+<ul class="simple">
+<li><p>Agents are on a 1d axis</p></li>
+<li><p>Agents do not want to be where there are other agents</p></li>
+<li><p>This is represented as an ‘energy’: the higher the energy, the more unhappy the agents.</p></li>
+</ul>
+<p>Implementation:</p>
+<ul class="simple">
+<li><p>Given a vector <span class="math notranslate nohighlight">\(n\)</span> of positive integers, and of arbitrary length</p></li>
+<li><p>Compute the energy, <span class="math notranslate nohighlight">\(E(n) = \sum_i n_i(n_i - 1)\)</span></p></li>
+<li><p>Later, we will have the likelyhood of an agent moving depend on the change in energy.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">density</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">density</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xrange</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Particle count $n_i$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Position $i$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Position $i$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/05_03_energy_example_1_1.png" src="../_images/05_03_energy_example_1_1.png" />
+</div>
+</div>
+<p>Here, the total energy due to position 2 is <span class="math notranslate nohighlight">\(3 (3-1)=6\)</span>, and due to column 7 is <span class="math notranslate nohighlight">\(1 (1-1)=0\)</span>. We need to sum these to get the
+total energy.</p>
+</div>
+<div class="section" id="starting-point">
+<h2>Starting point<a class="headerlink" href="#starting-point" title="Permalink to this headline">¶</a></h2>
+<p>Create a Python module:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+rm -rf diffusion
+mkdir diffusion
+install -m 644 /dev/null diffusion/__init__.py
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Windows:</strong> You will need to run the following instead</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>%%cmd
+rmdir /s diffusion
+mkdir diffusion
+type nul &gt; diffusion/__init__.py
+</pre></div>
+</div>
+<p><strong>NB.</strong> If you are using the Windows command prompt, you will also have to replace all subsequent <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> directives with <code class="docutils literal notranslate"><span class="pre">%%cmd</span></code></p>
+<ul class="simple">
+<li><p>Implementation file: diffusion_model.py</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> diffusion/model.py
+<span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="n">density</span><span class="p">,</span> <span class="n">coeff</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Energy associated with the diffusion model</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    density: array of positive integers</span>
+<span class="sd">        Number of particles at each position i in the array</span>
+<span class="sd">    coeff: float</span>
+<span class="sd">        Diffusion coefficient.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># implementation goes here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing diffusion/model.py
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Testing file: test_diffusion_model.py</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> diffusion/test_model.py
+<span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">energy</span>
+
+
+<span class="k">def</span> <span class="nf">test_energy</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Optional description for nose reporting.&quot;&quot;&quot;</span>
+    <span class="c1"># Test something</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing diffusion/test_model.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Invoke the tests:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cd diffusion
+py.test
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+platform linux -- Python 3.7.12, pytest-6.2.5, py-1.10.0, pluggy-1.0.0
+rootdir: /home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module05_testing_your_code/diffusion
+plugins: anyio-3.3.4, cov-3.0.0
+collected 1 item
+
+test_model.py .                                                          [100%]
+
+============================== 1 passed in 0.01s ===============================
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, write your code (in <code class="docutils literal notranslate"><span class="pre">model.py</span></code>), and tests (in <code class="docutils literal notranslate"><span class="pre">test_model.py</span></code>), testing as you do.</p>
+</div>
+<div class="section" id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>Don’t look until after you’ve tried!</p>
+<p>In the spirit of test-driven development let’s first consider our tests.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> diffusion/test_model.py
+<span class="sd">&quot;&quot;&quot;Unit tests for a diffusion model.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">raises</span>
+<span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">energy</span>
+
+
+<span class="k">def</span> <span class="nf">test_energy_fails_on_non_integer_density</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+        <span class="n">energy</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">test_energy_fails_on_negative_density</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+        <span class="n">energy</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">test_energy_fails_ndimensional_density</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+        <span class="n">energy</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+
+
+<span class="k">def</span> <span class="nf">test_zero_energy_cases</span><span class="p">():</span>
+    <span class="c1"># Zero energy at zero density</span>
+    <span class="n">densities</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">density</span> <span class="ow">in</span> <span class="n">densities</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">test_derivative</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+    <span class="c1"># Loop over vectors of different sizes (but not empty)</span>
+    <span class="k">for</span> <span class="n">vector_size</span> <span class="ow">in</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+
+        <span class="c1"># Create random density of size N</span>
+        <span class="n">density</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">vector_size</span><span class="p">)</span>
+
+        <span class="c1"># will do derivative at this index</span>
+        <span class="n">element_index</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">vector_size</span><span class="p">)</span>
+
+        <span class="c1"># modified densities</span>
+        <span class="n">density_plus_one</span> <span class="o">=</span> <span class="n">density</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">density_plus_one</span><span class="p">[</span><span class="n">element_index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Compute and check result</span>
+        <span class="c1"># d(n^2-1)/dn = 2n</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">density</span><span class="p">[</span><span class="n">element_index</span><span class="p">]</span> <span class="k">if</span> <span class="n">density</span><span class="p">[</span><span class="n">element_index</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">density_plus_one</span><span class="p">)</span> <span class="o">-</span> <span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">actual</span>
+
+
+<span class="k">def</span> <span class="nf">test_derivative_no_self_energy</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;If particle is alone, then its participation to energy is zero.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+
+    <span class="n">density</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">density_plus_one</span> <span class="o">=</span> <span class="n">density</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">density</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">expected</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">density_plus_one</span><span class="p">)</span> <span class="o">-</span> <span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">actual</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting diffusion/test_model.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s write an implementation that passes the tests.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> diffusion/model.py
+<span class="sd">&quot;&quot;&quot;Simplistic 1-dimensional diffusion model.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="nb">any</span><span class="p">,</span> <span class="nb">sum</span>
+
+
+<span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="n">density</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Energy associated with the diffusion model</span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">      density: array of positive integers</span>
+<span class="sd">         Number of particles at each position i in the array/geometry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Make sure input is an numpy array</span>
+    <span class="n">density</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
+
+    <span class="c1"># ...of the right kind (integer). Unless it is zero length,</span>
+    <span class="c1">#    in which case type does not matter.</span>
+
+    <span class="k">if</span> <span class="n">density</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">!=</span> <span class="s2">&quot;i&quot;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Density should be a array of *integers*.&quot;</span><span class="p">)</span>
+    <span class="c1"># and the right values (positive or null)</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">density</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Density should be an array of *positive* integers.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">density</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Density should be an a *1-dimensional*&quot;</span> <span class="o">+</span> <span class="s2">&quot;array of positive integers.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">density</span> <span class="o">*</span> <span class="p">(</span><span class="n">density</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting diffusion/model.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cd diffusion
+py.test
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+platform linux -- Python 3.7.12, pytest-6.2.5, py-1.10.0, pluggy-1.0.0
+rootdir: /home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module05_testing_your_code/diffusion
+plugins: anyio-3.3.4, cov-3.0.0
+collected 6 items
+
+test_model.py ......                                                     [100%]
+
+============================== 6 passed in 0.12s ===============================
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="coverage">
+<h2>Coverage<a class="headerlink" href="#coverage" title="Permalink to this headline">¶</a></h2>
+<p>With py.test, you can use the <a class="reference external" href="https://github.com/pytest-dev/pytest-cov">“pytest-cov” plugin</a> to measure test coverage</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cd diffusion
+py.test --cov
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+platform linux -- Python 3.7.12, pytest-6.2.5, py-1.10.0, pluggy-1.0.0
+rootdir: /home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module05_testing_your_code/diffusion
+plugins: anyio-3.3.4, cov-3.0.0
+collected 6 items
+
+test_model.py ......                                                     [100%]
+
+---------- coverage: platform linux, python 3.7.12-final-0 -----------
+Name            Stmts   Miss  Cover
+-----------------------------------
+__init__.py         0      0   100%
+model.py           10      0   100%
+test_model.py      33      0   100%
+-----------------------------------
+TOTAL              43      0   100%
+
+
+============================== 6 passed in 0.16s ===============================
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or an html report:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+#%%cmd (windows)
+cd diffusion
+py.test --cov --cov-report html
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+platform linux -- Python 3.7.12, pytest-6.2.5, py-1.10.0, pluggy-1.0.0
+rootdir: /home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module05_testing_your_code/diffusion
+plugins: anyio-3.3.4, cov-3.0.0
+collected 6 items
+
+test_model.py ......                                                     [100%]
+
+---------- coverage: platform linux, python 3.7.12-final-0 -----------
+Coverage HTML written to dir htmlcov
+
+
+============================== 6 passed in 0.18s ===============================
+</pre></div>
+</div>
+</div>
+</div>
+<p>Look at the <span class="xref myst">coverage results</span></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./module05_testing_your_code"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="05_02_testing_frameworks.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Testing frameworks</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="05_04_mocking.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Mocking</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Alan Turing Institute<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,1177 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Conventions &#8212; Research Software Engineering with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Comments" href="07_02_comments.html" />
+    <link rel="prev" title="Construction" href="07_00_introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Research Software Engineering with Python
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/00_linux.html">
+     Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_mac.html">
+     MacOS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_windows.html">
+     Windows
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
+     An example Python data analysis notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_using_functions.html">
+     Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_types.html">
+     Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_containers.html">
+     Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_data_structures.html">
+     Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07answer_maze_model.html">
+     Solution: my Maze Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_control_and_flow.html">
+     Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_iteration.html">
+     Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09answer_maze_counting.html">
+     Solution: counting people in the maze
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00answer_maze_comprehension.html">
+     Solution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_defining_classes.html">
+     Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
+     Working with Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_getting_data_from_the_internet.html">
+     Getting data from the Internet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_fields_and_records.html">
+     Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_structured_data.html">
+     Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01answer_maze_saving.html">
+     Solution: Saving and loading data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_earthquake_exercise.html">
+     Exercise/Example: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02answer_earthquake_exercise.html">
+     Solution: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_plotting_with_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy.html">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
+     The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
+     Recap: Understanding the “Greengraph” Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     Solo work with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
+     Git Stash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
+     Working with multiple remotes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     Debugging With Git Bisect
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     How to Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_pypi_packages.html">
+     Packaging your code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_libraries.html">
+     Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_argparse.html">
+     Argparse
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     Python not in the Notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     Managing software issues
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Construction and Design
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_00_introduction.html">
+     Construction
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Coding Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_02_comments.html">
+     Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_03_refactoring.html">
+     Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_04_object_oriented_design.html">
+     Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_05_classes.html">
+     Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_06_design_patterns.html">
+     Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_07_refactoring_boids.html">
+     Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
+     Metaprogramming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     Performance programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
+     Optimising Mandelbrot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
+     NumPy for Performance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
+     Cython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
+     Scaling for containers and algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     What can go wrong?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
+     Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
+     Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
+     Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
+     Saying the same thing multiple ways
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
+     Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Self Assessment
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../self_assessment/index.html">
+   Assessment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/00_packaging_treasure.html">
+     An Adventure In Packaging: An exercise in research software engineering.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/00assessment.html">
+     Packaging Greengraph
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/01_refactoring_trees.html">
+     Refactoring Trees: An exercise in Research Software Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/01assessment.html">
+     Refactoring the Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/module07_construction_and_design/07_01_coding_conventions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/alan-turing-institute/rsd-engineeringcourse"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/alan-turing-institute/rsd-engineeringcourse/issues/new?title=Issue%20on%20page%20%2Fmodule07_construction_and_design/07_01_coding_conventions.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/alan-turing-institute/rsd-engineeringcourse/edit/master/module07_construction_and_design/07_01_coding_conventions.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rsd-engineeringcourse/master?urlpath=tree/module07_construction_and_design/07_01_coding_conventions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-code-many-layouts">
+   One code, many layouts:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#so-many-choices">
+   So many choices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#layout">
+   Layout
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#layout-choices">
+   Layout choices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naming-conventions">
+   Naming Conventions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hungarian-notation">
+   Hungarian Notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#newlines">
+   Newlines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax-choices">
+   Syntax Choices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Coding Conventions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lint">
+   Lint
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="coding-conventions">
+<h1>Coding Conventions<a class="headerlink" href="#coding-conventions" title="Permalink to this headline">¶</a></h1>
+<p>Let’s import first the context for this chapter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">context</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="one-code-many-layouts">
+<h2>One code, many layouts:<a class="headerlink" href="#one-code-many-layouts" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following fragment of python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">species</span>
+
+
+<span class="k">def</span> <span class="nf">AddToReaction</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">reaction</span><span class="p">):</span>
+    <span class="n">reaction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species</span><span class="o">.</span><span class="n">Species</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>this could also have been written:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">species</span> <span class="kn">import</span> <span class="n">Species</span>
+
+
+<span class="k">def</span> <span class="nf">add_to_reaction</span><span class="p">(</span><span class="n">a_name</span><span class="p">,</span> <span class="n">a_reaction</span><span class="p">):</span>
+    <span class="n">l_species</span> <span class="o">=</span> <span class="n">Species</span><span class="p">(</span><span class="n">a_name</span><span class="p">)</span>
+    <span class="n">a_reaction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l_species</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="so-many-choices">
+<h2>So many choices<a class="headerlink" href="#so-many-choices" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Layout</p></li>
+<li><p>Naming</p></li>
+<li><p>Syntax choices</p></li>
+</ul>
+</div>
+<div class="section" id="layout">
+<h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reaction</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;H2O&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reaction2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;reactants&quot;</span><span class="p">:</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;H&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;H&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;O&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;products&quot;</span><span class="p">:</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;H2O&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="layout-choices">
+<h2>Layout choices<a class="headerlink" href="#layout-choices" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Brace style</p></li>
+<li><p>Line length</p></li>
+<li><p>Indentation</p></li>
+<li><p>Whitespace/Tabs</p></li>
+</ul>
+<p>Inconsistency will produce a mess in your code! Some choices will make your code harder to read, whereas others may affect the code. For example, if you copy/paste code with tabs in a place that’s using spaces, they may appear OK in your screen but it will fail when running it.</p>
+</div>
+<div class="section" id="naming-conventions">
+<h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Camel_case">Camel case</a> is used in the following example, where class name is in UpperCamel, functions in lowerCamel and underscore_separation for variables names. This convention is used broadly in the python community.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ClassName</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">methodName</span><span class="p">(</span><span class="n">variable_name</span><span class="p">):</span>
+        <span class="n">instance_variable</span> <span class="o">=</span> <span class="n">variable_name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, particular projects may have their own conventions. This other example uses <code class="docutils literal notranslate"><span class="pre">underscore_separation</span></code> for all the names.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">class_name</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">method_name</span><span class="p">(</span><span class="n">a_variable</span><span class="p">):</span>
+        <span class="n">m_instance_variable</span> <span class="o">=</span> <span class="n">a_variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="hungarian-notation">
+<h2>Hungarian Notation<a class="headerlink" href="#hungarian-notation" title="Permalink to this headline">¶</a></h2>
+<p>Prefix denotes <em>type</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fNumber</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sEntry</span><span class="p">)</span> <span class="o">+</span> <span class="n">iOffset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So in the example above we know that we are creating a <code class="docutils literal notranslate"><span class="pre">f</span></code>loat number as a composition of a <code class="docutils literal notranslate"><span class="pre">s</span></code>tring entry and an <code class="docutils literal notranslate"><span class="pre">i</span></code>nteger offset.</p>
+<p>People may find this useful in languages like Python where the type is intrinsic in the variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="newlines">
+<h2>Newlines<a class="headerlink" href="#newlines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Newlines make code easier to read</p></li>
+<li><p>Newlines make less code fit on a screen</p></li>
+</ul>
+<p>Use newlines to describe your code’s <em>rhythm</em>.</p>
+</div>
+<div class="section" id="syntax-choices">
+<h2>Syntax Choices<a class="headerlink" href="#syntax-choices" title="Permalink to this headline">¶</a></h2>
+<p>The following two snippets do the same, but the second is separated into more steps, making it more readable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anothervariable</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">variable</span> <span class="o">==</span> <span class="n">anothervariable</span><span class="p">)</span> <span class="ow">and</span> <span class="n">flag1</span> <span class="ow">or</span> <span class="n">flag2</span><span class="p">:</span>
+    <span class="n">do_something</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anothervariable</span> <span class="o">=</span> <span class="n">anothervariable</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">variable_equality</span> <span class="o">=</span> <span class="n">variable</span> <span class="o">==</span> <span class="n">anothervariable</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">variable_equality</span> <span class="ow">and</span> <span class="n">flag1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">flag2</span><span class="p">:</span>
+    <span class="n">do_something</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We create extra variables as an intermediate step. Don’t worry about the performance now, the compiler will do the right thing.</p>
+<p>What about operator precedence? Being explicit helps to remind yourself what you are doing.</p>
+<ul class="simple">
+<li><p>Explicit operator precedence</p></li>
+<li><p>Compound expressions</p></li>
+<li><p>Package import choices</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Coding Conventions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>You should try to have an agreed policy for your team for these matters.</p>
+<p>If your language sponsor has a standard policy, use that. For example:</p>
+<ul class="simple">
+<li><p><strong>Python</strong>: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a></p></li>
+<li><p><strong>R</strong>: <a class="reference external" href="https://google.github.io/styleguide/Rguide.xml">Google’s guide for R</a>, <a class="reference external" href="https://style.tidyverse.org/">tidyverse style guide</a></p></li>
+<li><p><strong>C++</strong>: <a class="reference external" href="https://google.github.io/styleguide/cppguide.html">Google’s style guide</a>, <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style">Mozilla’s</a></p></li>
+<li><p><strong>Julia</strong>: <a class="reference external" href="https://docs.julialang.org/en/v1/manual/style-guide/index.html">Official style guide</a></p></li>
+</ul>
+</div>
+<div class="section" id="lint">
+<h2>Lint<a class="headerlink" href="#lint" title="Permalink to this headline">¶</a></h2>
+<p>There are automated tools which enforce coding conventions and check for common mistakes.</p>
+<p>These are called <em>linters</em>:</p>
+<p>E.g. <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> <a class="reference external" href="https://pypi.org/project/pycodestyle/">pycodestyle</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+pycodestyle species.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is a good idea to run a linter before every commit, or include it in your CI tests.</p>
+<p>There are other tools that help with linting that are worth mentioning.
+With <code class="docutils literal notranslate"><span class="pre">pylint</span></code> you can also get other useful information about the quality of your code:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> <a class="reference external" href="https://www.pylint.org/">pylint</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+pylint species.py || echo &quot;Note the linting failures&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>************* Module species
+species.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+species.py:1:0: C0115: Missing class docstring (missing-class-docstring)
+species.py:1:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+
+--------------------------------------------------------------------
+Your code has been rated at -5.00/10 (previous run: -5.00/10, +0.00)
+
+Note the linting failures
+</pre></div>
+</div>
+</div>
+</div>
+<p>and with <a class="reference external" href="https://black.readthedocs.io/">black</a> you can fix all the errors at once.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>black species.py
+</pre></div>
+</div>
+<p>These linters can be configured to choose which points to flag and which to ignore.</p>
+<p>Do not blindly believe all these automated tools! Style guides are <strong>guides</strong> not <strong>rules</strong>.</p>
+<p>Finally, there are tools like <a class="reference external" href="https://editorconfig.org/">editorconfig</a> to help sharing the conventions used within a project, where each contributor uses different IDEs and tools. There are also bots like <a class="reference external" href="https://pep8speaks.com/">pep8speaks</a> that comments on contributors’ pull requests suggesting what to change to follow the conventions for the project.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./module07_construction_and_design"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="07_00_introduction.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Construction</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="07_02_comments.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Comments</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Alan Turing Institute<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

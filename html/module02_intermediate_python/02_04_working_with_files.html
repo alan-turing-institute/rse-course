@@ -1,0 +1,1434 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Working with Data &#8212; Research Software Engineering with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting data from the Internet" href="02_05_getting_data_from_the_internet.html" />
+    <link rel="prev" title="Defining your own classes" href="02_03_defining_classes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Research Software Engineering with Python
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/00_linux.html">
+     Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_mac.html">
+     MacOS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_windows.html">
+     Windows
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
+     An example Python data analysis notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_using_functions.html">
+     Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_types.html">
+     Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_containers.html">
+     Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_data_structures.html">
+     Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07answer_maze_model.html">
+     Solution: my Maze Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_control_and_flow.html">
+     Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_iteration.html">
+     Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09answer_maze_counting.html">
+     Solution: counting people in the maze
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Intermediate Python
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_00_comprehensions.html">
+     Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_00answer_maze_comprehension.html">
+     Solution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_01_functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_02_using_libraries.html">
+     Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_03_defining_classes.html">
+     Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Working with Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_05_getting_data_from_the_internet.html">
+     Getting data from the Internet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_fields_and_records.html">
+     Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_structured_data.html">
+     Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01answer_maze_saving.html">
+     Solution: Saving and loading data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_earthquake_exercise.html">
+     Exercise/Example: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02answer_earthquake_exercise.html">
+     Solution: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_plotting_with_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy.html">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
+     The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
+     Recap: Understanding the “Greengraph” Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     Solo work with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
+     Git Stash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
+     Working with multiple remotes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     Debugging With Git Bisect
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     How to Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_pypi_packages.html">
+     Packaging your code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_libraries.html">
+     Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_argparse.html">
+     Argparse
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     Python not in the Notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     Managing software issues
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_coding_conventions.html">
+     Coding Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_comments.html">
+     Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_refactoring.html">
+     Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_object_oriented_design.html">
+     Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_classes.html">
+     Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_design_patterns.html">
+     Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_refactoring_boids.html">
+     Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
+     Metaprogramming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     Performance programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
+     Optimising Mandelbrot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
+     NumPy for Performance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
+     Cython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
+     Scaling for containers and algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     What can go wrong?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
+     Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
+     Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
+     Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
+     Saying the same thing multiple ways
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
+     Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Self Assessment
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../self_assessment/index.html">
+   Assessment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/00_packaging_treasure.html">
+     An Adventure In Packaging: An exercise in research software engineering.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/00assessment.html">
+     Packaging Greengraph
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/01_refactoring_trees.html">
+     Refactoring Trees: An exercise in Research Software Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/01assessment.html">
+     Refactoring the Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/module02_intermediate_python/02_04_working_with_files.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/alan-turing-institute/rsd-engineeringcourse"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/alan-turing-institute/rsd-engineeringcourse/issues/new?title=Issue%20on%20page%20%2Fmodule02_intermediate_python/02_04_working_with_files.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/alan-turing-institute/rsd-engineeringcourse/edit/master/module02_intermediate_python/02_04_working_with_files.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rsd-engineeringcourse/master?urlpath=tree/module02_intermediate_python/02_04_working_with_files.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-data-from-files">
+   Loading data from files
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-data">
+     Loading data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-example-datafile">
+     An example datafile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#path-independence-and-os">
+     Path independence and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       os
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-python-file-type">
+     The python
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       file
+      </span>
+     </code>
+     type
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#working-with-files">
+     Working with files.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#converting-strings-to-files">
+     Converting Strings to Files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#closing-files">
+     Closing files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-files">
+     Writing files
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="working-with-data">
+<h1>Working with Data<a class="headerlink" href="#working-with-data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="loading-data-from-files">
+<h2>Loading data from files<a class="headerlink" href="#loading-data-from-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="loading-data">
+<h3>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h3>
+<p>An important part of this course is about using Python to analyse and visualise data.
+Most data, of course, is supplied to us in various <em>formats</em>: spreadsheets, database dumps, or text files in various formats (csv, tsv, json, yaml, hdf5, netcdf)
+It is also stored in some <em>medium</em>: on a local disk, a network drive, or on the internet in various ways.
+It is important to distinguish the data format, how the data is structured into a file, from the data’s storage, where it is put.</p>
+<p>We’ll look first at the question of data <em>transport</em>: loading data from a disk, and at downloading data from the internet.
+Then we’ll look at data <em>parsing</em>: building Python structures from the data.
+These are related, but separate questions.</p>
+</div>
+<div class="section" id="an-example-datafile">
+<h3>An example datafile<a class="headerlink" href="#an-example-datafile" title="Permalink to this headline">¶</a></h3>
+<p>Let’s write an example datafile to disk so we can investigate it. We’ll just use a plain-text file. Jupyter notebook provides a way to do this: if we put
+<code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> at the top of a cell, instead of being interpreted as python, the cell contents are saved to disk.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile mydata.txt
+A poet once said, &#39;The whole universe is in a glass of wine.&#39;
+We will probably never know in what sense he meant it, 
+for poets do not write to be understood. 
+But it is true that if we look at a glass of wine closely enough we see the entire universe. 
+There are the things of physics: the twisting liquid which evaporates depending
+on the wind and weather, the reflection in the glass;
+and our imagination adds atoms.
+The glass is a distillation of the earth&#39;s rocks,
+and in its composition we see the secrets of the universe&#39;s age, and the evolution of stars. 
+What strange array of chemicals are in the wine? How did they come to be? 
+There are the ferments, the enzymes, the substrates, and the products.
+There in wine is found the great generalization; all life is fermentation.
+Nobody can discover the chemistry of wine without discovering, 
+as did Louis Pasteur, the cause of much disease.
+How vivid is the claret, pressing its existence into the consciousness that watches it!
+If our small minds, for some convenience, divide this glass of wine, this universe, 
+into parts -- 
+physics, biology, geology, astronomy, psychology, and so on -- 
+remember that nature does not know it!
+
+So let us put it all back together, not forgetting ultimately what it is for.
+Let it give us one more final pleasure; drink it and forget it all!
+   - Richard Feynman
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting mydata.txt
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where did that go? It went to the current folder, which for a notebook, by default, is where the notebook is on disk.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># The &#39;os&#39; module gives us all the tools we need to search in the file system</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>  <span class="c1"># Use the &#39;getcwd&#39; function from the &#39;os&#39; module to find where we are on disk.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module02_intermediate_python&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can we see if it is there?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s2">&quot;.txt&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mydata.txt&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yep! Note how we used a list comprehension to filter all the extraneous files.</p>
+</div>
+<div class="section" id="path-independence-and-os">
+<h3>Path independence and <code class="docutils literal notranslate"><span class="pre">os</span></code><a class="headerlink" href="#path-independence-and-os" title="Permalink to this headline">¶</a></h3>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">dirname</span></code> to get the parent folder for a folder, in a platform independent-way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could do this manually using <code class="docutils literal notranslate"><span class="pre">split</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>But this would not work on Windows, where path elements are separated with a <code class="docutils literal notranslate"><span class="pre">\</span></code> instead of a <code class="docutils literal notranslate"><span class="pre">/</span></code>. So it’s important
+to use <code class="docutils literal notranslate"><span class="pre">os.path</span></code> for this stuff.</p>
+<p><strong>Supplementary Materials</strong>: If you’re not already comfortable with how files fit into folders, and folders form a tree,
+with folders containing subfolders, then look at <a class="reference external" href="http://swcarpentry.github.io/shell-novice/02-filedir/index.html">http://swcarpentry.github.io/shell-novice/02-filedir/index.html</a>.</p>
+<p>Satisfy yourself that after using <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code>, you can then find the file on disk with Windows Explorer, OSX Finder, or the Linux Shell.</p>
+<p>We can see how in Python we can investigate the file system with functions in the <code class="docutils literal notranslate"><span class="pre">os</span></code> module, using just the same programming approaches as for anything else.</p>
+<p>We’ll gradually learn more features of the <code class="docutils literal notranslate"><span class="pre">os</span></code> module as we go, allowing us to move around the disk, <code class="docutils literal notranslate"><span class="pre">walk</span></code> around the
+disk looking for relevant files, and so on. These will be important to master for automating our data analyses.</p>
+</div>
+<div class="section" id="the-python-file-type">
+<h3>The python <code class="docutils literal notranslate"><span class="pre">file</span></code> type<a class="headerlink" href="#the-python-file-type" title="Permalink to this headline">¶</a></h3>
+<p>So, let’s read our file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mydata.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_io.TextIOWrapper
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can go line-by-line, by treating the file as an iterable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myfile</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&quot;A poet once said, &#39;The whole universe is in a glass of wine.&#39;\n&quot;,
+ &#39;We will probably never know in what sense he meant it, \n&#39;,
+ &#39;for poets do not write to be understood. \n&#39;,
+ &#39;But it is true that if we look at a glass of wine closely enough we see the entire universe. \n&#39;,
+ &#39;There are the things of physics: the twisting liquid which evaporates depending\n&#39;,
+ &#39;on the wind and weather, the reflection in the glass;\n&#39;,
+ &#39;and our imagination adds atoms.\n&#39;,
+ &quot;The glass is a distillation of the earth&#39;s rocks,\n&quot;,
+ &quot;and in its composition we see the secrets of the universe&#39;s age, and the evolution of stars. \n&quot;,
+ &#39;What strange array of chemicals are in the wine? How did they come to be? \n&#39;,
+ &#39;There are the ferments, the enzymes, the substrates, and the products.\n&#39;,
+ &#39;There in wine is found the great generalization; all life is fermentation.\n&#39;,
+ &#39;Nobody can discover the chemistry of wine without discovering, \n&#39;,
+ &#39;as did Louis Pasteur, the cause of much disease.\n&#39;,
+ &#39;How vivid is the claret, pressing its existence into the consciousness that watches it!\n&#39;,
+ &#39;If our small minds, for some convenience, divide this glass of wine, this universe, \n&#39;,
+ &#39;into parts -- \n&#39;,
+ &#39;physics, biology, geology, astronomy, psychology, and so on -- \n&#39;,
+ &#39;remember that nature does not know it!\n&#39;,
+ &#39;\n&#39;,
+ &#39;So let us put it all back together, not forgetting ultimately what it is for.\n&#39;,
+ &#39;Let it give us one more final pleasure; drink it and forget it all!\n&#39;,
+ &#39;   - Richard Feynman\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we do that again, the file has already finished, there is no more data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myfile</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to ‘rewind’ it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myfile</span> <span class="k">if</span> <span class="s2">&quot;know&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[56, 39]
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s really important to remember that a file is a <em>different</em> built in type than a string.</p>
+</div>
+<div class="section" id="working-with-files">
+<h3>Working with files.<a class="headerlink" href="#working-with-files" title="Permalink to this headline">¶</a></h3>
+<p>We can read one line at a time with <code class="docutils literal notranslate"><span class="pre">readline</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">myfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;A poet once said, &#39;The whole universe is in a glass of wine.&#39;\n&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">second</span> <span class="o">=</span> <span class="n">myfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">second</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;We will probably never know in what sense he meant it, \n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can read the whole remaining file with <code class="docutils literal notranslate"><span class="pre">read</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rest</span> <span class="o">=</span> <span class="n">myfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rest</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;for poets do not write to be understood. \nBut it is true that if we look at a glass of wine closely enough we see the entire universe. \nThere are the things of physics: the twisting liquid which evaporates depending\non the wind and weather, the reflection in the glass;\nand our imagination adds atoms.\nThe glass is a distillation of the earth&#39;s rocks,\nand in its composition we see the secrets of the universe&#39;s age, and the evolution of stars. \nWhat strange array of chemicals are in the wine? How did they come to be? \nThere are the ferments, the enzymes, the substrates, and the products.\nThere in wine is found the great generalization; all life is fermentation.\nNobody can discover the chemistry of wine without discovering, \nas did Louis Pasteur, the cause of much disease.\nHow vivid is the claret, pressing its existence into the consciousness that watches it!\nIf our small minds, for some convenience, divide this glass of wine, this universe, \ninto parts -- \nphysics, biology, geology, astronomy, psychology, and so on -- \nremember that nature does not know it!\n\nSo let us put it all back together, not forgetting ultimately what it is for.\nLet it give us one more final pleasure; drink it and forget it all!\n   - Richard Feynman\n&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Which means that when a file is first opened, read is useful to just get the whole thing as a string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mydata.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;A poet once said, &#39;The whole universe is in a glass of wine.&#39;\nWe will probably never know in what sense he meant it, \nfor poets do not write to be understood. \nBut it is true that if we look at a glass of wine closely enough we see the entire universe. \nThere are the things of physics: the twisting liquid which evaporates depending\non the wind and weather, the reflection in the glass;\nand our imagination adds atoms.\nThe glass is a distillation of the earth&#39;s rocks,\nand in its composition we see the secrets of the universe&#39;s age, and the evolution of stars. \nWhat strange array of chemicals are in the wine? How did they come to be? \nThere are the ferments, the enzymes, the substrates, and the products.\nThere in wine is found the great generalization; all life is fermentation.\nNobody can discover the chemistry of wine without discovering, \nas did Louis Pasteur, the cause of much disease.\nHow vivid is the claret, pressing its existence into the consciousness that watches it!\nIf our small minds, for some convenience, divide this glass of wine, this universe, \ninto parts -- \nphysics, biology, geology, astronomy, psychology, and so on -- \nremember that nature does not know it!\n\nSo let us put it all back together, not forgetting ultimately what it is for.\nLet it give us one more final pleasure; drink it and forget it all!\n   - Richard Feynman\n&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also read just a few characters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">1335</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1335
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\n   - Richard F&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="converting-strings-to-files">
+<h3>Converting Strings to Files<a class="headerlink" href="#converting-strings-to-files" title="Permalink to this headline">¶</a></h3>
+<p>Because files and strings are different types, we CANNOT just treat strings as if they were files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;Hello World</span><span class="se">\n</span><span class="s2"> My name is James&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystring</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello World\n My name is James&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystring</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8009</span><span class="o">/</span><span class="mf">3136785225.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mystring</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: &#39;str&#39; object has no attribute &#39;readline&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is important, because some file format parsers expect input from a <strong>file</strong> and not a string.
+We can convert between them using the StringIO class of the <a class="reference external" href="https://docs.python.org/3/library/io.html">io module</a> in the standard library:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystringasafile</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">mystring</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystringasafile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello World\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystringasafile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; My name is James&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that in a string, <code class="docutils literal notranslate"><span class="pre">\n</span></code> is used to represent a newline.</p>
+</div>
+<div class="section" id="closing-files">
+<h3>Closing files<a class="headerlink" href="#closing-files" title="Permalink to this headline">¶</a></h3>
+<p>We really ought to close files when we’ve finished with them, as it makes the computer more efficient. (On a shared computer,
+this is particularly important)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because it’s so easy to forget this, python provides a <strong>context manager</strong> to open a file, then close it automatically at
+the end of an indented block:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mydata.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">somefile</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">somefile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">content</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;A poet once said, &#39;The whole universe is in a glass of wine.&#39;\nWe will probably never know in what sense he meant it, \nfor poets do not write to be understood. \nBut it is true that if we look at a glass of wine closely enough we see the entire universe. \nThere are the things of physics: the twisting liquid which evaporates depending\non the wind and weather, the reflection in the glass;\nand our imagination adds atoms.\nThe glass is a distillation of the earth&#39;s rocks,\nand in its composition we see the secrets of the universe&#39;s age, and the evolution of stars. \nWhat strange array of chemicals are in the wine? How did they come to be? \nThere are the ferments, the enzymes, the substrates, and the products.\nThere in wine is found the great generalization; all life is fermentation.\nNobody can discover the chemistry of wine without discovering, \nas did Louis Pasteur, the cause of much disease.\nHow vivid is the claret, pressing its existence into the consciousness that watches it!\nIf our small minds, for some convenience, divide this glass of wine, this universe, \ninto parts -- \nphysics, biology, geology, astronomy, psychology, and so on -- \nremember that nature does not know it!\n\nSo let us put it all back together, not forgetting ultimately what it is for.\nLet it give us one more final pleasure; drink it and forget it all!\n   - Richard Feynman\n&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code to be done while the file is open is indented, just like for an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement.</p>
+<p>You should pretty much <strong>always</strong> use this syntax for working with files.</p>
+</div>
+<div class="section" id="writing-files">
+<h3>Writing files<a class="headerlink" href="#writing-files" title="Permalink to this headline">¶</a></h3>
+<p>We might want to create a file from a string in memory. We can’t do this with the notebook’s <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> – this is
+just a notebook convenience, and isn’t very programmable.</p>
+<p>When we open a file, we can specify a ‘mode’, in this case, ‘w’ for writing. (‘r’ for reading is the default.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mywrittenfile&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">target</span><span class="p">:</span>
+    <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+    <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mywrittenfile&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HelloWorld
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we can “append” to a file with mode ‘a’:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mywrittenfile&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">target</span><span class="p">:</span>
+    <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+    <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mywrittenfile&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HelloWorldHelloJames
+</pre></div>
+</div>
+</div>
+</div>
+<p>If a file already exists, mode <code class="docutils literal notranslate"><span class="pre">w</span></code> will overwrite it.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./module02_intermediate_python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="02_03_defining_classes.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Defining your own classes</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="02_05_getting_data_from_the_internet.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Getting data from the Internet</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Alan Turing Institute<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
