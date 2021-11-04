@@ -56,7 +56,7 @@ get_ipython().run_cell_magic('bash', '', 'git remote add origin https://${GITHUB
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git remote -v\necho "GITHUB_ACTOR ${GITHUB_ACTOR}"\necho "GITHUB_TOKEN ${GITHUB_TOKEN}"')
+get_ipython().run_cell_magic('bash', '', 'git remote -v\necho "GITHUB_ACTOR ${GITHUB_ACTOR}"\necho "GITHUB_TOKEN ${GITHUB_TOKEN}"\necho "Email: $(git config --get user.email)"\necho "Name: $(git config --get user.name)"')
 
 
 # In[5]:
