@@ -44,6 +44,12 @@ working_dir
 # In[2]:
 
 
+get_ipython().run_cell_magic('bash', '', 'git remote -v\necho "GITHUB_TOKEN ${GITHUB_TOKEN}"\necho "GITHUB_ACTOR ${GITHUB_ACTOR}"')
+
+
+# In[3]:
+
+
 get_ipython().run_cell_magic('bash', '', 'git remote add origin https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git')
 
 
