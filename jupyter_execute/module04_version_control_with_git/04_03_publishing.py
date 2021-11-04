@@ -53,7 +53,7 @@ get_ipython().run_cell_magic('bash', '', 'git remote -v\necho "GITHUB_TOKEN ${GI
 get_ipython().run_cell_magic('bash', '', 'git remote add origin https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git')
 
 
-# In[3]:
+# In[4]:
 
 
 get_ipython().run_cell_magic('bash', '', "git push -uf origin main # Note we use the '-f' flag here to force an update")

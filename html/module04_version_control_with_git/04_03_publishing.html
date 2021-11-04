@@ -939,11 +939,7 @@ echo &quot;GITHUB_ACTOR ${GITHUB_ACTOR}&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	https://@github.com/jack89roberts/github-example.git (fetch)
-jack89roberts	https://@github.com/jack89roberts/github-example.git (push)
-origin	https://github.com/alan-turing-institute/rsd-engineeringcourse (fetch)
-origin	https://github.com/alan-turing-institute/rsd-engineeringcourse (push)
-GITHUB_TOKEN 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GITHUB_TOKEN 
 GITHUB_ACTOR jemrobinson
 </pre></div>
 </div>
@@ -956,14 +952,22 @@ git remote add origin https://${GITHUB_TOKEN}@github.com/alan-turing-institute/g
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an update
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>error: remote origin already exists.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fatal: could not read Username for &#39;https://github.com&#39;: No such device or address
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8364</span><span class="o">/</span><span class="mf">209075397.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;git remote add origin https://$</span><span class="si">{GITHUB_TOKEN}</span><span class="s1">@github.com/alan-turing-institute/github-example.git</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9656</span><span class="o">/</span><span class="mf">2000360126.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s2">&quot;git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an update</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2404</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
@@ -1000,24 +1004,7 @@ git remote add origin https://${GITHUB_TOKEN}@github.com/alan-turing-institute/g
 <span class="g g-Whitespace">    </span><span class="mi">246</span> 
 <span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="k">def</span> <span class="nf">_run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">to_close</span><span class="p">):</span>
 
-<span class="ne">CalledProcessError</span>: Command &#39;b&#39;git remote add origin https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git\n&#39;&#39; returned non-zero exit status 3.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an update
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Branch &#39;main&#39; set up to track remote branch &#39;main&#39; from &#39;origin&#39;.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/alan-turing-institute/github-example.git
- + 5fcbe68...b5d36db main -&gt; main (forced update)
+<span class="ne">CalledProcessError</span>: Command &#39;b&quot;git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an update\n&quot;&#39; returned non-zero exit status 128.
 </pre></div>
 </div>
 </div>

@@ -77,7 +77,7 @@ cat Wales.md
 # 
 # To let the server know there's a new branch use:
 
-# In[12]:
+# In[11]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git push -u origin experiment')

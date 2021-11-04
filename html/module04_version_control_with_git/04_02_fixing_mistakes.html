@@ -913,62 +913,10 @@ git revert HEAD^
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author identity unknown
-
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email &quot;you@example.com&quot;
-  git config --global user.name &quot;Your Name&quot;
-
-to set your account&#39;s default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: empty ident name (for &lt;runner@fv-az180-449.aibneqh1mxpuhl3tnnuy2ifbce.bx.internal.cloudapp.net&gt;) not allowed
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8343</span><span class="o">/</span><span class="mf">3977897436.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;git revert HEAD^</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2404</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2405</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2406</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2407</span>             <span class="k">return</span> <span class="n">result</span>
-<span class="g g-Whitespace">   </span><span class="mi">2408</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magics/script.py</span> in <span class="ni">named_script_magic</span><span class="nt">(line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>                 <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
-<span class="ne">--&gt; </span><span class="mi">142</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span> 
-<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="c1"># write a basic docstring:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>                 <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">232</span>             <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magic.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(f, *a, **k)</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="c1"># but it&#39;s overkill for just that one bit of state.</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">def</span> <span class="nf">magic_deco</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">187</span>         <span class="n">call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span> 
-<span class="g g-Whitespace">    </span><span class="mi">189</span>         <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magics/script.py</span> in <span class="ni">shebang</span><span class="nt">(self, line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span>             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">244</span>         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">245</span>             <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">err</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">246</span> 
-<span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="k">def</span> <span class="nf">_run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">to_close</span><span class="p">):</span>
-
-<span class="ne">CalledProcessError</span>: Command &#39;b&#39;git revert HEAD^\n&#39;&#39; returned non-zero exit status 128.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging test.md
+[main a4b17de] Revert &quot;Add a lie about a mountain&quot;
+ Date: Thu Nov 4 13:50:48 2021 +0000
+ 1 file changed, 2 deletions(-)
 </pre></div>
 </div>
 </div>
@@ -992,29 +940,29 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit b5d36db8bc23033b505db148ebc81659e6a53b15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit a4b17de4548aa0b74a800367101c341fcedcbffb
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 2c26599c8c0182f0a0e2085e34e8e454901d761e.
+    This reverts commit df79f6e4c8dd103b5bc06623dee8de4e72536f70.
 
-commit bf4ec88ecaba6cc437e34108f8b451c73050ff28
+commit 10b9df9c415650dc9940c21d991c2b86f5e1db0f
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Change title
 
-commit 2c26599c8c0182f0a0e2085e34e8e454901d761e
+commit df79f6e4c8dd103b5bc06623dee8de4e72536f70
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Add a lie about a mountain
 
-commit 06530761f1c3e18917cb67a1d1b0aa156a2231b0
+commit 7831799a14cb8836d71fde01bd6bf5f44fa1e1f2
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     First commit of discourse on UK topography
 </pre></div>
@@ -1100,7 +1048,7 @@ git commit -am &quot;Add a silly spelling&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main f60e0d2] Add a silly spelling
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 2dfbcda] Add a silly spelling
  1 file changed, 3 insertions(+), 2 deletions(-)
 </pre></div>
 </div>
@@ -1114,35 +1062,35 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit f60e0d2d434ccf8ffa85a0fec1c977bee5eb2f35
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 2dfbcda34ac95a03e0f4ec3f434253c5b60c00ee
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Add a silly spelling
 
-commit b5d36db8bc23033b505db148ebc81659e6a53b15
+commit a4b17de4548aa0b74a800367101c341fcedcbffb
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 2c26599c8c0182f0a0e2085e34e8e454901d761e.
+    This reverts commit df79f6e4c8dd103b5bc06623dee8de4e72536f70.
 
-commit bf4ec88ecaba6cc437e34108f8b451c73050ff28
+commit 10b9df9c415650dc9940c21d991c2b86f5e1db0f
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Change title
 
-commit 2c26599c8c0182f0a0e2085e34e8e454901d761e
+commit df79f6e4c8dd103b5bc06623dee8de4e72536f70
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Add a lie about a mountain
 
-commit 06530761f1c3e18917cb67a1d1b0aa156a2231b0
+commit 7831799a14cb8836d71fde01bd6bf5f44fa1e1f2
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     First commit of discourse on UK topography
 </pre></div>
@@ -1174,29 +1122,29 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit b5d36db8bc23033b505db148ebc81659e6a53b15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit a4b17de4548aa0b74a800367101c341fcedcbffb
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 2c26599c8c0182f0a0e2085e34e8e454901d761e.
+    This reverts commit df79f6e4c8dd103b5bc06623dee8de4e72536f70.
 
-commit bf4ec88ecaba6cc437e34108f8b451c73050ff28
+commit 10b9df9c415650dc9940c21d991c2b86f5e1db0f
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Change title
 
-commit 2c26599c8c0182f0a0e2085e34e8e454901d761e
+commit df79f6e4c8dd103b5bc06623dee8de4e72536f70
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     Add a lie about a mountain
 
-commit 06530761f1c3e18917cb67a1d1b0aa156a2231b0
+commit 7831799a14cb8836d71fde01bd6bf5f44fa1e1f2
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-01-20
+Date:   2021-11-04
 
     First commit of discourse on UK topography
 </pre></div>
