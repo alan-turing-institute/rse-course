@@ -8,15 +8,15 @@ This is a relatively short course (8-10 half-day modules) which is intensive and
 
 ## Pre-requisites
 
-* It would be helpful to have experience in at least one programming language (for example `C++`, `C`, `Fortran`, `Python`, `Ruby`, `Matlab` or `R`) but this is not a requirement.
-* Experience with version control and/or the `Unix` shell, for instance from Software Carpentry, would also be helpful.
-* You should bring your own laptop to the course as there are several hands-on exercise for you to work through.
-* We have provided [setup](session99/index.md) instructions for installing the software needed for the course on your computer.
-* **Eligibility:** This course is primarily aimed at Turing-connected PhD students. Other Turing-affiliated people might join too if capacity allows.
+- It would be helpful to have experience in at least one programming language (for example `C++`, `C`, `Fortran`, `Python`, `Ruby`, `Matlab` or `R`) but this is not a requirement.
+- Experience with version control and/or the `Unix` shell, for instance from Software Carpentry, would also be helpful.
+- You should bring your own laptop to the course as there are several hands-on exercise for you to work through.
+- We have provided [setup](course_prerequisites/index.md) instructions for installing the software needed for the course on your computer.
+- **Eligibility:** This course is primarily aimed at Turing-connected PhD students. Other Turing-affiliated people might join too if capacity allows.
 
 ## Instructors
 
-* [Turing Research Engineering Group](https://www.turing.ac.uk/research/research-engineering)
+- [Turing Research Engineering Group](https://www.turing.ac.uk/research/research-engineering)
 
 ## Exercises
 
@@ -27,6 +27,9 @@ However, this course is **not** intended to teach `Python` and you may find supp
 ## Evaluation
 
 **None:** you are not graded. There are two exercises that you can use for self-assessment.
+
+- [Packaging Greengraph](self_assessment/00_packaging_treasure.ipynb)
+- [Refactoring the Bad Boids](self_assessment/01_refactoring_trees.ipynb)
 
 ## Versions
 

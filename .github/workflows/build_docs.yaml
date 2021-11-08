@@ -22,13 +22,25 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Install required packages
-        run: |
-          sudo apt-get -y install ffmpeg
-          pip install -r requirements.txt
+      - name: Setup SSH keys
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Install apt packages
+        run: sudo apt-get -y install ffmpeg pandoc texlive-latex-base texlive-latex-extra
+      - name: Install Python packages
+        run: pip install -r requirements.txt
       - name: Build latest documentation
         shell: bash
-        run: ./build_docs.sh
+        run: |
+          git config --global user.name "Turing Developer"
+          git config --global user.email "developer@example.com"
+          git config --global pull.rebase false
+          git config --list
+          echo "... removing ..."
+          git config --list | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
+          git config --list
+          ./build_docs.sh
       - name: Deploy documentation to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@5dc1d5a192aeb5ab5b7d5a77b7d36aea4a7f5c92 # This is version 4.1.4
         with:
