@@ -17,19 +17,27 @@ working_dir = os.path.join(git_dir, "git_example")
 os.chdir(working_dir)
 
 
+# Remind ourselves which branch we are using:
+
 # In[2]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr\n* Fan y Big\n* Cadair Idris\n* Penygader')
+get_ipython().run_cell_magic('bash', '', 'git branch -vv')
 
 
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git stash')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr\n* Fan y Big\n* Cadair Idris\n* Penygader')
 
 
 # In[4]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git stash')
+
+
+# In[5]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git pull')
@@ -37,7 +45,7 @@ get_ipython().run_cell_magic('bash', '', 'git pull')
 
 # By stashing your work first, your repository becomes clean, allowing you to pull. To restore your changes, use `git stash apply`.
 
-# In[5]:
+# In[6]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git stash apply')
@@ -74,13 +82,13 @@ get_ipython().run_cell_magic('bash', '', 'git stash apply')
 
 # In our example, we might want to make our .md files into a PDF with pandoc:
 
-# In[6]:
+# In[7]:
 
 
 get_ipython().run_cell_magic('writefile', 'Makefile', '\nMDS=$(wildcard *.md)\nPDFS=$(MDS:.md=.pdf)\n\ndefault: $(PDFS)\n\n%.pdf: %.md\n\tpandoc $< -o $@')
 
 
-# In[7]:
+# In[8]:
 
 
 get_ipython().run_cell_magic('bash', '', 'make')
@@ -90,7 +98,7 @@ get_ipython().run_cell_magic('bash', '', 'make')
 
 # But we don't want those to show up in git:
 
-# In[8]:
+# In[9]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git status')
@@ -98,19 +106,19 @@ get_ipython().run_cell_magic('bash', '', 'git status')
 
 # Use .gitignore files to tell Git not to pay attention to files with certain paths:
 
-# In[9]:
+# In[10]:
 
 
 get_ipython().run_cell_magic('writefile', '.gitignore', '*.pdf')
 
 
-# In[10]:
+# In[11]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git status')
 
 
-# In[11]:
+# In[12]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git add Makefile\ngit add .gitignore\ngit commit -am "Add a makefile and ignore generated files"\ngit push')
@@ -120,13 +128,13 @@ get_ipython().run_cell_magic('bash', '', 'git add Makefile\ngit add .gitignore\n
 
 # Sometimes you end up creating various files that you do not want to include in version control. An easy way of deleting them (if that is what you want) is the `git clean` command, which will remove the files that git is not tracking.
 
-# In[12]:
+# In[13]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git clean -fX')
 
 
-# In[13]:
+# In[14]:
 
 
 get_ipython().run_cell_magic('bash', '', 'ls')
@@ -193,13 +201,13 @@ get_ipython().run_cell_magic('bash', '', 'ls')
 # A pair of lines with three dashes, to the top of each markdown file. This is how GitHub knows which markdown files to make into web pages.
 # [Here's why](https://jekyllrb.com/docs/front-matter/) for the curious. 
 
-# In[14]:
+# In[15]:
 
 
 get_ipython().run_cell_magic('writefile', 'test.md', '---\ntitle: Github Pages Example\n---\nMountains and Lakes in the UK\n===================\n\nEngerland is not very mountainous.\nBut has some tall hills, and maybe a mountain or two depending on your definition.')
 
 
-# In[15]:
+# In[16]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git commit -am "Add github pages YAML frontmatter"')
@@ -211,13 +219,13 @@ get_ipython().run_cell_magic('bash', '', 'git commit -am "Add github pages YAML 
 # By default this is `gh-pages` although you can change it to something else if you prefer.
 # This is best used to create documentation for a program you write, but you can use it for anything.
 
-# In[16]:
+# In[17]:
 
 
 os.chdir(working_dir)
 
 
-# In[17]:
+# In[18]:
 
 
 get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -uf origin gh-pages')
@@ -233,7 +241,7 @@ get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -
 # 
 # You can use GitHub pages to make HTML layouts, here's an [example of how to do it](http://github.com/UCL/ucl-github-pages-example), and [how it looks](http://ucl.github.com/ucl-github-pages-example). We won't go into the detail of this now, but after the class, you might want to try this.
 
-# In[18]:
+# In[19]:
 
 
 get_ipython().run_cell_magic('bash', '', '# Cleanup by removing the gh-pages branch \ngit checkout main\ngit push\ngit branch -d gh-pages\ngit push --delete origin gh-pages \ngit branch --remote')

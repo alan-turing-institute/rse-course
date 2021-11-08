@@ -232,11 +232,11 @@ get_ipython().run_cell_magic('bash', '', 'git branch --remote')
 
 # ## A good branch strategy
 # 
-# * A `production` branch: code used for active work
-# * A `develop` branch: for general new code
+# * A `production` or `main` branch: the current working version of your code
+# * A `develop` branch: where new code can be tested
 # * `feature` branches: for specific new ideas
 # * `release` branches: when you share code with others
-#   * Useful for isolated bug fixes
+#   * Useful for applying bug fixes to older versions of your code
 
 # ## Grab changes from a branch
 # 
