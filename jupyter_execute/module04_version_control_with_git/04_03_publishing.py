@@ -50,7 +50,7 @@ get_ipython().run_cell_magic('bash', '', 'git remote -v\necho "GITHUB_ACTOR ${GI
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git\necho "git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git"')
+get_ipython().run_cell_magic('bash', '', 'git remote add origin git@github.com:alan-turing-institute/github-example.git\necho "git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git"')
 
 
 # In[4]:
@@ -77,7 +77,7 @@ get_ipython().run_cell_magic('bash', '', "git push -uf origin main # Note we use
 
 # Let's add these commands to our diagram:
 
-# In[4]:
+# In[6]:
 
 
 message = """
@@ -111,13 +111,13 @@ wsd(message)
 # vim lakeland.md
 # ```
 
-# In[5]:
+# In[7]:
 
 
 get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland  \n========   \n  \nCumbria has some pretty hills, and lakes too.  ')
 
 
-# In[6]:
+# In[8]:
 
 
 cat lakeland.md
@@ -125,7 +125,7 @@ cat lakeland.md
 
 # ## Git will not by default commit your new file
 
-# In[7]:
+# In[9]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git commit -am "Try to add Lakeland"')
