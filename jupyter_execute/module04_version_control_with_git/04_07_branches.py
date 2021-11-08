@@ -197,25 +197,25 @@ get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~3..HEAD
 # In[24]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch')
+get_ipython().run_cell_magic('bash', '', 'git branch  # list branches')
 
 
 # In[25]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch -d experiment')
+get_ipython().run_cell_magic('bash', '', 'git branch -d experiment  # delete a branch')
 
 
 # In[26]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch')
+get_ipython().run_cell_magic('bash', '', 'git branch # current branch')
 
 
 # In[27]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch --remote')
+get_ipython().run_cell_magic('bash', '', 'git branch --remote  # list remote branches')
 
 
 # In[28]:
@@ -227,7 +227,13 @@ get_ipython().run_cell_magic('bash', '', 'git push --delete origin experiment \n
 # In[29]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch --remote')
+get_ipython().run_cell_magic('bash', '', 'git branch --remote  # list remote branches')
+
+
+# In[30]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git branch -vv # current local branch and tracking')
 
 
 # ## A good branch strategy
