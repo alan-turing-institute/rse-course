@@ -233,7 +233,7 @@ get_ipython().run_cell_magic('bash', '', 'git branch --remote  # list remote bra
 # In[30]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch -vv # current local branch and tracking')
+get_ipython().run_cell_magic('bash', '', 'git push\ngit branch -vv # current local branch and tracking')
 
 
 # ## A good branch strategy
