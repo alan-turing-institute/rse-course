@@ -518,7 +518,7 @@ git commit -am &quot;Add Whernside&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 8c84e4e] Add Whernside
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 1a6b3e2] Add Whernside
  1 file changed, 6 insertions(+)
  create mode 100644 Pennines.md
 </pre></div>
@@ -546,6 +546,23 @@ and the repository exists.
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push -uf origin main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Branch &#39;main&#39; set up to track remote branch &#39;main&#39; from &#39;origin&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+   170a679..1a6b3e2  main -&gt; main
+</pre></div>
+</div>
+</div>
+</div>
 <p>… but note that you need to have the correct permissions to do so.</p>
 </div>
 <div class="section" id="referencing-remotes">
@@ -560,27 +577,28 @@ git log --oneline --left-right jack89roberts/main...origin/main
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 92a57e1 Add github pages YAML frontmatter
-&gt; aaa638f Add a makefile and ignore generated files
-&gt; 416205b Merge branch &#39;experiment&#39;
-&gt; ab614dc Commit Aonach onto main branch
-&gt; 04e5130 Add Cadair Idris
-&gt; c79b442 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
-&gt; 4290cab Add Glyder
-&gt; ae39285 Add another Beacon
-&gt; 7e141ef Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
-&gt; db19b12 Translating from the Welsh
-&gt; 5d27b44 Add a beacon
-&gt; cf3be91 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
-&gt; 2410899 Add wales
-&gt; 4599f44 Add Scotland
-&gt; 21227a9 Add Helvellyn
-&gt; 62035c4 Include lakes in the scope
-&gt; 1af80b6 Add lakeland
-&gt; eb35a2d Revert &quot;Add a lie about a mountain&quot;
-&gt; 440ca6f Change title
-&gt; 12243eb Add a lie about a mountain
-&gt; bc931c0 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 1a6b3e2 Add Whernside
+&gt; 170a679 Add github pages YAML frontmatter
+&gt; 69d1180 Add a makefile and ignore generated files
+&gt; a83b4cd Merge branch &#39;experiment&#39;
+&gt; 626569b Commit Aonach onto main branch
+&gt; 977a41a Add Cadair Idris
+&gt; 29d606f Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+&gt; 5bd1836 Add Glyder
+&gt; fed1028 Add another Beacon
+&gt; 3270dd9 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+&gt; adac309 Translating from the Welsh
+&gt; 8021f72 Add a beacon
+&gt; 3ac8509 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+&gt; b6c9b53 Add wales
+&gt; 69c603f Add Scotland
+&gt; 6f74cc1 Add Helvellyn
+&gt; 09dd84b Include lakes in the scope
+&gt; 65bdd17 Add lakeland
+&gt; 1818ac7 Revert &quot;Add a lie about a mountain&quot;
+&gt; 4c716a7 Change title
+&gt; 5094412 Add a lie about a mountain
+&gt; ec62b7d First commit of discourse on UK topography
 &lt; 31ea056 Add Whernside
 &lt; 009f998 Add github pages YAML frontmatter
 &lt; 2f9bcc8 Add a makefile and ignore generated files
@@ -616,11 +634,6 @@ git diff --name-only origin/main
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pennines.md
-</pre></div>
-</div>
-</div>
 </div>
 <p>When you reference remotes like this, you’re working with a cached copy of the last time you interacted with the remote. You can do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> to update local data with the remotes without actually pulling. You can also get useful information about whether tracking branches are ahead or behind the remote branches they track:</p>
 <div class="cell docutils container">
@@ -631,7 +644,7 @@ git branch -vv
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main 8c84e4e [origin/main: ahead 1] Add Whernside
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main 1a6b3e2 [origin/main] Add Whernside
 </pre></div>
 </div>
 </div>
@@ -661,16 +674,14 @@ git branch -vv
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 mkdir -p bare_repo
+rm -rf bare_repo/*
 cd bare_repo
 git init --bare --initial-branch=main
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reinitialized existing Git repository in /home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module04_version_control_with_git/learning_git/bare_repo/
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>warning: re-init: ignored --initial-branch=main
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initialized empty Git repository in /home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module04_version_control_with_git/learning_git/bare_repo/
 </pre></div>
 </div>
 </div>
@@ -691,57 +702,11 @@ git push -u local_bare main
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To ../bare_repo
- ! [rejected]        main -&gt; main (fetch first)
-error: failed to push some refs to &#39;../bare_repo&#39;
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., &#39;git pull ...&#39;) before pushing again.
-hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Branch &#39;main&#39; set up to track remote branch &#39;main&#39; from &#39;local_bare&#39;.
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10502</span><span class="o">/</span><span class="mf">4106127879.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;git remote add local_bare ../bare_repo</span><span class="se">\n</span><span class="s1">git push -u local_bare main</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2404</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2405</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2406</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2407</span>             <span class="k">return</span> <span class="n">result</span>
-<span class="g g-Whitespace">   </span><span class="mi">2408</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magics/script.py</span> in <span class="ni">named_script_magic</span><span class="nt">(line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>                 <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
-<span class="ne">--&gt; </span><span class="mi">142</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span> 
-<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="c1"># write a basic docstring:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>                 <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">232</span>             <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magic.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(f, *a, **k)</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="c1"># but it&#39;s overkill for just that one bit of state.</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">def</span> <span class="nf">magic_deco</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">187</span>         <span class="n">call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span> 
-<span class="g g-Whitespace">    </span><span class="mi">189</span>         <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magics/script.py</span> in <span class="ni">shebang</span><span class="nt">(self, line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span>             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">244</span>         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">245</span>             <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">err</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">246</span> 
-<span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="k">def</span> <span class="nf">_run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">to_close</span><span class="p">):</span>
-
-<span class="ne">CalledProcessError</span>: Command &#39;b&#39;git remote add local_bare ../bare_repo\ngit push -u local_bare main\n&#39;&#39; returned non-zero exit status 1.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To ../bare_repo
+ * [new branch]      main -&gt; main
 </pre></div>
 </div>
 </div>

@@ -462,7 +462,7 @@ Switched to a new branch &#39;buggy&#39;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_10587/777131122.py&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_10246/777131122.py&quot;</span><span class="gt">, line </span><span class="mi">1</span>
     <span class="n">python</span> <span class="n">squares</span><span class="o">.</span><span class="n">py</span> <span class="mi">2</span> <span class="c1"># Error message</span>
                  <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
@@ -486,7 +486,7 @@ git bisect good # We know the master branch state is OK
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your branch is up to date with &#39;origin/master&#39;.
 Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[2f82f9995bbbe7e434f734a7f070cbe9b49b5ab3] Comment 500
+[7783d430b1d6ed66f55e609bf2eb61e594a7f851] Comment 500
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Switched to branch &#39;master&#39;
@@ -555,43 +555,42 @@ git bisect run python squares.py 2
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[2f82f9995bbbe7e434f734a7f070cbe9b49b5ab3] Comment 500
+[7783d430b1d6ed66f55e609bf2eb61e594a7f851] Comment 500
 running python squares.py 2
 4
 Bisecting: 250 revisions left to test after this (roughly 8 steps)
-[03aac440a9250f6df55a2bbc0d3837f34c475e06] Comment 749
+[7e58fd0ddd228be9b769254924cda2c73fc107b8] Comment 749
 running python squares.py 2
 Bisecting: 124 revisions left to test after this (roughly 7 steps)
-[554b2f709372bc8193d4528c87613226e3faa958] Comment 625
+[f3da488c318ff4fe45ff8758f08219cc87f2efe6] Comment 624
+running python squares.py 2
+Bisecting: 62 revisions left to test after this (roughly 6 steps)
+[28f519a06be7a3f176e53479b514f6152884b4f3] Comment 562
 running python squares.py 2
 4
-Bisecting: 62 revisions left to test after this (roughly 6 steps)
-[e2aa5212f475b6fc833f840804ff92e815207f13] Comment 686
-running python squares.py 2
-Bisecting: 30 revisions left to test after this (roughly 5 steps)
-[c6640a2cc693ce7625acc127fc50ce086d956d4f] Comment 656
+Bisecting: 31 revisions left to test after this (roughly 5 steps)
+[a1fa1eae65e4aa1d851fa12caf2b28a1a3ae760d] Comment 593
 running python squares.py 2
 4
 Bisecting: 15 revisions left to test after this (roughly 4 steps)
-[94eb17b64375923e583099e771a02c53e6d15c5b] Comment 671
+[5ce7569e2de8bcabb4b485fdea7b4ff6721ebaee] Comment 609
 running python squares.py 2
 4
 Bisecting: 7 revisions left to test after this (roughly 3 steps)
-[6148433bbc320ea043e448584016706e13388753] Comment 678
+[7494596153e7c422fa7fd38eb67e4ebfeed56192] Comment 616
 running python squares.py 2
 Bisecting: 3 revisions left to test after this (roughly 2 steps)
-[e896497254ff97195343e604be15b52e35bc1fda] Comment 675
+[6e25864ff88e9f7b3191da6440cdbf64ad1f0e58] Comment 613
 running python squares.py 2
 4
 Bisecting: 1 revision left to test after this (roughly 1 step)
-[c465fb8bb6087dabb0a50541d0dd2488140031a5] Comment 677
+[d974bce4411ba6bb2d7d0e2c13d7be974ed7cc7e] Comment 614
 running python squares.py 2
-4
 Bisecting: 0 revisions left to test after this (roughly 0 steps)
-[b14f3d9ed46a5bce22024f808683f2e936b3a559] Breaking argument type
+[bd157d3634d7b164ee182c05f43ec8b4c4a98c6c] Breaking argument type
 running python squares.py 2
-b14f3d9ed46a5bce22024f808683f2e936b3a559 is the first bad commit
-commit b14f3d9ed46a5bce22024f808683f2e936b3a559
+bd157d3634d7b164ee182c05f43ec8b4c4a98c6c is the first bad commit
+commit bd157d3634d7b164ee182c05f43ec8b4c4a98c6c
 Author: Shawn Siefkas &lt;shawn.siefkas@meredith.com&gt;
 Date:   Thu Nov 14 09:23:55 2013 -0600
 
@@ -602,8 +601,12 @@ Date:   Thu Nov 14 09:23:55 2013 -0600
 bisect run success
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Previous HEAD position was 2f82f99 Comment 500
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Previous HEAD position was 7783d43 Comment 500
 Switched to branch &#39;buggy&#39;
+Traceback (most recent call last):
+  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
+    print(integer**2)
+TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
 Traceback (most recent call last):
   File &quot;squares.py&quot;, line 9, in &lt;module&gt;
     print(integer**2)

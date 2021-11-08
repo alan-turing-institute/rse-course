@@ -71,13 +71,19 @@ get_ipython().run_cell_magic('bash', '', 'git add Pennines.md\ngit commit -am "A
 get_ipython().run_cell_magic('bash', '', 'git push -uf jack89roberts main || echo "Push failed"')
 
 
+# In[8]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git push -uf origin main')
+
+
 # ... but note that you need to have the correct permissions to do so.
 
 # ## Referencing remotes
 # 
 # You can always refer to commits on a remote like this:
 
-# In[8]:
+# In[9]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git fetch\ngit log --oneline --left-right jack89roberts/main...origin/main')
@@ -87,7 +93,7 @@ get_ipython().run_cell_magic('bash', '', 'git fetch\ngit log --oneline --left-ri
 # 
 # To see what files you have changed that aren't updated on a particular remote, for example:
 
-# In[9]:
+# In[10]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git diff --name-only origin/main')
@@ -95,7 +101,7 @@ get_ipython().run_cell_magic('bash', '', 'git diff --name-only origin/main')
 
 # When you reference remotes like this, you're working with a cached copy of the last time you interacted with the remote. You can do `git fetch` to update local data with the remotes without actually pulling. You can also get useful information about whether tracking branches are ahead or behind the remote branches they track:
 
-# In[10]:
+# In[11]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch -vv')
@@ -111,26 +117,26 @@ get_ipython().run_cell_magic('bash', '', 'git branch -vv')
 # * Use `git init --bare` to make a copy for pushing
 # * You don't need to create a "server" as such, any 'bare' git repo will do.
 
-# In[11]:
+# In[12]:
 
 
 bare_dir = os.path.join(git_dir, "bare_repo")
 os.chdir(git_dir)
 
 
-# In[12]:
-
-
-get_ipython().run_cell_magic('bash', '', 'mkdir -p bare_repo\ncd bare_repo\ngit init --bare --initial-branch=main')
-
-
 # In[13]:
+
+
+get_ipython().run_cell_magic('bash', '', 'mkdir -p bare_repo\nrm -rf bare_repo/*\ncd bare_repo\ngit init --bare --initial-branch=main')
+
+
+# In[14]:
 
 
 os.chdir(working_dir)
 
 
-# In[14]:
+# In[15]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git remote add local_bare ../bare_repo\ngit push -u local_bare main')
@@ -138,7 +144,7 @@ get_ipython().run_cell_magic('bash', '', 'git remote add local_bare ../bare_repo
 
 # Check your remote branches:
 
-# In[15]:
+# In[16]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git remote -v')

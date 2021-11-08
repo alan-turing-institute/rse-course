@@ -239,7 +239,7 @@ get_ipython().run_cell_magic('bash', '', 'git push')
 # In[31]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch -vv # current local branch and tracking')
+get_ipython().run_cell_magic('bash', '', 'git branch # current local branch')
 
 
 # ## A good branch strategy
