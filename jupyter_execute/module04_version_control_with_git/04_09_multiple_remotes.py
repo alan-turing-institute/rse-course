@@ -71,13 +71,13 @@ get_ipython().run_cell_magic('bash', '', 'git add Pennines.md\ngit commit -am "A
 get_ipython().run_cell_magic('bash', '', 'git push -uf jack89roberts main || echo "Push failed"')
 
 
+# ... but note that you need to have the correct permissions to do so.
+
 # In[8]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git push -uf origin main')
 
-
-# ... but note that you need to have the correct permissions to do so.
 
 # ## Referencing remotes
 # 

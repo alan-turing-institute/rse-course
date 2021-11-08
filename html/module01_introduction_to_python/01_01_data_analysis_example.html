@@ -1,0 +1,1447 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>An example Python data analysis notebook &#8212; Research Software Engineering with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variables" href="01_02_variables.html" />
+    <link rel="prev" title="Introduction to Python" href="01_00_introduction_to_python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Research Software Engineering with Python
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/00_linux.html">
+     Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_mac.html">
+     MacOS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_windows.html">
+     Windows
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Introduction to Python
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_00_introduction_to_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     An example Python data analysis notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_02_variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_03_using_functions.html">
+     Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_04_types.html">
+     Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_05_containers.html">
+     Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_06_dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_07_data_structures.html">
+     Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_07answer_maze_model.html">
+     Solution: my Maze Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_08_control_and_flow.html">
+     Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_09_iteration.html">
+     Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_09answer_maze_counting.html">
+     Solution: counting people in the maze
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00answer_maze_comprehension.html">
+     Solution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_defining_classes.html">
+     Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
+     Working with Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_getting_data_from_the_internet.html">
+     Getting data from the Internet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_fields_and_records.html">
+     Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_structured_data.html">
+     Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01answer_maze_saving.html">
+     Solution: Saving and loading data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_earthquake_exercise.html">
+     Exercise/Example: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02answer_earthquake_exercise.html">
+     Solution: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_plotting_with_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy.html">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
+     The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
+     Recap: Understanding the “Greengraph” Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     Solo work with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
+     Git Stash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
+     Working with multiple remotes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     Debugging With Git Bisect
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     How to Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_pypi_packages.html">
+     Packaging your code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_libraries.html">
+     Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_argparse.html">
+     Argparse
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     Python not in the Notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     Managing software issues
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_coding_conventions.html">
+     Coding Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_comments.html">
+     Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_refactoring.html">
+     Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_object_oriented_design.html">
+     Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_classes.html">
+     Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_design_patterns.html">
+     Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_refactoring_boids.html">
+     Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
+     Metaprogramming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     Performance programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
+     Optimising Mandelbrot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
+     NumPy for Performance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
+     Cython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
+     Scaling for containers and algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     What can go wrong?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
+     Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
+     Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
+     Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
+     Saying the same thing multiple ways
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
+     Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Self Assessment
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../self_assessment/index.html">
+   Assessment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/00_packaging_treasure.html">
+     An Adventure In Packaging: An exercise in research software engineering.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/00assessment.html">
+     Packaging Greengraph
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/01_refactoring_trees.html">
+     Refactoring Trees: An exercise in Research Software Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../self_assessment/01assessment.html">
+     Refactoring the Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/module01_introduction_to_python/01_01_data_analysis_example.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/alan-turing-institute/rsd-engineeringcourse"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/alan-turing-institute/rsd-engineeringcourse/issues/new?title=Issue%20on%20page%20%2Fmodule01_introduction_to_python/01_01_data_analysis_example.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/alan-turing-institute/rsd-engineeringcourse/edit/master/module01_introduction_to_python/01_01_data_analysis_example.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rsd-engineeringcourse/master?urlpath=tree/module01_introduction_to_python/01_01_data_analysis_example.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-write-software-to-manage-your-data-and-plots">
+   Why write software to manage your data and plots?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importing-libraries">
+   Importing Libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comments">
+   Comments
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables">
+   Variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-complex-functions">
+   More complex functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#checking-our-work">
+   Checking our work
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-results">
+   Displaying results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manipulating-numbers">
+   Manipulating Numbers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-images">
+   Creating Images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#looping">
+   Looping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-graphs">
+   Plotting graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#composing-program-elements">
+   Composing Program Elements
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="an-example-python-data-analysis-notebook">
+<h1>An example Python data analysis notebook<a class="headerlink" href="#an-example-python-data-analysis-notebook" title="Permalink to this headline">¶</a></h1>
+<p>This page illustrates how to use Python to perform a simple but complete analysis: retrieve data, do some computations based on it, and visualise the results.</p>
+<p><strong>Don’t worry if you don’t understand everything on this page!</strong> Its purpose is to give you an example of things you can do and how to go about doing them - you are not expected to be able to reproduce an analysis like this in Python at this stage! We will be looking at the concepts and practices introduced on this page as we go along the course.</p>
+<p>As we show the code for different parts of the work, we will be touching on various aspects you may want to keep in mind, either related to Python specifically, or to research programming more generally.</p>
+<div class="section" id="why-write-software-to-manage-your-data-and-plots">
+<h2>Why write software to manage your data and plots?<a class="headerlink" href="#why-write-software-to-manage-your-data-and-plots" title="Permalink to this headline">¶</a></h2>
+<p>We can use programs for our entire research pipeline. Not just big scientific simulation codes, but also the small scripts which we use to tidy up data and produce plots. This should be code, so that the whole research pipeline
+is recorded for reproducibility. Data manipulation in spreadsheets is much harder to share or
+check.</p>
+<p>You can see another similar demonstration on the <a class="reference external" href="https://swcarpentry.github.io/python-novice-inflammation/01-numpy/index.html">software carpentry site</a>.
+We’ll try to give links to other sources of Python training along the way.
+Part of our approach is that we assume you know how to use the internet! If you
+find something confusing out there, please bring it along to the next session. In this course, we’ll always try to draw your attention to other sources of information about what we’re learning. Paying attention to as many of these as you need to, is just as important as these core notes.</p>
+</div>
+<div class="section" id="importing-libraries">
+<h2>Importing Libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Research programming is all about using libraries: tools other people have provided programs that do many cool things.
+By combining them we can feel really powerful but doing minimum work ourselves. The python syntax to import someone else’s library is “import”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopy</span>  <span class="c1"># A python library for investigating geographic information. https://pypi.org/project/geopy/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, if you try to follow along on this example in an Jupyter notebook, you’ll probably find that
+you just got an error message.</p>
+<p>You’ll need to wait until we’ve covered installation of additional python libraries later in the course, then come
+back to this and try again. For now, just follow along and try get the feel for how programming for data-focused
+research works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geocoder</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">geocoders</span><span class="o">.</span><span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s2">&quot;rsd-course&quot;</span><span class="p">)</span>
+<span class="n">geocoder</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s2">&quot;Cambridge&quot;</span><span class="p">,</span> <span class="n">exactly_one</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Location(Cambridge, Cambridgeshire, East of England, England, United Kingdom, (52.2055314, 0.1186637, 0.0)),
+ Location(Cambridge, Middlesex County, Massachusetts, United States, (42.3750997, -71.1056157, 0.0)),
+ Location(Cambridge, Region of Waterloo, Southwestern Ontario, Ontario, Canada, (43.3600536, -80.3123023, 0.0)),
+ Location(Cambridge, Henry County, Illinois, United States, (41.3036472, -90.1928971, 0.0)),
+ Location(Cambridge, Isanti County, Minnesota, United States, (45.5727408, -93.2243921, 0.0)),
+ Location(Cambridge, Story County, Iowa, 50046, United States, (41.8990768, -93.5294029, 0.0)),
+ Location(Cambridge, Dorchester County, Maryland, 21613, United States, (38.5714624, -76.0763177, 0.0)),
+ Location(Cambridge, Guernsey County, Ohio, United States, (40.031183, -81.5884561, 0.0)),
+ Location(Cambridge, Jefferson County, Kentucky, United States, (38.2217369, -85.616627, 0.0)),
+ Location(Cambridge, Cowley County, Kansas, United States, (37.316988, -96.66633224663678, 0.0))]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results come out as a <strong>list</strong> inside a list: <code class="docutils literal notranslate"><span class="pre">[Name,</span> <span class="pre">[Latitude,</span> <span class="pre">Longitude]]</span></code>.
+Programs represent data in a variety of different containers like this.</p>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<p>Code after a <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol doesn’t get run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This runs&quot;</span><span class="p">)</span>  <span class="c1"># print(&quot;This doesn&#39;t&quot;)</span>
+<span class="c1"># print(&quot;This doesn&#39;t either&quot;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This runs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>We can wrap code up in a <strong>function</strong>, so that we can repeatedly get just the information we want.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">geolocate</span><span class="p">(</span><span class="n">place</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">geocoder</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="n">place</span><span class="p">,</span> <span class="n">exactly_one</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Defining <strong>functions</strong> which put together code to make a more complex task seem simple from the outside is the most important thing in programming. The output of the function is stated by “return”; the input comes in in brackets after the function name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Cambridge&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(52.2055314, 0.1186637)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<p>We can store a result in a variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">london_location</span> <span class="o">=</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">london_location</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(51.5073219, -0.1276474)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="more-complex-functions">
+<h2>More complex functions<a class="headerlink" href="#more-complex-functions" title="Permalink to this headline">¶</a></h2>
+<p>The Yandex API allows us to fetch a map of a place, given a longitude and latitude.
+The URLs look like: <a class="reference external" href="https://static-maps.yandex.ru/1.x/?size=400,400&amp;ll=-0.1275,51.51&amp;z=10&amp;l=sat&amp;lang=en_US">https://static-maps.yandex.ru/1.x/?size=400,400&amp;ll=-0.1275,51.51&amp;z=10&amp;l=sat&amp;lang=en_US</a>
+We’ll probably end up working out these URLs quite a bit. So we’ll make ourselves another function to build up a URL given our parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="k">def</span> <span class="nf">request_map_at</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)):</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;https://static-maps.yandex.ru/1.x/?&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">z</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+        <span class="n">ll</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">long</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>
+        <span class="n">l</span><span class="o">=</span><span class="s2">&quot;sat&quot;</span> <span class="k">if</span> <span class="n">satellite</span> <span class="k">else</span> <span class="s2">&quot;map&quot;</span><span class="p">,</span>
+        <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en_US&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_response</span> <span class="o">=</span> <span class="n">request_map_at</span><span class="p">(</span><span class="mf">51.5072</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1275</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="checking-our-work">
+<h2>Checking our work<a class="headerlink" href="#checking-our-work" title="Permalink to this headline">¶</a></h2>
+<p>Let’s see what URL we ended up with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="n">map_response</span><span class="o">.</span><span class="n">url</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">[</span><span class="mi">100</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://static-maps.yandex.ru/1.x/?z=12&amp;size=400%2
+C400&amp;ll=-0.1275%2C51.5072&amp;l=sat&amp;lang=en_US
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can write <strong>automated tests</strong> so that if we change our code later, we can check the results are still valid.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nose.tools</span> <span class="kn">import</span> <span class="n">assert_in</span>  <span class="c1"># https://pypi.org/project/nose/</span>
+
+<span class="n">assert_in</span><span class="p">(</span><span class="s2">&quot;https://static-maps.yandex.ru/1.x/?&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="n">assert_in</span><span class="p">(</span><span class="s2">&quot;ll=-0.1275%2C51.5072&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="n">assert_in</span><span class="p">(</span><span class="s2">&quot;z=12&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="n">assert_in</span><span class="p">(</span><span class="s2">&quot;size=400%2C400&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our previous function comes back with an Object representing the web request. In object oriented programming, we use the .
+operator to get access to a particular <strong>property</strong> of the object, in this case, the actual image at that URL is in the <code class="docutils literal notranslate"><span class="pre">content</span></code> property. It’s a big file, so I’ll just get the first few chars:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_response</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00H\x00H\x00\x00&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="displaying-results">
+<h2>Displaying results<a class="headerlink" href="#displaying-results" title="Permalink to this headline">¶</a></h2>
+<p>I’ll need to do this a lot, so I’ll wrap up our previous function in another function, to save on typing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">request_map_at</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I can use a library that comes with Jupyter notebook to display the image. Being able to work with variables which contain images, or documents, or any other weird kind of data, just as easily as we can with numbers or letters, is one of the really powerful things about modern programming languages like Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">IPython</span>
+
+<span class="n">map_png</span> <span class="o">=</span> <span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">london_location</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The type of our map result is actually a: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">map_png</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The type of our map result is actually a:  &lt;class &#39;bytes&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">map_png</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01_01_data_analysis_example_39_0.jpg" src="../_images/01_01_data_analysis_example_39_0.jpg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;New Delhi&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01_01_data_analysis_example_40_0.jpg" src="../_images/01_01_data_analysis_example_40_0.jpg" />
+</div>
+</div>
+</div>
+<div class="section" id="manipulating-numbers">
+<h2>Manipulating Numbers<a class="headerlink" href="#manipulating-numbers" title="Permalink to this headline">¶</a></h2>
+<p>Now we get to our research project: we want to find out how urbanised the world is, based on satellite imagery, along a line
+between two cites. We expect the satellite image to be greener in the countryside.</p>
+<p>We’ll use lots more libraries to count how much green there is in an image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>  <span class="c1"># A library to convert between files and strings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># A library to deal with matrices</span>
+<span class="kn">import</span> <span class="nn">imageio</span>  <span class="c1"># A library to deal with images, https://pypi.org/project/imageio/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s define what we count as green:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_green</span><span class="p">(</span><span class="n">pixels</span><span class="p">):</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.1</span>
+    <span class="n">greener_than_red</span> <span class="o">=</span> <span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="o">*</span> <span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">greener_than_blue</span> <span class="o">=</span> <span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="o">*</span> <span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">green</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">greener_than_red</span><span class="p">,</span> <span class="n">greener_than_blue</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">green</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code has assumed we have our pixel data for the image as a <span class="math notranslate nohighlight">\(400 \times 400 \times 3\)</span> 3-d matrix,
+with each of the three layers being red, green, and blue pixels.</p>
+<p>We find out which pixels are green by comparing, element-by-element, the middle (green, number 1) layer to the top (red, zero) and bottom (blue, 2)</p>
+<p>Now we just need to parse in our data, which is a PNG image, and turn it into our matrix format:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_green_in_png</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># Get our PNG image as a numpy array</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_green</span><span class="p">(</span><span class="n">pixels</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">count_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">london_location</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3390
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll also need a function to get an evenly spaced set of places between two endpoints:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">location_sequence</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+    <span class="n">lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">steps</span><span class="p">)</span>  <span class="c1"># &quot;Linearly spaced&quot; data</span>
+    <span class="n">longs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">steps</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">lats</span><span class="p">,</span> <span class="n">longs</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">location_sequence</span><span class="p">(</span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Cambridge&quot;</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 5.15073219e+01, -1.27647400e-01],
+       [ 5.16818743e+01, -6.60696250e-02],
+       [ 5.18564267e+01, -4.49185000e-03],
+       [ 5.20309790e+01,  5.70859250e-02],
+       [ 5.22055314e+01,  1.18663700e-01]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-images">
+<h2>Creating Images<a class="headerlink" href="#creating-images" title="Permalink to this headline">¶</a></h2>
+<p>We should display the green content to check our work:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_green_in_png</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>  <span class="c1"># Get our PNG image as rows of pixels</span>
+    <span class="n">green</span> <span class="o">=</span> <span class="n">is_green</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="n">green</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">london_location</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01_01_data_analysis_example_57_0.jpg" src="../_images/01_01_data_analysis_example_57_0.jpg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">show_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">london_location</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior to saving to suppress this warning.
+</pre></div>
+</div>
+<img alt="../_images/01_01_data_analysis_example_58_1.png" src="../_images/01_01_data_analysis_example_58_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="looping">
+<h2>Looping<a class="headerlink" href="#looping" title="Permalink to this headline">¶</a></h2>
+<p>We can loop over each element in out list of coordinates, and get a map for that place:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">location_sequence</span><span class="p">(</span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Birmingham&quot;</span><span class="p">),</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01_01_data_analysis_example_61_0.jpg" src="../_images/01_01_data_analysis_example_61_0.jpg" />
+<img alt="../_images/01_01_data_analysis_example_61_1.jpg" src="../_images/01_01_data_analysis_example_61_1.jpg" />
+<img alt="../_images/01_01_data_analysis_example_61_2.jpg" src="../_images/01_01_data_analysis_example_61_2.jpg" />
+<img alt="../_images/01_01_data_analysis_example_61_3.jpg" src="../_images/01_01_data_analysis_example_61_3.jpg" />
+</div>
+</div>
+<p>So now we can count the green from London to Birmingham!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="n">count_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">location_sequence</span><span class="p">(</span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Birmingham&quot;</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3390, 38028, 59465, 23006, 30757, 56636, 60083, 53423, 136152, 143187]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-graphs">
+<h2>Plotting graphs<a class="headerlink" href="#plotting-graphs" title="Permalink to this headline">¶</a></h2>
+<p>Let’s plot a graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">count_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">location_sequence</span><span class="p">(</span>
+            <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Birmingham&quot;</span><span class="p">),</span> <span class="mi">10</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb73ddcc190&gt;]
+</pre></div>
+</div>
+<img alt="../_images/01_01_data_analysis_example_67_1.png" src="../_images/01_01_data_analysis_example_67_1.png" />
+</div>
+</div>
+<p>From a research perspective, of course, this code needs a lot of work. But I hope the power of using programming is clear.</p>
+</div>
+<div class="section" id="composing-program-elements">
+<h2>Composing Program Elements<a class="headerlink" href="#composing-program-elements" title="Permalink to this headline">¶</a></h2>
+<p>We built little pieces of useful code, to:</p>
+<ul class="simple">
+<li><p>Find latitude and longitude of a place</p></li>
+<li><p>Get a map at a given latitude and longitude</p></li>
+<li><p>Decide whether a (red,green,blue) triple is mainly green</p></li>
+<li><p>Decide whether each pixel is mainly green</p></li>
+<li><p>Plot a new image showing the green places</p></li>
+<li><p>Find evenly spaced points between two places</p></li>
+</ul>
+<p>By putting these together, we can make a function which can plot this graph automatically for any two places:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">green_between</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">count_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">location_sequence</span><span class="p">(</span><span class="n">geolocate</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="n">end</span><span class="p">),</span> <span class="n">steps</span><span class="p">)</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">green_between</span><span class="p">(</span><span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Chicago&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb73bd0b790&gt;]
+</pre></div>
+</div>
+<img alt="../_images/01_01_data_analysis_example_73_1.png" src="../_images/01_01_data_analysis_example_73_1.png" />
+</div>
+</div>
+<p>And that’s it! We’ve covered, very very quickly, the majority of the python language, and much of the theory of software engineering.</p>
+<p>Now we’ll go back, carefully, through all the concepts we touched on, and learn how to use them properly ourselves.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./module01_introduction_to_python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="01_00_introduction_to_python.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction to Python</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="01_02_variables.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Variables</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Alan Turing Institute<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
