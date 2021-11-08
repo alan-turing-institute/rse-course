@@ -101,11 +101,11 @@ get_ipython().run_cell_magic('bash', '', 'git log')
 # 
 # The commit "hash code", e.g.
 # 
-# `06530761f1c3e18917cb67a1d1b0aa156a2231b0`
+# `238eaff15e2769e0ef1d989f1a2e8be1873fa0ab`
 # 
 # is a unique identifier of that particular revision. 
 # 
-# (This is a really long code, but whenever you need to use it, you can just use the first few characters, however many characters is long enough to make it unique, `06530761` for example. )
+# (This is a really long code, but whenever you need to use it, you can just use the first few characters, however many characters is long enough to make it unique, `238eaff1` for example. )
 
 # ## Nothing to see here
 # 
