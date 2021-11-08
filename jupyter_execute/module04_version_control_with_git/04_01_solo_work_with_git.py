@@ -77,13 +77,13 @@ get_ipython().run_cell_magic('bash', '', 'git commit -m "First commit of discour
 # git config --get core.editor
 # ```
 
-# To configure Notepad++ on Windows you'll need something like the below, ask a demonstrator to help for your machine.
+# To configure `Notepad++` on Windows you'll need something like the below, ask a demonstrator if you need help:
 
 # ```bash
 # git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -nosession -noPlugin"
 # ```
 
-# I'm going to be using `vim` as my editor, but you can use whatever editor you prefer. (Windows users could use "Notepad++", Mac users could use "textmate" or "Sublime Text", linux users could use `vim`, `nano` or `emacs`.)
+# I'm going to be using `vim` as my editor, but you can use whatever editor you prefer. (Windows users could use `Notepad++`, Mac users could use `textmate` or `Sublime Text`, Linux users could use `vim`, `nano` or `emacs`.)
 
 # ## Git log
 # 

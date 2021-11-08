@@ -19,9 +19,9 @@ working_dir
 
 # ## Sharing your work
 
-# So far, all our work has been on our own computer. But a big part of the point of version control is keeping your work safe, on remote servers. Another part is making it easy to share your work with the world In this example, we'll be using the "GitHub" cloud repository to store and publish our work. 
+# So far, all our work has been on our own computer. But a big part of the point of version control is keeping your work safe, on remote servers. Another part is making it easy to share your work with the world In this example, we'll be using the `GitHub` cloud repository to store and publish our work. 
 # 
-# If you have not done so already, you should create an account on GitHub: go to [https://github.com/](https://github.com/), fill in a username and password, and click on "sign up for free". 
+# If you have not done so already, you should create an account on `GitHub`: go to [https://github.com/](https://github.com/), fill in a username and password, and click on "sign up for free". 
 
 # ## Creating a repository
 # 

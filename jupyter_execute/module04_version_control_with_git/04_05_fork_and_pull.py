@@ -39,7 +39,7 @@
 # 
 # We will be working in the same repository with one of you being the leader and the other being the collaborator. 
 # 
-# Collaborators need to go to the leader's GitHub profile and find the repository we created for that lesson. Mine is in https://github.com/jamespjh/github-example
+# Collaborators need to go to the leader's GitHub profile and find the repository we created for that lesson. Mine is in https://github.com/alan-turing-institute/github-example
 
 # ### 1. Fork repository
 # 
@@ -54,7 +54,7 @@
 # Collaborators: go to your terminal and clone the newly created fork.
 # 
 # ```
-# git clone git@github.com:jamespjh/github-example.git
+# git clone git@github.com:alan-turing-institute/github-example.git
 # ```
 
 # ### 3. Create a feature branch
