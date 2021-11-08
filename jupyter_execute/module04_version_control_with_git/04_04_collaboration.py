@@ -40,14 +40,16 @@ os.chdir(git_dir)
 get_ipython().run_cell_magic('bash', '', 'pwd\nrm -rf github-example # cleanup after previous example\nrm -rf partner_dir # cleanup after previous example')
 
 
-# Next, the collaborator needs to find out the URL of the repository: they should go to the leader's repository's GitHub page, and note the URL on the top of the screen. Make sure the "ssh" button is pushed, the URL should begin with `git@github.com`. 
+# Next, the collaborator needs to find out the URL of the repository: they should go to the leader's repository's GitHub page, and note the URL on the top of the screen.
+# 
+# As before, we're using `SSH` to connect - to do this you'll need to make sure the `ssh` button is pushed, and check that the URL begins with `git@github.com`. 
 # 
 # Copy the URL into your clipboard by clicking on the icon to the right of the URL, and then:
 
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', 'pwd\ngit clone https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git partner_dir')
+get_ipython().run_cell_magic('bash', '', 'pwd\ngit clone git@github.com:alan-turing-institute/github-example.git partner_dir')
 
 
 # In[4]:
@@ -141,23 +143,17 @@ get_ipython().run_cell_magic('bash', '', 'git push')
 
 # The other should then attempt to push, but should receive an error message:
 
-# In[17]:
+# In[16]:
 
 
 os.chdir(working_dir)
 
 
-# ``` Bash
-# > git push
-# To https://github.com/alan-turing-institute/github-example.git
-#  ! [rejected]        master -> master (fetch first)
-# error: failed to push some refs
-# hint: Updates were rejected because the remote contains work that you do
-# hint: not have locally. This is usually caused by another repository pushing
-# hint: to the same ref. You may want to first integrate the remote changes
-# hint: (e.g., 'git pull ...') before pushing again.
-# hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-# ```
+# In[17]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"')
+
 
 # Do as it suggests:
 
@@ -265,55 +261,49 @@ get_ipython().run_cell_magic('bash', '', 'git push')
 os.chdir(partner_dir)
 
 
-# ``` bash
-# > git push
-# To https://github.com/alan-turing-institute/github-example.git
-#  ! [rejected]        master -> master (fetch first)
-# error: failed to push some refs
-# hint: Updates were rejected because the remote contains work that you do
-# hint: not have locally. This is usually caused by another repository pushing
-# hint: to the same ref. You may want to first integrate the remote changes
-# hint: (e.g., 'git pull ...') before pushing again.
-# hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-# ```
-
 # In[33]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"')
 
 
 # In[34]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git pull')
 
 
 # In[35]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --oneline --graph')
+get_ipython().run_cell_magic('bash', '', 'git push')
 
 
 # In[36]:
 
 
-os.chdir(working_dir)
+get_ipython().run_cell_magic('bash', '', 'git log --oneline --graph')
 
 
 # In[37]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+os.chdir(working_dir)
 
 
 # In[38]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline')
+get_ipython().run_cell_magic('bash', '', 'git pull')
 
 
 # In[39]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline')
+
+
+# In[40]:
 
 
 message = """
@@ -360,54 +350,48 @@ wsd(message)
 # 
 # Finally, go through the process again, but this time, make changes which touch the same line.
 
-# In[40]:
+# In[41]:
 
 
 get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Fan y Big')
 
 
-# In[41]:
+# In[42]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git commit -am "Add another Beacon"\ngit push')
 
 
-# In[42]:
+# In[43]:
 
 
 os.chdir(partner_dir)
 
 
-# In[43]:
+# In[44]:
 
 
 get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr')
 
 
-# In[44]:
+# In[45]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git commit -am "Add Glyder"')
 
 
-# ``` bash
-# > git push
-# To git@github.com:alan-turing-institute/github-example.git
-#  ! [rejected]        master -> master (fetch first)
-# error: failed to push some refs
-# hint: Updates were rejected because the remote contains work that you do
-# hint: not have locally. This is usually caused by another repository pushing
-# hint: to the same ref. You may want to first integrate the remote changes
-# hint: (e.g., 'git pull ...') before pushing again.
-# hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-# ```
+# In[46]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"')
+
 
 # When you pull, instead of offering an automatic merge commit message, it says:
 
-# In[51]:
+# In[47]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+get_ipython().run_cell_magic('bash', '', 'git pull || echo "Pull failed"')
 
 
 # ## Resolving conflicts
@@ -418,7 +402,7 @@ get_ipython().run_cell_magic('bash', '', 'git pull')
 # 
 # It has marked the conflicted area:
 
-# In[52]:
+# In[48]:
 
 
 get_ipython().run_cell_magic('bash', '', 'cat Wales.md')
@@ -426,7 +410,7 @@ get_ipython().run_cell_magic('bash', '', 'cat Wales.md')
 
 # Manually edit the file, to combine the changes as seems sensible and get rid of the symbols:
 
-# In[55]:
+# In[49]:
 
 
 get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Fan y Big\n* Glyder Fawr')
@@ -436,37 +420,37 @@ get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n=====
 # 
 # Now commit the merged result:
 
-# In[56]:
+# In[50]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git commit -a --no-edit # I added a No-edit for this non-interactive session. You can edit the commit if you like.')
 
 
-# In[57]:
+# In[51]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git push')
 
 
-# In[58]:
+# In[52]:
 
 
 os.chdir(working_dir)
 
 
-# In[59]:
+# In[53]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git pull')
 
 
-# In[60]:
+# In[54]:
 
 
 get_ipython().run_cell_magic('bash', '', 'cat Wales.md')
 
 
-# In[61]:
+# In[55]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git log --oneline --graph')
@@ -474,7 +458,7 @@ get_ipython().run_cell_magic('bash', '', 'git log --oneline --graph')
 
 # ## Distributed VCS in teams with conflicts
 
-# In[62]:
+# In[56]:
 
 
 message = """
@@ -520,7 +504,7 @@ wsd(message)
 
 # # The Levels of Git
 
-# In[63]:
+# In[57]:
 
 
 message = """

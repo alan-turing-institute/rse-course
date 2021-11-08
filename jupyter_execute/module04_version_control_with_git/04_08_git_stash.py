@@ -236,5 +236,5 @@ get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -
 # In[18]:
 
 
-get_ipython().run_cell_magic('bash', '', '# Cleanup by removing the gh-pages branch \ngit checkout main\ngit branch -d gh-pages\ngit push --delete origin gh-pages \ngit branch --remote')
+get_ipython().run_cell_magic('bash', '', '# Cleanup by removing the gh-pages branch \ngit checkout main\ngit push\ngit branch -d gh-pages\ngit push --delete origin gh-pages \ngit branch --remote')
 

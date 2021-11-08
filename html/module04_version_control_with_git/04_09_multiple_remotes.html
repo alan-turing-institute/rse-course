@@ -448,28 +448,51 @@ and all commits required an internet.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git checkout main
-git remote add jack89roberts https://${GITHUB_TOKEN}@github.com/jack89roberts/github-example.git
+git remote add jack89roberts git@github.com:jack89roberts/github-example.git
+git fetch jack89roberts
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your branch is up to date with &#39;origin/main&#39;.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your branch and &#39;origin/main&#39; have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use &quot;git pull&quot; to merge the remote branch into yours)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Switched to branch &#39;main&#39;
+From github.com:jack89roberts/github-example
+ * [new branch]      main       -&gt; jack89roberts/main
+ * [new branch]      master     -&gt; jack89roberts/master
 </pre></div>
 </div>
 </div>
 </div>
 <p>Check your remote branches:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; git remote -v
-jack89roberts	https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git <span class="o">(</span>fetch<span class="o">)</span>
-jack89roberts	https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git <span class="o">(</span>push<span class="o">)</span>
-origin	https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/alan-turing-institute/github-example.git <span class="o">(</span>fetch<span class="o">)</span>
-origin	https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/alan-turing-institute/github-example.git <span class="o">(</span>push<span class="o">)</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git remote -v
 </pre></div>
 </div>
-<p>We can push to a named remote:</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (fetch)
+jack89roberts	git@github.com:jack89roberts/github-example.git (push)
+origin	git@github.com:alan-turing-institute/github-example.git (fetch)
+origin	git@github.com:alan-turing-institute/github-example.git (push)
+</pre></div>
+</div>
+</div>
+</div>
+<p>and ensure that the newly-added remote is up-to-date</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git fetch jack89roberts
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Pennines.md
@@ -497,9 +520,131 @@ git commit -am &quot;Add Whernside&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 203b41e] Add Whernside
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 9c66d26] Add Whernside
  1 file changed, 6 insertions(+)
  create mode 100644 Pennines.md
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can specify which remote to push to by name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push -uf jack89roberts main || echo &quot;Push failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Permission to jack89roberts/github-example.git denied to deploy key
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+</pre></div>
+</div>
+</div>
+</div>
+<p>… but note that you need to have the correct permissions to do so.</p>
+</div>
+<div class="section" id="referencing-remotes">
+<h2>Referencing remotes<a class="headerlink" href="#referencing-remotes" title="Permalink to this headline">¶</a></h2>
+<p>You can always refer to commits on a remote like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git fetch
+git log --oneline --left-right jack89roberts/main...origin/main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 4f284ff Add Scotland
+&gt; 6795f57 Add Helvellyn
+&gt; 17d1ebe Include lakes in the scope
+&gt; 760337c Add lakeland
+&gt; 9ba6c43 Revert &quot;Add a lie about a mountain&quot;
+&gt; 2af0494 Change title
+&gt; 38885de Add a lie about a mountain
+&gt; d3e12bd First commit of discourse on UK topography
+&lt; 31ea056 Add Whernside
+&lt; 009f998 Add github pages YAML frontmatter
+&lt; 2f9bcc8 Add a makefile and ignore generated files
+&lt; ae539cc Merge branch &#39;experiment&#39; into main
+&lt; 492fec5 Commit Aonach onto main branch
+&lt; fe1c71d Add Cadair Idris
+&lt; 338d4d6 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+&lt; 07c4fea Add Glyder
+&lt; c405c4d Add another Beacon
+&lt; f8f20a6 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+&lt; 1f69c3f Translating from the Welsh
+&lt; b2b4fa3 Add a beacon
+&lt; c1897d4 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+&lt; 0e96c25 Add wales
+&lt; 0de6b80 Add Scotland
+&lt; 959e142 Add Helvellyn
+&lt; 600ffe1 Include lakes in the scope
+&lt; c7454a7 Add lakeland
+&lt; 5342922 Revert &quot;Add a lie about a mountain&quot;
+&lt; f65fd0b Change title
+&lt; 8c467a3 Add a lie about a mountain
+&lt; 1f92929 First commit of discourse on UK topography
+</pre></div>
+</div>
+</div>
+</div>
+<p>To see the differences between remotes, for example.</p>
+<p>To see what files you have changed that aren’t updated on a particular remote, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git diff --name-only origin/main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pennines.md
+Scotland.md
+Wales.md
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you reference remotes like this, you’re working with a cached copy of the last time you interacted with the remote. You can do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> to update local data with the remotes without actually pulling. You can also get useful information about whether tracking branches are ahead or behind the remote branches they track:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git branch -vv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  experiment 98c602d Add Cadair Idris
+* main       9c66d26 [origin/main: ahead 2, behind 1] Add Whernside
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="hosting-servers">
+<h1>Hosting Servers<a class="headerlink" href="#hosting-servers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hosting-a-local-server">
+<h2>Hosting a local server<a class="headerlink" href="#hosting-a-local-server" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Any repository can be a remote for pulls</p></li>
+<li><p>Can pull/push over shared folders or ssh</p></li>
+<li><p>Pushing to someone’s working copy is dangerous</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span> <span class="pre">--bare</span></code> to make a copy for pushing</p></li>
+<li><p>You don’t need to create a “server” as such, any ‘bare’ git repo will do.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bare_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;bare_repo&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">git_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -507,18 +652,50 @@ git commit -am &quot;Add Whernside&quot;
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git push -uf jack89roberts main
+mkdir -p bare_repo
+cd bare_repo
+git init --bare --initial-branch=main
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fatal: could not read Password for &#39;https://ghs_3YXKBLEBBbWdA9goFZyOuULTIxT8dR0pwRKR@github.com&#39;: No such device or address
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reinitialized existing Git repository in /home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module04_version_control_with_git/learning_git/bare_repo/
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>warning: re-init: ignored --initial-branch=main
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git remote add local_bare ../bare_repo
+git push -u local_bare main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To ../bare_repo
+ ! [rejected]        main -&gt; main (non-fast-forward)
+error: failed to push some refs to &#39;../bare_repo&#39;
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_7475</span><span class="o">/</span><span class="mf">694442579.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;git push -uf jack89roberts main</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_7549</span><span class="o">/</span><span class="mf">4106127879.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;git remote add local_bare ../bare_repo</span><span class="se">\n</span><span class="s1">git push -u local_bare main</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2404</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
@@ -555,132 +732,29 @@ git push -uf jack89roberts main
 <span class="g g-Whitespace">    </span><span class="mi">246</span> 
 <span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="k">def</span> <span class="nf">_run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">to_close</span><span class="p">):</span>
 
-<span class="ne">CalledProcessError</span>: Command &#39;b&#39;git push -uf jack89roberts main\n&#39;&#39; returned non-zero exit status 128.
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="referencing-remotes">
-<h2>Referencing remotes<a class="headerlink" href="#referencing-remotes" title="Permalink to this headline">¶</a></h2>
-<p>You can always refer to commits on a remote like this:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git fetch
-git log --oneline --left-right jack89roberts/main...origin/main
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 0dd20e3 Add Whernside
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/jack89roberts/github-example
- * [new branch]      master     -&gt; jack89roberts/master
-</pre></div>
-</div>
-</div>
-</div>
-<p>To see the differences between remotes, for example.</p>
-<p>To see what files you have changed that aren’t updated on a particular remote, for example:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git diff --name-only origin/main
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pennines.md
-</pre></div>
-</div>
-</div>
-</div>
-<p>When you reference remotes like this, you’re working with a cached copy of the last time you interacted with the remote. You can do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> to update local data with the remotes without actually pulling. You can also get useful information about whether tracking branches are ahead or behind the remote branches they track:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git branch -vv
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main 0dd20e3 [jack89roberts/main] Add Whernside
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="hosting-servers">
-<h1>Hosting Servers<a class="headerlink" href="#hosting-servers" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="hosting-a-local-server">
-<h2>Hosting a local server<a class="headerlink" href="#hosting-a-local-server" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Any repository can be a remote for pulls</p></li>
-<li><p>Can pull/push over shared folders or ssh</p></li>
-<li><p>Pushing to someone’s working copy is dangerous</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span> <span class="pre">--bare</span></code> to make a copy for pushing</p></li>
-<li><p>You don’t need to create a “server” as such, any ‘bare’ git repo will do.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bare_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;bare_repo&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">git_dir</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-mkdir -p bare_repo
-cd bare_repo
-git init --bare --initial-branch=main
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initialized empty Git repository in /home/turingdev/rsd-engineering/rsd-engineeringcourse/ch02git/learning_git/bare_repo/
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git remote add local_bare ../bare_repo
-git push -u local_bare main
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Branch &#39;main&#39; set up to track remote branch &#39;main&#39; from &#39;local_bare&#39;.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To ../bare_repo
- * [new branch]      main -&gt; main
+<span class="ne">CalledProcessError</span>: Command &#39;b&#39;git remote add local_bare ../bare_repo\ngit push -u local_bare main\n&#39;&#39; returned non-zero exit status 1.
 </pre></div>
 </div>
 </div>
 </div>
 <p>Check your remote branches:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; git remote -v
-jack89roberts	https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git <span class="o">(</span>fetch<span class="o">)</span>
-jack89roberts	https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/jack89roberts/github-example.git <span class="o">(</span>push<span class="o">)</span>
-local_bare	../bare_repo <span class="o">(</span>fetch<span class="o">)</span>
-local_bare	../bare_repo <span class="o">(</span>push<span class="o">)</span>
-origin	https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/alan-turing-institute/github-example.git <span class="o">(</span>fetch<span class="o">)</span>
-origin	https://<span class="si">${</span><span class="nv">GITHUB_TOKEN</span><span class="si">}</span>@github.com/alan-turing-institute/github-example.git <span class="o">(</span>push<span class="o">)</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git remote -v
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (fetch)
+jack89roberts	git@github.com:jack89roberts/github-example.git (push)
+local_bare	../bare_repo (fetch)
+local_bare	../bare_repo (push)
+origin	git@github.com:alan-turing-institute/github-example.git (fetch)
+origin	git@github.com:alan-turing-institute/github-example.git (push)
+</pre></div>
+</div>
+</div>
 </div>
 <p>You can now work with this local repository, just as with any other git server.
 If you have a colleague on a shared file system, you can use this approach to collaborate through that file system.</p>

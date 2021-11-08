@@ -32,44 +32,52 @@ os.chdir(working_dir)
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git checkout main\ngit remote add jack89roberts https://${GITHUB_TOKEN}@github.com/jack89roberts/github-example.git')
+get_ipython().run_cell_magic('bash', '', 'git checkout main\ngit remote add jack89roberts git@github.com:jack89roberts/github-example.git\ngit fetch jack89roberts')
 
 
 # Check your remote branches:
-# 
-# ```bash
-# > git remote -v
-# jack89roberts	https://${GITHUB_TOKEN}@github.com/jack89roberts/github-example.git (fetch)
-# jack89roberts	https://${GITHUB_TOKEN}@github.com/jack89roberts/github-example.git (push)
-# origin	https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git (fetch)
-# origin	https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git (push)
-# ```
-
-# We can push to a named remote:
 
 # In[3]:
 
 
-get_ipython().run_cell_magic('writefile', 'Pennines.md', '\nMountains In the Pennines\n========================\n\n* Cross Fell\n* Whernside')
+get_ipython().run_cell_magic('bash', '', 'git remote -v')
 
+
+# and ensure that the newly-added remote is up-to-date
 
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git add Pennines.md\ngit commit -am "Add Whernside"')
+get_ipython().run_cell_magic('bash', '', 'git fetch jack89roberts')
 
 
 # In[5]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push -uf jack89roberts main')
+get_ipython().run_cell_magic('writefile', 'Pennines.md', '\nMountains In the Pennines\n========================\n\n* Cross Fell\n* Whernside')
 
+
+# In[6]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git add Pennines.md\ngit commit -am "Add Whernside"')
+
+
+# We can specify which remote to push to by name:
+
+# In[7]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git push -uf jack89roberts main || echo "Push failed"')
+
+
+# ... but note that you need to have the correct permissions to do so.
 
 # ## Referencing remotes
 # 
 # You can always refer to commits on a remote like this:
 
-# In[6]:
+# In[8]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git fetch\ngit log --oneline --left-right jack89roberts/main...origin/main')
@@ -79,7 +87,7 @@ get_ipython().run_cell_magic('bash', '', 'git fetch\ngit log --oneline --left-ri
 # 
 # To see what files you have changed that aren't updated on a particular remote, for example:
 
-# In[7]:
+# In[9]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git diff --name-only origin/main')
@@ -87,7 +95,7 @@ get_ipython().run_cell_magic('bash', '', 'git diff --name-only origin/main')
 
 # When you reference remotes like this, you're working with a cached copy of the last time you interacted with the remote. You can do `git fetch` to update local data with the remotes without actually pulling. You can also get useful information about whether tracking branches are ahead or behind the remote branches they track:
 
-# In[8]:
+# In[10]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch -vv')
@@ -103,42 +111,38 @@ get_ipython().run_cell_magic('bash', '', 'git branch -vv')
 # * Use `git init --bare` to make a copy for pushing
 # * You don't need to create a "server" as such, any 'bare' git repo will do.
 
-# In[9]:
+# In[11]:
 
 
 bare_dir = os.path.join(git_dir, "bare_repo")
 os.chdir(git_dir)
 
 
-# In[11]:
+# In[12]:
 
 
 get_ipython().run_cell_magic('bash', '', 'mkdir -p bare_repo\ncd bare_repo\ngit init --bare --initial-branch=main')
 
 
-# In[12]:
+# In[13]:
 
 
 os.chdir(working_dir)
 
 
-# In[13]:
+# In[14]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git remote add local_bare ../bare_repo\ngit push -u local_bare main')
 
 
 # Check your remote branches:
-# 
-# ```bash
-# > git remote -v
-# jack89roberts	https://${GITHUB_TOKEN}@github.com/jack89roberts/github-example.git (fetch)
-# jack89roberts	https://${GITHUB_TOKEN}@github.com/jack89roberts/github-example.git (push)
-# local_bare	../bare_repo (fetch)
-# local_bare	../bare_repo (push)
-# origin	https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git (fetch)
-# origin	https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git (push)
-# ```
+
+# In[15]:
+
+
+get_ipython().run_cell_magic('bash', '', 'git remote -v')
+
 
 # You can now work with this local repository, just as with any other git server.
 # If you have a colleague on a shared file system, you can use this approach to collaborate through that file system.

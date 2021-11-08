@@ -77,7 +77,7 @@ cat Wales.md
 # 
 # To let the server know there's a new branch use:
 
-# In[12]:
+# In[11]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git push -u origin experiment')
@@ -92,7 +92,7 @@ get_ipython().run_cell_magic('bash', '', 'git push -u origin experiment')
 # If others checkout your repository, they will be able to do `git checkout experiment` to see your branch content,
 # and collaborate with you **in the branch**.
 
-# In[14]:
+# In[12]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch -r')
@@ -102,7 +102,7 @@ get_ipython().run_cell_magic('bash', '', 'git branch -r')
 # They are said to "track" remote branches. `push -u` sets up the tracking relationship.
 # You can see the remote branch for each of your local branches if you ask for "verbose" output from `git branch`:
 
-# In[16]:
+# In[13]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch -vv')
@@ -114,7 +114,7 @@ get_ipython().run_cell_magic('bash', '', 'git branch -vv')
 # you can use `git log` to look at lists of commits which are in a branch
 # and haven't been merged yet.
 
-# In[17]:
+# In[14]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git log main..experiment')
@@ -125,7 +125,7 @@ get_ipython().run_cell_magic('bash', '', 'git log main..experiment')
 # 
 # So in a purely linear sequence, it does what you'd expect.
 
-# In[18]:
+# In[15]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~9..HEAD~5')
@@ -134,7 +134,7 @@ get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~9..HEAD
 # But in cases where a history has branches,
 # the definition in terms of ancestors is important.
 
-# In[19]:
+# In[16]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~5..HEAD')
@@ -142,25 +142,25 @@ get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~5..HEAD
 
 # If there are changes on both sides, like this:
 
-# In[20]:
+# In[17]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git checkout main')
 
 
-# In[21]:
+# In[18]:
 
 
 get_ipython().run_cell_magic('writefile', 'Scotland.md', 'Mountains In Scotland\n==================\n\n* Ben Eighe\n* Cairngorm\n* Aonach Eagach')
 
 
-# In[22]:
+# In[19]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git diff Scotland.md')
 
 
-# In[23]:
+# In[20]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git commit -am "Commit Aonach onto main branch"')
@@ -168,7 +168,7 @@ get_ipython().run_cell_magic('bash', '', 'git commit -am "Commit Aonach onto mai
 
 # Then this notation is useful to show the content of what's on what branch:
 
-# In[24]:
+# In[21]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git log --left-right --oneline main...experiment')
@@ -180,13 +180,13 @@ get_ipython().run_cell_magic('bash', '', 'git log --left-right --oneline main...
 
 # We can merge branches, and just as we would pull in remote changes, there may or may not be conflicts.
 
-# In[25]:
+# In[22]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch\ngit merge experiment')
 
 
-# In[26]:
+# In[23]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~3..HEAD')
@@ -194,37 +194,37 @@ get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~3..HEAD
 
 # ## Cleaning up after a branch
 
-# In[27]:
+# In[24]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch')
 
 
-# In[28]:
+# In[25]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch -d experiment')
 
 
-# In[29]:
+# In[26]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch')
 
 
-# In[30]:
+# In[27]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch --remote')
 
 
-# In[31]:
+# In[28]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push --delete origin experiment \n# Remove remote branch \n# - also can use github interface')
+get_ipython().run_cell_magic('bash', '', 'git push --delete origin experiment \n# Remove remote branch. Note that you can also use the GitHub interface to do this.')
 
 
-# In[32]:
+# In[29]:
 
 
 get_ipython().run_cell_magic('bash', '', 'git branch --remote')

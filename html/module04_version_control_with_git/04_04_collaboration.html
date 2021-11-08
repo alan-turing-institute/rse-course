@@ -486,13 +486,14 @@ rm -rf partner_dir # cleanup after previous example
 </div>
 </div>
 </div>
-<p>Next, the collaborator needs to find out the URL of the repository: they should go to the leader’s repository’s GitHub page, and note the URL on the top of the screen. Make sure the “ssh” button is pushed, the URL should begin with <code class="docutils literal notranslate"><span class="pre">git&#64;github.com</span></code>.</p>
+<p>Next, the collaborator needs to find out the URL of the repository: they should go to the leader’s repository’s GitHub page, and note the URL on the top of the screen.</p>
+<p>As before, we’re using <code class="docutils literal notranslate"><span class="pre">SSH</span></code> to connect - to do this you’ll need to make sure the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> button is pushed, and check that the URL begins with <code class="docutils literal notranslate"><span class="pre">git&#64;github.com</span></code>.</p>
 <p>Copy the URL into your clipboard by clicking on the icon to the right of the URL, and then:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 pwd
-git clone https://${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git partner_dir
+git clone git@github.com:alan-turing-institute/github-example.git partner_dir
 </pre></div>
 </div>
 </div>
@@ -523,6 +524,7 @@ ls
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module04_version_control_with_git/learning_git/partner_dir
+lakeland.md
 test.md
 </pre></div>
 </div>
@@ -537,50 +539,13 @@ cat lakeland.md
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cat: lakeland.md: No such file or directory
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_7343</span><span class="o">/</span><span class="mf">560186327.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;cat lakeland.md</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lakeland  
+========   
+  
+Cumbria has some pretty hills, and lakes too
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2404</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2405</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2406</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2407</span>             <span class="k">return</span> <span class="n">result</span>
-<span class="g g-Whitespace">   </span><span class="mi">2408</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magics/script.py</span> in <span class="ni">named_script_magic</span><span class="nt">(line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>                 <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
-<span class="ne">--&gt; </span><span class="mi">142</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span> 
-<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="c1"># write a basic docstring:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>                 <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">232</span>             <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magic.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(f, *a, **k)</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="c1"># but it&#39;s overkill for just that one bit of state.</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">def</span> <span class="nf">magic_deco</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">187</span>         <span class="n">call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span> 
-<span class="g g-Whitespace">    </span><span class="mi">189</span>         <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magics/script.py</span> in <span class="ni">shebang</span><span class="nt">(self, line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span>             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">244</span>         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">245</span>             <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">err</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">246</span> 
-<span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="k">def</span> <span class="nf">_run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">to_close</span><span class="p">):</span>
-
-<span class="ne">CalledProcessError</span>: Command &#39;b&#39;cat lakeland.md\n&#39;&#39; returned non-zero exit status 1.
+Mountains:
+* Helvellyn
 </pre></div>
 </div>
 </div>
@@ -641,7 +606,7 @@ git commit -m &quot;Add wales&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 0f3bc2f] Add wales
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 7586fe2] Add wales
  1 file changed, 5 insertions(+)
  create mode 100644 Wales.md
 </pre></div>
@@ -697,7 +662,7 @@ git commit -m &quot;Add Scotland&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 0be8b83] Add Scotland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 4f284ff] Add Scotland
  1 file changed, 5 insertions(+)
  create mode 100644 Scotland.md
 </pre></div>
@@ -713,8 +678,8 @@ git push
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/alan-turing-institute/github-example.git
-   556fef4..0be8b83  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+   6795f57..4f284ff  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -730,16 +695,28 @@ git push
 </div>
 </div>
 </div>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>&gt; git push
-To https://github.com/alan-turing-institute/github-example.git
- ! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; master <span class="o">(</span>fetch first<span class="o">)</span>
-error: failed to push some refs
-hint: Updates were rejected because the remote contains work that you <span class="k">do</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push || echo &quot;Push failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+ ! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs to &#39;github.com:alan-turing-institute/github-example.git&#39;
+hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
-hint: <span class="o">(</span>e.g., <span class="s1">&#39;git pull ...&#39;</span><span class="o">)</span> before pushing again.
-hint: See the <span class="s1">&#39;Note about fast-forwards&#39;</span> <span class="k">in</span> <span class="s1">&#39;git push --help&#39;</span> <span class="k">for</span> details.
+hint: (e.g., &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
 </pre></div>
+</div>
+</div>
 </div>
 <p>Do as it suggests:</p>
 <div class="cell docutils container">
@@ -750,13 +727,65 @@ git pull
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/alan-turing-institute/github-example
-   556fef4..0be8b83  main       -&gt; origin/main
- * [new branch]      gh-pages   -&gt; origin/gh-pages
- * [new branch]      master     -&gt; origin/master
-Rebasing (1/1)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
+   6795f57..4f284ff  main       -&gt; origin/main
+ * [new branch]      experiment -&gt; origin/experiment
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_7370</span><span class="o">/</span><span class="mf">3022008257.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;git pull</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-Successfully rebased and updated refs/heads/main.
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2404</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2405</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2406</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2407</span>             <span class="k">return</span> <span class="n">result</span>
+<span class="g g-Whitespace">   </span><span class="mi">2408</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magics/script.py</span> in <span class="ni">named_script_magic</span><span class="nt">(line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>                 <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
+<span class="ne">--&gt; </span><span class="mi">142</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span> 
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="c1"># write a basic docstring:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>                 <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">232</span>             <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magic.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(f, *a, **k)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="c1"># but it&#39;s overkill for just that one bit of state.</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">def</span> <span class="nf">magic_deco</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">187</span>         <span class="n">call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span> 
+<span class="g g-Whitespace">    </span><span class="mi">189</span>         <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/IPython/core/magics/script.py</span> in <span class="ni">shebang</span><span class="nt">(self, line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span>             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span>         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">245</span>             <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">err</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span> 
+<span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="k">def</span> <span class="nf">_run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">to_close</span><span class="p">):</span>
+
+<span class="ne">CalledProcessError</span>: Command &#39;b&#39;git pull\n&#39;&#39; returned non-zero exit status 128.
 </pre></div>
 </div>
 </div>
@@ -774,8 +803,8 @@ git push
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/alan-turing-institute/github-example.git
-   0be8b83..022c51f  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+   289afed..34f8bbb  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -796,15 +825,15 @@ git pull
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating 0be8b83..022c51f
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating 289afed..34f8bbb
 Fast-forward
  Wales.md | 5 +++++
  1 file changed, 5 insertions(+)
  create mode 100644 Wales.md
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/alan-turing-institute/github-example
-   0be8b83..022c51f  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
+   289afed..34f8bbb  main       -&gt; origin/main
 </pre></div>
 </div>
 </div>
@@ -876,7 +905,7 @@ git commit -am &quot;Translating from the Welsh&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 28bb89c] Translating from the Welsh
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main b8fb6c5] Translating from the Welsh
  1 file changed, 1 insertion(+), 1 deletion(-)
 </pre></div>
 </div>
@@ -890,16 +919,17 @@ git log --oneline
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28bb89c Translating from the Welsh
-022c51f Add wales
-0be8b83 Add Scotland
-556fef4 Add Helvellyn
-311761b Include lakes in the scope
-0a61df6 Add lakeland
-b5d36db Revert &quot;Add a lie about a mountain&quot;
-bf4ec88 Change title
-2c26599 Add a lie about a mountain
-0653076 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b8fb6c5 Translating from the Welsh
+34f8bbb Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+289afed Add Scotland
+0c976b0 Add wales
+82b4fa0 Add Helvellyn
+6ff088f Include lakes in the scope
+d063119 Add lakeland
+c489aab Revert &quot;Add a lie about a mountain&quot;
+f79cacc Change title
+6e8a302 Add a lie about a mountain
+238eaff First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -937,7 +967,7 @@ git commit -am &quot;Add a beacon&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 81bd200] Add a beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 8cd684e] Add a beacon
  1 file changed, 1 insertion(+)
 </pre></div>
 </div>
@@ -951,16 +981,17 @@ git log --oneline
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81bd200 Add a beacon
-022c51f Add wales
-0be8b83 Add Scotland
-556fef4 Add Helvellyn
-311761b Include lakes in the scope
-0a61df6 Add lakeland
-b5d36db Revert &quot;Add a lie about a mountain&quot;
-bf4ec88 Change title
-2c26599 Add a lie about a mountain
-0653076 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8cd684e Add a beacon
+34f8bbb Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+289afed Add Scotland
+0c976b0 Add wales
+82b4fa0 Add Helvellyn
+6ff088f Include lakes in the scope
+d063119 Add lakeland
+c489aab Revert &quot;Add a lie about a mountain&quot;
+f79cacc Change title
+6e8a302 Add a lie about a mountain
+238eaff First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -973,8 +1004,8 @@ git push
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/alan-turing-institute/github-example.git
-   022c51f..81bd200  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+   34f8bbb..8cd684e  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -987,16 +1018,28 @@ git push
 </div>
 </div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; git push
-To https://github.com/alan-turing-institute/github-example.git
- ! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; master <span class="o">(</span>fetch first<span class="o">)</span>
-error: failed to push some refs
-hint: Updates were rejected because the remote contains work that you <span class="k">do</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push || echo &quot;Push failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+ ! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs to &#39;github.com:alan-turing-institute/github-example.git&#39;
+hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
-hint: <span class="o">(</span>e.g., <span class="s1">&#39;git pull ...&#39;</span><span class="o">)</span> before pushing again.
-hint: See the <span class="s1">&#39;Note about fast-forwards&#39;</span> <span class="k">in</span> <span class="s1">&#39;git push --help&#39;</span> <span class="k">for</span> details.
+hint: (e.g., &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
 </pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1006,11 +1049,14 @@ git pull
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/alan-turing-institute/github-example
-   022c51f..81bd200  main       -&gt; origin/main
-Rebasing (1/1)
-
-Successfully rebased and updated refs/heads/main.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging Wales.md
+Merge made by the &#39;recursive&#39; strategy.
+ Wales.md | 1 +
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
+   34f8bbb..8cd684e  main       -&gt; origin/main
 </pre></div>
 </div>
 </div>
@@ -1023,8 +1069,8 @@ git push
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/alan-turing-institute/github-example.git
-   81bd200..57064c3  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+   8cd684e..ecc3206  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -1037,17 +1083,23 @@ git log --oneline --graph
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 57064c3 Translating from the Welsh
-* 81bd200 Add a beacon
-* 022c51f Add wales
-* 0be8b83 Add Scotland
-* 556fef4 Add Helvellyn
-* 311761b Include lakes in the scope
-* 0a61df6 Add lakeland
-* b5d36db Revert &quot;Add a lie about a mountain&quot;
-* bf4ec88 Change title
-* 2c26599 Add a lie about a mountain
-* 0653076 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   ecc3206 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+|\  
+| * 8cd684e Add a beacon
+* | b8fb6c5 Translating from the Welsh
+|/  
+*   34f8bbb Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+|\  
+| * 289afed Add Scotland
+* | 0c976b0 Add wales
+|/  
+* 82b4fa0 Add Helvellyn
+* 6ff088f Include lakes in the scope
+* d063119 Add lakeland
+* c489aab Revert &quot;Add a lie about a mountain&quot;
+* f79cacc Change title
+* 6e8a302 Add a lie about a mountain
+* 238eaff First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1067,14 +1119,14 @@ git pull
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating 81bd200..57064c3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating 8cd684e..ecc3206
 Fast-forward
  Wales.md | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From https://github.com/alan-turing-institute/github-example
-   81bd200..57064c3  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
+   8cd684e..ecc3206  main       -&gt; origin/main
 </pre></div>
 </div>
 </div>
@@ -1087,17 +1139,23 @@ git log --graph --oneline
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 57064c3 Translating from the Welsh
-* 81bd200 Add a beacon
-* 022c51f Add wales
-* 0be8b83 Add Scotland
-* 556fef4 Add Helvellyn
-* 311761b Include lakes in the scope
-* 0a61df6 Add lakeland
-* b5d36db Revert &quot;Add a lie about a mountain&quot;
-* bf4ec88 Change title
-* 2c26599 Add a lie about a mountain
-* 0653076 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   ecc3206 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+|\  
+| * 8cd684e Add a beacon
+* | b8fb6c5 Translating from the Welsh
+|/  
+*   34f8bbb Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+|\  
+| * 289afed Add Scotland
+* | 0c976b0 Add wales
+|/  
+* 82b4fa0 Add Helvellyn
+* 6ff088f Include lakes in the scope
+* d063119 Add lakeland
+* c489aab Revert &quot;Add a lie about a mountain&quot;
+* f79cacc Change title
+* 6e8a302 Add a lie about a mountain
+* 238eaff First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1181,12 +1239,12 @@ git push
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 96465ae] Add another Beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main ed30178] Add another Beacon
  1 file changed, 1 insertion(+)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/alan-turing-institute/github-example.git
-   57064c3..96465ae  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+   ecc3206..ed30178  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -1225,28 +1283,40 @@ git commit -am &quot;Add Glyder&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 27d68d1] Add Glyder
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main bc04a83] Add Glyder
  1 file changed, 1 insertion(+)
 </pre></div>
 </div>
 </div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; git push
-To git@github.com:alan-turing-institute/github-example.git
- ! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; master <span class="o">(</span>fetch first<span class="o">)</span>
-error: failed to push some refs
-hint: Updates were rejected because the remote contains work that you <span class="k">do</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push || echo &quot;Push failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+ ! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs to &#39;github.com:alan-turing-institute/github-example.git&#39;
+hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
-hint: <span class="o">(</span>e.g., <span class="s1">&#39;git pull ...&#39;</span><span class="o">)</span> before pushing again.
-hint: See the <span class="s1">&#39;Note about fast-forwards&#39;</span> <span class="k">in</span> <span class="s1">&#39;git push --help&#39;</span> <span class="k">for</span> details.
+hint: (e.g., &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
 </pre></div>
+</div>
+</div>
 </div>
 <p>When you pull, instead of offering an automatic merge commit message, it says:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git pull
+git pull || echo &quot;Pull failed&quot;
 </pre></div>
 </div>
 </div>
@@ -1254,20 +1324,11 @@ git pull
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging Wales.md
 CONFLICT (content): Merge conflict in Wales.md
 Automatic merge failed; fix conflicts and then commit the result.
+Pull failed
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hint: Pulling without specifying how to reconcile divergent branches is
-hint: discouraged. You can squelch this message by running one of the following
-hint: commands sometime before your next pull:
-hint: 
-hint:   git config pull.rebase false  # merge (the default strategy)
-hint:   git config pull.rebase true   # rebase
-hint:   git config pull.ff only       # fast-forward only
-hint: 
-hint: You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the configured default per
-hint: invocation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
+   ecc3206..ed30178  main       -&gt; origin/main
 </pre></div>
 </div>
 </div>
@@ -1296,7 +1357,7 @@ cat Wales.md
 * Glyder Fawr
 =======
 * Fan y Big
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 96465aecf1434cd0053d7022a5a03c5496e9b2fb
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; ed301786b17defffe617ed8c7ded6591a7fb94f0
 </pre></div>
 </div>
 </div>
@@ -1334,7 +1395,7 @@ git commit -a --no-edit # I added a No-edit for this non-interactive session. Yo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 79b0a8d] Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 85b2797] Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 </div>
@@ -1347,8 +1408,8 @@ git push
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To https://github.com/alan-turing-institute/github-example.git
-   96465ae..79b0a8d  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+   ed30178..85b2797  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -1368,26 +1429,14 @@ git pull
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating 96465ae..79b0a8d
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating ed30178..85b2797
 Fast-forward
  Wales.md | 1 +
  1 file changed, 1 insertion(+)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hint: Pulling without specifying how to reconcile divergent branches is
-hint: discouraged. You can squelch this message by running one of the following
-hint: commands sometime before your next pull:
-hint: 
-hint:   git config pull.rebase false  # merge (the default strategy)
-hint:   git config pull.rebase true   # rebase
-hint:   git config pull.ff only       # fast-forward only
-hint: 
-hint: You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the configured default per
-hint: invocation.
-From https://github.com/alan-turing-institute/github-example
-   96465ae..79b0a8d  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
+   ed30178..85b2797  main       -&gt; origin/main
 </pre></div>
 </div>
 </div>
@@ -1420,22 +1469,28 @@ git log --oneline --graph
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   79b0a8d Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   85b2797 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 |\  
-| * 96465ae Add another Beacon
-* | 27d68d1 Add Glyder
+| * ed30178 Add another Beacon
+* | bc04a83 Add Glyder
 |/  
-* 57064c3 Translating from the Welsh
-* 81bd200 Add a beacon
-* 022c51f Add wales
-* 0be8b83 Add Scotland
-* 556fef4 Add Helvellyn
-* 311761b Include lakes in the scope
-* 0a61df6 Add lakeland
-* b5d36db Revert &quot;Add a lie about a mountain&quot;
-* bf4ec88 Change title
-* 2c26599 Add a lie about a mountain
-* 0653076 First commit of discourse on UK topography
+*   ecc3206 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+|\  
+| * 8cd684e Add a beacon
+* | b8fb6c5 Translating from the Welsh
+|/  
+*   34f8bbb Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+|\  
+| * 289afed Add Scotland
+* | 0c976b0 Add wales
+|/  
+* 82b4fa0 Add Helvellyn
+* 6ff088f Include lakes in the scope
+* d063119 Add lakeland
+* c489aab Revert &quot;Add a lie about a mountain&quot;
+* f79cacc Change title
+* 6e8a302 Add a lie about a mountain
+* 238eaff First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
