@@ -20,23 +20,35 @@ The [solution](http://stackoverflow.com/questions/13036197/ipython-notebook-gett
 
 ## Git
 
-Install the [GitHub for Windows client](http://windows.github.com/).
+Install the [GitHub Desktop Client](http://windows.github.com/).
 This comes with both a GUI client as well as the [Git Bash](https://gitforwindows.org/) terminal client which we will use during the course.
-You should register with [Github](https://github.com) for an account and sign into the GUI client with this account.
-This will automatically set-up [SSH based authentication](https://help.github.com/articles/generating-ssh-keys#platform-windows) for the terminal client.
-The terminal client comes in 3 different flavours based on `Windows CMD` (DOS like), `Windows Powershell`, and `BASH`.
-We will use the `BASH` client as this most closely resembles the `Linux` and `OS X` terminal used by other students.
-In order to configure this open the Github client.
-Sign in with your credentials and:
 
-- Select tools
-- Options
-- Default Shell
-- Git Bash
-- And Press Update to save.
+You'll know it has worked when you can open a Git Bash terminal (the window should have a title that starts with MINGW32) and get the Git version by running
 
-Verify that this is working by opening Git Bash.
-The Shell window should have a title that starts with MINGW32.
+```bash
+git --version
+```
+
+which should show that you have a [recent](https://en.wikipedia.org/wiki/Git#Releases) copy of Git. If your version is more than 18 months old, please update it.
+
+## GitHub
+
+For the Git part of the course, you require access to GitHub. You will need to [sign up](https://github.com/join) and follow either the **GitHub Setup using the Command Line** or **GitHub Setup using the Desktop Client** instructions, below.
+
+### GitHub Setup using the Command Line
+
+1. [Generate an SSH key pair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+2. [Add the public key to your GitHub account and the private key to your computer's keychain](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+3. [Test your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+
+### GitHub Setup using the Desktop Client
+
+1. Signing in to the GitHub Desktop Client should automatically set-up [SSH based authentication](https://help.github.com/articles/generating-ssh-keys#platform-windows) for the terminal client
+2. Configure the default terminal client (there are three different flavours of terminal on Windows: `Windows CMD` (DOS like), `Windows Powershell`, and `BASH`) to use BASH, as this most closely resembles the `Linux` and `macOS` terminal used by other students:
+    1. In the Desktop Client, select **Tools**
+    2. Then **Options**
+    3. **Default Shell**
+    4. **Git Bash**
 
 ## Editor
 
