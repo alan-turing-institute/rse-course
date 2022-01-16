@@ -74,6 +74,27 @@ If `git` is not already available on your machine you can try to install it via 
 sudo apt-get install git
 ```
 
+You'll know it has worked when you can get the Git version by running
+
+```
+git --version
+```
+
+which should show that you have a [recent](https://en.wikipedia.org/wiki/Git#Releases) copy of Git. If your version is more than 18 months old, please update it.
+
+You will need to set at least your email address and name, for which you can follow the **Your Identity** section of [First Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+
+You can check that they have been set correctly by running `git config user.name` and `git config user.email`.
+
+## GitHub
+
+For the Git part of the course, you will need access to GitHub. You will need to
+
+1. [Sign up](https://github.com/join)
+2. [Generate an SSH key pair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+3. [Add the public key to your GitHub account and the private key to your computer's keychain](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+4. Lastly, you should [test your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+
 ## Editor
 
 Many different text editors suitable for programming are available.
