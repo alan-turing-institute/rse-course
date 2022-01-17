@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Debugging With Git Bisect &#8212; Research Software Engineering with Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -55,7 +55,10 @@
     <link rel="next" title="Testing" href="../module05_testing_your_code/index.html" />
     <link rel="prev" title="Rebasing" href="04_10_rebasing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -94,7 +97,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Prerequisites
  </span>
@@ -128,7 +131,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Course contents
  </span>
@@ -670,7 +673,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Self Assessment
  </span>
@@ -754,7 +757,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -807,7 +810,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -842,7 +845,45 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Debugging With Git Bisect</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-example-repository">
+   An example repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bisecting-manually">
+   Bisecting manually
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-manually">
+   Solving Manually
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-automatically">
+   Solving automatically
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="debugging-with-git-bisect">
@@ -925,7 +966,7 @@ Switched to a new branch &#39;buggy&#39;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_12712/777131122.py&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_12709/2468026376.py&quot;</span><span class="gt">, line </span><span class="mi">1</span>
     <span class="n">python</span> <span class="n">squares</span><span class="o">.</span><span class="n">py</span> <span class="mi">2</span> <span class="c1"># Error message</span>
                  <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
@@ -949,7 +990,7 @@ git bisect good # We know the master branch state is OK
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your branch is up to date with &#39;origin/master&#39;.
 Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[ec037483d0ebc86b938acb939582643716cb0fb1] Comment 499
+[f71bbae627fd74810f42d58f11374420c03a6b4d] Comment 500
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Switched to branch &#39;master&#39;
@@ -1018,41 +1059,44 @@ git bisect run python squares.py 2
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 500 revisions left to test after this (roughly 9 steps)
-[ec037483d0ebc86b938acb939582643716cb0fb1] Comment 499
-running python squares.py 2
-Bisecting: 249 revisions left to test after this (roughly 8 steps)
-[4b19f03f7f3a17d398ce7e1d6c267e4893270a58] Comment 249
-running python squares.py 2
-Bisecting: 124 revisions left to test after this (roughly 7 steps)
-[726ebc3e2416a65b877ab98cf70f3b4b68f2bbac] Comment 124
-running python squares.py 2
-Bisecting: 62 revisions left to test after this (roughly 6 steps)
-[07088a77c1a642e1cde5d3715aaa66c2a3c150af] Comment 62
-running python squares.py 2
+[f71bbae627fd74810f42d58f11374420c03a6b4d] Comment 500
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 4
+Bisecting: 250 revisions left to test after this (roughly 8 steps)
+[c60aed5b33a509d5142d9ec001bbb673a6a80142] Comment 750
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
+4
+Bisecting: 125 revisions left to test after this (roughly 7 steps)
+[8b5e99ae3df2f3d99b8204d261a24f9ea00d7fc9] Comment 875
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
+4
+Bisecting: 62 revisions left to test after this (roughly 6 steps)
+[08bd65c0c68bfa17b442db508fbc3dde18f75bc8] Comment 937
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 Bisecting: 31 revisions left to test after this (roughly 5 steps)
-[4d32ecc9cc8dc01eb874acb9dc209e038928b31a] Comment 93
-running python squares.py 2
+[806707adb29ebd2a52723a6dfad2f26c5c33e5b4] Comment 906
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 4
 Bisecting: 15 revisions left to test after this (roughly 4 steps)
-[9e82cf6a876aa527516235a36310251dbb182e68] Comment 108
-running python squares.py 2
+[4bc579a20d435e121b76ab0a95a4e131047ccb88] Comment 921
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 Bisecting: 7 revisions left to test after this (roughly 3 steps)
-[3086e59b2d76ff4b3ac7bfffa5cc0d222b6c2c1b] Comment 101
-running python squares.py 2
+[31c305bc3b7768973a96c77790e3b3ff46790ae2] Comment 914
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 4
 Bisecting: 3 revisions left to test after this (roughly 2 steps)
-[eb6ad35a717f49457dea4eaae0eaa75826722dbb] Comment 104
-running python squares.py 2
-Bisecting: 1 revision left to test after this (roughly 1 step)
-[9567033ec85fe92462a81058500122159e9f3f69] Breaking argument type
-running python squares.py 2
-Bisecting: 0 revisions left to test after this (roughly 0 steps)
-[48f2d8af03f3c7d0e963d34cd8e7578d73587482] Comment 102
-running python squares.py 2
+[4175acde5261bc0d3a6bdd58d7250df06dfccd87] Comment 918
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 4
-9567033ec85fe92462a81058500122159e9f3f69 is the first bad commit
-commit 9567033ec85fe92462a81058500122159e9f3f69
+Bisecting: 1 revision left to test after this (roughly 1 step)
+[aa9726eadd3028d5ac751cc23d23c139febf8192] Breaking argument type
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[cbcaa0b84056d529def341531c27dbdf101e0c7e] Comment 919
+running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
+4
+aa9726eadd3028d5ac751cc23d23c139febf8192 is the first bad commit
+commit aa9726eadd3028d5ac751cc23d23c139febf8192
 Author: Shawn Siefkas &lt;shawn.siefkas@meredith.com&gt;
 Date:   Thu Nov 14 09:23:55 2013 -0600
 
@@ -1060,23 +1104,11 @@ Date:   Thu Nov 14 09:23:55 2013 -0600
 
  squares.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
-bisect run success
+bisect found first bad commit
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Previous HEAD position was ec03748 Comment 499
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Previous HEAD position was f71bbae Comment 500
 Switched to branch &#39;buggy&#39;
-Traceback (most recent call last):
-  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
-    print(integer**2)
-TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
-Traceback (most recent call last):
-  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
-    print(integer**2)
-TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
-Traceback (most recent call last):
-  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
-    print(integer**2)
-TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
 Traceback (most recent call last):
   File &quot;squares.py&quot;, line 9, in &lt;module&gt;
     print(integer**2)
@@ -1119,54 +1151,42 @@ TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;i
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="04_10_rebasing.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Rebasing</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="04_10_rebasing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Rebasing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../module05_testing_your_code/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Testing</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="../module05_testing_your_code/index.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Testing</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By The Alan Turing Institute<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By The Alan Turing Institute<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

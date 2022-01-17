@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fixing mistakes &#8212; Research Software Engineering with Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -55,7 +55,10 @@
     <link rel="next" title="Publishing" href="04_03_publishing.html" />
     <link rel="prev" title="Solo work with Git" href="04_01_solo_work_with_git.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -94,7 +97,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Prerequisites
  </span>
@@ -128,7 +131,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Course contents
  </span>
@@ -670,7 +673,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Self Assessment
  </span>
@@ -754,7 +757,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -807,7 +810,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -872,7 +875,75 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Fixing mistakes</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referring-to-changes-with-head-and">
+   Referring to changes with HEAD and ^
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reverting">
+   Reverting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conflicted-reverts">
+   Conflicted reverts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-of-changes">
+   Review of changes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#antipatch">
+   Antipatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rewriting-history">
+   Rewriting history
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-new-lie">
+   A new lie
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-reset-to-rewrite-history">
+   Using reset to rewrite history
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#covering-your-tracks">
+   Covering your tracks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resetting-the-working-area">
+   Resetting the working area
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="fixing-mistakes">
@@ -891,7 +962,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/rsd-engineeringcourse/rsd-engineeringcourse/module04_version_control_with_git/learning_git/git_example&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/rse-course/rse-course/module04_version_control_with_git/learning_git/git_example&#39;
 </pre></div>
 </div>
 </div>
@@ -914,8 +985,8 @@ git revert HEAD^
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging test.md
-[main b94cab6] Revert &quot;Add a lie about a mountain&quot;
- Date: Mon Nov 8 17:58:39 2021 +0000
+[main fb546f2] Revert &quot;Add a lie about a mountain&quot;
+ Date: Mon Jan 17 09:25:21 2022 +0000
  1 file changed, 2 deletions(-)
 </pre></div>
 </div>
@@ -940,29 +1011,29 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit b94cab68756c4e7794af138189a161bb1a6015c7
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit fb546f2487552f684781c985b867b0d0bc97d067
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 852ce9199e7e322961b38a2952ca9ffe3d8de9a8.
+    This reverts commit 7d5c66ec7621e2dd6e0c60809846ca33c2a1b295.
 
-commit 24bf76c1202dda8d68de3b0405c621f726dbc9c0
+commit 409cdc96d9358c5fbc94b3a352c0cdc4c864e241
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Change title
 
-commit 852ce9199e7e322961b38a2952ca9ffe3d8de9a8
+commit 7d5c66ec7621e2dd6e0c60809846ca33c2a1b295
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Add a lie about a mountain
 
-commit 68e4918ee1a012a578df7419322bfba3e3e8bf42
+commit 727eb78639fbbd4fa47fb77ece92ea5e3b7d9979
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     First commit of discourse on UK topography
 </pre></div>
@@ -1048,7 +1119,7 @@ git commit -am &quot;Add a silly spelling&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main f1cf5e5] Add a silly spelling
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main b5d3720] Add a silly spelling
  1 file changed, 3 insertions(+), 2 deletions(-)
 </pre></div>
 </div>
@@ -1062,35 +1133,35 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit f1cf5e58e898662cadff0c6dd9431e2c6641facf
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit b5d3720ce0008b52ea323bfca02e49c254f60da3
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Add a silly spelling
 
-commit b94cab68756c4e7794af138189a161bb1a6015c7
+commit fb546f2487552f684781c985b867b0d0bc97d067
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 852ce9199e7e322961b38a2952ca9ffe3d8de9a8.
+    This reverts commit 7d5c66ec7621e2dd6e0c60809846ca33c2a1b295.
 
-commit 24bf76c1202dda8d68de3b0405c621f726dbc9c0
+commit 409cdc96d9358c5fbc94b3a352c0cdc4c864e241
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Change title
 
-commit 852ce9199e7e322961b38a2952ca9ffe3d8de9a8
+commit 7d5c66ec7621e2dd6e0c60809846ca33c2a1b295
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Add a lie about a mountain
 
-commit 68e4918ee1a012a578df7419322bfba3e3e8bf42
+commit 727eb78639fbbd4fa47fb77ece92ea5e3b7d9979
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     First commit of discourse on UK topography
 </pre></div>
@@ -1122,29 +1193,29 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit b94cab68756c4e7794af138189a161bb1a6015c7
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit fb546f2487552f684781c985b867b0d0bc97d067
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 852ce9199e7e322961b38a2952ca9ffe3d8de9a8.
+    This reverts commit 7d5c66ec7621e2dd6e0c60809846ca33c2a1b295.
 
-commit 24bf76c1202dda8d68de3b0405c621f726dbc9c0
+commit 409cdc96d9358c5fbc94b3a352c0cdc4c864e241
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Change title
 
-commit 852ce9199e7e322961b38a2952ca9ffe3d8de9a8
+commit 7d5c66ec7621e2dd6e0c60809846ca33c2a1b295
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     Add a lie about a mountain
 
-commit 68e4918ee1a012a578df7419322bfba3e3e8bf42
+commit 727eb78639fbbd4fa47fb77ece92ea5e3b7d9979
 Author: Turing Developer &lt;developer@example.com&gt;
-Date:   2021-11-08
+Date:   2022-01-17
 
     First commit of discourse on UK topography
 </pre></div>
@@ -1294,54 +1365,42 @@ But has some tall hills, and maybe a mountain or two depending on your definitio
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="04_01_solo_work_with_git.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Solo work with Git</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="04_01_solo_work_with_git.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Solo work with Git</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="04_03_publishing.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Publishing</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="04_03_publishing.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Publishing</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By The Alan Turing Institute<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By The Alan Turing Institute<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

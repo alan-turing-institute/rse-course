@@ -18,7 +18,20 @@ You may also install `Xcode` from the app store if you wish, but it is not neede
 
 ## Git
 
-The `XCode` command line tools come with `Git` so no need to do anything more.
+The `XCode` command line tools come with `Git` so no need to do anything more, as long as you can run the following in your terminal:
+
+```bash
+git --version
+```
+
+## GitHub
+
+For the Git part of the course, you require access to GitHub. You will need to
+
+1. [Sign up](https://github.com/join), if you haven't already
+2. [Generate an SSH key pair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+3. [Add the public key to your GitHub account and the private key to your computer's keychain](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+4. Lastly, you should [test your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
 
 ## Homebrew
 
@@ -67,13 +80,13 @@ echo export PATH='/usr/local/bin:$PATH' >> ~/.bash_profile
 
 and reopen the terminal. Verify that this is correctly installed by executing
 
-```
+```bash
 python --version
 ```
 
 Which should print:
 
-```
+```bash
 Python 3.8.x
 ```
 

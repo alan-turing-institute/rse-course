@@ -37,4 +37,4 @@ for name, room in house.items():
 print("House can fit {} people, and currently has: {}.".format(capacity, occupancy))
 
 
-# As a side note, note how we included the values of `capacity` and `occupancy` in the last line. This is a handy syntax for building strings that contain the values of variables. You can read more about it [here](https://realpython.com/python-string-formatting/#2-new-style-string-formatting-strformat) or in the official do
+# As a side note, note how we included the values of `capacity` and `occupancy` in the last line. This is a handy syntax for building strings that contain the values of variables. You can read more about it [here](https://realpython.com/python-string-formatting/#2-new-style-string-formatting-strformat) or in the official documentation for the [string format method](https://docs.python.org/3/library/stdtypes.html#str.format).
