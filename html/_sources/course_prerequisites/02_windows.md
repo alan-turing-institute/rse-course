@@ -21,7 +21,7 @@ The [solution](http://stackoverflow.com/questions/13036197/ipython-notebook-gett
 ## Git
 
 Install the [GitHub Desktop Client](http://windows.github.com/).
-This comes with both a GUI client as well as the [Git Bash](https://gitforwindows.org/) terminal client which we will use during the course.
+This comes with both a GUI client as well as the [Git Bash](https://gitforwindows.org/) terminal client which we will use during the course. In some instances Git Bash may need to be installed separately. In order to use conda with Git Bash follow the instructions [here](https://discuss.codecademy.com/t/setting-up-conda-in-git-bash/534473) 
 
 You'll know it has worked when you can open a Git Bash terminal (the window should have a title that starts with MINGW32) and get the Git version by running
 
@@ -101,7 +101,7 @@ git config --global core.editor "code --wait"
 ```
 
 Note that it is not obvious how to copy and paste text in a `Windows` terminal including `Git Bash`.
-Copy and paste can be found by right clicking on the top bar of the window and selecting the commands from the drop down menu (in a sub menu).
+Copy and paste can be found by right clicking on the top bar of the window and selecting the commands from the drop down menu (in a sub menu). Alternatively the keyboard shortcuts are ctrl+insert for copy and shift+insert for paste. 
 
 ## Testing Python
 
