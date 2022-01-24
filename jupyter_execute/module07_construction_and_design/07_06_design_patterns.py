@@ -394,7 +394,7 @@ import requests
 
 
 def load_sunspots():
-    url_base = "http://www.quandl.com/api/v1/datasets/SIDC/SUNSPOTS_A.csv"
+    url_base = "https://www.quandl.com/api/v1/datasets/SIDC/SUNSPOTS_A.csv"
     x = requests.get(
         url_base,
         params={
@@ -524,7 +524,7 @@ class AnalyseSunspotData:
         end_date_str = "2014-01-01"
         self.start_date = self.format_date(start_date_str)
         end_date = self.format_date(end_date_str)
-        url_base = f"http://www.quandl.com/api/v1/datasets/{csv_file}"
+        url_base = f"https://www.quandl.com/api/v1/datasets/{csv_file}"
         x = requests.get(
             url_base,
             params={
@@ -791,7 +791,7 @@ class Controller:
 contl = Controller()
 
 
-# In[33]:
+# In[32]:
 
 
 HTML(contl.go())

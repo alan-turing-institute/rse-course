@@ -17,38 +17,26 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-spectrum = rfft(spots)
-
-plt.figure()
-plt.plot(abs(spectrum))
-plt.savefig("fixed.png")
+spots = load_sunspots()
+plt.plot(spots)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-[0;32m/tmp/ipykernel_16582/715805462.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mspectrum[0m [0;34m=[0m [0mrfft[0m[0;34m([0m[0mspots[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;34m[0m[0m
-[1;32m      3[0m [0mplt[0m[0;34m.[0m[0mfigure[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0mplt[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mabs[0m[0;34m([0m[0mspectrum[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0mplt[0m[0;34m.[0m[0msavefig[0m[0;34m([0m[0;34m"fixed.png"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/tmp/ipykernel_16407/3762959344.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mspots[0m [0;34m=[0m [0mload_sunspots[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mplt[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mspots[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m<__array_function__ internals>[0m in [0;36mrfft[0;34m(*args, **kwargs)[0m
-
-[0;32m/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/numpy/fft/_pocketfft.py[0m in [0;36mrfft[0;34m(a, n, axis, norm)[0m
-[1;32m    406[0m     [0;32mif[0m [0mn[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    407[0m         [0mn[0m [0;34m=[0m [0ma[0m[0;34m.[0m[0mshape[0m[0;34m[[0m[0maxis[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 408[0;31m     [0minv_norm[0m [0;34m=[0m [0m_get_forward_norm[0m[0;34m([0m[0mn[0m[0;34m,[0m [0mnorm[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    409[0m     [0moutput[0m [0;34m=[0m [0m_raw_fft[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mn[0m[0;34m,[0m [0maxis[0m[0;34m,[0m [0;32mTrue[0m[0;34m,[0m [0;32mTrue[0m[0;34m,[0m [0minv_norm[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    410[0m     [0;32mreturn[0m [0moutput[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/numpy/fft/_pocketfft.py[0m in [0;36m_get_forward_norm[0;34m(n, norm)[0m
-[1;32m     78[0m [0;32mdef[0m [0m_get_forward_norm[0m[0;34m([0m[0mn[0m[0;34m,[0m [0mnorm[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     79[0m     [0;32mif[0m [0mn[0m [0;34m<[0m [0;36m1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 80[0;31m         [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34mf"Invalid number of FFT data points ({n}) specified."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     81[0m [0;34m[0m[0m
-[1;32m     82[0m     [0;32mif[0m [0mnorm[0m [0;32mis[0m [0;32mNone[0m [0;32mor[0m [0mnorm[0m [0;34m==[0m [0;34m"backward"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mValueError[0m: Invalid number of FFT data points (0) specified.
-ValueError: Invalid number of FFT data points (0) specified.
+[0;32m/tmp/ipykernel_16407/3116410217.py[0m in [0;36mload_sunspots[0;34m()[0m
+[1;32m     12[0m     [0mdata[0m [0;34m=[0m [0mcsv[0m[0;34m.[0m[0mreader[0m[0;34m([0m[0mStringIO[0m[0;34m([0m[0mx[0m[0;34m.[0m[0mtext[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m     [0mnext[0m[0;34m([0m[0mdata[0m[0;34m)[0m  [0;31m# Skip header row[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 14[0;31m     [0;32mreturn[0m [0;34m[[0m[0mfloat[0m[0;34m([0m[0mrow[0m[0;34m[[0m[0;36m1[0m[0;34m][0m[0;34m)[0m [0;32mfor[0m [0mrow[0m [0;32min[0m [0mdata[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/tmp/ipykernel_16407/3116410217.py[0m in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m     12[0m     [0mdata[0m [0;34m=[0m [0mcsv[0m[0;34m.[0m[0mreader[0m[0;34m([0m[0mStringIO[0m[0;34m([0m[0mx[0m[0;34m.[0m[0mtext[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m     [0mnext[0m[0;34m([0m[0mdata[0m[0;34m)[0m  [0;31m# Skip header row[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 14[0;31m     [0;32mreturn[0m [0;34m[[0m[0mfloat[0m[0;34m([0m[0mrow[0m[0;34m[[0m[0;36m1[0m[0;34m][0m[0;34m)[0m [0;32mfor[0m [0mrow[0m [0;32min[0m [0mdata[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mValueError[0m: could not convert string to float: 'You have exceeded the anonymous user limit of 50 calls per day. To make more calls today, please register for a free Nasdaq Data Link account and then include your API key with your requests.'
+ValueError: could not convert string to float: 'You have exceeded the anonymous user limit of 50 calls per day. To make more calls today, please register for a free Nasdaq Data Link account and then include your API key with your requests.'
 

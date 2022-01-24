@@ -101,7 +101,7 @@ reaction2 = {
 
 # ## Naming Conventions
 
-# [Camel case](https://en.wikipedia.org/wiki/Camel_case) is used in the following example, where class name is in UpperCamel, functions in lowerCamel and underscore_separation for variables names. This convention is used broadly in the python community.
+# [Camel case](https://en.wikipedia.org/wiki/Camel_case) is used in the following example, where class name is in UpperCamel, functions in lowerCamel and underscore_separation for variables names:
 
 # In[6]:
 
@@ -111,7 +111,7 @@ class ClassName:
         instance_variable = variable_name
 
 
-# However, particular projects may have their own conventions. This other example uses `underscore_separation` for all the names.
+# This example uses `underscore_separation` for all the names:
 
 # In[7]:
 
@@ -121,6 +121,18 @@ class class_name:
         m_instance_variable = a_variable
 
 
+# The usual Python convention (see [PEP8](https://www.python.org/dev/peps/pep-0008)) is UpperCamel for class names, and underscore_separation for function and variable names:
+
+# In[8]:
+
+
+class ClassName:
+    def method_name(variable_name):
+        instance_variable = variable_name
+
+
+# However, particular projects may have their own conventions (and you will even find Python standard libraries that don't follow these conventions). 
+
 # ## Hungarian Notation
 
 # 
@@ -129,7 +141,7 @@ class class_name:
 # 
 # 
 
-# In[8]:
+# In[9]:
 
 
 fNumber = float(sEntry) + iOffset
@@ -139,7 +151,7 @@ fNumber = float(sEntry) + iOffset
 # 
 # People may find this useful in languages like Python where the type is intrinsic in the variable.
 
-# In[9]:
+# In[10]:
 
 
 number = float(entry) + offset
@@ -159,7 +171,7 @@ number = float(entry) + offset
 
 # The following two snippets do the same, but the second is separated into more steps, making it more readable.
 
-# In[10]:
+# In[11]:
 
 
 anothervariable += 1
@@ -167,7 +179,7 @@ if (variable == anothervariable) and flag1 or flag2:
     do_something()
 
 
-# In[11]:
+# In[12]:
 
 
 anothervariable = anothervariable + 1
@@ -211,7 +223,7 @@ if (variable_equality and flag1) or flag2:
 # 
 # 
 
-# In[12]:
+# In[13]:
 
 
 get_ipython().run_cell_magic('bash', '', 'pycodestyle species.py')
@@ -230,7 +242,7 @@ get_ipython().run_cell_magic('bash', '', 'pycodestyle species.py')
 # `pip install` [pylint](https://www.pylint.org/)
 # 
 
-# In[13]:
+# In[14]:
 
 
 get_ipython().run_cell_magic('bash', '', 'pylint species.py || echo "Note the linting failures"')

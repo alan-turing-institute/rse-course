@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nbclient/client.py", line 1085, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nbclient/client.py", line 552, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nbclient/client.py", line 846, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nbclient/client.py", line 748, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+requests_json = json.loads(quakes.text)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mJSONDecodeError[0m                           Traceback (most recent call last)
+[0;32m/tmp/ipykernel_11789/724419515.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mrequests_json[0m [0;34m=[0m [0mjson[0m[0;34m.[0m[0mloads[0m[0;34m([0m[0mquakes[0m[0;34m.[0m[0mtext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/json/__init__.py[0m in [0;36mloads[0;34m(s, encoding, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)[0m
+[1;32m    346[0m             [0mparse_int[0m [0;32mis[0m [0;32mNone[0m [0;32mand[0m [0mparse_float[0m [0;32mis[0m [0;32mNone[0m [0;32mand[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    347[0m             parse_constant is None and object_pairs_hook is None and not kw):
+[0;32m--> 348[0;31m         [0;32mreturn[0m [0m_default_decoder[0m[0;34m.[0m[0mdecode[0m[0;34m([0m[0ms[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    349[0m     [0;32mif[0m [0mcls[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    350[0m         [0mcls[0m [0;34m=[0m [0mJSONDecoder[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/json/decoder.py[0m in [0;36mdecode[0;34m(self, s, _w)[0m
+[1;32m    335[0m [0;34m[0m[0m
+[1;32m    336[0m         """
+[0;32m--> 337[0;31m         [0mobj[0m[0;34m,[0m [0mend[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mraw_decode[0m[0;34m([0m[0ms[0m[0;34m,[0m [0midx[0m[0;34m=[0m[0m_w[0m[0;34m([0m[0ms[0m[0;34m,[0m [0;36m0[0m[0;34m)[0m[0;34m.[0m[0mend[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    338[0m         [0mend[0m [0;34m=[0m [0m_w[0m[0;34m([0m[0ms[0m[0;34m,[0m [0mend[0m[0;34m)[0m[0;34m.[0m[0mend[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    339[0m         [0;32mif[0m [0mend[0m [0;34m!=[0m [0mlen[0m[0;34m([0m[0ms[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/json/decoder.py[0m in [0;36mraw_decode[0;34m(self, s, idx)[0m
+[1;32m    353[0m             [0mobj[0m[0;34m,[0m [0mend[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mscan_once[0m[0;34m([0m[0ms[0m[0;34m,[0m [0midx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    354[0m         [0;32mexcept[0m [0mStopIteration[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 355[0;31m             [0;32mraise[0m [0mJSONDecodeError[0m[0;34m([0m[0;34m"Expecting value"[0m[0;34m,[0m [0ms[0m[0;34m,[0m [0merr[0m[0;34m.[0m[0mvalue[0m[0;34m)[0m [0;32mfrom[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    356[0m         [0;32mreturn[0m [0mobj[0m[0;34m,[0m [0mend[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mJSONDecodeError[0m: Expecting value: line 1 column 1 (char 0)
+JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+

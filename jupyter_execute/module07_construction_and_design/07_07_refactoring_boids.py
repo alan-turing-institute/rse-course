@@ -8,7 +8,7 @@
 # 
 # We have written some _very bad_ code implementing our Boids flocking example.
 # 
-# Here's the [Github link](https://github.com/UCL/bad-boids).
+# Here's the [Github link](https://github.com/alan-turing-institute/bad-boids).
 # 
 # Please fork it on GitHub, and clone your fork.
 # 
@@ -127,7 +127,7 @@ HTML(anim.to_jshtml())
 # after = boids.boids
 # fixture = {"before": before, "after": after}
 # fixture_file = open("fixture.yml", 'w')
-# fixture_file.write(yaml.dump(fixture))
+# fixture_file.write(yaml.safe_dump(fixture))
 # fixture_file.close()
 # ```
 
@@ -144,7 +144,7 @@ HTML(anim.to_jshtml())
 # import yaml
 # 
 # def test_bad_boids_regression():
-#     regression_data = yaml.load(open(os.path.join(os.path.dirname(__file__),'fixture.yml')))
+#     regression_data = yaml.safe_load(open(os.path.join(os.path.dirname(__file__),'fixture.yml')))
 #     boid_data = regression_data["before"]
 #     update_boids(boid_data)
 #     for after, before in zip(regression_data["after"], boid_data):
@@ -171,7 +171,7 @@ HTML(anim.to_jshtml())
 # ### Start Refactoring
 
 # 
-# Look at the code, consider the [list of refactorings](./05refactoring.html#refactoring-summary), and make changes.
+# Look at the code, consider the [list of refactorings](./07_03_refactoring.html#refactoring-summary) ("Refactoring Summary" in the "Refactoring" notebook, 07_03), and make changes.
 # 
 # Each time, do a git commit on your fork, and write a commit message explaining the 
 # refactoring you did.
@@ -180,3 +180,9 @@ HTML(anim.to_jshtml())
 # 
 # If your refactoring creates any units, (functions, modules, or classes)
 # **write a unit test** for the unit: it is a good idea to get away from regression testing as soon as you can.
+
+# In[ ]:
+
+
+
+
