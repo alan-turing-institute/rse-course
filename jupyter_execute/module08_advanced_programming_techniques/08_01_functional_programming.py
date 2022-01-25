@@ -206,17 +206,43 @@ add_3 = generate_adder(3)
 add_3(9)
 
 
-# 
-# 
-# We can make this even prettier: let's make another variable pointing to our generate_adder() function:
-# 
-# 
-# 
-
 # In[14]:
 
 
+def add_3_easymode(x):
+    return x + 3
+
+
+# In[15]:
+
+
+get_ipython().run_cell_magic('timeit', '', 'add_3_easymode(10)')
+
+
+# In[16]:
+
+
+get_ipython().run_cell_magic('timeit', '', 'add_3(10)')
+
+
+# 
+# 
+# We can make this even prettier: let's make another variable pointing to our define_adder() function:
+# 
+# 
+# 
+
+# In[17]:
+
+
 add = generate_adder
+
+
+# In[18]:
+
+
+a = 5
+b = a
 
 
 # 
@@ -226,15 +252,15 @@ add = generate_adder
 # 
 # 
 
-# In[15]:
+# In[19]:
 
 
-add(8)(5)
+generate_adder(8)(5)
 
 
 # In summary, we have started with a function that takes two arguments (`add(a, b)`) and replaced it with a new function (`add(a)(b)`). This new function takes a single argument, and returns a function that itself takes the second argument.
 # 
-# This may seem like an overly complicated process - and, in some cases, it is! However, this pattern of functions that return functions (or even take them as arguments!) can be very useful. In fact, it is the basis of decorators, a Python feature that we will discuss more [in this chapter](./08_02_iterators_and_generators.html#Decorators) [[notebook](./08_02_iterators_and_generators.ipynb#Decorators)].
+# This may seem like an overly complicated process - and, in some cases, it is! However, this pattern of functions that return functions (or even take them as arguments!) can be very useful. In fact, it is the basis of decorators, a Python feature that we will discuss more [in this chapter](./025Iterators.html#Decorators) [[notebook](./025Iterators.ipynb#Decorators)].
 
 # ## Closures
 
@@ -249,7 +275,7 @@ add(8)(5)
 # 
 # 
 
-# In[16]:
+# In[20]:
 
 
 name = "Eric"
@@ -269,7 +295,7 @@ greet()
 # 
 # 
 
-# In[17]:
+# In[21]:
 
 
 name = "John"
@@ -284,7 +310,7 @@ greet()
 # 
 # 
 
-# In[18]:
+# In[22]:
 
 
 numbers = range(10)
@@ -299,7 +325,7 @@ numbers = range(10)
 # 
 # 
 
-# In[19]:
+# In[23]:
 
 
 list(map(add_five, numbers))
@@ -321,7 +347,7 @@ list(map(add_five, numbers))
 # 
 # 
 
-# In[20]:
+# In[24]:
 
 
 def summer(data):
@@ -333,7 +359,7 @@ def summer(data):
     return total
 
 
-# In[21]:
+# In[25]:
 
 
 summer(range(10))
@@ -341,7 +367,7 @@ summer(range(10))
 
 #  or finding a maximum:
 
-# In[22]:
+# In[26]:
 
 
 import sys
@@ -358,13 +384,13 @@ def my_max(data):
     return highest
 
 
-# In[23]:
+# In[27]:
 
 
 my_max([2, 5, 10, -11, -5])
 
 
-# In[24]:
+# In[28]:
 
 
 sys.float_info.min
@@ -374,7 +400,7 @@ sys.float_info.min
 # and the result is updated with some operation, can be gathered together as a
 # functional program, taking in (as an argument) the operation to be used to combine results:
 
-# In[25]:
+# In[29]:
 
 
 def accumulate(initial, operation, data):
@@ -391,13 +417,13 @@ def my_sum(data):
     return accumulate(0, _add, data)
 
 
-# In[26]:
+# In[30]:
 
 
 my_sum(range(5))
 
 
-# In[27]:
+# In[31]:
 
 
 def bigger(a, b):
@@ -417,7 +443,7 @@ my_max([2, 5, 10, -11, -5])
 # computing that it's usually in standard libraries for languages which allow
 # functional programming:
 
-# In[28]:
+# In[32]:
 
 
 from functools import reduce
@@ -468,7 +494,7 @@ my_max([2, 5, 10, -11, -5])
 # 
 # 
 
-# In[29]:
+# In[33]:
 
 
 def most_Cs_in_any_sequence(sequences):
@@ -495,7 +521,7 @@ most_Gs_in_any_sequence(data)
 # 
 # 
 
-# In[30]:
+# In[34]:
 
 
 func_name = lambda a, b, c: a + b + c
@@ -513,7 +539,7 @@ def func_name(a, b, c):
 # 
 # 
 
-# In[31]:
+# In[35]:
 
 
 def most_of_given_base_in_any_sequence(sequences, base):
@@ -532,14 +558,14 @@ most_of_given_base_in_any_sequence(data, "A")
 
 # To double all elements in an array:
 
-# In[32]:
+# In[36]:
 
 
 data = range(10)
 list(map(lambda x: 2 * x, data))
 
 
-# In[33]:
+# In[37]:
 
 
 [2 * x for x in data]
@@ -547,7 +573,7 @@ list(map(lambda x: 2 * x, data))
 
 # Similarly, to find the maximum value in a sequence:
 
-# In[34]:
+# In[38]:
 
 
 def my_max(data):
@@ -567,13 +593,13 @@ my_max([2, 5, 10, -11, -5])
 # 
 # We will be using this to find the roots of the function $f(x) = x^2 - x$.
 
-# In[35]:
+# In[39]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-# In[36]:
+# In[40]:
 
 
 from scipy.optimize import newton
@@ -600,14 +626,14 @@ plt.plot(*solved)
 # 
 # 
 
-# In[37]:
+# In[41]:
 
 
 def derivative_simple(func, eps, at):
     return (func(at + eps) - func(at)) / eps
 
 
-# In[38]:
+# In[42]:
 
 
 def derivative(func, eps):
@@ -623,7 +649,7 @@ straight = derivative(solve_me, 0.01)
 # The derivative of `solve_me` is $f'(x) = 2x - 1$, which represents a straight line.
 # We can verify that our computations are correct, i.e. that the returned function `straight` matches $f'(x)$, by checking the value of `straight` at some $x$:
 
-# In[39]:
+# In[43]:
 
 
 straight(3)
@@ -631,7 +657,7 @@ straight(3)
 
 # or by plotting it:
 
-# In[40]:
+# In[44]:
 
 
 derived = (xs, list(map(solve_me, xs)), xs, list(map(derivative(solve_me, 0.01), xs)))
@@ -643,7 +669,7 @@ print(newton(derivative(solve_me, 0.01), 0))
 # 
 # For example, the above definition could be replaced by:
 
-# In[41]:
+# In[45]:
 
 
 import scipy.misc

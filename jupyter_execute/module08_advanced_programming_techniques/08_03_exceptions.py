@@ -101,7 +101,7 @@ raise (MyCustomErrorType(404))
 import yaml
 
 try:
-    config = yaml.safe_load(open("datasource.yaml"))
+    config = yaml.load(open("datasource.yaml"))
     user = config["userid"]
     password = config["password"]
 
@@ -125,7 +125,7 @@ print(user)
 
 
 try:
-    config = yaml.safe_lod(open("datasource.yaml"))
+    config = yaml.lod(open("datasource.yaml"))
     user = config["userid"]
     password = config["password"]
 except:
@@ -135,7 +135,7 @@ except:
 print(user)
 
 
-# This can be dangerous and can make it hard to find errors! There was a mistyped function name there ('`safe_lod`'), but we did not notice the error, as the generic except caught it. 
+# This can be dangerous and can make it hard to find errors! There was a mistyped function name there ('`lod`'), but we did not notice the error, as the generic except caught it. 
 # Therefore, we should be specific and catch only the type of error we want.
 
 # ## Managing multiple exceptions
@@ -203,7 +203,7 @@ print(read_credentials("datasource3.yaml"))
 def read_credentials(source):
     try:
         datasource = open(source)
-        config = yaml.safe_load(datasource)
+        config = yaml.load(datasource)
         user = config["userid"]
         password = config["password"]
     except FileNotFoundError:
@@ -229,7 +229,7 @@ def read_credentials(source):
         user = "anonymous"
         password = None
     else:
-        config = yaml.safe_load(datasource)
+        config = yaml.load(datasource)
         user = config["userid"]
         password = config["password"]
     finally:

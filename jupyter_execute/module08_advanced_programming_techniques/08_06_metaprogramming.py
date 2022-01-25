@@ -98,7 +98,10 @@ for basket in baskets:
 # In[5]:
 
 
-baskets = [bananas, apples, oranges, kiwis]
+from pytest import raises
+
+with raises(NameError):
+    baskets = [bananas, apples, oranges, kiwis]
 
 
 # 
@@ -109,42 +112,27 @@ baskets = [bananas, apples, oranges, kiwis]
 # 
 # 
 
-# 
-# 
-# 
-# Every module or class in Python, is, under the hood, a special
-# dictionary storing the values in its **namespace**. `globals()` gives a reference to the attribute dictionary for the current module:
-# 
-# 
-# 
-
 # In[6]:
 
 
-print("globals() is a\n", type(globals()))
-print("\nWith these keys:\n", globals().keys())
-
-
-# We can access variables via this dictionary:
-
-# In[7]:
-
+basket_names = ["bananas", "apples", "oranges", "kiwis"]
 
 globals()["apples"]
 
 
-# In[8]:
+# 
+# 
+# 
+# Wow, we can! Every module or class in Python, is, under the hood, a special
+# dictionary, storing the values in its **namespace**. So we can create new
+# variables by assigning to this dictionary. globals() gives a reference to the
+# attribute dictionary for the current module
+# 
+# 
+# 
 
+# In[7]:
 
-apples
-
-
-# And create new variables by assigning to this dictionary:
-
-# In[9]:
-
-
-basket_names = ["bananas", "apples", "oranges", "kiwis"]
 
 for name in basket_names:
     globals()[name] = Basket()
@@ -163,7 +151,7 @@ kiwis.count
 # 
 # 
 
-# In[10]:
+# In[8]:
 
 
 baskets = {}
@@ -180,7 +168,7 @@ baskets["kiwis"].count
 # 
 # 
 
-# In[11]:
+# In[9]:
 
 
 baskets = {name: Basket() for name in baskets}
@@ -203,7 +191,7 @@ baskets["kiwis"].count
 # 
 # This will allow us, for example, to programmatically add members to a class.
 
-# In[12]:
+# In[10]:
 
 
 class Boring:
@@ -212,7 +200,7 @@ class Boring:
 
 # If we are adding our own attributes, we can just do so directly:
 
-# In[13]:
+# In[11]:
 
 
 x = Boring()
@@ -220,7 +208,7 @@ x = Boring()
 x.name = "Michael"
 
 
-# In[14]:
+# In[12]:
 
 
 x.name
@@ -228,7 +216,7 @@ x.name
 
 # And these turn up, as expected, in an attribute dictionary for the class:
 
-# In[15]:
+# In[13]:
 
 
 x.__dict__
@@ -236,7 +224,7 @@ x.__dict__
 
 # We can use `getattr` to access this special dictionary:
 
-# In[16]:
+# In[14]:
 
 
 getattr(x, "name")
@@ -244,7 +232,7 @@ getattr(x, "name")
 
 # If we want to add an attribute given it's name as a string, we can use setattr:
 
-# In[17]:
+# In[15]:
 
 
 setattr(x, "age", 75)
@@ -262,25 +250,25 @@ x.age
 # and
 # it becomes a member function!
 
-# In[18]:
+# In[16]:
 
 
 setattr(Boring, "describe", lambda self: f"{self.name} is {self.age}")
 
 
-# In[19]:
+# In[17]:
 
 
 x.describe()
 
 
-# In[20]:
+# In[18]:
 
 
 x.describe
 
 
-# In[21]:
+# In[19]:
 
 
 Boring.describe
@@ -288,7 +276,7 @@ Boring.describe
 
 # Note that we set this method as an attribute of the class, not the instance, so it is available to other instances of `Boring`:
 
-# In[22]:
+# In[20]:
 
 
 y = Boring()
@@ -296,7 +284,7 @@ y.name = "Terry"
 y.age = 78
 
 
-# In[23]:
+# In[21]:
 
 
 y.describe()
@@ -305,7 +293,7 @@ y.describe()
 # We can define a standalone function, and then **bind** it to the class. Its first argument automagically becomes
 # `self`.
 
-# In[24]:
+# In[22]:
 
 
 def broken_birth_year(b_instance):
@@ -315,25 +303,25 @@ def broken_birth_year(b_instance):
     return current - b_instance.age
 
 
-# In[25]:
+# In[23]:
 
 
 Boring.birth_year = broken_birth_year
 
 
-# In[26]:
+# In[24]:
 
 
 x.birth_year()
 
 
-# In[27]:
+# In[25]:
 
 
 x.birth_year
 
 
-# In[28]:
+# In[26]:
 
 
 x.birth_year.__name__
@@ -347,7 +335,7 @@ x.birth_year.__name__
 # Lack of safe
 # programmatic creation of function-local variables is a flaw in Python.
 
-# In[29]:
+# In[27]:
 
 
 class Person:
@@ -359,13 +347,13 @@ class Person:
             setattr(self, name, value)
 
 
-# In[30]:
+# In[28]:
 
 
 terry = Person("Terry", 78, "Screenwriter", 0)
 
 
-# In[31]:
+# In[29]:
 
 
 terry.name
@@ -384,7 +372,7 @@ terry.name
 # 
 # 
 
-# In[32]:
+# In[30]:
 
 
 class Person:
