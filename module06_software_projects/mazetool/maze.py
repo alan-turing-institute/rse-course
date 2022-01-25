@@ -32,9 +32,9 @@ class Maze:
             occupant.describe()
 
     def step(self):
-        house.describe()
+        self.describe()
         print()
-        house.wander()
+        self.wander()
         print()
 
     def simulate(self, steps):
