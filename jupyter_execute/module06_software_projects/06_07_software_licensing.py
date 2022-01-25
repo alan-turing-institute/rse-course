@@ -15,7 +15,7 @@
 # * opinions differ (and flamewars are boring)
 # * this training does NOT constitute legal advice. 
 # 
-# For an in-depth discussion of software licenses, read the [O'Reilly book](http://www.amazon.co.uk/Understanding-Open-Source-Software-Licensing-ebook/dp/B0026OR3J4/ref=tmm_kin_title_0).
+# For an in-depth discussion of software licenses, read the [O'Reilly book](https://www.oreilly.com/library/view/understanding-open-source/0596005814/bk01-toc.html).
 # 
 # Your department, or UCL, may have policies about applying licenses to code you create while a UCL employee or student. This training doesn't address this issue, and does not represent UCL policy -- seek advice from your supervisor or manager if concerned.
 
