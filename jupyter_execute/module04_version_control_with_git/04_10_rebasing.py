@@ -165,7 +165,7 @@
 # If we type 
 # 
 # ``` bash
-# git rebase -i ab11 # OR HEAD~~
+# git rebase -i ab11 #OR HEAD^^
 # ```
 # 
 # an edit window pops up with:

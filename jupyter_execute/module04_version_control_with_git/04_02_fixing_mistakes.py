@@ -17,13 +17,13 @@ os.chdir(working_dir)
 working_dir
 
 
-# ## Referring to changes with HEAD and ~
+# ## Referring to changes with HEAD and ^
 # 
 # The commit we want to revert to is the one before the latest.
 # 
 # `HEAD` refers to the latest commit. That is, we want to go back to the change before the current `HEAD`. 
 # 
-# We could use the hash code (e.g. 73fbeaf) to reference this, but you can also refer to the commit before the `HEAD` as `HEAD~`, the one before that as `HEAD~~`, the one before that as `HEAD~3`.
+# We could use the hash code (e.g. 73fbeaf) to reference this, but you can also refer to the commit before the `HEAD` as `HEAD^`, the one before that as `HEAD^^`, the one before that as `HEAD~3`.
 
 # ## Reverting
 #  
@@ -32,7 +32,7 @@ working_dir
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git revert HEAD~')
+get_ipython().run_cell_magic('bash', '', 'git revert HEAD^')
 
 
 # An editor may pop up, with some default text which you can accept and save. 
@@ -103,7 +103,7 @@ get_ipython().run_cell_magic('bash', '', 'git log --date=short')
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git reset HEAD~')
+get_ipython().run_cell_magic('bash', '', 'git reset HEAD^')
 
 
 # In[10]:
@@ -171,7 +171,7 @@ participant "Jim's repo" as R
 participant "Jim's index" as I
 participant Jim as J
 
-note right of J: git revert HEAD~
+note right of J: git revert HEAD^
 
 J->R: Add new commit reversing change
 R->I: update staging area to reverted version
@@ -184,7 +184,7 @@ note right of J: git commit -am "Add another mistake"
 J->I: Add mistake
 I->R: Add mistake
 
-note right of J: git reset HEAD~
+note right of J: git reset HEAD^
 
 J->R: Delete mistaken commit
 R->I: Update staging area to reset commit
