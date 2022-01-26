@@ -176,7 +176,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/greetings/command.py', 'fro
 #     name = "Greetings",
 #     version = "0.1.0",
 #     packages = find_packages(exclude=['*test']),
-#     install_requires = ['argparse']
+#     install_requires = ['argparse', 'pyyaml']
 # )
 # ```
 
@@ -185,7 +185,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/greetings/command.py', 'fro
 # In[12]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/setup.py', '\nfrom setuptools import setup, find_packages\n\nsetup(\n    name="Greetings",\n    version="0.1.0",\n    packages=find_packages(exclude=["*test"]),\n    install_requires=["argparse"],\n    entry_points={"console_scripts": ["greet = greetings.command:process"]},\n)')
+get_ipython().run_cell_magic('writefile', 'greetings/setup.py', '\nfrom setuptools import setup, find_packages\n\nsetup(\n    name="Greetings",\n    version="0.1.0",\n    packages=find_packages(exclude=["*test"]),\n    install_requires=["argparse", "pyyaml"],\n    entry_points={"console_scripts": ["greet = greetings.command:process"]},\n)')
 
 
 # ## Write a readme file

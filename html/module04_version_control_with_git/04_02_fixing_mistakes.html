@@ -819,7 +819,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referring-to-changes-with-head-and">
-   Referring to changes with HEAD and ^
+   Referring to changes with HEAD and ~
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -889,7 +889,7 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referring-to-changes-with-head-and">
-   Referring to changes with HEAD and ^
+   Referring to changes with HEAD and ~
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -968,10 +968,10 @@
 </div>
 </div>
 <div class="section" id="referring-to-changes-with-head-and">
-<h2>Referring to changes with HEAD and ^<a class="headerlink" href="#referring-to-changes-with-head-and" title="Permalink to this headline">¶</a></h2>
+<h2>Referring to changes with HEAD and ~<a class="headerlink" href="#referring-to-changes-with-head-and" title="Permalink to this headline">¶</a></h2>
 <p>The commit we want to revert to is the one before the latest.</p>
 <p><code class="docutils literal notranslate"><span class="pre">HEAD</span></code> refers to the latest commit. That is, we want to go back to the change before the current <code class="docutils literal notranslate"><span class="pre">HEAD</span></code>.</p>
-<p>We could use the hash code (e.g. 73fbeaf) to reference this, but you can also refer to the commit before the <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> as <code class="docutils literal notranslate"><span class="pre">HEAD^</span></code>, the one before that as <code class="docutils literal notranslate"><span class="pre">HEAD^^</span></code>, the one before that as <code class="docutils literal notranslate"><span class="pre">HEAD~3</span></code>.</p>
+<p>We could use the hash code (e.g. 73fbeaf) to reference this, but you can also refer to the commit before the <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> as <code class="docutils literal notranslate"><span class="pre">HEAD~</span></code>, the one before that as <code class="docutils literal notranslate"><span class="pre">HEAD~~</span></code>, the one before that as <code class="docutils literal notranslate"><span class="pre">HEAD~3</span></code>.</p>
 </div>
 <div class="section" id="reverting">
 <h2>Reverting<a class="headerlink" href="#reverting" title="Permalink to this headline">¶</a></h2>
@@ -979,14 +979,14 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git revert HEAD^
+git revert HEAD~
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging test.md
-[main 0fe87ea] Revert &quot;Add a lie about a mountain&quot;
- Date: Wed Jan 26 13:33:11 2022 +0000
+[main 4820d53] Revert &quot;Add a lie about a mountain&quot;
+ Date: Wed Jan 26 13:37:19 2022 +0000
  1 file changed, 2 deletions(-)
 </pre></div>
 </div>
@@ -1011,27 +1011,27 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 0fe87ea9870d0640dd843593c8bb6b061205dbc2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 4820d5398e937c7c998a90bbabb1945770024b1e
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 4602d839a7bd999d404e409d203cce324e895f56.
+    This reverts commit f8f207b0f4b573d8999f3605b3e485471e0a7322.
 
-commit e600f3d094e354aea5c5cef85b4f5bcf2a63caca
+commit a3df27f377eb3c19f6b3ee5be066426c87646038
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Change title
 
-commit 4602d839a7bd999d404e409d203cce324e895f56
+commit f8f207b0f4b573d8999f3605b3e485471e0a7322
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Add a lie about a mountain
 
-commit b113fa9335bc4a59a8c6d6145892d31e4db1c8e9
+commit dcdbfb2ed51d52f6b867362aac0a59e4aae21687
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
@@ -1119,7 +1119,7 @@ git commit -am &quot;Add a silly spelling&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 2008b81] Add a silly spelling
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main d261e98] Add a silly spelling
  1 file changed, 3 insertions(+), 2 deletions(-)
 </pre></div>
 </div>
@@ -1133,33 +1133,33 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 2008b811f113cd609388e7ff03ba832052bfaa73
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit d261e98ccaa02a1b8ff6664b960eab082b0fb977
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Add a silly spelling
 
-commit 0fe87ea9870d0640dd843593c8bb6b061205dbc2
+commit 4820d5398e937c7c998a90bbabb1945770024b1e
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 4602d839a7bd999d404e409d203cce324e895f56.
+    This reverts commit f8f207b0f4b573d8999f3605b3e485471e0a7322.
 
-commit e600f3d094e354aea5c5cef85b4f5bcf2a63caca
+commit a3df27f377eb3c19f6b3ee5be066426c87646038
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Change title
 
-commit 4602d839a7bd999d404e409d203cce324e895f56
+commit f8f207b0f4b573d8999f3605b3e485471e0a7322
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Add a lie about a mountain
 
-commit b113fa9335bc4a59a8c6d6145892d31e4db1c8e9
+commit dcdbfb2ed51d52f6b867362aac0a59e4aae21687
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
@@ -1174,7 +1174,7 @@ Date:   2022-01-26
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git reset HEAD^
+git reset HEAD~
 </pre></div>
 </div>
 </div>
@@ -1193,27 +1193,27 @@ git log --date=short
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 0fe87ea9870d0640dd843593c8bb6b061205dbc2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 4820d5398e937c7c998a90bbabb1945770024b1e
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Revert &quot;Add a lie about a mountain&quot;
     
-    This reverts commit 4602d839a7bd999d404e409d203cce324e895f56.
+    This reverts commit f8f207b0f4b573d8999f3605b3e485471e0a7322.
 
-commit e600f3d094e354aea5c5cef85b4f5bcf2a63caca
+commit a3df27f377eb3c19f6b3ee5be066426c87646038
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Change title
 
-commit 4602d839a7bd999d404e409d203cce324e895f56
+commit f8f207b0f4b573d8999f3605b3e485471e0a7322
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
     Add a lie about a mountain
 
-commit b113fa9335bc4a59a8c6d6145892d31e4db1c8e9
+commit dcdbfb2ed51d52f6b867362aac0a59e4aae21687
 Author: Turing Developer &lt;developer@example.com&gt;
 Date:   2022-01-26
 
@@ -1308,7 +1308,7 @@ But has some tall hills, and maybe a mountain or two depending on your definitio
 <span class="s2">participant &quot;Jim&#39;s index&quot; as I</span>
 <span class="s2">participant Jim as J</span>
 
-<span class="s2">note right of J: git revert HEAD^</span>
+<span class="s2">note right of J: git revert HEAD~</span>
 
 <span class="s2">J-&gt;R: Add new commit reversing change</span>
 <span class="s2">R-&gt;I: update staging area to reverted version</span>
@@ -1321,7 +1321,7 @@ But has some tall hills, and maybe a mountain or two depending on your definitio
 <span class="s2">J-&gt;I: Add mistake</span>
 <span class="s2">I-&gt;R: Add mistake</span>
 
-<span class="s2">note right of J: git reset HEAD^</span>
+<span class="s2">note right of J: git reset HEAD~</span>
 
 <span class="s2">J-&gt;R: Delete mistaken commit</span>
 <span class="s2">R-&gt;I: Update staging area to reset commit</span>
