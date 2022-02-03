@@ -765,22 +765,21 @@ class View:
 # In[30]:
 
 
+from matplotlib import animation
+
+
 class Controller:
     def __init__(self):
         self.model = Model()  # Or use Builder
         self.view = View(self.model)
 
-        def animate(frame_number):
-            self.model.simulation_step()
-            self.view.update()
-
-        self.animator = animate
+    def animate(self, frame_number):
+        self.model.simulation_step()
+        self.view.update()
 
     def go(self):
-        from matplotlib import animation
-
         anim = animation.FuncAnimation(
-            self.view.figure, self.animator, frames=200, interval=50
+            self.view.figure, self.animate, frames=200, interval=50
         )
         return anim.to_jshtml()
 

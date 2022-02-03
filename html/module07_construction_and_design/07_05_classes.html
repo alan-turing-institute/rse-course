@@ -1254,7 +1254,7 @@ Languages provide features to implement this: access control.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16629</span><span class="o">/</span><span class="mf">2203733493.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16696</span><span class="o">/</span><span class="mf">2203733493.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">__private_method</span><span class="p">()</span>  <span class="c1"># Generates error</span>
 
 <span class="ne">AttributeError</span>: &#39;MyClass&#39; object has no attribute &#39;__private_method&#39;
@@ -1271,7 +1271,7 @@ Languages provide features to implement this: access control.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16629</span><span class="o">/</span><span class="mf">2773553887.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16696</span><span class="o">/</span><span class="mf">2773553887.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">__private_data</span><span class="p">)</span>  <span class="c1"># Generates error</span>
 
 <span class="ne">AttributeError</span>: &#39;MyClass&#39; object has no attribute &#39;__private_data&#39;
@@ -1291,7 +1291,12 @@ change the way a class is implemented without changing the interface:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Graham Chapman&quot;</span>
 
 
-<span class="k">assert</span> <span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Graham Chapman&quot;</span>
+<span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Graham Chapman&#39;
 </pre></div>
 </div>
 </div>
@@ -1309,7 +1314,12 @@ change the way a class is implemented without changing the interface:</p>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_first</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_second</span><span class="si">}</span><span class="s2">&quot;</span>
 
 
-<span class="k">assert</span> <span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Graham Chapman&quot;</span>
+<span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Graham Chapman&#39;
 </pre></div>
 </div>
 </div>
@@ -1330,7 +1340,12 @@ access data through functions:</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
 
-<span class="k">assert</span> <span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Graham Chapman&quot;</span>
+<span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Graham Chapman&#39;
 </pre></div>
 </div>
 </div>
@@ -1346,26 +1361,47 @@ access data through functions:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_first</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_second</span><span class="si">}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="nf">get_married</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_second</span> <span class="o">=</span> <span class="n">to</span><span class="o">.</span><span class="n">_second</span>
-
-
-<span class="n">graham</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Graham&quot;</span><span class="p">,</span> <span class="s2">&quot;Chapman&quot;</span><span class="p">)</span>
-<span class="n">david</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="s2">&quot;Sherlock&quot;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">graham</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Graham Chapman&quot;</span>
-<span class="n">graham</span><span class="o">.</span><span class="n">get_married</span><span class="p">(</span><span class="n">david</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">graham</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Graham Sherlock&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_second</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_second</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">to</span><span class="o">.</span><span class="n">_second</span><span class="si">}</span><span class="s2">&quot;</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graham</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Graham&quot;</span><span class="p">,</span> <span class="s2">&quot;Chapman&quot;</span><span class="p">)</span>
+<span class="n">graham</span><span class="o">.</span><span class="n">name</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16629</span><span class="o">/</span><span class="mf">2043974910.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">assert</span> <span class="n">graham</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Graham Chapman&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">graham</span><span class="o">.</span><span class="n">get_married</span><span class="p">(</span><span class="n">david</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">15</span> <span class="k">assert</span> <span class="n">graham</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Graham Sherlock&quot;</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Graham Chapman&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">david</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="s2">&quot;Sherlock&quot;</span><span class="p">)</span>
+<span class="n">graham</span><span class="o">.</span><span class="n">get_married</span><span class="p">(</span><span class="n">david</span><span class="p">)</span>
 
-<span class="ne">AssertionError</span>: 
+<span class="n">graham</span><span class="o">.</span><span class="n">_second</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Chapman-Sherlock&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graham</span><span class="o">.</span><span class="n">name</span>  <span class="c1"># Not Graham Chapman-Sherlock?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Graham Chapman&#39;
 </pre></div>
 </div>
 </div>
@@ -1382,7 +1418,7 @@ In database design, this is called <a class="reference external" href="https://e
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_05_classes_35_0.svg" src="../_images/07_05_classes_35_0.svg" /></div>
+<img alt="../_images/07_05_classes_38_0.svg" src="../_images/07_05_classes_38_0.svg" /></div>
 </div>
 </div>
 </div>
@@ -1403,11 +1439,45 @@ In database design, this is called <a class="reference external" href="https://e
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">number_created</span>
 
 
-<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>  <span class="c1"># 0</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">Counted</span><span class="p">()</span>
-<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>  <span class="c1"># 1</span>
-<span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counted</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
-<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>  <span class="c1"># 6</span>
+<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Counted</span><span class="p">()</span>
+<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counted</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1534,7 +1604,7 @@ So, we can say:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_05_classes_58_0.svg" src="../_images/07_05_classes_58_0.svg" /></div>
+<img alt="../_images/07_05_classes_64_0.svg" src="../_images/07_05_classes_64_0.svg" /></div>
 </div>
 </div>
 <div class="section" id="aggregation-vs-inheritance">
@@ -1553,7 +1623,7 @@ and each Boid owns two 2-vectors, one for position and one for velocity.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_05_classes_63_0.svg" src="../_images/07_05_classes_63_0.svg" /></div>
+<img alt="../_images/07_05_classes_69_0.svg" src="../_images/07_05_classes_69_0.svg" /></div>
 </div>
 <p>The open diamond indicates <strong>Aggregation</strong>, the closed diamond <strong>composition</strong>.
 (A given boid might belong to multiple models, a given position vector is forever part of the corresponding Boid.)</p>
@@ -1727,7 +1797,7 @@ Bark
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16629</span><span class="o">/</span><span class="mf">2660778470.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16696</span><span class="o">/</span><span class="mf">2660778470.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Worm</span><span class="p">()</span><span class="o">.</span><span class="n">noise</span><span class="p">()</span>  <span class="c1"># Generates error</span>
 
 <span class="ne">AttributeError</span>: &#39;Worm&#39; object has no attribute &#39;noise&#39;
@@ -1778,7 +1848,7 @@ built-in Python concepts. A class is said to “implement an interface” or “
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_05_classes_88_0.svg" src="../_images/07_05_classes_88_0.svg" /></div>
+<img alt="../_images/07_05_classes_94_0.svg" src="../_images/07_05_classes_94_0.svg" /></div>
 </div>
 </div>
 <div class="section" id="further-uml">

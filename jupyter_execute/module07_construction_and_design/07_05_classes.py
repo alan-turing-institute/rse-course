@@ -177,7 +177,7 @@ class Person:
         self.name = "Graham Chapman"
 
 
-assert Person().name == "Graham Chapman"
+Person().name
 
 
 # 
@@ -201,7 +201,7 @@ class Person:
         return f"{self._first} {self._second}"
 
 
-assert Person().name == "Graham Chapman"
+Person().name
 
 
 # Making the same external code work as before.
@@ -229,7 +229,7 @@ class Person:
         return self._name
 
 
-assert Person().name() == "Graham Chapman"
+Person().name()
 
 
 # But in Python this is unnecessary because the `@property` capability.
@@ -247,14 +247,29 @@ class Person:
         self.name = f"{self._first} {self._second}"
 
     def get_married(self, to):
-        self._second = to._second
+        self._second = f"{self._second}-{to._second}" 
+
+
+# In[14]:
 
 
 graham = Person("Graham", "Chapman")
+graham.name
+
+
+# In[15]:
+
+
 david = Person("David", "Sherlock")
-assert graham.name == "Graham Chapman"
 graham.get_married(david)
-assert graham.name == "Graham Sherlock"
+
+graham._second
+
+
+# In[16]:
+
+
+graham.name  # Not Graham Chapman-Sherlock?
 
 
 # This type of situation could makes that the object data structure gets inconsistent with itself. Making variables being out of sync with other variables. Each piece of information should only be stored in once place! In this case, `name` should be calculated each time it's required as previously shown.
@@ -264,7 +279,7 @@ assert graham.name == "Graham Sherlock"
 
 # We prepend a `+`/`-` on public/private member variables and methods:
 
-# In[14]:
+# In[17]:
 
 
 yuml("[Particle|+public;-private|+publicmethod();-privatemethod]")
@@ -278,7 +293,7 @@ yuml("[Particle|+public;-private|+publicmethod();-privatemethod]")
 # This is an object that keeps a count on how many have been created of it.
 # 
 
-# In[15]:
+# In[18]:
 
 
 class Counted:
@@ -292,11 +307,27 @@ class Counted:
         return cls.number_created
 
 
-Counted.howMany()  # 0
+Counted.howMany()
+
+
+# In[19]:
+
+
 x = Counted()
-Counted.howMany()  # 1
+Counted.howMany()
+
+
+# In[20]:
+
+
 z = [Counted() for x in range(5)]
-Counted.howMany()  # 6
+Counted.howMany()
+
+
+# In[21]:
+
+
+x.howMany()
 
 
 # The data is shared among all the objects instantiated from that class. Note that in `__init__` we are not using `self.number_created` but the name of the class. The `howMany` function is not a method of a particular object. It's called on the class, not on the object. This is possible by using the `@classmethod` decorator.
@@ -338,7 +369,7 @@ Counted.howMany()  # 6
 # 
 # 
 
-# In[16]:
+# In[22]:
 
 
 class Animal:
@@ -388,7 +419,7 @@ Eagle().hunt()
 
 # To use implicitly constructors from a *superclass*, we can use `super` as shown below.
 
-# In[17]:
+# In[23]:
 
 
 class Animal:
@@ -408,7 +439,7 @@ class Person(Animal):
 
 # UML shows inheritance with an open triangular arrow pointing from subclass to superclass.
 
-# In[18]:
+# In[24]:
 
 
 yuml("[Animal]^-[Bird],[Bird]^-[Eagle],[Bird]^-[Starling]")
@@ -427,7 +458,7 @@ yuml("[Animal]^-[Bird],[Bird]^-[Eagle],[Bird]^-[Starling]")
 
 # The Boids situation can be represented thus:
 
-# In[19]:
+# In[25]:
 
 
 yuml("[Model]<>-*>[Boid],[Boid]position++->[Vector],[Boid]velocity++->[Vector]")
@@ -444,7 +475,7 @@ yuml("[Model]<>-*>[Boid],[Boid]position++->[Vector],[Boid]velocity++->[Vector]")
 # 
 # **before:**
 
-# In[20]:
+# In[26]:
 
 
 class Person:
@@ -467,7 +498,7 @@ class Pet:
 
 # **after:**
 
-# In[21]:
+# In[27]:
 
 
 class Animal:
@@ -492,7 +523,7 @@ class Pet(Animal):
 
 # ### Polymorphism
 
-# In[22]:
+# In[28]:
 
 
 class Dog:
@@ -544,7 +575,7 @@ for animal in animals:
 # 
 # 
 
-# In[23]:
+# In[29]:
 
 
 class Animal:
@@ -580,7 +611,7 @@ for animal in animals:
 # 
 # 
 
-# In[24]:
+# In[30]:
 
 
 class Animal:
@@ -591,7 +622,7 @@ class Worm(Animal):
     pass
 
 
-# In[25]:
+# In[31]:
 
 
 Worm().noise()  # Generates error
@@ -607,7 +638,7 @@ Worm().noise()  # Generates error
 # 
 # 
 
-# In[26]:
+# In[32]:
 
 
 class Animal:
@@ -641,7 +672,7 @@ class Animal:
 
 # Interfaces implementation (a common ancestor that doesn't do anything but defines methods to share) in UML is indicated thus:
 
-# In[27]:
+# In[33]:
 
 
 yuml("[<<Animal>>]^-.-[Dog]")
