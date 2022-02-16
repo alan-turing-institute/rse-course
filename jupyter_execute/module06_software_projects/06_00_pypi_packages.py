@@ -42,12 +42,12 @@
 # In[1]:
 
 
-from sklearn import datasets
+from sklearn.datasets import load_wine
 
-iris = datasets.load_iris()
-X, y = iris.data, iris.target
-X = iris.data[:, :2]  # we only take the first two features.
-y = iris.target
+wine = load_wine()
+X = wine.data
+y = wine.target
+feature_names = wine.feature_names
 
 
 # In[2]:
@@ -57,20 +57,17 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 
 import matplotlib.pyplot as plt
 
-# example from: https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html
-x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
-y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
+plt.figure(figsize=(8, 6))
 
-plt.figure(2, figsize=(8, 6))
-plt.clf()
+# Find the column index of two features to plot
+color_idx = feature_names.index("color_intensity")
+proline_idx = feature_names.index("proline")
 
 # Plot the training points
-plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Set1, edgecolor="k")
-plt.xlabel("Sepal length")
-plt.ylabel("Sepal width")
+plt.scatter(X[:, color_idx], X[:, proline_idx], c=y, cmap=plt.cm.bwr, edgecolor="k")
+plt.xlabel("Color Intensity")
+plt.ylabel("Proline")
 
-plt.xlim(x_min, x_max)
-plt.ylim(y_min, y_max)
 plt.xticks(())
 plt.yticks(())
 
