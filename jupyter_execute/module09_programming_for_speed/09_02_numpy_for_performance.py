@@ -75,7 +75,7 @@ ymax = 1.0
 resolution = 300
 xstep = (xmax - xmin) / resolution
 ystep = (ymax - ymin) / resolution
-
+# A numpy "meshgrid" creates a rectangular grid from an array of x values and an array of y values.
 ymatrix, xmatrix = np.mgrid[ymin:ymax:ystep, xmin:xmax:xstep]
 
 
@@ -146,8 +146,18 @@ mandel1(values)
 # In[17]:
 
 
-mandel2 = np.vectorize(mandel1)
+@np.vectorize
+def mandel2(position, limit=50):
+    value = position
+    while abs(value) < 2:
+        limit -= 1
+        value = value ** 2 + position
+        if limit < 0:
+            return 0
+    return limit
 
+
+# Note that we use a **decorator** here (np.vectorize takes a function as input and returns a function). An equivalent way to write this would be `mandel2 = np.vectorize(mandel1)`.
 
 # In[18]:
 
@@ -161,7 +171,7 @@ data5 = mandel2(values)
 from matplotlib import pyplot as plt
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-plt.imshow(data5, interpolation="none")
+plt.imshow(data5, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # Is that any faster?
@@ -230,7 +240,7 @@ get_ipython().run_cell_magic('timeit', '', '\ndata6 = mandel_numpy(values)')
 from matplotlib import pyplot as plt
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-plt.imshow(data6, interpolation="none")
+plt.imshow(data6, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # Wow, that was TEN TIMES faster.
@@ -295,7 +305,7 @@ x[z] = 5
 x
 
 
-# Note that we didn't compare two arrays to get our logical array, but an array to a scalar integer -- this was broadcasting again.
+# Note that we didn't compare two arrays to get our logical array, but an array to a scalar integer -- this is referred to as *broadcasting*.
 
 # ## More Mandelbrot
 
@@ -309,13 +319,20 @@ x
 
 def mandel4(position, limit=50):
     value = position
+    # An array which keeps track of the first step at which each position diverged
     diverged_at_count = np.zeros(position.shape)
     while limit > 0:
         limit -= 1
         value = value ** 2 + position
         diverging = abs(value) > 2
+        # Any positions which are:
+        # - diverging
+        # - haven't diverged before
+        # are diverging for the first time
         first_diverged_this_time = np.logical_and(diverging, diverged_at_count == 0)
+        # Update diverged_at_count for all positions which first diverged at this step
         diverged_at_count[first_diverged_this_time] = limit
+        # Reset any divergent values to exactly 2
         value[diverging] = 2
 
     return diverged_at_count
@@ -330,7 +347,7 @@ data7 = mandel4(values)
 # In[37]:
 
 
-plt.imshow(data7, interpolation="none")
+plt.imshow(data7, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # In[38]:
@@ -491,7 +508,7 @@ get_ipython().run_cell_magic('timeit', '', '\ndata8 = mandel6(values)')
 # In[53]:
 
 
-plt.imshow(data8, interpolation="none")
+plt.imshow(data8, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # This was **not faster** even though it was **doing less work**
@@ -502,14 +519,14 @@ plt.imshow(data8, interpolation="none")
 
 # ## Indexing with arrays
 
-# We've been using Boolean arrays a lot to get access to some elements of an array. We can also do this with integers:
+# We've been using Boolean arrays a lot to get access to some elements of an array. We can also do this with integers, as well as lists of integers:
 
 # In[54]:
 
 
 x = np.arange(64)
 y = x.reshape([8, 8])
-y
+y[3]
 
 
 # In[55]:
@@ -617,7 +634,7 @@ data9 = mandel7(values)
 # In[66]:
 
 
-plt.imshow(data9, interpolation="none")
+plt.imshow(data9, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # In[67]:

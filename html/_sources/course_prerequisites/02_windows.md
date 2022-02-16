@@ -31,6 +31,10 @@ git --version
 
 which should show that you have a [recent](https://en.wikipedia.org/wiki/Git#Releases) copy of Git. If your version is more than 18 months old, please update it.
 
+## C++ compiler
+
+In order to use `Cython` in the "Programming for Speed" module, you may need to install a `C++ compiler`, [see here for more details](https://github.com/cython/cython/wiki/CythonExtensionsOnWindows).
+
 ## GitHub
 
 For the Git part of the course, you require access to GitHub. You will need to [sign up](https://github.com/join) and follow either the **GitHub Setup using the Command Line** or **GitHub Setup using the Desktop Client** instructions, below.

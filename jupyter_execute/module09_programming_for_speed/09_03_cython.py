@@ -65,19 +65,24 @@ get_ipython().run_cell_magic('cython', '', '\n\ndef mandel_cython(position, limi
 # In[5]:
 
 
+data_python = [[mandel(complex(x, y)) for x in xs] for y in ys]
+data_cython = [[mandel_cython(complex(x, y)) for x in xs] for y in ys]
+
+
+# In[6]:
+
+
 from matplotlib import pyplot as plt
 
 get_ipython().run_line_magic('matplotlib', 'inline')
 f, axarr = plt.subplots(1, 2)
-axarr[0].imshow([[mandel(complex(x, y)) for x in xs] for y in ys], interpolation="none")
+axarr[0].imshow(data_python, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 axarr[0].set_title("Pure Python")
-axarr[1].imshow(
-    [[mandel_cython(complex(x, y)) for x in xs] for y in ys], interpolation="none"
-)
+axarr[1].imshow(data_cython, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 axarr[1].set_title("Cython")
 
 
-# In[6]:
+# In[7]:
 
 
 get_ipython().run_line_magic('timeit', '[[mandel(complex(x,y)) for x in xs] for y in ys] # pure python')
@@ -91,7 +96,7 @@ get_ipython().run_line_magic('timeit', '[[mandel_cython(complex(x,y)) for x in x
 
 # _typed variable_
 
-# In[7]:
+# In[8]:
 
 
 get_ipython().run_cell_magic('cython', '', 'def var_typed_mandel_cython(position, limit=50):\n    cdef double complex value # typed variable\n    value = position\n    while abs(value) < 2:\n        limit -= 1\n        value = value**2 + position\n        if limit < 0:\n            return 0\n    return limit')
@@ -99,7 +104,7 @@ get_ipython().run_cell_magic('cython', '', 'def var_typed_mandel_cython(position
 
 # _typed function + typed variable_
 
-# In[8]:
+# In[9]:
 
 
 get_ipython().run_cell_magic('cython', '', 'cpdef call_typed_mandel_cython(double complex position, int limit=50): # typed function\n    cdef double complex value # typed variable\n    value = position\n    while abs(value)<2:\n        limit -= 1\n        value = value**2 + position\n        if limit < 0:\n            return 0\n    return limit')
@@ -107,28 +112,28 @@ get_ipython().run_cell_magic('cython', '', 'cpdef call_typed_mandel_cython(doubl
 
 # performance of one number:
 
-# In[9]:
+# In[10]:
 
 
 # pure python
 get_ipython().run_line_magic('timeit', 'a = mandel(complex(0, 0))')
 
 
-# In[10]:
+# In[11]:
 
 
 # primitive cython
 get_ipython().run_line_magic('timeit', 'a = mandel_cython(complex(0, 0))')
 
 
-# In[11]:
+# In[12]:
 
 
 # cython with C type variable
 get_ipython().run_line_magic('timeit', 'a = var_typed_mandel_cython(complex(0, 0))')
 
 
-# In[12]:
+# In[13]:
 
 
 # cython with typed variable + function
@@ -138,7 +143,7 @@ get_ipython().run_line_magic('timeit', 'a = call_typed_mandel_cython(complex(0, 
 # ### Cython with numpy ndarray
 # You can use NumPy from Cython exactly the same as in regular Python, but by doing so you are losing potentially high speedups because Cython has support for fast access to NumPy arrays. 
 
-# In[13]:
+# In[14]:
 
 
 import numpy as np
@@ -147,7 +152,7 @@ ymatrix, xmatrix = np.mgrid[ymin:ymax:ystep, xmin:xmax:xstep]
 values = xmatrix + 1j * ymatrix
 
 
-# In[14]:
+# In[15]:
 
 
 get_ipython().run_cell_magic('cython', '', 'import numpy as np\ncimport numpy as np \n\ncpdef numpy_cython_1(np.ndarray[double complex, ndim=2] position, int limit=50): \n    cdef np.ndarray[long,ndim=2] diverged_at\n    cdef double complex value\n    cdef int xlim\n    cdef int ylim\n    cdef double complex pos\n    cdef int steps\n    cdef int x, y\n\n    xlim = position.shape[1]\n    ylim = position.shape[0]\n    diverged_at = np.zeros([ylim, xlim], dtype=int)\n    for x in xrange(xlim):\n        for y in xrange(ylim):\n            steps = limit\n            value = position[y,x]\n            pos = position[y,x]\n            while abs(value) < 2 and steps >= 0:\n                steps -= 1\n                value = value**2 + pos\n            diverged_at[y,x] = steps\n  \n    return diverged_at')
@@ -155,19 +160,19 @@ get_ipython().run_cell_magic('cython', '', 'import numpy as np\ncimport numpy as
 
 # Note the double import of numpy: the standard numpy module and a Cython-enabled version of numpy that ensures fast indexing of and other operations on arrays. Both import statements are necessary in code that uses numpy arrays. The new thing in the code above is declaration of arrays by np.ndarray.
 
-# In[15]:
+# In[16]:
 
 
 get_ipython().run_line_magic('timeit', 'data_cy = [[mandel(complex(x,y)) for x in xs] for y in ys] # pure python')
 
 
-# In[16]:
+# In[17]:
 
 
 get_ipython().run_line_magic('timeit', 'data_cy = [[call_typed_mandel_cython(complex(x,y)) for x in xs] for y in ys] # typed cython')
 
 
-# In[17]:
+# In[18]:
 
 
 get_ipython().run_line_magic('timeit', 'numpy_cython_1(values) # ndarray')
@@ -175,13 +180,13 @@ get_ipython().run_line_magic('timeit', 'numpy_cython_1(values) # ndarray')
 
 # #### A trick of using `np.vectorize`
 
-# In[18]:
+# In[19]:
 
 
 numpy_cython_2 = np.vectorize(call_typed_mandel_cython)
 
 
-# In[19]:
+# In[20]:
 
 
 get_ipython().run_line_magic('timeit', 'numpy_cython_2(values) #  vectorize')
@@ -191,31 +196,31 @@ get_ipython().run_line_magic('timeit', 'numpy_cython_2(values) #  vectorize')
 # 
 # #### Example: compare `sin()` from Python and C library
 
-# In[20]:
+# In[21]:
 
 
 get_ipython().run_cell_magic('cython', '', 'import math\ncpdef py_sin():\n    cdef int x\n    cdef double y\n    for x in range(1e7):\n        y = math.sin(x)')
 
 
-# In[21]:
+# In[22]:
 
 
 get_ipython().run_cell_magic('cython', '', 'from libc.math cimport sin as csin # import from C library\ncpdef c_sin():\n    cdef int x\n    cdef double y\n    for x in range(1e7):\n        y = csin(x)')
 
 
-# In[22]:
+# In[23]:
 
 
 get_ipython().run_line_magic('timeit', '[math.sin(i) for i in range(int(1e7))] # python')
 
 
-# In[23]:
+# In[24]:
 
 
 get_ipython().run_line_magic('timeit', 'py_sin()                                # cython call python library')
 
 
-# In[24]:
+# In[25]:
 
 
 get_ipython().run_line_magic('timeit', 'c_sin()                                 # cython call C library')

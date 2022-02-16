@@ -3,6 +3,8 @@
 
 # # Optimising Mandelbrot
 
+# Let's start by reproducing our `mandel1` function and its output, `data1`, from the previous notebook.
+
 # In[1]:
 
 
@@ -13,25 +15,11 @@ ymax = 1.0
 resolution = 300
 xstep = (xmax - xmin) / resolution
 ystep = (ymax - ymin) / resolution
-xs = [(xmin + (xmax - xmin) * i / resolution) for i in range(resolution)]
-ys = [(ymin + (ymax - ymin) * i / resolution) for i in range(resolution)]
+xs = [(xmin + xstep * i) for i in range(resolution)]
+ys = [(ymin + ystep * i) for i in range(resolution)]
 
 
 # In[2]:
-
-
-xmin = -1.5
-ymin = -1.0
-xmax = 0.5
-ymax = 1.0
-resolution = 300
-xstep = (xmax - xmin) / resolution
-ystep = (ymax - ymin) / resolution
-xs = [(xmin + (xmax - xmin) * i / resolution) for i in range(resolution)]
-ys = [(ymin + (ymax - ymin) * i / resolution) for i in range(resolution)]
-
-
-# In[3]:
 
 
 def mandel1(position, limit=50):
@@ -44,31 +32,42 @@ def mandel1(position, limit=50):
     return limit
 
 
-# In[4]:
+# In[3]:
 
 
 data1 = [[mandel1(complex(x, y)) for x in xs] for y in ys]
 
 
+# In[4]:
+
+
+from matplotlib import pyplot as plt
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+plt.imshow(data1, interpolation="none", extent=[xmin, xmax, ymin, ymax])
+
+
 # ## Many Mandelbrots
 
-# Let's compare our naive python implementation which used a list comprehension, taking 662ms, with the following:
+# Let's compare our naive python implementation which used a list comprehension, taking around 500ms, with the following:
 
 # In[5]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'data2 = []\nfor y in ys:\n    row = []\n    for x in xs:\n        row.append(mandel1(complex(x, y)))\n    data2.append(row)')
+def mandel_append():
+    data = []
+    for y in ys:
+        row = []
+        for x in xs:
+            row.append(mandel1(complex(x, y)))
+        data.append(row)
+    return data
 
 
 # In[6]:
 
 
-data2 = []
-for y in ys:
-    row = []
-    for x in xs:
-        row.append(mandel1(complex(x, y)))
-    data2.append(row)
+get_ipython().run_cell_magic('timeit', '', 'data2 = mandel_append()')
 
 
 # Interestingly, not much difference. I would have expected this to be slower, due to the normally high cost of **appending** to data.
@@ -76,10 +75,8 @@ for y in ys:
 # In[7]:
 
 
-from matplotlib import pyplot as plt
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-plt.imshow(data2, interpolation="none")
+data2 = mandel_append()
+plt.imshow(data2, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # We ought to be checking if these results are the same by comparing the values in a test, rather than re-plotting. This is cumbersome in pure Python, but easy with NumPy, so we'll do this later.
@@ -95,21 +92,23 @@ data3 = [[0 for i in range(resolution)] for j in range(resolution)]
 # In[9]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'for j, y in enumerate(ys):\n    for i, x in enumerate(xs):\n        data3[j][i] = mandel1(complex(x, y))')
+def mandel_preallocated(data_structure):
+    for j, y in enumerate(ys):
+        for i, x in enumerate(xs):
+            data_structure[j][i] = mandel1(complex(x, y))
 
 
 # In[10]:
 
 
-for j, y in enumerate(ys):
-    for i, x in enumerate(xs):
-        data3[j][i] = mandel1(complex(x, y))
+get_ipython().run_cell_magic('timeit', '', 'mandel_preallocated(data3)')
 
 
 # In[11]:
 
 
-plt.imshow(data3, interpolation="none")
+mandel_preallocated(data3)
+plt.imshow(data3, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # Nope, no gain there. 
@@ -119,22 +118,25 @@ plt.imshow(data3, interpolation="none")
 # In[12]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'data4 = []\nfor y in ys:\n    bind_mandel = lambda x: mandel1(complex(x, y))\n    data4.append(list(map(bind_mandel, xs)))')
+def mandel_functional():
+    data = []
+    for y in ys:
+        bind_mandel = lambda x: mandel1(complex(x, y))
+        data.append(list(map(bind_mandel, xs)))
+    return data
 
 
 # In[13]:
 
 
-data4 = []
-for y in ys:
-    bind_mandel = lambda x: mandel1(complex(x, y))
-    data4.append(list(map(bind_mandel, xs)))
+get_ipython().run_cell_magic('timeit', '', 'data4 = mandel_functional()')
 
 
 # In[14]:
 
 
-plt.imshow(data4, interpolation="none")
+data4 = mandel_functional()
+plt.imshow(data4, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # That was a tiny bit slower.

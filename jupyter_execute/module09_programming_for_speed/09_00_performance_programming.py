@@ -13,8 +13,8 @@
 
 # You're probably familiar with a famous fractal called the [Mandelbrot Set](https://www.youtube.com/watch?v=ZDU40eUcTj0).
 
-# For a complex number $c$, $c$ is in the Mandelbrot set if the series $z_{i+1}=z_{i}^2+c$ (With $z_0=c$) stays close to $0$.
-# Traditionally, we plot a color showing how many steps are needed for $\left|z_i\right|>2$, whereupon we are sure the series will diverge.
+# For a complex number $c$, $c$ is in the Mandelbrot set if the series $z_{i+1}=z_{i}^2+c$ (with $z_0=0$) does not tend to infinity.
+# Traditionally, we plot a color showing how many steps are needed before $\left|z_i\right|>2$. At this point we are sure that $c$ is *not* in the Mandelbrot set as the series will diverge.
 
 # Here's a trivial python implementation:
 
@@ -44,8 +44,8 @@ ymax = 1.0
 resolution = 300
 xstep = (xmax - xmin) / resolution
 ystep = (ymax - ymin) / resolution
-xs = [(xmin + (xmax - xmin) * i / resolution) for i in range(resolution)]
-ys = [(ymin + (ymax - ymin) * i / resolution) for i in range(resolution)]
+xs = [(xmin + xstep * i) for i in range(resolution)]
+ys = [(ymin + ystep * i) for i in range(resolution)]
 
 
 # In[3]:
@@ -66,7 +66,7 @@ data1 = [[mandel1(complex(x, y)) for x in xs] for y in ys]
 get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 
-plt.imshow(data1, interpolation="none")
+plt.imshow(data1, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # We will learn this lesson how to make a version of this code which works Ten Times faster:
@@ -77,6 +77,7 @@ plt.imshow(data1, interpolation="none")
 import numpy as np
 
 
+# Do not worry about how this function works - it will be covered in detail later
 def mandel_numpy(position, limit=50):
     value = position
     diverged_at_count = np.zeros(position.shape)
@@ -115,7 +116,7 @@ data_numpy = mandel_numpy(values)
 get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 
-plt.imshow(data_numpy, interpolation="none")
+plt.imshow(data_numpy, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
 # In[11]:
