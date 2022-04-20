@@ -18,69 +18,76 @@
 # # OR git clone https://github.com/yourname/bad-boids.git
 # ```
 
-# For the Exercise, you should start from the GitHub repository, but here's our terrible code:
+# For the Exercise, you should start from the GitHub repository, but here's our terrible code (the contents of the `boids.py` file):
 
 # In[1]:
 
 
 """
-A deliberately bad implementation of 
-[Boids](http://dl.acm.org/citation.cfm?doid=37401.37406)
+A deliberately bad implementation of [Boids](http://dl.acm.org/citation.cfm?doid=37401.37406)
 for use as an exercise on refactoring.
 """
 
 from matplotlib import pyplot as plt
 from matplotlib import animation
-
 import random
+import yaml
 
 # Deliberately terrible code for teaching purposes
 
-boids_x = [random.uniform(-450, 50.0) for x in range(50)]
-boids_y = [random.uniform(300.0, 600.0) for x in range(50)]
-boid_x_velocities = [random.uniform(0, 10.0) for x in range(50)]
-boid_y_velocities = [random.uniform(-20.0, 20.0) for x in range(50)]
-boids = (boids_x, boids_y, boid_x_velocities, boid_y_velocities)
+boids_x=[random.uniform(-450,50.0) for x in range(50)]
+boids_y=[random.uniform(300.0,600.0) for x in range(50)]
+boid_x_velocities=[random.uniform(0,10.0) for x in range(50)]
+boid_y_velocities=[random.uniform(-20.0,20.0) for x in range(50)]
+boids=(boids_x,boids_y,boid_x_velocities,boid_y_velocities)
 
-
-def update_boids(boids):
-    xs, ys, xvs, yvs = boids
+def updateBoids(boids):
+    xs,ys,xvs,yvs=boids
+    deltaXVs=[0]*len(xs)
+    deltaYVs=[0]*len(xs)
     # Fly towards the middle
     for i in range(len(xs)):
         for j in range(len(xs)):
-            xvs[i] = xvs[i] + (xs[j] - xs[i]) * 0.01 / len(xs)
+            deltaXVs[i]=deltaXVs[i]+(xs[j]-xs[i])*0.01/len(xs)
     for i in range(len(xs)):
         for j in range(len(xs)):
-            yvs[i] = yvs[i] + (ys[j] - ys[i]) * 0.01 / len(xs)
+            deltaYVs[i]=deltaYVs[i]+(ys[j]-ys[i])*0.01/len(xs)
     # Fly away from nearby boids
     for i in range(len(xs)):
         for j in range(len(xs)):
-            if (xs[j] - xs[i]) ** 2 + (ys[j] - ys[i]) ** 2 < 100:
-                xvs[i] = xvs[i] + (xs[i] - xs[j])
-                yvs[i] = yvs[i] + (ys[i] - ys[j])
+            if (xs[j]-xs[i])**2 + (ys[j]-ys[i])**2 < 100:
+                deltaXVs[i]=deltaXVs[i]+(xs[i]-xs[j])
+                deltaYVs[i]=deltaYVs[i]+(ys[i]-ys[j])
     # Try to match speed with nearby boids
     for i in range(len(xs)):
         for j in range(len(xs)):
-            if (xs[j] - xs[i]) ** 2 + (ys[j] - ys[i]) ** 2 < 10000:
-                xvs[i] = xvs[i] + (xvs[j] - xvs[i]) * 0.125 / len(xs)
-                yvs[i] = yvs[i] + (yvs[j] - yvs[i]) * 0.125 / len(xs)
+            if (xs[j]-xs[i])**2 + (ys[j]-ys[i])**2 < 10000:
+                deltaXVs[i]=deltaXVs[i]+(xvs[j]-xvs[i])*0.125/len(xs)
+                deltaYVs[i]=deltaYVs[i]+(yvs[j]-yvs[i])*0.125/len(xs)
+    # Update velocities
+    for i in range(len(xs)):
+        xvs[i]=xvs[i]+deltaXVs[i]
+        yvs[i]=yvs[i]+deltaYVs[i]
     # Move according to velocities
     for i in range(len(xs)):
-        xs[i] = xs[i] + xvs[i]
-        ys[i] = ys[i] + yvs[i]
+        xs[i]=xs[i]+xvs[i]
+        ys[i]=ys[i]+yvs[i]
 
 
-figure = plt.figure()
-axes = plt.axes(xlim=(-500, 1500), ylim=(-500, 1500))
-scatter = axes.scatter(boids[0], boids[1])
+figure=plt.figure()
+axes=plt.axes(xlim=(-500,1500), ylim=(-500,1500))
+scatter=axes.scatter(boids[0],boids[1])
+
+def ANIMATE(frame):
+    updateBoids(boids)
+    scatter.set_offsets(list(zip(boids[0],boids[1])))
 
 
-def animate(frame):
-    update_boids(boids)
-    scatter.set_offsets(list(zip(boids[0], boids[1])))
+anim = animation.FuncAnimation(figure, ANIMATE,
+                               frames=50, interval=50)
 
-
-anim = animation.FuncAnimation(figure, animate, frames=200, interval=50)
+if __name__ == "__main__":
+    plt.show()
 
 
 # If you go into your folder and run the code:
@@ -111,44 +118,46 @@ HTML(anim.to_jshtml())
 # ### A regression test
 
 # 
-# First, have a look at the regression test we made.
+# First, have a look at the regression test we made (in the `record_fixture.py` file).
 # 
 # To create it, we saved out the before and after state
 # for one iteration of some boids, using ipython:
 # 
 
-# ``` python
+# ```python
+# from copy import deepcopy
 # import yaml
 # import boids
-# from copy import deepcopy
 # 
 # before = deepcopy(boids.boids)
 # boids.update_boids(boids.boids)
 # after = boids.boids
 # fixture = {"before": before, "after": after}
-# fixture_file = open("fixture.yml", 'w')
-# fixture_file.write(yaml.safe_dump(fixture))
-# fixture_file.close()
+# with open("fixture.yml", "w") as fixture_file:
+#     fixture_file.write(yaml.safe_dump(fixture))
 # ```
 
 # ### Invoking the test
 
 # 
-# Then, I used the fixture file to define the test:
+# Then, I used the fixture file to define the test (in `test_boids.py`):
 # 
 
-# ``` python
-# from boids import update_boids
-# from nose.tools import assert_almost_equal
+# ```python
 # import os
 # import yaml
+# from nose.tools import assert_almost_equal
+# from boids import updateBoids
+# 
 # 
 # def test_bad_boids_regression():
-#     regression_data = yaml.safe_load(open(os.path.join(os.path.dirname(__file__),'fixture.yml')))
+#     with open(os.path.join(os.path.dirname(__file__), "fixture.yml")) as fixture_file:
+#         regression_data = yaml.safe_load(fixture_file)
+# 
 #     boid_data = regression_data["before"]
-#     update_boids(boid_data)
+#     updateBoids(boid_data)
 #     for after, before in zip(regression_data["after"], boid_data):
-#         for after_value, before_value in zip(after, before): 
+#         for after_value, before_value in zip(after, before):
 #             assert_almost_equal(after_value, before_value, delta=0.01)
 # ```
 
@@ -171,7 +180,7 @@ HTML(anim.to_jshtml())
 # ### Start Refactoring
 
 # 
-# Look at the code, consider the [list of refactorings](./07_03_refactoring.html#refactoring-summary) ("Refactoring Summary" in the "Refactoring" notebook, 07_03), and make changes.
+# Look at the code, consider the lists of refactorings (in particular "Refactoring Summary" in the [07_03_refactoring notebook](./07_03_refactoring.html#refactoring-summary)), and make changes.
 # 
 # Each time, do a git commit on your fork, and write a commit message explaining the 
 # refactoring you did.
