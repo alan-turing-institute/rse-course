@@ -1130,7 +1130,7 @@ moves the iterator forward, and gives us its next element:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16319</span><span class="o">/</span><span class="mf">1242322984.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16331</span><span class="o">/</span><span class="mf">1242322984.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 
 <span class="ne">StopIteration</span>: 
@@ -1398,7 +1398,7 @@ which meets the iterator protocol: <strong>generators</strong>.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16319</span><span class="o">/</span><span class="mf">3485793935.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16331</span><span class="o">/</span><span class="mf">3485793935.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="ne">StopIteration</span>: 
@@ -1502,7 +1502,7 @@ Our Fibonacci example therefore becomes a function rather than a class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f2138caba10&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb6bcf64d50&gt;]
 </pre></div>
 </div>
 <img alt="../_images/08_02_iterators_and_generators_58_1.png" src="../_images/08_02_iterators_and_generators_58_1.png" />
@@ -1541,6 +1541,9 @@ the file be automatically closed using a context manager:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;modelname&#39;: &#39;brilliant&#39;}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1611,51 +1614,10 @@ functions which take in one function and return a new function, such as our
 derivative example earlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeat</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_repeated</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    
-    <span class="k">return</span> <span class="n">_repeated</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 
-<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-
-
-<span class="nb">print</span><span class="p">(</span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">hello</span><span class="p">)(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, Cleese
-Hello, Hello, Cleese
-</pre></div>
-</div>
-</div>
-</div>
-<p>Any function which accepts a function as its first argument and returns a function can be used as a <strong>decorator</strong> like this:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@repeat</span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-
-
-<span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello, Hello, Cleese&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>We could also modify this to create a decorator that takes an argument specifying how many times the function should be repeated:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeater</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">repeater</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">wrap_function_in_repeat</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">_repeated</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
             <span class="n">counter</span> <span class="o">=</span> <span class="n">count</span>
@@ -1667,35 +1629,41 @@ Hello, Hello, Cleese
         <span class="k">return</span> <span class="n">_repeated</span>
 
     <span class="k">return</span> <span class="n">wrap_function_in_repeat</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+
 
 <span class="n">fiftytimes</span> <span class="o">=</span> <span class="n">repeater</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
 <span class="n">fiftyroots</span> <span class="o">=</span> <span class="n">fiftytimes</span><span class="p">(</span><span class="n">sqrt</span><span class="p">)</span>
 
-<span class="n">fiftyroots</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fiftyroots</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.000000000000004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.000000000000004
 </pre></div>
 </div>
 </div>
 </div>
+<p>It turns out that, quite often, we want to apply one of these to a function as we’re defining a class.
+For example, we may want to specify that after certain methods are called, data should always be stored:</p>
+<p>Any function which accepts a function as its first argument and returns a function can be used as a <strong>decorator</strong> like this.</p>
+<p>Much of Python’s standard functionality is implemented as decorators: we’ve
+seen &#64;contextmanager, &#64;classmethod and &#64;attribute. The &#64;contextmanager
+metafunction, for example, takes in an iterator, and yields a class conforming
+to the context manager protocol.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@repeater</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-
-
-<span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1705,12 +1673,6 @@ Hello, Hello, Cleese
 </div>
 </div>
 </div>
-<p>It turns out that, quite often, we want to apply one of these to a function as we’re defining a class.
-For example, we may want to specify that after certain methods are called, data should always be stored.</p>
-<p>Much of Python’s standard functionality is implemented as decorators: we’ve
-seen <code class="docutils literal notranslate"><span class="pre">&#64;contextmanager</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;attribute</span></code>. The <code class="docutils literal notranslate"><span class="pre">&#64;contextmanager</span></code>
-metafunction, for example, takes in an iterator, and yields a class conforming
-to the context manager protocol.</p>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="supplementary-material">
@@ -1825,7 +1787,7 @@ We can do a nicer job with a test <strong>generator</strong>:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16319</span><span class="o">/</span><span class="mf">1196640838.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16331</span><span class="o">/</span><span class="mf">1196640838.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">test_that_fails_by_passing</span><span class="p">()</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nose/tools/nontrivial.py</span> in <span class="ni">newfunc</span><span class="nt">(*arg, **kw)</span>

@@ -316,7 +316,7 @@ list(map(add_five, numbers))
 # 
 # Let's continue our functional programming mind-stretch by looking at **reduce** operations.
 # 
-# We very often want to loop with some kind of accumulator (an intermediate result that we update), such as when finding a sum:
+# We very often want to loop with some kind of accumulator (an intermediate result that we update), such as when finding a mean:
 # 
 # 
 # 
@@ -367,7 +367,7 @@ my_max([2, 5, 10, -11, -5])
 # In[24]:
 
 
--sys.float_info.max
+sys.float_info.min
 
 
 # These operations, where we have some variable which is building up a result,
@@ -377,7 +377,7 @@ my_max([2, 5, 10, -11, -5])
 # In[25]:
 
 
-def accumulate(operation, data, initial):
+def accumulate(initial, operation, data):
     accumulator = initial
     for x in data:
         accumulator = operation(accumulator, x)
@@ -388,7 +388,7 @@ def my_sum(data):
     def _add(a, b):
         return a + b
 
-    return accumulate(_add, data, 0)
+    return accumulate(0, _add, data)
 
 
 # In[26]:
@@ -407,7 +407,7 @@ def bigger(a, b):
 
 
 def my_max(data):
-    return accumulate(bigger, data, -sys.float_info.max)
+    return accumulate(sys.float_info.min, bigger, data)
 
 
 my_max([2, 5, 10, -11, -5])
@@ -424,7 +424,7 @@ from functools import reduce
 
 
 def my_max(data):
-    return reduce(bigger, data, -sys.float_info.max)
+    return reduce(bigger, data, sys.float_info.min)
 
 
 my_max([2, 5, 10, -11, -5])
@@ -551,7 +551,7 @@ list(map(lambda x: 2 * x, data))
 
 
 def my_max(data):
-    return reduce(lambda a, b: a if a > b else b, data, -sys.float_info.max)
+    return reduce(lambda a, b: a if a > b else b, data, sys.float_info.min)
 
 
 my_max([2, 5, 10, -11, -5])
