@@ -128,13 +128,13 @@ big_array = np.arange(10000)
 # In[13]:
 
 
-get_ipython().run_cell_magic('timeit', '', '[x ** 2 for x in big_list]')
+get_ipython().run_cell_magic('timeit', '', '[x ** 2 for x in big_list]\n')
 
 
 # In[14]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'big_array ** 2')
+get_ipython().run_cell_magic('timeit', '', 'big_array ** 2\n')
 
 
 # ## Arange and linspace

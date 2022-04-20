@@ -261,7 +261,7 @@ bird_counts = {"hawk": 5, "starling": 500}
 # In[17]:
 
 
-get_ipython().run_cell_magic('writefile', 'config.yaml', 'bounds: [0, 0, 100, 100]\ncounts:\n    hawk: 5\n    starling: 500\nspeed: 2.0\nturning_circle: 3.0')
+get_ipython().run_cell_magic('writefile', 'config.yaml', 'bounds: [0, 0, 100, 100]\ncounts:\n    hawk: 5\n    starling: 500\nspeed: 2.0\nturning_circle: 3.0\n')
 
 
 # 
@@ -408,7 +408,7 @@ class Two:
 # In[26]:
 
 
-get_ipython().run_cell_magic('writefile', 'anotherfile.py', 'class One:\n    pass')
+get_ipython().run_cell_magic('writefile', 'anotherfile.py', 'class One:\n    pass\n')
 
 
 # In[27]:

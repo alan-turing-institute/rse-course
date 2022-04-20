@@ -28,25 +28,25 @@ if "mazetool" not in os.listdir(os.getcwd()):
 # In[2]:
 
 
-get_ipython().run_cell_magic('writefile', 'mazetool/maze.py', 'from .room import Room\nfrom .person import Person\n\n\nclass Maze:\n    def __init__(self, name):\n        self.name = name\n        self.rooms = []\n        self.occupants = []\n\n    def add_room(self, name, capacity):\n        result = Room(name, capacity)\n        self.rooms.append(result)\n        return result\n\n    def add_exit(self, name, source, target, reverse=None):\n        source.add_exit(name, target)\n        if reverse:\n            target.add_exit(reverse, source)\n\n    def add_occupant(self, name, room):\n        self.occupants.append(Person(name, room))\n        room.occupancy += 1\n\n    def wander(self):\n        "Move all the people in a random direction"\n        for occupant in self.occupants:\n            occupant.wander()\n\n    def describe(self):\n        for occupant in self.occupants:\n            occupant.describe()\n\n    def step(self):\n        self.describe()\n        print()\n        self.wander()\n        print()\n\n    def simulate(self, steps):\n        for _ in range(steps):\n            self.step()')
+get_ipython().run_cell_magic('writefile', 'mazetool/maze.py', 'from .room import Room\nfrom .person import Person\n\n\nclass Maze:\n    def __init__(self, name):\n        self.name = name\n        self.rooms = []\n        self.occupants = []\n\n    def add_room(self, name, capacity):\n        result = Room(name, capacity)\n        self.rooms.append(result)\n        return result\n\n    def add_exit(self, name, source, target, reverse=None):\n        source.add_exit(name, target)\n        if reverse:\n            target.add_exit(reverse, source)\n\n    def add_occupant(self, name, room):\n        self.occupants.append(Person(name, room))\n        room.occupancy += 1\n\n    def wander(self):\n        "Move all the people in a random direction"\n        for occupant in self.occupants:\n            occupant.wander()\n\n    def describe(self):\n        for occupant in self.occupants:\n            occupant.describe()\n\n    def step(self):\n        self.describe()\n        print()\n        self.wander()\n        print()\n\n    def simulate(self, steps):\n        for _ in range(steps):\n            self.step()\n')
 
 
 # In[3]:
 
 
-get_ipython().run_cell_magic('writefile', 'mazetool/room.py', 'from .exit import Exit\n\n\nclass Room:\n    def __init__(self, name, capacity):\n        self.name = name\n        self.capacity = capacity\n        self.occupancy = 0\n        self.exits = []\n\n    def has_space(self):\n        return self.occupancy < self.capacity\n\n    def available_exits(self):\n        return [exit for exit in self.exits if exit.valid()]\n\n    def random_valid_exit(self):\n        import random\n\n        if not self.available_exits():\n            return None\n        return random.choice(self.available_exits())\n\n    def add_exit(self, name, target):\n        self.exits.append(Exit(name, target))')
+get_ipython().run_cell_magic('writefile', 'mazetool/room.py', 'from .exit import Exit\n\n\nclass Room:\n    def __init__(self, name, capacity):\n        self.name = name\n        self.capacity = capacity\n        self.occupancy = 0\n        self.exits = []\n\n    def has_space(self):\n        return self.occupancy < self.capacity\n\n    def available_exits(self):\n        return [exit for exit in self.exits if exit.valid()]\n\n    def random_valid_exit(self):\n        import random\n\n        if not self.available_exits():\n            return None\n        return random.choice(self.available_exits())\n\n    def add_exit(self, name, target):\n        self.exits.append(Exit(name, target))\n')
 
 
 # In[4]:
 
 
-get_ipython().run_cell_magic('writefile', 'mazetool/person.py', '\n\nclass Person:\n    def __init__(self, name, room=None):\n        self.name = name\n        self.room = room\n\n    def use(self, exit):\n        self.room.occupancy -= 1\n        destination = exit.target\n        destination.occupancy += 1\n        self.room = destination\n        print(self.name, "goes", exit.name, "to the", destination.name)\n\n    def wander(self):\n        exit = self.room.random_valid_exit()\n        if exit:\n            self.use(exit)\n\n    def describe(self):\n        print(self.name, "is in the", self.room.name)')
+get_ipython().run_cell_magic('writefile', 'mazetool/person.py', '\n\nclass Person:\n    def __init__(self, name, room=None):\n        self.name = name\n        self.room = room\n\n    def use(self, exit):\n        self.room.occupancy -= 1\n        destination = exit.target\n        destination.occupancy += 1\n        self.room = destination\n        print(self.name, "goes", exit.name, "to the", destination.name)\n\n    def wander(self):\n        exit = self.room.random_valid_exit()\n        if exit:\n            self.use(exit)\n\n    def describe(self):\n        print(self.name, "is in the", self.room.name)\n')
 
 
 # In[5]:
 
 
-get_ipython().run_cell_magic('writefile', 'mazetool/exit.py', '\n\nclass Exit:\n    def __init__(self, name, target):\n        self.name = name\n        self.target = target\n\n    def valid(self):\n        return self.target.has_space()')
+get_ipython().run_cell_magic('writefile', 'mazetool/exit.py', '\n\nclass Exit:\n    def __init__(self, name, target):\n        self.name = name\n        self.target = target\n\n    def valid(self):\n        return self.target.has_space()\n')
 
 
 # **(Required for older versions of Python)**: In order to tell Python that our "mazetool" folder is a Python package, we have to make a special file called `__init__.py`. If you import things in there, they are imported as part of the package:
@@ -54,7 +54,7 @@ get_ipython().run_cell_magic('writefile', 'mazetool/exit.py', '\n\nclass Exit:\n
 # In[6]:
 
 
-get_ipython().run_cell_magic('writefile', 'mazetool/__init__.py', 'from .maze import Maze  # Python 3 relative import')
+get_ipython().run_cell_magic('writefile', 'mazetool/__init__.py', 'from .maze import Maze  # Python 3 relative import\n')
 
 
 # ## Loading Our Package

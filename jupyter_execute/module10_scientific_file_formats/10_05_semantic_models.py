@@ -30,7 +30,7 @@
 # In[1]:
 
 
-get_ipython().run_cell_magic('writefile', 'reaction.ttl ', '\n<http://dbpedia.org/ontology/water>\n    <http://purl.obolibrary.org/obo/PATO_0001681>\n        "18.01528"^^<http://purl.obolibrary.org/obo/UO_0000088>\n            .')
+get_ipython().run_cell_magic('writefile', 'reaction.ttl', '\n<http://dbpedia.org/ontology/water>\n    <http://purl.obolibrary.org/obo/PATO_0001681>\n        "18.01528"^^<http://purl.obolibrary.org/obo/UO_0000088>\n            .\n')
 
 
 # * [Water](http://dbpedia.org/ontology/water)
@@ -96,7 +96,7 @@ print(graph.serialize(format="ttl"))
 # In[5]:
 
 
-get_ipython().run_cell_magic('writefile', 'reaction.ttl ', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix dbo: <http://dbpedia.org/ontology/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n\ndbo:water obo:PATO_0001681 "18.01528"^^obo:UO_0000088 ;\n          disr:containsElement obo:CHEBI_33260 .')
+get_ipython().run_cell_magic('writefile', 'reaction.ttl', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix dbo: <http://dbpedia.org/ontology/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n\ndbo:water obo:PATO_0001681 "18.01528"^^obo:UO_0000088 ;\n          disr:containsElement obo:CHEBI_33260 .\n')
 
 
 # * [ElementalHydrogen](http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:33260)
@@ -135,7 +135,7 @@ print(graph.serialize(format="xml"))
 # In[7]:
 
 
-get_ipython().run_cell_magic('writefile', 'reaction.ttl ', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix dbo: <http://dbpedia.org/ontology/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n\ndbo:water obo:PATO_0001681 "18.01528"^^obo:UO_0000088 ;\n          disr:containsElement obo:CHEBI_33260 ;\n          disr:hasElementQuantity [ \n              disr:countedElement obo:CHEBI_33260 ; \n              disr:countOfElement "2"^^xs:integer\n          ] .')
+get_ipython().run_cell_magic('writefile', 'reaction.ttl', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix dbo: <http://dbpedia.org/ontology/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n\ndbo:water obo:PATO_0001681 "18.01528"^^obo:UO_0000088 ;\n          disr:containsElement obo:CHEBI_33260 ;\n          disr:hasElementQuantity [ \n              disr:countedElement obo:CHEBI_33260 ; \n              disr:countOfElement "2"^^xs:integer\n          ] .\n')
 
 
 # Here we have used `[ ]` to indicate an anonymous entity, with no subject. We then define
@@ -146,7 +146,7 @@ get_ipython().run_cell_magic('writefile', 'reaction.ttl ', '\n@prefix disr: <htt
 # In[8]:
 
 
-get_ipython().run_cell_magic('writefile', 'reaction.ttl ', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix dbo: <http://dbpedia.org/ontology/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n\ndbo:water obo:PATO_0001681 "18.01528"^^obo:UO_0000088 ;\n          disr:containsElement obo:CHEBI_33260 ;\n          disr:hasElementQuantity _:a .\n                \n_:a disr:countedElement obo:CHEBI_33260 ; \n    disr:countOfElement "2"^^xs:integer .')
+get_ipython().run_cell_magic('writefile', 'reaction.ttl', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix dbo: <http://dbpedia.org/ontology/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n\ndbo:water obo:PATO_0001681 "18.01528"^^obo:UO_0000088 ;\n          disr:containsElement obo:CHEBI_33260 ;\n          disr:hasElementQuantity _:a .\n                \n_:a disr:countedElement obo:CHEBI_33260 ; \n    disr:countOfElement "2"^^xs:integer .\n')
 
 
 # ## Serialising to RDF 
@@ -156,7 +156,7 @@ get_ipython().run_cell_magic('writefile', 'reaction.ttl ', '\n@prefix disr: <htt
 # In[9]:
 
 
-get_ipython().run_cell_magic('writefile', 'chemistry_turtle_template.mko', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n        \n[ \n%for reaction in reactions:\n    disr:hasReaction [\n        %for molecule in reaction.reactants.molecules:\n            disr:hasReactant [\n                %for element in molecule.elements:\n                    disr:hasElementQuantity [\n                        disr:countedElement [\n                            a obo:CHEBI_33259;\n                            disr:symbol "${element.symbol}"^^xs:string\n                        ] ;\n                        disr:countOfElement "${molecule.elements[element]}"^^xs:integer\n                    ];\n                %endfor\n                a obo:CHEBI_23367\n            ] ;\n        %endfor\n        %for molecule in reaction.products.molecules:\n            disr:hasProduct [\n                %for element in molecule.elements:\n                    disr:hasElementQuantity [\n                        disr:countedElement [\n                            a obo:CHEBI_33259;\n                            disr:symbol "${element.symbol}"^^xs:string\n                        ] ;\n                        disr:countOfElement "${molecule.elements[element]}"^^xs:integer\n                    ] ;\n                %endfor\n                a obo:CHEBI_23367\n            ] ;\n        %endfor\n        a disr:reaction\n    ] ;\n%endfor\na disr:system\n].')
+get_ipython().run_cell_magic('writefile', 'chemistry_turtle_template.mko', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n        \n[ \n%for reaction in reactions:\n    disr:hasReaction [\n        %for molecule in reaction.reactants.molecules:\n            disr:hasReactant [\n                %for element in molecule.elements:\n                    disr:hasElementQuantity [\n                        disr:countedElement [\n                            a obo:CHEBI_33259;\n                            disr:symbol "${element.symbol}"^^xs:string\n                        ] ;\n                        disr:countOfElement "${molecule.elements[element]}"^^xs:integer\n                    ];\n                %endfor\n                a obo:CHEBI_23367\n            ] ;\n        %endfor\n        %for molecule in reaction.products.molecules:\n            disr:hasProduct [\n                %for element in molecule.elements:\n                    disr:hasElementQuantity [\n                        disr:countedElement [\n                            a obo:CHEBI_33259;\n                            disr:symbol "${element.symbol}"^^xs:string\n                        ] ;\n                        disr:countOfElement "${molecule.elements[element]}"^^xs:integer\n                    ] ;\n                %endfor\n                a obo:CHEBI_23367\n            ] ;\n        %endfor\n        a disr:reaction\n    ] ;\n%endfor\na disr:system\n].\n')
 
 
 # "a" in Turtle is an always available abbreviation for https://www.w3.org/1999/02/22-rdf-syntax-ns#type
@@ -248,7 +248,7 @@ print(graph.serialize(format="xml"))
 # In[14]:
 
 
-get_ipython().run_cell_magic('writefile', 'turing_ontology.ttl', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n\ndisr:system a rdfs:Class .\ndisr:reaction a rdfs:Class .\ndisr:hasReaction a rdf:Property .\ndisr:hasReaction rdfs:domain disr:system .\ndisr:hasReaction rdfs:range disr:reaction .          ')
+get_ipython().run_cell_magic('writefile', 'turing_ontology.ttl', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n\ndisr:system a rdfs:Class .\ndisr:reaction a rdfs:Class .\ndisr:hasReaction a rdf:Property .\ndisr:hasReaction rdfs:domain disr:system .\ndisr:hasReaction rdfs:range disr:reaction .          \n')
 
 
 # This will allow us to make our file format briefer: given this schema, if
@@ -269,7 +269,7 @@ get_ipython().run_cell_magic('writefile', 'turing_ontology.ttl', '\n@prefix disr
 # In[15]:
 
 
-get_ipython().run_cell_magic('writefile', 'turing_ontology.ttl', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n\ndisr:system a rdfs:Class .\ndisr:reaction a rdfs:Class .\ndisr:hasReaction a rdf:Property .\ndisr:hasReaction rdfs:domain disr:system .\ndisr:hasReaction rdfs:range disr:reaction .     \n\ndisr:hasParticipant a rdf:Property .\ndisr:hasReactant rdfs:subPropertyOf disr:hasParticipant .\ndisr:hasProduct rdfs:subPropertyOf disr:hasParticipant')
+get_ipython().run_cell_magic('writefile', 'turing_ontology.ttl', '\n@prefix disr: <http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix xs: <http://www.w3.org/2001/XMLSchema> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n\ndisr:system a rdfs:Class .\ndisr:reaction a rdfs:Class .\ndisr:hasReaction a rdf:Property .\ndisr:hasReaction rdfs:domain disr:system .\ndisr:hasReaction rdfs:range disr:reaction .     \n\ndisr:hasParticipant a rdf:Property .\ndisr:hasReactant rdfs:subPropertyOf disr:hasParticipant .\ndisr:hasProduct rdfs:subPropertyOf disr:hasParticipant\n')
 
 
 # [OWL](https://www.w3.org/TR/owl-ref/) extends RDFS even further. 

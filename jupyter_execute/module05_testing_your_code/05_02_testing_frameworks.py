@@ -84,25 +84,25 @@ with raises(ValueError):
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', "#on windows replace '%%bash' with %%cmd\nrm -rf saskatchewan\nmkdir -p saskatchewan\ntouch saskatchewan/__init__.py #on windows replace with 'type nul > saskatchewan/__init__.py'")
+get_ipython().run_cell_magic('bash', '', "#on windows replace '%%bash' with %%cmd\nrm -rf saskatchewan\nmkdir -p saskatchewan\ntouch saskatchewan/__init__.py #on windows replace with 'type nul > saskatchewan/__init__.py'\n")
 
 
 # In[5]:
 
 
-get_ipython().run_cell_magic('writefile', 'saskatchewan/overlap.py', "def overlap(field1, field2):\n    left1, bottom1, top1, right1 = field1\n    left2, bottom2, top2, right2 = field2\n\n    overlap_left = max(left1, left2)\n    overlap_bottom = max(bottom1, bottom2)\n    overlap_right = min(right1, right2)\n    overlap_top = min(top1, top2)\n    # Here's our wrong code again\n    overlap_height = overlap_top - overlap_bottom\n    overlap_width = overlap_right - overlap_left\n\n    return overlap_height * overlap_width")
+get_ipython().run_cell_magic('writefile', 'saskatchewan/overlap.py', "def overlap(field1, field2):\n    left1, bottom1, top1, right1 = field1\n    left2, bottom2, top2, right2 = field2\n\n    overlap_left = max(left1, left2)\n    overlap_bottom = max(bottom1, bottom2)\n    overlap_right = min(right1, right2)\n    overlap_top = min(top1, top2)\n    # Here's our wrong code again\n    overlap_height = overlap_top - overlap_bottom\n    overlap_width = overlap_right - overlap_left\n\n    return overlap_height * overlap_width\n")
 
 
 # In[6]:
 
 
-get_ipython().run_cell_magic('writefile', 'saskatchewan/test_overlap.py', 'from .overlap import overlap\n\n\ndef test_full_overlap():\n    assert overlap((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 3.0)) == 1.0\n\n\ndef test_partial_overlap():\n    assert overlap((1, 1, 4, 4), (2, 2, 3, 4.5)) == 2.0\n\n\ndef test_no_overlap():\n    assert overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5)) == 0.0')
+get_ipython().run_cell_magic('writefile', 'saskatchewan/test_overlap.py', 'from .overlap import overlap\n\n\ndef test_full_overlap():\n    assert overlap((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 3.0)) == 1.0\n\n\ndef test_partial_overlap():\n    assert overlap((1, 1, 4, 4), (2, 2, 3, 4.5)) == 2.0\n\n\ndef test_no_overlap():\n    assert overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5)) == 0.0\n')
 
 
 # In[7]:
 
 
-get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npy.test || echo "Tests failed"')
+get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npy.test || echo "Tests failed"\n')
 
 
 # Note that it reported **which** test had failed, how many tests ran, and how many failed.

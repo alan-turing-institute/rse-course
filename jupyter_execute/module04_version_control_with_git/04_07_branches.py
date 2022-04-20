@@ -22,49 +22,49 @@ os.chdir(working_dir)
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch # Tell me what branches exist')
+get_ipython().run_cell_magic('bash', '', 'git branch # Tell me what branches exist\n')
 
 
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git checkout -b experiment # Make a new branch')
+get_ipython().run_cell_magic('bash', '', 'git checkout -b experiment # Make a new branch\n')
 
 
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch')
+get_ipython().run_cell_magic('bash', '', 'git branch\n')
 
 
 # In[5]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr\n* Fan y Big\n* Cadair Idris')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr\n* Fan y Big\n* Cadair Idris\n')
 
 
 # In[6]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Add Cadair Idris"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Add Cadair Idris"\n')
 
 
 # In[7]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git checkout main # Switch to an existing branch')
+get_ipython().run_cell_magic('bash', '', 'git checkout main # Switch to an existing branch\n')
 
 
 # In[8]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cat Wales.md')
+get_ipython().run_cell_magic('bash', '', 'cat Wales.md\n')
 
 
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git checkout experiment')
+get_ipython().run_cell_magic('bash', '', 'git checkout experiment\n')
 
 
 # In[10]:
@@ -80,7 +80,7 @@ cat Wales.md
 # In[11]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push -u origin experiment')
+get_ipython().run_cell_magic('bash', '', 'git push -u origin experiment\n')
 
 
 # We use `--set-upstream origin` (Abbreviation `-u`) to tell git that this branch should be pushed to and pulled from origin per default.
@@ -95,7 +95,7 @@ get_ipython().run_cell_magic('bash', '', 'git push -u origin experiment')
 # In[12]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch -r')
+get_ipython().run_cell_magic('bash', '', 'git branch -r\n')
 
 
 # Local branches can be, but do not have to be, connected to remote branches
@@ -105,7 +105,7 @@ get_ipython().run_cell_magic('bash', '', 'git branch -r')
 # In[13]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch -vv')
+get_ipython().run_cell_magic('bash', '', 'git branch -vv\n')
 
 
 # ### Find out what is on a branch
@@ -117,7 +117,7 @@ get_ipython().run_cell_magic('bash', '', 'git branch -vv')
 # In[14]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log main..experiment')
+get_ipython().run_cell_magic('bash', '', 'git log main..experiment\n')
 
 
 # Git uses various symbols to refer to sets of commits.
@@ -128,7 +128,7 @@ get_ipython().run_cell_magic('bash', '', 'git log main..experiment')
 # In[15]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~9..HEAD~5')
+get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~9..HEAD~5\n')
 
 
 # But in cases where a history has branches,
@@ -137,7 +137,7 @@ get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~9..HEAD
 # In[16]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~5..HEAD')
+get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~5..HEAD\n')
 
 
 # If there are changes on both sides, like this:
@@ -145,25 +145,25 @@ get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~5..HEAD
 # In[17]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git checkout main')
+get_ipython().run_cell_magic('bash', '', 'git checkout main\n')
 
 
 # In[18]:
 
 
-get_ipython().run_cell_magic('writefile', 'Scotland.md', 'Mountains In Scotland\n==================\n\n* Ben Eighe\n* Cairngorm\n* Aonach Eagach')
+get_ipython().run_cell_magic('writefile', 'Scotland.md', 'Mountains In Scotland\n==================\n\n* Ben Eighe\n* Cairngorm\n* Aonach Eagach\n')
 
 
 # In[19]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git diff Scotland.md')
+get_ipython().run_cell_magic('bash', '', 'git diff Scotland.md\n')
 
 
 # In[20]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Commit Aonach onto main branch"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Commit Aonach onto main branch"\n')
 
 
 # Then this notation is useful to show the content of what's on what branch:
@@ -171,7 +171,7 @@ get_ipython().run_cell_magic('bash', '', 'git commit -am "Commit Aonach onto mai
 # In[21]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --left-right --oneline main...experiment')
+get_ipython().run_cell_magic('bash', '', 'git log --left-right --oneline main...experiment\n')
 
 
 # Three dots means "everything which is not a common ancestor" of the two commits, i.e. the differences between them.
@@ -183,13 +183,13 @@ get_ipython().run_cell_magic('bash', '', 'git log --left-right --oneline main...
 # In[22]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch\ngit merge experiment')
+get_ipython().run_cell_magic('bash', '', 'git branch\ngit merge experiment\n')
 
 
 # In[23]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~3..HEAD')
+get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~3..HEAD\n')
 
 
 # ## Cleaning up after a branch
@@ -197,49 +197,49 @@ get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline HEAD~3..HEAD
 # In[24]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch  # list branches')
+get_ipython().run_cell_magic('bash', '', 'git branch  # list branches\n')
 
 
 # In[25]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch -d experiment  # delete a branch')
+get_ipython().run_cell_magic('bash', '', 'git branch -d experiment  # delete a branch\n')
 
 
 # In[26]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch # current branch')
+get_ipython().run_cell_magic('bash', '', 'git branch # current branch\n')
 
 
 # In[27]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch --remote  # list remote branches')
+get_ipython().run_cell_magic('bash', '', 'git branch --remote  # list remote branches\n')
 
 
 # In[28]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push --delete origin experiment \n# Remove remote branch. Note that you can also use the GitHub interface to do this.')
+get_ipython().run_cell_magic('bash', '', 'git push --delete origin experiment \n# Remove remote branch. Note that you can also use the GitHub interface to do this.\n')
 
 
 # In[29]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch --remote  # list remote branches')
+get_ipython().run_cell_magic('bash', '', 'git branch --remote  # list remote branches\n')
 
 
 # In[30]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git push\n')
 
 
 # In[31]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch  # current branch')
+get_ipython().run_cell_magic('bash', '', 'git branch  # current branch\n')
 
 
 # ## A good branch strategy

@@ -22,25 +22,25 @@ os.chdir(working_dir)
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git branch -vv')
+get_ipython().run_cell_magic('bash', '', 'git branch -vv\n')
 
 
 # In[3]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr\n* Fan y Big\n* Cadair Idris\n* Penygader')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr\n* Fan y Big\n* Cadair Idris\n* Penygader\n')
 
 
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git stash')
+get_ipython().run_cell_magic('bash', '', 'git stash\n')
 
 
 # In[5]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+get_ipython().run_cell_magic('bash', '', 'git pull\n')
 
 
 # By stashing your work first, your repository becomes clean, allowing you to pull. To restore your changes, use `git stash apply`.
@@ -48,7 +48,7 @@ get_ipython().run_cell_magic('bash', '', 'git pull')
 # In[6]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git stash apply')
+get_ipython().run_cell_magic('bash', '', 'git stash apply\n')
 
 
 # The "Stash" is a way of temporarily saving your working area, and can help out in a pinch.
@@ -85,13 +85,13 @@ get_ipython().run_cell_magic('bash', '', 'git stash apply')
 # In[7]:
 
 
-get_ipython().run_cell_magic('writefile', 'Makefile', '\nMDS=$(wildcard *.md)\nPDFS=$(MDS:.md=.pdf)\n\ndefault: $(PDFS)\n\n%.pdf: %.md\n\tpandoc $< -o $@')
+get_ipython().run_cell_magic('writefile', 'Makefile', '\nMDS=$(wildcard *.md)\nPDFS=$(MDS:.md=.pdf)\n\ndefault: $(PDFS)\n\n%.pdf: %.md\n\tpandoc $< -o $@\n')
 
 
 # In[8]:
 
 
-get_ipython().run_cell_magic('bash', '', 'make')
+get_ipython().run_cell_magic('bash', '', 'make\n')
 
 
 # We now have a bunch of output .pdf files corresponding to each Markdown file.
@@ -101,7 +101,7 @@ get_ipython().run_cell_magic('bash', '', 'make')
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git status')
+get_ipython().run_cell_magic('bash', '', 'git status\n')
 
 
 # Use .gitignore files to tell Git not to pay attention to files with certain paths:
@@ -109,19 +109,19 @@ get_ipython().run_cell_magic('bash', '', 'git status')
 # In[10]:
 
 
-get_ipython().run_cell_magic('writefile', '.gitignore', '*.pdf')
+get_ipython().run_cell_magic('writefile', '.gitignore', '*.pdf\n')
 
 
 # In[11]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git status')
+get_ipython().run_cell_magic('bash', '', 'git status\n')
 
 
 # In[12]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git add Makefile\ngit add .gitignore\ngit commit -am "Add a makefile and ignore generated files"\ngit push')
+get_ipython().run_cell_magic('bash', '', 'git add Makefile\ngit add .gitignore\ngit commit -am "Add a makefile and ignore generated files"\ngit push\n')
 
 
 # # Git clean
@@ -131,13 +131,13 @@ get_ipython().run_cell_magic('bash', '', 'git add Makefile\ngit add .gitignore\n
 # In[13]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git clean -fX')
+get_ipython().run_cell_magic('bash', '', 'git clean -fX\n')
 
 
 # In[14]:
 
 
-get_ipython().run_cell_magic('bash', '', 'ls')
+get_ipython().run_cell_magic('bash', '', 'ls\n')
 
 
 # * With -f: don't prompt
@@ -204,13 +204,13 @@ get_ipython().run_cell_magic('bash', '', 'ls')
 # In[15]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', '---\ntitle: Github Pages Example\n---\nMountains and Lakes in the UK\n===================\n\nEngerland is not very mountainous.\nBut has some tall hills, and maybe a mountain or two depending on your definition.')
+get_ipython().run_cell_magic('writefile', 'test.md', '---\ntitle: Github Pages Example\n---\nMountains and Lakes in the UK\n===================\n\nEngerland is not very mountainous.\nBut has some tall hills, and maybe a mountain or two depending on your definition.\n')
 
 
 # In[16]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Add github pages YAML frontmatter"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Add github pages YAML frontmatter"\n')
 
 
 # ## The gh-pages branch
@@ -228,7 +228,7 @@ os.chdir(working_dir)
 # In[18]:
 
 
-get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -uf origin gh-pages')
+get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -uf origin gh-pages\n')
 
 
 # The first time you do this, GitHub takes a few minutes to generate your pages. 
@@ -244,5 +244,5 @@ get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -
 # In[19]:
 
 
-get_ipython().run_cell_magic('bash', '', '# Cleanup by removing the gh-pages branch \ngit checkout main\ngit push\ngit branch -d gh-pages\ngit push --delete origin gh-pages \ngit branch --remote')
+get_ipython().run_cell_magic('bash', '', '# Cleanup by removing the gh-pages branch \ngit checkout main\ngit push\ngit branch -d gh-pages\ngit push --delete origin gh-pages \ngit branch --remote\n')
 

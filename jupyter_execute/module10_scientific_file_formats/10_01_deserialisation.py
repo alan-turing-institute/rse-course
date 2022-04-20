@@ -731,7 +731,7 @@ saver.write("foo.hdf5")
 # In[36]:
 
 
-get_ipython().run_cell_magic('bash', '', '# Read the first 100 characters from the file\nhead -c 100 foo.hdf5')
+get_ipython().run_cell_magic('bash', '', '# Read the first 100 characters from the file\nhead -c 100 foo.hdf5\n')
 
 
 # In[37]:

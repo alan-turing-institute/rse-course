@@ -28,7 +28,7 @@ os.chdir(git_dir)
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'rm -rf bisectdemo\ngit clone https://github.com/shawnsi/bisectdemo.git')
+get_ipython().run_cell_magic('bash', '', 'rm -rf bisectdemo\ngit clone https://github.com/shawnsi/bisectdemo.git\n')
 
 
 # In[3]:
@@ -41,7 +41,7 @@ os.chdir(bisect_dir)
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', 'python squares.py 2 # 4')
+get_ipython().run_cell_magic('bash', '', 'python squares.py 2 # 4\n')
 
 
 # This has been set up to break itself at a random commit, and leave you to use
@@ -50,7 +50,7 @@ get_ipython().run_cell_magic('bash', '', 'python squares.py 2 # 4')
 # In[5]:
 
 
-get_ipython().run_cell_magic('bash', '', './breakme.sh > break_output')
+get_ipython().run_cell_magic('bash', '', './breakme.sh > break_output\n')
 
 
 # Which will make a bunch of commits, of which one is broken, and leave you in the broken final state
@@ -66,7 +66,7 @@ python squares.py 2 # Error message
 # In[7]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git bisect start\ngit bisect bad # We know the current state is broken\ngit checkout master\ngit bisect good # We know the master branch state is OK')
+get_ipython().run_cell_magic('bash', '', 'git bisect start\ngit bisect bad # We know the current state is broken\ngit checkout master\ngit bisect good # We know the master branch state is OK\n')
 
 
 # Bisect needs one known good and one known bad commit to get started
@@ -127,7 +127,7 @@ get_ipython().run_cell_magic('bash', '', 'git bisect start\ngit bisect bad # We 
 # In[8]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git bisect start\ngit bisect bad HEAD # We know the current state is broken\ngit bisect good master #\xa0We know master is good\ngit bisect run python squares.py 2')
+get_ipython().run_cell_magic('bash', '', 'git bisect start\ngit bisect bad HEAD # We know the current state is broken\ngit bisect good master #\xa0We know master is good\ngit bisect run python squares.py 2\n')
 
 
 # Boom!

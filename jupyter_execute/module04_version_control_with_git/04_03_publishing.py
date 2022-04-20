@@ -46,7 +46,7 @@ working_dir
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git remote add origin git@github.com:alan-turing-institute/github-example.git')
+get_ipython().run_cell_magic('bash', '', 'git remote add origin git@github.com:alan-turing-institute/github-example.git\n')
 
 
 # Note that the `https` version of this instruction would be something like `git remote add origin https://${YOUR_USERNAME}:${GITHUB_TOKEN}@github.com/alan-turing-institute/github-example.git`
@@ -54,13 +54,13 @@ get_ipython().run_cell_magic('bash', '', 'git remote add origin git@github.com:a
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git remote -v')
+get_ipython().run_cell_magic('bash', '', 'git remote -v\n')
 
 
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', "git push -uf origin main # Note we use the '-f' flag here to force an update")
+get_ipython().run_cell_magic('bash', '', "git push -uf origin main # Note we use the '-f' flag here to force an update\n")
 
 
 # ## Remotes
@@ -112,7 +112,7 @@ wsd(message)
 # In[6]:
 
 
-get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland  \n========   \n  \nCumbria has some pretty hills, and lakes too.  ')
+get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland  \n========   \n  \nCumbria has some pretty hills, and lakes too.  \n')
 
 
 # In[7]:
@@ -126,7 +126,7 @@ cat lakeland.md
 # In[8]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Try to add Lakeland" || echo "Commit failed"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Try to add Lakeland" || echo "Commit failed"\n')
 
 
 # This failed, because we've not told git to track the new file yet.
@@ -136,7 +136,7 @@ get_ipython().run_cell_magic('bash', '', 'git commit -am "Try to add Lakeland" |
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git add lakeland.md\ngit commit -am "Add lakeland"')
+get_ipython().run_cell_magic('bash', '', 'git add lakeland.md\ngit commit -am "Add lakeland"\n')
 
 
 # Ok, now we have added the change about Cumbria to the file. Let's publish it to the origin repository.
@@ -144,7 +144,7 @@ get_ipython().run_cell_magic('bash', '', 'git add lakeland.md\ngit commit -am "A
 # In[10]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git push\n')
 
 
 # Visit GitHub, and notice this change is on your repository on the server. We could have said `git push origin` to specify the remote to use, but origin is the default.
@@ -156,19 +156,19 @@ get_ipython().run_cell_magic('bash', '', 'git push')
 # In[11]:
 
 
-get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland  \n========   \n  \nCumbria has some pretty hills, and lakes too\n\nMountains:\n* Helvellyn')
+get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland  \n========   \n  \nCumbria has some pretty hills, and lakes too\n\nMountains:\n* Helvellyn\n')
 
 
 # In[12]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Lakes in the UK   \n===================   \nEngerland is not very mountainous.\nBut has some tall hills, and maybe a\nmountain or two depending on your definition.')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Lakes in the UK   \n===================   \nEngerland is not very mountainous.\nBut has some tall hills, and maybe a\nmountain or two depending on your definition.\n')
 
 
 # In[13]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git status')
+get_ipython().run_cell_magic('bash', '', 'git status\n')
 
 
 # These changes should really be separate commits. We can do this with careful use of git add, to **stage** first one commit, then the other.
@@ -176,7 +176,7 @@ get_ipython().run_cell_magic('bash', '', 'git status')
 # In[14]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git add test.md\ngit commit -m "Include lakes in the scope"')
+get_ipython().run_cell_magic('bash', '', 'git add test.md\ngit commit -m "Include lakes in the scope"\n')
 
 
 # Because we "staged" only test.md, the changes to lakeland.md were not included in that commit.
@@ -184,19 +184,19 @@ get_ipython().run_cell_magic('bash', '', 'git add test.md\ngit commit -m "Includ
 # In[15]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Add Helvellyn"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Add Helvellyn"\n')
 
 
 # In[16]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --oneline')
+get_ipython().run_cell_magic('bash', '', 'git log --oneline\n')
 
 
 # In[17]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git push\n')
 
 
 # In[18]:

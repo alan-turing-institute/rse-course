@@ -32,7 +32,7 @@ y = np.zeros((8, 8))
 # In[4]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'for i in range(8):\n    for j in range(8):\n        y[i][j] = x[i][j] + 10')
+get_ipython().run_cell_magic('timeit', '', 'for i in range(8):\n    for j in range(8):\n        y[i][j] = x[i][j] + 10\n')
 
 
 # In[5]:
@@ -179,7 +179,7 @@ plt.imshow(data5, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 # In[20]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'data5 = mandel2(values)')
+get_ipython().run_cell_magic('timeit', '', 'data5 = mandel2(values)\n')
 
 
 # This is not significantly faster. When we use *vectorize* it's just hiding an plain old python for loop under the hood. We want to make the loop over matrix elements take place in the "**C Layer**".
@@ -231,7 +231,7 @@ data6 = mandel_numpy(values)
 # In[25]:
 
 
-get_ipython().run_cell_magic('timeit', '', '\ndata6 = mandel_numpy(values)')
+get_ipython().run_cell_magic('timeit', '', '\ndata6 = mandel_numpy(values)\n')
 
 
 # In[26]:
@@ -353,7 +353,7 @@ plt.imshow(data7, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 # In[38]:
 
 
-get_ipython().run_cell_magic('timeit', '', '\ndata7 = mandel4(values)')
+get_ipython().run_cell_magic('timeit', '', '\ndata7 = mandel4(values)\n')
 
 
 # Note that here, all the looping over mandelbrot steps was in Python, but everything below the loop-over-positions happened in C. The code was amazingly quick compared to pure Python.
@@ -380,7 +380,7 @@ def mandel5(position, limit=50):
 # In[40]:
 
 
-get_ipython().run_cell_magic('timeit', '', '\ndata8 = mandel5(values)')
+get_ipython().run_cell_magic('timeit', '', '\ndata8 = mandel5(values)\n')
 
 
 # Probably not worth the time I spent thinking about it!
@@ -502,7 +502,7 @@ data8 = mandel6(values)
 # In[52]:
 
 
-get_ipython().run_cell_magic('timeit', '', '\ndata8 = mandel6(values)')
+get_ipython().run_cell_magic('timeit', '', '\ndata8 = mandel6(values)\n')
 
 
 # In[53]:
@@ -640,7 +640,7 @@ plt.imshow(data9, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 # In[67]:
 
 
-get_ipython().run_cell_magic('timeit', '', '\ndata9 = mandel7(values)')
+get_ipython().run_cell_magic('timeit', '', '\ndata9 = mandel7(values)\n')
 
 
 # Still slower. Probably due to lots of copies -- the point here is that you need to *experiment* to see which optimisations will work. Performance programming needs to be empirical.

@@ -37,7 +37,7 @@ os.chdir(git_dir)
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'pwd\nrm -rf github-example # cleanup after previous example\nrm -rf partner_dir # cleanup after previous example')
+get_ipython().run_cell_magic('bash', '', 'pwd\nrm -rf github-example # cleanup after previous example\nrm -rf partner_dir # cleanup after previous example\n')
 
 
 # Next, the collaborator needs to find out the URL of the repository: they should go to the leader's repository's GitHub page, and note the URL on the top of the screen.
@@ -49,7 +49,7 @@ get_ipython().run_cell_magic('bash', '', 'pwd\nrm -rf github-example # cleanup a
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', 'pwd\ngit clone git@github.com:alan-turing-institute/github-example.git partner_dir')
+get_ipython().run_cell_magic('bash', '', 'pwd\ngit clone git@github.com:alan-turing-institute/github-example.git partner_dir\n')
 
 
 # In[4]:
@@ -62,7 +62,7 @@ os.chdir(partner_dir)
 # In[5]:
 
 
-get_ipython().run_cell_magic('bash', '', 'pwd\nls')
+get_ipython().run_cell_magic('bash', '', 'pwd\nls\n')
 
 
 # Note that your partner's files are now present on your disk:
@@ -70,7 +70,7 @@ get_ipython().run_cell_magic('bash', '', 'pwd\nls')
 # In[6]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cat lakeland.md')
+get_ipython().run_cell_magic('bash', '', 'cat lakeland.md\n')
 
 
 # ## Nonconflicting changes
@@ -90,19 +90,19 @@ os.chdir(working_dir)
 # In[8]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Tryfan\n* Yr Wyddfa')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Tryfan\n* Yr Wyddfa\n')
 
 
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', 'ls')
+get_ipython().run_cell_magic('bash', '', 'ls\n')
 
 
 # In[10]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git add Wales.md\ngit commit -m "Add wales"')
+get_ipython().run_cell_magic('bash', '', 'git add Wales.md\ngit commit -m "Add wales"\n')
 
 
 # And the partner:
@@ -116,19 +116,19 @@ os.chdir(partner_dir)
 # In[12]:
 
 
-get_ipython().run_cell_magic('writefile', 'Scotland.md', 'Mountains In Scotland\n==================\n\n* Ben Eighe\n* Cairngorm')
+get_ipython().run_cell_magic('writefile', 'Scotland.md', 'Mountains In Scotland\n==================\n\n* Ben Eighe\n* Cairngorm\n')
 
 
 # In[13]:
 
 
-get_ipython().run_cell_magic('bash', '', 'ls')
+get_ipython().run_cell_magic('bash', '', 'ls\n')
 
 
 # In[14]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git add Scotland.md\ngit commit -m "Add Scotland"')
+get_ipython().run_cell_magic('bash', '', 'git add Scotland.md\ngit commit -m "Add Scotland"\n')
 
 
 # One of you should now push with `git push`:
@@ -136,7 +136,7 @@ get_ipython().run_cell_magic('bash', '', 'git add Scotland.md\ngit commit -m "Ad
 # In[15]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git push\n')
 
 
 # ## Rejected push
@@ -152,7 +152,7 @@ os.chdir(working_dir)
 # In[17]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"')
+get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"\n')
 
 
 # Do as it suggests:
@@ -160,7 +160,7 @@ get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"')
 # In[18]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+get_ipython().run_cell_magic('bash', '', 'git pull\n')
 
 
 # ## Merge commits
@@ -172,7 +172,7 @@ get_ipython().run_cell_magic('bash', '', 'git pull')
 # In[19]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git push\n')
 
 
 # The partner now needs to pull down that commit:
@@ -186,13 +186,13 @@ os.chdir(partner_dir)
 # In[21]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+get_ipython().run_cell_magic('bash', '', 'git pull\n')
 
 
 # In[22]:
 
 
-get_ipython().run_cell_magic('bash', '', 'ls')
+get_ipython().run_cell_magic('bash', '', 'ls\n')
 
 
 # ## Nonconflicted commits to the same file
@@ -202,25 +202,25 @@ get_ipython().run_cell_magic('bash', '', 'ls')
 # In[23]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Tryfan\n* Snowdon')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Tryfan\n* Snowdon\n')
 
 
 # In[24]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git diff')
+get_ipython().run_cell_magic('bash', '', 'git diff\n')
 
 
 # In[25]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Translating from the Welsh"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Translating from the Welsh"\n')
 
 
 # In[26]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --oneline')
+get_ipython().run_cell_magic('bash', '', 'git log --oneline\n')
 
 
 # In[27]:
@@ -232,25 +232,25 @@ os.chdir(working_dir)
 # In[28]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Yr Wyddfa')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Yr Wyddfa\n')
 
 
 # In[29]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Add a beacon"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Add a beacon"\n')
 
 
 # In[30]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --oneline')
+get_ipython().run_cell_magic('bash', '', 'git log --oneline\n')
 
 
 # In[31]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git push\n')
 
 
 # Switching back to the other partner...
@@ -264,25 +264,25 @@ os.chdir(partner_dir)
 # In[33]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"')
+get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"\n')
 
 
 # In[34]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+get_ipython().run_cell_magic('bash', '', 'git pull\n')
 
 
 # In[35]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git push\n')
 
 
 # In[36]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --oneline --graph')
+get_ipython().run_cell_magic('bash', '', 'git log --oneline --graph\n')
 
 
 # In[37]:
@@ -294,13 +294,13 @@ os.chdir(working_dir)
 # In[38]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+get_ipython().run_cell_magic('bash', '', 'git pull\n')
 
 
 # In[39]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline')
+get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline\n')
 
 
 # In[40]:
@@ -353,13 +353,13 @@ wsd(message)
 # In[41]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Fan y Big')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Fan y Big\n')
 
 
 # In[42]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Add another Beacon"\ngit push')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Add another Beacon"\ngit push\n')
 
 
 # In[43]:
@@ -371,19 +371,19 @@ os.chdir(partner_dir)
 # In[44]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Glyder Fawr\n')
 
 
 # In[45]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Add Glyder"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Add Glyder"\n')
 
 
 # In[46]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"')
+get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"\n')
 
 
 # When you pull, instead of offering an automatic merge commit message, it says:
@@ -391,7 +391,7 @@ get_ipython().run_cell_magic('bash', '', 'git push || echo "Push failed"')
 # In[47]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull || echo "Pull failed"')
+get_ipython().run_cell_magic('bash', '', 'git pull || echo "Pull failed"\n')
 
 
 # ## Resolving conflicts
@@ -405,7 +405,7 @@ get_ipython().run_cell_magic('bash', '', 'git pull || echo "Pull failed"')
 # In[48]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cat Wales.md')
+get_ipython().run_cell_magic('bash', '', 'cat Wales.md\n')
 
 
 # Manually edit the file, to combine the changes as seems sensible and get rid of the symbols:
@@ -413,7 +413,7 @@ get_ipython().run_cell_magic('bash', '', 'cat Wales.md')
 # In[49]:
 
 
-get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Fan y Big\n* Glyder Fawr')
+get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n==================\n\n* Pen y Fan\n* Tryfan\n* Snowdon\n* Fan y Big\n* Glyder Fawr\n')
 
 
 # ## Commit the resolved file
@@ -423,13 +423,13 @@ get_ipython().run_cell_magic('writefile', 'Wales.md', 'Mountains In Wales\n=====
 # In[50]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -a --no-edit # I added a No-edit for this non-interactive session. You can edit the commit if you like.')
+get_ipython().run_cell_magic('bash', '', 'git commit -a --no-edit # I added a No-edit for this non-interactive session. You can edit the commit if you like.\n')
 
 
 # In[51]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push')
+get_ipython().run_cell_magic('bash', '', 'git push\n')
 
 
 # In[52]:
@@ -441,19 +441,19 @@ os.chdir(working_dir)
 # In[53]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git pull')
+get_ipython().run_cell_magic('bash', '', 'git pull\n')
 
 
 # In[54]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cat Wales.md')
+get_ipython().run_cell_magic('bash', '', 'cat Wales.md\n')
 
 
 # In[55]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --oneline --graph')
+get_ipython().run_cell_magic('bash', '', 'git log --oneline --graph\n')
 
 
 # ## Distributed VCS in teams with conflicts

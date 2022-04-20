@@ -42,7 +42,7 @@ with open("maze.json", "w") as json_maze_out:
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', "#%%cmd (windows)\ncat 'maze.json'")
+get_ipython().run_cell_magic('bash', '', "#%%cmd (windows)\ncat 'maze.json'\n")
 
 
 # and now load it into a different variable:
@@ -78,7 +78,7 @@ with open("maze.yaml", "w") as yaml_maze_out:
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', "#%%cmd (windows)\ncat 'maze.yaml'")
+get_ipython().run_cell_magic('bash', '', "#%%cmd (windows)\ncat 'maze.yaml'\n")
 
 
 # In[10]:

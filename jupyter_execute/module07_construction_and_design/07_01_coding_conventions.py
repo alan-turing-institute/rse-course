@@ -226,7 +226,7 @@ if (variable_equality and flag1) or flag2:
 # In[13]:
 
 
-get_ipython().run_cell_magic('bash', '', 'pycodestyle species.py')
+get_ipython().run_cell_magic('bash', '', 'pycodestyle species.py\n')
 
 
 # 
@@ -245,7 +245,7 @@ get_ipython().run_cell_magic('bash', '', 'pycodestyle species.py')
 # In[14]:
 
 
-get_ipython().run_cell_magic('bash', '', 'pylint species.py || echo "Note the linting failures"')
+get_ipython().run_cell_magic('bash', '', 'pylint species.py || echo "Note the linting failures"\n')
 
 
 # and with [black](https://black.readthedocs.io/) you can fix all the errors at once.

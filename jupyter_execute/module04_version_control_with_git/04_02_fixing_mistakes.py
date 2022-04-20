@@ -32,7 +32,7 @@ working_dir
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git revert HEAD~')
+get_ipython().run_cell_magic('bash', '', 'git revert HEAD~\n')
 
 
 # An editor may pop up, with some default text which you can accept and save. 
@@ -52,7 +52,7 @@ get_ipython().run_cell_magic('bash', '', 'git revert HEAD~')
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --date=short')
+get_ipython().run_cell_magic('bash', '', 'git log --date=short\n')
 
 
 # ## Antipatch
@@ -71,31 +71,31 @@ get_ipython().run_cell_magic('bash', '', 'git log --date=short')
 # In[4]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the UK   \n===================   \nEngerland is not very mountainous.   \nBut has some tall hills, and maybe a\nmountain or two depending on your definition.')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the UK   \n===================   \nEngerland is not very mountainous.   \nBut has some tall hills, and maybe a\nmountain or two depending on your definition.\n')
 
 
 # In[5]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cat test.md')
+get_ipython().run_cell_magic('bash', '', 'cat test.md\n')
 
 
 # In[6]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git diff')
+get_ipython().run_cell_magic('bash', '', 'git diff\n')
 
 
 # In[7]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Add a silly spelling"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Add a silly spelling"\n')
 
 
 # In[8]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --date=short')
+get_ipython().run_cell_magic('bash', '', 'git log --date=short\n')
 
 
 # ## Using reset to rewrite history
@@ -103,13 +103,13 @@ get_ipython().run_cell_magic('bash', '', 'git log --date=short')
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git reset HEAD~')
+get_ipython().run_cell_magic('bash', '', 'git reset HEAD~\n')
 
 
 # In[10]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --date=short')
+get_ipython().run_cell_magic('bash', '', 'git log --date=short\n')
 
 
 # ## Covering your tracks
@@ -123,7 +123,7 @@ get_ipython().run_cell_magic('bash', '', 'git log --date=short')
 # In[11]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cat test.md')
+get_ipython().run_cell_magic('bash', '', 'cat test.md\n')
 
 
 # If you want to lose the change from the working directory as well, you can do `git reset --hard`. 
@@ -133,13 +133,13 @@ get_ipython().run_cell_magic('bash', '', 'cat test.md')
 # In[12]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git checkout test.md')
+get_ipython().run_cell_magic('bash', '', 'git checkout test.md\n')
 
 
 # In[13]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cat test.md')
+get_ipython().run_cell_magic('bash', '', 'cat test.md\n')
 
 
 # We can add this to our diagram:

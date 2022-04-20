@@ -34,7 +34,7 @@
 # In[1]:
 
 
-get_ipython().run_cell_magic('bash', '', '#%%cmd (windows)\ntree --charset ascii greetings -I "doc|build|Greetings.egg-info|dist|*.pyc"')
+get_ipython().run_cell_magic('bash', '', '#%%cmd (windows)\ntree --charset ascii greetings -I "doc|build|Greetings.egg-info|dist|*.pyc"\n')
 
 
 # We can start by making our directory structure
@@ -42,7 +42,7 @@ get_ipython().run_cell_magic('bash', '', '#%%cmd (windows)\ntree --charset ascii
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'mkdir -p greetings/greetings/test/fixtures')
+get_ipython().run_cell_magic('bash', '', 'mkdir -p greetings/greetings/test/fixtures\n')
 
 
 # ## Using setuptools
@@ -59,7 +59,7 @@ get_ipython().run_cell_magic('bash', '', 'mkdir -p greetings/greetings/test/fixt
 # In[3]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/setup.py', 'from setuptools import setup, find_packages\n\nsetup(\n    name="Greetings",\n    version="0.1.0",\n    packages=find_packages(exclude=["*test"]),\n    entry_points={"console_scripts": ["greet = greetings.command:process"]},\n)')
+get_ipython().run_cell_magic('writefile', 'greetings/setup.py', 'from setuptools import setup, find_packages\n\nsetup(\n    name="Greetings",\n    version="0.1.0",\n    packages=find_packages(exclude=["*test"]),\n    entry_points={"console_scripts": ["greet = greetings.command:process"]},\n)\n')
 
 
 # 
@@ -100,13 +100,13 @@ from greetings.greeter import *
 # In[6]:
 
 
-get_ipython().run_cell_magic('bash', '', 'greet --help')
+get_ipython().run_cell_magic('bash', '', 'greet --help\n')
 
 
 # In[7]:
 
 
-get_ipython().run_cell_magic('bash', '', 'greet James Hetherington\ngreet --polite James Hetherington\ngreet James Hetherington --title Dr')
+get_ipython().run_cell_magic('bash', '', 'greet James Hetherington\ngreet --polite James Hetherington\ngreet James Hetherington --title Dr\n')
 
 
 # ## Installing from GitHub
@@ -124,7 +124,7 @@ get_ipython().run_cell_magic('bash', '', 'greet James Hetherington\ngreet --poli
 # In[8]:
 
 
-get_ipython().run_cell_magic('bash', '', 'greet Humphry Appleby --title Sir')
+get_ipython().run_cell_magic('bash', '', 'greet Humphry Appleby --title Sir\n')
 
 
 # ## Convert the script to a module
@@ -141,7 +141,7 @@ get_ipython().run_cell_magic('bash', '', 'greet Humphry Appleby --title Sir')
 # In[9]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/greetings/greeter.py', 'def greet(personal, family, title="", polite=False):\n    """Generate a greeting string for a person.\n\n    Parameters\n    ----------\n    personal: str\n        A given name, such as Will or Jean-Luc\n    family: str\n        A family name, such as Riker or Picard\n    title: str\n        An optional title, such as Captain or Reverend\n    polite: bool\n        True for a formal greeting, False for informal.\n\n    Returns\n    -------\n    string\n        An appropriate greeting\n    """\n\n    greeting = "How do you do, " if polite else "Hey, "\n    if title:\n        greeting += title + " "\n\n    greeting += personal + " " + family + "."\n    return greeting')
+get_ipython().run_cell_magic('writefile', 'greetings/greetings/greeter.py', 'def greet(personal, family, title="", polite=False):\n    """Generate a greeting string for a person.\n\n    Parameters\n    ----------\n    personal: str\n        A given name, such as Will or Jean-Luc\n    family: str\n        A family name, such as Riker or Picard\n    title: str\n        An optional title, such as Captain or Reverend\n    polite: bool\n        True for a formal greeting, False for informal.\n\n    Returns\n    -------\n    string\n        An appropriate greeting\n    """\n\n    greeting = "How do you do, " if polite else "Hey, "\n    if title:\n        greeting += title + " "\n\n    greeting += personal + " " + family + "."\n    return greeting\n')
 
 
 # In[10]:
@@ -164,7 +164,7 @@ help(greetings.greeter.greet)
 # In[11]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/greetings/command.py', 'from argparse import ArgumentParser\nfrom .greeter import greet  # Note python 3 relative import\n\n\ndef process():\n    parser = ArgumentParser(description="Generate appropriate greetings")\n\n    parser.add_argument("--title", "-t")\n    parser.add_argument("--polite", "-p", action="store_true")\n    parser.add_argument("personal")\n    parser.add_argument("family")\n\n    arguments = parser.parse_args()\n\n    print(\n        greet(arguments.personal, arguments.family, arguments.title, arguments.polite)\n    )\n\n\nif __name__ == "__main__":\n    process()')
+get_ipython().run_cell_magic('writefile', 'greetings/greetings/command.py', 'from argparse import ArgumentParser\nfrom .greeter import greet  # Note python 3 relative import\n\n\ndef process():\n    parser = ArgumentParser(description="Generate appropriate greetings")\n\n    parser.add_argument("--title", "-t")\n    parser.add_argument("--polite", "-p", action="store_true")\n    parser.add_argument("personal")\n    parser.add_argument("family")\n\n    arguments = parser.parse_args()\n\n    print(\n        greet(arguments.personal, arguments.family, arguments.title, arguments.polite)\n    )\n\n\nif __name__ == "__main__":\n    process()\n')
 
 
 # ## Specify dependencies
@@ -185,7 +185,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/greetings/command.py', 'fro
 # In[12]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/setup.py', '\nfrom setuptools import setup, find_packages\n\nsetup(\n    name="Greetings",\n    version="0.1.0",\n    packages=find_packages(exclude=["*test"]),\n    install_requires=["argparse", "pyyaml"],\n    entry_points={"console_scripts": ["greet = greetings.command:process"]},\n)')
+get_ipython().run_cell_magic('writefile', 'greetings/setup.py', '\nfrom setuptools import setup, find_packages\n\nsetup(\n    name="Greetings",\n    version="0.1.0",\n    packages=find_packages(exclude=["*test"]),\n    install_requires=["argparse", "pyyaml"],\n    entry_points={"console_scripts": ["greet = greetings.command:process"]},\n)\n')
 
 
 # ## Write a readme file
@@ -195,7 +195,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/setup.py', '\nfrom setuptoo
 # In[13]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/README.md', '\nGreetings!\n==========\n\nThis is a very simple example package used as part of the Turing\n[Research Software Engineering with Python](https://alan-turing-institute.github.io/rsd-engineeringcourse) course.\n\nUsage:\n    \nInvoke the tool with greet <FirstName> <Secondname>')
+get_ipython().run_cell_magic('writefile', 'greetings/README.md', '\nGreetings!\n==========\n\nThis is a very simple example package used as part of the Turing\n[Research Software Engineering with Python](https://alan-turing-institute.github.io/rsd-engineeringcourse) course.\n\nUsage:\n    \nInvoke the tool with greet <FirstName> <Secondname>\n')
 
 
 # ## Write a license file
@@ -205,7 +205,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/README.md', '\nGreetings!\n
 # In[14]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/LICENSE.md', '\n(C) The Alan Turing Institute 2021\n\nThis "greetings" example package is granted into the public domain.')
+get_ipython().run_cell_magic('writefile', 'greetings/LICENSE.md', '\n(C) The Alan Turing Institute 2021\n\nThis "greetings" example package is granted into the public domain.\n')
 
 
 # ## Write a citation file
@@ -215,7 +215,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/LICENSE.md', '\n(C) The Ala
 # In[15]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/CITATION.md', '\nIf you wish to refer to this course, please cite the URL\nhttps://alan-turing-institute.github.io/rsd-engineeringcourse\n\nPortions of the material are taken from Software Carpentry\nhttp://swcarpentry.org')
+get_ipython().run_cell_magic('writefile', 'greetings/CITATION.md', '\nIf you wish to refer to this course, please cite the URL\nhttps://alan-turing-institute.github.io/rsd-engineeringcourse\n\nPortions of the material are taken from Software Carpentry\nhttp://swcarpentry.org\n')
 
 
 # You may well want to formalise this using the [codemeta.json](https://codemeta.github.io/) standard - this doesn't have wide adoption yet, but we recommend it.
@@ -225,7 +225,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/CITATION.md', '\nIf you wis
 # In[16]:
 
 
-get_ipython().run_cell_magic('bash', '', 'touch greetings/greetings/test/__init__.py\ntouch greetings/greetings/__init__.py')
+get_ipython().run_cell_magic('bash', '', 'touch greetings/greetings/test/__init__.py\ntouch greetings/greetings/__init__.py\n')
 
 
 # ## Write some unit tests
@@ -242,7 +242,7 @@ get_ipython().run_cell_magic('bash', '', 'touch greetings/greetings/test/__init_
 # In[17]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/greetings/test/test_greeter.py', 'import yaml\nimport os\nfrom ..greeter import greet\n\n\ndef test_greeter():\n    with open(\n        os.path.join(os.path.dirname(__file__), "fixtures", "samples.yaml")\n    ) as fixtures_file:\n        fixtures = yaml.safe_load(fixtures_file)\n        for fixture in fixtures:\n            answer = fixture.pop("answer")\n            assert greet(**fixture) == answer')
+get_ipython().run_cell_magic('writefile', 'greetings/greetings/test/test_greeter.py', 'import yaml\nimport os\nfrom ..greeter import greet\n\n\ndef test_greeter():\n    with open(\n        os.path.join(os.path.dirname(__file__), "fixtures", "samples.yaml")\n    ) as fixtures_file:\n        fixtures = yaml.safe_load(fixtures_file)\n        for fixture in fixtures:\n            answer = fixture.pop("answer")\n            assert greet(**fixture) == answer\n')
 
 
 # 
@@ -259,13 +259,13 @@ get_ipython().run_cell_magic('writefile', 'greetings/greetings/test/test_greeter
 # In[18]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/greetings/test/fixtures/samples.yaml', '- personal: James\n  family: Hetherington\n  answer: "Hey, James Hetherington."\n- personal: James\n  family: Hetherington\n  polite: True\n  answer: "How do you do, James Hetherington."\n- personal: James\n  family: Hetherington\n  title: Dr\n  answer: "Hey, Dr James Hetherington."')
+get_ipython().run_cell_magic('writefile', 'greetings/greetings/test/fixtures/samples.yaml', '- personal: James\n  family: Hetherington\n  answer: "Hey, James Hetherington."\n- personal: James\n  family: Hetherington\n  polite: True\n  answer: "How do you do, James Hetherington."\n- personal: James\n  family: Hetherington\n  title: Dr\n  answer: "Hey, Dr James Hetherington."\n')
 
 
 # In[19]:
 
 
-get_ipython().run_cell_magic('bash', '', 'py.test')
+get_ipython().run_cell_magic('bash', '', 'py.test\n')
 
 
 # ## Developer Install

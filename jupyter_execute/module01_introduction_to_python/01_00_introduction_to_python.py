@@ -121,7 +121,7 @@ print("This cell is a code cell")
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', '# Above line tells Python to execute this cell as *shell code*\n# not Python, as if we were in a command line\n# This is called a \'cell magic\'\n\npython -c "print(2 * 4)"')
+get_ipython().run_cell_magic('bash', '', '# Above line tells Python to execute this cell as *shell code*\n# not Python, as if we were in a command line\n# This is called a \'cell magic\'\n\npython -c "print(2 * 4)"\n')
 
 
 # ### Python scripts
@@ -132,7 +132,7 @@ get_ipython().run_cell_magic('bash', '', '# Above line tells Python to execute t
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', 'echo "print(2 * 4)" > eight.py\npython eight.py')
+get_ipython().run_cell_magic('bash', '', 'echo "print(2 * 4)" > eight.py\npython eight.py\n')
 
 
 # We can make the script directly executable (on Linux or Mac) by inserting a [hashbang](https://en.wikipedia.org/wiki/Shebang_(Unix%29)) and [setting the permissions](http://v4.software-carpentry.org/shell/perm.html) to execute.
@@ -140,13 +140,13 @@ get_ipython().run_cell_magic('bash', '', 'echo "print(2 * 4)" > eight.py\npython
 # In[5]:
 
 
-get_ipython().run_cell_magic('writefile', 'fourteen.py', '#! /usr/bin/env python\nprint(2 * 7)')
+get_ipython().run_cell_magic('writefile', 'fourteen.py', '#! /usr/bin/env python\nprint(2 * 7)\n')
 
 
 # In[6]:
 
 
-get_ipython().run_cell_magic('bash', '', 'chmod u+x fourteen.py\n./fourteen.py')
+get_ipython().run_cell_magic('bash', '', 'chmod u+x fourteen.py\n./fourteen.py\n')
 
 
 # ### Python Libraries
@@ -156,7 +156,7 @@ get_ipython().run_cell_magic('bash', '', 'chmod u+x fourteen.py\n./fourteen.py')
 # In[7]:
 
 
-get_ipython().run_cell_magic('writefile', 'draw_eight.py', '# Above line tells the notebook to treat the rest of this\n# cell as content for a file on disk.\nimport math\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\ndef make_figure():\n    theta = np.arange(0, 4 * math.pi, 0.1)\n    eight = plt.figure()\n    axes = eight.add_axes([0, 0, 1, 1])\n    axes.plot(0.5 * np.sin(theta), np.cos(theta / 2))\n    return eight')
+get_ipython().run_cell_magic('writefile', 'draw_eight.py', '# Above line tells the notebook to treat the rest of this\n# cell as content for a file on disk.\nimport math\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\ndef make_figure():\n    theta = np.arange(0, 4 * math.pi, 0.1)\n    eight = plt.figure()\n    axes = eight.add_axes([0, 0, 1, 1])\n    axes.plot(0.5 * np.sin(theta), np.cos(theta / 2))\n    return eight\n')
 
 
 # In a real example, we could edit the file on disk

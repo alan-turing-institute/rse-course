@@ -57,7 +57,7 @@ get_ipython().run_line_magic('load_ext', 'Cython')
 # In[4]:
 
 
-get_ipython().run_cell_magic('cython', '', '\n\ndef mandel_cython(position, limit=50):\n    value = position\n    while abs(value) < 2:\n        limit -= 1\n        value = value ** 2 + position\n        if limit < 0:\n            return 0\n    return limit')
+get_ipython().run_cell_magic('cython', '', '\n\ndef mandel_cython(position, limit=50):\n    value = position\n    while abs(value) < 2:\n        limit -= 1\n        value = value ** 2 + position\n        if limit < 0:\n            return 0\n    return limit\n')
 
 
 # Let's verify the result
@@ -99,7 +99,7 @@ get_ipython().run_line_magic('timeit', '[[mandel_cython(complex(x,y)) for x in x
 # In[8]:
 
 
-get_ipython().run_cell_magic('cython', '', 'def var_typed_mandel_cython(position, limit=50):\n    cdef double complex value # typed variable\n    value = position\n    while abs(value) < 2:\n        limit -= 1\n        value = value**2 + position\n        if limit < 0:\n            return 0\n    return limit')
+get_ipython().run_cell_magic('cython', '', 'def var_typed_mandel_cython(position, limit=50):\n    cdef double complex value # typed variable\n    value = position\n    while abs(value) < 2:\n        limit -= 1\n        value = value**2 + position\n        if limit < 0:\n            return 0\n    return limit\n')
 
 
 # _typed function + typed variable_
@@ -107,7 +107,7 @@ get_ipython().run_cell_magic('cython', '', 'def var_typed_mandel_cython(position
 # In[9]:
 
 
-get_ipython().run_cell_magic('cython', '', 'cpdef call_typed_mandel_cython(double complex position, int limit=50): # typed function\n    cdef double complex value # typed variable\n    value = position\n    while abs(value)<2:\n        limit -= 1\n        value = value**2 + position\n        if limit < 0:\n            return 0\n    return limit')
+get_ipython().run_cell_magic('cython', '', 'cpdef call_typed_mandel_cython(double complex position, int limit=50): # typed function\n    cdef double complex value # typed variable\n    value = position\n    while abs(value)<2:\n        limit -= 1\n        value = value**2 + position\n        if limit < 0:\n            return 0\n    return limit\n')
 
 
 # performance of one number:
@@ -155,7 +155,7 @@ values = xmatrix + 1j * ymatrix
 # In[15]:
 
 
-get_ipython().run_cell_magic('cython', '', 'import numpy as np\ncimport numpy as np \n\ncpdef numpy_cython_1(np.ndarray[double complex, ndim=2] position, int limit=50): \n    cdef np.ndarray[long,ndim=2] diverged_at\n    cdef double complex value\n    cdef int xlim\n    cdef int ylim\n    cdef double complex pos\n    cdef int steps\n    cdef int x, y\n\n    xlim = position.shape[1]\n    ylim = position.shape[0]\n    diverged_at = np.zeros([ylim, xlim], dtype=int)\n    for x in xrange(xlim):\n        for y in xrange(ylim):\n            steps = limit\n            value = position[y,x]\n            pos = position[y,x]\n            while abs(value) < 2 and steps >= 0:\n                steps -= 1\n                value = value**2 + pos\n            diverged_at[y,x] = steps\n  \n    return diverged_at')
+get_ipython().run_cell_magic('cython', '', 'import numpy as np\ncimport numpy as np \n\ncpdef numpy_cython_1(np.ndarray[double complex, ndim=2] position, int limit=50): \n    cdef np.ndarray[long,ndim=2] diverged_at\n    cdef double complex value\n    cdef int xlim\n    cdef int ylim\n    cdef double complex pos\n    cdef int steps\n    cdef int x, y\n\n    xlim = position.shape[1]\n    ylim = position.shape[0]\n    diverged_at = np.zeros([ylim, xlim], dtype=int)\n    for x in xrange(xlim):\n        for y in xrange(ylim):\n            steps = limit\n            value = position[y,x]\n            pos = position[y,x]\n            while abs(value) < 2 and steps >= 0:\n                steps -= 1\n                value = value**2 + pos\n            diverged_at[y,x] = steps\n  \n    return diverged_at\n')
 
 
 # Note the double import of numpy: the standard numpy module and a Cython-enabled version of numpy that ensures fast indexing of and other operations on arrays. Both import statements are necessary in code that uses numpy arrays. The new thing in the code above is declaration of arrays by np.ndarray.
@@ -199,13 +199,13 @@ get_ipython().run_line_magic('timeit', 'numpy_cython_2(values) #  vectorize')
 # In[21]:
 
 
-get_ipython().run_cell_magic('cython', '', 'import math\ncpdef py_sin():\n    cdef int x\n    cdef double y\n    for x in range(1e7):\n        y = math.sin(x)')
+get_ipython().run_cell_magic('cython', '', 'import math\ncpdef py_sin():\n    cdef int x\n    cdef double y\n    for x in range(1e7):\n        y = math.sin(x)\n')
 
 
 # In[22]:
 
 
-get_ipython().run_cell_magic('cython', '', 'from libc.math cimport sin as csin # import from C library\ncpdef c_sin():\n    cdef int x\n    cdef double y\n    for x in range(1e7):\n        y = csin(x)')
+get_ipython().run_cell_magic('cython', '', 'from libc.math cimport sin as csin # import from C library\ncpdef c_sin():\n    cdef int x\n    cdef double y\n    for x in range(1e7):\n        y = csin(x)\n')
 
 
 # In[23]:

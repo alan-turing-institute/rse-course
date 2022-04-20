@@ -21,7 +21,7 @@ os.chdir(working_dir)
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline')
+get_ipython().run_cell_magic('bash', '', 'git log --graph --oneline\n')
 
 
 # ## Git concepts

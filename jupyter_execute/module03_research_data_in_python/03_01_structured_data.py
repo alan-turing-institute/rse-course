@@ -51,7 +51,7 @@ print(json.dumps(mydata, indent=4))
 # In[5]:
 
 
-get_ipython().run_cell_magic('writefile', 'myfile.json', '{"somekey": ["a list", "with values"]}')
+get_ipython().run_cell_magic('writefile', 'myfile.json', '{"somekey": ["a list", "with values"]}\n')
 
 
 # In[6]:
@@ -97,7 +97,7 @@ mydata["somekey"]
 # In[10]:
 
 
-get_ipython().run_cell_magic('writefile', 'myfile.yaml', 'somekey:\n    - a list # Look, this is a list\n    - with values')
+get_ipython().run_cell_magic('writefile', 'myfile.yaml', 'somekey:\n    - a list # Look, this is a list\n    - with values\n')
 
 
 # In[11]:

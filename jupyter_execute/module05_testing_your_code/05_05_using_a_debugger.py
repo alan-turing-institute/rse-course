@@ -55,7 +55,7 @@
 # In[1]:
 
 
-get_ipython().run_cell_magic('writefile', 'energy_example.py', 'from diffusion.model import energy\n\nprint(energy([5, 6, 7, 8, 0, 1]))')
+get_ipython().run_cell_magic('writefile', 'energy_example.py', 'from diffusion.model import energy\n\nprint(energy([5, 6, 7, 8, 0, 1]))\n')
 
 
 # The debugger is, of course, most used interactively, but here I'm showing a prewritten debugger script:
@@ -63,13 +63,13 @@ get_ipython().run_cell_magic('writefile', 'energy_example.py', 'from diffusion.m
 # In[2]:
 
 
-get_ipython().run_cell_magic('writefile', 'commands', 'restart        # restart session\nn\nb energy       # program will stop when entering energy\nc              # continue program until break point is reached\nprint(density) # We are now "inside" the energy function and can print any variable.')
+get_ipython().run_cell_magic('writefile', 'commands', 'restart        # restart session\nn\nb energy       # program will stop when entering energy\nc              # continue program until break point is reached\nprint(density) # We are now "inside" the energy function and can print any variable.\n')
 
 
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', 'python -m pdb energy_example.py < commands')
+get_ipython().run_cell_magic('bash', '', 'python -m pdb energy_example.py < commands\n')
 
 
 # Alternatively, break-points can be set on files: `b file.py:20` will stop on line 20 of `file.py`.

@@ -67,7 +67,7 @@ def mandel_append():
 # In[6]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'data2 = mandel_append()')
+get_ipython().run_cell_magic('timeit', '', 'data2 = mandel_append()\n')
 
 
 # Interestingly, not much difference. I would have expected this to be slower, due to the normally high cost of **appending** to data.
@@ -101,7 +101,7 @@ def mandel_preallocated(data_structure):
 # In[10]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'mandel_preallocated(data3)')
+get_ipython().run_cell_magic('timeit', '', 'mandel_preallocated(data3)\n')
 
 
 # In[11]:
@@ -129,7 +129,7 @@ def mandel_functional():
 # In[13]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'data4 = mandel_functional()')
+get_ipython().run_cell_magic('timeit', '', 'data4 = mandel_functional()\n')
 
 
 # In[14]:

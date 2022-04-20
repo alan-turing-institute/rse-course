@@ -102,7 +102,7 @@
 # In[1]:
 
 
-get_ipython().run_cell_magic('bash', '', 'echo some output')
+get_ipython().run_cell_magic('bash', '', 'echo some output\n')
 
 
 # with the results you should see below. 
@@ -112,7 +112,7 @@ get_ipython().run_cell_magic('bash', '', 'echo some output')
 # In[2]:
 
 
-get_ipython().run_cell_magic('writefile', 'somefile.md', 'Some content here')
+get_ipython().run_cell_magic('writefile', 'somefile.md', 'Some content here\n')
 
 
 # But if you are following along, you should edit the file using a text editor.
@@ -124,7 +124,7 @@ get_ipython().run_cell_magic('writefile', 'somefile.md', 'Some content here')
 # In[3]:
 
 
-get_ipython().run_cell_magic('bash', '', "rm -rf learning_git/git_example # Just in case it's left over from a previous class; you won't need this\nmkdir -p learning_git/git_example\ncd learning_git/git_example")
+get_ipython().run_cell_magic('bash', '', "rm -rf learning_git/git_example # Just in case it's left over from a previous class; you won't need this\nmkdir -p learning_git/git_example\ncd learning_git/git_example\n")
 
 
 # I just need to move this Jupyter notebook's current directory as well:
@@ -175,13 +175,13 @@ os.chdir(working_dir)
 # In[8]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git config --get user.name')
+get_ipython().run_cell_magic('bash', '', 'git config --get user.name\n')
 
 
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git config --get user.email')
+get_ipython().run_cell_magic('bash', '', 'git config --get user.email\n')
 
 
 # ## Initialising the repository
@@ -191,7 +191,7 @@ get_ipython().run_cell_magic('bash', '', 'git config --get user.email')
 # In[10]:
 
 
-get_ipython().run_cell_magic('bash', '', 'pwd # Note where we are standing-- MAKE SURE YOU INITIALISE THE RIGHT FOLDER\ngit init --initial-branch=main')
+get_ipython().run_cell_magic('bash', '', 'pwd # Note where we are standing-- MAKE SURE YOU INITIALISE THE RIGHT FOLDER\ngit init --initial-branch=main\n')
 
 
 # As yet, this repository contains no files:
@@ -199,11 +199,11 @@ get_ipython().run_cell_magic('bash', '', 'pwd # Note where we are standing-- MAK
 # In[11]:
 
 
-get_ipython().run_cell_magic('bash', '', 'ls')
+get_ipython().run_cell_magic('bash', '', 'ls\n')
 
 
 # In[12]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git status')
+get_ipython().run_cell_magic('bash', '', 'git status\n')
 

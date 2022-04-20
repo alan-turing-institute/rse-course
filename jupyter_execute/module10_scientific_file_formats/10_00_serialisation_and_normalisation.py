@@ -153,13 +153,13 @@ display(Math(str(combustion)))
 # In[4]:
 
 
-get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, elements, numbers\n\nwater, H O, 2 1\noxygen, O, 2\ncarbon_dioxide, C O, 1 2\nglucose, C H O, 6 12 6')
+get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, elements, numbers\n\nwater, H O, 2 1\noxygen, O, 2\ncarbon_dioxide, C O, 1 2\nglucose, C H O, 6 12 6\n')
 
 
 # In[5]:
 
 
-get_ipython().run_cell_magic('writefile', 'reactions.csv', '\n# name, reactants, products, reactant_stoichiometries, product_stoichiometries\n\ncombustion_of_glucose, glucose oxygen, carbon_dioxide water, 1 6, 6 6')
+get_ipython().run_cell_magic('writefile', 'reactions.csv', '\n# name, reactants, products, reactant_stoichiometries, product_stoichiometries\n\ncombustion_of_glucose, glucose oxygen, carbon_dioxide water, 1 6, 6 6\n')
 
 
 # Writing a parser for these files would be very similar to the earthquake problem that you've already encountered.
@@ -179,7 +179,7 @@ get_ipython().run_cell_magic('writefile', 'reactions.csv', '\n# name, reactants,
 # In[6]:
 
 
-get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, element, number\n\nwater, H, 2\nwater, O, 1\noxygen, O, 2\ncarbon_dioxide, C, 1\ncarbon_dioxide, O, 2')
+get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, element, number\n\nwater, H, 2\nwater, O, 1\noxygen, O, 2\ncarbon_dioxide, C, 1\ncarbon_dioxide, O, 2\n')
 
 
 # This is fine as far as it goes, but, it falls down as soon as we want to associate another property with a molecule and atom.
@@ -189,7 +189,7 @@ get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, element, num
 # In[7]:
 
 
-get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, element, number, molecular_mass, atomic_number\n\nwater, H, 2, 18.01, 1\nwater, O, 1, 18.01, 8\noxygen, O, 2, 32.00, 8')
+get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, element, number, molecular_mass, atomic_number\n\nwater, H, 2, 18.01, 1\nwater, O, 1, 18.01, 8\noxygen, O, 2, 32.00, 8\n')
 
 
 # The existence of the same piece of information in multiple locations (eg. the `18.01` molecular mass of water) indicates that this file format is NOT **second normal form** (2NF).
@@ -208,19 +208,19 @@ get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, element, num
 # In[8]:
 
 
-get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, molecular_mass\n\nwater, 18.01\noxygen, 32.00')
+get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, molecular_mass\n\nwater, 18.01\noxygen, 32.00\n')
 
 
 # In[9]:
 
 
-get_ipython().run_cell_magic('writefile', 'atoms.csv', '\n# symbol, atomic number\nH, 1\nO, 8\nC, 6')
+get_ipython().run_cell_magic('writefile', 'atoms.csv', '\n# symbol, atomic number\nH, 1\nO, 8\nC, 6\n')
 
 
 # In[10]:
 
 
-get_ipython().run_cell_magic('writefile', 'atoms_in_molecules.csv', '\n# rel_number, molecule, symbol, number\n0, water, H, 2\n1, water, O, 1\n2, oxygen, O, 2')
+get_ipython().run_cell_magic('writefile', 'atoms_in_molecules.csv', '\n# rel_number, molecule, symbol, number\n0, water, H, 2\n1, water, O, 1\n2, oxygen, O, 2\n')
 
 
 # This last table is called a **join table** - and is needed whenever we want to specify a "many-to-many" relationship.
@@ -567,7 +567,7 @@ print(dataframe.to_csv())
 # In[42]:
 
 
-get_ipython().run_cell_magic('writefile', 'atoms.csv', '\nsymbol,number\nC,6\nN,7')
+get_ipython().run_cell_magic('writefile', 'atoms.csv', '\nsymbol,number\nC,6\nN,7\n')
 
 
 # In[43]:

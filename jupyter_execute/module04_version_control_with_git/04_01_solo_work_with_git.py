@@ -26,7 +26,7 @@ working_dir
 # In[2]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.\n')
 
 
 # In[3]:
@@ -42,7 +42,7 @@ cat test.md
 # In[4]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git add test.md')
+get_ipython().run_cell_magic('bash', '', 'git add test.md\n')
 
 
 # Don't forget: Any files in repositories which you want to "track" need to be added with `git add` after you create them.
@@ -54,7 +54,7 @@ get_ipython().run_cell_magic('bash', '', 'git add test.md')
 # In[5]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -m "First commit of discourse on UK topography"')
+get_ipython().run_cell_magic('bash', '', 'git commit -m "First commit of discourse on UK topography"\n')
 
 
 # And note the confirmation from Git.
@@ -92,7 +92,7 @@ get_ipython().run_cell_magic('bash', '', 'git commit -m "First commit of discour
 # In[6]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log')
+get_ipython().run_cell_magic('bash', '', 'git log\n')
 
 
 # You can see the commit message, author, and date...
@@ -114,7 +114,7 @@ get_ipython().run_cell_magic('bash', '', 'git log')
 # In[7]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git status')
+get_ipython().run_cell_magic('bash', '', 'git status\n')
 
 
 # Let's edit the file again:
@@ -124,7 +124,7 @@ get_ipython().run_cell_magic('bash', '', 'git status')
 # In[8]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.\n\nMount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.\n\nMount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.\n')
 
 
 # In[9]:
@@ -138,7 +138,7 @@ cat test.md
 # In[10]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git status')
+get_ipython().run_cell_magic('bash', '', 'git status\n')
 
 
 # We can now see that there is a change to "test.md" which is currently "not staged for commit". What does this mean? 
@@ -154,7 +154,7 @@ get_ipython().run_cell_magic('bash', '', 'git status')
 # In[11]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git diff')
+get_ipython().run_cell_magic('bash', '', 'git diff\n')
 
 
 # Deleted lines are prefixed with a minus, added lines prefixed with a plus.
@@ -166,7 +166,7 @@ get_ipython().run_cell_magic('bash', '', 'git diff')
 # In[12]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git add --update')
+get_ipython().run_cell_magic('bash', '', 'git add --update\n')
 
 
 # This says "include in the next commit, all files which have ever been included before". 
@@ -196,7 +196,7 @@ get_ipython().run_cell_magic('bash', '', 'git add --update')
 # In[13]:
 
 
-get_ipython().run_cell_magic('writefile', 'wsd.py', 'import requests\nimport re\nimport IPython\n\n\ndef wsd(code):\n    response = requests.post(\n        "http://www.websequencediagrams.com/index.php",\n        data={\n            "message": code,\n            "apiVersion": 1,\n        },\n    )\n    expr = re.compile("(\\?(img|pdf|png|svg)=[a-zA-Z0-9]+)")\n    m = expr.search(response.text)\n    if m == None:\n        print("Invalid response from server.")\n        return False\n\n    image = requests.get("http://www.websequencediagrams.com/" + m.group(0))\n    return IPython.core.display.Image(image.content)')
+get_ipython().run_cell_magic('writefile', 'wsd.py', 'import requests\nimport re\nimport IPython\n\n\ndef wsd(code):\n    response = requests.post(\n        "http://www.websequencediagrams.com/index.php",\n        data={\n            "message": code,\n            "apiVersion": 1,\n        },\n    )\n    expr = re.compile("(\\?(img|pdf|png|svg)=[a-zA-Z0-9]+)")\n    m = expr.search(response.text)\n    if m == None:\n        print("Invalid response from server.")\n        return False\n\n    image = requests.get("http://www.websequencediagrams.com/" + m.group(0))\n    return IPython.core.display.Image(image.content)\n')
 
 
 # In[14]:
@@ -228,19 +228,19 @@ wsd(message)
 # In[16]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git status')
+get_ipython().run_cell_magic('bash', '', 'git status\n')
 
 
 # In[17]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -m "Add a lie about a mountain"')
+get_ipython().run_cell_magic('bash', '', 'git commit -m "Add a lie about a mountain"\n')
 
 
 # In[18]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log')
+get_ipython().run_cell_magic('bash', '', 'git log\n')
 
 
 # Great, we now have a file which contains a mistake.
@@ -256,7 +256,7 @@ get_ipython().run_cell_magic('bash', '', 'git log')
 # In[19]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.\n\nMount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.\n\nMount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.\n')
 
 
 # In[20]:
@@ -270,7 +270,7 @@ cat test.md
 # In[21]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git commit -am "Change title"')
+get_ipython().run_cell_magic('bash', '', 'git commit -am "Change title"\n')
 
 
 # This last command, `git commit -a` automatically adds changes to all tracked files to the staging area, as part of the commit command. So, if you never want to just add changes to some tracked files but not others, you can just use this and forget about the staging area!
@@ -280,7 +280,7 @@ get_ipython().run_cell_magic('bash', '', 'git commit -am "Change title"')
 # In[22]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log | head')
+get_ipython().run_cell_magic('bash', '', 'git log | head\n')
 
 
 # We now have three changes in the history:
@@ -288,7 +288,7 @@ get_ipython().run_cell_magic('bash', '', 'git log | head')
 # In[23]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git log --oneline')
+get_ipython().run_cell_magic('bash', '', 'git log --oneline\n')
 
 
 # ## Git Solo Workflow

@@ -51,7 +51,7 @@ ys = [(ymin + ystep * i) for i in range(resolution)]
 # In[3]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'data = [[mandel1(complex(x, y)) for x in xs] for y in ys]')
+get_ipython().run_cell_magic('timeit', '', 'data = [[mandel1(complex(x, y)) for x in xs] for y in ys]\n')
 
 
 # In[4]:
@@ -122,7 +122,7 @@ plt.imshow(data_numpy, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 # In[11]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'data_numpy = mandel_numpy(values)')
+get_ipython().run_cell_magic('timeit', '', 'data_numpy = mandel_numpy(values)\n')
 
 
 # Note we get the same answer:

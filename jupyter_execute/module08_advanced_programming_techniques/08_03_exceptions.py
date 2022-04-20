@@ -204,20 +204,31 @@ def read_credentials(source):
     try:
         datasource = open(source)
         config = yaml.safe_load(datasource)
-        user = config["userid"]
-        password = config["password"]
+
+        try:
+            print("File loaded, trying to extract credentials")
+            user = config["userid"]
+            password = config["password"]
+        except KeyError:
+            print("Expected keys not found in file")
+            user = "anonymous"
+            password = None
+        finally:
+            # Runs irrespective of whether keys found
+            print("Closing file")
+            datasource.close()
+
     except FileNotFoundError:
+        print("Password file missing")
         user = "anonymous"
         password = None
-    finally:
-        datasource.close()
 
     return user, password
 
 
 # The `finally` clause is executed whether or not an exception occurs.
 # 
-# The last optional clause of a `try` statement, an `else` clause is called only if an exception is NOT raised. It can be a better place than the `try` clause to put code other than that which you expect to raise the error, and which you do not want to be executed if the error is raised. It is executed in the same circumstances as code put in the end of the `try` block, the only difference is that errors raised during the `else` clause are not caught. Don't worry if this seems useless to you; most languages' implementations of try/except don't support such a clause.
+# The last optional clause of a `try` statement, an `else` clause is called only if an exception is NOT raised. It can be a better place than the `try` clause to put code other than that which you expect to raise the error, and which you do not want to be executed if the error is raised. It is executed in the same circumstances as code put in the end of the `try` block, the only difference is that errors raised during the `else` clause are not caught.
 
 # In[15]:
 
@@ -225,19 +236,54 @@ def read_credentials(source):
 def read_credentials(source):
     try:
         datasource = open(source)
+
     except FileNotFoundError:
+        print("Password file missing")
         user = "anonymous"
         password = None
+
     else:
+        # Runs only if opening the file was successful
         config = yaml.safe_load(datasource)
-        user = config["userid"]
-        password = config["password"]
-    finally:
-        datasource.close()
+        try:
+            print("File loaded, trying to extract credentials")
+            user = config["userid"]
+            password = config["password"]
+        except KeyError:
+            print("Expected keys not found in file")
+            user = "anonymous"
+            password = None
+        finally:
+            # Runs irrespective of whether keys found
+            print("Closing file")
+            datasource.close()
+
     return user, password
 
 
-# 
+# Don't worry if `else` seems useless to you; most languages' implementations of try/except don't support such a clause. An alternative way of avoiding leaving the file open in the original implementation (and without using `else` or `finally`) is to use a context manager:
+
+# In[16]:
+
+
+def read_credentials(source):
+    try:
+        with open(source) as datasource:  # closes the file when done
+            config = yaml.safe_load(datasource)
+        user = config["userid"]
+        password = config["password"]
+    except FileNotFoundError:
+        print("Password file missing")
+        user = "anonymous"
+        password = None
+    except KeyError:
+        print("Expected keys not found in file")
+        user = "anonymous"
+        password = None
+    return user, password
+
+
+# ## Catching Exceptions Elsewhere
 # 
 # Exceptions do not have to be caught close to the part of the program calling
 # them. They can be caught anywhere "above" the calling point in
@@ -246,7 +292,7 @@ def read_credentials(source):
 # 
 # 
 
-# In[16]:
+# In[17]:
 
 
 def f4(x):
@@ -260,7 +306,7 @@ def f4(x):
         raise TypeError()
 
 
-# In[17]:
+# In[18]:
 
 
 def f3(x):
@@ -272,7 +318,7 @@ def f3(x):
         print("F3Except (💣)")
 
 
-# In[18]:
+# In[19]:
 
 
 def f2(x):
@@ -284,7 +330,7 @@ def f2(x):
         print("F2Except (💣)")
 
 
-# In[19]:
+# In[20]:
 
 
 def f1(x):
@@ -296,25 +342,25 @@ def f1(x):
         print("F1Except (💣)")
 
 
-# In[20]:
+# In[21]:
 
 
 f1(0)
 
 
-# In[21]:
+# In[22]:
 
 
 f1(1)
 
 
-# In[22]:
+# In[23]:
 
 
 f1(2)
 
 
-# In[23]:
+# In[24]:
 
 
 f1(3)
@@ -341,7 +387,7 @@ f1(3)
 # series *or* a path to a location on disk where data can be found. We can
 # examine the type of the supplied content:
 
-# In[24]:
+# In[25]:
 
 
 import yaml
@@ -357,20 +403,20 @@ def analysis(source):
     print(name)
 
 
-# In[25]:
+# In[26]:
 
 
 analysis({"modelname": "Super"})
 
 
-# In[26]:
+# In[27]:
 
 
 with open("example.yaml", "w") as outfile:
     outfile.write("modelname: brilliant\n")
 
 
-# In[27]:
+# In[28]:
 
 
 analysis("example.yaml")
@@ -384,7 +430,7 @@ analysis("example.yaml")
 # 
 # 
 
-# In[28]:
+# In[29]:
 
 
 def analysis(source):
@@ -403,7 +449,7 @@ analysis("example.yaml")
 # This approach is more extensible, and **behaves properly if we give it some
 # other data-source which responds like a dictionary or string.**
 
-# In[29]:
+# In[30]:
 
 
 def analysis(source):
@@ -426,6 +472,8 @@ def analysis(source):
 analysis("modelname: Amazing")
 
 
+# ## Re-Raising Exceptions
+# 
 # Sometimes we want to catch an error, partially handle it, perhaps add some
 # extra data to the exception, and then re-raise to be caught again further up
 # the call stack. 
@@ -434,7 +482,7 @@ analysis("modelname: Amazing")
 # caught error to be re-thrown. Doing this is the only circumstance where it is
 # safe to do `except:` without catching a specific type of error.
 
-# In[30]:
+# In[31]:
 
 
 try:
@@ -447,7 +495,7 @@ except:
 
 # If you want to be more explicit about where the error came from, you can use the `raise from` syntax, which will create a chain of exceptions:
 
-# In[31]:
+# In[32]:
 
 
 def lower_function():
