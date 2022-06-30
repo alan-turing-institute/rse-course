@@ -45,12 +45,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -720,7 +719,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -1026,22 +1027,24 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_15803</span><span class="o">/</span><span class="mf">556001449.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">function</span><span class="p">()</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/unittest/mock.py</span> in <span class="ni">__call__</span><span class="nt">(_mock_self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1014</span>         <span class="c1"># in the signature</span>
-<span class="g g-Whitespace">   </span><span class="mi">1015</span>         <span class="n">_mock_self</span><span class="o">.</span><span class="n">_mock_check_sig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1016</span>         <span class="k">return</span> <span class="n">_mock_self</span><span class="o">.</span><span class="n">_mock_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1017</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1018</span> 
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/unittest/mock.py:1081,</span> in <span class="ni">CallableMixin.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1079</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mock_check_sig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1080</span> <span class="bp">self</span><span class="o">.</span><span class="n">_increment_mock_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1081</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mock_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/unittest/mock.py</span> in <span class="ni">_mock_call</span><span class="nt">(_mock_self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1076</span>                 <span class="k">raise</span> <span class="n">effect</span>
-<span class="g g-Whitespace">   </span><span class="mi">1077</span>             <span class="k">elif</span> <span class="ow">not</span> <span class="n">_callable</span><span class="p">(</span><span class="n">effect</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1078</span>                 <span class="n">result</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">effect</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1079</span>                 <span class="k">if</span> <span class="n">_is_exception</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1080</span>                     <span class="k">raise</span> <span class="n">result</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/unittest/mock.py:1085,</span> in <span class="ni">CallableMixin._mock_call</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1084</span> <span class="k">def</span> <span class="nf">_mock_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1085</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute_mock_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/unittest/mock.py:1142,</span> in <span class="ni">CallableMixin._execute_mock_call</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1140</span>     <span class="k">raise</span> <span class="n">effect</span>
+<span class="g g-Whitespace">   </span><span class="mi">1141</span> <span class="k">elif</span> <span class="ow">not</span> <span class="n">_callable</span><span class="p">(</span><span class="n">effect</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1142</span>     <span class="n">result</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">effect</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1143</span>     <span class="k">if</span> <span class="n">_is_exception</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1144</span>         <span class="k">raise</span> <span class="n">result</span>
 
 <span class="ne">StopIteration</span>: 
 </pre></div>
@@ -1194,7 +1197,7 @@ of a vector in a particular direction.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;MagicMock name=&#39;mock.__sub__()&#39; id=&#39;140092909979792&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;MagicMock name=&#39;mock.__sub__()&#39; id=&#39;140294706036160&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -1208,7 +1211,7 @@ of a vector in a particular direction.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_15803</span><span class="o">/</span><span class="mf">881210313.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [19],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Mock</span><span class="p">()</span> <span class="o">-</span> <span class="n">Mock</span><span class="p">()</span>
 
 <span class="ne">TypeError</span>: unsupported operand type(s) for -: &#39;Mock&#39; and &#39;Mock&#39;
@@ -1265,9 +1268,14 @@ of a vector in a particular direction.</p>
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

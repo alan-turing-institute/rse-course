@@ -45,15 +45,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -722,7 +721,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -1020,12 +1021,12 @@ research works.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Location(Cambridge, Cambridgeshire, East of England, England, CB2 3NR, United Kingdom, (52.2055314, 0.1186637, 0.0)),
- Location(Cambridge, Cambridgeshire, East of England, England, United Kingdom, (52.197584649999996, 0.13915373736874398, 0.0)),
- Location(Cambridge, Middlesex County, Massachusetts, 02139-9991, United States, (42.3750997, -71.1056157, 0.0)),
- Location(Cambridge, Middlesex County, Massachusetts, United States, (42.3786343, -71.1317379902184, 0.0)),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Location(Cambridgeshire, Cambridge, Cambridgeshire and Peterborough, England, United Kingdom, (52.2055314, 0.1186637, 0.0)),
+ Location(Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom, (52.197584649999996, 0.13915373736874398, 0.0)),
+ Location(Cambridge, Middlesex County, Massachusetts, United States, (42.3750997, -71.1056157, 0.0)),
  Location(Cambridge, Region of Waterloo, Southwestern Ontario, Ontario, Canada, (43.3600536, -80.3123023, 0.0)),
- Location(Cambridge, Henry County, Illinois, United States, (41.3036472, -90.1928971, 0.0)),
+ Location(Cambridge, Henry County, Illinois, 61238, United States, (41.3025257, -90.1962861, 0.0)),
+ Location(Cambridge, Henry County, Illinois, United States, (41.296391, -90.18922083274745, 0.0)),
  Location(Cambridge, Isanti County, Minnesota, 55008, United States, (45.5727408, -93.2243921, 0.0)),
  Location(Cambridge, Isanti County, Minnesota, United States, (45.5618211, -93.21728388055041, 0.0)),
  Location(Cambridge, Story County, Iowa, 50046, United States, (41.8990768, -93.5294029, 0.0)),
@@ -1280,6 +1281,10 @@ with each of the three layers being red, green, and blue pixels.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3262
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11658/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+  pixels = imageio.imread(f)  # Get our PNG image as a numpy array
+</pre></div>
+</div>
 </div>
 </div>
 <p>We’ll also need a function to get an evenly spaced set of places between two endpoints:</p>
@@ -1345,7 +1350,9 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior to saving to suppress this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11658/3486682063.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+  pixels = imageio.imread(BytesIO(data))  # Get our PNG image as rows of pixels
+Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior to saving to suppress this warning.
 </pre></div>
 </div>
 <img alt="../_images/01_01_data_analysis_example_58_1.png" src="../_images/01_01_data_analysis_example_58_1.png" />
@@ -1363,10 +1370,14 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_01_data_analysis_example_61_0.jpg" src="../_images/01_01_data_analysis_example_61_0.jpg" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11658/746930851.py:2: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
+  IPython.core.display.display(IPython.core.display.Image(map_at(*location)))
+</pre></div>
+</div>
 <img alt="../_images/01_01_data_analysis_example_61_1.jpg" src="../_images/01_01_data_analysis_example_61_1.jpg" />
 <img alt="../_images/01_01_data_analysis_example_61_2.jpg" src="../_images/01_01_data_analysis_example_61_2.jpg" />
 <img alt="../_images/01_01_data_analysis_example_61_3.jpg" src="../_images/01_01_data_analysis_example_61_3.jpg" />
+<img alt="../_images/01_01_data_analysis_example_61_4.jpg" src="../_images/01_01_data_analysis_example_61_4.jpg" />
 </div>
 </div>
 <p>So now we can count the green from London to Birmingham!</p>
@@ -1380,6 +1391,10 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11658/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+  pixels = imageio.imread(f)  # Get our PNG image as a numpy array
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3262, 37232, 59342, 22357, 30138, 56372, 60324, 53020, 136817, 144056]
 </pre></div>
 </div>
@@ -1412,10 +1427,14 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9c94ffa790&gt;]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11658/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+  pixels = imageio.imread(f)  # Get our PNG image as a numpy array
 </pre></div>
 </div>
-<img alt="../_images/01_01_data_analysis_example_67_1.png" src="../_images/01_01_data_analysis_example_67_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5afde40100&gt;]
+</pre></div>
+</div>
+<img alt="../_images/01_01_data_analysis_example_67_2.png" src="../_images/01_01_data_analysis_example_67_2.png" />
 </div>
 </div>
 <p>From a research perspective, of course, this code needs a lot of work. But I hope the power of using programming is clear.</p>
@@ -1450,10 +1469,14 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9c92f45c90&gt;]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11658/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+  pixels = imageio.imread(f)  # Get our PNG image as a numpy array
 </pre></div>
 </div>
-<img alt="../_images/01_01_data_analysis_example_73_1.png" src="../_images/01_01_data_analysis_example_73_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5afbdd3f10&gt;]
+</pre></div>
+</div>
+<img alt="../_images/01_01_data_analysis_example_73_2.png" src="../_images/01_01_data_analysis_example_73_2.png" />
 </div>
 </div>
 <p>And that’s it! We’ve covered, very very quickly, the majority of the python language, and much of the theory of software engineering.</p>
@@ -1507,9 +1530,14 @@ with each of the three layers being red, green, and blue pixels.</p>
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

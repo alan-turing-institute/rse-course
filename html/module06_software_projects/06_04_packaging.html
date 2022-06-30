@@ -45,12 +45,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -720,7 +719,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -1049,21 +1050,51 @@ tree --charset ascii greetings -I &quot;doc|build|Greetings.egg-info|dist|*.pyc&
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>greetings
-|-- CITATION.md
-|-- LICENSE.md
-|-- README.md
-|-- greetings
-|   |-- __init__.py
-|   |-- command.py
-|   |-- greeter.py
-|   `-- test
-|       |-- __init__.py
-|       |-- fixtures
-|       |   `-- samples.yaml
-|       `-- test_greeter.py
-`-- setup.py
-
-3 directories, 10 files
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|-- CITATION.md
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|-- LICENSE.md
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|-- README.md
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|-- greetings
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   |-- __init__.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   |-- command.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   |-- greeter.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   `-- test
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|       |-- __init__.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|       |-- fixtures
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|       |   `-- samples.yaml
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|       `-- test_greeter.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`-- setup.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 directories, 10 files
 </pre></div>
 </div>
 </div>
@@ -1118,9 +1149,8 @@ mkdir -p greetings/greetings/test/fixtures
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16004</span><span class="o">/</span><span class="mf">3630944701.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">greetings.greeter</span> <span class="kn">import</span> <span class="n">greet</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">greet</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Hetherington&quot;</span><span class="p">)</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;greetings.greeter&#39;
@@ -1360,7 +1390,7 @@ Greetings!
 ==========
 
 This is a very simple example package used as part of the Turing
-[Research Software Engineering with Python](https://alan-turing-institute.github.io/rsd-engineeringcourse) course.
+[Research Software Engineering with Python](https://alan-turing-institute.github.io/rse-course) course.
 
 Usage:
     
@@ -1403,7 +1433,7 @@ Invoke the tool with greet &lt;FirstName&gt; &lt;Secondname&gt;
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> greetings/CITATION.md
 
 <span class="n">If</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">refer</span> <span class="n">to</span> <span class="n">this</span> <span class="n">course</span><span class="p">,</span> <span class="n">please</span> <span class="n">cite</span> <span class="n">the</span> <span class="n">URL</span>
-<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">alan</span><span class="o">-</span><span class="n">turing</span><span class="o">-</span><span class="n">institute</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">rsd</span><span class="o">-</span><span class="n">engineeringcourse</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">alan</span><span class="o">-</span><span class="n">turing</span><span class="o">-</span><span class="n">institute</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">rse</span><span class="o">-</span><span class="n">course</span>
 
 <span class="n">Portions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">material</span> <span class="n">are</span> <span class="n">taken</span> <span class="kn">from</span> <span class="nn">Software</span> <span class="n">Carpentry</span>
 <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">swcarpentry</span><span class="o">.</span><span class="n">org</span>
@@ -1491,7 +1521,7 @@ py.test
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
-platform darwin -- Python 3.7.9, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+platform darwin -- Python 3.8.13, pytest-7.1.2, py-1.10.0, pluggy-1.0.0
 rootdir: /home/turingdev/projects/research-software/rse-course/ch04packaging
 plugins: cov-2.12.1, anyio-3.3.0
 collected 1 item
@@ -1587,9 +1617,14 @@ support.</p>
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

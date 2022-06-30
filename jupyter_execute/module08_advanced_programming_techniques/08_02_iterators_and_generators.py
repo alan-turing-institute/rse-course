@@ -452,7 +452,37 @@ with verbose_context("Monty") as shouty:
 # In[38]:
 
 
-from math import sqrt
+def repeat(func):
+    def _repeated(x):
+        return func(func(x))
+    
+    return _repeated
+
+
+def hello(name):
+    return f"Hello, {name}"
+
+
+print(hello("Cleese"))
+print(repeat(hello)("Cleese"))
+
+
+# Any function which accepts a function as its first argument and returns a function can be used as a **decorator** like this:
+
+# In[39]:
+
+
+@repeat
+def hello(name):
+    return f"Hello, {name}"
+
+
+hello("Cleese")
+
+
+# We could also modify this to create a decorator that takes an argument specifying how many times the function should be repeated: 
+
+# In[40]:
 
 
 def repeater(count):
@@ -469,25 +499,18 @@ def repeater(count):
     return wrap_function_in_repeat
 
 
-fiftytimes = repeater(50)
+# In[41]:
 
+
+from math import sqrt
+
+fiftytimes = repeater(50)
 fiftyroots = fiftytimes(sqrt)
 
-print(fiftyroots(100))
+fiftyroots(100)
 
 
-# It turns out that, quite often, we want to apply one of these to a function as we're defining a class.
-# For example, we may want to specify that after certain methods are called, data should always be stored:
-
-# Any function which accepts a function as its first argument and returns a function can be used as a **decorator** like this.
-# 
-# Much of Python's standard functionality is implemented as decorators: we've
-# seen @contextmanager, @classmethod and @attribute. The @contextmanager
-# metafunction, for example, takes in an iterator, and yields a class conforming
-# to the context manager protocol.
-# 
-
-# In[39]:
+# In[42]:
 
 
 @repeater(3)
@@ -495,11 +518,18 @@ def hello(name):
     return f"Hello, {name}"
 
 
-# In[40]:
-
-
 hello("Cleese")
 
+
+# It turns out that, quite often, we want to apply one of these to a function as we're defining a class.
+# For example, we may want to specify that after certain methods are called, data should always be stored.
+# 
+# Much of Python's standard functionality is implemented as decorators: we've
+# seen `@contextmanager`, `@classmethod` and `@attribute`. The `@contextmanager`
+# metafunction, for example, takes in an iterator, and yields a class conforming
+# to the context manager protocol.
+# 
+# 
 
 # # Supplementary material
 # 
@@ -511,7 +541,7 @@ hello("Cleese")
 # This was nice and concise, but had one flaw: we had just one test, covering all the fixtures, so we got just one `.` in the test output when we ran the tests, and if any test failed, the rest were not run.
 # We can do a nicer job with a test **generator**:
 
-# In[41]:
+# In[43]:
 
 
 def assert_exemplar(**fixture):
@@ -536,7 +566,7 @@ def test_greeter():
 
 # We have seen this:
 
-# In[42]:
+# In[44]:
 
 
 from pytest import raises
@@ -548,7 +578,7 @@ with raises(AttributeError):
 
 # We can now see how `pytest` might have implemented this:
 
-# In[43]:
+# In[45]:
 
 
 from contextlib import contextmanager
@@ -564,7 +594,7 @@ def reimplement_raises(exception):
         raise Exception("Expected,", exception, " to be raised, nothing was.")
 
 
-# In[44]:
+# In[46]:
 
 
 with reimplement_raises(AttributeError):
@@ -576,7 +606,7 @@ with reimplement_raises(AttributeError):
 
 # Some frameworks, like `nose`, also implement a very nice negative test decorator, which lets us marks tests that we know should produce an exception:
 
-# In[45]:
+# In[47]:
 
 
 import nose
@@ -587,13 +617,13 @@ def test_raises_type_error():
     raise TypeError("This test passes")
 
 
-# In[46]:
+# In[48]:
 
 
 test_raises_type_error()
 
 
-# In[47]:
+# In[49]:
 
 
 @nose.tools.raises(Exception)
@@ -601,7 +631,7 @@ def test_that_fails_by_passing():
     pass
 
 
-# In[48]:
+# In[50]:
 
 
 test_that_fails_by_passing()
@@ -609,7 +639,7 @@ test_that_fails_by_passing()
 
 # We could reimplement this ourselves now too, using the context manager we wrote above:
 
-# In[49]:
+# In[51]:
 
 
 def homemade_raises_decorator(exception):
@@ -625,7 +655,7 @@ def homemade_raises_decorator(exception):
     return wrap_function
 
 
-# In[50]:
+# In[52]:
 
 
 @homemade_raises_decorator(TypeError)
@@ -633,7 +663,7 @@ def test_raises_type_error():
     raise TypeError("This test passes")
 
 
-# In[51]:
+# In[53]:
 
 
 test_raises_type_error()

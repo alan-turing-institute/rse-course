@@ -3,7 +3,7 @@
 
 # # Recap: Understanding the "Greengraph" Example
 
-# We now know enough to understand everything we did in [the initial example chapter on the "Greengraph"](https://alan-turing-institute.github.io/rsd-engineeringcourse/html/module01_introduction_to_python/01_01_data_analysis_example.html) ([notebook](../module01_introduction_to_python/01_01_data_analysis_example.ipynb)). Go back to that part of the notes, and re-read the code. 
+# We now know enough to understand everything we did in [the initial example chapter on the "Greengraph"](https://alan-turing-institute.github.io/rse-course/html/module01_introduction_to_python/01_01_data_analysis_example.html) ([notebook](../module01_introduction_to_python/01_01_data_analysis_example.ipynb)). Go back to that part of the notes, and re-read the code. 
 
 # Now, we can even write it up into a class, and save it as a module. Remember that it is generally a better idea to create files in an editor or integrated development environment (IDE) rather than through the notebook!
 

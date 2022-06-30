@@ -134,7 +134,7 @@ print(sys.path[-1])
 # In[15]:
 
 
-sys.path.append("/home/jamespjh/devel/libraries/python")
+sys.path.append("/home/turingdev/devel/libraries/python")
 
 
 # In[16]:

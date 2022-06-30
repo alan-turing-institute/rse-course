@@ -45,12 +45,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -720,7 +719,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -1130,7 +1131,7 @@ moves the iterator forward, and gives us its next element:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16331</span><span class="o">/</span><span class="mf">1242322984.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 
 <span class="ne">StopIteration</span>: 
@@ -1398,7 +1399,7 @@ which meets the iterator protocol: <strong>generators</strong>.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16331</span><span class="o">/</span><span class="mf">3485793935.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [26],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="ne">StopIteration</span>: 
@@ -1502,7 +1503,7 @@ Our Fibonacci example therefore becomes a function rather than a class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb6bcf64d50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5c551463d0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/08_02_iterators_and_generators_58_1.png" src="../_images/08_02_iterators_and_generators_58_1.png" />
@@ -1541,9 +1542,6 @@ the file be automatically closed using a context manager:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;modelname&#39;: &#39;brilliant&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1614,10 +1612,51 @@ functions which take in one function and return a new function, such as our
 derivative example earlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeat</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_repeated</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">_repeated</span>
 
 
-<span class="k">def</span> <span class="nf">repeater</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">hello</span><span class="p">)(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, Cleese
+Hello, Hello, Cleese
+</pre></div>
+</div>
+</div>
+</div>
+<p>Any function which accepts a function as its first argument and returns a function can be used as a <strong>decorator</strong> like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@repeat</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello, Hello, Cleese&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could also modify this to create a decorator that takes an argument specifying how many times the function should be repeated:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeater</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">wrap_function_in_repeat</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">_repeated</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
             <span class="n">counter</span> <span class="o">=</span> <span class="n">count</span>
@@ -1629,41 +1668,35 @@ derivative example earlier.</p>
         <span class="k">return</span> <span class="n">_repeated</span>
 
     <span class="k">return</span> <span class="n">wrap_function_in_repeat</span>
-
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 <span class="n">fiftytimes</span> <span class="o">=</span> <span class="n">repeater</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
-
 <span class="n">fiftyroots</span> <span class="o">=</span> <span class="n">fiftytimes</span><span class="p">(</span><span class="n">sqrt</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">fiftyroots</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">fiftyroots</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.000000000000004
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.000000000000004
 </pre></div>
 </div>
 </div>
 </div>
-<p>It turns out that, quite often, we want to apply one of these to a function as we’re defining a class.
-For example, we may want to specify that after certain methods are called, data should always be stored:</p>
-<p>Any function which accepts a function as its first argument and returns a function can be used as a <strong>decorator</strong> like this.</p>
-<p>Much of Python’s standard functionality is implemented as decorators: we’ve
-seen &#64;contextmanager, &#64;classmethod and &#64;attribute. The &#64;contextmanager
-metafunction, for example, takes in an iterator, and yields a class conforming
-to the context manager protocol.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@repeater</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">)</span>
+
+
+<span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Cleese&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1673,6 +1706,12 @@ to the context manager protocol.</p>
 </div>
 </div>
 </div>
+<p>It turns out that, quite often, we want to apply one of these to a function as we’re defining a class.
+For example, we may want to specify that after certain methods are called, data should always be stored.</p>
+<p>Much of Python’s standard functionality is implemented as decorators: we’ve
+seen <code class="docutils literal notranslate"><span class="pre">&#64;contextmanager</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;attribute</span></code>. The <code class="docutils literal notranslate"><span class="pre">&#64;contextmanager</span></code>
+metafunction, for example, takes in an iterator, and yields a class conforming
+to the context manager protocol.</p>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="supplementary-material">
@@ -1787,15 +1826,13 @@ We can do a nicer job with a test <strong>generator</strong>:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16331</span><span class="o">/</span><span class="mf">1196640838.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [50],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">test_that_fails_by_passing</span><span class="p">()</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nose/tools/nontrivial.py</span> in <span class="ni">newfunc</span><span class="nt">(*arg, **kw)</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>                 <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">() did not raise </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">67</span>                 <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span>         <span class="n">newfunc</span> <span class="o">=</span> <span class="n">make_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span><span class="n">newfunc</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>         <span class="k">return</span> <span class="n">newfunc</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nose/tools/nontrivial.py:67,</span> in <span class="ni">raises.&lt;locals&gt;.decorate.&lt;locals&gt;.newfunc</span><span class="nt">(*arg, **kw)</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">() did not raise </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">67</span>     <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 <span class="ne">AssertionError</span>: test_that_fails_by_passing() did not raise Exception
 </pre></div>
@@ -1885,9 +1922,14 @@ We can do a nicer job with a test <strong>generator</strong>:</p>
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

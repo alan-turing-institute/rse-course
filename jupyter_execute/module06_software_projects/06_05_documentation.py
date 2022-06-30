@@ -163,4 +163,4 @@ get_ipython().run_cell_magic('bash', '', 'cd greetings/\nsphinx-build doc/source
 
 # ## Sphinx output
 
-# Sphinx's output is [html](https://alan-turing-institute.github.io/rsd-engineeringcourse/ch04packaging/greetings/doc/index.html). We just created a simple single function's documentation, but Sphinx will create multiple nested pages of documentation automatically for many functions.
+# Sphinx's output is [html](https://alan-turing-institute.github.io/rse-course/module06_software_projects/greetings/doc/index.html). We just created a simple single function's documentation, but Sphinx will create multiple nested pages of documentation automatically for many functions.

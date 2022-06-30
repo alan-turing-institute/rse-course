@@ -45,12 +45,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -720,7 +719,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -1102,9 +1103,13 @@ git commit -m &quot;First commit of discourse on UK topography&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main (root-commit) 4b86499] First commit of discourse on UK topography
- 1 file changed, 4 insertions(+)
- create mode 100644 test.md
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main (root-commit) 25444a8] First commit of discourse on UK topography
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 4 insertions(+)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> create mode 100644 test.md
 </pre></div>
 </div>
 </div>
@@ -1141,11 +1146,19 @@ git log
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 4b86499f7230c9eceaf2ffccf264b6ed4494a9a8
-Author: Turing Developer &lt;developer@example.com&gt;
-Date:   Wed Apr 20 09:59:07 2022 +0000
-
-    First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 25444a82687f2f17251461ba04cd99d7b4fd9d8f
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Thu Jun 30 19:11:47 2022 +0000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1171,7 +1184,9 @@ git status
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>On branch main
-nothing to commit, working tree clean
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nothing to commit, working tree clean
 </pre></div>
 </div>
 </div>
@@ -1227,12 +1242,24 @@ git status
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>On branch main
-Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
-	modified:   test.md
-
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Changes not staged for commit:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	modified:   test.md
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
 </pre></div>
 </div>
 </div>
@@ -1251,15 +1278,33 @@ git diff
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>diff --git a/test.md b/test.md
-index a1f85df..3a2f7b0 100644
---- a/test.md
-+++ b/test.md
-@@ -2,3 +2,5 @@ Mountains in the UK
- ===================   
- England is not very mountainous.   
- But has some tall hills, and maybe a mountain or two depending on your definition.
-+
-+Mount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>index a1f85df..3a2f7b0 100644
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- a/test.md
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+++ b/test.md
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@@ -2,3 +2,5 @@ Mountains in the UK
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ===================   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> England is not very mountainous.   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> But has some tall hills, and maybe a mountain or two depending on your definition.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+Mount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.
 </pre></div>
 </div>
 </div>
@@ -1371,14 +1416,33 @@ git status
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>On branch main
-Changes to be committed:
-  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
-	modified:   test.md
-
-Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
-	__pycache__/
-	wsd.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Changes to be committed:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	modified:   test.md
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Untracked files:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	__pycache__/
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	wsd.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1391,8 +1455,10 @@ git commit -m &quot;Add a lie about a mountain&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main e9c2978] Add a lie about a mountain
- 1 file changed, 2 insertions(+)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 998f688] Add a lie about a mountain
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 2 insertions(+)
 </pre></div>
 </div>
 </div>
@@ -1405,17 +1471,37 @@ git log
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit e9c29789b62416bf69f4cac9d0c001f1b3f67257
-Author: Turing Developer &lt;developer@example.com&gt;
-Date:   Wed Apr 20 09:59:09 2022 +0000
-
-    Add a lie about a mountain
-
-commit 4b86499f7230c9eceaf2ffccf264b6ed4494a9a8
-Author: Turing Developer &lt;developer@example.com&gt;
-Date:   Wed Apr 20 09:59:07 2022 +0000
-
-    First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 998f6881da5e6b030adf465a67a361401d43a83f
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Thu Jun 30 19:11:51 2022 +0000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Add a lie about a mountain
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 25444a82687f2f17251461ba04cd99d7b4fd9d8f
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Thu Jun 30 19:11:47 2022 +0000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1474,8 +1560,10 @@ git commit -am &quot;Change title&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 147eb6e] Change title
- 1 file changed, 1 insertion(+), 1 deletion(-)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 4e47834] Change title
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 1 insertion(+), 1 deletion(-)
 </pre></div>
 </div>
 </div>
@@ -1492,15 +1580,34 @@ git log | head
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 147eb6e6b2803374dffa661a8ed7e78551078377
-Author: Turing Developer &lt;developer@example.com&gt;
-Date:   Wed Apr 20 09:59:09 2022 +0000
-
-    Change title
-
-commit e9c29789b62416bf69f4cac9d0c001f1b3f67257
-Author: Turing Developer &lt;developer@example.com&gt;
-Date:   Wed Apr 20 09:59:09 2022 +0000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 4e478347b777329f696f0778cd9c52475b338dfd
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Thu Jun 30 19:11:51 2022 +0000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Change title
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 998f6881da5e6b030adf465a67a361401d43a83f
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Thu Jun 30 19:11:51 2022 +0000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1514,9 +1621,13 @@ git log --oneline
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>147eb6e Change title
-e9c2978 Add a lie about a mountain
-4b86499 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4e47834 Change title
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>998f688 Add a lie about a mountain
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25444a8 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1612,9 +1723,14 @@ e9c2978 Add a lie about a mountain
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

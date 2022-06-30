@@ -10,7 +10,7 @@ By doing this you will be helping to improve the instructions for future users! 
 
 ## What we're installing
 
-- the `Python` programming language (version `3.7` or greater)
+- the `Python` programming language (version `3.8` or greater)
 - some `Python` software packages that will be used during the course.
 - `git` for the version control module
 - your favourite text editor

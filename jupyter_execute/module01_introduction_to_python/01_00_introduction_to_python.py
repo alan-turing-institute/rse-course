@@ -67,7 +67,7 @@ axes = eight.add_axes([0, 0, 1, 1])
 axes.plot(0.5 * np.sin(theta), np.cos(theta / 2))
 
 
-# We're going to be mainly working in the Jupyter notebook in this course. To get hold of a copy of the notebook, follow the setup instructions shown on the course website, or use the installation in Desktop@UCL (available in the teaching cluster rooms or [anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere)).
+# We're going to be mainly working in the Jupyter notebook in this course. To get hold of a copy of the notebook, follow the setup instructions shown on the course website.
 
 # Jupyter notebooks consist of discussion cells, referred to as "markdown cells", and "code cells", which contain Python. This document has been created using Jupyter notebook, and this very cell is a **Markdown Cell**. 
 
@@ -116,7 +116,7 @@ print("This cell is a code cell")
 
 # ### Python at the command line
 
-# Data science experts tend to use a "command line environment" to work. You'll be able to learn this at our ["Software Carpentry" workshops](http://rits.github-pages.ucl.ac.uk/software-carpentry/), which cover other skills for computationally based research.
+# Data science experts tend to use a "command line environment" to work. You can find out more about this by attending a ["Software Carpentry"](https://software-carpentry.org/) or similar workshop, which introduce the skills needed for computationally based research.
 
 # In[3]:
 

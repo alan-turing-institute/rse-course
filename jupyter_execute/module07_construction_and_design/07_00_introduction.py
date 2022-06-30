@@ -89,7 +89,7 @@
 # * A program is the best, most rigorous way to describe an algorithm
 # * Code should be pleasant to read, a form of scholarly communication
 # 
-# Read Steve McConnell's [Code Complete](https://en.wikipedia.org/wiki/Code_Complete) [[UCL library](https://ucl-new-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=UCL_LMS_DS21156385750004761&context=L)].
+# Read Steve McConnell's [Code Complete](https://en.wikipedia.org/wiki/Code_Complete).
 # 
 # 
 # 

@@ -45,12 +45,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -720,7 +719,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -1147,9 +1148,9 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C&#39;: &lt;__main__.Element at 0x7ff064fa8990&gt;,
- &#39;H&#39;: &lt;__main__.Element at 0x7ff064f91d50&gt;,
- &#39;O&#39;: &lt;__main__.Element at 0x7ff064f91c90&gt;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C&#39;: &lt;__main__.Element at 0x7fddd8846dc0&gt;,
+ &#39;H&#39;: &lt;__main__.Element at 0x7fddd88467c0&gt;,
+ &#39;O&#39;: &lt;__main__.Element at 0x7fddd8846f40&gt;}
 </pre></div>
 </div>
 </div>
@@ -1161,11 +1162,11 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{((&#39;C&#39;, 6), (&#39;H&#39;, 12), (&#39;O&#39;, 6)): &lt;__main__.Molecule at 0x7ff064fa8950&gt;,
- ((&#39;O&#39;, 2),): &lt;__main__.Molecule at 0x7ff064f91c50&gt;,
- ((&#39;C&#39;, 1), (&#39;O&#39;, 2)): &lt;__main__.Molecule at 0x7ff064f91d10&gt;,
- ((&#39;H&#39;, 2), (&#39;O&#39;, 1)): &lt;__main__.Molecule at 0x7ff064f91c10&gt;,
- ((&#39;H&#39;, 2),): &lt;__main__.Molecule at 0x7ff064f91e90&gt;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{((&#39;C&#39;, 6), (&#39;H&#39;, 12), (&#39;O&#39;, 6)): &lt;__main__.Molecule at 0x7fddd8846a90&gt;,
+ ((&#39;O&#39;, 2),): &lt;__main__.Molecule at 0x7fddd8846880&gt;,
+ ((&#39;C&#39;, 1), (&#39;O&#39;, 2)): &lt;__main__.Molecule at 0x7fddd8846a00&gt;,
+ ((&#39;H&#39;, 2), (&#39;O&#39;, 1)): &lt;__main__.Molecule at 0x7fddd8846d60&gt;,
+ ((&#39;H&#39;, 2),): &lt;__main__.Molecule at 0x7fddd8846af0&gt;}
 </pre></div>
 </div>
 </div>
@@ -1283,8 +1284,8 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>elements:
-- H
 - O
+- H
 - C
 molecules:
   C1O2:
@@ -2008,9 +2009,14 @@ head -c 100 foo.hdf5
 </div>
 </div>
 <div class="cell_output docutils container">
-<pre class="output stream literal-block">�HDF
-
-�����������������`��</pre>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
+future: &lt;Task finished name=&#39;Task-7&#39; coro=&lt;ScriptMagics.shebang.&lt;locals&gt;._handle_stream() done, defined at /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/IPython/core/magics/script.py:211&gt; exception=UnicodeDecodeError(&#39;utf-8&#39;, b&#39;\x89HDF\r\n&#39;, 0, 1, &#39;invalid start byte&#39;)&gt;
+Traceback (most recent call last):
+  File &quot;/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/IPython/core/magics/script.py&quot;, line 213, in _handle_stream
+    line = (await stream.readline()).decode(&quot;utf8&quot;)
+UnicodeDecodeError: &#39;utf-8&#39; codec can&#39;t decode byte 0x89 in position 0: invalid start byte
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -2088,9 +2094,14 @@ head -c 100 foo.hdf5
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

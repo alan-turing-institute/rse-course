@@ -31,7 +31,7 @@
 
 # 
 # A description of a pattern in a book such as the [Gang Of Four](https://www.worldcat.org/title/design-patterns-elements-of-reusable-object-oriented-software/oclc/31171684)
-# book ([UCL Library](https://ucl-new-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=UCL_LMS_DS21146030410004761&context=L&vid=UCL_VU2&search_scope=CSCOP_UCL&tab=local&lang=en_US)) usually includes:
+# book usually includes:
 # 
 # * **Intent** - what's the purpose
 # * **Motivation** - why you want to use it
@@ -798,8 +798,8 @@ HTML(contl.go())
 
 # ### Other resources
 # 
-# - [Course on design patterns](https://www.lynda.com/Python-tutorials/Design-Patterns-Python/369187-2.html) and [Advanced design patterns](https://www.lynda.com/Python-tutorials/Python-Advanced-Design-Patterns/656802-2.html) with Python at [Lynda.com](https://ucl.ac.uk/lynda).
+# - [Course on design patterns](https://www.lynda.com/Python-tutorials/Design-Patterns-Python/369187-2.html) and [Advanced design patterns](https://www.lynda.com/Python-tutorials/Python-Advanced-Design-Patterns/656802-2.html) with Python.
 # - [A collection of design patterns and idioms in Python](https://github.com/faif/python-patterns).
-# - [Head First Desssign Patterns](http://www.worldcat.org/title/head-first-design-patterns/oclc/893944765) (Available [online at UCL](https://ucl-new-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=UCL_LMS_DS51233633660004761&context=L&vid=UCL_VU2&search_scope=CSCOP_UCL&tab=local&lang=en_US)) - based on Java (with [online course at Lynda.com](https://www.lynda.com/Developer-Programming-Foundations-tutorials/Foundations-Programming-Design-Patterns/135365-2.html)).
+# - [Head First Design Patterns](http://www.worldcat.org/title/head-first-design-patterns/oclc/893944765) - based on Java (with [online course at Lynda.com](https://www.lynda.com/Developer-Programming-Foundations-tutorials/Foundations-Programming-Design-Patterns/135365-2.html)).
 # - [Design Pattern for Dummies](http://www.worldcat.org/title/design-patterns-for-dummies/oclc/69537420&referer=brief_results).
 # 

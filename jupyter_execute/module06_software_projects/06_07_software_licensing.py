@@ -5,7 +5,7 @@
 
 # ## Reuse
 # 
-# This course is distributed under the [Creative Commons By Attribution license](https://creativecommons.org/licenses/by/3.0/), which means you can modify and reuse the materials, so long as you credit the original authors: [UCL Research IT Services](http://www.ucl.ac.uk/research-it-services/homepage).
+# This course is distributed under the [Creative Commons By Attribution license](https://creativecommons.org/licenses/by/3.0/), which means you can modify and reuse the materials, so long as you credit the original authors: [The Alan Turing Institute's Research Engineering Group](https://www.turing.ac.uk/research/research-engineering) and [UCL Research IT Services](http://www.ucl.ac.uk/research-it-services/homepage).
 
 # ## Disclaimer
 # 
@@ -17,14 +17,14 @@
 # 
 # For an in-depth discussion of software licenses, read the [O'Reilly book](https://www.oreilly.com/library/view/understanding-open-source/0596005814/bk01-toc.html).
 # 
-# Your department, or UCL, may have policies about applying licenses to code you create while a UCL employee or student. This training doesn't address this issue, and does not represent UCL policy -- seek advice from your supervisor or manager if concerned.
+# Your organisation may have policies about applying licenses to code you create while you work there. This training doesn't address this issue, and does not represent an official policy -- seek advice from your supervisor or manager if concerned.
 
 # ## Choose a license
 # 
 # It is important to choose a license and to create a *license file* to tell people what it is. 
 # 
 # The license lets people know whether they can reuse your code and
-# under what terms. [This course has one](https://github.com/UCL/rsd-engineeringcourse/blob/master/LICENSE.md), for example.
+# under what terms. [This course has one](https://github.com/alan-turing-institute/rse-course/blob/main/LICENSE.md), for example.
 # 
 # Your license file should typically be called LICENSE.txt or similar. GitHub will offer to create a license file automatically when you create a new repository.
 

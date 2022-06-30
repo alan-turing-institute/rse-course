@@ -45,12 +45,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -720,7 +719,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -980,15 +981,19 @@ git fetch jack89roberts
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your branch and &#39;origin/main&#39; have diverged,
-and have 11 and 15 different commits each, respectively.
-  (use &quot;git pull&quot; to merge the remote branch into yours)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Switched to branch &#39;main&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Switched to branch &#39;main&#39;
-From github.com:jack89roberts/github-example
- * [new branch]      main       -&gt; jack89roberts/main
- * [new branch]      master     -&gt; jack89roberts/master
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your branch is up to date with &#39;origin/main&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:jack89roberts/github-example
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * [new branch]      main       -&gt; jack89roberts/main
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * [new branch]      master     -&gt; jack89roberts/master
 </pre></div>
 </div>
 </div>
@@ -1003,9 +1008,15 @@ git remote -v
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (fetch)
-jack89roberts	git@github.com:jack89roberts/github-example.git (push)
-origin	git@github.com:alan-turing-institute/github-example.git (fetch)
-origin	git@github.com:alan-turing-institute/github-example.git (push)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (push)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>origin	git@github.com:alan-turing-institute/github-example.git (fetch)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>origin	git@github.com:alan-turing-institute/github-example.git (push)
 </pre></div>
 </div>
 </div>
@@ -1046,9 +1057,13 @@ git commit -am &quot;Add Whernside&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 2de7602] Add Whernside
- 1 file changed, 6 insertions(+)
- create mode 100644 Pennines.md
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 0668de3] Add Whernside
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 6 insertions(+)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> create mode 100644 Pennines.md
 </pre></div>
 </div>
 </div>
@@ -1062,14 +1077,22 @@ git push -uf jack89roberts main || echo &quot;Push failed&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Permission to jack89roberts/github-example.git denied to deploy key
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Permission to jack89roberts/github-example.git denied to deploy key
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fatal: Could not read from remote repository.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Please make sure you have the correct access rights
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>and the repository exists.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
 </pre></div>
 </div>
 </div>
@@ -1083,11 +1106,13 @@ git push -uf origin main
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>branch &#39;main&#39; set up to track &#39;origin/main&#39;.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
- + 45c639f...2de7602 main -&gt; main (forced update)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> + 2b477da...0668de3 main -&gt; main (forced update)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>branch &#39;main&#39; set up to track &#39;origin/main&#39;.
 </pre></div>
 </div>
 </div>
@@ -1105,40 +1130,121 @@ git log --oneline --left-right jack89roberts/main...origin/main
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 2de7602 Add Whernside
-&gt; 8910940 Add a beacon
-&gt; 828e2d9 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
-&gt; 8f7afdd Add wales
-&gt; 462923e Add Scotland
-&gt; 674de3d Add Helvellyn
-&gt; f8a25ad Include lakes in the scope
-&gt; 466f721 Add lakeland
-&gt; 1ddee8b Revert &quot;Add a lie about a mountain&quot;
-&gt; 147eb6e Change title
-&gt; e9c2978 Add a lie about a mountain
-&gt; 4b86499 First commit of discourse on UK topography
-&lt; 31ea056 Add Whernside
-&lt; 009f998 Add github pages YAML frontmatter
-&lt; 2f9bcc8 Add a makefile and ignore generated files
-&lt; ae539cc Merge branch &#39;experiment&#39; into main
-&lt; 492fec5 Commit Aonach onto main branch
-&lt; fe1c71d Add Cadair Idris
-&lt; 338d4d6 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
-&lt; 07c4fea Add Glyder
-&lt; c405c4d Add another Beacon
-&lt; f8f20a6 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
-&lt; 1f69c3f Translating from the Welsh
-&lt; b2b4fa3 Add a beacon
-&lt; c1897d4 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
-&lt; 0e96c25 Add wales
-&lt; 0de6b80 Add Scotland
-&lt; 959e142 Add Helvellyn
-&lt; 600ffe1 Include lakes in the scope
-&lt; c7454a7 Add lakeland
-&lt; 5342922 Revert &quot;Add a lie about a mountain&quot;
-&lt; f65fd0b Change title
-&lt; 8c467a3 Add a lie about a mountain
-&lt; 1f92929 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 0668de3 Add Whernside
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; b4dcbd8 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; fc59a89 Add Glyder
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 31de56e Add another Beacon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 0d6478d Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; bf5093e Translating from the Welsh
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 6ed2c74 Add a beacon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; e0588f9 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; d4b6d36 Add wales
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 00b8e0b Add Scotland
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 0707bb7 Add Helvellyn
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 085f4ae Include lakes in the scope
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; f3bbd32 Add lakeland
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; b39f181 Revert &quot;Add a lie about a mountain&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 4e47834 Change title
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 998f688 Add a lie about a mountain
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 25444a8 First commit of discourse on UK topography
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 31ea056 Add Whernside
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 009f998 Add github pages YAML frontmatter
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 2f9bcc8 Add a makefile and ignore generated files
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; ae539cc Merge branch &#39;experiment&#39; into main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 492fec5 Commit Aonach onto main branch
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; fe1c71d Add Cadair Idris
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 338d4d6 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 07c4fea Add Glyder
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; c405c4d Add another Beacon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; f8f20a6 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 1f69c3f Translating from the Welsh
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; b2b4fa3 Add a beacon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; c1897d4 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 0e96c25 Add wales
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 0de6b80 Add Scotland
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 959e142 Add Helvellyn
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 600ffe1 Include lakes in the scope
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; c7454a7 Add lakeland
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 5342922 Revert &quot;Add a lie about a mountain&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; f65fd0b Change title
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 8c467a3 Add a lie about a mountain
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 1f92929 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1162,8 +1268,10 @@ git branch -vv
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  experiment b46050f Add Cadair Idris
-* main       2de7602 [origin/main] Add Whernside
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  experiment 38b1899 Add Cadair Idris
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main       0668de3 [origin/main] Add Whernside
 </pre></div>
 </div>
 </div>
@@ -1221,11 +1329,13 @@ git push -u local_bare main
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>branch &#39;main&#39; set up to track &#39;local_bare/main&#39;.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To ../bare_repo
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To ../bare_repo
- * [new branch]      main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * [new branch]      main -&gt; main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>branch &#39;main&#39; set up to track &#39;local_bare/main&#39;.
 </pre></div>
 </div>
 </div>
@@ -1240,11 +1350,21 @@ git remote -v
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (fetch)
-jack89roberts	git@github.com:jack89roberts/github-example.git (push)
-local_bare	../bare_repo (fetch)
-local_bare	../bare_repo (push)
-origin	git@github.com:alan-turing-institute/github-example.git (fetch)
-origin	git@github.com:alan-turing-institute/github-example.git (push)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (push)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>local_bare	../bare_repo (fetch)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>local_bare	../bare_repo (push)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>origin	git@github.com:alan-turing-institute/github-example.git (fetch)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>origin	git@github.com:alan-turing-institute/github-example.git (push)
 </pre></div>
 </div>
 </div>
@@ -1324,9 +1444,14 @@ website</a>.</p>
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

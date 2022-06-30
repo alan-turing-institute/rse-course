@@ -1,9 +1,7 @@
 # Packaging Greengraph
 ## Summary
 
-In an appendix, taken from [here](http://development.rc.ucl.ac.uk/training/engineering/ch01data/110Capstone.html), are classes which generate a graph of the proportion of green pixels in a series of satellite images between two points.
-
-https://alan-turing-institute.github.io/rsd-engineeringcourse/html/ch00python/index.html
+In an appendix, taken from [here](https://alan-turing-institute.github.io/rse-course/html/module03_research_data_in_python/03_06_understanding_greengraph.html), are classes which generate a graph of the proportion of green pixels in a series of satellite images between two points.
 
 Your task is to take this code, and do the work needed to make it into a proper package which could be released, meeting minimum software engineering standards
 

@@ -87,7 +87,7 @@
 # 
 # The text files we create will use a simple "wiki" markup style called [markdown](http://daringfireball.net/projects/markdown/basics) to show formatting. This is the convention used in this file, too. 
 # 
-# You can view the content of this file in the way Markdown renders it by looking on the [web](https://github.com/UCL/ucl_software_carpentry/blob/master/git/git_instructions.md), and compare the [raw text](https://raw.github.com/UCL/ucl_software_carpentry/master/git/git_instructions.md).
+# You can view the content of this file in the way Markdown renders it by looking on the [web](https://github.com/alan-turing-institute/rse-course/blob/main/module04_version_control_with_git/04_00_introduction.ipynb), and compare the [raw text](https://raw.githubusercontent.com/alan-turing-institute/rse-course/main/module04_version_control_with_git/04_00_introduction.ipynb).
 
 # ## Displaying Text in this Tutorial
 # 

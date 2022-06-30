@@ -45,12 +45,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -720,7 +719,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -1006,7 +1007,7 @@ but for now, we’ll just use numpy’s CSV reader, and assume it makes us lists
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc27801b790&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7aa1b775e0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/03_00_fields_and_records_25_1.png" src="../_images/03_00_fields_and_records_25_1.png" />
@@ -1068,9 +1069,9 @@ The separator is the semicolon ‘;’.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([(1749., 1., 1749.042,  96.7, -1. , -1.000e+00, 1.),
        (1749., 2., 1749.123, 104.3, -1. , -1.000e+00, 1.),
        (1749., 3., 1749.204, 116.7, -1. , -1.000e+00, 1.), ...,
-       (2022., 1., 2022.042,  54. , 12.9,  1.007e+03, 0.),
-       (2022., 2., 2022.122,  59.7, 13.1,  1.044e+03, 0.),
-       (2022., 3., 2022.204,  78.5, 13.9,  1.277e+03, 0.)],
+       (2022., 3., 2022.204,  78.5, 13.9,  1.277e+03, 0.),
+       (2022., 4., 2022.286,  84.1, 15.2,  1.237e+03, 0.),
+       (2022., 5., 2022.371,  96.5, 16. ,  1.250e+03, 0.)],
       dtype=[(&#39;year&#39;, &#39;&lt;f8&#39;), (&#39;month&#39;, &#39;&lt;f8&#39;), (&#39;date&#39;, &#39;&lt;f8&#39;), (&#39;mean&#39;, &#39;&lt;f8&#39;), (&#39;deviation&#39;, &#39;&lt;f8&#39;), (&#39;observations&#39;, &#39;&lt;f8&#39;), (&#39;definitive&#39;, &#39;&lt;f8&#39;)])
 </pre></div>
 </div>
@@ -1104,9 +1105,9 @@ The separator is the semicolon ‘;’.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([(1749, 1, 1749.042,  96.7, -1. ,   -1, 1),
        (1749, 2, 1749.123, 104.3, -1. ,   -1, 1),
        (1749, 3, 1749.204, 116.7, -1. ,   -1, 1), ...,
-       (2022, 1, 2022.042,  54. , 12.9, 1007, 0),
-       (2022, 2, 2022.122,  59.7, 13.1, 1044, 0),
-       (2022, 3, 2022.204,  78.5, 13.9, 1277, 0)],
+       (2022, 3, 2022.204,  78.5, 13.9, 1277, 0),
+       (2022, 4, 2022.286,  84.1, 15.2, 1237, 0),
+       (2022, 5, 2022.371,  96.5, 16. , 1250, 0)],
       dtype=[(&#39;year&#39;, &#39;&lt;i8&#39;), (&#39;month&#39;, &#39;&lt;i8&#39;), (&#39;date&#39;, &#39;&lt;f8&#39;), (&#39;mean&#39;, &#39;&lt;f8&#39;), (&#39;deviation&#39;, &#39;&lt;f8&#39;), (&#39;observations&#39;, &#39;&lt;i8&#39;), (&#39;definitive&#39;, &#39;&lt;i8&#39;)])
 </pre></div>
 </div>
@@ -1132,7 +1133,7 @@ The separator is the semicolon ‘;’.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc277d6a6d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7a9f919af0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/03_00_fields_and_records_39_1.png" src="../_images/03_00_fields_and_records_39_1.png" />
@@ -1187,9 +1188,14 @@ The separator is the semicolon ‘;’.</p>
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

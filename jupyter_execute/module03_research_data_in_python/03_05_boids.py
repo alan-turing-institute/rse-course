@@ -196,7 +196,7 @@ velocities = new_flock(100, np.array([0, -20]), np.array([10, 20]))
 anim.save("boids_1.mp4")
 
 
-# And download the [saved animation](http://github-pages.ucl.ac.uk/rsd-engineeringcourse/ch01data/boids_1.mp4).
+# And download the [saved animation](./boids_1.mp4).
 
 # You can even view the results directly in the notebook.
 

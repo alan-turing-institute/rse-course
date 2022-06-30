@@ -45,12 +45,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -720,7 +719,9 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  <p>Download notes as <a href="/rsd-engineeringcourse/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
 </div>
 
 </div>
@@ -831,8 +832,18 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#catching-exceptions-elsewhere">
+   Catching Exceptions Elsewhere
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#design-with-exceptions">
    Design with Exceptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#re-raising-exceptions">
+   Re-Raising Exceptions
   </a>
  </li>
 </ul>
@@ -866,8 +877,18 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#catching-exceptions-elsewhere">
+   Catching Exceptions Elsewhere
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#design-with-exceptions">
    Design with Exceptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#re-raising-exceptions">
+   Re-Raising Exceptions
   </a>
  </li>
 </ul>
@@ -891,7 +912,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16352</span><span class="o">/</span><span class="mf">1455669704.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
 
 <span class="ne">ZeroDivisionError</span>: division by zero
@@ -930,9 +951,8 @@ information about where this class fits in the hierarchy, we can use <a class="r
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16352</span><span class="o">/</span><span class="mf">380152974.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
@@ -971,9 +991,9 @@ We raise an Exception with <code class="docutils literal notranslate"><span clas
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">MyCustomErrorType</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16352</span><span class="o">/</span><span class="mf">4088117092.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">class</span> <span class="nc">MyCustomErrorType</span><span class="p">(</span><span class="ne">ArithmeticError</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="k">pass</span>
 <span class="ne">----&gt; </span><span class="mi">5</span> <span class="k">raise</span> <span class="p">(</span><span class="n">MyCustomErrorType</span><span class="p">(</span><span class="s2">&quot;Problem&quot;</span><span class="p">))</span>
 
 <span class="ne">MyCustomErrorType</span>: Problem
@@ -999,9 +1019,9 @@ We raise an Exception with <code class="docutils literal notranslate"><span clas
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">MyCustomErrorType</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16352</span><span class="o">/</span><span class="mf">1595425230.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> 
-<span class="g g-Whitespace">      </span><span class="mi">8</span> 
+<span class="nn">Input In [6],</span> in <span class="ni">&lt;cell line: 9&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Error, category </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="ne">----&gt; </span><span class="mi">9</span> <span class="k">raise</span> <span class="p">(</span><span class="n">MyCustomErrorType</span><span class="p">(</span><span class="mi">404</span><span class="p">))</span>
 
 <span class="ne">MyCustomErrorType</span>: Error, category 404
@@ -1144,13 +1164,24 @@ Therefore, we should be specific and catch only the type of error we want.</p>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">datasource</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
-        <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File loaded, trying to extract credentials&quot;</span><span class="p">)</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected keys not found in file&quot;</span><span class="p">)</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Runs irrespective of whether keys found</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closing file&quot;</span><span class="p">)</span>
+            <span class="n">datasource</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
     <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password file missing&quot;</span><span class="p">)</span>
         <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
         <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">finally</span><span class="p">:</span>
-        <span class="n">datasource</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span>
 </pre></div>
@@ -1158,26 +1189,64 @@ Therefore, we should be specific and catch only the type of error we want.</p>
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">finally</span></code> clause is executed whether or not an exception occurs.</p>
-<p>The last optional clause of a <code class="docutils literal notranslate"><span class="pre">try</span></code> statement, an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause is called only if an exception is NOT raised. It can be a better place than the <code class="docutils literal notranslate"><span class="pre">try</span></code> clause to put code other than that which you expect to raise the error, and which you do not want to be executed if the error is raised. It is executed in the same circumstances as code put in the end of the <code class="docutils literal notranslate"><span class="pre">try</span></code> block, the only difference is that errors raised during the <code class="docutils literal notranslate"><span class="pre">else</span></code> clause are not caught. Don’t worry if this seems useless to you; most languages’ implementations of try/except don’t support such a clause.</p>
+<p>The last optional clause of a <code class="docutils literal notranslate"><span class="pre">try</span></code> statement, an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause is called only if an exception is NOT raised. It can be a better place than the <code class="docutils literal notranslate"><span class="pre">try</span></code> clause to put code other than that which you expect to raise the error, and which you do not want to be executed if the error is raised. It is executed in the same circumstances as code put in the end of the <code class="docutils literal notranslate"><span class="pre">try</span></code> block, the only difference is that errors raised during the <code class="docutils literal notranslate"><span class="pre">else</span></code> clause are not caught.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_credentials</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">datasource</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+
     <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password file missing&quot;</span><span class="p">)</span>
         <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
         <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+
     <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Runs only if opening the file was successful</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
-        <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
-    <span class="k">finally</span><span class="p">:</span>
-        <span class="n">datasource</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File loaded, trying to extract credentials&quot;</span><span class="p">)</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected keys not found in file&quot;</span><span class="p">)</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Runs irrespective of whether keys found</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closing file&quot;</span><span class="p">)</span>
+            <span class="n">datasource</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
     <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Don’t worry if <code class="docutils literal notranslate"><span class="pre">else</span></code> seems useless to you; most languages’ implementations of try/except don’t support such a clause. An alternative way of avoiding leaving the file open in the original implementation (and without using <code class="docutils literal notranslate"><span class="pre">else</span></code> or <code class="docutils literal notranslate"><span class="pre">finally</span></code>) is to use a context manager:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_credentials</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="k">as</span> <span class="n">datasource</span><span class="p">:</span>  <span class="c1"># closes the file when done</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password file missing&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected keys not found in file&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="catching-exceptions-elsewhere">
+<h2>Catching Exceptions Elsewhere<a class="headerlink" href="#catching-exceptions-elsewhere" title="Permalink to this headline">¶</a></h2>
 <p>Exceptions do not have to be caught close to the part of the program calling
 them. They can be caught anywhere “above” the calling point in
 the call stack: control can jump arbitrarily far in the program: up to the <code class="docutils literal notranslate"><span class="pre">except</span></code> clause of the “highest” containing try statement.</p>
@@ -1419,6 +1488,9 @@ other data-source which responds like a dictionary or string.</strong></p>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="re-raising-exceptions">
+<h2>Re-Raising Exceptions<a class="headerlink" href="#re-raising-exceptions" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes we want to catch an error, partially handle it, perhaps add some
 extra data to the exception, and then re-raise to be caught again further up
 the call stack.</p>
@@ -1458,32 +1530,29 @@ safe to do <code class="docutils literal notranslate"><span class="pre">except:<
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipykernel_16352/1206802253.py</span> in <span class="ni">higher_function</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">7</span>         <span class="n">lower_function</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="nn">Input In [32],</span> in <span class="ni">higher_function</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">lower_function</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-<span class="nn">/tmp/ipykernel_16352/1206802253.py</span> in <span class="ni">lower_function</span><span class="nt">()</span>
+<span class="nn">Input In [32],</span> in <span class="ni">lower_function</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">lower_function</span><span class="p">():</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Error in lower function!&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
 
 <span class="ne">ValueError</span>: Error in lower function!
 
 <span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
 
 <span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16352</span><span class="o">/</span><span class="mf">1206802253.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> 
-<span class="g g-Whitespace">     </span><span class="mi">11</span> 
+<span class="nn">Input In [32],</span> in <span class="ni">&lt;cell line: 12&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Error in higher function!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 <span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">higher_function</span><span class="p">()</span>
 
-<span class="nn">/tmp/ipykernel_16352/1206802253.py</span> in <span class="ni">higher_function</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="n">lower_function</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">9</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Error in higher function!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> 
-<span class="g g-Whitespace">     </span><span class="mi">11</span> 
+<span class="nn">Input In [32],</span> in <span class="ni">higher_function</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">lower_function</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">9</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Error in higher function!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
 <span class="ne">RuntimeError</span>: Error in higher function!
 </pre></div>
@@ -1543,9 +1612,14 @@ principle.</p>
     <footer class="footer">
   <p>
     
-      By The Alan Turing Institute<br/>
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
     
-        &copy; Copyright 2021.<br/>
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
   </p>
 </footer>
 </main>

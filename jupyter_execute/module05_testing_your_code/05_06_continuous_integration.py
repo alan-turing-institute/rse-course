@@ -12,8 +12,6 @@
 # 3. run tests on different platforms
 # 
 # Various groups run servers that can be used to do this automatically.
-# 
-# RITS run a [university-wide one](https://www.ucl.ac.uk/isd/services/research-it/research-software/CI-testing).
 
 # ## Memory and profiling
 # 

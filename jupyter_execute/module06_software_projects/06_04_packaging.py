@@ -195,7 +195,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/setup.py', '\nfrom setuptoo
 # In[13]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/README.md', '\nGreetings!\n==========\n\nThis is a very simple example package used as part of the Turing\n[Research Software Engineering with Python](https://alan-turing-institute.github.io/rsd-engineeringcourse) course.\n\nUsage:\n    \nInvoke the tool with greet <FirstName> <Secondname>\n')
+get_ipython().run_cell_magic('writefile', 'greetings/README.md', '\nGreetings!\n==========\n\nThis is a very simple example package used as part of the Turing\n[Research Software Engineering with Python](https://alan-turing-institute.github.io/rse-course) course.\n\nUsage:\n    \nInvoke the tool with greet <FirstName> <Secondname>\n')
 
 
 # ## Write a license file
@@ -215,7 +215,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/LICENSE.md', '\n(C) The Ala
 # In[15]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/CITATION.md', '\nIf you wish to refer to this course, please cite the URL\nhttps://alan-turing-institute.github.io/rsd-engineeringcourse\n\nPortions of the material are taken from Software Carpentry\nhttp://swcarpentry.org\n')
+get_ipython().run_cell_magic('writefile', 'greetings/CITATION.md', '\nIf you wish to refer to this course, please cite the URL\nhttps://alan-turing-institute.github.io/rse-course\n\nPortions of the material are taken from Software Carpentry\nhttp://swcarpentry.org\n')
 
 
 # You may well want to formalise this using the [codemeta.json](https://codemeta.github.io/) standard - this doesn't have wide adoption yet, but we recommend it.
