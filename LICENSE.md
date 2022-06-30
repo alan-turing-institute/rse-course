@@ -1,11 +1,10 @@
-This work is the copyright of its various contributors. 
+This work is the copyright of its various contributors.
 
-This collection of material is licensed under a Creative Commons - Attribution license. 
+This collection of material is licensed under a Creative Commons - Attribution license.
 
-The list of contributors can be found at https://github.com/UCL/rsd-engineeringcourse/graphs/contributors.
+The list of contributors can be found at https://github.com/alan-turing-institute/rse-course/graphs/contributors.
 
-It is a derivative work of the work of the Software Carpentry Initiative, 
-a full list of contributors can be found at https://github.com/swcarpentry/boot-camps/graphs/contributors. 
+It is a derivative work of the [UCL RSD course](https://github.com/UCL/rsd-engineeringcourse/).
 
 You are free:
 
@@ -32,5 +31,4 @@ With the understanding that:
   license terms of this work. The best way to do this is with a link to this
   [web page](http://creativecommons.org/licenses/by/3.0/).
 
-For the full legal text of this license, please see
-http://creativecommons.org/licenses/by/3.0/legalcode.
+For the full legal text of this license, please see http://creativecommons.org/licenses/by/3.0/legalcode.
