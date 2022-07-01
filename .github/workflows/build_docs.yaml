@@ -17,12 +17,13 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7'
+          python-version: '3.8'
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Setup SSH keys
+        if: ${{ !env.ACT }}
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -30,18 +31,19 @@ jobs:
         run: sudo apt-get update && sudo apt-get -y install ffmpeg pandoc texlive-latex-base texlive-latex-extra
       - name: Install Python packages
         run: pip install -r requirements.txt
-      - name: Build latest documentation
+      - name: Configure git
         shell: bash
         run: |
           git config --global user.name "Turing Developer"
           git config --global user.email "developer@example.com"
           git config --global pull.rebase false
+          git config --list | grep "^http.*extraheader" | cut -d '=' -f 1 | xargs -L1 git config --unset-all # Remove http extraheader arguments as these conflict with the use of SSH keys
           git config --list
-          echo "... removing ..."
-          git config --list | grep 'http\..*\.extraheader' | cut -d= -f1 | xargs -L1 git config --unset-all
-          git config --list
-          ./build_docs.sh
+      - name: Build latest documentation
+        shell: bash
+        run: ./build_docs.sh
       - name: Deploy documentation to GitHub Pages
+        if: ${{ !env.ACT }}
         uses: JamesIves/github-pages-deploy-action@5dc1d5a192aeb5ab5b7d5a77b7d36aea4a7f5c92 # This is version 4.1.4
         with:
           branch: gh-pages                     # The branch the action should deploy to.

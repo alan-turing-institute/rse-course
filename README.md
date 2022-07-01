@@ -2,6 +2,7 @@
 [![Build documentation](https://github.com/alan-turing-institute/rse-course/actions/workflows/build_docs.yaml/badge.svg)](https://github.com/alan-turing-institute/rse-course/actions/workflows/build_docs.yaml)
 [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Licence: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8 | 3.9 | 3.10](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue.svg)](https://www.python.org/downloads/)
 
 # Research Software Engineering Course
 
