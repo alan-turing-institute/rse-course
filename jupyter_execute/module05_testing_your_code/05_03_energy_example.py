@@ -127,4 +127,4 @@ get_ipython().run_cell_magic('bash', '', 'cd diffusion\npy.test --cov\n')
 get_ipython().run_cell_magic('bash', '', '#%%cmd (windows)\ncd diffusion\npy.test --cov --cov-report html\n')
 
 
-# Look at the [coverage results](./diffusion/htmlcov/index.html)
+# The HTML [coverage results](./diffusion/htmlcov/index.html) will be in `diffusion/htmlcov/index.html`
