@@ -3,7 +3,7 @@ Greetings!
 ==========
 
 This is a very simple example package used as part of the Turing
-[Research Software Engineering with Python](https://alan-turing-institute.github.io/rsd-engineeringcourse) course.
+[Research Software Engineering with Python](https://github.com/alan-turing-institute/rse-course) course.
 
 Usage:
     
