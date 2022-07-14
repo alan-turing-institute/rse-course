@@ -35,5 +35,5 @@ However, this course is **not** intended to teach `Python` and you may find supp
 
 You can browse through course notes as HTML or download them as a printable PDF via the navigation bar to the left.
 
-**If you encounter any problem or bug in these materials**, please remember to add an issue to the [course repo](https://github.com/alan-turing-institute/rsd-engineeringcourse), explaining the problem and, potentially, its solution.
+**If you encounter any problem or bug in these materials**, please remember to add an issue to the [course repo](https://github.com/alan-turing-institute/rse-course), explaining the problem and, potentially, its solution.
 By doing this, you will improve the instructions for future users. 🎉
