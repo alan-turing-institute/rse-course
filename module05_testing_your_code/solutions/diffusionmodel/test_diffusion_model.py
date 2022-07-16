@@ -1,6 +1,6 @@
 """ Unit tests for a diffusion model """
-from nose.tools import assert_raises, assert_almost_equal
 from diffusion_model import energy
+from pytest import approx
 
 # def test_energy_fails_on_non_integer_density():
 #   with assert_raises(TypeError) as exception: energy([1.0, 2, 3])
@@ -16,10 +16,10 @@ def test_zero_energy_cases():
     # Zero energy at zero density
     densities = [[], [0], [0, 0, 0]]
     for density in densities:
-        assert_almost_equal(energy(density), 0)
+        assert energy(density) == approx(0)
 
     # Zero energy for coefficient == 0
-    assert_almost_equal(energy([1, 1, 1], coefficient=0), 0)
+    assert energy([1, 1, 1], coefficient=0) == approx(0)
 
 
 def test_derivative():
@@ -41,11 +41,11 @@ def test_derivative():
         # Compute and check result
         expected = density[element_index] if density[element_index] > 0 else 0
         actual = energy(density_plus_one) - energy(density)
-        assert_almost_equal(expected, actual)
+        assert expected == approx(actual)
 
 
 def test_derivative_no_self_energy():
-    """ If particle is alone, then its participation to energy is zero """
+    """If particle is alone, then its participation to energy is zero"""
     from numpy import array
 
     density = array([1, 0, 1, 10, 15, 0])
@@ -54,7 +54,7 @@ def test_derivative_no_self_energy():
 
     expected = 0
     actual = energy(density_plus_one) - energy(density)
-    assert_almost_equal(expected, actual)
+    assert expected == approx(actual)
 
 
 def test_coefficient_is_linear():
@@ -64,4 +64,4 @@ def test_coefficient_is_linear():
 
     value = energy(density, coefficient=1)
     twice = energy(density, coefficient=2e0)
-    assert_almost_equal(value + value, twice)
+    assert value + value == approx(twice)
