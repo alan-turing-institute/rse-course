@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
-from .greeter import greet  # Note python 3 relative import
+
+from .greeter import greet  # Note relative import
 
 
 def process():
@@ -10,11 +11,9 @@ def process():
     parser.add_argument("personal")
     parser.add_argument("family")
 
-    arguments = parser.parse_args()
+    args = parser.parse_args()
 
-    print(
-        greet(arguments.personal, arguments.family, arguments.title, arguments.polite)
-    )
+    print(greet(args.personal, args.family, args.title, args.polite))
 
 
 if __name__ == "__main__":

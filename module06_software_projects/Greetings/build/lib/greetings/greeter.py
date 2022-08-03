@@ -1,3 +1,6 @@
+from colorama import Fore
+
+
 def greet(personal, family, title="", polite=False):
     """Generate a greeting string for a person.
 
@@ -19,8 +22,9 @@ def greet(personal, family, title="", polite=False):
     """
 
     greeting = "How do you do, " if polite else "Hey, "
+    greeting = Fore.GREEN + greeting
     if title:
-        greeting += title + " "
+        greeting += Fore.BLUE + title + " "
 
-    greeting += personal + " " + family + "."
+    greeting += Fore.RED + personal + " " + family + "."
     return greeting
