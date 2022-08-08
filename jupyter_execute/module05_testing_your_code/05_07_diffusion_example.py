@@ -112,5 +112,11 @@ get_ipython().run_cell_magic('writefile', 'DiffusionExample/test_model.py', 'fro
 # In[5]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cd DiffusionExample\npy.test\n')
+get_ipython().run_cell_magic('bash', '', 'cd DiffusionExample\npytest\n')
+
+
+# In[ ]:
+
+
+
 

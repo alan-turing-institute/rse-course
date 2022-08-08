@@ -139,12 +139,10 @@ print(url[100:])
 # In[10]:
 
 
-from nose.tools import assert_in  # https://pypi.org/project/nose/
-
-assert_in("https://static-maps.yandex.ru/1.x/?", url)
-assert_in("ll=-0.1275%2C51.5072", url)
-assert_in("z=12", url)
-assert_in("size=400%2C400", url)
+assert "https://static-maps.yandex.ru/1.x/?" in url
+assert "ll=-0.1275%2C51.5072" in url
+assert "z=12" in url
+assert "size=400%2C400" in url
 
 
 # Our previous function comes back with an Object representing the web request. In object oriented programming, we use the .

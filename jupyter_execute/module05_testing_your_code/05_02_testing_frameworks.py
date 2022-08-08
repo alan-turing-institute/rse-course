@@ -20,38 +20,35 @@
 
 # ## Common testing frameworks
 
-# * Language agnostic: [CTest](http://www.cmake.org/cmake/help/v2.8.12/ctest.html)
+# * Language agnostic: [CTest](https://cmake.org/cmake/help/latest/manual/ctest.1.html)
 #   * Test runner for executables, bash scripts, etc...
 #   * Great for legacy code hardening
 #     
 # * C unit-tests:
 #     * all c++ frameworks,
-#     * [Check](http://check.sourceforge.net/),
+#     * [Check](https://libcheck.github.io/check/),
 #     * [CUnit](http://cunit.sourceforge.net)
 # 
 # * C++ unit-tests:
 #     * [CppTest](http://cpptest.sourceforge.net/),
-#     * [Boost::Test](http://www.boost.org/doc/libs/1_55_0/libs/test/doc/html/index.html),
-#     * [google-test](https://code.google.com/p/googletest/),
-#     * [Catch](https://github.com/philsquared/Catch) (best)
+#     * [Boost::Test](https://www.boost.org/doc/libs/1_79_0/libs/test/doc/html/index.html),
+#     * [google-test](https://google.github.io/googletest/),
+#     * [Catch](https://github.com/catchorg/Catch2)
 # 
 # * Python unit-tests:
-#     * [nose](https://nose.readthedocs.org/en/latest/) includes test discovery, coverage, etc
-#     * [unittest](http://docs.python.org/2/library/unittest.html) comes with standard python library
-#     * [py.test](http://pytest.org/latest/), branched off of nose
+#     * [unittest](https://docs.python.org/3/library/unittest.html) comes with standard python library
+#     * [pytest](http://pytest.org/latest/), includes test discovery, coverage, etc
 # 
 # * R unit-tests:
-#     * [RUnit](http://cran.r-project.org/web/packages/RUnit/index.html),
-#     * [svUnit](http://cran.r-project.org/web/packages/svUnit/index.html)
-#     * (works with [SciViews](http://www.sciviews.org/) GUI)
+#     * [RUnit](https://cran.r-project.org/web/packages/RUnit/index.html),
+#     * [testthat](https://testthat.r-lib.org/)
 # 
 # * Fortran unit-tests:
-#     * [funit](http://nasarb.rubyforge.org/funit/),
-#     * [pfunit](http://sourceforge.net/projects/pfunit/)(works with MPI)
+#     * [pfunit](https://github.com/Goddard-Fortran-Ecosystem/pFUnit)(works with MPI)
 
-# ## py.test framework: usage
+# ## pytest framework: usage
 # 
-# [py.test](https://docs.pytest.org/en/latest/) is a recommended python testing framework.
+# [pytest](https://docs.pytest.org/en/latest/) is a recommended python testing framework.
 
 # We can use its tools in the notebook for on-the-fly tests in the notebook. This, happily, includes the negative-tests example we were looking for a moment ago.
 
@@ -102,7 +99,7 @@ get_ipython().run_cell_magic('writefile', 'saskatchewan/test_overlap.py', 'from 
 # In[7]:
 
 
-get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npy.test || echo "Tests failed"\n')
+get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npytest || echo "Tests failed"\n')
 
 
 # Note that it reported **which** test had failed, how many tests ran, and how many failed.
@@ -117,8 +114,8 @@ get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npy
 
 # Some options:
 # 
-# * help: `py.test --help`
-# * run only tests for a given feature: `py.test -k foo` # tests with 'foo' in the test name
+# * help: `pytest --help`
+# * run only tests for a given feature: `pytest -k foo` # tests with 'foo' in the test name
 
 # # Testing with floating points
 # 
@@ -190,7 +187,7 @@ from numpy import array, pi
 vector_of_reals = array([0.1, 0.2, 0.3, 0.4]) * pi
 
 
-# Numpy ships with a number of assertions (in ``numpy.testing``) to make
+# Numpy ships with a number of assertions (in `numpy.testing`) to make
 # comparison easy:
 
 # In[14]:

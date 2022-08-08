@@ -360,7 +360,7 @@ plt.plot(list(yield_fibs(20)))
 
 # ## Context managers
 
-# [We have seen before](../ch01data/060files.html#Closing-files) [[notebook](../ch01data/060files.ipynb#Closing-files)] that, instead of separately `open`ing and `close`ing a file, we can have
+# [We have seen before](../module02_intermediate_python/02_04_working_with_files.html#Closing-files) [[notebook](../module02_intermediate_python/02_04_working_with_files.ipynb#Closing-files)] that, instead of separately `open`ing and `close`ing a file, we can have
 # the file be automatically closed using a context manager:
 
 # In[34]:
@@ -602,55 +602,50 @@ with reimplement_raises(AttributeError):
     x.foo()
 
 
-# ## Negative test decorators
+# ## Skip test decorators
 
-# Some frameworks, like `nose`, also implement a very nice negative test decorator, which lets us marks tests that we know should produce an exception:
+# Some frameworks also implement decorators for skipping tests or dealing with tests that are known to raise exceptions (due to known bugs or limitations). For example:
 
 # In[47]:
 
 
-import nose
-
-
-@nose.tools.raises(TypeError, ValueError)
-def test_raises_type_error():
-    raise TypeError("This test passes")
+get_ipython().run_cell_magic('writefile', 'test_skipped.py', 'import pytest\nimport sys\n\n\n@pytest.mark.skipif(sys.version_info < (4, 0), reason="requires python 4")\ndef test_python_4():\n    raise RuntimeError("something went wrong")\n')
 
 
 # In[48]:
 
 
-test_raises_type_error()
+get_ipython().system(' pytest test_skipped.py')
 
 
 # In[49]:
 
 
-@nose.tools.raises(Exception)
-def test_that_fails_by_passing():
-    pass
+get_ipython().run_cell_magic('writefile', 'test_not_skipped.py', 'import pytest\nimport sys\n\n\n@pytest.mark.skipif(sys.version_info < (3, 0), reason="requires python 3")\ndef test_python_3():\n    raise RuntimeError("something went wrong")\n')
 
 
 # In[50]:
 
 
-test_that_fails_by_passing()
+get_ipython().system(' pytest test_not_skipped.py')
 
 
-# We could reimplement this ourselves now too, using the context manager we wrote above:
+# We could reimplement this ourselves now too:
 
 # In[51]:
 
 
-def homemade_raises_decorator(exception):
-    def wrap_function(func):  # Closure over exception
-        # Define a function which runs another function under our "raises" context:
-        def _output(*args):  # Closure over func and exception
-            with reimplement_raises(exception):
-                func(*args)
-
-        # Return it
-        return _output
+def homemade_skip_decorator(skip):
+    def wrap_function(func):
+        if skip:
+            # if the test should be skipped, return a function
+            # that just prints a message
+            def do_nothing(*args):
+                print("test was skipped")
+            return do_nothing
+        else:
+            # otherwise use the original function as normal
+            return func
 
     return wrap_function
 
@@ -658,13 +653,21 @@ def homemade_raises_decorator(exception):
 # In[52]:
 
 
-@homemade_raises_decorator(TypeError)
-def test_raises_type_error():
-    raise TypeError("This test passes")
+@homemade_skip_decorator(3.9 < 4.0)
+def test_skipped():
+    raise RuntimeError("This test is skipped")
+    
+
+test_skipped()
 
 
 # In[53]:
 
 
-test_raises_type_error()
+@homemade_skip_decorator(3.9 < 3.0)
+def test_runs():
+    raise RuntimeError("This test is run")
+
+
+test_runs()
 

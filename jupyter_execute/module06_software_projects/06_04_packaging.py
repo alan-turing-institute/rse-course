@@ -265,7 +265,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/greetings/test/fixtures/sam
 # In[19]:
 
 
-get_ipython().run_cell_magic('bash', '', 'py.test\n')
+get_ipython().run_cell_magic('bash', '', 'pytest\n')
 
 
 # ## Developer Install

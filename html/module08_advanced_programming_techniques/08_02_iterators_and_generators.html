@@ -887,8 +887,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#negative-test-decorators">
-     Negative test decorators
+    <a class="reference internal nav-link" href="#skip-test-decorators">
+     Skip test decorators
     </a>
    </li>
   </ul>
@@ -979,8 +979,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#negative-test-decorators">
-     Negative test decorators
+    <a class="reference internal nav-link" href="#skip-test-decorators">
+     Skip test decorators
     </a>
    </li>
   </ul>
@@ -1503,7 +1503,7 @@ Our Fibonacci example therefore becomes a function rather than a class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f353f32db80&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9ae3429e80&gt;]
 </pre></div>
 </div>
 <img alt="../_images/08_02_iterators_and_generators_58_1.png" src="../_images/08_02_iterators_and_generators_58_1.png" />
@@ -1516,7 +1516,7 @@ Our Fibonacci example therefore becomes a function rather than a class.</p>
 <p>Iterables and generators can be used to achieve complex behaviour, especially when combined with functional programming. In fact, Python itself contains some very useful language features that make use of these practices: context managers and decorators. We have already seen these in this class, but here we discuss them in more detail.</p>
 <div class="section" id="context-managers">
 <h2>Context managers<a class="headerlink" href="#context-managers" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="../ch01data/060files.html#Closing-files">We have seen before</a> [<a class="reference external" href="../ch01data/060files.ipynb#Closing-files">notebook</a>] that, instead of separately <code class="docutils literal notranslate"><span class="pre">open</span></code>ing and <code class="docutils literal notranslate"><span class="pre">close</span></code>ing a file, we can have
+<p><a class="reference external" href="../module02_intermediate_python/02_04_working_with_files.html#Closing-files">We have seen before</a> [<a class="reference external" href="../module02_intermediate_python/02_04_working_with_files.ipynb#Closing-files">notebook</a>] that, instead of separately <code class="docutils literal notranslate"><span class="pre">open</span></code>ing and <code class="docutils literal notranslate"><span class="pre">close</span></code>ing a file, we can have
 the file be automatically closed using a context manager:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1786,71 +1786,115 @@ We can do a nicer job with a test <strong>generator</strong>:</p>
 </div>
 </div>
 </div>
-<div class="section" id="negative-test-decorators">
-<h2>Negative test decorators<a class="headerlink" href="#negative-test-decorators" title="Permalink to this headline">¶</a></h2>
-<p>Some frameworks, like <code class="docutils literal notranslate"><span class="pre">nose</span></code>, also implement a very nice negative test decorator, which lets us marks tests that we know should produce an exception:</p>
+<div class="section" id="skip-test-decorators">
+<h2>Skip test decorators<a class="headerlink" href="#skip-test-decorators" title="Permalink to this headline">¶</a></h2>
+<p>Some frameworks also implement decorators for skipping tests or dealing with tests that are known to raise exceptions (due to known bugs or limitations). For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nose</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test_skipped.py
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
 
-<span class="nd">@nose</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_raises_type_error</span><span class="p">():</span>
-    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;This test passes&quot;</span><span class="p">)</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skipif</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;requires python 4&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_python_4</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;something went wrong&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting test_skipped.py
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_raises_type_error</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pytest test_skipped.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
+platform linux -- Python 3.8.13, pytest-7.1.2, pluggy-1.0.0
+rootdir: /home/runner/work/rse-course/rse-course/module08_advanced_programming_techniques
+plugins: cov-3.0.0, anyio-3.6.1
+<span class=" -Color -Color-Bold">collecting ... </span>
+<span class=" -Color -Color-Bold">collected 1 item                                                               </span>
+
+test_skipped.py <span class=" -Color -Color-Yellow">s                                                        [100%]</span>
+
+<span class=" -Color -Color-Yellow">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Yellow">1 skipped</span><span class=" -Color -Color-Yellow"> in 0.02s ==============================</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@nose</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_that_fails_by_passing</span><span class="p">():</span>
-    <span class="k">pass</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test_not_skipped.py
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skipif</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;requires python 3&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_python_3</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;something went wrong&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting test_not_skipped.py
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_that_fails_by_passing</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pytest test_not_skipped.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">Input In [50],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">test_that_fails_by_passing</span><span class="p">()</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
+platform linux -- Python 3.8.13, pytest-7.1.2, pluggy-1.0.0
+rootdir: /home/runner/work/rse-course/rse-course/module08_advanced_programming_techniques
+plugins: cov-3.0.0, anyio-3.6.1
+<span class=" -Color -Color-Bold">collecting ... </span>
+<span class=" -Color -Color-Bold">collected 1 item                                                               </span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nose/tools/nontrivial.py:67,</span> in <span class="ni">raises.&lt;locals&gt;.decorate.&lt;locals&gt;.newfunc</span><span class="nt">(*arg, **kw)</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">() did not raise </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">67</span>     <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+test_not_skipped.py <span class=" -Color -Color-Red">F                                                    [100%]</span>
 
-<span class="ne">AssertionError</span>: test_that_fails_by_passing() did not raise Exception
+=================================== FAILURES ===================================
+<span class=" -Color -Color-Bold -Color-Bold-Red">________________________________ test_python_3 _________________________________</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    <span class=" -Color -Color-White">@pytest</span>.mark.skipif(sys.version_info &lt; (3, 0), reason=<span class=" -Color -Color-Yellow">&quot;requires python 3&quot;</span>)
+    def test_python_3():
+&gt;       raise RuntimeError(<span class=" -Color -Color-Yellow">&quot;something went wrong&quot;</span>)
+<span class=" -Color -Color-Bold -Color-Bold-Red">E       RuntimeError: something went wrong</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Red">test_not_skipped.py</span>:7: RuntimeError
+=========================== short test summary info ============================
+FAILED test_not_skipped.py::test_python_3 - RuntimeError: something went wrong
+<span class=" -Color -Color-Red">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Red">1 failed</span><span class=" -Color -Color-Red"> in 0.11s ===============================</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We could reimplement this ourselves now too, using the context manager we wrote above:</p>
+<p>We could reimplement this ourselves now too:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">homemade_raises_decorator</span><span class="p">(</span><span class="n">exception</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrap_function</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>  <span class="c1"># Closure over exception</span>
-        <span class="c1"># Define a function which runs another function under our &quot;raises&quot; context:</span>
-        <span class="k">def</span> <span class="nf">_output</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>  <span class="c1"># Closure over func and exception</span>
-            <span class="k">with</span> <span class="n">reimplement_raises</span><span class="p">(</span><span class="n">exception</span><span class="p">):</span>
-                <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-
-        <span class="c1"># Return it</span>
-        <span class="k">return</span> <span class="n">_output</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">homemade_skip_decorator</span><span class="p">(</span><span class="n">skip</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrap_function</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">skip</span><span class="p">:</span>
+            <span class="c1"># if the test should be skipped, return a function</span>
+            <span class="c1"># that just prints a message</span>
+            <span class="k">def</span> <span class="nf">do_nothing</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test was skipped&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">do_nothing</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># otherwise use the original function as normal</span>
+            <span class="k">return</span> <span class="n">func</span>
 
     <span class="k">return</span> <span class="n">wrap_function</span>
 </pre></div>
@@ -1859,16 +1903,47 @@ We can do a nicer job with a test <strong>generator</strong>:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@homemade_raises_decorator</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_raises_type_error</span><span class="p">():</span>
-    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;This test passes&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@homemade_skip_decorator</span><span class="p">(</span><span class="mf">3.9</span> <span class="o">&lt;</span> <span class="mf">4.0</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_skipped</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;This test is skipped&quot;</span><span class="p">)</span>
+    
+
+<span class="n">test_skipped</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test was skipped
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_raises_type_error</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@homemade_skip_decorator</span><span class="p">(</span><span class="mf">3.9</span> <span class="o">&lt;</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_runs</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;This test is run&quot;</span><span class="p">)</span>
+
+
+<span class="n">test_runs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">Input In [53],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="nd">@homemade_skip_decorator</span><span class="p">(</span><span class="mf">3.9</span> <span class="o">&lt;</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">def</span> <span class="nf">test_runs</span><span class="p">():</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;This test is run&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">test_runs</span><span class="p">()</span>
+
+<span class="nn">Input In [53],</span> in <span class="ni">test_runs</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="nd">@homemade_skip_decorator</span><span class="p">(</span><span class="mf">3.9</span> <span class="o">&lt;</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">def</span> <span class="nf">test_runs</span><span class="p">():</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;This test is run&quot;</span><span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: This test is run
 </pre></div>
 </div>
 </div>

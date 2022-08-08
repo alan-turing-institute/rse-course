@@ -17,7 +17,7 @@
 # ## Mocking frameworks
 # 
 # * C: [CMocka](http://www.cmocka.org/)
-# * C++: [googlemock](https://code.google.com/p/googlemock/)
+# * C++: [googlemock](https://google.github.io/googletest/reference/mocking.html)
 # * Python: [unittest.mock](http://docs.python.org/dev/library/unittest.mock)
 
 # ## Recording calls with mock

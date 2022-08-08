@@ -297,10 +297,14 @@ I_only_accept_positive_numbers(-5)
 
 # We would like to be able to write tests like this:
 
-# In[25]:
-
-
-assert I_only_accept_positive_numbers(-5) == # Gives a value error
-
+# ```python
+# assert I_only_accept_positive_numbers(-5) == # Gives a value error
+# ```
 
 # But to do that, we need to learn about more sophisticated testing tools, called "test frameworks".
+
+# In[ ]:
+
+
+
+

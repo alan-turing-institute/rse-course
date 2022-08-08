@@ -42,7 +42,7 @@ ax.set_xlabel("Position $i$")
 # In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'rm -rf diffusion\nmkdir diffusion\ninstall -m 644 /dev/null diffusion/__init__.py\n')
+get_ipython().run_cell_magic('bash', '', 'rm -rf diffusion\nmkdir diffusion\ntouch diffusion/__init__.py\n')
 
 
 # **Windows:** You will need to run the following instead
@@ -69,7 +69,7 @@ get_ipython().run_cell_magic('writefile', 'diffusion/model.py', 'def energy(dens
 # In[4]:
 
 
-get_ipython().run_cell_magic('writefile', 'diffusion/test_model.py', 'from .model import energy\n\n\ndef test_energy():\n    """Optional description for nose reporting."""\n    # Test something\n')
+get_ipython().run_cell_magic('writefile', 'diffusion/test_model.py', 'from .model import energy\n\n\ndef test_energy():\n    pass\n    # Test something\n')
 
 
 # Invoke the tests:
@@ -77,7 +77,7 @@ get_ipython().run_cell_magic('writefile', 'diffusion/test_model.py', 'from .mode
 # In[5]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cd diffusion\npy.test\n')
+get_ipython().run_cell_magic('bash', '', 'cd diffusion\npytest\n')
 
 
 # Now, write your code (in `model.py`), and tests (in `test_model.py`), testing as you do.
@@ -106,17 +106,17 @@ get_ipython().run_cell_magic('writefile', 'diffusion/model.py', '"""Simplistic 1
 # In[8]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cd diffusion\npy.test\n')
+get_ipython().run_cell_magic('bash', '', 'cd diffusion\npytest\n')
 
 
 # ## Coverage
 # 
-# With py.test, you can use the ["pytest-cov" plugin](https://github.com/pytest-dev/pytest-cov) to measure test coverage
+# With pytest, you can use the ["pytest-cov" plugin](https://github.com/pytest-dev/pytest-cov) to measure test coverage
 
 # In[9]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cd diffusion\npy.test --cov\n')
+get_ipython().run_cell_magic('bash', '', 'cd diffusion\npytest --cov\n')
 
 
 # Or an html report:
@@ -124,7 +124,7 @@ get_ipython().run_cell_magic('bash', '', 'cd diffusion\npy.test --cov\n')
 # In[10]:
 
 
-get_ipython().run_cell_magic('bash', '', '#%%cmd (windows)\ncd diffusion\npy.test --cov --cov-report html\n')
+get_ipython().run_cell_magic('bash', '', '#%%cmd (windows)\ncd diffusion\npytest --cov --cov-report html\n')
 
 
 # The HTML [coverage results](./diffusion/htmlcov/index.html) will be in `diffusion/htmlcov/index.html`

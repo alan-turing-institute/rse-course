@@ -62,7 +62,7 @@
 # ```
 # 
 # * Does not test correctness of code
-# * Checks code is a similarly wrong on day N as day 0
+# * Checks code is as similarly wrong on day N as day 0
 
 # ### Testing vocabulary
 # 
