@@ -1,4 +1,9 @@
-from colorama import Fore
+import os
+
+import colorama  # used for creating coloured text
+
+if os.name == "nt":
+    colorama.init()
 
 
 def greet(personal, family, title="", polite=False):
@@ -22,9 +27,16 @@ def greet(personal, family, title="", polite=False):
     """
 
     greeting = "How do you do, " if polite else "Hey, "
-    greeting = Fore.GREEN + greeting
+    greeting = colorama.Back.BLACK + colorama.Fore.YELLOW + greeting
     if title:
-        greeting += Fore.BLUE + title + " "
+        greeting += colorama.Back.BLUE + colorama.Fore.WHITE + title + " "
 
-    greeting += Fore.RED + personal + " " + family + "."
+    greeting += (
+        colorama.Back.WHITE
+        + colorama.Style.BRIGHT
+        + colorama.Fore.RED
+        + personal
+        + " "
+        + family
+    )
     return greeting
