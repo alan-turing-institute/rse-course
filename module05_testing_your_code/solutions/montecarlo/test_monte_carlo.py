@@ -1,33 +1,32 @@
 """ Tests Monte-Carlo method, in isolation of diffusion model """
-
-from nose.tools import assert_equal, assert_almost_equal, assert_true, assert_raises
+import pytest
 from monte_carlo import MonteCarlo
 
 
 def test_input_sanity():
-    """ Check incorrect input do fail """
+    """Check incorrect input do fail"""
 
-    with assert_raises(NotImplementedError) as exception:
+    with pytest.raises(NotImplementedError):
         MonteCarlo(temperature=0e0)
-    with assert_raises(ValueError) as exception:
+    with pytest.raises(ValueError):
         MonteCarlo(temperature=-1e0)
 
     mc = MonteCarlo()
-    with assert_raises(TypeError) as exception:
+    with pytest.raises(TypeError):
         mc(lambda x: 0, [1.0, 2, 3])
-    with assert_raises(ValueError) as exception:
+    with pytest.raises(ValueError):
         mc(lambda x: 0, [-1, 2, 3])
-    with assert_raises(ValueError) as exception:
+    with pytest.raises(ValueError):
         mc(lambda x: 0, [[1, 2, 3], [3, 4, 5]])
-    with assert_raises(ValueError) as exception:
+    with pytest.raises(ValueError):
         mc(lambda x: 0, [3])
-    with assert_raises(ValueError) as exception:
+    with pytest.raises(ValueError):
         mc(lambda x: 0, [0, 0])
 
 
 def test_move_particle_one_over():
-    """ Check density is change by a particle hopping left or right. """
-    from numpy import nonzero, multiply
+    """Check density is change by a particle hopping left or right."""
+    from numpy import multiply, nonzero
     from numpy.random import randint
 
     mc = MonteCarlo()
@@ -40,54 +39,49 @@ def test_move_particle_one_over():
 
         # Make sure any movement is by one
         indices = nonzero(density - new_density)[0]
-        assert_equal(len(indices), 2, "densities differ in two places")
-        assert_equal(
-            multiply.reduce((density - new_density)[indices]),
-            -1,
-            "densities differ by + and - 1",
-        )
+        assert len(indices) == 2, "densities differ in two places"
+        assert (
+            multiply.reduce((density - new_density)[indices]) == -1
+        ), "densities differ by + and - 1"
 
 
 def test_equal_probability():
-    """ Check particles have equal probability of movement. """
-    from numpy import array, sqrt, count_nonzero
+    """Check particles have equal probability of movement."""
+    from numpy import array, count_nonzero, sqrt
 
     mc = MonteCarlo()
     density = array([1, 0, 99])
     changes_at_zero = [
         (density - mc.change_density(density))[0] != 0 for i in range(10000)
     ]
-    assert_almost_equal(
-        count_nonzero(changes_at_zero),
-        0.01 * len(changes_at_zero),
-        delta=0.5 * sqrt(len(changes_at_zero)),
+    assert count_nonzero(changes_at_zero) == pytest.approx(
+        0.01 * len(changes_at_zero), abs=0.5 * sqrt(len(changes_at_zero))
     )
 
 
 def test_accept_change():
-    """ Check that move is accepted if second energy is lower """
-    from numpy import sqrt, count_nonzero, exp
+    """Check that move is accepted if second energy is lower"""
+    from numpy import count_nonzero, exp, sqrt
 
     mc = MonteCarlo(temperature=100.0)
-    # Should always be true. But do more than one draw, in case random incorrectly crept into
-    # implementation
+    # Should always be true. But do more than one draw, in case random incorrectly crept
+    # into implementation
     for i in range(10):
-        assert_true(mc.accept_change(0.5, 0.4))
-        assert_true(mc.accept_change(0.5, 0.5))
+        assert mc.accept_change(0.5, 0.4)
+        assert mc.accept_change(0.5, 0.5)
 
-    # This should be accepted only part of the time, depending on exponential distribution
+    # This should be accepted only part of the time, depending on exponential
+    # distribution
     prior, successor = 0.4, 0.5
     accepted = [mc.accept_change(prior, successor) for i in range(10000)]
-    assert_almost_equal(
-        count_nonzero(accepted) / float(len(accepted)),
-        exp(-(successor - prior) / mc.temperature),
-        delta=3e0 / sqrt(len(accepted)),
+    assert count_nonzero(accepted) / float(len(accepted)) == pytest.approx(
+        exp(-(successor - prior) / mc.temperature), abs=3e0 / sqrt(len(accepted))
     )
 
 
 def test_main_algorithm():
-    """ Check set path through main algorithm """
-    from mock import Mock, call
+    """Check set path through main algorithm"""
+    from unittest.mock import Mock, call
 
     mc = MonteCarlo(temperature=100.0, itermax=4)
 
@@ -112,10 +106,10 @@ def test_main_algorithm():
     mc(energy, densities[0])
 
     # Now, analyze path. First check length.
-    assert_equal(len(mc.accept_change.mock_calls), 4)
-    assert_equal(len(mc.change_density.mock_calls), 4)
-    assert_equal(len(mc.observe.mock_calls), 4)
-    assert_equal(len(energy.mock_calls), 5)  # one extra call to get first energy
+    assert len(mc.accept_change.mock_calls) == 4
+    assert len(mc.change_density.mock_calls) == 4
+    assert len(mc.observe.mock_calls) == 4
+    assert len(energy.mock_calls) == 5  # one extra call to get first energy
 
     # Easiest to look at observe, since it should have all the info about the step
     observe_path = [
@@ -124,12 +118,12 @@ def test_main_algorithm():
         call(2, acceptance[2], densities[2], energies[2]),
         call(3, acceptance[3], densities[4], energies[4]),
     ]
-    assert_equal(observe_path, mc.observe.call_args_list)
+    assert observe_path == mc.observe.call_args_list
 
 
 def test_stop_simulation():
-    """ Checks that if observe returns False, iteration stops. """
-    from mock import Mock
+    """Checks that if observe returns False, iteration stops."""
+    from unittest.mock import Mock
 
     mc = MonteCarlo(temperature=100.0, itermax=8)
 
@@ -141,5 +135,5 @@ def test_stop_simulation():
     # Call simulation
     mc(energy, [0, 1, 2, 3])
 
-    assert_equal(len(mc.observe.mock_calls), 2)
-    assert_equal(len(energy.mock_calls), 3)  # one extra call to get first energy
+    assert len(mc.observe.mock_calls) == 2
+    assert len(energy.mock_calls) == 3  # one extra call to get first energy
