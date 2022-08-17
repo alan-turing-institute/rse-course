@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Coding Conventions" href="07_01_coding_conventions.html" />
+    <link rel="next" title="Comments" href="07_01_comments.html" />
     <link rel="prev" title="Construction and Design" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -517,37 +517,42 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_01_coding_conventions.html">
-     Coding Conventions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_02_comments.html">
+    <a class="reference internal" href="07_01_comments.html">
      Comments
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_03_refactoring.html">
+    <a class="reference internal" href="07_02_coding_conventions.html">
+     Coding Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_03_linters.html">
+     Lint
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_04_refactoring.html">
      Refactoring
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_04_object_oriented_design.html">
+    <a class="reference internal" href="07_05_object_oriented_design.html">
      Design
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_05_classes.html">
+    <a class="reference internal" href="07_06_classes.html">
      Class design
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_06_design_patterns.html">
+    <a class="reference internal" href="07_07_design_patterns.html">
      Patterns
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_07_refactoring_boids.html">
+    <a class="reference internal" href="07_08_refactoring_boids.html">
      Exercise: Refactoring The Bad Boids
     </a>
    </li>
@@ -891,11 +896,6 @@ const thebe_selector_output = ".output, .cell_output"
      Programming for humans
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setup">
-     Setup
-    </a>
-   </li>
   </ul>
  </li>
 </ul>
@@ -956,11 +956,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#programming-for-humans">
      Programming for humans
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setup">
-     Setup
     </a>
    </li>
   </ul>
@@ -1049,90 +1044,6 @@ to software construction.</p>
 </ul>
 <p>Read Steve McConnell’s <a class="reference external" href="https://en.wikipedia.org/wiki/Code_Complete">Code Complete</a>.</p>
 </div>
-<div class="section" id="setup">
-<h3>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
-<p>This notebook is based on a number of fragments of code, with an implicit context.
-We’ve made a library to set up the context so the examples work.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> context.py
-<span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">MagicMock</span>
-
-
-<span class="k">class</span> <span class="nc">CompMock</span><span class="p">(</span><span class="n">Mock</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">CompMock</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="k">return</span> <span class="kc">True</span>
-
-    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">CompMock</span><span class="p">()</span>
-
-
-<span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">agt</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">agents</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-<span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">agent</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-<span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">bird_types</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Starling&quot;</span><span class="p">,</span> <span class="s2">&quot;Hawk&quot;</span><span class="p">]</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span>
-<span class="n">hawk</span> <span class="o">=</span> <span class="n">CompMock</span><span class="p">()</span>
-<span class="n">starling</span> <span class="o">=</span> <span class="n">CompMock</span><span class="p">()</span>
-<span class="n">sEntry</span> <span class="o">=</span> <span class="s2">&quot;2.0&quot;</span>
-<span class="n">entry</span> <span class="o">=</span> <span class="s2">&quot;2.0&quot;</span>
-<span class="n">iOffset</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">anothervariable</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">flag1</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">variable</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">flag2</span> <span class="o">=</span> <span class="kc">False</span>
-
-
-<span class="k">def</span> <span class="nf">do_something</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-
-<span class="n">chromosome</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">start_codon</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">subsequence</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-<span class="n">transcribe</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-<span class="n">ribe</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-<span class="n">find</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-<span class="n">can_see</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-<span class="n">my_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="n">your_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="n">flag1</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">flag2</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">start</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="n">end</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">step</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">birds</span> <span class="o">=</span> <span class="p">[</span><span class="n">MagicMock</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">2</span>
-<span class="n">resolution</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">pi</span> <span class="o">=</span> <span class="mf">3.141</span>
-<span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">resolution</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">pi</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)]</span>
-<span class="kn">import</span> <span class="nn">yaml</span>
-<span class="kn">import</span> <span class="nn">os</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting context.py
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 
@@ -1168,10 +1079,10 @@ We’ve made a library to set up the context so the examples work.</p>
             <p class="prev-next-title">Construction and Design</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="07_01_coding_conventions.html" title="next page">
+    <a class='right-next' id="next-link" href="07_01_comments.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Coding Conventions</p>
+        <p class="prev-next-title">Comments</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
