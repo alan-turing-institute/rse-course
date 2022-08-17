@@ -324,7 +324,7 @@ get_ipython().run_cell_magic('writefile', 'Greetings/README.md', '\nGreetings!\n
 # In[9]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/LICENSE.md', '\n(C) The Alan Turing Institute 2021\n\nThis "greetings" example package is granted into the public domain.\n')
+get_ipython().run_cell_magic('writefile', 'Greetings/LICENSE.md', '\n(C) The Alan Turing Institute 2021\n\nThis "greetings" example package is granted into the public domain.\n')
 
 
 # ## Write a citation file
