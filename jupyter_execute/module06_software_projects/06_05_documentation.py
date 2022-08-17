@@ -187,7 +187,7 @@
 # In[1]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/docs/index.rst', 'Welcome to Greetings\'s documentation!\n=====================================\nSimple "Hello, James" module developed to teach research software engineering.\n\n.. toctree::\n   :maxdepth: 2\n   :caption: Contents:\n\n\nFunctions\n=========\n\n.. autofunction:: greetings.greeter.greet\n\n\nIndices and tables\n==================\n\n* :ref:`genindex`\n* :ref:`modindex`\n* :ref:`search`\n')
+get_ipython().run_cell_magic('writefile', 'Greetings/docs/index.rst', 'Welcome to Greetings\'s documentation!\n=====================================\nSimple "Hello, James" module developed to teach research software engineering.\n\n.. toctree::\n   :maxdepth: 2\n   :caption: Contents:\n\n\nFunctions\n=========\n\n.. autofunction:: greetings.greeter.greet\n\n\nIndices and tables\n==================\n\n* :ref:`genindex`\n* :ref:`modindex`\n* :ref:`search`\n')
 
 
 # ##  Run sphinx

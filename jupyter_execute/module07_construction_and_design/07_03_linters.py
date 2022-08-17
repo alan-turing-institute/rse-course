@@ -38,7 +38,7 @@
 get_ipython().system(' flake8 flake8_example.py')
 
 
-# The first warning tells us we have imported a variable called `e` but not used it, and the last that we're trying to use a variable called `pi` but haven't defined it anywhere. The 2nd warning indicates that in the [PEP8](https://peps.python.org/pep-0008/#blank-lines) conventions there should be two blank lines before a function definition, but only have 1.
+# The first warning tells us we have imported a variable called `e` but not used it, and the last that we're trying to use a variable called `pi` but haven't defined it anywhere. The 2nd warning indicates that in the [PEP8](https://peps.python.org/pep-0008/#blank-lines) conventions there should be two blank lines before a function definition, but we only have 1.
 # 
 # ```{admonition} Running on multiple files
 # All the examples here run a linter on a single file, but they can be run on all the files in a project at once as well (e.g. by just running `flake8` without a filename).

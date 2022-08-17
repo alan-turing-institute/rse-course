@@ -20,7 +20,7 @@
 # 
 # Using the course material from this module to help:
 # 
-# **1.** Briefly familiarise yourself with the code below and how it works/runs, focusing on the different classes and functions that are defined rather than the implementation details. And try running a game in the notebook (see the [Playing Games](#Playing-Games) section).
+# **1.** Briefly familiarise yourself with the code below and how it works/runs, focusing on the different classes and functions that are defined rather than the implementation details. And try running a game in the notebook (see the [Playing Games](#playing-games) section).
 # 
 # **2.** Make a directory for your project
 # 

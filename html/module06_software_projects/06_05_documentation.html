@@ -538,7 +538,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
-     Design
+     Object-Oriented Design
     </a>
    </li>
    <li class="toctree-l2">
@@ -1162,7 +1162,7 @@ where <span class="s2">&quot;builder&quot;</span> is one of the supported builde
 <p>And a lightly modified version:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile greetings/docs/index.rst
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile Greetings/docs/index.rst
 Welcome to Greetings&#39;s documentation!
 =====================================
 Simple &quot;Hello, James&quot; module developed to teach research software engineering.
@@ -1188,27 +1188,7 @@ Indices and tables
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing greetings/docs/index.rst
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;writefile&#39;</span><span class="p">,</span> <span class="s1">&#39;greetings/docs/index.rst&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome to Greetings</span><span class="se">\&#39;</span><span class="s1">s documentation!</span><span class="se">\n</span><span class="s1">=====================================</span><span class="se">\n</span><span class="s1">Simple &quot;Hello, James&quot; module developed to teach research software engineering.</span><span class="se">\n\n</span><span class="s1">.. toctree::</span><span class="se">\n</span><span class="s1">   :maxdepth: 2</span><span class="se">\n</span><span class="s1">   :caption: Contents:</span><span class="se">\n\n\n</span><span class="s1">Functions</span><span class="se">\n</span><span class="s1">=========</span><span class="se">\n\n</span><span class="s1">.. autofunction:: greetings.greeter.greet</span><span class="se">\n\n\n</span><span class="s1">Indices and tables</span><span class="se">\n</span><span class="s1">==================</span><span class="se">\n\n</span><span class="s1">* :ref:`genindex`</span><span class="se">\n</span><span class="s1">* :ref:`modindex`</span><span class="se">\n</span><span class="s1">* :ref:`search`</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/IPython/core/interactiveshell.py:2358,</span> in <span class="ni">InteractiveShell.run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2356</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2357</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2358</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2359</span> <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/IPython/core/magics/osm.py:853,</span> in <span class="ni">OSMagics.writefile</span><span class="nt">(self, line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">850</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">852</span> <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">append</span> <span class="k">else</span> <span class="s1">&#39;w&#39;</span>
-<span class="ne">--&gt; </span><span class="mi">853</span> <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">854</span>     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;greetings/docs/index.rst&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting Greetings/docs/index.rst
 </pre></div>
 </div>
 </div>
@@ -1226,31 +1206,82 @@ sphinx-build docs docs/output
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running Sphinx v4.4.0
-loading pickled environment... done
-[autosummary] generating autosummary for: index.rst
-building [mo]: targets for 0 po files that are out of date
-building [html]: targets for 1 source files that are out of date
-updating environment: 0 added, 1 changed, 0 removed
-reading sources... [100%] index
-
-looking for now-outdated files... none found
-pickling environment... done
-checking consistency... done
-preparing documents... done
-writing output... [100%] index
-
-generating indices... genindex done
-highlighting module code... [100%] greetings.greeter
-
-writing additional pages... search done
-copying static files... done
-copying extra files... done
-dumping search index in English (code: en)... done
-dumping object inventory... done
-build succeeded.
-
-The HTML pages are in docs/output.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running Sphinx v4.5.0
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: html_static_path entry &#39;_static&#39; does not exist
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loading pickled environment... done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[autosummary] generating autosummary for: index.rst
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>building [mo]: targets for 0 po files that are out of date
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>building [html]: targets for 1 source files that are out of date
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>updating environment: 0 added, 1 changed, 0 removed
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>reading sources... [100%] index
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>looking for now-outdated files... none found
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pickling environment... done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>checking consistency... done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>preparing documents... done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>writing output... [100%] index
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>generating indices... genindex done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>highlighting module code... [100%] greetings.greeter
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>writing additional pages... search done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>copying static files... done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>copying extra files... done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dumping search index in English (code: en)... done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dumping object inventory... done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>build succeeded, 1 warning.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The HTML pages are in docs/output.
 </pre></div>
 </div>
 </div>

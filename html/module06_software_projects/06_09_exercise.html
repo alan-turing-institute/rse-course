@@ -538,7 +538,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
-     Design
+     Object-Oriented Design
     </a>
    </li>
    <li class="toctree-l2">
@@ -1029,7 +1029,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <div class="section" id="what-to-do">
 <h2>What to do<a class="headerlink" href="#what-to-do" title="Permalink to this headline">¶</a></h2>
 <p>Using the course material from this module to help:</p>
-<p><strong>1.</strong> Briefly familiarise yourself with the code below and how it works/runs, focusing on the different classes and functions that are defined rather than the implementation details. And try running a game in the notebook (see the <a class="reference external" href="#Playing-Games">Playing Games</a> section).</p>
+<p><strong>1.</strong> Briefly familiarise yourself with the code below and how it works/runs, focusing on the different classes and functions that are defined rather than the implementation details. And try running a game in the notebook (see the <a class="reference external" href="#playing-games">Playing Games</a> section).</p>
 <p><strong>2.</strong> Make a directory for your project</p>
 <p><strong>3.</strong> Create a directory to contain your package (in your project directory) and copy the code from this notebook to it using multiple <code class="docutils literal notranslate"><span class="pre">.py</span></code> files. Remember to add <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file(s).</p>
 <p><strong>4.</strong> Create a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file to specify the metadata and dependencies for the package. The dependencies are <a class="reference external" href="https://pypi.org/project/PyYAML/">PyYAML</a> version 6.0 and <a class="reference external" href="https://pypi.org/project/art/">art</a> version 5.7.</p>
@@ -1506,19 +1506,6 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">copy</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">art</span> <span class="kn">import</span> <span class="n">tprint</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">class</span> <span class="nc">Game</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dungeon</span><span class="p">):</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;art&#39;
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1535,11 +1522,11 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;test_win100.yml&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;test_lose100.yml&#39;,
  &#39;dungeon.yml&#39;,
- &#39;test_stalemate.yml&#39;,
+ &#39;test_win100.yml&#39;,
  &#39;test_win50.yml&#39;,
- &#39;test_lose100.yml&#39;]
+ &#39;test_stalemate.yml&#39;]
 </pre></div>
 </div>
 </div>
@@ -1587,6 +1574,118 @@ o - a       o - T
 Let the hunt begin!
 
 Turn 1
+Adventurer moves down
+Troll moves nowhere
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       o - T   
+    |       |    
+    a - o - o       
+        |        
+        o           
+
+Turn 2
+Adventurer moves right
+Troll moves nowhere
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       o - T   
+    |       |    
+    o - a - o       
+        |        
+        o           
+
+Turn 3
+Adventurer moves down
+Troll moves left
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       T - o   
+    |       |    
+    o - o - o       
+        |        
+        a           
+
+Turn 4
+Adventurer moves up
+Troll moves down
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       o - o   
+    |       |    
+    o - a - T       
+        |        
+        o           
+
+Turn 5
+Adventurer moves down
+Troll moves nowhere
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       o - o   
+    |       |    
+    o - o - T       
+        |        
+        a           
+
+Turn 6
+Adventurer moves up
+Troll moves nowhere
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       o - o   
+    |       |    
+    o - a - T       
+        |        
+        o           
+
+Turn 7
+Adventurer moves left
+Troll moves nowhere
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       o - o   
+    |       |    
+    a - o - T       
+        |        
+        o           
+
+Turn 8
+Adventurer moves up
+Troll moves left
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - a       o - o   
+    |       |    
+    o - T - o       
+        |        
+        o           
+
+Turn 9
 Adventurer moves up
 Troll moves left
 
@@ -1594,63 +1693,35 @@ Troll moves left
         |        
     a - o - o       
     |       |    
-o - o       T - o   
-    |       |    
-    o - o - o       
-        |        
-        o           
-
-Turn 2
-Adventurer moves right
-Troll moves up
-
-        *           
-        |        
-    o - a - T       
-    |       |    
 o - o       o - o   
     |       |    
-    o - o - o       
+    T - o - o       
         |        
         o           
 
-Turn 3
-Adventurer moves left
+Turn 10
+Adventurer moves right
 Troll moves nowhere
 
         *           
         |        
-    a - o - T       
+    o - a - o       
     |       |    
 o - o       o - o   
     |       |    
-    o - o - o       
+    T - o - o       
         |        
         o           
 
-Turn 4
-Adventurer moves right
-Troll moves left
-
-        *           
-        |        
-    o - T - o       
-    |       |    
-o - o       o - o   
-    |       |    
-    o - o - o       
-        |        
-        o           
-
-Troll will eat tonight!
-  ___    _    __  __  ___    ___  __   __ ___  ___ 
- / __|  /_\  |  \/  || __|  / _ \ \ \ / /| __|| _ \
-| (_ | / _ \ | |\/| || _|  | (_) | \ V / | _| |   /
- \___|/_/ \_\|_|  |_||___|  \___/   \_/  |___||_|_\
-                                                   
+No one saw Adventurer or Troll again.
+ ___  _____    _    _     ___  __  __    _    _____  ___ 
+/ __||_   _|  /_\  | |   | __||  \/  |  /_\  |_   _|| __|
+\__ \  | |   / _ \ | |__ | _| | |\/| | / _ \   | |  | _| 
+|___/  |_|  /_/ \_\|____||___||_|  |_|/_/ \_\  |_|  |___|
+                                                         
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
@@ -1668,7 +1739,7 @@ Troll will eat tonight!
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2237, 0: 0.5918, 1: 0.1845}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2142, 0: 0.6027, 1: 0.1831}
 </pre></div>
 </div>
 </div>

@@ -190,8 +190,8 @@ HTML(anim.to_jshtml())
 # 
 # - Use linters to check and enforce a consistent style
 # - Ensure the code follows PEP8 conventions (e.g. for naming and whitespace)
-# - Consider whether any of the code "smells" and refactorings from [07_04_refactoring notebook](./07_04_refactoring.html) apply here
-# - Consider whether there is structure in the code that could be refactored into classes (see [07_05_object_oriented_design](./07_05_object_oriented_design.html) for ideas)
+# - Consider whether any of the code "smells" and refactorings from [07_04_refactoring](07_04_refactoring.html) apply here
+# - Consider whether there is structure in the code that could be refactored into classes (see [07_05_object_oriented_design](07_05_object_oriented_design.html) for ideas)
 # - Add type annotations
 # 
 # You may also like to apply some of what we've learned in previous modules, for example:

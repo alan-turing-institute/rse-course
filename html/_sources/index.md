@@ -26,7 +26,7 @@ However, this course is **not** intended to teach `Python` and you may find supp
 
 ### Solutions
 
-**None:** you are not graded.
+**Note:** you are not graded.
 
 Sample solutions to the exercises are available [here](solutions/index.md).
 

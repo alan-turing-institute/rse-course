@@ -293,9 +293,9 @@ get_ipython().run_cell_magic('bash', '', 'greet James Hetherington\ngreet --poli
 #         {"personal": "James", "family": "Hetherington", "title": "Dr"},
 #     ]
 #     outputs = [  # codes like \x1b[32m are colours
-#         "\x1b[32mHey, \x1b[31mJames Hetherington.",
-#         "\x1b[32mHow do you do, \x1b[31mJames Hetherington.",
-#         "\x1b[32mHey, \x1b[34mDr \x1b[31mJames Hetherington.",
+#         "\x1b[40m\x1b[33mHey, \x1b[47m\x1b[1m\x1b[31mJames Hetherington",
+#         "\x1b[40m\x1b[33mHow do you do, \x1b[47m\x1b[1m\x1b[31mJames Hetherington",
+#         "\x1b[40m\x1b[33mHey, \x1b[44m\x1b[37mDr \x1b[47m\x1b[1m\x1b[31mJames Hetherington",
 #     ]
 #     for inp, out in zip(inputs, outputs):
 #         assert greet(**inp) == out
@@ -311,7 +311,7 @@ get_ipython().run_cell_magic('bash', '', 'cd Greetings\npytest\n')
 
 # e.g.:
 
-# In[ ]:
+# In[8]:
 
 
 get_ipython().run_cell_magic('writefile', 'Greetings/README.md', '\nGreetings!\n==========\n\nThis is a very simple example package used as part of the Turing\n[Research Software Engineering with Python](https://alan-turing-institute.github.io/rse-course) course.\n\nUsage:\n    \nInvoke the tool with greet <FirstName> <Secondname>\n')
@@ -321,7 +321,7 @@ get_ipython().run_cell_magic('writefile', 'Greetings/README.md', '\nGreetings!\n
 
 # e.g.:
 
-# In[ ]:
+# In[9]:
 
 
 get_ipython().run_cell_magic('writefile', 'greetings/LICENSE.md', '\n(C) The Alan Turing Institute 2021\n\nThis "greetings" example package is granted into the public domain.\n')
@@ -331,7 +331,7 @@ get_ipython().run_cell_magic('writefile', 'greetings/LICENSE.md', '\n(C) The Ala
 
 # e.g.:
 
-# In[ ]:
+# In[10]:
 
 
 get_ipython().run_cell_magic('writefile', 'Greetings/CITATION.md', '\nIf you wish to refer to this course, please cite the URL\nhttps://alan-turing-institute.github.io/rse-course\n\nPortions of the material are taken from Software Carpentry\nhttp://swcarpentry.org\n')
@@ -374,7 +374,7 @@ get_ipython().run_cell_magic('writefile', 'Greetings/CITATION.md', '\nIf you wis
 #     return greeting
 # ```
 
-# In[ ]:
+# In[11]:
 
 
 import greetings

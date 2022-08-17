@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Design
+# # Object-Oriented Design
 
-# 
-# ## Object-Oriented Design
-# 
 # In this session, we will finally discuss the thing most people think of when they refer to "Software Engineering": the deliberate *design* of software.
 # We will discuss processes and methodologies for planned development of large-scale software projects: *Software Architecture*.
 # 
@@ -13,7 +10,7 @@
 # The basic concepts of object orientation are necessary to follow much of the software engineering conversation.
 # 
 # 
-# ### Design processes
+# ## Design processes
 # 
 # 
 # In addition to object-oriented architecture, software engineers have focused on the development of processes for robust, reliable software development. 
@@ -21,7 +18,7 @@
 # and maintainance costs, and meets user requirements.
 # 
 # 
-# ### Design and research
+# ## Design and research
 # 
 # 
 # Software engineering theory has largely been developed in the context of commercial software companies.
