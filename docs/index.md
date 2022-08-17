@@ -24,16 +24,19 @@ Examples and exercises for this course will be provided in `Python`.
 We will assume you have prior experience with at least one programming language but `Python` syntax and usage will be introduced during this course.
 However, this course is **not** intended to teach `Python` and you may find supplementary content useful.
 
-## Evaluation
+### Solutions
 
-**None:** you are not graded. There are two exercises that you can use for self-assessment.
+**None:** you are not graded.
 
-- [Packaging Greengraph](self_assessment/00_packaging_treasure.ipynb)
-- [Refactoring the Bad Boids](self_assessment/01_refactoring_trees.ipynb)
+Sample solutions to the exercises are available [here](solutions/index.md).
 
 ## Versions
 
-You can browse through course notes as HTML or download them as a printable PDF via the navigation bar to the left.
+You can browse through course notes as HTML, download them as a printable PDF via the navigation bar to the left, or clone the repo and run the notebooks (see the setup instructions).
+
+## Support and Contributing
 
 **If you encounter any problem or bug in these materials**, please remember to add an issue to the [course repo](https://github.com/alan-turing-institute/rse-course), explaining the problem and, potentially, its solution.
 By doing this, you will improve the instructions for future users. 🎉
+
+We also welcome suggestions and contributions for adding to or improving the material.
