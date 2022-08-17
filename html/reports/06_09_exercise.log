@@ -1,0 +1,100 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import copy
+from art import tprint
+
+
+class Game:
+    def __init__(self, dungeon):
+        self.dungeon = dungeon
+
+    def preamble(self):
+        tprint("Troll Treasure\n", font="small")
+        print(
+            f"""
+The {self.dungeon.adventurer.name} is looking for treasure in a mysterious dungeon.
+Will they succeed or be dinner for the {self.dungeon.troll.name} that lurks there?
+
+The map of the dungeon is below:
+o : an empty room
+o - o : connected rooms
+{self.dungeon.troll.symbol} : {self.dungeon.troll.name}
+{self.dungeon.adventurer.symbol} : {self.dungeon.adventurer.name}
+{self.dungeon.treasure.symbol} : the treasure
+            """
+        )
+
+    def run(self, max_steps=1000, verbose=True, start_prompt=False):
+        dungeon = copy.deepcopy(self.dungeon)
+        dungeon.set_verbose(verbose)
+        if verbose:
+            self.preamble()
+            dungeon.draw()
+            if start_prompt:
+                input("\nPress enter to continue...")
+            else:
+                print("\nLet the hunt begin!")
+
+        for turn in range(max_steps):
+            result = dungeon.outcome()
+            if result != 0:
+                if verbose:
+                    if result == 1:
+                        print(
+                            f"\n{self.dungeon.adventurer.name} gets the treasure and returns a hero!"
+                        )
+                        tprint("WINNER", font="small")
+                    elif result == -1:
+                        print(f"\n{self.dungeon.troll.name} will eat tonight!")
+                        tprint("GAME OVER", font="small")
+                return result
+            if verbose:
+                print(f"\nTurn {turn + 1}")
+            dungeon.update()
+        # no outcome in max steps (e.g. no treasure and troll can't reach adventurer)
+        if verbose:
+            print(
+                f"\nNo one saw {self.dungeon.adventurer.name} or {self.dungeon.troll.name} again."
+            )
+            tprint("STALEMATE", font="small")
+
+        return result
+
+    def probability(self, trials=10000, max_steps=1000, verbose=False):
+        outcomes = {-1: 0, 0: 0, 1: 0}
+        for _ in range(trials):
+            result = self.run(max_steps=max_steps, verbose=False)
+            outcomes[result] += 1
+        for result in outcomes:
+            outcomes[result] = outcomes[result] / trials
+        return outcomes
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [0;32mIn [9][0m, in [0;36m<cell line: 2>[0;34m()[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mcopy[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mart[39;00m [38;5;28;01mimport[39;00m tprint
+[1;32m      5[0m [38;5;28;01mclass[39;00m [38;5;21;01mGame[39;00m:
+[1;32m      6[0m     [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, dungeon):
+
+[0;31mModuleNotFoundError[0m: No module named 'art'
+ModuleNotFoundError: No module named 'art'
+

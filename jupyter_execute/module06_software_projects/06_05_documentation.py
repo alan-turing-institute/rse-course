@@ -87,26 +87,53 @@
 # 
 
 # ``` bash
-# sphinx-quickstart
+# sphinx-quickstart docs
 # ```
 
+# (`docs` is the name of the directory where the documentation will be stored)
+# 
 # Which responds:
 
-# ```
-# Welcome to the Sphinx 3.4.3 quickstart utility.
+# ```bash
+# Welcome to the Sphinx 4.4.0 quickstart utility.
 # 
 # Please enter values for the following settings (just press Enter to
 # accept a default value, if one is given in brackets).
 # 
-# Selected root path: .
+# Selected root path: docs
 # 
 # You have two options for placing the build directory for Sphinx output.
 # Either, you use a directory "_build" within the root path, or you separate
 # "source" and "build" directories within the root path.
-# > Separate source and build directories (y/n) [n]:
+# > Separate source and build directories (y/n) [n]: n
+# 
+# The project name will occur in several places in the built documentation.
+# > Project name: greetings
+# > Author name(s): The Alan Turing Institute
+# > Project release []: 0.0.1
+# 
+# If the documents are to be written in a language other than English,
+# you can select a language here by its language code. Sphinx will then
+# translate text that it generates into that language.
+# 
+# For a list of supported codes, see
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
+# > Project language [en]:
+# 
+# Creating file module06_software_projects/Greetings/docs/conf.py.
+# Creating file module06_software_projects/Greetings/docs/index.rst.
+# Creating file module06_software_projects/Greetings/docs/Makefile.
+# Creating file module06_software_projects/Greetings/docs/make.bat.
+# 
+# Finished: An initial directory structure has been created.
+# 
+# You should now populate your master file module06_software_projects/Greetings/docs/index.rst
+# and create other documentation source files. Use the Makefile to build the docs, like so:
+#    make builder
+# where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 # ```
 
-# and then look at and adapt the generated config, which in our case is a file called `conf.py` in the `doc/source/` directory of the project. This contains the project's Sphinx configuration, as Python variables, for example:
+# and then look at and adapt the generated config, which in our case is a file called `conf.py` in the `docs/` directory of the project. This contains the project's Sphinx configuration, as Python variables. Let's populate the `extensions` field with some extensions we'd like to use (see the [extensions documentation](https://www.sphinx-doc.org/en/master/usage/extensions/index.html)):
 
 # ``` python
 # #Add any Sphinx extension module names here, as strings. They can be
@@ -121,32 +148,46 @@
 # ]
 # ```
 
-# To proceed with the example, we'll copy a finished `conf.py` into our folder, though normally you'll always use `sphinx-quickstart`
+# We've added some other configuration options to `conf.py` the file in the repo too (but normally you'll use `sphinx-quickstart`).
 # 
-
-# In[1]:
-
-
-get_ipython().run_cell_magic('writefile', 'greetings/doc/source/conf.py', '# -- Project information -----------------------------------------------------\n\nproject = u"Greetings"\ncopyright = u"2021, James Hetherington"\nauthor = "James Hetherington"\n\n# The full version, including alpha/beta/rc tags\nrelease = "0.1"\n\n\n# -- General configuration ---------------------------------------------------\n\n# Add any Sphinx extension module names here, as strings. They can be\n# extensions coming with Sphinx (named \'sphinx.ext.*\') or your custom\n# ones.\nextensions = [\n    "sphinx.ext.autodoc",  # Support automatic documentation\n    "sphinx.ext.coverage",  # Automatically check if functions are documented\n    "sphinx.ext.mathjax",  # Allow support for algebra\n    "sphinx.ext.viewcode",  # Include the source code in documentation\n    "numpydoc",  # Support NumPy style docstrings\n]\n\n# Add any paths that contain templates here, relative to this directory.\ntemplates_path = ["_templates"]\n\n# List of patterns, relative to source directory, that match files and\n# directories to ignore when looking for source files.\n# This pattern also affects html_static_path and html_extra_path.\nexclude_patterns = ["Thumbs.db", ".DS_Store"]\n\n# The suffix(es) of source filenames.\n# You can specify multiple suffix as a list of string:\nsource_suffix = ".rst"\n\n# The master toctree document.\nmaster_doc = "index"\n\n# The name of the Pygments (syntax highlighting) style to use.\npygments_style = "sphinx"\n\n\n# -- Options for HTML output -------------------------------------------------\n\n# The theme to use for HTML and HTML Help pages.  See the documentation for\n# a list of builtin themes.\nhtml_theme = "alabaster"\n\n# Add any paths that contain custom static files (such as style sheets) here,\n# relative to this directory. They are copied after the builtin static files,\n# so a file named "default.css" will overwrite the builtin "default.css".\nhtml_static_path = ["_static"]\n\n\n# -- Options for LaTeX output ------------------------------------------------\n\nlatex_elements = {}\n\n# Grouping the document tree into LaTeX files. List of tuples\n# (source start file, target name, title, author,\n#  documentclass [howto, manual, or own class]).\nlatex_documents = [\n    (\n        "index",\n        "Greetings.tex",\n        u"Greetings Documentation",\n        u"James Hetherington",\n        "manual",\n    ),\n]\n\n\n# -- Options for manual page output ------------------------------------------\n\n# One entry per manual page. List of tuples\n# (source start file, name, description, authors, manual section).\nman_pages = [\n    ("index", "greetings", u"Greetings Documentation", [u"James Hetherington"], 1)\n]\n\n# -- Options for Texinfo output ----------------------------------------------\n\n# Grouping the document tree into Texinfo files. List of tuples\n# (source start file, target name, title, author,\n#  dir menu entry, description, category)\ntexinfo_documents = [\n    (\n        "index",\n        "Greetings",\n        u"Greetings Documentation",\n        u"James Hetherington",\n        "Greetings",\n        "One line description of project.",\n        "Miscellaneous",\n    ),\n]\n')
-
 
 # ## Define the root documentation page
 
 # 
 # Sphinx uses [RestructuredText](http://docutils.sourceforge.net/rst.html) another wiki markup format similar to Markdown.
 # 
-# You define an `index.rst` file to contain any preamble text you want. The rest is autogenerated by `sphinx-quickstart`
+# `sphinx-quickstart` creates a template `index.rst` for us, which can be edited to contain any preamble text you want. Here it is:
+# 
+# ```rst
+# .. greetings documentation master file, created by
+#    sphinx-quickstart on Thu Aug  4 11:47:51 2022.
+#    You can adapt this file completely to your liking, but it should at least
+#    contain the root `toctree` directive.
+# 
+# Welcome to greetings's documentation!
+# =====================================
+# 
+# .. toctree::
+#    :maxdepth: 2
+#    :caption: Contents:
 # 
 # 
 # 
+# Indices and tables
+# ==================
 # 
-# 
+# * :ref:`genindex`
+# * :ref:`modindex`
+# * :ref:`search`
+# ```
 # 
 
-# In[2]:
+# And a lightly modified version:
+
+# In[1]:
 
 
-get_ipython().run_cell_magic('writefile', 'greetings/doc/source/index.rst', 'Welcome to Greetings\'s documentation!\n=====================================\nSimple "Hello, James" module developed to teach research software engineering.\n\n.. toctree::\n   :maxdepth: 2\n   :caption: Contents:\n\n\nFunctions\n=========\n\n.. autofunction:: greetings.greeter.greet\n\n\nIndices and tables\n==================\n\n* :ref:`genindex`\n* :ref:`modindex`\n* :ref:`search`\n')
+get_ipython().run_cell_magic('writefile', 'greetings/docs/index.rst', 'Welcome to Greetings\'s documentation!\n=====================================\nSimple "Hello, James" module developed to teach research software engineering.\n\n.. toctree::\n   :maxdepth: 2\n   :caption: Contents:\n\n\nFunctions\n=========\n\n.. autofunction:: greetings.greeter.greet\n\n\nIndices and tables\n==================\n\n* :ref:`genindex`\n* :ref:`modindex`\n* :ref:`search`\n')
 
 
 # ##  Run sphinx
@@ -155,12 +196,18 @@ get_ipython().run_cell_magic('writefile', 'greetings/doc/source/index.rst', 'Wel
 # We can run Sphinx using:
 # 
 
-# In[3]:
+# In[2]:
 
 
-get_ipython().run_cell_magic('bash', '', 'cd greetings/\nsphinx-build doc/source doc/output\n')
+get_ipython().run_cell_magic('bash', '', 'cd Greetings/\nsphinx-build docs docs/output\n')
 
 
 # ## Sphinx output
 
-# Sphinx's output is [html](https://alan-turing-institute.github.io/rse-course/module06_software_projects/greetings/doc/index.html). We just created a simple single function's documentation, but Sphinx will create multiple nested pages of documentation automatically for many functions.
+# Sphinx's output is html, if you open the `Greetings/docs/output/index.html` file you'll see a simple documentation page for our `greetings` package has been created. We just created a simple single function's documentation, but Sphinx will create multiple nested pages of documentation automatically for many functions.
+
+# ## Hosting documentation
+# 
+# If you'd like to make your documentation available online two of the most popular (free) hosting services are [GitHub pages](https://pages.github.com/), and [Read the docs](https://readthedocs.org/). Both can host documentation generated by Sphinx and have ways to automatically build and update your documentation when changes are made.
+# 
+# We have the example Greetings docs page on GitHub pages here: https://alan-turing-institute.github.io/Greetings/, which is built using [this GitHub Actions workflow](https://github.com/alan-turing-institute/Greetings/blob/main/.github/workflows/docs.yml).

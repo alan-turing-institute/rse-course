@@ -1,0 +1,1440 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Managing Dependencies &#8212; Research Software Engineering with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python not in the Notebook" href="06_03_non_notebook_python.html" />
+    <link rel="prev" title="Installing Libraries" href="06_01_pypi_packages.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Research Software Engineering with Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/00_linux.html">
+     Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_mac.html">
+     MacOS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_windows.html">
+     Windows
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
+     An example Python data analysis notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_using_functions.html">
+     Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_types.html">
+     Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_containers.html">
+     Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_data_structures.html">
+     Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07answer_maze_model.html">
+     Solution: my Maze Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_control_and_flow.html">
+     Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_iteration.html">
+     Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09answer_maze_counting.html">
+     Solution: counting people in the maze
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00answer_maze_comprehension.html">
+     Solution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_defining_classes.html">
+     Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
+     Working with Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_getting_data_from_the_internet.html">
+     Getting data from the Internet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_fields_and_records.html">
+     Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_structured_data.html">
+     Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01answer_maze_saving.html">
+     Solution: Saving and loading data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_earthquake_exercise.html">
+     Exercise/Example: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02answer_earthquake_exercise.html">
+     Solution: the biggest Earthquake in the UK this Century
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_plotting_with_matplotlib.html">
+     Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy.html">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
+     The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
+     Recap: Understanding the “Greengraph” Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     Solo work with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
+     Git Stash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
+     Working with multiple remotes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     Debugging With Git Bisect
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     How to Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Software Projects
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_00_libraries.html">
+     Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_01_pypi_packages.html">
+     Installing Libraries
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Managing Dependencies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_03_non_notebook_python.html">
+     Python not in the Notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_04_packaging.html">
+     Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_05_documentation.html">
+     Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_06_software_development.html">
+     Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_07_software_licensing.html">
+     Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_08_software_issues.html">
+     Managing software issues
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_09_exercise.html">
+     Exercise: Packaging Troll Treasure
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_coding_conventions.html">
+     Coding Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_comments.html">
+     Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_refactoring.html">
+     Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_object_oriented_design.html">
+     Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_classes.html">
+     Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_design_patterns.html">
+     Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_refactoring_boids.html">
+     Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
+     Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
+     Metaprogramming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     Performance programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
+     Optimising Mandelbrot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
+     NumPy for Performance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
+     Cython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
+     Scaling for containers and algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     What can go wrong?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
+     Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
+     Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
+     Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
+     Saying the same thing multiple ways
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
+     Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Solutions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../solutions/index.html">
+   Exercise Solutions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_02.html">
+     Module 02
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_03.html">
+     Module 03
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_04.html">
+     Module 04
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_05.html">
+     Module 05
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_06.html">
+     Module 06: Troll Treasure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_07.html">
+     Module 07: Bad Boids
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_08.html">
+     Module 08
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_09.html">
+     Module 09
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_10.html">
+     Module 10
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/module06_software_projects/06_02_managing_dependencies.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/alan-turing-institute/rse-course"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule06_software_projects/06_02_managing_dependencies.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/alan-turing-institute/rse-course/edit/main/module06_software_projects/06_02_managing_dependencies.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module06_software_projects/06_02_managing_dependencies.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specifying-dependencies">
+   Specifying Dependencies
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pip-and-requirements-txt">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pip
+      </span>
+     </code>
+     and requirements.txt
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pinning-versions">
+     Pinning versions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#version-ranges">
+     Version ranges
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-should-you-pin-dependency-versions">
+     (How) should you pin dependency versions?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-dependencies">
+     Updating dependencies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtual-environments">
+   Virtual Environments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#venv">
+     venv
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conda">
+     conda
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#which-to-choose">
+   Which to choose?
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Managing Dependencies</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specifying-dependencies">
+   Specifying Dependencies
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pip-and-requirements-txt">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pip
+      </span>
+     </code>
+     and requirements.txt
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pinning-versions">
+     Pinning versions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#version-ranges">
+     Version ranges
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-should-you-pin-dependency-versions">
+     (How) should you pin dependency versions?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-dependencies">
+     Updating dependencies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtual-environments">
+   Virtual Environments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#venv">
+     venv
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conda">
+     conda
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#which-to-choose">
+   Which to choose?
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="managing-dependencies">
+<h1>Managing Dependencies<a class="headerlink" href="#managing-dependencies" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="specifying-dependencies">
+<h2>Specifying Dependencies<a class="headerlink" href="#specifying-dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pip-and-requirements-txt">
+<h3><code class="docutils literal notranslate"><span class="pre">pip</span></code> and requirements.txt<a class="headerlink" href="#pip-and-requirements-txt" title="Permalink to this headline">¶</a></h3>
+<p>Probably the most well known and ubiquitous way of specifying and installing dependencies in Python is with a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file. This is a text file with a list of the names of packages your code relies on, for example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geopy
+imageio
+matplotlib
+numpy
+requests
+</pre></div>
+</div>
+<p>To install dependencies from a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> files are not the only way of specifying dependencies, we’ll refer to some others and the differences between them here and later in this module.</p>
+</div>
+<div class="section" id="pinning-versions">
+<h3>Pinning versions<a class="headerlink" href="#pinning-versions" title="Permalink to this headline">¶</a></h3>
+<p>Different versions of libraries may have different features, behaviour, and interfaces. To ensure our code is reproducible and other users (and ourselves in the future) get the same results from running the code, it’s a good idea to specify the version of each dependency that should be installed.</p>
+<p>To pin dependencies to specific versions include them in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geopy==2.2.0
+imageio==2.19.3
+matplotlib==3.5.2
+numpy==1.23.0
+requests==2.28.1
+</pre></div>
+</div>
+<p>To automatically generate a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file like this, containing the versions of all the libraries installed in your current Python environment, you can run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip freeze
+</pre></div>
+</div>
+<p>However, note that <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code> won’t output only your direct dependencies, but also</p>
+<ul class="simple">
+<li><p>the dependencies of your dependencies</p></li>
+<li><p>the dependencies of the dependencies of your dependencies</p></li>
+<li><p>…</p></li>
+</ul>
+<p>It may be better to only specify your direct dependencies and let the maintainers of those libraries deal with their own dependencies (but that can also come with future problems and incompatibilities in some cases).</p>
+</div>
+<div class="section" id="version-ranges">
+<h3>Version ranges<a class="headerlink" href="#version-ranges" title="Permalink to this headline">¶</a></h3>
+<p>You don’t have to specify an exact version, you can also use comparisons like <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, and <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> to give ranges of package versions that are compatible with your code (see <a class="reference external" href="https://peps.python.org/pep-0440/#version-specifiers">here</a>).</p>
+<p>An interesting one is <code class="docutils literal notranslate"><span class="pre">~=</span></code>, or “approximately equal to”. For example, if we specified the numpy dependency as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>numpy~=1.23.0
+</pre></div>
+</div>
+<p>it allows <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install any (newer) <code class="docutils literal notranslate"><span class="pre">1.23.x</span></code> version of numpy (e.g. <code class="docutils literal notranslate"><span class="pre">1.23.1</span></code> or <code class="docutils literal notranslate"><span class="pre">1.23.5</span></code>), but not versions <code class="docutils literal notranslate"><span class="pre">1.24.0</span></code> or later (which may introduce changes that are incompatible with <code class="docutils literal notranslate"><span class="pre">1.23.0</span></code>).</p>
+</div>
+<div class="section" id="how-should-you-pin-dependency-versions">
+<h3>(How) should you pin dependency versions?<a class="headerlink" href="#how-should-you-pin-dependency-versions" title="Permalink to this headline">¶</a></h3>
+<p>There are potential caveats and pitfalls with all approaches. At the extremes you have:</p>
+<ul class="simple">
+<li><p><strong>Not specifying a version</strong>:</p>
+<ul>
+<li><p>Dependencies are likely to introduce breaking changes in the future that will cause your code to fail or give different results.</p></li>
+</ul>
+</li>
+<li><p><strong>Pinning an exact version</strong>:</p>
+<ul>
+<li><p>Specific versions may not be available on all platforms. You (or new users of your code) won’t get bug and security fixes in new versions.</p></li>
+</ul>
+</li>
+</ul>
+<p>For research code, to ensure you get exactly the same results from repeating an analysis on another system (or a fresh installation on the same system) pinning versions is often the best approach.</p>
+</div>
+<div class="section" id="updating-dependencies">
+<h3>Updating dependencies<a class="headerlink" href="#updating-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>Running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip list --outdated
+</pre></div>
+</div>
+<p>will show a list of installed packages that have newer versions available. You can upgrade to the latest version by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade PACKAGE_NAME
+</pre></div>
+</div>
+<p>(and then update <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> to reflect the new version you’re using, if needed).</p>
+<p>This is quite a manual approach and other tools have more streamlined ways of handling the upgrading process. See <a class="reference external" href="https://python-poetry.org/">Poetry</a>, for example.</p>
+<p>There are also automated tools like <a class="reference external" href="https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/">dependabot</a> that can look at the dependencies in your GitHub repo and suggest changes to avoid security vulnerabilities.</p>
+</div>
+</div>
+<div class="section" id="virtual-environments">
+<h2>Virtual Environments<a class="headerlink" href="#virtual-environments" title="Permalink to this headline">¶</a></h2>
+<p>Specifying dependency versions may not always be enough to give you a working (and future-proof) set up for yourself and other users of your code. For example, you may have:</p>
+<ul class="simple">
+<li><p>Different projects on your system requiring different versions of a library, or libraries that are incompatible with each other.</p></li>
+<li><p>Libraries that are only available on some platforms (e.g. Linux only) or have different behaviour on other platforms.</p></li>
+<li><p>Projects requiring different versions of Python itself</p></li>
+</ul>
+<p>For these reasons we’d recommend using a separate “virtual environment” for each project on your system.</p>
+<p>In a virtual environment all the packages you install are isolated from other environments, so you could have one environment using <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.10</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">1.23.1</span></code>, and another using <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.8</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">1.20.3</span></code>, for example.</p>
+<div class="section" id="venv">
+<h3>venv<a class="headerlink" href="#venv" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">venv</span></code> is included in the Python standard library and can be used to create virtual environments (see the docs <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">here</a>).</p>
+<p>To create a virtual environment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+
+python -m venv myenv
+</pre></div>
+</div>
+</div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">myenv</span></code> is the name of the directory that will be created to store the environment’s configuration. The initial contents of the <code class="docutils literal notranslate"><span class="pre">myenv</span></code> directory are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+
+ls -F myenv/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bin/
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>include/
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lib/
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lib64@
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pyvenv.cfg
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">which</span></code> bash command returns the path to an executable on your system. Currently, <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> will return the path to the environment you’re using to run the course notebooks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+
+which python
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/bin/python
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use our new virtual environment instead, we need to “activate” it, as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source myenv/bin/activate
+
+which python
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/rse-course/rse-course/module06_software_projects/myenv/bin/python
+</pre></div>
+</div>
+</div>
+</div>
+<p>the path to the <code class="docutils literal notranslate"><span class="pre">python</span></code> executable now points to a location in the <code class="docutils literal notranslate"><span class="pre">myenv</span></code> directory (our separate Python virtual environment).</p>
+<p>We can then install and run libraries without it impacting other Python environments on our system, e.g.:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source myenv/bin/activate
+
+pip install pyjokes
+pyjoke
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyjokes in ./myenv/lib/python3.8/site-packages (0.6.0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: You are using pip version 22.0.4; however, version 22.2.2 is available.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>You should consider upgrading via the &#39;/home/runner/work/rse-course/rse-course/module06_software_projects/myenv/bin/python -m pip install --upgrade pip&#39; command.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>QAs consist of 55% water, 30% blood and 15% Jira tickets.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note:</p>
+<ul class="simple">
+<li><p>You only need to <code class="docutils literal notranslate"><span class="pre">activate</span></code> the environment once usually. We need to do it in each cell here because using <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> is like creating a new terminal.</p></li>
+<li><p>If you try <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">pip</span></code> before and after activating the environment you’ll see that the virtual environment uses a different <code class="docutils literal notranslate"><span class="pre">pip</span></code> executable as well</p></li>
+</ul>
+<p>To leave the virtual environment and return to using your system Python (or the previously activated environment), you need to “deactivate” it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source myenv/bin/activate
+
+echo &quot;======================&quot;
+echo &quot;In myenv, python path:&quot;
+which python
+pyjoke
+echo &quot;======================&quot;
+
+deactivate
+
+echo &quot;&quot;
+echo &quot;======================&quot;
+echo &quot;Outside myenv, python path:&quot;
+which python
+pyjoke
+echo &quot;======================&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In myenv, python path:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/rse-course/rse-course/module06_software_projects/myenv/bin/python
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hip&#39;, &#39;hip&#39;] (hip hip array!)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outside myenv, python path:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/bin/python
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bash: line 15: pyjoke: command not found
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="conda">
+<h3>conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> is a virtual environment, dependency, and package manager for multiple languages. There are multiple distributions including <a class="reference external" href="https://anaconda.org/">Anaconda</a>, which comes with many common data science libraries pre-installed, and <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>, which is <code class="docutils literal notranslate"><span class="pre">conda</span></code> without pre-installed dependencies.</p>
+<p>Advantages of conda include:</p>
+<ul class="simple">
+<li><p>It has binaries built for multiple platforms, e.g. <code class="docutils literal notranslate"><span class="pre">conda</span></code> packages are usually available on Windows, Mac, and Linux (whereas it’s quite common to find packages on PyPI that don’t have a Windows build, for example).</p></li>
+<li><p>You can use it to install non-Python dependencies.</p></li>
+<li><p>It’s an “all-in-one” tool: You can use it to manage your entire Python workflow.</p></li>
+</ul>
+<p>Some disadvantages:</p>
+<ul class="simple">
+<li><p>Other users of your code may not have or want to use conda (but everyone using Python will have pip available, for example)</p></li>
+<li><p>There’s a bit more bloat than other tools, and the dependency resolver can be quite slow.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span></code> environments a specified in the YAML format, typically in a file called <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, and look like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myenv</span><span class="w"></span>
+
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geopy=2.2.0</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imageio=2.19.3</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib=3.5.2</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy=1.23.0</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requests=2.28.1</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that a version of Python itself is specified in the dependencies - you can install any version of Python in a conda environment.</p>
+<p>To create the environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+</pre></div>
+</div>
+<p>And to use it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate myenv
+
+<span class="c1"># work in the environment</span>
+
+conda deactivate
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="which-to-choose">
+<h2>Which to choose?<a class="headerlink" href="#which-to-choose" title="Permalink to this headline">¶</a></h2>
+<p>There’s a large ecosystem of different Python (and general) dependency, environment, and packaging tools, many more than we’ve seen here. A few other notable ones are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.docker.com">Docker</a> - creates isolated “containers” which are whole virtual systems, allowing you to configure everything including the operating system to use. This is a “maximally reproducible” solution that ensures future users of your code get a complete and identical environment from the ground up.</p></li>
+<li><p><a class="reference external" href="https://github.com/pyenv/pyenv">pyenv</a> - install and manage different versions of Python</p></li>
+<li><p><a class="reference external" href="https://python-poetry.org/">Poetry</a> - create virtual environments and Python packages, and improved dependency management</p></li>
+<li><p><a class="reference external" href="https://setuptools.pypa.io/en/latest/userguide/quickstart.html">setuptools</a> - for creating Python packages (we’ll be looking at this later)</p></li>
+</ul>
+<p>Which are best for your project depends on what you’re trying to achieve and personal preference. It’s also likely that you’ll be using multiple tools as they all have different priorities and features.</p>
+<p>This table gives a rough summary of what the tools mentioned in this course can be used for, loosely ordered from most flexibility (but perhaps most involved setup) at the top, to simpler, single-usecase tools at the botom:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Virtual environments</p></th>
+<th class="head"><p>Install non-Python dependencies</p></th>
+<th class="head"><p>Install Python versions</p></th>
+<th class="head"><p>Manage Python dependencies</p></th>
+<th class="head"><p>Create Python packages</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Docker</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+</tr>
+<tr class="row-odd"><td><p>conda</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p>Poetry</p></td>
+<td><p>✅</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p>pyenv</p></td>
+<td><p>✅</p></td>
+<td><p>❌</p></td>
+<td><p>✅</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+</tr>
+<tr class="row-even"><td><p>setuptools</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p>venv</p></td>
+<td><p>✅</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+</tr>
+<tr class="row-even"><td><p>pip</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+<td><p>❌</p></td>
+<td><p>✅</p></td>
+<td><p>❌</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./module06_software_projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="06_01_pypi_packages.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Installing Libraries</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="06_03_non_notebook_python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python not in the Notebook</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
+    
+      <div class="extra_footer">
+        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

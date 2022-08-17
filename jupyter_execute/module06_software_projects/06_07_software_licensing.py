@@ -165,6 +165,28 @@
 # 
 # If you don't want it to, use the LGPL. ("Lesser GPL"). This has an exception for linking libraries.
 
+# ## Referencing the license in every file
+# 
+# Some licenses require that you include license information in every file.
+# Others do not. 
+# 
+# Typically, every file should contain something like:
+
+# In[1]:
+
+
+# (C) The Alan Turing Institute 2010-2020
+# This software is licensed under the terms of the <foo license>
+# See <somewhere> for the license details.
+
+
+# Check your license at
+# [opensource.org](http://opensource.org/) for details of how to apply it to your software. For example, for the [GPL](http://opensource.org/licenses/GPL-3.0#howto)
+
+# ## Choose a license
+# 
+# See [GitHub's advice on how to choose a license](http://choosealicense.com/)
+
 # ## Citing software
 # 
 # Almost all software licenses require people to credit you for what they used ("attribution").
@@ -190,27 +212,12 @@
 #    url = {http://had.co.nz/ggplot2/book},
 #  }
 
-# ## Referencing the license in every file
+# ## Publishing software
 # 
-# Some licenses require that you include license information in every file.
-# Others do not. 
+# If you'd like to make your software more easily citable, there are a few options for creating software papers and DOIs. These include:
 # 
-# Typically, every file should contain something like:
-
-# In[1]:
-
-
-# (C) The Alan Turing Institute 2010-2020
-# This software is licensed under the terms of the <foo license>
-# See <somewhere> for the license details.
-
-
-# Check your license at
-# [opensource.org](http://opensource.org/) for details of how to apply it to your software. For example, for the [GPL](http://opensource.org/licenses/GPL-3.0#howto)
-
-# ## Choose a license
-# 
-# See [GitHub's advice on how to choose a license](http://choosealicense.com/)
+# - Software journals such as [The Jounal of Open Source Software (JOSS)](https://joss.theoj.org/), which publishes software with a short paper/codebase description attached, 
+# - File hosting services like [Zenodo](https://zenodo.org/), which will generate a DOI you can use to link to a specific version of your code.
 
 # ## Open source does not equal free maintenance
 # 

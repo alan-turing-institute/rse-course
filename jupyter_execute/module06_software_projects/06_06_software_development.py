@@ -75,8 +75,6 @@
 # Software is intrinsically different:
 # 
 
-# ## Software is not made of bricks
-
 # 
 # > Software is not the same 'stuff' as that from which physical systems are constructed.
 # Software systems differ in material respects from physical systems.
@@ -88,8 +86,6 @@
 # software systems (though clearly we are working hard on providing these) nor do we have a straightforward mathematical account that
 # permits us to reason about the effects of composition.
 # 
-
-# ## Software is not made of bricks
 
 # 
 # > Third, software systems operate in a domain determined principally by arbitrary rules about information and symbolic communication whilst the
