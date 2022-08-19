@@ -72,8 +72,6 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
   However note that if you are running an older `Linux` distribution you may get older versions with different look and features.
   A recent `Linux` distribution is recommended.
 
-  ## 
-
   Recent versions of `Ubuntu` come with mostly up to date versions of all needed packages.
   The version of `IPython` might be slightly out of date.
   Advanced users may wish to upgrade this using `pip` or a manual install.
