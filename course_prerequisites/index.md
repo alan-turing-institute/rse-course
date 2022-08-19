@@ -20,13 +20,43 @@ Please ensure that you have a computer (ideally a laptop) with all of these inst
 
 ## Installing Python
 
-Install the [Anaconda](https://www.anaconda.com/distribution/) distribution for your operating system (OS).
+Install the [Anaconda](https://www.anaconda.com/distribution/) distribution for your operating system (OS). On Windows and Mac this should include an install Wizard.
 
-Open a terminal (console) window and check whether the installation has worked. You will require version `3.8` or greater of Python and Anaconda should install the most recent one by default:
+You should then test whether the installation has worked as expected by doing one of the following:
 
-```bash
-python --version
-```
+<details>
+  <summary>On Windows or Mac...</summary><p></p>
+  Open a terminal (console) window and check whether the installation has worked. You will require version `3.8` or greater of Python and Anaconda should install the most recent one by default:
+
+  ```bash
+  python --version
+  ```
+</details>
+
+<details>
+  <summary>On Linux...</summary><p></p>
+  Open a terminal window, go to the place where the file was downloaded and type:
+
+  ```bash
+  bash Anaconda3-
+  ```
+
+  and then press `Tab`.
+  The name of the file you just downloaded should appear.
+
+  Follow the text prompts ensuring that you:
+
+  - agree to the licence
+  - prepend `Anaconda` to your `PATH` (this makes the `Anaconda` distribution the default `Python`)
+
+  You can test the installation by opening a new terminal and checking that:
+
+  ```bash
+  which python
+  ```
+
+  shows a path where you installed `Anaconda`.
+</details><p></p>
 
 If the version of Python you have is < `3.8.x` or you experience some difficulties with Anaconda, there are alternative ways to install Python.
 
