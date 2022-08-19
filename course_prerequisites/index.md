@@ -18,7 +18,7 @@ By doing this you will be helping to improve the instructions for future users! 
 
 Please ensure that you have a computer (ideally a laptop) with all of these installed. Even if you think you have all of these things already, it's worth reading through the sections below to make sure.
 
-## Installing Python
+## Python
 
 Install the [Anaconda](https://www.anaconda.com/distribution/) distribution for your operating system (OS). On Windows and Mac this should include an install Wizard.
 
@@ -178,6 +178,8 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
   - `pytest`
 
 </details>
+
+##
 
 ## Troubleshooting
 
