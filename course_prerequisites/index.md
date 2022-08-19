@@ -23,7 +23,7 @@ By doing this you will be helping to improve the instructions for future users! 
 - `git` for the version control module
 - a suitable text editor
 
-Please ensure that you have a computer (ideally a laptop) with all of these installed. Even if you think you have all of these things already, it's worth reading through the sections below to make sure.
+Please ensure that you have a computer (ideally a laptop) with all of these installed. Even if you think you have all of these things already, it's worth reading through the prerequisite pages to make sure.
 
 ## Python
 
