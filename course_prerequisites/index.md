@@ -186,6 +186,10 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
 
 </details>
 
+### C++ compiler for Windows
+
+If you're using Windows, in order to use `Cython` in the "Programming for Speed" module, you may need to install a `C++ compiler`, [see here for more details](https://github.com/cython/cython/wiki/CythonExtensionsOnWindows).
+
 ## Git & GitHub
 
 #### Mac and Linux instructions:
@@ -369,12 +373,6 @@ Unless you already use a specific editor which you are comfortable with we recom
   The default shell is usually `bash` but if not you can get to `bash` by opening a terminal and typing `bash`.
   
 </details>
-
-## Additional things to install
-
-### C++ compiler for Windows
-
-If you're using Windows, in order to use `Cython` in the "Programming for Speed" module, you may need to install a `C++ compiler`, [see here for more details](https://github.com/cython/cython/wiki/CythonExtensionsOnWindows).
 
 ## Troubleshooting
 
