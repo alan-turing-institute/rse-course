@@ -33,7 +33,43 @@ For the Git part of the course, you require access to GitHub. You will need to
 3. [Add the public key to your GitHub account and the private key to your computer's keychain](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 4. Lastly, you should [test your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
 
-## Homebrew
+
+## Python
+
+Newer versions of `macOS` ship with `Python` and some packages.
+
+Check whether you have Python installed and which version by running the following in the terminal:
+
+```bash
+python --version
+```
+
+If the version of Python you have is < `3.8.x`, we recommend following the installation instructions for "Python from Homebrew" below, to get a newer version.
+
+<!-- We recommend installing a complete scientific python distribution.
+One of these is [Anaconda](https://www.anaconda.com/distribution/).
+Please download and install [Anaconda](https://www.anaconda.com/download/) (latest version). -->
+
+### Python Packages
+
+Python packages can be installed via `pip`. Install each of the following by running `pip install` in the terminal like so (if pip is unavailable, follow the "Python from Homebrew" section below)
+
+`pip install [package-name]`
+
+- `numpy`
+- `scipy`
+- `matplotlib`
+- `jupyter`
+- `ipython[all]`
+
+The following packages should be installed automatically as dependencies, but we recommend installing them manually just in case.
+
+- `tornado`
+- `jinja2`
+- `pyzmq`
+- `pytest`
+
+## Python from Homebrew
 
 [Homebrew](https://brew.sh) is a package manager for `macOS` which enables the installation of a lot of software useful for scientific computing.
 It is required for some of the installations below.
@@ -54,19 +90,7 @@ brew doctor
 And read the output to verify that everything is working as expected.
 If you are already running `MacPorts` or another package manager for `macOS` we don't recommend installing `homebrew` as well.
 
-## Python
-
-We recommend installing a complete scientific python distribution.
-One of these is [Anaconda](https://www.anaconda.com/distribution/).
-Please download and install [Anaconda](https://www.anaconda.com/download/) (latest version).
-
-## Python from Homebrew
-
-Alternatively if you wish to install `Python` manually you can use Homebrew.
-`macOS` ships with `Python` and some packages.
-However this has known limitations and we do not recommend it.
-You can install a new version of `Python` from `homebrew` with the following.
-Please follow the instructions above to install the `Xcode` command line tools and `homebrew` before attempting this.
+Install Python:
 
 ```bash
 brew install python3
@@ -87,10 +111,10 @@ python --version
 Which should print:
 
 ```bash
-Python 3.8.x
+Python 3.x.x
 ```
 
-(where x will be replaced by a version number)
+(where x.x is replaced by a version number higher than `3.8.0`)
 
 This will result in an installation of `python3` and `pip3` which you can use to have access to the latest `Python` features which will be taught in this course.
 
@@ -102,20 +126,7 @@ Then install additional `Python` packages by executing the following.
 - `freetype`
 - `gcc`
 
-`pip3 install [package-name]`
-
-- `numpy`
-- `scipy`
-- `matplotlib`
-- `jupyter`
-- `ipython[all]`
-
-The following packages should be installed automatically as dependencies, but we recommend installing them manually just in case.
-
-- `tornado`
-- `jinja2`
-- `pyzmq`
-- `pytest`
+Install the packages in the "Python Packages" section above via `pip` (note: you may have to replace `pip` with `pip3`).
 
 ## Editor and shell
 
