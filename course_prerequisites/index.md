@@ -31,6 +31,8 @@ You should then test whether the installation has worked as expected by doing on
   ```bash
   python --version
   ```
+  
+  **Note:** If you're working in Windows and haven't used a terminal or console before it may be simpler to return to this step after completing the remainder of the installation instructions on this page
 </details>
 
 <details>
@@ -179,7 +181,11 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
 
 </details>
 
-##
+## Git
+
+## GitHub
+
+## Text Editor
 
 ## Troubleshooting
 
