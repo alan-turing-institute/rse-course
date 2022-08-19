@@ -1,4 +1,4 @@
-# Working with the Course Contents
+# Jupyter
 
 After following the installation instructions for your operating system, you should now have the following:
 
