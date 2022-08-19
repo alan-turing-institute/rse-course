@@ -30,4 +30,15 @@ This should automatically open a window in your default web browser (if not, go 
 You should be able to see a layout that looks something like the below. Double clicking on the folders, then the `.ipynb` files within will allow you to view the course materials interactively, giving you the option to edit code cells and experiment as you learn.
 
 ![](img/JupyterLab-RSE-Course.png)
+
+### Jupyter issues on Windows (Sophos):
+
+To use the Jupyter Lab on a `Windows` computer with Sophos anti-virus installed it may be necessary to open additional ports allowing communication between the notebook and its server.
+The [solution](http://stackoverflow.com/questions/13036197/ipython-notebook-getting-output) is:
+
+- open your `Sophos Endpoint Security and Control Panel` from your tray or start menu
+- Select `Configure > Anti-virus > Authorization` from the menu at the top
+- Select the websites tab
+- click the `Add` button and add `127.0.0.1` and `localhost` to the `Authorized websites` list
+- restart computer (or just restart the Jupyter)
  

@@ -24,17 +24,3 @@ By doing this you will be helping to improve the instructions for future users! 
 - a suitable text editor
 
 Please ensure that you have a computer (ideally a laptop) with all of these installed. Even if you think you have all of these things already, it's worth reading through the prerequisite pages to make sure.
-
-
-## Troubleshooting
-
-### Jupyter issues on Windows:
-
-To use the Jupyter Lab (or Jupyter notebook) on a `Windows` computer with Sophos anti-virus installed it may be necessary to open additional ports allowing communication between the notebook and its server.
-The [solution](http://stackoverflow.com/questions/13036197/ipython-notebook-getting-output) is:
-
-- open your `Sophos Endpoint Security and Control Panel` from your tray or start menu
-- Select `Configure > Anti-virus > Authorization` from the menu at the top
-- Select the websites tab
-- click the `Add` button and add `127.0.0.1` and `localhost` to the `Authorized websites` list
-- restart computer (or just restart the Jupyter)
