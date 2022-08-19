@@ -33,6 +33,8 @@ For the Git part of the course, you require access to GitHub. You will need to
 3. [Add the public key to your GitHub account and the private key to your computer's keychain](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 4. Lastly, you should [test your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
 
+TODO: check if you have Python3 installed already (often the case on Mac now)
+
 ## Homebrew
 
 [Homebrew](https://brew.sh) is a package manager for `macOS` which enables the installation of a lot of software useful for scientific computing.
@@ -42,7 +44,7 @@ It is required for some of the installations below.
 Install `homebrew` via typing this at a terminal:
 
 ```bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 and then type.
