@@ -4,7 +4,7 @@ After following the installation instructions for your operating system, you sho
 
 1. A `Git` installation, linked to your `GitHub` account
 2. A working installation of the `Python` (3) programming language
-3. The `jupyter` package for `Python`
+3. The ability to install Python packages via `Conda`
 
 Throughout the course, we will be working in Python, and one of the best ways to get started with this language is Jupyter Lab.
 
@@ -18,10 +18,12 @@ cd ~/github_repos
 git clone https://github.com/alan-turing-institute/rse-course
 ```
 
-The course contents should take a few moments to download. Once the download has finished, enter the repository and launch Jupyter:
+The course contents should take a few moments to download. Once the download has finished, you should enter the cloned course repository, set up a `conda` Python environment containing the packages we'll make use of during the course (including Jupyter) and then launch Jupyter Lab. To do this, we'll make use of conda's `environment.yml` file, which is configured in this case to create an environment named `rse-course`:
 
 ```bash
 cd rse-course
+conda env create -f environment.yml
+conda activate rse-course
 jupyter lab
 ```
 
