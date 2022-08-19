@@ -71,3 +71,80 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
   The packages installed by default should cover our needs.
     
 </details>
+
+<details>
+  <summary>Alternative ways to install Python on Mac</summary><p></p>
+
+  [Homebrew](https://brew.sh) is a package manager for `macOS` which enables the installation of a lot of software useful for scientific computing.
+  It is required for some of the installations below.
+  `Homebrew` requires the `Xcode` tools above.
+
+  Install `homebrew` via typing this at a terminal:
+
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ```
+
+  and then type.
+
+  ```bash
+  brew doctor
+  ```
+
+  And read the output to verify that everything is working as expected.
+  If you are already running `MacPorts` or another package manager for `macOS` we don't recommend installing `homebrew` as well.
+
+  Install Python:
+
+  ```bash
+  brew install python3
+  ```
+
+  In order to ensure that this version of `Python` is selected over the `macOS` default version you should execute the following command:
+
+  ```bash
+  echo export PATH='/usr/local/bin:$PATH' >> ~/.bash_profile
+  ```
+
+  and reopen the terminal. Verify that this is correctly installed by executing
+
+  ```bash
+  python --version
+  ```
+
+  Which should print:
+
+  ```bash
+  Python 3.x.x
+  ```
+
+  (where x.x is replaced by a version number higher than `3.8.0`)
+
+  This will result in an installation of `python3` and `pip3` which you can use to have access to the latest `Python` features which will be taught in this course.
+
+  Then install additional `Python` packages by executing the following.
+
+  `brew install [package-name]`
+
+  - `pkg-config`
+  - `freetype`
+  - `gcc`
+
+  Python packages can be installed via `pip`. Install each of the following by running `pip install` in the terminal like so (if pip is unavailable, follow the "Python from Homebrew" section below)
+
+  `pip install [package-name]`
+
+  - `numpy`
+  - `scipy`
+  - `matplotlib`
+  - `jupyter`
+  - `ipython[all]`
+
+  The following packages should be installed automatically as dependencies, but we recommend installing them manually just in case.
+
+  - `tornado`
+  - `jinja2`
+  - `pyzmq`
+  - `pytest`
+
+</details>
