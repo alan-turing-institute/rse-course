@@ -255,6 +255,12 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
 
 ## Text Editor
 
+## Additional things to install
+
+### C++ compiler for Windows
+
+If you're using Windows, in order to use `Cython` in the "Programming for Speed" module, you may need to install a `C++ compiler`, [see here for more details](https://github.com/cython/cython/wiki/CythonExtensionsOnWindows).
+
 ## Troubleshooting
 
 ### Jupyter issues on Windows:
