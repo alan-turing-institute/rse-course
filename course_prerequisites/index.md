@@ -268,6 +268,14 @@ which should show that you have a [recent](https://en.wikipedia.org/wiki/Git#Rel
 
 ## Text Editor
 
+Unless you already use a specific editor which you are comfortable with we recommend using one of the following:
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Notepad++](https://notepad-plus-plus.org/downloads/)
+- [Vim](https://www.vim.org/)
+- [Emacs](https://www.gnu.org/software/emacs/)
+- [PyCharm](https://www.jetbrains.com/pycharm/)
+
 ## Additional things to install
 
 ### C++ compiler for Windows
