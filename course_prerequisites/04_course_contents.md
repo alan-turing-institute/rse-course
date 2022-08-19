@@ -6,7 +6,7 @@ After following the installation instructions for your operating system, you sho
 2. A working installation of the `Python` (3) programming language
 3. The `jupyter` package for `Python`
 
-Throughout the course, we will be working in Python, and one of the best ways to hey started with this language is the Jupyter notebook.
+Throughout the course, we will be working in Python, and one of the best ways to get started with this language is Jupyter Lab.
 
 In addition to viewing the course materials online at this site (https://alan-turing-institute.github.io/rse-course), we recommend cloning (downloading) the GitHub repository containing the course contents. This allows you to open the contents interactively via Jupyter on your computer.
 
