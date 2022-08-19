@@ -186,24 +186,9 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
 
 </details>
 
-## Git
+## Git & GitHub
 
-<details>
-
-  <summary>Installing Git on Windows</summary><p></p>
-  
-  Install the [GitHub Desktop Client](http://windows.github.com/).
-  This comes with both a GUI client as well as the [Git Bash](https://gitforwindows.org/) terminal client which we will use during the course. In some instances Git Bash may need to be installed separately. In order to use conda with Git Bash follow the instructions [here](https://discuss.codecademy.com/t/setting-up-conda-in-git-bash/534473) 
-
-  You'll know it has worked when you can open a Git Bash terminal (the window should have a title that starts with MINGW32) and get the Git version by running
-
-  ```bash
-  git --version
-  ```
-
-  which should show that you have a [recent](https://en.wikipedia.org/wiki/Git#Releases) copy of Git. If your version is more than 18 months old, please update it.
-  
-</details>
+#### Mac and Linux instructions:
 
 <details>
 
@@ -249,9 +234,37 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
 
   You can check that they have been set correctly by running `git config user.name` and `git config user.email`.
 
-</details>
+</details><p></p>
 
-## GitHub
+For the Git part of the course, you require access to GitHub. Follow these instructions if you are working on Mac, Linux, or if you're a Windows user who has used the command line (terminal/console) before:
+
+1. [Sign up](https://github.com/join), if you haven't already
+2. [Generate an SSH key pair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+3. [Add the public key to your GitHub account and the private key to your computer's keychain](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+4. Lastly, you should [test your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+
+#### Windows instructions:
+
+Install the [GitHub Desktop Client](http://windows.github.com/).
+This comes with both a GUI client as well as the [Git Bash](https://gitforwindows.org/) terminal client which we will use during the course. In some instances Git Bash may need to be installed separately. In order to use conda with Git Bash follow the instructions [here](https://discuss.codecademy.com/t/setting-up-conda-in-git-bash/534473)
+
+Signing in to the GitHub Desktop Client should have automatically set-up [SSH based authentication](https://help.github.com/articles/generating-ssh-keys#platform-windows) for the terminal client.
+
+Configure the default terminal client (there are three different flavours of terminal on Windows: `Windows CMD` (DOS like), `Windows Powershell`, and `BASH`) to use BASH, as this most closely resembles the `Linux` and `macOS` terminal used by other students:
+
+  1. In the Desktop Client, select **Tools**
+  2. Then **Options**
+  3. **Default Shell**
+  4. **Git Bash** 
+
+You'll know it has worked when you can open a Git Bash terminal (the window should have a title that starts with MINGW32) and get the Git version by running
+
+```bash
+git --version
+```
+
+which should show that you have a [recent](https://en.wikipedia.org/wiki/Git#Releases) copy of Git. If your version is more than 18 months old, please update it.
+
 
 ## Text Editor
 
