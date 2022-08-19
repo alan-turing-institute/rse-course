@@ -78,7 +78,7 @@ It is required for some of the installations below.
 Install `homebrew` via typing this at a terminal:
 
 ```bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 and then type.
