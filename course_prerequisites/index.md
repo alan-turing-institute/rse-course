@@ -151,13 +151,13 @@ If the version of Python you have is < `3.8.x` or you experience some difficulti
 
 ## Troubleshooting
 
-### Windows Computers with Sophos:
+### Jupyter issues on Windows:
 
-To use the `IPython` notebook on a `Windows` computer with Sophos anti-virus installed it may be necessary to open additional ports allowing communication between the notebook and its server.
+To use the Jupyter Lab (or Jupyter notebook) on a `Windows` computer with Sophos anti-virus installed it may be necessary to open additional ports allowing communication between the notebook and its server.
 The [solution](http://stackoverflow.com/questions/13036197/ipython-notebook-getting-output) is:
 
 - open your `Sophos Endpoint Security and Control Panel` from your tray or start menu
 - Select `Configure > Anti-virus > Authorization` from the menu at the top
 - Select the websites tab
 - click the `Add` button and add `127.0.0.1` and `localhost` to the `Authorized websites` list
-- restart computer (or just restart the `IPython` notebook)
+- restart computer (or just restart the Jupyter)
