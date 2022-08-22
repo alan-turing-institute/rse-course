@@ -13,8 +13,8 @@ The instructions include Windows, Mac and Linux specific sections.
   
 </details><p></p>
 
-**If you encounter any problem during insallation** and you manage to solve them (feel free to ask us for help), please remember to add an issue to the [course repo](https://github.com/alan-turing-institute/rsd-engineeringcourse), explaining the problem and solution.
-By doing this you will be helping to improve the instructions for future users! 🎉
+**If you encounter any problem during insallation** and you manage to solve them (feel free to ask us for help), it would be greatly helpful if you'd add an issue to the [course repo](https://github.com/alan-turing-institute/rsd-engineeringcourse), explaining the problem and solution (Note: you'll require a GitHub account for this).
+By doing this you will be helping to improve the instructions for future users! 🎉 
 
 ## What we're installing
 
