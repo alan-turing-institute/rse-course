@@ -4,7 +4,6 @@ Unless you already use a specific editor which you are comfortable with we recom
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Notepad++](https://notepad-plus-plus.org/downloads/)
-- [Vim](https://www.vim.org/)
 - [Emacs](https://www.gnu.org/software/emacs/)
 - [PyCharm](https://www.jetbrains.com/pycharm/)
 
