@@ -48,7 +48,7 @@
 
 </details><p></p>
 
-For the Git part of the course, you require access to GitHub. Follow these instructions if you are working on Mac, Linux, or if you're a Windows user who has used the command line (terminal/console) before:
+For the Git part of the course, you require access to GitHub. Follow these instructions if you are working on Mac or Linux:
 
 1. [Sign up](https://github.com/join), if you haven't already
 2. [Generate an SSH key pair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
