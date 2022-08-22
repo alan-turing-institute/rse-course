@@ -1,28 +1,10 @@
 # Python
 
-Install the [Anaconda](https://www.anaconda.com/distribution/) distribution for your operating system (OS). On Windows and Mac this should include an install Wizard.
-
-<details>
-  <summary>If on Linux...</summary><p></p>
-  Open a terminal window, go to the place where the file was downloaded and type:
-
-  ```bash
-  bash Anaconda3-
-  ```
-
-  and then press `Tab`.
-  The name of the file you just downloaded should appear.
-
-  Follow the text prompts ensuring that you:
-
-  - agree to the licence
-  - prepend `Anaconda` to your `PATH` (this makes the `Anaconda` distribution the default `Python`)
-
-</details><p></p>
+Download [Anaconda](https://www.anaconda.com/distribution/) for your OS. Then follow the instructions for [installation](https://docs.anaconda.com/anaconda/install/), which differ for Windows, Mac and Linux.
 
 You should then test whether the installation has worked as expected by doing the following:
 
-Open a terminal (console) window and check whether the installation has worked. You will require version `3.8` or greater of Python and Anaconda should install the most recent one by default:
+Open a terminal (console) window and check whether the installation has worked. You will require version `3.8` or greater of Python for the course and Anaconda should have installed the most recent version by default:
 
 ```bash
 python --version
