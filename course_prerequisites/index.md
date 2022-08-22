@@ -24,3 +24,11 @@ By doing this you will be helping to improve the instructions for future users! 
 - a suitable text editor
 
 Please ensure that you have a computer (ideally a laptop) with all of these installed. Even if you think you have all of these things already, it's worth reading through the prerequisite pages to make sure.
+
+## Unfamiliar with the command line?
+
+Familiarity with the command line isn't a prerequisite for the course, but you may need to make use of it at some points. Some of the install steps require you to enter commands in a prompt (terminal or console window) on your computer.
+
+If you're working on a Mac or Linux computer, simply open the `Terminal` app when you arrive at these steps.
+
+If you're on a Windows PC, we recommend following the Git installation intructions which includes installing the Git Bash terminal. 
