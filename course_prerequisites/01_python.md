@@ -2,21 +2,8 @@
 
 Install the [Anaconda](https://www.anaconda.com/distribution/) distribution for your operating system (OS). On Windows and Mac this should include an install Wizard.
 
-You should then test whether the installation has worked as expected by doing one of the following:
-
 <details>
-  <summary>On Windows or Mac...</summary><p></p>
-  Open a terminal (console) window and check whether the installation has worked. You will require version `3.8` or greater of Python and Anaconda should install the most recent one by default:
-
-  ```bash
-  python --version
-  ```
-  
-  **Note:** If you're working in Windows and haven't used a terminal or console before it may be simpler to return to this step after completing the remainder of the installation instructions on this page
-</details>
-
-<details>
-  <summary>On Linux...</summary><p></p>
+  <summary>If on Linux...</summary><p></p>
   Open a terminal window, go to the place where the file was downloaded and type:
 
   ```bash
@@ -31,14 +18,17 @@ You should then test whether the installation has worked as expected by doing on
   - agree to the licence
   - prepend `Anaconda` to your `PATH` (this makes the `Anaconda` distribution the default `Python`)
 
-  You can test the installation by opening a new terminal and checking that:
-
-  ```bash
-  which python
-  ```
-
-  shows a path where you installed `Anaconda`.
 </details><p></p>
+
+You should then test whether the installation has worked as expected by doing the following:
+
+Open a terminal (console) window and check whether the installation has worked. You will require version `3.8` or greater of Python and Anaconda should install the most recent one by default:
+
+```bash
+python --version
+```
+
+**Note:** If you're working in Windows and haven't used a terminal or console before, it may be simpler to return to this step after completing the Git installation instructions (which gives you a Git Bash console)
 
 If the version of Python you have is < `3.8.x` or you experience some difficulties with Anaconda, there are alternative ways to install Python.
 
