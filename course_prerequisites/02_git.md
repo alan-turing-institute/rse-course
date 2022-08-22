@@ -1,5 +1,15 @@
 # Git & GitHub
 
+Check whether you have installed already.
+
+```bash
+git --version
+```
+
+If not, follow the instructions for your OS and try running this commnd again.
+
+If your version of Git is more than 18 months old (see [releases](https://en.wikipedia.org/wiki/Git#Releases)), please update it.
+
 ### Mac and Linux instructions:
 
 <details>
@@ -16,11 +26,7 @@
 
   You may also install `Xcode` from the app store if you wish, but it is not needed.
 
-  The `XCode` command line tools come with `Git` so no need to do anything more, as long as you can run the following in your terminal:
-
-  ```bash
-  git --version
-  ```
+  The `XCode` command line tools come with `Git` so no need to do anything more.
 
 </details>
 
@@ -28,25 +34,18 @@
 
   <summary>Installing Git on Linux</summary><p></p>
 
-  If `git` is not already available on your machine you can try to install it via your distribution package manager (e.g. `apt-get` or `yum`), for example:
+  Install git via your distribution package manager (e.g. `apt-get` or `yum`), for example:
 
   ```bash
   sudo apt-get install git
   ```
 
-  You'll know it has worked when you can get the Git version by running
-
-  ```
-  git --version
-  ```
-
-  which should show that you have a [recent](https://en.wikipedia.org/wiki/Git#Releases) copy of Git. If your version is more than 18 months old, please update it.
-
-  You will need to set at least your email address and name, for which you can follow the **Your Identity** section of [First Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
-
-  You can check that they have been set correctly by running `git config user.name` and `git config user.email`.
-
 </details><p></p>
+
+You will need to set at least your email address and name, for which you can follow the **Your Identity** section of [First Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+
+You can check that they have been set correctly by running `git config user.name` and `git config user.email`.
+
 
 For the Git part of the course, you require access to GitHub. Follow these instructions if you are working on Mac or Linux:
 
@@ -69,10 +68,4 @@ Configure the default terminal client (there are three different flavours of ter
   3. **Default Shell**
   4. **Git Bash** 
 
-You'll know it has worked when you can open a Git Bash terminal (the window should have a title that starts with MINGW32) and get the Git version by running
-
-```bash
-git --version
-```
-
-which should show that you have a [recent](https://en.wikipedia.org/wiki/Git#Releases) copy of Git. If your version is more than 18 months old, please update it.
+You'll know it has worked when you can open a Git Bash terminal; the window should have a title that starts with MINGW32 (scroll to the top of this page for how to check the git version). 
