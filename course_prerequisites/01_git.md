@@ -10,7 +10,7 @@ If not, follow the instructions for your OS and try running this commnd again.
 
 If your version of Git is more than 18 months old (see [releases](https://en.wikipedia.org/wiki/Git#Releases)), please update it.
 
-### Mac and Linux instructions:
+## Mac and Linux instructions:
 
 <details>
 
@@ -54,7 +54,7 @@ For the Git part of the course, you require access to GitHub. Follow these instr
 3. [Add the public key to your GitHub account and the private key to your computer's keychain](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 4. Lastly, you should [test your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
 
-### Windows instructions:
+## Windows instructions:
 
 Install the [GitHub Desktop Client](http://windows.github.com/).
 This comes with both a GUI client as well as the [Git Bash](https://gitforwindows.org/) terminal client which we will use during the course. In some instances Git Bash may need to be installed separately. In order to use conda with Git Bash follow the instructions [here](https://discuss.codecademy.com/t/setting-up-conda-in-git-bash/534473)
