@@ -28,9 +28,7 @@ Open a terminal (console) window and check whether the installation has worked. 
 python --version
 ```
 
-**Note:** If you're working in Windows and haven't used a terminal or console before, it may be simpler to return to this step after completing the Git installation instructions (which gives you a Git Bash console)
-
-If the version of Python you have is < `3.8.x` or you experience some difficulties with Anaconda, there are alternative ways to install Python.
+**Note:** If you're working in Windows and haven't used a terminal or console before, it may be simpler to return to this step (and subsequent steps on this page) after completing the Git installation instructions (which gives you a Git Bash console)
 
 ### C++ compiler for Windows
 
