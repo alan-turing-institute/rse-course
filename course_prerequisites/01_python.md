@@ -28,8 +28,4 @@ Open a terminal (console) window and check whether the installation has worked. 
 python --version
 ```
 
-**Note:** If you're working in Windows and haven't used a terminal or console before, it may be simpler to return to this step (and subsequent steps on this page) after completing the Git installation instructions (which gives you a Git Bash console)
-
-### C++ compiler for Windows
-
-If you're using Windows, in order to use `Cython` in the "Programming for Speed" module, you may need to install a `C++ compiler`, [see here for more details](https://github.com/cython/cython/wiki/CythonExtensionsOnWindows).
+**Note:** If you're working in Windows and haven't used a terminal or console before, it may be simpler to return to this step after completing the Git installation instructions (which gives you a Git Bash console)

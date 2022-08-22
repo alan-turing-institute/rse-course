@@ -33,6 +33,18 @@ You should be able to see a layout that looks something like the below. Double c
 
 ![](img/JupyterLab-RSE-Course.png)
 
+### C++ compiler for Windows
+
+If you're using Windows, in order to use `Cython` in the "Programming for Speed" module, you may need to install a `C++ compiler`.
+
+Open a terminal window (e.g. in Git Bash that you installed earlier) and activate the conda Python environment you just set up:
+
+```bash
+conda activate rse-course
+```
+
+Then [see here for details](https://github.com/cython/cython/wiki/CythonExtensionsOnWindows) on how to install the C++ compiler.
+
 ### Jupyter issues on Windows (Sophos):
 
 To use the Jupyter Lab on a `Windows` computer with Sophos anti-virus installed it may be necessary to open additional ports allowing communication between the notebook and its server.
