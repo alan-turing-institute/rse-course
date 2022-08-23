@@ -13,8 +13,9 @@ Course materials for Turing's Research Software Engineering course.
 Documentation for the course is hosted at [`https://alan-turing-institute.github.io/rse-course`](https://alan-turing-institute.github.io/rse-course).
 You can build the documentation from source by running:
 
-```console
-> ./build_docs.sh
+```bash
+pip install -U jupyter-book
+./build_docs.sh
 ```
 
 ## Contributing
