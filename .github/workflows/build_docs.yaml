@@ -31,14 +31,19 @@ jobs:
         run: sudo apt-get update && sudo apt-get -y install ffmpeg pandoc texlive-latex-base texlive-latex-extra
       - name: Install Python packages
         run: pip install -r requirements.txt
-      - name: Configure git
+      - name: Configure git user
         shell: bash
         run: |
           git config --global user.name "Turing Developer"
           git config --global user.email "developer@example.com"
           git config --global pull.rebase false
-          git config --list | grep "^http.*extraheader" | cut -d '=' -f 1 | xargs -L1 git config --unset-all # Remove http extraheader arguments as these conflict with the use of SSH keys
-          git config --list
+      # Remove git http extraheader arguments as these conflict with the use of SSH keys
+      - name: Remove git http extraheader arguments
+        if: ${{ !env.ACT }}
+        shell: bash
+        run: |
+          git config --list | grep "^http.*extraheader" | cut -d '=' -f 1 | xargs -L1 git config --unset-all
+          git --no-pager config --list
       - name: Build latest documentation
         shell: bash
         run: ./build_docs.sh
