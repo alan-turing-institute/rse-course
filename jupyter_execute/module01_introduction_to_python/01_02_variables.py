@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Variables
+# # 1.2 Variables
+# *Estimated time to complete this notebook: 10 minutes*
 
-# ## Variable Assignment
+# ## 1.2.1 Variable Assignment
 
 # When we generate a result, the answer is displayed, but not kept anywhere.
 
@@ -79,7 +80,7 @@ scary = six * six * six
 print(scary)
 
 
-# ## Reassignment and multiple labels
+# ## 1.2.2 Reassignment and multiple labels
 
 # But here's the real scary thing: it seems like we can put something else in that box:
 
@@ -175,7 +176,7 @@ name = "Jim"
 # 
 # Labels are contained in groups called "frames": our frame contains two labels, 'nom' and 'name'.
 
-# ## Objects and types
+# ## 1.2.3 Objects and types
 
 # An object, like `name`, has a type. In the online python tutor example, we see that the objects have type "str".
 # `str` means a text object: Programmers call these 'strings'. 
@@ -236,7 +237,7 @@ z.imag
 z.wrong
 
 
-# ## Reading error messages.
+# ## 1.2.4 Reading error messages.
 
 # It's important, when learning to program, to develop an ability to read an error message and find, from in amongst
 # all the confusing noise, the bit of the error message which tells you what to change!
@@ -259,7 +260,7 @@ print("Didn't get to here")
 # 
 # ...tells us something important. Even if we don't understand the rest, this is useful for debugging!
 
-# ## Variables and the notebook kernel
+# ## 1.2.5 Variables and the notebook kernel
 
 # When I type code in the notebook, the objects live in memory between cells.
 
@@ -293,7 +294,7 @@ print(number)
 
 # But cells are **not** always evaluated in order.
 
-# If I now go back to Input 33, reading `number = number + 1`, and run it again, with shift-enter. Number will change from 2 to 3, then from 3 to 4. Try it!
+# If I now go back to input cell reading `number = number + 1`, and run it again, with shift-enter. Number will change from 2 to 2, then from 2 to 3, then from 3 to 4... Try it!
 
 # So it's important to remember that if you move your cursor around in the notebook, it doesn't always run top to bottom.
 

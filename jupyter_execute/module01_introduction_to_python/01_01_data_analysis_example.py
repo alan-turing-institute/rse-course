@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # An example Python data analysis notebook
+# # 1.1 An example Python data analysis notebook
+# *Estimated time to **read through** this notebook: 20 minutes*
 
 # This page illustrates how to use Python to perform a simple but complete analysis: retrieve data, do some computations based on it, and visualise the results.
 # 
@@ -9,7 +10,7 @@
 # 
 # As we show the code for different parts of the work, we will be touching on various aspects you may want to keep in mind, either related to Python specifically, or to research programming more generally.
 
-# ## Why write software to manage your data and plots? 
+# ## 1.1.1 Why write software to manage your data and plots? 
 
 # We can use programs for our entire research pipeline. Not just big scientific simulation codes, but also the small scripts which we use to tidy up data and produce plots. This should be code, so that the whole research pipeline
 # is recorded for reproducibility. Data manipulation in spreadsheets is much harder to share or 
@@ -20,7 +21,7 @@
 # Part of our approach is that we assume you know how to use the internet! If you
 # find something confusing out there, please bring it along to the next session. In this course, we'll always try to draw your attention to other sources of information about what we're learning. Paying attention to as many of these as you need to, is just as important as these core notes.
 
-# ## Importing Libraries
+# ## 1.1.2 Importing Libraries
 
 # Research programming is all about using libraries: tools other people have provided programs that do many cool things.
 # By combining them we can feel really powerful but doing minimum work ourselves. The python syntax to import someone else's library is "import".
@@ -48,7 +49,7 @@ geocoder.geocode("Cambridge", exactly_one=False)
 # The results come out as a **list** inside a list: `[Name, [Latitude, Longitude]]`. 
 # Programs represent data in a variety of different containers like this.
 
-# ## Comments
+# ## 1.1.3 Comments
 
 # Code after a `#` symbol doesn't get run.
 
@@ -59,7 +60,7 @@ print("This runs")  # print("This doesn't")
 # print("This doesn't either")
 
 
-# ## Functions
+# ## 1.1.4 Functions
 
 # We can wrap code up in a **function**, so that we can repeatedly get just the information we want.
 # 
@@ -80,7 +81,7 @@ def geolocate(place):
 geolocate("Cambridge")
 
 
-# ## Variables
+# ## 1.1.5 Variables
 
 # We can store a result in a variable:
 
@@ -91,7 +92,7 @@ london_location = geolocate("London")
 print(london_location)
 
 
-# ## More complex functions
+# ## 1.1.6 More complex functions
 
 # The Yandex API allows us to fetch a map of a place, given a longitude and latitude.
 # The URLs look like: https://static-maps.yandex.ru/1.x/?size=400,400&ll=-0.1275,51.51&z=10&l=sat&lang=en_US 
@@ -121,7 +122,7 @@ def request_map_at(lat, long, satellite=True, zoom=12, size=(400, 400)):
 map_response = request_map_at(51.5072, -0.1275)
 
 
-# ## Checking our work
+# ## 1.1.7 Checking our work
 
 # Let's see what URL we ended up with:
 
@@ -154,7 +155,7 @@ assert "size=400%2C400" in url
 map_response.content[0:20]
 
 
-# ## Displaying results
+# ## 1.1.8 Displaying results
 
 # I'll need to do this a lot, so I'll wrap up our previous function in another function, to save on typing.
 
@@ -170,8 +171,7 @@ def map_at(*args, **kwargs):
 # In[13]:
 
 
-import IPython
-
+from IPython.display import Image
 map_png = map_at(*london_location)
 
 
@@ -184,16 +184,16 @@ print("The type of our map result is actually a: ", type(map_png))
 # In[15]:
 
 
-IPython.core.display.Image(map_png)
+Image(map_png)
 
 
 # In[16]:
 
 
-IPython.core.display.Image(map_at(*geolocate("New Delhi")))
+Image(map_at(*geolocate("New Delhi")))
 
 
-# ## Manipulating Numbers
+# ## 1.1.9 Manipulating Numbers
 
 # Now we get to our research project: we want to find out how urbanised the world is, based on satellite imagery, along a line
 #     between two cites. We expect the satellite image to be greener in the countryside.
@@ -260,7 +260,7 @@ def location_sequence(start, end, steps):
 location_sequence(geolocate("London"), geolocate("Cambridge"), 5)
 
 
-# ## Creating Images
+# ## 1.1.10 Creating Images
 
 # We should display the green content to check our work:
 
@@ -281,16 +281,16 @@ def show_green_in_png(data):
 # In[24]:
 
 
-IPython.core.display.Image(map_at(*london_location, satellite=True))
+Image(map_at(*london_location, satellite=True))
 
 
 # In[25]:
 
 
-IPython.core.display.Image(show_green_in_png(map_at(*london_location, satellite=True)))
+Image(show_green_in_png(map_at(*london_location, satellite=True)))
 
 
-# ## Looping
+# ## 1.1.11 Looping
 
 # We can loop over each element in out list of coordinates, and get a map for that place:
 
@@ -298,7 +298,7 @@ IPython.core.display.Image(show_green_in_png(map_at(*london_location, satellite=
 
 
 for location in location_sequence(geolocate("London"), geolocate("Birmingham"), 4):
-    IPython.core.display.display(IPython.core.display.Image(map_at(*location)))
+    display(Image(map_at(*location)))
 
 
 # So now we can count the green from London to Birmingham!
@@ -312,7 +312,7 @@ for location in location_sequence(geolocate("London"), geolocate("Birmingham"), 
 ]
 
 
-# ## Plotting graphs
+# ## 1.1.12 Plotting graphs
 
 # Let's plot a graph.
 
@@ -320,12 +320,6 @@ for location in location_sequence(geolocate("London"), geolocate("Birmingham"), 
 
 
 import matplotlib.pyplot as plt
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-
-# In[29]:
-
 
 plt.plot(
     [
@@ -340,7 +334,7 @@ plt.plot(
 # From a research perspective, of course, this code needs a lot of work. But I hope the power of using programming is clear.
 # 
 
-# ## Composing Program Elements
+# ## 1.1.13 Composing Program Elements
 
 # We built little pieces of useful code, to:
 # 
@@ -353,7 +347,7 @@ plt.plot(
 
 # By putting these together, we can make a function which can plot this graph automatically for any two places:
 
-# In[30]:
+# In[29]:
 
 
 def green_between(start, end, steps):
@@ -363,7 +357,7 @@ def green_between(start, end, steps):
     ]
 
 
-# In[31]:
+# In[30]:
 
 
 plt.plot(green_between("New York", "Chicago", 20))

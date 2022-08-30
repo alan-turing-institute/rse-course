@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Types
+# # 1.4 Types
+# *Estimated time to complete this notebook: 20 minutes*
 
 # We have seen that Python objects have a 'type':
 
@@ -11,7 +12,7 @@
 type(5)
 
 
-# ## Floats and integers
+# ## 1.4.1 Floats and integers
 
 # Python has two core numeric types, `int` for integer, and `float` for real number.
 
@@ -50,7 +51,7 @@ type(one)
 type(one_float)
 
 
-# The meaning of an operator varies depending on the type it is applied to! (And on the python version.)
+# The meaning of an operator varies depending on the type it is applied to!
 
 # In[7]:
 
@@ -76,11 +77,9 @@ print(type(one / ten))
 type(tenth)
 
 
-# The divided by operator when applied to floats, means divide by for real numbers. For integers, the behaviour depends on the python version:
+# The divided by operator when applied to floats, and integers means divide by for real numbers.
 # 
-# **Python 2**: it means divide then round down
-# 
-# **Python 3**: it means the same as for floats. The Python 2 behaviour can be obtained by using the `//` operator.
+# The `//` operator means divide and then round down
 
 # In[11]:
 
@@ -99,8 +98,6 @@ type(tenth)
 
 10 / 3.0
 
-
-# So if I have two integer variables, and I want the `float` division to work in all Python versions, I need to change the type first.
 
 # There is a function for every type name, which is used to convert the input to an output of the desired type.
 
@@ -133,7 +130,7 @@ sum([1 / N] * int(N))
 # * http://floating-point-gui.de/formats/fp/
 # * Advanced: http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
 
-# ## Strings
+# ## 1.4.2 Strings
 
 # Python has a built in `string` type, supporting many
 # useful methods.
@@ -198,7 +195,7 @@ print(float(str(ten) + str(one)))
 '"Wow!", said Bob.'
 
 
-# ## Lists
+# ## 1.4.3 Lists
 
 # Python's basic **container** type is the `list`.
 
@@ -288,7 +285,7 @@ identity[0][0]
 
 # ... but later we will learn about a better way of representing matrices.
 
-# ## Ranges
+# ## 1.4.4 Ranges
 
 # Another useful type is range, which gives you a sequence of consecutive numbers. In contrast to a list, ranges generate the numbers as you need them, rather than all at once.
 # 
@@ -313,7 +310,7 @@ print(list(count_to_five))
 
 # Ranges in Python can be customised in other ways, such as by specifying the lower limit or the step (that is, the difference between successive elements). You can find more information about them in the [official Python documentation](https://docs.python.org/3/library/stdtypes.html#ranges).
 
-# ## Sequences
+# ## 1.4.5 Sequences
 
 # Many other things can be treated like `lists`. Python calls things that can be treated like lists `sequences`.
 
@@ -387,7 +384,7 @@ name
 3 in count_to_five
 
 
-# ## Unpacking
+# ## 1.4.6 Unpacking
 
 # Multiple values can be **unpacked** when assigning from sequences, like dealing out decks of cards.
 

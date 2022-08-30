@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Control and Flow
+# # 1.8 Control and Flow
+# *Estimated time to complete this notebook: 15 minutes*
 
-# ## Turing completeness
+# ## 1.8.1 Turing completeness
 
 # Now that we understand how we can use objects to store and model our data, we only need to be able to control the flow of our
 # program in order to have a program that can, in principle, do anything!
@@ -15,7 +16,7 @@
 
 # Once we have these, we can write computer programs to process information in arbitrary ways: we are *Turing Complete*!
 
-# ## Conditionality
+# ## 1.8.2 Conditionality
 
 # Conditionality is achieved through Python's `if` statement:
 
@@ -84,7 +85,7 @@ else:
     print(3)
 
 
-# ## Comparison
+# ## 1.8.3 Comparison
 
 # `True` and `False` are used to represent **boolean** (true or false) values.
 
@@ -118,8 +119,7 @@ else:
 True == "True"
 
 
-# In python two there were subtle implied order comparisons between types, but it was  bad style to rely on these.
-# In python three, you cannot compare these.
+# And you cannot compare a string of a number to a number.
 
 # In[10]:
 
@@ -251,7 +251,7 @@ bool(1)
 bool([]) == False
 
 
-# ## Indentation
+# ## 1.8.4 Indentation
 
 # In Python, indentation is semantically significant.
 # You can choose how much indentation to use, so long as you
@@ -284,7 +284,7 @@ if x > 0:
     print(x)
 
 
-# ##  Pass
+# ## 1.8.5 Pass
 
 # 
 # A statement expecting identation must have some indented code.

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Containers
+# # 1.5 Containers
+# *Estimated time to complete this notebook: 10 minutes*
 
-# ## Checking for containment.
+# ## 1.5.1 Checking for containment.
 
 # The `list` we saw is a container type: its purpose is to hold other objects. We can ask python whether or not a
 # container contains a particular item:
@@ -32,9 +33,9 @@
 99 in range(5)
 
 
-# ## Mutability
+# ## 1.5.2 Mutability
 
-# A list can be modified:
+# A list can be modified: (is mutable)
 
 # In[5]:
 
@@ -53,7 +54,7 @@ name.append("PhD")
 print(" ".join(name))
 
 
-# ## Tuples
+# ## 1.5.3 Tuples
 
 # A `tuple` is an immutable sequence. It is like a list, except it cannot be changed. It is defined with round brackets.
 
@@ -96,7 +97,7 @@ fish = "Rake"  ## OK!
 
 # *Supplementary material*: Try the [online memory visualiser](http://www.pythontutor.com/visualize.html#code=name+%3D++%22James+Philip+John+Hetherington%22.split%28%22+%22%29%0A%0Aname%5B0%5D+%3D+%22Dr%22%0Aname%5B1%3A3%5D+%3D+%5B%22Griffiths-%22%5D%0Aname.append%28%22PhD%22%29%0A%0Aname+%3D+%22Bilbo+Baggins%22&mode=display&origin=opt-frontend.js&cumulative=false&heapPrimitives=true&textReferences=false&py=2&rawInputLstJSON=%5B%5D&curInstr=0) for this one.
 
-# ## Memory and containers
+# ## 1.5.4 Memory and containers
 
 # 
 # The way memory works with containers can be important:
@@ -212,7 +213,7 @@ z
 # 
 # *Supplementary material*: The copies that we make through slicing are called *shallow copies*: we don't copy all the objects they contain, only the references to them. This is why the nested list in `x[0]` is not copied, so `z[0]` still refers to it. It is possible to actually create copies of all the contents, however deeply nested they are - this is called a *deep copy*. Python provides methods for that in its standard library, in the `copy` module. You can read more about that, as well as about shallow and deep copies, in the [library reference](https://docs.python.org/3/library/copy.html).
 
-# ## Identity vs Equality
+# ## 1.5.5 Identity vs Equality
 # 
 # Having the same data is different from being the same actual object
 # in memory:

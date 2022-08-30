@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Iteration
+# # 1.9 Iteration
+# *Estimated time to complete this notebook: 10 minutes*
 
 # Our other aspect of control is looping back on ourselves.
 # 
@@ -22,7 +23,7 @@ for whatever in mylist:
 
 # Each time through the loop, the variable in the `value` slot is updated to the **next** element of the sequence.
 
-# ## Iterables
+# ## 1.9.1 Iterables
 
 # 
 # Any sequence type is iterable:
@@ -68,7 +69,7 @@ for thing in founded:
     print(thing, "is", current_year - founded[thing], "years old.")
 
 
-# ## Unpacking and Iteration
+# ## 1.9.2 Unpacking and Iteration
 
 # 
 # Unpacking can be useful with iteration:
@@ -131,7 +132,7 @@ for name, year in founded.items():
     print(name, "is", current_year - year, "years old.")
 
 
-# ## Break, Continue
+# ## 1.9.3 Break, Continue
 
 # 
 # * Continue skips to the next turn of a loop
@@ -153,6 +154,8 @@ for n in range(50):
 
 # These aren't useful that often, but are worth knowing about. There's also an optional `else` clause on loops, executed only if you don't `break`, but I've never found that useful.
 
-# ## Classroom exercise: the Maze Population
+# In[ ]:
 
-# Take your maze data structure. Write a program to count the total number of people in the maze, and also determine the total possible occupants.
+
+
+

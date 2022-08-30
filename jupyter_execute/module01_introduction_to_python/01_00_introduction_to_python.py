@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Introduction to Python
+# # 1.0 Introduction to Python
+# *Estimated time to read this notebook: 10 minutes*
 
-# ## Introduction
+# ## 1.0.1 Introduction
 
 # ### Why teach Python?
 
@@ -42,7 +43,7 @@
 # 
 # 
 
-# ## Many kinds of Python
+# ## 1.0.2 Many kinds of Python
 
 # ### The Jupyter Notebook
 
@@ -67,7 +68,7 @@ axes = eight.add_axes([0, 0, 1, 1])
 axes.plot(0.5 * np.sin(theta), np.cos(theta / 2))
 
 
-# We're going to be mainly working in the Jupyter notebook in this course. To get hold of a copy of the notebook, follow the setup instructions shown on the course website.
+# We're going to be mainly working in the Jupyter notebook in this course. To get hold of a copy of the notebook, follow the [setup instructions shown on the course website](https://alan-turing-institute.github.io/rse-course/html/course_prerequisites/index.html).
 
 # Jupyter notebooks consist of discussion cells, referred to as "markdown cells", and "code cells", which contain Python. This document has been created using Jupyter notebook, and this very cell is a **Markdown Cell**. 
 

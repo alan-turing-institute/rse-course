@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Using Functions
+# # 1.3 Using Functions
+# *Estimated time to complete this notebook: 20 minutes*
 
-# ## Calling functions
+# ## 1.3.1 Calling functions
 
 # We often want to do things to our objects that are more complicated than just assigning them to variables.
 
@@ -53,7 +54,7 @@ z = x + y
 print(z)
 
 
-# ## Using methods
+# ## 1.3.2 Using methods
 
 # Objects come associated with a bunch of functions designed for working on objects of that type. We access these with a dot, just as we do for data attributes:
 
@@ -119,7 +120,7 @@ z.conjugate()
 z.conjugate
 
 
-# ## Functions are just a type of object!
+# ## 1.3.3 Functions are just a type of object!
 
 # Now for something that will take a while to understand: don't worry if you don't get this yet, we'll
 # look again at this in much more depth later in the course.
@@ -176,7 +177,7 @@ type(magic)
 magic(["Technology", "Advanced"])
 
 
-# ## Getting help on functions and methods
+# ## 1.3.4 Getting help on functions and methods
 
 # The 'help' function, when applied to a function, gives help on it!
 
@@ -210,7 +211,7 @@ dir("Hexxo")
 help("FIsh".replace)
 
 
-# ## Operators
+# ## 1.3.5 Operators
 
 # Now that we know that functions are a way of taking a number of inputs and producing an output, we should look again at
 # what happens when we write:

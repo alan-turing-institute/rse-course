@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Dictionaries
+# # 1.6 Dictionaries
+# *Estimated time to complete this notebook: 10 minutes*
 
-# ## The Python Dictionary
+# ## 1.6.1 The Python Dictionary
 
 # Python supports a container type called a dictionary.
 
@@ -139,7 +140,7 @@ print(my_dict)
 print(my_dict.values())
 
 
-# ## Sets
+# ## 1.6.2 Sets
 
 # A set is a `list` which cannot contain the same element twice.
 # We make one by calling `set()` on any sequence, e.g. a list or string.
