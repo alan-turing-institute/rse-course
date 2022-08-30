@@ -2,5 +2,5 @@
 
 - Fields and records
 - Structured data: JSON and YAML
-- Plotting with Matplotlib
-- Animations with Matplotlib
+- Numpy: Efficient vector and matrix operations
+- Matplotlib: Plotting and animations
