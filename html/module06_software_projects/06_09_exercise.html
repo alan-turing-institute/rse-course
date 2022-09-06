@@ -270,47 +270,42 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_00_fields_and_records.html">
-     Field and Record Data
+     3.0 Field and Record Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_01_structured_data.html">
-     Structured Data
+     3.1 Structured Data
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_01answer_maze_saving.html">
-     Solution: Saving and loading data
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_plotting_with_matplotlib.html">
+     3.2 Plotting with Matplotlib
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_02_earthquake_exercise.html">
-     Exercise/Example: the biggest Earthquake in the UK this Century
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_NumPy.html">
+     3.3 NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_02answer_earthquake_exercise.html">
-     Solution: the biggest Earthquake in the UK this Century
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_03_plotting_with_matplotlib.html">
-     Plotting with Matplotlib
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy.html">
-     NumPy
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy_continued.html">
+     3.4 NumPy Continued
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
-     The Boids!
+     3.5 The Boids!
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
-     Recap: Understanding the “Greengraph” Example
+     3.6 Recap: Understanding the “Greengraph” Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
+     Classroom Exercises
     </a>
    </li>
   </ul>
@@ -1580,13 +1575,13 @@ Let the hunt begin!
 
 Turn 1
 Adventurer moves down
-Troll moves left
+Troll moves nowhere
 
         *           
         |        
     o - o - o       
     |       |    
-o - o       T - o   
+o - o       o - T   
     |       |    
     a - o - o       
         |        
@@ -1594,7 +1589,7 @@ o - o       T - o
 
 Turn 2
 Adventurer moves up
-Troll moves nowhere
+Troll moves left
 
         *           
         |        
@@ -1607,14 +1602,14 @@ o - a       T - o
         o           
 
 Turn 3
-Adventurer moves left
-Troll moves nowhere
+Adventurer moves up
+Troll moves up
 
         *           
         |        
-    o - o - o       
+    a - o - T       
     |       |    
-a - o       T - o   
+o - o       o - o   
     |       |    
     o - o - o       
         |        
@@ -1626,23 +1621,23 @@ Troll moves nowhere
 
         *           
         |        
-    o - o - o       
+    o - a - T       
     |       |    
-o - a       T - o   
+o - o       o - o   
     |       |    
     o - o - o       
         |        
         o           
 
 Turn 5
-Adventurer moves up
-Troll moves nowhere
+Adventurer moves left
+Troll moves left
 
         *           
         |        
-    a - o - o       
+    a - T - o       
     |       |    
-o - o       T - o   
+o - o       o - o   
     |       |    
     o - o - o       
         |        
@@ -1650,13 +1645,13 @@ o - o       T - o
 
 Turn 6
 Adventurer moves right
-Troll moves nowhere
+Troll moves left
 
         *           
         |        
-    o - a - o       
+    T - a - o       
     |       |    
-o - o       T - o   
+o - o       o - o   
     |       |    
     o - o - o       
         |        
@@ -1664,13 +1659,13 @@ o - o       T - o
 
 Turn 7
 Adventurer moves left
-Troll moves nowhere
+Troll moves right
 
         *           
         |        
-    a - o - o       
+    a - T - o       
     |       |    
-o - o       T - o   
+o - o       o - o   
     |       |    
     o - o - o       
         |        
@@ -1682,37 +1677,23 @@ Troll moves nowhere
 
         *           
         |        
-    o - a - o       
-    |       |    
-o - o       T - o   
-    |       |    
-    o - o - o       
-        |        
-        o           
-
-Turn 9
-Adventurer moves up
-Troll moves down
-
-        a           
-        |        
-    o - o - o       
+    o - T - o       
     |       |    
 o - o       o - o   
     |       |    
-    o - o - T       
+    o - o - o       
         |        
         o           
 
-Adventurer gets the treasure and returns a hero!
-__      __ ___  _  _  _  _  ___  ___ 
-\ \    / /|_ _|| \| || \| || __|| _ \
- \ \/\/ /  | | | .` || .` || _| |   /
-  \_/\_/  |___||_|\_||_|\_||___||_|_\
-                                     
+Troll will eat tonight!
+  ___    _    __  __  ___    ___  __   __ ___  ___ 
+ / __|  /_\  |  \/  || __|  / _ \ \ \ / /| __|| _ \
+| (_ | / _ \ | |\/| || _|  | (_) | \ V / | _| |   /
+ \___|/_/ \_\|_|  |_||___|  \___/   \_/  |___||_|_\
+                                                   
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
 </pre></div>
 </div>
 </div>
@@ -1730,7 +1711,7 @@ __      __ ___  _  _  _  _  ___  ___
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2151, 0: 0.6039, 1: 0.181}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2291, 0: 0.5883, 1: 0.1826}
 </pre></div>
 </div>
 </div>

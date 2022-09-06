@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # The Boids!
+# # 3.5 The Boids!
+# *Estimated time to complete this notebook: 30 - 60 minutes.*
 
-# ## Flocking
+# ⚠️ Warning: Advanced Topic! ⚠️
+# 
+# *Note this is more a showcase of what you can do with numpy than an exhaustive notebook to work through*
+
+# ## 3.5.1 Flocking
 
 # 
 # > The aggregate motion of a flock of birds, a herd of land animals, or a school of fish is a beautiful and familiar
@@ -21,7 +26,7 @@
 # * Velocity Matching: attempt to match velocity with nearby flockmates
 # * Flock Centering: attempt to stay close to nearby flockmates
 
-# ## Setting up the Boids
+# ## 3.5.2 Setting up the Boids
 
 # Our boids will each have an x velocity and a y velocity, and an x position and a y position.
 
@@ -118,7 +123,7 @@ velocities = new_flock(boid_count, np.array([0, -20]), np.array([10, 20]))
 velocities
 
 
-# ## Flying in a Straight Line
+# ## 3.5.3 Flying in a Straight Line
 
 # Now we see the real amazingness of NumPy: if we want to move our *whole flock* according to
 # 
@@ -132,7 +137,7 @@ velocities
 positions += velocities
 
 
-# ## Matplotlib Animations
+# ## 3.5.4 Matplotlib Animations
 
 # So now we can animate our Boids using the matplotlib animation tools. All we have to do is import the relevant libraries:
 
@@ -141,8 +146,6 @@ positions += velocities
 
 from matplotlib import animation
 from matplotlib import pyplot as plt
-
-get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # Then, we make a static plot, showing our first frame:
@@ -193,10 +196,10 @@ anim = animation.FuncAnimation(figure, animate, frames=50, interval=50)
 
 positions = new_flock(100, np.array([100, 900]), np.array([200, 1100]))
 velocities = new_flock(100, np.array([0, -20]), np.array([10, 20]))
-anim.save("boids_1.mp4")
+anim.save("boids_1.gif")
 
 
-# And download the [saved animation](https://alan-turing-institute.github.io/rse-course/html/module03_research_data_in_python/boids_1.mp4).
+# And download the [saved animation](https://alan-turing-institute.github.io/rse-course/html/module03_research_data_in_python/boids_1.gif).
 
 # You can even view the results directly in the notebook.
 
@@ -210,7 +213,10 @@ velocities = new_flock(100, np.array([0, -20]), np.array([10, 20]))
 HTML(anim.to_jshtml())
 
 
-# ## Fly towards the middle
+# ## 3.5.5 Extended content: The Boids!
+# The examples given below are examples of how to use numpy to efficiently apply equations to arrays. There are many potential ways to do such things, and this is intended as a showcase of numpy's versatility rather than a prescribed set of rules. 
+
+# ## 3.5.5.0 Fly towards the middle
 
 # Boids try to fly towards the middle:
 
@@ -297,7 +303,7 @@ velocities = new_flock(100, np.array([0, -20]), np.array([10, 20]))
 HTML(anim.to_jshtml())
 
 
-# ## Avoiding collisions
+# ## 3.5.5.1 Avoiding collisions
 
 # We'll want to add our other flocking rules to the behaviour of the Boids.
 
@@ -452,7 +458,7 @@ velocities = new_flock(100, np.array([0, -20]), np.array([10, 20]))
 HTML(anim.to_jshtml())
 
 
-# ## Match speed with nearby birds
+# ## 3.5.5.2 Match speed with nearby birds
 
 # This is pretty similar:
 

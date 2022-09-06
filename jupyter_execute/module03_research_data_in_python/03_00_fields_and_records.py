@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Field and Record Data
+# # 3.0 Field and Record Data
+# *Estimated time to complete this notebook: 20 minutes*
 
-# ## Separated Value Files
+# ## 3.01 Separated Value Files
 
-# Let's carry on with our sunspots example:
+# Let's carry on with our sunspots example from 2.5.3: We had downloaded some semicolon separated data and decided it was better to use a library than to write our own parser.
 
 # In[1]:
 
@@ -38,7 +39,7 @@ spots.text.split("\n")[0]
 # Nevertheless, because you can always export *spreadsheets* as CSV files, (each cell is a field, each row is a record)
 # CSV files are very popular. 
 
-# ## CSV variants
+# ## 3.02 CSV variants
 
 # Some CSV formats define a comment character, so that rows beginning with, e.g., a #, are not treated as data, but give
 # a human comment.
@@ -53,44 +54,41 @@ spots.text.split("\n")[0]
 # Will, 2
 # ```
 
-# ## Python CSV readers
+# ## 3.03 Python CSV readers
 
-# The Python standard library has a `csv` module. However, it's less powerful than the CSV capabilities in `numpy`,
-# the main scientific python library for handling data. Numpy is destributed with Anaconda and Canopy, so we recommend you just use that.
-
-# Numpy has powerful capabilities for handling matrices, and other fun stuff, and we'll learn about these later in the course,
-# but for now, we'll just use numpy's CSV reader, and assume it makes us lists and dictionaries, rather than its more exciting `array` type.
-# 
-# Another popular library for working with tabular data is [pandas](https://pandas.pydata.org/), which is built on top of numpy.
+# The Python standard library has a `csv` module. However, it's less powerful than the CSV capabilities in `numpy` or [pandas](https://pandas.pydata.org/) which is built on top of numpy.
 
 # In[2]:
 
 
-import numpy as np
-import requests
+import pandas as pd
 
 
 # In[3]:
 
 
-spots = requests.get("http://www.sidc.be/silso/INFO/snmtotcsv.php", stream=True)
+df = pd.read_csv('http://www.sidc.be/silso/INFO/snmtotcsv.php', sep=";", header=None)
+df.head()
 
 
-# `stream=True` delays loading all of the data until it is required.
+# Pandas `read_csv` is a powerful CSV reader tool. A path to the data is given, this can be something on a local machine, or in this case the path is a url. 
+# 
+# 
+# I used the `sep` optional argument to specify the delimeter. The optional argument `header` specifies if the data contains headers, and if so; the row numbers to use as column names.
+# 
+# 
+# The data is loaded into a DataFrame. The `head` method shows us the first 5 entries in the dataframe. The `tail` method shows us the last 5 entries.
 
 # In[4]:
 
 
-sunspots = np.genfromtxt(spots.raw, delimiter=";")
+df.tail()
 
-
-# `genfromtxt` is a powerful CSV reader. I used the `delimiter` optional argument to specify the delimeter. I could also specify
-# `names=True` if I had a first line naming fields, and `comments=#` if I had comment lines.
 
 # In[5]:
 
 
-sunspots[0][3]
+df[3][0]
 
 
 # We can now plot the "Sunspot cycle":
@@ -98,18 +96,12 @@ sunspots[0][3]
 # In[6]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-from matplotlib import pyplot as plt
-
-plt.plot(sunspots[:, 2], sunspots[:, 3])  # Numpy syntax to access all
-# rows, specified column.
+df.plot(x=2, y=3)
 
 
-# The plot command accepted an array of 'X' values and an array of 'Y' values. We used a special NumPy ":" syntax,
-# which we'll learn more about later. Don't worry about the %matplotlib magic command for now - we'll also look at this later.
+# The plot command accepted an series of 'X' values and an series of 'Y' values, identified by their column number in this case, as the dataframe does not have (useful) column headers yet.
 
-# ## Naming Columns
+# ## 3.04 Naming Columns
 
 # I happen to know that the columns here are defined as follows:
 
@@ -136,54 +128,79 @@ plt.plot(sunspots[:, 2], sunspots[:, 3])  # Numpy syntax to access all
 # In[7]:
 
 
-spots = requests.get("http://www.sidc.be/silso/INFO/snmtotcsv.php", stream=True)
-
-sunspots = np.genfromtxt(
-    spots.raw,
-    delimiter=";",
-    names=["year", "month", "date", "mean", "deviation", "observations", "definitive"],
-)
+df_w_names = pd.read_csv('http://www.sidc.be/silso/INFO/snmtotcsv.php',
+                         sep=";",
+                         header=None,
+                         names=["year", "month", "date", "mean", "deviation", "observations", "definitive"])
+df_w_names.head()
 
 
 # In[8]:
 
 
-sunspots
+df_w_names.plot(x='date', y='mean')
 
 
-# ## Typed Fields
+# Note: The plot method used for the DataFrame is just a wrapper around  matplotlib's plt.plot():
 
-# It's also often good to specify the datatype of each field.
+# ## 3.05 Typed Fields
+
+# It's also often useful to check, and if necessary specify, the datatype of each field.
 
 # In[9]:
 
 
-spots = requests.get("http://www.sidc.be/silso/INFO/snmtotcsv.php", stream=True)
+df_w_names.dtypes # Check the data types of all columns in the DataFrame
 
-sunspots = np.genfromtxt(
-    spots.raw,
-    delimiter=";",
-    names=["year", "month", "date", "mean", "deviation", "observations", "definitive"],
-    dtype=[int, int, float, float, float, int, int],
-)
 
+# In this case the data types seem sensible, however if we wanted to convert the year into a floating point number instead, we could via:
 
 # In[10]:
 
 
-sunspots
+df_w_names['year']=df_w_names['year'].astype('float64')
+df_w_names.dtypes
 
-
-# Now, NumPy understands the names of the columns, so our plot command is more readable:
 
 # In[11]:
 
 
-sunspots["year"]
+df_w_names.head()
 
+
+# ## 3.06 Filtering data
+
+# Sometimes it is necessary to filter data, for example to only see the sunspots for the year 2018 you would use:
 
 # In[12]:
 
 
-plt.plot(sunspots["year"], sunspots["mean"])
+df_twenty_eighteen = df_w_names[(df_w_names['year'] == 2018)]
+df_twenty_eighteen.head(20)
+
+
+# Even though we used 
+# ```bash
+# df_twenty_eighteen.head(20)
+# ```
+# to show us the first 20 results from the dataframe, only 12 are shown as there are only 12 months in a year
+# 
+# If we wanted all data from 1997 to 1999 we could via:
+
+# In[13]:
+
+
+df_nineties = df_w_names[(df_w_names['year'] >= 1997) & (df_w_names['year'] < 2000)]
+
+
+# In[14]:
+
+
+df_nineties.head()
+
+
+# In[15]:
+
+
+df_nineties.tail()
 
