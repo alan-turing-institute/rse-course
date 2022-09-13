@@ -872,8 +872,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#no-guarantee-of-order">
-     No guarantee of order
+    <a class="reference internal nav-link" href="#dictionary-order">
+     Dictionary Order
     </a>
    </li>
   </ul>
@@ -919,8 +919,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#no-guarantee-of-order">
-     No guarantee of order
+    <a class="reference internal nav-link" href="#dictionary-order">
+     Dictionary Order
     </a>
    </li>
   </ul>
@@ -1129,10 +1129,9 @@ the “hash table”. The details of this are beyond the scope of this course, b
 </div>
 <p>Remember – square brackets denote lists, round brackets denote <code class="docutils literal notranslate"><span class="pre">tuple</span></code>s.</p>
 </div>
-<div class="section" id="no-guarantee-of-order">
-<h3>No guarantee of order<a class="headerlink" href="#no-guarantee-of-order" title="Permalink to this headline">¶</a></h3>
-<p>Another consequence of the way dictionaries work is that there’s no guaranteed order among the
-elements:</p>
+<div class="section" id="dictionary-order">
+<h3>Dictionary Order<a class="headerlink" href="#dictionary-order" title="Permalink to this headline">¶</a></h3>
+<p>Dictionaries will retain the order of the elements as they are defined (in Python versions &gt;= 3.7).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
@@ -1144,6 +1143,34 @@ elements:</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4}
 dict_values([0, 1, 2, 3, 4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rev_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rev_dict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rev_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;4&#39;: 4, &#39;3&#39;: 3, &#39;2&#39;: 2, &#39;1&#39;: 1, &#39;0&#39;: 0}
+dict_values([4, 3, 2, 1, 0])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python does not consider the order of the elements relevant to equality:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">==</span> <span class="n">rev_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -1226,7 +1253,7 @@ We make one by calling <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;HrnJts mhegoia&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;nHhaiosmJtrge &#39;
 </pre></div>
 </div>
 </div>

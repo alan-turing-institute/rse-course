@@ -123,14 +123,9 @@ illegal = {
 
 # Remember -- square brackets denote lists, round brackets denote `tuple`s.
 
-# ### No guarantee of order
+# ### Dictionary Order
 
-# 
-# Another consequence of the way dictionaries work is that there's no guaranteed order among the
-# elements:
-# 
-# 
-# 
+# Dictionaries will retain the order of the elements as they are defined (in Python versions >= 3.7).
 
 # In[15]:
 
@@ -140,19 +135,35 @@ print(my_dict)
 print(my_dict.values())
 
 
+# In[16]:
+
+
+rev_dict = {"4": 4, "3": 3, "2": 2, "1": 1, "0": 0}
+print(rev_dict)
+print(rev_dict.values())
+
+
+# Python does not consider the order of the elements relevant to equality:
+
+# In[17]:
+
+
+my_dict == rev_dict
+
+
 # ## 1.6.2 Sets
 
 # A set is a `list` which cannot contain the same element twice.
 # We make one by calling `set()` on any sequence, e.g. a list or string.
 
-# In[16]:
+# In[18]:
 
 
 name = "James Hetherington"
 unique_letters = set(name)
 
 
-# In[17]:
+# In[19]:
 
 
 unique_letters
@@ -160,25 +171,25 @@ unique_letters
 
 # Or by defining a literal like a dictionary, but without the colons:
 
-# In[18]:
+# In[20]:
 
 
 primes_below_ten = {2, 3, 5, 7}
 
 
-# In[19]:
+# In[21]:
 
 
 type(unique_letters)
 
 
-# In[20]:
+# In[22]:
 
 
 type(primes_below_ten)
 
 
-# In[21]:
+# In[23]:
 
 
 unique_letters
@@ -186,7 +197,7 @@ unique_letters
 
 # This will be easier to read if we turn the set of letters back into a string, with `join`:
 
-# In[22]:
+# In[24]:
 
 
 "".join(unique_letters)
@@ -196,26 +207,26 @@ unique_letters
 
 # Set operations work as in mathematics:
 
-# In[23]:
+# In[25]:
 
 
 x = set("Hello")
 y = set("Goodbye")
 
 
-# In[24]:
+# In[26]:
 
 
 x & y  # Intersection
 
 
-# In[25]:
+# In[27]:
 
 
 x | y  # Union
 
 
-# In[26]:
+# In[28]:
 
 
 y - x  # y intersection with complement of x: letters in Goodbye but not in Hello
