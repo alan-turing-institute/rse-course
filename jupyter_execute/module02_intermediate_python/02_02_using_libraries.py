@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Using Libraries
+# # 2.2 Using Libraries
 
-# ## Import
+# *Estimated time to complete this notebook: 5 minutes*
+
+# ## 2.2.1 Import
 
 # To use a function or type from a python library, rather than a **built-in** function or type, we have to import the library.
 
@@ -75,7 +77,7 @@ print(math.__file__[50:])
 # 
 # The answer is that there are only so many names available! Without a module system, every time I made a variable whose name matched a function in a library, I'd lose access to it. In the olden days, people ended up having to make really long variable names, thinking their names would be unique, and they still ended up with "name clashes". The module mechanism avoids this.
 
-# ## Importing from modules
+# ## 2.2.2 Importing from modules
 
 # Still, it can be annoying to have to write `math.sin(math.pi)` instead of `sin(pi)`.
 # Things can be imported *from* modules to become part of the current module:

@@ -1,54 +1,33 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Defining your own classes
+# # 2.3 Defining your own classes
 
-# ## User Defined Types
+# *Estimated time to complete this notebook: 20 minutes*
 
-# A **class** is a user-programmed Python type (since Python 2.2!)
+# ## 2.3.1 User Defined Types
 
-# It can be defined like:
+# A **class** is a user-programmed Python type.
+
+# It is defined like:
 
 # In[1]:
-
-
-class Room(object):
-    pass
-
-
-# Or:
-
-# In[2]:
-
-
-class Room():
-    pass
-
-
-# Or:
-
-# In[3]:
 
 
 class Room:
     pass
 
 
-# What's the difference? Before Python 2.2 a class was distinct from all other Python types, which caused some odd behaviour. To fix this, classes were redefined as user programmed types by extending `object`, e.g., class `room(object)`.
-# 
-# So most Python 2 code will use this syntax as very few people want to use old style python classes. Python 3 has formalised this by removing old-style classes, so they can be defined without extending `object`, or indeed without braces.
-# 
-
 # Just as with other python types, you use the name of the type as a function to make a variable of that type:
 
-# In[4]:
+# In[2]:
 
 
 zero = int()
 type(zero)
 
 
-# In[5]:
+# In[3]:
 
 
 myroom = Room()
@@ -61,13 +40,13 @@ type(myroom)
 
 # Once we have an object with a type of our own devising, we can add properties at will:
 
-# In[6]:
+# In[4]:
 
 
 myroom.name = "Living"
 
 
-# In[7]:
+# In[5]:
 
 
 myroom.name
@@ -76,21 +55,21 @@ myroom.name
 # The most common use of a class is to allow us to group data into an object in a way that is 
 # easier to read and understand than organising data into lists and dictionaries.
 
-# In[8]:
+# In[6]:
 
 
 myroom.capacity = 3
 myroom.occupants = ["James", "Sue"]
 
 
-# ## Methods
+# ## 2.3.2 Methods
 
 # So far, our class doesn't do much!
 
 # We define functions **inside** the definition of a class, in order to give them capabilities, just like the methods on built-in
 # types.
 
-# In[9]:
+# In[7]:
 
 
 class Room:
@@ -98,7 +77,7 @@ class Room:
         return len(self.occupants) > self.capacity
 
 
-# In[10]:
+# In[8]:
 
 
 myroom = Room()
@@ -106,25 +85,25 @@ myroom.capacity = 3
 myroom.occupants = ["James", "Sue"]
 
 
-# In[11]:
+# In[9]:
 
 
 myroom.overfull()
 
 
-# In[12]:
+# In[10]:
 
 
 myroom.occupants.append(["Clare"])
 
 
-# In[13]:
+# In[11]:
 
 
 myroom.occupants.append(["Bob"])
 
 
-# In[14]:
+# In[12]:
 
 
 myroom.overfull()
@@ -135,12 +114,12 @@ myroom.overfull()
 
 # This is just a convention for this variable name, not a keyword. You could call it something else if you wanted.
 
-# ## Constructors
+# ## 2.3.3 Constructors
 
 # Normally, though, we don't want to add data to the class attributes on the fly like that. 
 # Instead, we define a **constructor** that converts input data into an object. 
 
-# In[15]:
+# In[13]:
 
 
 class Room:
@@ -154,13 +133,13 @@ class Room:
         return len(self.occupants) > self.capacity
 
 
-# In[16]:
+# In[14]:
 
 
 living = Room("Living Room", {"north": "garden"}, 3)
 
 
-# In[17]:
+# In[15]:
 
 
 living.capacity
@@ -169,7 +148,7 @@ living.capacity
 # Methods which begin and end with **two underscores** in their names fulfil special capabilities in Python, such as
 # constructors.
 
-# ## Object-oriented design
+# ## 2.3.4 Object-oriented design
 
 # In building a computer system to model a problem, therefore, we often want to make:
 # 
@@ -182,7 +161,7 @@ living.capacity
 
 # We define a "Maze" class which can hold rooms:
 
-# In[18]:
+# In[16]:
 
 
 class Maze:
@@ -224,7 +203,7 @@ class Maze:
 
 # And a "Room" class with exits, and people:
 
-# In[19]:
+# In[17]:
 
 
 class Room:
@@ -269,7 +248,7 @@ class Room:
 
 # We define a "Person" class for room occupants:
 
-# In[20]:
+# In[18]:
 
 
 class Person:
@@ -294,7 +273,7 @@ class Person:
 
 # And we use these classes to define our people, rooms, and their relationships:
 
-# In[21]:
+# In[19]:
 
 
 james = Person("James")
@@ -303,7 +282,7 @@ bob = Person("Bob")
 clare = Person("Clare")
 
 
-# In[22]:
+# In[20]:
 
 
 living = Room(
@@ -314,33 +293,33 @@ garden = Room("garden", {"inside": "livingroom"}, 3)
 bedroom = Room("bedroom", {"jump": "garden", "downstairs": "livingroom"}, 1)
 
 
-# In[23]:
+# In[21]:
 
 
 house = Maze("My House")
 
 
-# In[24]:
+# In[22]:
 
 
 for room in [living, kitchen, garden, bedroom]:
     house.add_room(room)
 
 
-# In[25]:
+# In[23]:
 
 
 living.add_occupant(james)
 
 
-# In[26]:
+# In[24]:
 
 
 garden.add_occupant(sue)
 garden.add_occupant(clare)
 
 
-# In[27]:
+# In[25]:
 
 
 bedroom.add_occupant(bob)
@@ -348,18 +327,18 @@ bedroom.add_occupant(bob)
 
 # And we can run a "simulation" of our model:
 
-# In[28]:
+# In[26]:
 
 
 house.simulate(3)
 
 
-# ## Alternative object models
+# ## 2.3.5 Alternative object models
 
 # There are many choices for how to design programs to do this. Another choice would be to separately define exits as a different class from rooms. This way, 
 # we can use arrays instead of dictionaries, but we have to first define all our rooms, then define all our exits.
 
-# In[29]:
+# In[27]:
 
 
 class Maze:
@@ -402,7 +381,7 @@ class Maze:
             self.step()
 
 
-# In[30]:
+# In[28]:
 
 
 class Room:
@@ -429,7 +408,7 @@ class Room:
         self.exits.append(Exit(name, target))
 
 
-# In[31]:
+# In[29]:
 
 
 class Person:
@@ -457,7 +436,7 @@ class Person:
         print("{who} is in the {where}".format(who=self.name, where=self.room.name))
 
 
-# In[32]:
+# In[30]:
 
 
 class Exit:
@@ -469,13 +448,13 @@ class Exit:
         return self.target.has_space()
 
 
-# In[33]:
+# In[31]:
 
 
 house = Maze("My New House")
 
 
-# In[34]:
+# In[32]:
 
 
 living = house.add_room("livingroom", 2)
@@ -484,31 +463,31 @@ garden = house.add_room("garden", 3)
 kitchen = house.add_room("kitchen", 1)
 
 
-# In[35]:
+# In[33]:
 
 
 house.add_exit("north", living, kitchen, "south")
 
 
-# In[36]:
+# In[34]:
 
 
 house.add_exit("upstairs", living, bed, "downstairs")
 
 
-# In[37]:
+# In[35]:
 
 
 house.add_exit("outside", living, garden, "inside")
 
 
-# In[38]:
+# In[36]:
 
 
 house.add_exit("jump", bed, garden)
 
 
-# In[39]:
+# In[37]:
 
 
 house.add_occupant("James", living)
@@ -517,14 +496,10 @@ house.add_occupant("Bob", bed)
 house.add_occupant("Clare", garden)
 
 
-# In[40]:
+# In[38]:
 
 
 house.simulate(3)
 
 
 # This is a huge topic, about which many books have been written. The differences between these two designs are important, and will have long-term consequences for the project. That is the how we start to think about **software engineering**, as opposed to learning to program, and is an important part of this course.
-
-# ## Exercise: Your own solution
-
-# Compare the two solutions above. Discuss with a partner which you like better, and why. Then, starting from scratch, design your own. What choices did you make that are different from mine?

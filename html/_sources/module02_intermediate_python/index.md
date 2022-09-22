@@ -6,4 +6,5 @@
 - An introduction to classes
 - Working with files
 - Interacting with the internet
+- Classroom Exercises
 

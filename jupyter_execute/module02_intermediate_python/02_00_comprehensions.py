@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Comprehensions
+# # 2.0 Comprehensions
 
-# ## The list comprehension
+# *Estimated time to complete this notebook: 10 minutes*
+
+# ## 2.0.1 The list comprehension
 
 # If you write a for loop **inside** a pair of square brackets for a list, you magic up a list as defined.
 # This can make for concise but hard to read code, so be careful.
@@ -34,7 +36,7 @@ result
 [len(str(2 ** x)) for x in range(10)]
 
 
-# ## Selection in comprehensions
+# ## 2.0.2 Selection in comprehensions
 
 # You can write an `if` statement in comprehensions too: 
 
@@ -52,7 +54,7 @@ result
 "".join([letter for letter in "James Hetherington" if letter.lower() not in "aeiou"])
 
 
-# ## Comprehensions versus building lists with `append`:
+# ## 2.0.3 Comprehensions versus building lists with `append`:
 
 # This code:
 
@@ -74,7 +76,7 @@ result
 
 # Almost everything we learn from now on will be either syntactic sugar or interaction with something other than idealised memory, such as a storage device or the internet. Once you have variables, conditionality, and branching, your language can do anything. (And this can be proved.)
 
-# ## Nested comprehensions
+# ## 2.0.4 Nested comprehensions
 
 # If you write two `for` statements in a comprehension, you get a single array generated over all the pairs:
 
@@ -116,7 +118,7 @@ result
 [[x + y for x in ["a", "b", "c"]] for y in ["1", "2", "3"]]
 
 
-# ## Dictionary Comprehensions
+# ## 2.0.5 Dictionary Comprehensions
 
 # You can automatically build dictionaries, by using a list comprehension syntax, but with curly brackets and a colon:
 
@@ -126,7 +128,7 @@ result
 {(str(x)) * 3: x for x in range(3)}
 
 
-# ## List-based thinking
+# ## 2.0.6 List-based thinking
 
 # Once you start to get comfortable with comprehensions, you find yourself working with containers, nested groups of lists 
 # and dictionaries, as the 'things' in your program, not individual variables. 
@@ -181,23 +183,8 @@ list(map(str, range(10)))
 # 
 # We'll learn more about `map` and similar functions when we discuss functional programming later in the course.
 
-# ## Classroom Exercise: Occupancy Dictionary
-
-# Take your maze data structure. First write an expression to print out a new dictionary, which holds, for each room, that room's capacity. The output should look like:
-
-# In[19]:
+# In[ ]:
 
 
-{"bedroom": 1, "garden": 3, "kitchen": 1, "living": 2}
 
-
-# Now, write a program to print out a new dictionary, which gives,
-# for each room's name, the number of people in it. Don't add in a zero value in the dictionary for empty rooms.
-
-# The output should look similar to:
-
-# In[20]:
-
-
-{"garden": 1, "living": 1}
 

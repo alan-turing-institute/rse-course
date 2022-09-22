@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Getting data from the Internet
+# # 2.5 Getting data from the Internet
+
+# *Estimated time to complete this notebook: 10 minutes*
 
 # We've seen about obtaining data from our local file system.
 
@@ -14,7 +16,7 @@
 
 # This can be really powerful if we want to, for example, do automated metaanalysis across a selection of research papers.
 
-# ## URLs
+# ## 2.5.1 URLs
 
 # All internet resources are defined by a Uniform Resource Locator.
 
@@ -38,7 +40,7 @@
 
 # **Supplementary materials**: The escaping rules are quite subtle. See https://en.wikipedia.org/wiki/Percent-encoding. The standard library provides the [urlencode](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode) function that can take care of this for you. 
 
-# ## Requests
+# ## 2.5.2 Requests
 
 # The python [requests](http://docs.python-requests.org/en/latest/) library can help us manage and manipulate URLs. It is easier to use than the 'urllib' library that is part of the standard library, and is included with anaconda and canopy. It sorts out escaping, parameter encoding, and so on for us.
 
@@ -78,14 +80,14 @@ response.content[0:50]
 # In[4]:
 
 
-import IPython
+from IPython.display import Image
 
-IPython.core.display.Image(response.content)
+Image(response.content)
 
 
 # Again, it is important to separate the *transport* model (e.g. a file system, or an "http request" for the web) from the data model of the data that is returned.
 
-# ## Example: Sunspots
+# ## 2.5.3 Example: Sunspots
 
 # Let's try to get something scientific: the sunspot cycle data from http://sidc.be/silso/home:
 
@@ -145,7 +147,7 @@ years[0:15]
 
 # You'll never manage to get all that right; so you'll be better off using a library to do it.
 
-# ## Writing data to the internet
+# ## 2.5.4 Writing data to the internet
 
 # Note that we're using `requests.get`. `get` is used to receive data from the web.
 # You can also use `post` to fill in a web-form programmatically.

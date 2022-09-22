@@ -223,37 +223,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
-     Comprehensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module02_intermediate_python/02_00answer_maze_comprehension.html">
-     Solution
+     2.0 Comprehensions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
-     Functions
+     2.1 Functions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
-     Using Libraries
+     2.2 Using Libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_03_defining_classes.html">
-     Defining your own classes
+     2.3 Defining your own classes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
-     Working with Data
+     2.4 Working with Files
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_05_getting_data_from_the_internet.html">
-     Getting data from the Internet
+     2.5 Getting data from the Internet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_06_classroom_exercises.html">
+     Classroom Exercises
     </a>
    </li>
   </ul>
@@ -871,6 +871,372 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="module-02">
 <h1>Module 02<a class="headerlink" href="#module-02" title="Permalink to this headline">¶</a></h1>
+<p><strong>Exercise 2a/b</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">house</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;living&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="s2">&quot;kitchen&quot;</span><span class="p">,</span> <span class="s2">&quot;outside&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="s2">&quot;upstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;bedroom&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;James&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;kitchen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">},</span> <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s2">&quot;garden&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inside&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">},</span> <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Sue&quot;</span><span class="p">],</span> <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="s2">&quot;bedroom&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;downstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">,</span> <span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Answer 2a</strong></p>
+<p>We can get a simpler dictionary with just capacities like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">room</span><span class="p">[</span><span class="s1">&#39;capacity&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span> <span class="ow">in</span> <span class="n">house</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;living&#39;: 2, &#39;kitchen&#39;: 1, &#39;garden&#39;: 3, &#39;bedroom&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Answer 2b</strong></p>
+<p>To get the current number of occupants, we can use a similar dictionary comprehension. Remember that we can <em>filter</em> (only keep certain rooms) by adding an <code class="docutils literal notranslate"><span class="pre">if</span></code> clause:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">room</span><span class="p">[</span><span class="s2">&quot;people&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span> <span class="ow">in</span> <span class="n">house</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">room</span><span class="p">[</span><span class="s2">&quot;people&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;living&#39;: 1, &#39;garden&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Answer 2c</strong></p>
+<p>Things to notice here:</p>
+<p>1.99999 doesn’t round, even if you did <code class="docutils literal notranslate"><span class="pre">int(1.9999999)</span></code> you would get 1.</p>
+<p><code class="docutils literal notranslate"><span class="pre">round(1.9999999)</span></code> or  <code class="docutils literal notranslate"><span class="pre">int(1.9999999999999999)</span></code> would give you 2</p>
+<p>Strings aren’t integers</p>
+<p>Even though 20 and 5 are integers and they divide to give 4, the result is a float, not an int.
+Floor division (<code class="docutils literal notranslate"><span class="pre">20</span> <span class="pre">//</span> <span class="pre">5</span></code>) will return an integer.</p>
+<p>‘10.’ is a float not an integer</p>
+<p>Can do this in one line using comprehension or could make an empty list and append to it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">example_funct</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">op</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">==</span> <span class="nb">int</span> <span class="ow">and</span> <span class="n">a</span><span class="o">%</span><span class="k">2</span> == 0]
+    <span class="k">return</span> <span class="n">op</span>
+
+<span class="n">example_funct</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.99999999999</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;sju&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Answer 2d</strong></p>
+<p>Will have to import libraries.</p>
+<p>Can use <code class="docutils literal notranslate"><span class="pre">dir(X)</span></code> to list the attributes of the modules</p>
+<p>There will be some depreciation warnings from scipy instructing users to go use numpy or numpy.lib (which can also be investigated via <code class="docutils literal notranslate"><span class="pre">dir(np.lib)</span></code></p>
+<p>Statistics will return the mean as an integer whereas numpy and scipy will return a float.</p>
+<p>All return the same value of pi.</p>
+<p>scipy returns a complex number for the negative log example with an imaginary part of pi.</p>
+<p>log(+ive) using +12.01 as an example</p>
+<p>log(-ive) using -11.99 as an example</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Module</p></th>
+<th class="text-align:center head"><p>pi</p></th>
+<th class="text-align:center head"><p>log(+ive)</p></th>
+<th class="text-align:center head"><p>log(-ive)</p></th>
+<th class="text-align:center head"><p>mean</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>numpy</p></td>
+<td class="text-align:center"><p>3.14159…</p></td>
+<td class="text-align:center"><p>2.48573…</p></td>
+<td class="text-align:center"><p>nan</p></td>
+<td class="text-align:center"><p>5.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>scipy</p></td>
+<td class="text-align:center"><p>3.14159…</p></td>
+<td class="text-align:center"><p>2.48573…</p></td>
+<td class="text-align:center"><p>(2.48407… + 3.14159…j)</p></td>
+<td class="text-align:center"><p>5.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>math</p></td>
+<td class="text-align:center"><p>3.14159…</p></td>
+<td class="text-align:center"><p>2.48573…</p></td>
+<td class="text-align:center"><p>math domain error</p></td>
+<td class="text-align:center"><p>§</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>statistics</p></td>
+<td class="text-align:center"><p>§</p></td>
+<td class="text-align:center"><p>2.48573…</p></td>
+<td class="text-align:center"><p>math domain error</p></td>
+<td class="text-align:center"><p>5</p></td>
+</tr>
+</tbody>
+</table>
+<p>§ module doesn’t have method</p>
+<p><strong>Answer 2e</strong></p>
+<p>Broad range of options, this is simply one of the possibilities given in the original notebook with the inclusion of some typehinting and descriptions of methods/classes</p>
+<p>Note. For more information on type annotations, look into <a class="reference external" href="https://alan-turing-institute.github.io/rse-course/html/module07_construction_and_design/07_02_coding_conventions.html#type-annotations">Module 7.2</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">typing</span>
+<span class="k">class</span> <span class="nc">Maze</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Here we can put a description of the class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span> 
+        <span class="c1"># We can also use typehints to signal what type a variable should be</span>
+        <span class="c1"># In this case the name of the maze would be a string.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">add_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room</span><span class="p">):</span>
+        <span class="n">room</span><span class="o">.</span><span class="n">maze</span> <span class="o">=</span> <span class="bp">self</span>  <span class="c1"># The Room needs to know which Maze it is a part of</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">[</span><span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">room</span> <span class="c1"># This means that we expect our Rooms class to have a &#39;name&#39; property</span>
+
+    <span class="k">def</span> <span class="nf">occupants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a list containing the occupants of the maze</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">occupant</span> <span class="k">for</span> <span class="n">room</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">occupant</span> <span class="ow">in</span> <span class="n">room</span><span class="o">.</span><span class="n">occupants</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        
+    
+    <span class="k">def</span> <span class="nf">wander</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Move all the people in a random direction&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">occupant</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">():</span>
+            <span class="n">occupant</span><span class="o">.</span><span class="n">wander</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">room</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">room</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wander</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            
+
+            
+<span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">exits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">capacity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">maze</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maze</span> <span class="o">=</span> <span class="n">maze</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Note the default argument, occupants start empty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exits</span> <span class="o">=</span> <span class="n">exits</span>  <span class="c1"># Should be a dictionary from directions to room names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span>
+
+    <span class="k">def</span> <span class="nf">has_space</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if the room has space and return a boolean (True/False)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span>
+
+    <span class="k">def</span> <span class="nf">available_exits</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">exit</span>
+            <span class="k">for</span> <span class="n">exit</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exits</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maze</span><span class="o">.</span><span class="n">rooms</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">has_space</span><span class="p">()</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">random_valid_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">random</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_exits</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">available_exits</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">destination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exit</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">maze</span><span class="o">.</span><span class="n">rooms</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">exits</span><span class="p">[</span><span class="n">exit</span><span class="p">]]</span>
+
+    <span class="k">def</span> <span class="nf">add_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">occupant</span><span class="p">):</span>
+        <span class="n">occupant</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="bp">self</span>  <span class="c1"># The person needs to know which room it is in</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">[</span><span class="n">occupant</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">occupant</span>
+
+    <span class="k">def</span> <span class="nf">delete_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">occupant</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">[</span><span class="n">occupant</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+            
+<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">room</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">use</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exit</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">delete_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">destination</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">destination</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+        <span class="n">destination</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{some}</span><span class="s2"> goes </span><span class="si">{action}</span><span class="s2"> to the </span><span class="si">{where}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">some</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">exit</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">destination</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">wander</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">exit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">random_valid_exit</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">exit</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">james</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">)</span>
+<span class="n">sue</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Sue&quot;</span><span class="p">)</span>
+<span class="n">bob</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">)</span>
+<span class="n">clare</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Clare&quot;</span><span class="p">)</span>
+
+<span class="n">living</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;livingroom&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;outside&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="s2">&quot;upstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;bedroom&quot;</span><span class="p">,</span> <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="s2">&quot;kitchen&quot;</span><span class="p">},</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">kitchen</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;kitchen&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="s2">&quot;livingroom&quot;</span><span class="p">},</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">garden</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;inside&quot;</span><span class="p">:</span> <span class="s2">&quot;livingroom&quot;</span><span class="p">},</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">bedroom</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;bedroom&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="s2">&quot;downstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;livingroom&quot;</span><span class="p">},</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">house</span> <span class="o">=</span> <span class="n">Maze</span><span class="p">(</span><span class="s2">&quot;My House&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">room</span> <span class="ow">in</span> <span class="p">[</span><span class="n">living</span><span class="p">,</span> <span class="n">kitchen</span><span class="p">,</span> <span class="n">garden</span><span class="p">,</span> <span class="n">bedroom</span><span class="p">]:</span>
+    <span class="n">house</span><span class="o">.</span><span class="n">add_room</span><span class="p">(</span><span class="n">room</span><span class="p">)</span>
+    
+<span class="n">living</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="n">james</span><span class="p">)</span>
+<span class="n">garden</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="n">sue</span><span class="p">)</span>
+<span class="n">garden</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="n">clare</span><span class="p">)</span>
+<span class="n">bedroom</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="n">bob</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">house</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>livingroom: James
+garden: Sue Clare
+bedroom: Bob
+
+James goes north to the kitchen
+Sue goes inside to the livingroom
+Clare goes inside to the livingroom
+Bob goes jump to the garden
+
+livingroom: Sue Clare
+kitchen: James
+garden: Bob
+
+Sue goes outside to the garden
+Clare goes outside to the garden
+James goes south to the livingroom
+Bob goes inside to the livingroom
+
+livingroom: James Bob
+garden: Sue Clare
+
+James goes outside to the garden
+Bob goes north to the kitchen
+Sue goes inside to the livingroom
+Clare goes inside to the livingroom
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Answer 2f</strong></p>
+<p>Something along the lines of this for the original question:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_as_lat_lon</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">36.2110</span><span class="p">,</span><span class="o">-</span><span class="mf">115.2669</span><span class="p">),</span>
+                          <span class="p">(</span><span class="mf">53.0066</span><span class="p">,</span> <span class="mf">7.1920</span><span class="p">),</span>
+                          <span class="p">(</span><span class="mf">41.3908</span><span class="p">,</span> <span class="mf">2.1631</span><span class="p">),</span>
+                          <span class="p">(</span><span class="mf">40.7822</span><span class="p">,</span> <span class="o">-</span><span class="mf">73.9653</span><span class="p">),</span>
+                          <span class="p">(</span><span class="mf">25.8380</span><span class="p">,</span> <span class="mf">50.6050</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">op_response</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;https://static-maps.yandex.ru:443/1.x&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="s2">&quot;400,400&quot;</span><span class="p">,</span>  <span class="c1"># size of map</span>
+            <span class="s2">&quot;ll&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>  <span class="c1"># longitude &amp; latitude of centre</span>
+            <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>  <span class="c1"># zoom level</span>
+            <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;sat&quot;</span><span class="p">,</span>  <span class="c1"># map layer (satellite image)</span>
+            <span class="s2">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;en_US&quot;</span><span class="p">,</span>  <span class="c1"># language</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+
+    
+<span class="n">op</span> <span class="o">=</span> <span class="n">op_response</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates_as_lat_lon</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Image</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/module_02_18_0.jpg" src="../_images/module_02_18_0.jpg" />
+</div>
+</div>
+<p><strong>Answer 2e</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extended_op_response</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">opfname</span><span class="o">=</span><span class="s2">&quot;tmp.png&quot;</span><span class="p">):</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;https://static-maps.yandex.ru:443/1.x&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="s2">&quot;400,400&quot;</span><span class="p">,</span>  <span class="c1"># size of map</span>
+            <span class="s2">&quot;ll&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>  <span class="c1"># longitude &amp; latitude of centre</span>
+            <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">zoom</span><span class="p">,</span>  <span class="c1"># zoom level</span>
+            <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;sat&quot;</span><span class="p">,</span>  <span class="c1"># map layer (satellite image)</span>
+            <span class="s2">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;en_US&quot;</span><span class="p">,</span>  <span class="c1"># language</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">opfname</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">png</span><span class="p">:</span>
+        <span class="n">png</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+
+<span class="n">extended_op_response</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates_as_lat_lon</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">opfname</span><span class="o">=</span><span class="s2">&quot;map_picture_1.png&quot;</span><span class="p">)</span>
+
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;map_picture_1.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/module_02_20_0.png" src="../_images/module_02_20_0.png" />
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Working with Data
+# # 2.4 Working with Files
 
-# ## Loading data from files
+# *Estimated time to complete this notebook: 15 minutes*
 
-# ### Loading data
+# ## 2.4.1 Background
+# Loading data from files
 
 # An important part of this course is about using Python to analyse and visualise data.
 # Most data, of course, is supplied to us in various *formats*: spreadsheets, database dumps, or text files in various formats (csv, tsv, json, yaml, hdf5, netcdf)
@@ -49,7 +50,7 @@ import os
 
 # Yep! Note how we used a list comprehension to filter all the extraneous files.
 
-# ### Path independence and `os`
+# ## 2.4.2 Path independence and `os`
 
 # We can use `dirname` to get the parent folder for a folder, in a platform independent-way.
 
@@ -80,7 +81,7 @@ os.path.dirname(os.getcwd())
 # We'll gradually learn more features of the `os` module as we go, allowing us to move around the disk, `walk` around the
 # disk looking for relevant files, and so on. These will be important to master for automating our data analyses.
 
-# ### The python `file` type
+# ## 2.4.3 The python `file` type
 
 # So, let's read our file:
 
@@ -123,7 +124,7 @@ myfile.seek(0)
 
 # It's really important to remember that a file is a *different* built in type than a string.
 
-# ### Working with files.
+# ## 2.4.4 Reading Files
 
 # We can read one line at a time with `readline`: 
 
@@ -188,7 +189,7 @@ myfile.seek(1335)
 myfile.read(15)
 
 
-# ### Converting Strings to Files
+# ## 2.4.5 Converting Strings to Files
 
 # Because files and strings are different types, we CANNOT just treat strings as if they were files:
 
@@ -239,7 +240,7 @@ mystringasafile.readline()
 
 # Note that in a string, `\n` is used to represent a newline.
 
-# ### Closing files
+# ## 2.4.6 Closing files
 
 # We really ought to close files when we've finished with them, as it makes the computer more efficient. (On a shared computer,
 # this is particularly important)
@@ -266,7 +267,7 @@ content
 
 # You should pretty much **always** use this syntax for working with files.
 
-# ### Writing files
+# ## 2.4.7 Writing files
 
 # We might want to create a file from a string in memory. We can't do this with the notebook's `%%writefile` -- this is
 # just a notebook convenience, and isn't very programmable.

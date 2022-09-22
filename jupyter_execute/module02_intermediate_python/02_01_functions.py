@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Functions 
+# # 2.1 Functions 
 
-# # Definition
+# *Estimated time to complete this notebook: 15 minutes*
+
+# ## 2.1.1 Definition
 
 # 
 # We use `def` to define a function, and `return` to pass back a value:
@@ -21,7 +23,7 @@ def double(x):
 print(double(5), double([5]), double("five"))
 
 
-# # Default Parameters
+# ## 2.1.2 Default Parameters
 
 # We can specify default values for parameters:
 
@@ -85,7 +87,97 @@ jeeves(greeting="Suits you")
 jeeves("Hello", "Sailor")
 
 
-# # Side effects
+# ## 2.1.3 Early Return
+
+# 
+# Return without arguments can be used to exit early from a function
+# 
+# 
+# 
+
+# Here's a slightly convoluted example of a function which will return early under specific conditions. In this case if a list contains the string 'cat'.
+
+# In[11]:
+
+
+def are_there_cats(my_input_list):
+    
+    if "cat" in my_input_list: # If the string "cat" is in the list
+        print("There is a cat in here") # print a statement to screen
+        return
+    
+    print("Nothing to see here")
+
+
+# In[12]:
+
+
+first_list = ['cat', 'dog', 'hamster', 42]
+
+second_list = ['duck', 17, 'elk']
+
+
+# In[13]:
+
+
+are_there_cats(first_list)
+
+
+# In[14]:
+
+
+are_there_cats(second_list)
+
+
+# ## 2.1.4 Scoping
+
+# There are differences in how variables and names are accessed by your code based on where they are defined. 
+# 
+# Within this notebook any variables that have been defined outside of a function will be available to the rest of the notebook. At this point in the notebook, x has not been defined.
+
+# In[15]:
+
+
+x
+
+
+# If we now define x and write and call a function in which uses it; the function can still access x, even if x isn't given as an argument.
+
+# In[16]:
+
+
+x = 5 # Define x now
+
+def can_we_see_x():
+    print(f"x = {x}")
+    
+can_we_see_x()
+
+
+# However if we define y locally - in a function - we can access it from within that function:
+
+# In[17]:
+
+
+def can_we_see_y():
+    y = 7 # Define y in the function
+    print(f"x = {x}")
+    print(f"y = {y}")
+    
+can_we_see_y()
+
+
+# However y isn't accessible globally - that is it isn't available outside of the function in which it was defined
+
+# In[18]:
+
+
+y
+
+
+# *Note for the two functions above we used syntax for building strings that contain the values of variables. You can read more about it [here](https://realpython.com/python-string-formatting/#3-string-interpolation-f-strings-python-36) or in the official documentation for formatted string literals; [f-strings](https://docs.python.org/3/tutorial/inputoutput.html#tut-f-strings).*
+
+# ## 2.1.5 Side effects
 
 # Functions can do things to change their **mutable** arguments,
 # so `return` is optional.
@@ -94,7 +186,7 @@ jeeves("Hello", "Sailor")
 # 
 # Here is a contrived example of a function that makes plausible use of a side-effect
 
-# In[11]:
+# In[19]:
 
 
 def double_inplace(vec):
@@ -106,7 +198,7 @@ double_inplace(z)
 print(z)
 
 
-# In[12]:
+# In[20]:
 
 
 letters = ["a", "b", "c", "d", "e", "f", "g"]
@@ -118,10 +210,12 @@ letters[:] = []
 #     vec = [element*2 for element in vec]
 # 
 # would just move a local label, not change the input.
+# 
+# See Module 1.5 - Memory and Containers for a refresher 
 
 # But I'd usually just write this as a function which **returned** the output:
 
-# In[13]:
+# In[21]:
 
 
 def double(vec):
@@ -130,7 +224,7 @@ def double(vec):
 
 # Let's remind ourselves of the behaviour for modifying lists in-place using `[:]` with a simple array:
 
-# In[14]:
+# In[22]:
 
 
 x = 5
@@ -139,63 +233,27 @@ x = ["a", "b", "c"]
 y = x
 
 
-# In[15]:
+# In[23]:
 
 
 x
 
 
-# In[16]:
+# In[24]:
 
 
 x[:] = ["Hooray!", "Yippee"]
 
 
-# In[17]:
+# In[25]:
 
 
 y
 
 
-# ## Early Return
+# ## 2.1.6 Unpacking arguments
 
-# 
-# Return without arguments can be used to exit early from a function
-# 
-# 
-# 
-
-# Here's a slightly more plausibly useful function-with-side-effects to extend a list with a specified padding datum.
-
-# In[18]:
-
-
-def extend(to, vec, pad):
-    if len(vec) >= to:
-        return  # Exit early, list is already long enough.
-
-    vec[:] = vec + [pad] * (to - len(vec))
-
-
-# In[19]:
-
-
-x = list(range(3))
-extend(6, x, "a")
-print(x)
-
-
-# In[20]:
-
-
-z = list(range(9))
-extend(6, z, "a")
-print(z)
-
-
-# ## Unpacking arguments
-
-# In[21]:
+# In[26]:
 
 
 def arrow(before, after):
@@ -212,7 +270,7 @@ arrow(1, 3)
 # 
 # 
 
-# In[22]:
+# In[27]:
 
 
 x = [1, -1]
@@ -227,7 +285,7 @@ arrow(*x)
 # 
 # 
 
-# In[23]:
+# In[28]:
 
 
 charges = {"neutron": 0, "proton": 1, "electron": -1}
@@ -235,35 +293,35 @@ for particle in charges.items():
     print(arrow(*particle))
 
 
-# ## Sequence Arguments
+# ## 2.1.7 Sequence Arguments
 
 # Similiarly, if a `*` is used in the **definition** of a function, multiple
 # arguments are absorbed into a list **inside** the function:
 
-# In[24]:
+# In[29]:
 
 
 def doubler(*sequence):
     return [x * 2 for x in sequence]
 
 
-# In[25]:
+# In[30]:
 
 
 doubler(1, 2, 3)
 
 
-# In[26]:
+# In[31]:
 
 
 doubler(5, 2, "Wow!")
 
 
-# ## Keyword Arguments
+# ## 2.1.8 Keyword Arguments
 
 # If two asterisks are used, named arguments are supplied inside the function as a dictionary:
 
-# In[27]:
+# In[32]:
 
 
 def arrowify(**args):
@@ -276,7 +334,7 @@ arrowify(neutron="n", proton="p", electron="e")
 
 # These different approaches can be mixed:
 
-# In[28]:
+# In[33]:
 
 
 def somefunc(a, b, *args, **kwargs):
@@ -286,7 +344,7 @@ def somefunc(a, b, *args, **kwargs):
     print("keyword args", kwargs)
 
 
-# In[29]:
+# In[34]:
 
 
 somefunc(1, 2, 3, 4, 5, fish="Haddock")
