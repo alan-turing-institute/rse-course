@@ -12,7 +12,7 @@ This is a relatively short course (8-10 half-day modules) which is intensive and
 - Experience with version control and/or the `Unix` shell, for instance from Software Carpentry, would also be helpful.
 - You should bring your own laptop to the course as there are several hands-on exercise for you to work through.
 - We have provided [setup](course_prerequisites/index.md) instructions for installing the software needed for the course on your computer.
-- **Eligibility:** This course is primarily aimed at Turing-connected PhD students. Other Turing-affiliated people might join too if capacity allows.
+- **Eligibility:** The course is open to postgraduate students, early career researchers, practitioners (e.g. data analysts/scientists) and researchers interested in to learn how to construct reliable, readable, efficient research software in a collaborative environment. Turing PhD students and researchers are particularly encouraged to apply. Attendance is free.
 
 ## Instructors
 
