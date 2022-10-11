@@ -1,0 +1,29 @@
+name: Update requirements
+
+# Run workflow on pushes to matching branches
+on:
+  push:
+    branches: [ci-requirements]
+  pull_request:
+    branches: [main]
+
+jobs:
+  update_requirements:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install poetry
+        run: pip install poetry
+      - name: Update packages
+        run: |
+          poetry update
+          poetry install --no-root
+      - name: Update requirements
+        run: echo "# AUTOMATICALLY GENERATED. DO NOT EDIT.\n$(pip freeze)" > requirements.txt
+      - name: Check for changes
+        run: git diff --exit-code
