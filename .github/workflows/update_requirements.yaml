@@ -11,19 +11,21 @@ jobs:
   update_requirements:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install poetry
-        run: pip install poetry
-      - name: Update packages
+        run: pipx install poetry
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - name: Install required packages
         run: |
           poetry update
           poetry install --no-root
-      - name: Update requirements
-        run: echo "# AUTOMATICALLY GENERATED. DO NOT EDIT.\n$(pip freeze)" > requirements.txt
+      - name: Update requirements file
+        run: |
+          echo "# AUTOMATICALLY GENERATED. DO NOT EDIT." > requirements.txt
+          poetry export --without-hashes --format=requirements.txt | cut -d ' ' -f 1 >> requirements.txt
       - name: Check for changes
         run: git diff --exit-code
