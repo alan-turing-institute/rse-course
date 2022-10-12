@@ -32,5 +32,10 @@ jobs:
       - name: Validate requirements file
         run: |
           pip install -r requirements.txt
+      - name: Run safety check over requirements file
+        run: |
+          pip install safety
+          safety check -r requirements.txt
+        continue-on-error: true
       - name: Check for changes
         run: git diff --exit-code
