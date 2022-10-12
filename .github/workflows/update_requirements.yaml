@@ -28,6 +28,14 @@ jobs:
       - name: Update requirements file
         run: |
           echo "# AUTOMATICALLY GENERATED. DO NOT EDIT." > requirements.txt
-          poetry export --without-hashes --format=requirements.txt | cut -d ' ' -f 1 >> requirements.txt
+          poetry export --without-hashes --format=requirements.txt >> requirements.txt
+      - name: Validate requirements file
+        run: |
+          pip install -r requirements.txt
+      - name: Run safety check over requirements file
+        run: |
+          pip install safety
+          safety check -r requirements.txt
+        continue-on-error: true
       - name: Check for changes
         run: git diff --exit-code
