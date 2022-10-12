@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # # 3.0 Field and Record Data
+
 # *Estimated time to complete this notebook: 20 minutes*
 
 # ## 3.01 Separated Value Files

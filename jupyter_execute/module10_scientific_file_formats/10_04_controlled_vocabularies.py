@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Saying the same thing multiple ways
+# # 10.4 Saying the same thing in multiple ways
+
+# *Estimated time for this notebook: 15 minutes*
 
 # What happens when someone comes across a file in our file format? How do they know what it means?
 

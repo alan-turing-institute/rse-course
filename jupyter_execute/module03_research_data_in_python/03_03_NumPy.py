@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # # 3.3 NumPy
+
 # *Estimated time to complete this notebook: 20 minutes*
 
 # ## 3.3.1 The Scientific Python Trilogy

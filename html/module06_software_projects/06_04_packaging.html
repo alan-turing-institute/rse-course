@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Packaging &#8212; Research Software Engineering with Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>6.4 Packaging &#8212; Research Software Engineering with Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -54,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Documentation" href="06_05_documentation.html" />
-    <link rel="prev" title="Python not in the Notebook" href="06_03_non_notebook_python.html" />
+    <link rel="next" title="6.5 Documentation" href="06_05_documentation.html" />
+    <link rel="prev" title="6.3 Python outside the notebook" href="06_03_non_notebook_python.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Research Software Engineering with Python
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Prerequisites
  </span>
@@ -146,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../module01_introduction_to_python/index.html">
-   Introduction to Python
+   1. Introduction to Python
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -161,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
-     1.1 An example Python data analysis notebook
+     1.1 Data analysis with Jupyter
     </a>
    </li>
    <li class="toctree-l2">
@@ -243,7 +258,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
-     2.4 Working with Files
+     2.4 Working with files
     </a>
    </li>
    <li class="toctree-l2">
@@ -290,17 +305,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy_continued.html">
-     3.4 NumPy Continued
+     3.4 Advanced NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
-     3.5 The Boids!
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_understanding_greengraph.html">
+     3.5 Recap: Understanding the “Greengraph” example
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
-     3.6 Recap: Understanding the “Greengraph” Example
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
     </a>
    </li>
    <li class="toctree-l2">
@@ -322,62 +337,62 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
-     Introduction
+     4.0 Introduction to version control
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
-     Solo work with Git
+     4.1 Solo work with git
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
-     Fixing mistakes
+     4.2 Fixing mistakes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
-     Publishing
+     4.3 Publishing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
-     Collaboration
+     4.4 Collaboration
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
-     Fork and Pull
+     4.5 Fork and Pull
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
-     Git Theory
+     4.6 Git Theory
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
-     Branches
+     4.7 Branches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
-     Git Stash
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
-     Working with multiple remotes
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_github_pages.html">
+     4.9 Publishing from GitHub
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
-     Rebasing
+     4.10 Rebasing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
-     Debugging With Git Bisect
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
     </a>
    </li>
   </ul>
@@ -394,37 +409,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
-     Testing
+     5.0 Testing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
-     How to Test
+     5.1 How to test
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
-     Testing frameworks
+     5.2 Testing frameworks
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
-     Classroom exercise: energy calculation
+     5.3 Classroom exercise: energy calculation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
-     Mocking
+     5.4 Mocking
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
-     Using a debugger
+     5.5 Using a debugger
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
-     Continuous Integration
+     5.6 Continuous Integration
     </a>
    </li>
    <li class="toctree-l2">
@@ -446,47 +461,47 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="06_00_libraries.html">
-     Libraries
+     6.0 Libraries
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="06_01_pypi_packages.html">
-     Installing Libraries
+    <a class="reference internal" href="06_01_installing_packages.html">
+     6.1 Installing libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="06_02_managing_dependencies.html">
-     Managing Dependencies
+     6.2 Managing Dependencies
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="06_03_non_notebook_python.html">
-     Python not in the Notebook
+     6.3 Python outside the notebook
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Packaging
+     6.4 Packaging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="06_05_documentation.html">
-     Documentation
+     6.5 Documentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="06_06_software_development.html">
-     Software Project Management
+     6.6 Software Project Management
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="06_07_software_licensing.html">
-     Software Licensing
+     6.7 Software Licensing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="06_08_software_issues.html">
-     Managing software issues
+     6.8 Managing software issues
     </a>
    </li>
    <li class="toctree-l2">
@@ -508,42 +523,42 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
-     Construction
+     7.0 Construction
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_01_comments.html">
-     Comments
+     7.1 Comments
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_02_coding_conventions.html">
-     Coding Conventions
+     7.2 Coding conventions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
-     Lint
+     7.3 Linting
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
-     Refactoring
+     7.4 Refactoring
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
-     Object-Oriented Design
+     7.5 Object-Oriented Design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_06_classes.html">
-     Class design
+     7.6 Class design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_07_design_patterns.html">
-     Patterns
+     7.7 Design Patterns
     </a>
    </li>
    <li class="toctree-l2">
@@ -565,37 +580,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
-     Advanced Python Programming
+     8.0 Advanced Python Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
-     Functional programming
+     8.1 Functional programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
-     Iterators and Generators
+     8.2 Iterators and Generators
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
-     Exceptions
+     8.3 Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
-     Operator overloading
+     8.4 Operator overloading
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
-     Operator overloading
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
-     Metaprogramming
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
     </a>
    </li>
   </ul>
@@ -612,27 +627,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
-     Performance programming
+     9.0 Performance programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
-     Optimising Mandelbrot
+     9.1 Optimising Mandelbrot
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
-     NumPy for Performance
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
-     Cython
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3 Optimising with Cython
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
-     Scaling for containers and algorithms
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.5 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance scaling for containers and algorithms
     </a>
    </li>
   </ul>
@@ -649,32 +669,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
-     What can go wrong?
+     10.0 Serialising and normalising data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
-     Deserialisation
+     10.1 Deserialisation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     Domain specific languages
+     10.2 Domain specific languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     Markup Languages
+     10.3 Markup Languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     Saying the same thing multiple ways
+     10.4 Saying the same thing in multiple ways
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     Semantic file formats
+     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -751,111 +771,228 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
 <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
 
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/module06_software_projects/06_04_packaging.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/alan-turing-institute/rse-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule06_software_projects/06_04_packaging.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/alan-turing-institute/rse-course/edit/main/module06_software_projects/06_04_packaging.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module06_software_projects/06_04_packaging.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module06_software_projects/06_04_packaging.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule06_software_projects/06_04_packaging.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module06_software_projects/06_04_packaging.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module06_software_projects/06_04_packaging.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#laying-out-a-project">
    Laying out a project
@@ -974,15 +1111,14 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Packaging</h1>
+                <h1>6.4 Packaging</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1114,11 +1250,13 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="packaging">
-<h1>Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="packaging">
+<h1>6.4 Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time for this notebook: 25 minutes</em></p>
 <p>Once we’ve made a working program, we’d like to be able to use it across our system and to share it with others. To do this we need to create our own Python package.</p>
 <p>As an example, we’ll create a package from the <code class="docutils literal notranslate"><span class="pre">greeter.py</span></code> and <code class="docutils literal notranslate"><span class="pre">command.py</span></code> files from the previous notebook. But we’ll delete the files created last time first, to start from a clean slate:</p>
 <div class="cell docutils container">
@@ -1134,8 +1272,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="laying-out-a-project">
-<h2>Laying out a project<a class="headerlink" href="#laying-out-a-project" title="Permalink to this headline">¶</a></h2>
+<section id="laying-out-a-project">
+<h2>Laying out a project<a class="headerlink" href="#laying-out-a-project" title="Permalink to this headline">#</a></h2>
 <p>When planning to package a project for distribution, defining a suitable
 project layout is essential. We have a typical example of a package layout in the <code class="docutils literal notranslate"><span class="pre">Greetings</span></code> directory, which looks like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Greetings                 &lt;--- Parent directory for your project (your git repo)
@@ -1150,9 +1288,9 @@ project layout is essential. We have a typical example of a package layout in th
    └── test_greeter.py
 </pre></div>
 </div>
-</div>
-<div class="section" id="the-package-directory">
-<h2>The package directory<a class="headerlink" href="#the-package-directory" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-package-directory">
+<h2>The package directory<a class="headerlink" href="#the-package-directory" title="Permalink to this headline">#</a></h2>
 <p>All your library source code should be in a single directory tree under the parent project directory. Libraries are usually structured with multiple files, perhaps one for each class.</p>
 <p>The source code directory (and sub-directories) should contain an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file, which makes Python treat it as a module. <strong>The <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file can be empty</strong>.</p>
 <p>With the file layout above, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">greetings</span></code>, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">greetings.command</span></code>, and <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">greetings.greeter</span></code> will all be possible after installing the package.</p>
@@ -1176,9 +1314,9 @@ project layout is essential. We have a typical example of a package layout in th
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greetings</span> <span class="kn">import</span> <span class="n">greet</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="build-systems-and-config-files">
-<h2>Build systems and config files<a class="headerlink" href="#build-systems-and-config-files" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="build-systems-and-config-files">
+<h2>Build systems and config files<a class="headerlink" href="#build-systems-and-config-files" title="Permalink to this headline">#</a></h2>
 <p>To install your package you need to define a “build system”, the tool that will do the work of creating the package, and to provide a configuration file to specify how your package should be built.</p>
 <p>The three most common package config files are:</p>
 <ul class="simple">
@@ -1189,63 +1327,63 @@ project layout is essential. We have a typical example of a package layout in th
 <p>You’ll find a lot of projects that use <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> (which used to be the standard), but for new projects it’s recommended to use <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. <a class="reference external" href="https://toml.io/en/">TOML</a> is a modern file format for configuration files.</p>
 <p>There are multiple “build systems” that can interpret <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> files and build your package. The original and most ubiquitous is <a class="reference external" href="https://setuptools.pypa.io/en/latest/index.html">setuptools</a>, which we’ll use here.</p>
 <p>Other options include <a class="reference external" href="https://python-poetry.org/">Poetry</a>, <a class="reference external" href="https://flit.pypa.io/en/latest/">Flit</a> and <a class="reference external" href="https://hatch.pypa.io/latest/">Hatch</a>. We’d recommend looking at Poetry as an option for managing dependencies, virtual environments, and packaging together. The structure of <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> will differ depending on the tool you’re using.</p>
-</div>
-<div class="section" id="using-setuptools-and-pyproject-toml">
-<h2>Using setuptools and pyproject.toml<a class="headerlink" href="#using-setuptools-and-pyproject-toml" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="specifying-the-build-system">
-<h3>Specifying the build system<a class="headerlink" href="#specifying-the-build-system" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="using-setuptools-and-pyproject-toml">
+<h2>Using setuptools and pyproject.toml<a class="headerlink" href="#using-setuptools-and-pyproject-toml" title="Permalink to this headline">#</a></h2>
+<section id="specifying-the-build-system">
+<h3>Specifying the build system<a class="headerlink" href="#specifying-the-build-system" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">[build-system]</span></code> section gives the details the tool that should be used to create the package from our code, in this case <code class="docutils literal notranslate"><span class="pre">setuptools</span></code>:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[build-system]</span><span class="w"></span>
 <span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;setuptools&quot;</span><span class="p">]</span><span class="w">  </span><span class="c1"># the build tool to use</span><span class="w"></span>
 <span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;setuptools.build_meta&quot;</span><span class="w">  </span><span class="c1"># the function to use to build the package</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="specifying-project-metadata">
-<h3>Specifying project metadata<a class="headerlink" href="#specifying-project-metadata" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="specifying-project-metadata">
+<h3>Specifying project metadata<a class="headerlink" href="#specifying-project-metadata" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">[project]</span></code> section contains metadata about your package, at minimum this should include your package’s name (usually the name of your package directory) and a version number:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project]</span><span class="w"></span>
 <span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greetings&quot;</span><span class="w"></span>
 <span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.0.1&quot;</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="specifying-dependencies">
-<h3>Specifying dependencies<a class="headerlink" href="#specifying-dependencies" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="specifying-dependencies">
+<h3>Specifying dependencies<a class="headerlink" href="#specifying-dependencies" title="Permalink to this headline">#</a></h3>
 <p>Rather than in a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file, your package’s dependencies should be specified in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. These are passed as a list in the <code class="docutils literal notranslate"><span class="pre">[project]</span></code> section (in this case we only have one dependency, <code class="docutils literal notranslate"><span class="pre">colorama</span></code>):</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project]</span><span class="w"></span>
 <span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;colorama ~= 0.4.4&quot;</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="section" id="python-version">
-<h4>Python version<a class="headerlink" href="#python-version" title="Permalink to this headline">¶</a></h4>
+<section id="python-version">
+<h4>Python version<a class="headerlink" href="#python-version" title="Permalink to this headline">#</a></h4>
 <p>If our package requires a certain Python version to work, that can also be specified:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project]</span><span class="w"></span>
 <span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&gt;=3.6&quot;</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="optional-dependencies">
-<h4>Optional dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="optional-dependencies">
+<h4>Optional dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this headline">#</a></h4>
 <p>Sometimes a package may have extra optional features, with extra dependencies, that not all users need. A common example is development dependencies (e.g. for running tests, building documentation, checking code quality, and similar) that a normal user won’t need. Optional dependencies can be specified in the <code class="docutils literal notranslate"><span class="pre">[project.optional-dependencies]</span></code> section:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project.optional-dependencies]</span><span class="w"></span>
 <span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;pytest ~= 7.1.2&quot;</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">dev</span></code> is the name of an optional group of dependencies that can be passed to <code class="docutils literal notranslate"><span class="pre">pip</span></code> when installing the package (see below). We could have multiple groups here with different (arbitrary) names and sets of dependencies.</p>
-</div>
-</div>
-<div class="section" id="make-a-command-line-interface">
-<h3>Make a command-line interface<a class="headerlink" href="#make-a-command-line-interface" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="make-a-command-line-interface">
+<h3>Make a command-line interface<a class="headerlink" href="#make-a-command-line-interface" title="Permalink to this headline">#</a></h3>
 <p>In the previous notebook we created a script <code class="docutils literal notranslate"><span class="pre">command.py</span></code> that could be run with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">command.py</span> <span class="pre">...</span></code> with configurable arguments using <code class="docutils literal notranslate"><span class="pre">argparse</span></code>. We can include scripts like these in the package installation to create a more intuitive CLI (command-line interface) for our library:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project.scripts]</span><span class="w"></span>
 <span class="n">greet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greetings.command:process&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The syntax above means that after installing the package the command <code class="docutils literal notranslate"><span class="pre">greet</span></code> will become available on our system, and running <code class="docutils literal notranslate"><span class="pre">greet</span></code> will call the <code class="docutils literal notranslate"><span class="pre">process</span></code> function in the <code class="docutils literal notranslate"><span class="pre">greetings/command.py</span></code> file. See below for this in action.</p>
-</div>
-<div class="section" id="complete-pyproject-toml">
-<h3>Complete pyproject.toml<a class="headerlink" href="#complete-pyproject-toml" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="complete-pyproject-toml">
+<h3>Complete pyproject.toml<a class="headerlink" href="#complete-pyproject-toml" title="Permalink to this headline">#</a></h3>
 <p>All together this is our complete <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[build-system]</span><span class="w"></span>
 <span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;setuptools&quot;</span><span class="p">]</span><span class="w"></span>
@@ -1265,10 +1403,10 @@ project layout is essential. We have a typical example of a package layout in th
 </pre></div>
 </div>
 <p>This is a minimal example but there are many other metadata fields you can include and configuration options. See the <a class="reference external" href="https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html">setuptools</a> and <a class="reference external" href="https://packaging.python.org/en/latest/specifications/declaring-project-metadata/">Python packaging</a> docs for details.</p>
-</div>
-</div>
-<div class="section" id="installing-the-package">
-<h2>Installing the package<a class="headerlink" href="#installing-the-package" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="installing-the-package">
+<h2>Installing the package<a class="headerlink" href="#installing-the-package" title="Permalink to this headline">#</a></h2>
 <p>We can now install this code with</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1306,7 +1444,7 @@ pip install .
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Preparing metadata (pyproject.toml): finished with status &#39;done&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: colorama~=0.4.4 in /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages (from greetings==0.0.1) (0.4.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: colorama~=0.4.4 in /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages (from greetings==0.0.1) (0.4.5)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building wheels for collected packages: greetings
@@ -1318,10 +1456,10 @@ pip install .
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for greetings (pyproject.toml): finished with status &#39;done&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Created wheel for greetings: filename=greetings-0.0.1-py3-none-any.whl size=2786 sha256=afb463e3ffbc85b4d5a7f2b390ae4d5fe183ac416db3e2b81d36c9cd0e322d14
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Created wheel for greetings: filename=greetings-0.0.1-py3-none-any.whl size=2786 sha256=5bef7b9ec4c7b3e08a716d875f4ab598a01e93d50a9bd0ad108f86899109c04c
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Stored in directory: /tmp/pip-ephem-wheel-cache-dr4gs9gj/wheels/a6/5c/81/c1c48894d5b25832088cf648e757dcc6d8eff3dc2116123a4a
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Stored in directory: /tmp/pip-ephem-wheel-cache-1k9iif_b/wheels/a6/5c/81/c1c48894d5b25832088cf648e757dcc6d8eff3dc2116123a4a
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully built greetings
@@ -1347,16 +1485,16 @@ pip install .
 </div>
 </div>
 </div>
-<div class="section" id="installing-optional-dependencies">
-<h3>Installing optional dependencies<a class="headerlink" href="#installing-optional-dependencies" title="Permalink to this headline">¶</a></h3>
+<section id="installing-optional-dependencies">
+<h3>Installing optional dependencies<a class="headerlink" href="#installing-optional-dependencies" title="Permalink to this headline">#</a></h3>
 <p>To install dependencies specified in <code class="docutils literal notranslate"><span class="pre">[project.optional-dependencies]</span></code>, include the name of the optional group in square brackets, like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">Greetings</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;.[dev]&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="editable-mode">
-<h3>Editable mode<a class="headerlink" href="#editable-mode" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="editable-mode">
+<h3>Editable mode<a class="headerlink" href="#editable-mode" title="Permalink to this headline">#</a></h3>
 <p>If you modify your source files, you would now find it appeared as if the program doesn’t change.</p>
 <p>That’s because pip install <strong>copies</strong> the file elsewhere during installation (the location is system-dependent).</p>
 <p>If you want to install a package, but keep working on it, you can install it in “editable mode”.</p>
@@ -1381,22 +1519,22 @@ pip install .
 <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;.[dev]&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="installing-from-github">
-<h3>Installing from GitHub<a class="headerlink" href="#installing-from-github" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="installing-from-github">
+<h3>Installing from GitHub<a class="headerlink" href="#installing-from-github" title="Permalink to this headline">#</a></h3>
 <p>If we have our code in a (public) git repo anyone can now install our package directly from the git URL:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+git://github.com/alan-turing-institute/Greetings
 </pre></div>
 </div>
-</div>
-<div class="section" id="uploading-to-pypi">
-<h3>Uploading to PyPI<a class="headerlink" href="#uploading-to-pypi" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="uploading-to-pypi">
+<h3>Uploading to PyPI<a class="headerlink" href="#uploading-to-pypi" title="Permalink to this headline">#</a></h3>
 <p>We could now submit “greeter” to PyPI so everyone could <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">greetings</span></code> directly. For details see the <a class="reference external" href="https://packaging.python.org/en/latest/tutorials/packaging-projects/#generating-distribution-archives">Python packaging tutorial</a>.</p>
 <p>Note there is very little approval/review process - you can put pretty much anything on PyPI. Keep that in mind and be wary about installing unknown packages!</p>
-</div>
-</div>
-<div class="section" id="using-the-package">
-<h2>Using the Package<a class="headerlink" href="#using-the-package" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="using-the-package">
+<h2>Using the Package<a class="headerlink" href="#using-the-package" title="Permalink to this headline">#</a></h2>
 <p>The package is now available to use everywhere on the system.</p>
 <p>⚠️ You may need to restart your Jupyter notebook kernel for the newly installed package to be recognised.</p>
 <div class="cell docutils container">
@@ -1482,9 +1620,9 @@ greet James Hetherington --title Dr
 </div>
 </div>
 <p>Of course, there’s more to do when taking code from a quick script and turning it into a proper module. We’ll continue to look at this in the rest of the course, but here are some initial ideas:</p>
-</div>
-<div class="section" id="write-some-unit-tests">
-<h2>Write some unit tests<a class="headerlink" href="#write-some-unit-tests" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="write-some-unit-tests">
+<h2>Write some unit tests<a class="headerlink" href="#write-some-unit-tests" title="Permalink to this headline">#</a></h2>
 <p>Contents of <code class="docutils literal notranslate"><span class="pre">Greetings/tests/test_greeter.py</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greetings.greeter</span> <span class="kn">import</span> <span class="n">greet</span>
 
@@ -1516,13 +1654,13 @@ pytest
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.1.2, pluggy-1.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.1.3, pluggy-1.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module06_software_projects/Greetings
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.1, cov-3.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.1, pylama-8.4.1, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 1 item
@@ -1537,14 +1675,14 @@ pytest
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================== 1 passed in 0.04s ===============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================== 1 passed in 0.02s ===============================
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="write-a-readme-file">
-<h2>Write a README file<a class="headerlink" href="#write-a-readme-file" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="write-a-readme-file">
+<h2>Write a README file<a class="headerlink" href="#write-a-readme-file" title="Permalink to this headline">#</a></h2>
 <p>e.g.:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1568,9 +1706,9 @@ Invoke the tool with greet &lt;FirstName&gt; &lt;Secondname&gt;
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="write-a-license-file">
-<h2>Write a license file<a class="headerlink" href="#write-a-license-file" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="write-a-license-file">
+<h2>Write a license file<a class="headerlink" href="#write-a-license-file" title="Permalink to this headline">#</a></h2>
 <p>e.g.:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1588,9 +1726,9 @@ Invoke the tool with greet &lt;FirstName&gt; &lt;Secondname&gt;
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="write-a-citation-file">
-<h2>Write a citation file<a class="headerlink" href="#write-a-citation-file" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="write-a-citation-file">
+<h2>Write a citation file<a class="headerlink" href="#write-a-citation-file" title="Permalink to this headline">#</a></h2>
 <p>e.g.:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1611,9 +1749,9 @@ Invoke the tool with greet &lt;FirstName&gt; &lt;Secondname&gt;
 </div>
 </div>
 <p>You may well want to formalise this using the <a class="reference external" href="https://codemeta.github.io/">codemeta.json</a> standard - this doesn’t have wide adoption yet, but we recommend it.</p>
-</div>
-<div class="section" id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">#</a></h2>
 <p>This documentation string explains how to use the function; don’t worry about this for now, we’ll consider
 this next time.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">personal</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">polite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -1678,8 +1816,8 @@ greet(personal, family, title=&#39;&#39;, polite=False)
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1703,47 +1841,53 @@ greet(personal, family, title=&#39;&#39;, polite=False)
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="06_03_non_notebook_python.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Python not in the Notebook</p>
+            <p class="prev-next-title">6.3 Python outside the notebook</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="06_05_documentation.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Documentation</p>
+        <p class="prev-next-title">6.5 Documentation</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
 Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
 <br/>
-    
-      <div class="extra_footer">
-        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

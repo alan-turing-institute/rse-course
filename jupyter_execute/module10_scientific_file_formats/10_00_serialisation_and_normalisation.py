@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # What can go wrong?
+# # 10.0 Serialising and normalising data
+
+# *Estimated time for this notebook: 20 minutes*
 
 # Consider a simple python computational model of chemical reaction networks:
 

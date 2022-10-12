@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Optimising Mandelbrot
+# # 9.1 Optimising Mandelbrot
+
+# *Estimated time for this notebook: 5 minutes*
 
 # Let's start by reproducing our `mandel1` function and its output, `data1`, from the previous notebook.
 

@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Branches
-# 
+# # 4.7 Branches
+
+# *Estimated time to complete this notebook: 10 minutes*
+
 # Branches are incredibly important to why `git` is cool and powerful.
 # 
 # They are an easy and cheap way of making a second version of your software, which you work on in parallel,

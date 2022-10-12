@@ -1,0 +1,1645 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4.12 Working with multiple remotes &#8212; Research Software Engineering with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Testing" href="../module05_testing_your_code/index.html" />
+    <link rel="prev" title="4.11 Debugging With git bisect" href="04_11_debugging_with_git_bisect.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_git.html">
+     Git &amp; GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/03_editor.html">
+     Text Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/04_jupyter.html">
+     Course Contents in Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   1. Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     1.0 Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
+     1.1 Data analysis with Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_variables.html">
+     1.2 Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_using_functions.html">
+     1.3 Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_types.html">
+     1.4 Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_containers.html">
+     1.5 Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_dictionaries.html">
+     1.6 Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_data_structures.html">
+     1.7 Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_control_and_flow.html">
+     1.8 Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_iteration.html">
+     1.9 Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_10_classroom_exercises.html">
+     Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     2.0 Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     2.1 Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     2.2 Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_defining_classes.html">
+     2.3 Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
+     2.4 Working with files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_getting_data_from_the_internet.html">
+     2.5 Getting data from the Internet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_06_classroom_exercises.html">
+     Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_fields_and_records.html">
+     3.0 Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_structured_data.html">
+     3.1 Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_plotting_with_matplotlib.html">
+     3.2 Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_NumPy.html">
+     3.3 NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy_continued.html">
+     3.4 Advanced NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_understanding_greengraph.html">
+     3.5 Recap: Understanding the “Greengraph” example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
+     Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Version Control
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_00_introduction.html">
+     4.0 Introduction to version control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_01_solo_work_with_git.html">
+     4.1 Solo work with git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_02_fixing_mistakes.html">
+     4.2 Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_03_publishing.html">
+     4.3 Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_04_collaboration.html">
+     4.4 Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_05_fork_and_pull.html">
+     4.5 Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_06_git_theory.html">
+     4.6 Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_07_branches.html">
+     4.7 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_09_github_pages.html">
+     4.9 Publishing from GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_10_rebasing.html">
+     4.10 Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_11_debugging_with_git_bisect.html">
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.12 Working with multiple remotes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     5.0 Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     5.1 How to test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     5.2 Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     5.3 Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     5.4 Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     5.5 Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     5.6 Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
+     6.0 Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
+     6.2 Managing Dependencies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     6.3 Python outside the notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     6.4 Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     6.5 Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     6.6 Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     6.7 Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     6.8 Managing software issues
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
+     Exercise: Packaging Troll Treasure
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     7.0 Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_comments.html">
+     7.1 Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_coding_conventions.html">
+     7.2 Coding conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
+     7.3 Linting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
+     7.4 Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
+     7.5 Object-Oriented Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_classes.html">
+     7.6 Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_design_patterns.html">
+     7.7 Design Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
+     Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     8.0 Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     8.1 Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     8.2 Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     8.3 Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     8.4 Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     9.0 Performance programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
+     9.1 Optimising Mandelbrot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3 Optimising with Cython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.5 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance scaling for containers and algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     10.0 Serialising and normalising data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
+     10.1 Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
+     10.2 Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
+     10.3 Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
+     10.4 Saying the same thing in multiple ways
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
+     10.5 Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Solutions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../solutions/index.html">
+   Exercise Solutions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_01.html">
+     Module 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_02.html">
+     Module 02
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_03.html">
+     Module 03
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_04.html">
+     Module 04
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_05.html">
+     Module 05
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_06.html">
+     Module 06: Troll Treasure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_07.html">
+     Module 07: Bad Boids
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_08.html">
+     Module 08
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_09.html">
+     Module 09
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_10.html">
+     Module 10
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module04_version_control_with_git/04_12_multiple_remotes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule04_version_control_with_git/04_12_multiple_remotes.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module04_version_control_with_git/04_12_multiple_remotes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module04_version_control_with_git/04_12_multiple_remotes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   4.12 Working with multiple remotes
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distributed-versus-centralised">
+     Distributed versus centralised
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#referencing-remotes">
+     Referencing remotes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hosting-servers">
+   Hosting Servers
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hosting-a-local-server">
+     Hosting a local server
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#home-made-ssh-servers">
+     Home-made SSH servers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ssh-keys-and-github">
+   SSH keys and GitHub
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>4.12 Working with multiple remotes</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   4.12 Working with multiple remotes
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distributed-versus-centralised">
+     Distributed versus centralised
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#referencing-remotes">
+     Referencing remotes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hosting-servers">
+   Hosting Servers
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hosting-a-local-server">
+     Hosting a local server
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#home-made-ssh-servers">
+     Home-made SSH servers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ssh-keys-and-github">
+   SSH keys and GitHub
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-multiple-remotes">
+<h1>4.12 Working with multiple remotes<a class="headerlink" href="#working-with-multiple-remotes" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time to complete this notebook: 10 minutes</em></p>
+<section id="distributed-versus-centralised">
+<h2>Distributed versus centralised<a class="headerlink" href="#distributed-versus-centralised" title="Permalink to this headline">#</a></h2>
+<p>Older version control systems (cvs, svn) were “centralised”; the history was kept only on a server,
+and all commits required an internet.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Centralised</p></th>
+<th class="head"><p>Distributed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Server has history</p></td>
+<td><p>Every user has full history</p></td>
+</tr>
+<tr class="row-odd"><td><p>Your computer has one snapshot</p></td>
+<td><p>Many local branches</p></td>
+</tr>
+<tr class="row-even"><td><p>To access history, need internet</p></td>
+<td><p>History always available</p></td>
+</tr>
+<tr class="row-odd"><td><p>You commit to remote server</p></td>
+<td><p>Users synchronise histories</p></td>
+</tr>
+<tr class="row-even"><td><p>cvs, subversion(svn)</p></td>
+<td><p>git, mercurial (hg), bazaar (bzr)</p></td>
+</tr>
+</tbody>
+</table>
+<p>With modern distributed systems, we can add a second remote. This might be a personal <em>fork</em> on github:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
+<span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git checkout main
+git remote add jack89roberts git@github.com:jack89roberts/github-example.git
+git fetch jack89roberts
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Switched to branch &#39;main&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your branch is up to date with &#39;origin/main&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:jack89roberts/github-example
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * [new branch]      main       -&gt; jack89roberts/main
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * [new branch]      master     -&gt; jack89roberts/master
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check your remote branches:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git remote -v
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (fetch)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (push)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>origin	git@github.com:alan-turing-institute/github-example.git (fetch)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>origin	git@github.com:alan-turing-institute/github-example.git (push)
+</pre></div>
+</div>
+</div>
+</div>
+<p>and ensure that the newly-added remote is up-to-date</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git fetch jack89roberts
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Pennines.md
+
+<span class="n">Mountains</span> <span class="n">In</span> <span class="n">the</span> <span class="n">Pennines</span>
+<span class="o">========================</span>
+
+<span class="o">*</span> <span class="n">Cross</span> <span class="n">Fell</span>
+<span class="o">*</span> <span class="n">Whernside</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Pennines.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git add Pennines.md
+git commit -am &quot;Add Whernside&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 9b4592b] Add Whernside
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 6 insertions(+)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> create mode 100644 Pennines.md
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can specify which remote to push to by name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push -uf jack89roberts main || echo &quot;Push failed&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Permission to jack89roberts/github-example.git denied to deploy key
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fatal: Could not read from remote repository.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Please make sure you have the correct access rights
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>and the repository exists.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Push failed
+</pre></div>
+</div>
+</div>
+</div>
+<p>… but note that you need to have the correct permissions to do so.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git push -uf origin main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   9329222..9b4592b  main -&gt; main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>branch &#39;main&#39; set up to track &#39;origin/main&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="referencing-remotes">
+<h2>Referencing remotes<a class="headerlink" href="#referencing-remotes" title="Permalink to this headline">#</a></h2>
+<p>You can always refer to commits on a remote like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git fetch
+git log --oneline --left-right jack89roberts/main...origin/main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 9b4592b Add Whernside
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 9329222 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 6a29b9a Add Glyder
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 0f79c28 Add another Beacon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 8c41d4b Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 2b17f4a Translating from the Welsh
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; afbd4ab Add a beacon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 4571e69 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 9045563 Add wales
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; ee41ef7 Add Scotland
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 7a3a30a Add Helvellyn
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; a34f716 Include lakes in the scope
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 28d2913 Add lakeland
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 33800ca Revert &quot;Add a lie about a mountain&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; dbf2f65 Change title
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 54f1bbd Add a lie about a mountain
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 1c977a1 First commit of discourse on UK topography
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 31ea056 Add Whernside
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 009f998 Add github pages YAML frontmatter
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 2f9bcc8 Add a makefile and ignore generated files
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; ae539cc Merge branch &#39;experiment&#39; into main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 492fec5 Commit Aonach onto main branch
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; fe1c71d Add Cadair Idris
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 338d4d6 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 07c4fea Add Glyder
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; c405c4d Add another Beacon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; f8f20a6 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 1f69c3f Translating from the Welsh
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; b2b4fa3 Add a beacon
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; c1897d4 Merge branch &#39;main&#39; of https://github.com/alan-turing-institute/github-example into main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 0e96c25 Add wales
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 0de6b80 Add Scotland
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 959e142 Add Helvellyn
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 600ffe1 Include lakes in the scope
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; c7454a7 Add lakeland
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 5342922 Revert &quot;Add a lie about a mountain&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; f65fd0b Change title
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 8c467a3 Add a lie about a mountain
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 1f92929 First commit of discourse on UK topography
+</pre></div>
+</div>
+</div>
+</div>
+<p>To see the differences between remotes, for example.</p>
+<p>To see what files you have changed that aren’t updated on a particular remote, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git diff --name-only origin/main
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you reference remotes like this, you’re working with a cached copy of the last time you interacted with the remote. You can do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> to update local data with the remotes without actually pulling. You can also get useful information about whether tracking branches are ahead or behind the remote branches they track:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git branch -vv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  experiment 7ee466f Add Cadair Idris
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main       9b4592b [origin/main] Add Whernside
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="hosting-servers">
+<h1>Hosting Servers<a class="headerlink" href="#hosting-servers" title="Permalink to this headline">#</a></h1>
+<section id="hosting-a-local-server">
+<h2>Hosting a local server<a class="headerlink" href="#hosting-a-local-server" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Any repository can be a remote for pulls</p></li>
+<li><p>Can pull/push over shared folders or ssh</p></li>
+<li><p>Pushing to someone’s working copy is dangerous</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span> <span class="pre">--bare</span></code> to make a copy for pushing</p></li>
+<li><p>You don’t need to create a “server” as such, any ‘bare’ git repo will do.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bare_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;bare_repo&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">git_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+mkdir -p bare_repo
+rm -rf bare_repo/*
+cd bare_repo
+git init --bare --initial-branch=main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initialized empty Git repository in /home/runner/work/rse-course/rse-course/module04_version_control_with_git/learning_git/bare_repo/
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git remote add local_bare ../bare_repo
+git push -u local_bare main
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To ../bare_repo
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * [new branch]      main -&gt; main
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>branch &#39;main&#39; set up to track &#39;local_bare/main&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check your remote branches:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+git remote -v
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (fetch)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jack89roberts	git@github.com:jack89roberts/github-example.git (push)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>local_bare	../bare_repo (fetch)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>local_bare	../bare_repo (push)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>origin	git@github.com:alan-turing-institute/github-example.git (fetch)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>origin	git@github.com:alan-turing-institute/github-example.git (push)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can now work with this local repository, just as with any other git server.
+If you have a colleague on a shared file system, you can use this approach to collaborate through that file system.</p>
+</section>
+<section id="home-made-ssh-servers">
+<h2>Home-made SSH servers<a class="headerlink" href="#home-made-ssh-servers" title="Permalink to this headline">#</a></h2>
+<p>Classroom exercise: Try creating a server for yourself using a machine you can SSH to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh &lt;mymachine&gt;
+mkdir mygitserver
+<span class="nb">cd</span> mygitserver
+git init --bare
+<span class="nb">exit</span>
+git remote add &lt;somename&gt; ssh://user@host/mygitserver
+git push -u &lt;somename&gt; master
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ssh-keys-and-github">
+<h1>SSH keys and GitHub<a class="headerlink" href="#ssh-keys-and-github" title="Permalink to this headline">#</a></h1>
+<p>Classroom exercise: If you haven’t already, you should set things up so that you don’t have to keep typing in your
+password whenever you interact with GitHub via the command line.</p>
+<p>You can do this with an “ssh keypair”. You may have created a keypair in the
+Software Carpentry shell training. Go to the <a class="reference external" href="https://github.com/settings/ssh">ssh settings
+page</a> on GitHub and upload your public key by
+copying the content from your computer. (Probably at .ssh/id_rsa.pub)</p>
+<p>If you have difficulties, the instructions for this are <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys">on the GitHub
+website</a>.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./module04_version_control_with_git"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="04_11_debugging_with_git_bisect.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">4.11 Debugging With git bisect</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../module05_testing_your_code/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Testing</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.3 Using Functions
-# *Estimated time to complete this notebook: 20 minutes*
+
+# *Estimated time for this notebook: 20 minutes*
 
 # ## 1.3.1 Calling functions
 

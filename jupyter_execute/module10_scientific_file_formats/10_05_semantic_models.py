@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Semantic file formats
+# # 10.5 Semantic file formats
+
+# *Estimated time for this notebook: 25 minutes*
 
 # ## The dream of a semantic web
 

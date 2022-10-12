@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 3.4 NumPy Continued
+# # 3.4 Advanced NumPy
+
 # *Estimated time to complete this notebook: 20 minutes*
 
 # ## 3.4.1 Recap

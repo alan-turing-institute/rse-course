@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Patterns
+# # 7.7 Design Patterns
 # 
 # ⚠️ **Warning: Advanced topic!** ⚠️
+
+# *Estimated time for this notebook: 20 minutes*
 
 # ## Class Complexity
 

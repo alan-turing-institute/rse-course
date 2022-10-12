@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Deserialisation
+# # 10.1 Deserialisation
+
+# *Estimated time for this notebook: 20 minutes*
 
 # YAML (a recursive acronym for "YAML Ain't Markup Language") is a human-readable data-serialization language.
 # 

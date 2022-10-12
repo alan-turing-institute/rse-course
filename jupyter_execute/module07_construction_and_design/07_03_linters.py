@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Lint
+# # 7.3 Linting
+
+# *Estimated time for this notebook: 15 minutes*
 
 # 
 # There are automated tools which enforce coding conventions and check for common mistakes. These are called *linters*.
@@ -208,6 +210,16 @@ get_ipython().system(' pylint flake8_example.py')
 
 
 get_ipython().system(' nbqa flake8 07_02_coding_conventions.ipynb')
+
+
+# ### [pylama](https://klen.github.io/pylama/)
+# 
+# `pylama` wraps many code quality tools (including `isort`, `mypy`, `pylint` and much of `flake8`) in a single command.
+
+# In[7]:
+
+
+get_ipython().system(' pylama --linters eradicate,mccabe,mypy,pycodestyle,pydocstyle,pyflakes,pylint,isort flake8_example.py')
 
 
 # ## Setup

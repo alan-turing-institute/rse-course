@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Packaging
+# # 6.4 Packaging
+
+# *Estimated time for this notebook: 25 minutes*
 
 # 
 # Once we've made a working program, we'd like to be able to use it across our system and to share it with others. To do this we need to create our own Python package.

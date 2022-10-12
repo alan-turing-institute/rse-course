@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Performance programming
+# # 9.0 Performance programming
+
+# *Estimated time for this notebook: 10 minutes*
 
 # We've spent most of this course looking at how to make code readable and reliable. For research work, it is often also important that code is efficient: that it does what it needs to do *quickly*.
 

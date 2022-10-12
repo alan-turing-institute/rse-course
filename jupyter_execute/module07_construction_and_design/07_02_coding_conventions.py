@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Coding Conventions
+# # 7.2 Coding conventions
+
+# *Estimated time for this notebook: 10 minutes*
 
 # ## One code, many layouts:
 

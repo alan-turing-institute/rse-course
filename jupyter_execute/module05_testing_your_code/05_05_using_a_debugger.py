@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Using a debugger
+# # 5.5 Using a debugger
 # 
+
+# *Estimated time for this notebook: 10 minutes*
+
 # ## Stepping through the code
 # 
 # Debuggers are programs that can be used to test other programs. They allow programmers to suspend execution of the target program and inspect variables at that point.

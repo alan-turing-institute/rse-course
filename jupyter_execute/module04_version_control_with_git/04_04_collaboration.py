@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Collaboration
-# 
-# ## Form a team
+# # 4.4 Collaboration
 
+# *Estimated time to complete this notebook: 20 minutes*
+
+# ## Form a team
+# 
 # Now we're going to get to the most important question of all with Git and GitHub: working with others.
 # 
 # Organise into pairs. You're going to be working on the website of one of the two of you, together, so decide who is going to be the leader, and who the collaborator.

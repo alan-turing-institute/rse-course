@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Software Project Management
+# # 6.6 Software Project Management
+
+# *Estimated time for this notebook: 5 minutes*
 
 # ## Software Engineering Stages
 

@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Continuous Integration
-# 
+# # 5.6 Continuous Integration
+
+# *Estimated time for this notebook: 5 minutes*
+
 # ## Test servers
 # 
 # Goal: 

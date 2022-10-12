@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Refactoring
+# # 7.4 Refactoring
+
+# *Estimated time for this notebook: 20 minutes*
 
 # Let's put ourselves in an scenario - that you've probably been in before. Imagine you are changing a large piece of legacy code that's not well structured, introducing many changes at once, trying to keep in your head all the bits and pieces that need to be modified to make it all work again. And suddenly, your officemate comes and ask you to go for coffee... and you've lost all track of what you had in your head and need to start again.
 # 

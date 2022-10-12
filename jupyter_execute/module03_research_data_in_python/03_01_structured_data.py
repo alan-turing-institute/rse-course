@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # # 3.1 Structured Data
+
 # *Estimated time to complete this notebook: 15 minutes*
 
 # ## 3.1.1 Structured data

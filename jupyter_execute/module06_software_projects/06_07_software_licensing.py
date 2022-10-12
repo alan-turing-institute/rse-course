@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Software Licensing
+# # 6.7 Software Licensing
 
-# ## Reuse
-# 
-# This course is distributed under the [Creative Commons By Attribution license](https://creativecommons.org/licenses/by/3.0/), which means you can modify and reuse the materials, so long as you credit the original authors: [The Alan Turing Institute's Research Engineering Group](https://www.turing.ac.uk/research/research-engineering) and [UCL Research IT Services](http://www.ucl.ac.uk/research-it-services/homepage).
+# *Estimated time for this notebook: 10 minutes*
 
 # ## Disclaimer
 # 
@@ -27,6 +25,8 @@
 # under what terms. [This course has one](https://github.com/alan-turing-institute/rse-course/blob/main/LICENSE.md), for example.
 # 
 # Your license file should typically be called LICENSE.txt or similar. GitHub will offer to create a license file automatically when you create a new repository.
+# 
+# See [GitHub's advice on how to choose a license](http://choosealicense.com/)
 
 # ## Open source doesn't stop you making money
 # 
@@ -183,10 +183,6 @@
 # Check your license at
 # [opensource.org](http://opensource.org/) for details of how to apply it to your software. For example, for the [GPL](http://opensource.org/licenses/GPL-3.0#howto)
 
-# ## Choose a license
-# 
-# See [GitHub's advice on how to choose a license](http://choosealicense.com/)
-
 # ## Citing software
 # 
 # Almost all software licenses require people to credit you for what they used ("attribution").
@@ -227,3 +223,7 @@
 # Open source does *not* guarantee your software will live on with people adding to it after you stop working on it.
 # 
 # Learn more about these issues from the website of the [Software Sustainability Institute](http://software.ac.uk/resources/about)
+
+# ## Example
+# 
+# This course is distributed under the [Creative Commons By Attribution license](https://creativecommons.org/licenses/by/3.0/), which means you can modify and reuse the materials, so long as you credit the original authors: [The Alan Turing Institute's Research Engineering Group](https://www.turing.ac.uk/research/research-engineering) and [UCL Research IT Services](http://www.ucl.ac.uk/research-it-services/homepage).

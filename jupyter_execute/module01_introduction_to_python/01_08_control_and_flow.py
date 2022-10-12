@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.8 Control and Flow
-# *Estimated time to complete this notebook: 15 minutes*
+
+# *Estimated time for this notebook: 15 minutes*
 
 # ## 1.8.1 Turing completeness
 

@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Classroom exercise: energy calculation
+# # 5.3 Classroom exercise: energy calculation
+# 
+
+# *Estimated time for this notebook: 30 minutes*
+
 # 
 # ## Diffusion model in 1D
 # 

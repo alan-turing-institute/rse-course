@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Class design
+# # 7.6 Class design
+
+# *Estimated time for this notebook: 20 minutes*
 
 # 
 # The concepts we have introduced are common between different object oriented languages.

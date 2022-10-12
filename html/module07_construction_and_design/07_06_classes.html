@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Class design &#8212; Research Software Engineering with Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>7.6 Class design &#8212; Research Software Engineering with Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -54,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Patterns" href="07_07_design_patterns.html" />
-    <link rel="prev" title="Object-Oriented Design" href="07_05_object_oriented_design.html" />
+    <link rel="next" title="7.7 Design Patterns" href="07_07_design_patterns.html" />
+    <link rel="prev" title="7.5 Object-Oriented Design" href="07_05_object_oriented_design.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Research Software Engineering with Python
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Prerequisites
  </span>
@@ -146,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../module01_introduction_to_python/index.html">
-   Introduction to Python
+   1. Introduction to Python
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -161,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
-     1.1 An example Python data analysis notebook
+     1.1 Data analysis with Jupyter
     </a>
    </li>
    <li class="toctree-l2">
@@ -243,7 +258,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
-     2.4 Working with Files
+     2.4 Working with files
     </a>
    </li>
    <li class="toctree-l2">
@@ -290,17 +305,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy_continued.html">
-     3.4 NumPy Continued
+     3.4 Advanced NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
-     3.5 The Boids!
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_understanding_greengraph.html">
+     3.5 Recap: Understanding the “Greengraph” example
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
-     3.6 Recap: Understanding the “Greengraph” Example
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
     </a>
    </li>
    <li class="toctree-l2">
@@ -322,62 +337,62 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
-     Introduction
+     4.0 Introduction to version control
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
-     Solo work with Git
+     4.1 Solo work with git
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
-     Fixing mistakes
+     4.2 Fixing mistakes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
-     Publishing
+     4.3 Publishing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
-     Collaboration
+     4.4 Collaboration
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
-     Fork and Pull
+     4.5 Fork and Pull
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
-     Git Theory
+     4.6 Git Theory
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
-     Branches
+     4.7 Branches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
-     Git Stash
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
-     Working with multiple remotes
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_github_pages.html">
+     4.9 Publishing from GitHub
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
-     Rebasing
+     4.10 Rebasing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
-     Debugging With Git Bisect
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
     </a>
    </li>
   </ul>
@@ -394,37 +409,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
-     Testing
+     5.0 Testing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
-     How to Test
+     5.1 How to test
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
-     Testing frameworks
+     5.2 Testing frameworks
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
-     Classroom exercise: energy calculation
+     5.3 Classroom exercise: energy calculation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
-     Mocking
+     5.4 Mocking
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
-     Using a debugger
+     5.5 Using a debugger
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
-     Continuous Integration
+     5.6 Continuous Integration
     </a>
    </li>
    <li class="toctree-l2">
@@ -446,47 +461,47 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
-     Libraries
+     6.0 Libraries
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module06_software_projects/06_01_pypi_packages.html">
-     Installing Libraries
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
-     Managing Dependencies
+     6.2 Managing Dependencies
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
-     Python not in the Notebook
+     6.3 Python outside the notebook
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
-     Packaging
+     6.4 Packaging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
-     Documentation
+     6.5 Documentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
-     Software Project Management
+     6.6 Software Project Management
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
-     Software Licensing
+     6.7 Software Licensing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
-     Managing software issues
+     6.8 Managing software issues
     </a>
    </li>
    <li class="toctree-l2">
@@ -508,42 +523,42 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="07_00_introduction.html">
-     Construction
+     7.0 Construction
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_01_comments.html">
-     Comments
+     7.1 Comments
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_02_coding_conventions.html">
-     Coding Conventions
+     7.2 Coding conventions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_03_linters.html">
-     Lint
+     7.3 Linting
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_04_refactoring.html">
-     Refactoring
+     7.4 Refactoring
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_05_object_oriented_design.html">
-     Object-Oriented Design
+     7.5 Object-Oriented Design
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Class design
+     7.6 Class design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_07_design_patterns.html">
-     Patterns
+     7.7 Design Patterns
     </a>
    </li>
    <li class="toctree-l2">
@@ -565,37 +580,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
-     Advanced Python Programming
+     8.0 Advanced Python Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
-     Functional programming
+     8.1 Functional programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
-     Iterators and Generators
+     8.2 Iterators and Generators
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
-     Exceptions
+     8.3 Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
-     Operator overloading
+     8.4 Operator overloading
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
-     Operator overloading
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
-     Metaprogramming
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
     </a>
    </li>
   </ul>
@@ -612,27 +627,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
-     Performance programming
+     9.0 Performance programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
-     Optimising Mandelbrot
+     9.1 Optimising Mandelbrot
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
-     NumPy for Performance
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
-     Cython
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3 Optimising with Cython
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
-     Scaling for containers and algorithms
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.5 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance scaling for containers and algorithms
     </a>
    </li>
   </ul>
@@ -649,32 +669,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
-     What can go wrong?
+     10.0 Serialising and normalising data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
-     Deserialisation
+     10.1 Deserialisation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     Domain specific languages
+     10.2 Domain specific languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     Markup Languages
+     10.3 Markup Languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     Saying the same thing multiple ways
+     10.4 Saying the same thing in multiple ways
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     Semantic file formats
+     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -751,111 +771,228 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
 <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
 
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/module07_construction_and_design/07_06_classes.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/alan-turing-institute/rse-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule07_construction_and_design/07_06_classes.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/alan-turing-institute/rse-course/edit/main/module07_construction_and_design/07_06_classes.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module07_construction_and_design/07_06_classes.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module07_construction_and_design/07_06_classes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule07_construction_and_design/07_06_classes.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module07_construction_and_design/07_06_classes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module07_construction_and_design/07_06_classes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#uml">
    UML
@@ -984,15 +1121,14 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Class design</h1>
+                <h1>7.6 Class design</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1134,11 +1270,13 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="class-design">
-<h1>Class design<a class="headerlink" href="#class-design" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="class-design">
+<h1>7.6 Class design<a class="headerlink" href="#class-design" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time for this notebook: 20 minutes</em></p>
 <p>The concepts we have introduced are common between different object oriented languages.
 Thus, when we design our program using these concepts, we can think at an architectural level,
 independent of language syntax.</p>
@@ -1175,15 +1313,15 @@ independent of language syntax.</p>
 <span class="k">end type </span><span class="n">particle</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="section" id="uml">
-<h2>UML<a class="headerlink" href="#uml" title="Permalink to this headline">¶</a></h2>
+<section id="uml">
+<h2>UML<a class="headerlink" href="#uml" title="Permalink to this headline">#</a></h2>
 <p>UML is a conventional diagrammatic notation used to describe “class structures” and other higher level
 aspects of software design.</p>
 <p>Computer scientists get worked up about formal correctness of UML diagrams and learning the conventions precisely.
 Working programmers can still benefit from using UML to describe their designs.</p>
-</div>
-<div class="section" id="yuml">
-<h2>YUML<a class="headerlink" href="#yuml" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="yuml">
+<h2>YUML<a class="headerlink" href="#yuml" title="Permalink to this headline">#</a></h2>
 <p>We can see a YUML model for a Particle class with <code class="docutils literal notranslate"><span class="pre">position</span></code> and <code class="docutils literal notranslate"><span class="pre">velocity</span></code> data and a <code class="docutils literal notranslate"><span class="pre">move()</span></code> method using
 the <a class="reference external" href="http://yuml.me/">YUML</a> online UML drawing tool (<a class="reference external" href="http://yuml.me/diagram/boring/class/%5BParticle%7Cposition;velocity%7Cmove%28%29%5D">example</a>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">yuml</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">diagram</span><span class="o">/</span><span class="n">boring</span><span class="o">/</span><span class="n">class</span><span class="o">/</span><span class="p">[</span><span class="n">Particle</span><span class="o">|</span><span class="n">position</span><span class="p">;</span><span class="n">velocity</span><span class="o">|</span><span class="n">move</span><span class="o">%</span><span class="mi">28</span><span class="o">%</span><span class="mi">29</span><span class="p">]</span>
@@ -1208,12 +1346,12 @@ the <a class="reference external" href="http://yuml.me/">YUML</a> online UML dra
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_06_classes_11_0.svg" src="../_images/07_06_classes_11_0.svg" /></div>
+<img alt="../_images/07_06_classes_12_0.svg" src="../_images/07_06_classes_12_0.svg" /></div>
 </div>
 <p>The representation of the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> class defined above in UML is done with a box with three sections. The name of the class goes on the top, then the name of the member variables in the middle, and the name of the methods on the bottom. We will see later why this is useful.</p>
-</div>
-<div class="section" id="information-hiding">
-<h2>Information Hiding<a class="headerlink" href="#information-hiding" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="information-hiding">
+<h2>Information Hiding<a class="headerlink" href="#information-hiding" title="Permalink to this headline">#</a></h2>
 <p>Sometimes, our design for a program would be broken if users start messing around with variables we don’t want them to change.</p>
 <p>Robust class design requires consideration of which subroutines are intended for users to use, and which are internal.
 Languages provide features to implement this: access control.</p>
@@ -1293,7 +1431,7 @@ Languages provide features to implement this: access control.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">__private_method</span><span class="p">()</span>
 
 <span class="ne">AttributeError</span>: &#39;MyClass&#39; object has no attribute &#39;__private_method&#39;
@@ -1310,7 +1448,7 @@ Languages provide features to implement this: access control.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">__private_data</span><span class="p">)</span>
 
 <span class="ne">AttributeError</span>: &#39;MyClass&#39; object has no attribute &#39;__private_data&#39;
@@ -1318,9 +1456,9 @@ Languages provide features to implement this: access control.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="property-accessors">
-<h2>Property accessors<a class="headerlink" href="#property-accessors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="property-accessors">
+<h2>Property accessors<a class="headerlink" href="#property-accessors" title="Permalink to this headline">#</a></h2>
 <p>Python provides a mechanism to make functions appear to be variables. This can be used if you want to
 change the way a class is implemented without changing the interface:</p>
 <div class="cell docutils container">
@@ -1447,8 +1585,8 @@ access data through functions:</p>
 </div>
 <p>This type of situation could makes that the object data structure gets inconsistent with itself. Making variables being out of sync with other variables. Each piece of information should only be stored in once place! In this case, <code class="docutils literal notranslate"><span class="pre">name</span></code> should be calculated each time it’s required as previously shown.
 In database design, this is called <a class="reference external" href="https://en.wikipedia.org/wiki/Database_normalization">Normalisation</a>.</p>
-<div class="section" id="uml-for-private-public">
-<h3>UML for private/public<a class="headerlink" href="#uml-for-private-public" title="Permalink to this headline">¶</a></h3>
+<section id="uml-for-private-public">
+<h3>UML for private/public<a class="headerlink" href="#uml-for-private-public" title="Permalink to this headline">#</a></h3>
 <p>We prepend a <code class="docutils literal notranslate"><span class="pre">+</span></code>/<code class="docutils literal notranslate"><span class="pre">-</span></code> on public/private member variables and methods:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1457,12 +1595,12 @@ In database design, this is called <a class="reference external" href="https://e
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_06_classes_38_0.svg" src="../_images/07_06_classes_38_0.svg" /></div>
+<img alt="../_images/07_06_classes_39_0.svg" src="../_images/07_06_classes_39_0.svg" /></div>
 </div>
-</div>
-</div>
-<div class="section" id="class-members">
-<h2>Class Members<a class="headerlink" href="#class-members" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="class-members">
+<h2>Class Members<a class="headerlink" href="#class-members" title="Permalink to this headline">#</a></h2>
 <p><em>Class</em>, or <em>static</em> members, belong to the class as a whole, and are shared between instances.</p>
 <p>This is an object that keeps a count on how many have been created of it.</p>
 <div class="cell docutils container">
@@ -1527,24 +1665,24 @@ In database design, this is called <a class="reference external" href="https://e
 </div>
 </div>
 <p>The data is shared among all the objects instantiated from that class. Note that in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> we are not using <code class="docutils literal notranslate"><span class="pre">self.number_created</span></code> but the name of the class. The <code class="docutils literal notranslate"><span class="pre">howMany</span></code> function is not a method of a particular object. It’s called on the class, not on the object. This is possible by using the <code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code> decorator.</p>
-</div>
-<div class="section" id="inheritance-and-polymorphism">
-<h2>Inheritance and Polymorphism<a class="headerlink" href="#inheritance-and-polymorphism" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="object-based-vs-object-oriented">
-<h3>Object-based vs Object-Oriented<a class="headerlink" href="#object-based-vs-object-oriented" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="inheritance-and-polymorphism">
+<h2>Inheritance and Polymorphism<a class="headerlink" href="#inheritance-and-polymorphism" title="Permalink to this headline">#</a></h2>
+<section id="object-based-vs-object-oriented">
+<h3>Object-based vs Object-Oriented<a class="headerlink" href="#object-based-vs-object-oriented" title="Permalink to this headline">#</a></h3>
 <p>So far we have seen only object-based programming, not object-oriented programming.</p>
 <p>Using Objects doesn’t mean your code is object-oriented.</p>
 <p>To understand object-oriented programming, we need to introduce <strong>polymorphism</strong> and <strong>inheritance</strong>.</p>
-</div>
-<div class="section" id="inheritance">
-<h3>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="inheritance">
+<h3>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Inheritance is a mechanism that allows related classes to share code.</p></li>
 <li><p>Inheritance allows a program to reflect the <em><a class="reference external" href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a></em> of kinds of thing in a program.</p></li>
 </ul>
-</div>
-<div class="section" id="ontology-and-inheritance">
-<h3>Ontology and inheritance<a class="headerlink" href="#ontology-and-inheritance" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ontology-and-inheritance">
+<h3>Ontology and inheritance<a class="headerlink" href="#ontology-and-inheritance" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>A bird is a kind of animal</p></li>
 <li><p>An eagle is a kind of bird</p></li>
@@ -1554,9 +1692,9 @@ In database design, this is called <a class="reference external" href="https://e
 <li><p>Only eagles hunt</p></li>
 <li><p>Only starlings flock</p></li>
 </ul>
-</div>
-<div class="section" id="inheritance-in-python">
-<h3>Inheritance in python<a class="headerlink" href="#inheritance-in-python" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="inheritance-in-python">
+<h3>Inheritance in python<a class="headerlink" href="#inheritance-in-python" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
@@ -1594,9 +1732,9 @@ I&#39;m gonna eatcha!
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="inheritance-terminology">
-<h3>Inheritance terminology<a class="headerlink" href="#inheritance-terminology" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="inheritance-terminology">
+<h3>Inheritance terminology<a class="headerlink" href="#inheritance-terminology" title="Permalink to this headline">#</a></h3>
 <p>Here are two equivalents definition, one coming from C++ and another from Java:</p>
 <ul class="simple">
 <li><p>A <em>derived class</em> <em>derives</em> from a <em>base class</em>.</p></li>
@@ -1612,9 +1750,9 @@ So, we can say:</p>
 <ul class="simple">
 <li><p>A <em>child class</em> extends a <em>parent class</em>.</p></li>
 </ul>
-</div>
-<div class="section" id="inheritance-and-constructors">
-<h3>Inheritance and constructors<a class="headerlink" href="#inheritance-and-constructors" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="inheritance-and-constructors">
+<h3>Inheritance and constructors<a class="headerlink" href="#inheritance-and-constructors" title="Permalink to this headline">#</a></h3>
 <p>To use implicitly constructors from a <em>superclass</em>, we can use <code class="docutils literal notranslate"><span class="pre">super</span></code> as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1632,9 +1770,9 @@ So, we can say:</p>
 </div>
 </div>
 <p>Read <a class="reference external" href="https://twitter.com/raymondh">Raymond Hettinger</a>’s <a class="reference external" href="https://rhettinger.wordpress.com/2011/05/26/super-considered-super/">article about <code class="docutils literal notranslate"><span class="pre">super</span></code></a> to see various real examples.</p>
-</div>
-<div class="section" id="inheritance-uml-diagrams">
-<h3>Inheritance UML diagrams<a class="headerlink" href="#inheritance-uml-diagrams" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="inheritance-uml-diagrams">
+<h3>Inheritance UML diagrams<a class="headerlink" href="#inheritance-uml-diagrams" title="Permalink to this headline">#</a></h3>
 <p>UML shows inheritance with an open triangular arrow pointing from subclass to superclass.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1643,17 +1781,17 @@ So, we can say:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_06_classes_64_0.svg" src="../_images/07_06_classes_64_0.svg" /></div>
+<img alt="../_images/07_06_classes_65_0.svg" src="../_images/07_06_classes_65_0.svg" /></div>
 </div>
-</div>
-<div class="section" id="aggregation-vs-inheritance">
-<h3>Aggregation vs Inheritance<a class="headerlink" href="#aggregation-vs-inheritance" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="aggregation-vs-inheritance">
+<h3>Aggregation vs Inheritance<a class="headerlink" href="#aggregation-vs-inheritance" title="Permalink to this headline">#</a></h3>
 <p>If one object <em>has</em> or <em>owns</em> one or more objects, this is <em>not</em> inheritance.</p>
 <p>For example, the boids example we saw few weeks ago, could be organised as an overall Model, which it owns several Boids,
 and each Boid owns two 2-vectors, one for position and one for velocity.</p>
-</div>
-<div class="section" id="aggregation-in-uml">
-<h3>Aggregation in UML<a class="headerlink" href="#aggregation-in-uml" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="aggregation-in-uml">
+<h3>Aggregation in UML<a class="headerlink" href="#aggregation-in-uml" title="Permalink to this headline">#</a></h3>
 <p>The Boids situation can be represented thus:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1662,14 +1800,14 @@ and each Boid owns two 2-vectors, one for position and one for velocity.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_06_classes_69_0.svg" src="../_images/07_06_classes_69_0.svg" /></div>
+<img alt="../_images/07_06_classes_70_0.svg" src="../_images/07_06_classes_70_0.svg" /></div>
 </div>
 <p>The open diamond indicates <strong>Aggregation</strong>, the closed diamond <strong>composition</strong>.
 (A given boid might belong to multiple models, a given position vector is forever part of the corresponding Boid.)</p>
 <p>The asterisk represents cardinality, a model may contain multiple Boids. This is a <a class="reference external" href="https://en.wikipedia.org/wiki/One-to-many_(data_model)">one to many relationship</a>. <a class="reference external" href="https://en.wikipedia.org/wiki/Many-to-many_(data_model)">Many to many relationship</a> is shown with <code class="docutils literal notranslate"><span class="pre">*</span></code> on both sides.</p>
-</div>
-<div class="section" id="refactoring-to-inheritance">
-<h3>Refactoring to inheritance<a class="headerlink" href="#refactoring-to-inheritance" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="refactoring-to-inheritance">
+<h3>Refactoring to inheritance<a class="headerlink" href="#refactoring-to-inheritance" title="Permalink to this headline">#</a></h3>
 <p>💩<strong>Smell</strong>: Repeated code between two classes which are both ontologically subtypes of something</p>
 <p><strong>before:</strong></p>
 <div class="cell docutils container">
@@ -1719,9 +1857,9 @@ and each Boid owns two 2-vectors, one for position and one for velocity.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="polymorphism">
-<h3>Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="polymorphism">
+<h3>Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
@@ -1765,10 +1903,10 @@ Miaow
 <p>If two classes support the same method, but it does different things for the two classes,
 then if an object is of an unknown class, calling the method will invoke the version for
 whatever class the instance is an instance of.</p>
-</div>
-</div>
-<div class="section" id="polymorphism-and-inheritance">
-<h2>Polymorphism and Inheritance<a class="headerlink" href="#polymorphism-and-inheritance" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="polymorphism-and-inheritance">
+<h2>Polymorphism and Inheritance<a class="headerlink" href="#polymorphism-and-inheritance" title="Permalink to this headline">#</a></h2>
 <p>Often, polymorphism uses multiple derived classes with a common base class.
 However, <a class="reference external" href="https://en.wikipedia.org/wiki/Duck_typing">duck typing</a> in Python means that all that is required is that the
 types support a common <strong>Concept</strong> (Such as iterable, or container, or, in this case, the
@@ -1811,8 +1949,8 @@ Bark
 </div>
 </div>
 </div>
-<div class="section" id="undefined-functions-and-polymorphism">
-<h3>Undefined Functions and Polymorphism<a class="headerlink" href="#undefined-functions-and-polymorphism" title="Permalink to this headline">¶</a></h3>
+<section id="undefined-functions-and-polymorphism">
+<h3>Undefined Functions and Polymorphism<a class="headerlink" href="#undefined-functions-and-polymorphism" title="Permalink to this headline">#</a></h3>
 <p>In the above example, we put in a dummy noise for Animals that don’t know what type they are.</p>
 <p>Instead, we can explicitly deliberately leave this undefined, and we get a crash if we access an undefined method.</p>
 <div class="cell docutils container">
@@ -1836,7 +1974,7 @@ Bark
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">Input In [31],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Worm</span><span class="p">()</span><span class="o">.</span><span class="n">noise</span><span class="p">()</span>
 
 <span class="ne">AttributeError</span>: &#39;Worm&#39; object has no attribute &#39;noise&#39;
@@ -1844,9 +1982,9 @@ Bark
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="refactoring-to-polymorphism">
-<h3>Refactoring to Polymorphism<a class="headerlink" href="#refactoring-to-polymorphism" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="refactoring-to-polymorphism">
+<h3>Refactoring to Polymorphism<a class="headerlink" href="#refactoring-to-polymorphism" title="Permalink to this headline">#</a></h3>
 <p>💩<strong>Smell</strong>: a function uses a big set of <code class="docutils literal notranslate"><span class="pre">if</span></code> statements or a <code class="docutils literal notranslate"><span class="pre">case</span></code> statement to decide what to do:</p>
 <p><strong>before:</strong></p>
 <div class="cell docutils container">
@@ -1867,18 +2005,18 @@ Bark
 </div>
 </div>
 <p>which is better replaced by the code above.</p>
-</div>
-<div class="section" id="interfaces-and-concepts">
-<h3>Interfaces and concepts<a class="headerlink" href="#interfaces-and-concepts" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="interfaces-and-concepts">
+<h3>Interfaces and concepts<a class="headerlink" href="#interfaces-and-concepts" title="Permalink to this headline">#</a></h3>
 <p>In C++, it is common to define classes which declare dummy methods, called “virtual” methods, which specify
 the methods which derived classes must implement. Classes which define these methods, but which cannot be instantiated
 into actual objects, are called “abstract base” classes or “interfaces”.</p>
 <p>Python’s Duck Typing approach means explicitly declaring these is unnesssary: any class concept which implements
 appropriately named methods will do. These as user-defined <strong>concepts</strong>, just as “iterable” or “container” are
 built-in Python concepts. A class is said to “implement an interface” or “satisfy a concept”.</p>
-</div>
-<div class="section" id="interfaces-in-uml">
-<h3>Interfaces in UML<a class="headerlink" href="#interfaces-in-uml" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="interfaces-in-uml">
+<h3>Interfaces in UML<a class="headerlink" href="#interfaces-in-uml" title="Permalink to this headline">#</a></h3>
 <p>Interfaces implementation (a common ancestor that doesn’t do anything but defines methods to share) in UML is indicated thus:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1887,20 +2025,20 @@ built-in Python concepts. A class is said to “implement an interface” or “
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_06_classes_94_0.svg" src="../_images/07_06_classes_94_0.svg" /></div>
+<img alt="../_images/07_06_classes_95_0.svg" src="../_images/07_06_classes_95_0.svg" /></div>
 </div>
-</div>
-<div class="section" id="further-uml">
-<h3>Further UML<a class="headerlink" href="#further-uml" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="further-uml">
+<h3>Further UML<a class="headerlink" href="#further-uml" title="Permalink to this headline">#</a></h3>
 <p>UML is a much larger diagram language than the aspects we’ve shown here.</p>
 <ul class="simple">
 <li><p>Message sequence charts show signals passing back and forth between objects (<a class="reference external" href="https://www.websequencediagrams.com/">Web Sequence Diagrams</a>).</p></li>
 <li><p>Entity Relationship Diagrams can be used to show more general relationships between things in a system.</p></li>
 </ul>
 <p>Read more about UML on Martin Fowler’s <a class="reference external" href="https://martinfowler.com/books/uml.html">book about the topic</a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1924,47 +2062,53 @@ built-in Python concepts. A class is said to “implement an interface” or “
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="07_05_object_oriented_design.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Object-Oriented Design</p>
+            <p class="prev-next-title">7.5 Object-Oriented Design</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="07_07_design_patterns.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Patterns</p>
+        <p class="prev-next-title">7.7 Design Patterns</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
 Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
 <br/>
-    
-      <div class="extra_footer">
-        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

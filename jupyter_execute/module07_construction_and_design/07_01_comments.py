@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Comments
+# # 7.1 Comments
+
+# *Estimated time for this notebook: 15 minutes*
 
 # ## Why comment?
 

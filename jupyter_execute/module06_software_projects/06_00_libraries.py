@@ -1,46 +1,54 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Libraries
+# # 6.0 Libraries
+
+# *Estimated time for this notebook: 5 minutes*
+
+# ## What is a library?
+
+# In Python, it can be useful to keep the following concepts in mind:
+# 
+# - a **module** is some related code saved in a single `.py` file
+# - a **package** is a collection of related modules
+# - a **library** is a collection of related modules and packages
+# 
+# For instance, the `scikit-learn` **library** contains the **linear_model** package which contains the **LinearRegression** module.
+# In practice, many Python projects are distributed as packages rather than libraries.
+# 
+# In this course we will use the generic term `library` to describe any code that can be reused in multiple places.
 
 # ## Libraries are awesome
 
-# 
 # The strength of a language lies as much in the set of libraries available, as it does
 # in the language itself.
 # 
 # A great set of libraries allows for a very powerful programming style:
 # 
-# * Write minimal code yourself
-# * Choose the right libraries
-# * Plug them together
-# * Create impressive results
+# - Write minimal code yourself
+# - Choose the right libraries
+# - Plug them together
+# - Create impressive results
 # 
 # Not only is this efficient with your programming time, it's also more efficient with computer
 # time.
-# 
 # The chances are any algorithm you might want to use has already been programmed better by someone else.
 
 # ## Drawbacks of libraries.
 
-# 
-# * Sometimes, libraries are not looked after by their creator: code that is not maintained *rots*:
-#     * It no longer works with later versions of *upstream* libraries.
-#     * It doesn't work on newer platforms or systems.
-#     * Features that are needed now, because the field has moved on, are not added
-# 
-# * Sometimes, libraries are hard to get working:
-#     * For libraries in pure python, this is almost never a problem
-#     * But many libraries involve *compiled components*: these can be hard to install.
-# 
+# - Sometimes, libraries are not looked after by their creator: code that is not maintained *rots*:
+#   - It no longer works with later versions of *upstream* libraries.
+#   - It doesn't work on newer platforms or systems.
+#   - Features that are needed now, because the field has moved on, are not added
+# - Sometimes, libraries are hard to get working:
+#   - For libraries in pure python, this is almost never a problem
+#   - But many libraries involve *compiled components*: these can be hard to install.
 
 # ## Contribute, don't duplicate
 
-# 
-# * You have a duty to the ecosystem of scholarly software:
-#     * If there's a tool or algorithm you need, find a project which provides it.
-#     * If there are features missing, or problems with it, fix them, [don't create your own](http://xkcd.com/927/) library.
-# 
+# - You have a duty to the ecosystem of scholarly software:
+#   - If there's a tool or algorithm you need, find a project which provides it.
+#   - If there are features missing, or problems with it, fix them, [don't create your own](http://xkcd.com/927/) library.
 
 # ## How to choose a library
 
@@ -84,11 +92,8 @@
 
 # 
 # Python comes with a powerful [standard library](https://docs.python.org/2/library/).
-# 
 # Learning python is as much about learning this library as learning the language itself.
-# 
 # You've already seen a few packages in this library: `math`, `pdb`, `pytest`, `datetime`.
-# 
 
 # ## The Python Package Index
 
@@ -96,4 +101,3 @@
 # Python's real power, however, comes with the Python Package Index: [PyPI](https://pypi.python.org/pypi).
 # This is a huge array of libraries, with all kinds of capabilities, all easily installable from the 
 # command line or through your Python distribution.
-# 

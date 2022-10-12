@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Advanced Python Programming
+# # 8.0 Advanced Python Programming
+
+# *Estimated time for this notebook: 5 minutes*
 
 # ... or, how to avoid repeating yourself.
 

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1.1 An example Python data analysis notebook &#8212; Research Software Engineering with Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1.1 Data analysis with Jupyter &#8212; Research Software Engineering with Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -65,7 +64,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -74,9 +87,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -94,14 +108,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Research Software Engineering with Python
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Prerequisites
  </span>
@@ -148,7 +163,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="index.html">
-   Introduction to Python
+   1. Introduction to Python
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -163,7 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     1.1 An example Python data analysis notebook
+     1.1 Data analysis with Jupyter
     </a>
    </li>
    <li class="toctree-l2">
@@ -245,7 +260,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
-     2.4 Working with Files
+     2.4 Working with files
     </a>
    </li>
    <li class="toctree-l2">
@@ -292,17 +307,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy_continued.html">
-     3.4 NumPy Continued
+     3.4 Advanced NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
-     3.5 The Boids!
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_understanding_greengraph.html">
+     3.5 Recap: Understanding the “Greengraph” example
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
-     3.6 Recap: Understanding the “Greengraph” Example
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
     </a>
    </li>
    <li class="toctree-l2">
@@ -324,62 +339,62 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
-     Introduction
+     4.0 Introduction to version control
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
-     Solo work with Git
+     4.1 Solo work with git
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
-     Fixing mistakes
+     4.2 Fixing mistakes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
-     Publishing
+     4.3 Publishing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
-     Collaboration
+     4.4 Collaboration
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
-     Fork and Pull
+     4.5 Fork and Pull
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
-     Git Theory
+     4.6 Git Theory
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
-     Branches
+     4.7 Branches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
-     Git Stash
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
-     Working with multiple remotes
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_github_pages.html">
+     4.9 Publishing from GitHub
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
-     Rebasing
+     4.10 Rebasing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
-     Debugging With Git Bisect
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
     </a>
    </li>
   </ul>
@@ -396,37 +411,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
-     Testing
+     5.0 Testing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
-     How to Test
+     5.1 How to test
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
-     Testing frameworks
+     5.2 Testing frameworks
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
-     Classroom exercise: energy calculation
+     5.3 Classroom exercise: energy calculation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
-     Mocking
+     5.4 Mocking
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
-     Using a debugger
+     5.5 Using a debugger
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
-     Continuous Integration
+     5.6 Continuous Integration
     </a>
    </li>
    <li class="toctree-l2">
@@ -448,47 +463,47 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
-     Libraries
+     6.0 Libraries
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module06_software_projects/06_01_pypi_packages.html">
-     Installing Libraries
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
-     Managing Dependencies
+     6.2 Managing Dependencies
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
-     Python not in the Notebook
+     6.3 Python outside the notebook
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
-     Packaging
+     6.4 Packaging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
-     Documentation
+     6.5 Documentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
-     Software Project Management
+     6.6 Software Project Management
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
-     Software Licensing
+     6.7 Software Licensing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
-     Managing software issues
+     6.8 Managing software issues
     </a>
    </li>
    <li class="toctree-l2">
@@ -510,42 +525,42 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
-     Construction
+     7.0 Construction
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_01_comments.html">
-     Comments
+     7.1 Comments
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_02_coding_conventions.html">
-     Coding Conventions
+     7.2 Coding conventions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
-     Lint
+     7.3 Linting
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
-     Refactoring
+     7.4 Refactoring
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
-     Object-Oriented Design
+     7.5 Object-Oriented Design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_06_classes.html">
-     Class design
+     7.6 Class design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_07_design_patterns.html">
-     Patterns
+     7.7 Design Patterns
     </a>
    </li>
    <li class="toctree-l2">
@@ -567,37 +582,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
-     Advanced Python Programming
+     8.0 Advanced Python Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
-     Functional programming
+     8.1 Functional programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
-     Iterators and Generators
+     8.2 Iterators and Generators
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
-     Exceptions
+     8.3 Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
-     Operator overloading
+     8.4 Operator overloading
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
-     Operator overloading
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
-     Metaprogramming
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
     </a>
    </li>
   </ul>
@@ -614,27 +629,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
-     Performance programming
+     9.0 Performance programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
-     Optimising Mandelbrot
+     9.1 Optimising Mandelbrot
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
-     NumPy for Performance
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
-     Cython
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3 Optimising with Cython
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
-     Scaling for containers and algorithms
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.5 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance scaling for containers and algorithms
     </a>
    </li>
   </ul>
@@ -651,32 +671,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
-     What can go wrong?
+     10.0 Serialising and normalising data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
-     Deserialisation
+     10.1 Deserialisation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     Domain specific languages
+     10.2 Domain specific languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     Markup Languages
+     10.3 Markup Languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     Saying the same thing multiple ways
+     10.4 Saying the same thing in multiple ways
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     Semantic file formats
+     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -753,111 +773,228 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
 <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
 
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/module01_introduction_to_python/01_01_data_analysis_example.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/alan-turing-institute/rse-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule01_introduction_to_python/01_01_data_analysis_example.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/alan-turing-institute/rse-course/edit/main/module01_introduction_to_python/01_01_data_analysis_example.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module01_introduction_to_python/01_01_data_analysis_example.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module01_introduction_to_python/01_01_data_analysis_example.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule01_introduction_to_python/01_01_data_analysis_example.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module01_introduction_to_python/01_01_data_analysis_example.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module01_introduction_to_python/01_01_data_analysis_example.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-write-software-to-manage-your-data-and-plots">
    1.1.1 Why write software to manage your data and plots?
@@ -925,15 +1062,14 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>1.1 An example Python data analysis notebook</h1>
+                <h1>1.1 Data analysis with Jupyter</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1014,17 +1150,18 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="an-example-python-data-analysis-notebook">
-<h1>1.1 An example Python data analysis notebook<a class="headerlink" href="#an-example-python-data-analysis-notebook" title="Permalink to this headline">¶</a></h1>
-<p><em>Estimated time to <strong>read through</strong> this notebook: 20 minutes</em></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="data-analysis-with-jupyter">
+<h1>1.1 Data analysis with Jupyter<a class="headerlink" href="#data-analysis-with-jupyter" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time for this notebook: 20 minutes</em></p>
 <p>This page illustrates how to use Python to perform a simple but complete analysis: retrieve data, do some computations based on it, and visualise the results.</p>
 <p><strong>Don’t worry if you don’t understand everything on this page!</strong> Its purpose is to give you an example of things you can do and how to go about doing them - you are not expected to be able to reproduce an analysis like this in Python at this stage! We will be looking at the concepts and practices introduced on this page as we go along the course.</p>
 <p>As we show the code for different parts of the work, we will be touching on various aspects you may want to keep in mind, either related to Python specifically, or to research programming more generally.</p>
-<div class="section" id="why-write-software-to-manage-your-data-and-plots">
-<h2>1.1.1 Why write software to manage your data and plots?<a class="headerlink" href="#why-write-software-to-manage-your-data-and-plots" title="Permalink to this headline">¶</a></h2>
+<section id="why-write-software-to-manage-your-data-and-plots">
+<h2>1.1.1 Why write software to manage your data and plots?<a class="headerlink" href="#why-write-software-to-manage-your-data-and-plots" title="Permalink to this headline">#</a></h2>
 <p>We can use programs for our entire research pipeline. Not just big scientific simulation codes, but also the small scripts which we use to tidy up data and produce plots. This should be code, so that the whole research pipeline
 is recorded for reproducibility. Data manipulation in spreadsheets is much harder to share or
 check.</p>
@@ -1032,9 +1169,9 @@ check.</p>
 We’ll try to give links to other sources of Python training along the way.
 Part of our approach is that we assume you know how to use the internet! If you
 find something confusing out there, please bring it along to the next session. In this course, we’ll always try to draw your attention to other sources of information about what we’re learning. Paying attention to as many of these as you need to, is just as important as these core notes.</p>
-</div>
-<div class="section" id="importing-libraries">
-<h2>1.1.2 Importing Libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="importing-libraries">
+<h2>1.1.2 Importing Libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this headline">#</a></h2>
 <p>Research programming is all about using libraries: tools other people have provided programs that do many cool things.
 By combining them we can feel really powerful but doing minimum work ourselves. The python syntax to import someone else’s library is “import”.</p>
 <div class="cell docutils container">
@@ -1073,9 +1210,9 @@ research works.</p>
 </div>
 <p>The results come out as a <strong>list</strong> inside a list: <code class="docutils literal notranslate"><span class="pre">[Name,</span> <span class="pre">[Latitude,</span> <span class="pre">Longitude]]</span></code>.
 Programs represent data in a variety of different containers like this.</p>
-</div>
-<div class="section" id="comments">
-<h2>1.1.3 Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="comments">
+<h2>1.1.3 Comments<a class="headerlink" href="#comments" title="Permalink to this headline">#</a></h2>
 <p>Code after a <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol doesn’t get run.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1090,9 +1227,9 @@ Programs represent data in a variety of different containers like this.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="functions">
-<h2>1.1.4 Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="functions">
+<h2>1.1.4 Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
 <p>We can wrap code up in a <strong>function</strong>, so that we can repeatedly get just the information we want.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1115,9 +1252,9 @@ Programs represent data in a variety of different containers like this.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="variables">
-<h2>1.1.5 Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="variables">
+<h2>1.1.5 Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h2>
 <p>We can store a result in a variable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1132,9 +1269,9 @@ Programs represent data in a variety of different containers like this.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="more-complex-functions">
-<h2>1.1.6 More complex functions<a class="headerlink" href="#more-complex-functions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="more-complex-functions">
+<h2>1.1.6 More complex functions<a class="headerlink" href="#more-complex-functions" title="Permalink to this headline">#</a></h2>
 <p>The Yandex API allows us to fetch a map of a place, given a longitude and latitude.
 The URLs look like: <a class="reference external" href="https://static-maps.yandex.ru/1.x/?size=400,400&amp;ll=-0.1275,51.51&amp;z=10&amp;l=sat&amp;lang=en_US">https://static-maps.yandex.ru/1.x/?size=400,400&amp;ll=-0.1275,51.51&amp;z=10&amp;l=sat&amp;lang=en_US</a>
 We’ll probably end up working out these URLs quite a bit. So we’ll make ourselves another function to build up a URL given our parameters.</p>
@@ -1164,9 +1301,9 @@ We’ll probably end up working out these URLs quite a bit. So we’ll make ours
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="checking-our-work">
-<h2>1.1.7 Checking our work<a class="headerlink" href="#checking-our-work" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="checking-our-work">
+<h2>1.1.7 Checking our work<a class="headerlink" href="#checking-our-work" title="Permalink to this headline">#</a></h2>
 <p>Let’s see what URL we ended up with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1209,9 +1346,9 @@ operator to get access to a particular <strong>property</strong> of the object, 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="displaying-results">
-<h2>1.1.8 Displaying results<a class="headerlink" href="#displaying-results" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="displaying-results">
+<h2>1.1.8 Displaying results<a class="headerlink" href="#displaying-results" title="Permalink to this headline">#</a></h2>
 <p>I’ll need to do this a lot, so I’ll wrap up our previous function in another function, to save on typing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1249,7 +1386,7 @@ operator to get access to a particular <strong>property</strong> of the object, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_01_data_analysis_example_39_0.jpg" src="../_images/01_01_data_analysis_example_39_0.jpg" />
+<img alt="../_images/01_01_data_analysis_example_40_0.jpg" src="../_images/01_01_data_analysis_example_40_0.jpg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1259,12 +1396,12 @@ operator to get access to a particular <strong>property</strong> of the object, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_01_data_analysis_example_40_0.jpg" src="../_images/01_01_data_analysis_example_40_0.jpg" />
+<img alt="../_images/01_01_data_analysis_example_41_0.jpg" src="../_images/01_01_data_analysis_example_41_0.jpg" />
 </div>
 </div>
-</div>
-<div class="section" id="manipulating-numbers">
-<h2>1.1.9 Manipulating Numbers<a class="headerlink" href="#manipulating-numbers" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="manipulating-numbers">
+<h2>1.1.9 Manipulating Numbers<a class="headerlink" href="#manipulating-numbers" title="Permalink to this headline">#</a></h2>
 <p>Now we get to our research project: we want to find out how urbanised the world is, based on satellite imagery, along a line
 between two cites. We expect the satellite image to be greener in the countryside.</p>
 <p>We’ll use lots more libraries to count how much green there is in an image.</p>
@@ -1314,7 +1451,7 @@ with each of the three layers being red, green, and blue pixels.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3258
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11989/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11954/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   pixels = imageio.imread(f)  # Get our PNG image as a numpy array
 </pre></div>
 </div>
@@ -1347,9 +1484,9 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="creating-images">
-<h2>1.1.10 Creating Images<a class="headerlink" href="#creating-images" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="creating-images">
+<h2>1.1.10 Creating Images<a class="headerlink" href="#creating-images" title="Permalink to this headline">#</a></h2>
 <p>We should display the green content to check our work:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1373,7 +1510,7 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_01_data_analysis_example_57_0.jpg" src="../_images/01_01_data_analysis_example_57_0.jpg" />
+<img alt="../_images/01_01_data_analysis_example_58_0.jpg" src="../_images/01_01_data_analysis_example_58_0.jpg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1383,17 +1520,17 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11989/3486682063.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11954/3486682063.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   pixels = imageio.imread(BytesIO(data))  # Get our PNG image as rows of pixels
 Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior to saving to suppress this warning.
 </pre></div>
 </div>
-<img alt="../_images/01_01_data_analysis_example_58_1.png" src="../_images/01_01_data_analysis_example_58_1.png" />
+<img alt="../_images/01_01_data_analysis_example_59_1.png" src="../_images/01_01_data_analysis_example_59_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="looping">
-<h2>1.1.11 Looping<a class="headerlink" href="#looping" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="looping">
+<h2>1.1.11 Looping<a class="headerlink" href="#looping" title="Permalink to this headline">#</a></h2>
 <p>We can loop over each element in out list of coordinates, and get a map for that place:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1403,10 +1540,10 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01_01_data_analysis_example_61_0.jpg" src="../_images/01_01_data_analysis_example_61_0.jpg" />
-<img alt="../_images/01_01_data_analysis_example_61_1.jpg" src="../_images/01_01_data_analysis_example_61_1.jpg" />
-<img alt="../_images/01_01_data_analysis_example_61_2.jpg" src="../_images/01_01_data_analysis_example_61_2.jpg" />
-<img alt="../_images/01_01_data_analysis_example_61_3.jpg" src="../_images/01_01_data_analysis_example_61_3.jpg" />
+<img alt="../_images/01_01_data_analysis_example_62_0.jpg" src="../_images/01_01_data_analysis_example_62_0.jpg" />
+<img alt="../_images/01_01_data_analysis_example_62_1.jpg" src="../_images/01_01_data_analysis_example_62_1.jpg" />
+<img alt="../_images/01_01_data_analysis_example_62_2.jpg" src="../_images/01_01_data_analysis_example_62_2.jpg" />
+<img alt="../_images/01_01_data_analysis_example_62_3.jpg" src="../_images/01_01_data_analysis_example_62_3.jpg" />
 </div>
 </div>
 <p>So now we can count the green from London to Birmingham!</p>
@@ -1420,7 +1557,7 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11989/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11954/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   pixels = imageio.imread(f)  # Get our PNG image as a numpy array
 </pre></div>
 </div>
@@ -1429,9 +1566,9 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="plotting-graphs">
-<h2>1.1.12 Plotting graphs<a class="headerlink" href="#plotting-graphs" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="plotting-graphs">
+<h2>1.1.12 Plotting graphs<a class="headerlink" href="#plotting-graphs" title="Permalink to this headline">#</a></h2>
 <p>Let’s plot a graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1449,20 +1586,20 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11989/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11954/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   pixels = imageio.imread(f)  # Get our PNG image as a numpy array
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f813e3105e0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe3e4189ee0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/01_01_data_analysis_example_66_2.png" src="../_images/01_01_data_analysis_example_66_2.png" />
+<img alt="../_images/01_01_data_analysis_example_67_2.png" src="../_images/01_01_data_analysis_example_67_2.png" />
 </div>
 </div>
 <p>From a research perspective, of course, this code needs a lot of work. But I hope the power of using programming is clear.</p>
-</div>
-<div class="section" id="composing-program-elements">
-<h2>1.1.13 Composing Program Elements<a class="headerlink" href="#composing-program-elements" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="composing-program-elements">
+<h2>1.1.13 Composing Program Elements<a class="headerlink" href="#composing-program-elements" title="Permalink to this headline">#</a></h2>
 <p>We built little pieces of useful code, to:</p>
 <ul class="simple">
 <li><p>Find latitude and longitude of a place</p></li>
@@ -1491,20 +1628,20 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11989/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning dissapear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11954/3998133433.py:3: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   pixels = imageio.imread(f)  # Get our PNG image as a numpy array
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f813c2c80a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe3e413ac10&gt;]
 </pre></div>
 </div>
-<img alt="../_images/01_01_data_analysis_example_72_2.png" src="../_images/01_01_data_analysis_example_72_2.png" />
+<img alt="../_images/01_01_data_analysis_example_73_2.png" src="../_images/01_01_data_analysis_example_73_2.png" />
 </div>
 </div>
 <p>And that’s it! We’ve covered, very very quickly, the majority of the python language, and much of the theory of software engineering.</p>
 <p>Now we’ll go back, carefully, through all the concepts we touched on, and learn how to use them properly ourselves.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1528,9 +1665,11 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="01_00_introduction_to_python.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1546,29 +1685,33 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
 Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
 <br/>
-    
-      <div class="extra_footer">
-        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

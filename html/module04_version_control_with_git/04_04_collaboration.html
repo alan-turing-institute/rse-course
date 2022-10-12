@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collaboration &#8212; Research Software Engineering with Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4.4 Collaboration &#8212; Research Software Engineering with Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -54,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fork and Pull" href="04_05_fork_and_pull.html" />
-    <link rel="prev" title="Publishing" href="04_03_publishing.html" />
+    <link rel="next" title="4.5 Fork and Pull" href="04_05_fork_and_pull.html" />
+    <link rel="prev" title="4.3 Publishing" href="04_03_publishing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Research Software Engineering with Python
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Prerequisites
  </span>
@@ -146,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../module01_introduction_to_python/index.html">
-   Introduction to Python
+   1. Introduction to Python
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -161,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
-     1.1 An example Python data analysis notebook
+     1.1 Data analysis with Jupyter
     </a>
    </li>
    <li class="toctree-l2">
@@ -243,7 +258,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
-     2.4 Working with Files
+     2.4 Working with files
     </a>
    </li>
    <li class="toctree-l2">
@@ -290,17 +305,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy_continued.html">
-     3.4 NumPy Continued
+     3.4 Advanced NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
-     3.5 The Boids!
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_understanding_greengraph.html">
+     3.5 Recap: Understanding the “Greengraph” example
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
-     3.6 Recap: Understanding the “Greengraph” Example
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
     </a>
    </li>
    <li class="toctree-l2">
@@ -322,62 +337,62 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="04_00_introduction.html">
-     Introduction
+     4.0 Introduction to version control
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04_01_solo_work_with_git.html">
-     Solo work with Git
+     4.1 Solo work with git
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04_02_fixing_mistakes.html">
-     Fixing mistakes
+     4.2 Fixing mistakes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04_03_publishing.html">
-     Publishing
+     4.3 Publishing
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Collaboration
+     4.4 Collaboration
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04_05_fork_and_pull.html">
-     Fork and Pull
+     4.5 Fork and Pull
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04_06_git_theory.html">
-     Git Theory
+     4.6 Git Theory
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04_07_branches.html">
-     Branches
+     4.7 Branches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04_08_git_stash.html">
-     Git Stash
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04_09_multiple_remotes.html">
-     Working with multiple remotes
+    <a class="reference internal" href="04_09_github_pages.html">
+     4.9 Publishing from GitHub
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04_10_rebasing.html">
-     Rebasing
+     4.10 Rebasing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04_11_debugging_with_git_bisect.html">
-     Debugging With Git Bisect
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
     </a>
    </li>
   </ul>
@@ -394,37 +409,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
-     Testing
+     5.0 Testing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
-     How to Test
+     5.1 How to test
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
-     Testing frameworks
+     5.2 Testing frameworks
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
-     Classroom exercise: energy calculation
+     5.3 Classroom exercise: energy calculation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
-     Mocking
+     5.4 Mocking
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
-     Using a debugger
+     5.5 Using a debugger
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
-     Continuous Integration
+     5.6 Continuous Integration
     </a>
    </li>
    <li class="toctree-l2">
@@ -446,47 +461,47 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
-     Libraries
+     6.0 Libraries
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module06_software_projects/06_01_pypi_packages.html">
-     Installing Libraries
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
-     Managing Dependencies
+     6.2 Managing Dependencies
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
-     Python not in the Notebook
+     6.3 Python outside the notebook
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
-     Packaging
+     6.4 Packaging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
-     Documentation
+     6.5 Documentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
-     Software Project Management
+     6.6 Software Project Management
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
-     Software Licensing
+     6.7 Software Licensing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
-     Managing software issues
+     6.8 Managing software issues
     </a>
    </li>
    <li class="toctree-l2">
@@ -508,42 +523,42 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
-     Construction
+     7.0 Construction
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_01_comments.html">
-     Comments
+     7.1 Comments
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_02_coding_conventions.html">
-     Coding Conventions
+     7.2 Coding conventions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
-     Lint
+     7.3 Linting
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
-     Refactoring
+     7.4 Refactoring
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
-     Object-Oriented Design
+     7.5 Object-Oriented Design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_06_classes.html">
-     Class design
+     7.6 Class design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_07_design_patterns.html">
-     Patterns
+     7.7 Design Patterns
     </a>
    </li>
    <li class="toctree-l2">
@@ -565,37 +580,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
-     Advanced Python Programming
+     8.0 Advanced Python Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
-     Functional programming
+     8.1 Functional programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
-     Iterators and Generators
+     8.2 Iterators and Generators
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
-     Exceptions
+     8.3 Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
-     Operator overloading
+     8.4 Operator overloading
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
-     Operator overloading
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
-     Metaprogramming
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
     </a>
    </li>
   </ul>
@@ -612,27 +627,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
-     Performance programming
+     9.0 Performance programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
-     Optimising Mandelbrot
+     9.1 Optimising Mandelbrot
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
-     NumPy for Performance
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
-     Cython
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3 Optimising with Cython
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
-     Scaling for containers and algorithms
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.5 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance scaling for containers and algorithms
     </a>
    </li>
   </ul>
@@ -649,32 +669,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
-     What can go wrong?
+     10.0 Serialising and normalising data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
-     Deserialisation
+     10.1 Deserialisation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     Domain specific languages
+     10.2 Domain specific languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     Markup Languages
+     10.3 Markup Languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     Saying the same thing multiple ways
+     10.4 Saying the same thing in multiple ways
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     Semantic file formats
+     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -751,114 +771,231 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
 <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
 
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/module04_version_control_with_git/04_04_collaboration.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/alan-turing-institute/rse-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule04_version_control_with_git/04_04_collaboration.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/alan-turing-institute/rse-course/edit/main/module04_version_control_with_git/04_04_collaboration.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module04_version_control_with_git/04_04_collaboration.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module04_version_control_with_git/04_04_collaboration.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule04_version_control_with_git/04_04_collaboration.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module04_version_control_with_git/04_04_collaboration.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module04_version_control_with_git/04_04_collaboration.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Collaboration
+   4.4 Collaboration
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -937,15 +1074,14 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Collaboration</h1>
+                <h1>4.4 Collaboration</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -957,7 +1093,7 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Collaboration
+   4.4 Collaboration
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -1040,24 +1176,26 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="collaboration">
-<h1>Collaboration<a class="headerlink" href="#collaboration" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="form-a-team">
-<h2>Form a team<a class="headerlink" href="#form-a-team" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="collaboration">
+<h1>4.4 Collaboration<a class="headerlink" href="#collaboration" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time to complete this notebook: 20 minutes</em></p>
+<section id="form-a-team">
+<h2>Form a team<a class="headerlink" href="#form-a-team" title="Permalink to this headline">#</a></h2>
 <p>Now we’re going to get to the most important question of all with Git and GitHub: working with others.</p>
 <p>Organise into pairs. You’re going to be working on the website of one of the two of you, together, so decide who is going to be the leader, and who the collaborator.</p>
-</div>
-<div class="section" id="giving-permission">
-<h2>Giving permission<a class="headerlink" href="#giving-permission" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="giving-permission">
+<h2>Giving permission<a class="headerlink" href="#giving-permission" title="Permalink to this headline">#</a></h2>
 <p>The leader needs to let the collaborator have the right to make changes to his code.</p>
 <p>In GitHub, go to <code class="docutils literal notranslate"><span class="pre">Settings</span></code> on the right, then <code class="docutils literal notranslate"><span class="pre">Collaborators</span> <span class="pre">&amp;</span> <span class="pre">teams</span></code> on the left.</p>
 <p>Add the user name of your collaborator to the box. They now have the right to push to your repository.</p>
-</div>
-<div class="section" id="obtaining-a-colleague-s-code">
-<h2>Obtaining a colleague’s code<a class="headerlink" href="#obtaining-a-colleague-s-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="obtaining-a-colleague-s-code">
+<h2>Obtaining a colleague’s code<a class="headerlink" href="#obtaining-a-colleague-s-code" title="Permalink to this headline">#</a></h2>
 <p>Next, the collaborator needs to get a copy of the leader’s code. For this example notebook,
 I’m going to be collaborating with myself, swapping between my two repositories.
 Make yourself a space to put it your work. (I will have two)</p>
@@ -1168,9 +1306,9 @@ cat lakeland.md
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="nonconflicting-changes">
-<h2>Nonconflicting changes<a class="headerlink" href="#nonconflicting-changes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="nonconflicting-changes">
+<h2>Nonconflicting changes<a class="headerlink" href="#nonconflicting-changes" title="Permalink to this headline">#</a></h2>
 <p>Now, both of you should make some changes. To start with, make changes to <em>different</em> files. This will mean your work doesn’t “conflict”. Later, we’ll see how to deal with changes to a shared file.</p>
 <p>Both of you should commit, but not push, your changes to your respective files:</p>
 <p>E.g., the leader:</p>
@@ -1232,7 +1370,7 @@ git commit -m &quot;Add wales&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 907970b] Add wales
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 9045563] Add wales
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 5 insertions(+)
@@ -1296,7 +1434,7 @@ git commit -m &quot;Add Scotland&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 773b019] Add Scotland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main ee41ef7] Add Scotland
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 5 insertions(+)
@@ -1319,14 +1457,14 @@ git push
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   b18473f..773b019  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   7a3a30a..ee41ef7  main -&gt; main
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="rejected-push">
-<h2>Rejected push<a class="headerlink" href="#rejected-push" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="rejected-push">
+<h2>Rejected push<a class="headerlink" href="#rejected-push" title="Permalink to this headline">#</a></h2>
 <p>The other should then attempt to push, but should receive an error message:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1384,7 +1522,7 @@ git pull
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   b18473f..773b019  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   7a3a30a..ee41ef7  main       -&gt; origin/main
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * [new branch]      experiment -&gt; origin/experiment
@@ -1404,9 +1542,9 @@ git pull
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="merge-commits">
-<h2>Merge commits<a class="headerlink" href="#merge-commits" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="merge-commits">
+<h2>Merge commits<a class="headerlink" href="#merge-commits" title="Permalink to this headline">#</a></h2>
 <p>A window may pop up with a suggested default commit message. This commit is special: it is a <em>merge</em> commit. It is a commit which combines your collaborator’s work with your own.</p>
 <p>Now, push again with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>. This time it works. If you look on GitHub, you’ll now see that it contains both sets of changes.</p>
 <div class="cell docutils container">
@@ -1420,7 +1558,7 @@ git push
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   773b019..d367692  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ee41ef7..4571e69  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -1444,10 +1582,10 @@ git pull
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   773b019..d367692  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ee41ef7..4571e69  main       -&gt; origin/main
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating 773b019..d367692
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating ee41ef7..4571e69
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fast-forward
@@ -1486,9 +1624,9 @@ ls
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="nonconflicted-commits-to-the-same-file">
-<h2>Nonconflicted commits to the same file<a class="headerlink" href="#nonconflicted-commits-to-the-same-file" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="nonconflicted-commits-to-the-same-file">
+<h2>Nonconflicted commits to the same file<a class="headerlink" href="#nonconflicted-commits-to-the-same-file" title="Permalink to this headline">#</a></h2>
 <p>Go through the whole process again, but this time, both of you should make changes to a single file, but make sure that you don’t touch the same <em>line</em>. Again, the merge should work as before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1555,7 +1693,7 @@ git commit -am &quot;Translating from the Welsh&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 19139e2] Translating from the Welsh
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 2b17f4a] Translating from the Welsh
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 1 insertion(+), 1 deletion(-)
@@ -1571,37 +1709,37 @@ git log --oneline
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19139e2 Translating from the Welsh
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2b17f4a Translating from the Welsh
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d367692 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4571e69 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>907970b Add wales
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9045563 Add wales
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>773b019 Add Scotland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ee41ef7 Add Scotland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b18473f Add Helvellyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7a3a30a Add Helvellyn
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>03f2ad7 Include lakes in the scope
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a34f716 Include lakes in the scope
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6c2334c Add lakeland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28d2913 Add lakeland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c82f2d2 Revert &quot;Add a lie about a mountain&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33800ca Revert &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1cb28c6 Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dbf2f65 Change title
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b192058 Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>54f1bbd Add a lie about a mountain
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eb9f396 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1c977a1 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1639,7 +1777,7 @@ git commit -am &quot;Add a beacon&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main d1b736d] Add a beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main afbd4ab] Add a beacon
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 1 insertion(+)
@@ -1655,37 +1793,37 @@ git log --oneline
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d1b736d Add a beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>afbd4ab Add a beacon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d367692 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4571e69 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>907970b Add wales
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9045563 Add wales
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>773b019 Add Scotland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ee41ef7 Add Scotland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b18473f Add Helvellyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7a3a30a Add Helvellyn
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>03f2ad7 Include lakes in the scope
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a34f716 Include lakes in the scope
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6c2334c Add lakeland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28d2913 Add lakeland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c82f2d2 Revert &quot;Add a lie about a mountain&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33800ca Revert &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1cb28c6 Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dbf2f65 Change title
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b192058 Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>54f1bbd Add a lie about a mountain
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eb9f396 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1c977a1 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1701,7 +1839,7 @@ git push
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   d367692..d1b736d  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   4571e69..afbd4ab  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -1762,7 +1900,7 @@ git pull
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   d367692..d1b736d  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   4571e69..afbd4ab  main       -&gt; origin/main
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging Wales.md
@@ -1790,7 +1928,7 @@ git push
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   d1b736d..ad7f034  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   afbd4ab..8c41d4b  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -1803,55 +1941,55 @@ git log --oneline --graph
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   ad7f034 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   8c41d4b Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|\  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * d1b736d Add a beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * afbd4ab Add a beacon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 19139e2 Translating from the Welsh
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 2b17f4a Translating from the Welsh
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|/  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   d367692 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   4571e69 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|\  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * 773b019 Add Scotland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * ee41ef7 Add Scotland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 907970b Add wales
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 9045563 Add wales
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|/  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* b18473f Add Helvellyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 7a3a30a Add Helvellyn
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 03f2ad7 Include lakes in the scope
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* a34f716 Include lakes in the scope
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 6c2334c Add lakeland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 28d2913 Add lakeland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* c82f2d2 Revert &quot;Add a lie about a mountain&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 33800ca Revert &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 1cb28c6 Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* dbf2f65 Change title
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* b192058 Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 54f1bbd Add a lie about a mountain
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* eb9f396 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 1c977a1 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1874,10 +2012,10 @@ git pull
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   d1b736d..ad7f034  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   afbd4ab..8c41d4b  main       -&gt; origin/main
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating d1b736d..ad7f034
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating afbd4ab..8c41d4b
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fast-forward
@@ -1899,55 +2037,55 @@ git log --graph --oneline
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   ad7f034 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   8c41d4b Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|\  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * d1b736d Add a beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * afbd4ab Add a beacon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 19139e2 Translating from the Welsh
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 2b17f4a Translating from the Welsh
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|/  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   d367692 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   4571e69 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|\  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * 773b019 Add Scotland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * ee41ef7 Add Scotland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 907970b Add wales
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 9045563 Add wales
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|/  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* b18473f Add Helvellyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 7a3a30a Add Helvellyn
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 03f2ad7 Include lakes in the scope
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* a34f716 Include lakes in the scope
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 6c2334c Add lakeland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 28d2913 Add lakeland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* c82f2d2 Revert &quot;Add a lie about a mountain&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 33800ca Revert &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 1cb28c6 Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* dbf2f65 Change title
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* b192058 Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 54f1bbd Add a lie about a mountain
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* eb9f396 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 1c977a1 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1996,12 +2134,12 @@ git log --graph --oneline
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_04_collaboration_58_0.png" src="../_images/04_04_collaboration_58_0.png" />
+<img alt="../_images/04_04_collaboration_59_0.png" src="../_images/04_04_collaboration_59_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="conflicting-commits">
-<h2>Conflicting commits<a class="headerlink" href="#conflicting-commits" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="conflicting-commits">
+<h2>Conflicting commits<a class="headerlink" href="#conflicting-commits" title="Permalink to this headline">#</a></h2>
 <p>Finally, go through the process again, but this time, make changes which touch the same line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2031,16 +2169,19 @@ git push
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main ca49c5c] Add another Beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 0f79c28] Add another Beacon
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 1 insertion(+)
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Permanently added the ECDSA host key for IP address &#39;140.82.114.4&#39; to the list of known hosts.
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ad7f034..ca49c5c  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   8c41d4b..0f79c28  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -2079,7 +2220,7 @@ git commit -am &quot;Add Glyder&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main eca4ef0] Add Glyder
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 6a29b9a] Add Glyder
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 1 insertion(+)
@@ -2136,7 +2277,7 @@ git pull || echo &quot;Pull failed&quot;
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ad7f034..ca49c5c  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   8c41d4b..0f79c28  main       -&gt; origin/main
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging Wales.md
@@ -2153,9 +2294,9 @@ git pull || echo &quot;Pull failed&quot;
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="resolving-conflicts">
-<h2>Resolving conflicts<a class="headerlink" href="#resolving-conflicts" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="resolving-conflicts">
+<h2>Resolving conflicts<a class="headerlink" href="#resolving-conflicts" title="Permalink to this headline">#</a></h2>
 <p>Git couldn’t work out how to merge the two different sets of changes.</p>
 <p>You now need to manually resolve the conflict.</p>
 <p>It has marked the conflicted area:</p>
@@ -2197,7 +2338,7 @@ cat Wales.md
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* Fan y Big
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;&gt;&gt;&gt;&gt; ca49c5c95fa668f72a4ce394698a04697e133ed5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0f79c284f69b92e5fda8f05a34bfbe85dc654125
 </pre></div>
 </div>
 </div>
@@ -2223,9 +2364,9 @@ cat Wales.md
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="commit-the-resolved-file">
-<h2>Commit the resolved file<a class="headerlink" href="#commit-the-resolved-file" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="commit-the-resolved-file">
+<h2>Commit the resolved file<a class="headerlink" href="#commit-the-resolved-file" title="Permalink to this headline">#</a></h2>
 <p>Now commit the merged result:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2235,7 +2376,7 @@ git commit -a --no-edit # I added a No-edit for this non-interactive session. Yo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main f1a2920] Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 9329222] Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 </div>
@@ -2251,7 +2392,7 @@ git push
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ca49c5c..f1a2920  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   0f79c28..9329222  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -2274,10 +2415,10 @@ git pull
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ca49c5c..f1a2920  main       -&gt; origin/main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   0f79c28..9329222  main       -&gt; origin/main
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating ca49c5c..f1a2920
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updating 0f79c28..9329222
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fast-forward
@@ -2333,77 +2474,77 @@ git log --oneline --graph
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   f1a2920 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   9329222 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|\  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * ca49c5c Add another Beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * 0f79c28 Add another Beacon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | eca4ef0 Add Glyder
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 6a29b9a Add Glyder
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|/  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   ad7f034 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   8c41d4b Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|\  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * d1b736d Add a beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * afbd4ab Add a beacon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 19139e2 Translating from the Welsh
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 2b17f4a Translating from the Welsh
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|/  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   d367692 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*   4571e69 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|\  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * 773b019 Add Scotland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| * ee41ef7 Add Scotland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 907970b Add wales
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* | 9045563 Add wales
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|/  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* b18473f Add Helvellyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 7a3a30a Add Helvellyn
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 03f2ad7 Include lakes in the scope
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* a34f716 Include lakes in the scope
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 6c2334c Add lakeland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 28d2913 Add lakeland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* c82f2d2 Revert &quot;Add a lie about a mountain&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 33800ca Revert &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 1cb28c6 Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* dbf2f65 Change title
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* b192058 Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 54f1bbd Add a lie about a mountain
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* eb9f396 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* 1c977a1 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="distributed-vcs-in-teams-with-conflicts">
-<h2>Distributed VCS in teams with conflicts<a class="headerlink" href="#distributed-vcs-in-teams-with-conflicts" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="distributed-vcs-in-teams-with-conflicts">
+<h2>Distributed VCS in teams with conflicts<a class="headerlink" href="#distributed-vcs-in-teams-with-conflicts" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -2449,13 +2590,13 @@ git log --oneline --graph
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_04_collaboration_80_0.png" src="../_images/04_04_collaboration_80_0.png" />
+<img alt="../_images/04_04_collaboration_81_0.png" src="../_images/04_04_collaboration_81_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-levels-of-git">
-<h1>The Levels of Git<a class="headerlink" href="#the-levels-of-git" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-levels-of-git">
+<h1>The Levels of Git<a class="headerlink" href="#the-levels-of-git" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -2476,24 +2617,24 @@ git log --oneline --graph
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_04_collaboration_82_0.png" src="../_images/04_04_collaboration_82_0.png" />
+<img alt="../_images/04_04_collaboration_83_0.png" src="../_images/04_04_collaboration_83_0.png" />
 </div>
 </div>
-<div class="section" id="editing-directly-on-github">
-<h2>Editing directly on GitHub<a class="headerlink" href="#editing-directly-on-github" title="Permalink to this headline">¶</a></h2>
+<section id="editing-directly-on-github">
+<h2>Editing directly on GitHub<a class="headerlink" href="#editing-directly-on-github" title="Permalink to this headline">#</a></h2>
 <p>Note that you can also make changes in the GitHub website itself. Visit one of your files, and hit “edit”.</p>
 <p>Make a change in the edit window, and add an appropriate commit message.</p>
 <p>That change now appears on the website, but not in your local copy. (Verify this).</p>
 <p>Now pull, and check the change is now present on your local version.</p>
-</div>
-<div class="section" id="github-as-a-social-network">
-<h2>GitHub as a social network<a class="headerlink" href="#github-as-a-social-network" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="github-as-a-social-network">
+<h2>GitHub as a social network<a class="headerlink" href="#github-as-a-social-network" title="Permalink to this headline">#</a></h2>
 <p>In addition to being a repository for code, and a way to publish code, GitHub is a social network.</p>
 <p>You can follow the public work of other coders: go to the profile of your collaborator in your browser, and hit the “follow” button.</p>
 <p><a class="reference external" href="https://github.com/jamespjh">Here’s mine</a> : if you want to you can follow me.</p>
 <p>Using GitHub to build up a good public profile of software projects you’ve worked on is great for your CV!</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2517,47 +2658,53 @@ git log --oneline --graph
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="04_03_publishing.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Publishing</p>
+            <p class="prev-next-title">4.3 Publishing</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="04_05_fork_and_pull.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fork and Pull</p>
+        <p class="prev-next-title">4.5 Fork and Pull</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
 Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
 <br/>
-    
-      <div class="extra_footer">
-        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

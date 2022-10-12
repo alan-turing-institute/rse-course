@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # # 3.2 Plotting with Matplotlib
+
 # *Estimated time to complete this notebook: 25 minutes*
 
 # ## 3.2.1 Importing Matplotlib

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Fixing mistakes
+# # 4.2 Fixing mistakes
+
+# *Estimated time to complete this notebook: 10 minutes*
 
 # We're still in our git working directory:
 

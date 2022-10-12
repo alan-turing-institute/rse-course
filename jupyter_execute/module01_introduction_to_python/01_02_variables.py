@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.2 Variables
-# *Estimated time to complete this notebook: 10 minutes*
+
+# *Estimated time for this notebook: 10 minutes*
 
 # ## 1.2.1 Variable Assignment
 

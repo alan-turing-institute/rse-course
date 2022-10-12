@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Publishing
+# # 4.3 Publishing
+
+# *Estimated time to complete this notebook: 15 minutes*
 
 # We're still in our working directory:
 
@@ -29,7 +31,7 @@ working_dir
 # 
 # Fill in a short name, and a description. Choose a "public" repository. Don't choose to add a Readme.
 
-# ## Paying for GitHub
+# ## GitHub private repositories
 # 
 # For this course, you should use public repositories in your personal account for your example work: it's good to share! GitHub is free for open source, but in general, charges a fee if you want to keep your work private. 
 # 

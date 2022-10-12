@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Testing frameworks
+# # 5.2 Testing frameworks
+
+# *Estimated time for this notebook: 15 minutes*
 
 # ## Why use testing frameworks?
 # 

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 2.4 Working with Files
+# # 2.4 Working with files
 
-# *Estimated time to complete this notebook: 15 minutes*
+# *Estimated time for this notebook: 15 minutes*
 
 # ## 2.4.1 Background
 # Loading data from files

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Introduction
+# # 4.0 Introduction to version control
+
+# *Estimated time to complete this notebook: 10 minutes*
 
 # ## What's version control?
 # 
@@ -69,7 +71,7 @@
 # This course will use the `git` version control system, but much of what you learn will be valid with other version control 
 # tools you may encounter, including subversion (`svn`) and mercurial (`hg`).
 
-# # Practising with Git
+# # 4.0.1 Practising with Git
 
 # ## Example Exercise
 # 
@@ -157,7 +159,7 @@ working_dir = os.path.join(git_dir, "git_example")
 os.chdir(working_dir)
 
 
-# # Solo work
+# # 4.0.2 Solo work
 # 
 # ## Configuring Git with your name and email
 # 

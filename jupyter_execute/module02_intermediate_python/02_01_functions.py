@@ -3,7 +3,7 @@
 
 # # 2.1 Functions 
 
-# *Estimated time to complete this notebook: 15 minutes*
+# *Estimated time for this notebook: 15 minutes*
 
 # ## 2.1.1 Definition
 

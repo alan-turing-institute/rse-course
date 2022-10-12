@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Domain specific languages
+# # 10.2 Domain specific languages
+
+# *Estimated time for this notebook: 25 minutes*
 
 # ## Lex and Yacc
 

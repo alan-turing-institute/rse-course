@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.7 Data structures
-# *Estimated time to complete this notebook: 5 minutes*
+
+# *Estimated time for this notebook: 5 minutes*
 
 # ## 1.7.1 Nested Lists and Dictionaries
 

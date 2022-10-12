@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Operator overloading
+# # 8.4 Operator overloading
+
+# *Estimated time for this notebook: 15 minutes*
 
 # We've seen already during the course that some operators behave differently depending on the data type.
 # 

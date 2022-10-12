@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Markup Languages
+# # 10.3 Markup Languages
+
+# *Estimated time for this notebook: 15 minutes*
 
 # XML and its relatives are based on the idea of *marking up* content with labels on its purpose:
 #     

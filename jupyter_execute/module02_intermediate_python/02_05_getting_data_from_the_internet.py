@@ -3,7 +3,7 @@
 
 # # 2.5 Getting data from the Internet
 
-# *Estimated time to complete this notebook: 10 minutes*
+# *Estimated time for this notebook: 10 minutes*
 
 # We've seen about obtaining data from our local file system.
 

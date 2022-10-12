@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Functional programming
+# # 8.1 Functional programming
+
+# *Estimated time for this notebook: 20 minutes*
 
 # We have previously seen the object-oriented style of programming, and how to organise our code according to it using objects, classes and inheritance. While widely-adopted and very useful, this is not the only way of writing code. The [*functional paradigm*](https://en.wikipedia.org/wiki/Functional_programming), as the name suggests, emphasises functions as building blocks of programs.
 # 

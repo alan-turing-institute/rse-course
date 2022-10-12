@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Python not in the Notebook
+# # 6.3 Python outside the notebook
+
+# *Estimated time for this notebook: 15 minutes*
 
 # We will often want to save our Python functions and classes, for use in multiple Notebooks or to interact with them via a terminal.
 

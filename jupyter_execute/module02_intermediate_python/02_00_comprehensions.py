@@ -3,7 +3,7 @@
 
 # # 2.0 Comprehensions
 
-# *Estimated time to complete this notebook: 10 minutes*
+# *Estimated time for this notebook: 10 minutes*
 
 # ## 2.0.1 The list comprehension
 

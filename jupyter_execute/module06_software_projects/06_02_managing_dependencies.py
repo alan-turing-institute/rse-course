@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Managing Dependencies
+# # 6.2 Managing Dependencies
 # 
+
+# *Estimated time for this notebook: 15 minutes*
 
 # ## Specifying Dependencies
 # 

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lint &#8212; Research Software Engineering with Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>7.3 Linting &#8212; Research Software Engineering with Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -54,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Refactoring" href="07_04_refactoring.html" />
-    <link rel="prev" title="Coding Conventions" href="07_02_coding_conventions.html" />
+    <link rel="next" title="7.4 Refactoring" href="07_04_refactoring.html" />
+    <link rel="prev" title="7.2 Coding conventions" href="07_02_coding_conventions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Research Software Engineering with Python
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Prerequisites
  </span>
@@ -146,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../module01_introduction_to_python/index.html">
-   Introduction to Python
+   1. Introduction to Python
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -161,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module01_introduction_to_python/01_01_data_analysis_example.html">
-     1.1 An example Python data analysis notebook
+     1.1 Data analysis with Jupyter
     </a>
    </li>
    <li class="toctree-l2">
@@ -243,7 +258,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
-     2.4 Working with Files
+     2.4 Working with files
     </a>
    </li>
    <li class="toctree-l2">
@@ -290,17 +305,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy_continued.html">
-     3.4 NumPy Continued
+     3.4 Advanced NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_05_boids.html">
-     3.5 The Boids!
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_understanding_greengraph.html">
+     3.5 Recap: Understanding the “Greengraph” example
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module03_research_data_in_python/03_06_understanding_greengraph.html">
-     3.6 Recap: Understanding the “Greengraph” Example
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
     </a>
    </li>
    <li class="toctree-l2">
@@ -322,62 +337,62 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
-     Introduction
+     4.0 Introduction to version control
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
-     Solo work with Git
+     4.1 Solo work with git
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
-     Fixing mistakes
+     4.2 Fixing mistakes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
-     Publishing
+     4.3 Publishing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
-     Collaboration
+     4.4 Collaboration
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
-     Fork and Pull
+     4.5 Fork and Pull
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
-     Git Theory
+     4.6 Git Theory
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
-     Branches
+     4.7 Branches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module04_version_control_with_git/04_08_git_stash.html">
-     Git Stash
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module04_version_control_with_git/04_09_multiple_remotes.html">
-     Working with multiple remotes
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_github_pages.html">
+     4.9 Publishing from GitHub
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
-     Rebasing
+     4.10 Rebasing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
-     Debugging With Git Bisect
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
     </a>
    </li>
   </ul>
@@ -394,37 +409,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
-     Testing
+     5.0 Testing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
-     How to Test
+     5.1 How to test
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
-     Testing frameworks
+     5.2 Testing frameworks
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
-     Classroom exercise: energy calculation
+     5.3 Classroom exercise: energy calculation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
-     Mocking
+     5.4 Mocking
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
-     Using a debugger
+     5.5 Using a debugger
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
-     Continuous Integration
+     5.6 Continuous Integration
     </a>
    </li>
    <li class="toctree-l2">
@@ -446,47 +461,47 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
-     Libraries
+     6.0 Libraries
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module06_software_projects/06_01_pypi_packages.html">
-     Installing Libraries
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
-     Managing Dependencies
+     6.2 Managing Dependencies
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
-     Python not in the Notebook
+     6.3 Python outside the notebook
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
-     Packaging
+     6.4 Packaging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
-     Documentation
+     6.5 Documentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
-     Software Project Management
+     6.6 Software Project Management
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
-     Software Licensing
+     6.7 Software Licensing
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
-     Managing software issues
+     6.8 Managing software issues
     </a>
    </li>
    <li class="toctree-l2">
@@ -508,42 +523,42 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="07_00_introduction.html">
-     Construction
+     7.0 Construction
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_01_comments.html">
-     Comments
+     7.1 Comments
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_02_coding_conventions.html">
-     Coding Conventions
+     7.2 Coding conventions
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Lint
+     7.3 Linting
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_04_refactoring.html">
-     Refactoring
+     7.4 Refactoring
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_05_object_oriented_design.html">
-     Object-Oriented Design
+     7.5 Object-Oriented Design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_06_classes.html">
-     Class design
+     7.6 Class design
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_07_design_patterns.html">
-     Patterns
+     7.7 Design Patterns
     </a>
    </li>
    <li class="toctree-l2">
@@ -565,37 +580,37 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
-     Advanced Python Programming
+     8.0 Advanced Python Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
-     Functional programming
+     8.1 Functional programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
-     Iterators and Generators
+     8.2 Iterators and Generators
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
-     Exceptions
+     8.3 Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
-     Operator overloading
+     8.4 Operator overloading
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_operator_overloading_example.html">
-     Operator overloading
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_metaprogramming.html">
-     Metaprogramming
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
     </a>
    </li>
   </ul>
@@ -612,27 +627,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
-     Performance programming
+     9.0 Performance programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
-     Optimising Mandelbrot
+     9.1 Optimising Mandelbrot
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_02_numpy_for_performance.html">
-     NumPy for Performance
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_03_cython.html">
-     Cython
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3 Optimising with Cython
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module09_programming_for_speed/09_04_scaling_for_containers.html">
-     Scaling for containers and algorithms
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.5 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance scaling for containers and algorithms
     </a>
    </li>
   </ul>
@@ -649,32 +669,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
-     What can go wrong?
+     10.0 Serialising and normalising data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
-     Deserialisation
+     10.1 Deserialisation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     Domain specific languages
+     10.2 Domain specific languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     Markup Languages
+     10.3 Markup Languages
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     Saying the same thing multiple ways
+     10.4 Saying the same thing in multiple ways
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     Semantic file formats
+     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -751,111 +771,228 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
 <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
 
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/module07_construction_and_design/07_03_linters.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/alan-turing-institute/rse-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule07_construction_and_design/07_03_linters.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/alan-turing-institute/rse-course/edit/main/module07_construction_and_design/07_03_linters.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module07_construction_and_design/07_03_linters.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module07_construction_and_design/07_03_linters.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule07_construction_and_design/07_03_linters.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module07_construction_and_design/07_03_linters.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module07_construction_and_design/07_03_linters.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#linters-starter-pack">
    Linters Starter Pack
@@ -896,6 +1033,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#nbqa">
      nbqa
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pylama">
+     pylama
     </a>
    </li>
   </ul>
@@ -941,15 +1083,14 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lint</h1>
+                <h1>7.3 Linting</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1001,6 +1142,11 @@ const thebe_selector_output = ".output, .cell_output"
      nbqa
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pylama">
+     pylama
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1048,18 +1194,20 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lint">
-<h1>Lint<a class="headerlink" href="#lint" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="linting">
+<h1>7.3 Linting<a class="headerlink" href="#linting" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time for this notebook: 15 minutes</em></p>
 <p>There are automated tools which enforce coding conventions and check for common mistakes. These are called <em>linters</em>.</p>
 <p>Do not blindly believe all these automated tools! Style guides are <strong>guides</strong> not <strong>rules</strong>.</p>
-<div class="section" id="linters-starter-pack">
-<h2>Linters Starter Pack<a class="headerlink" href="#linters-starter-pack" title="Permalink to this headline">¶</a></h2>
+<section id="linters-starter-pack">
+<h2>Linters Starter Pack<a class="headerlink" href="#linters-starter-pack" title="Permalink to this headline">#</a></h2>
 <p>A good starting point for any Python project is to use <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">black</span></code>, and <code class="docutils literal notranslate"><span class="pre">isort</span></code>. All three should improve the style and consistency of your code whilst requiring minimal setup, and generally they are not opinionated about the way your code is designed, only the way it is formatted and syntax or convention errors.</p>
-<div class="section" id="flake8">
-<h3><a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html">flake8</a><a class="headerlink" href="#flake8" title="Permalink to this headline">¶</a></h3>
+<section id="flake8">
+<h3><a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html">flake8</a><a class="headerlink" href="#flake8" title="Permalink to this headline">#</a></h3>
 <p>Combines two main tools:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/PyCQA/pyflakes">PyFlakes</a> - checks Python code for syntax errors</p></li>
@@ -1081,9 +1229,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>flake8_example.py:1:1: F401 &#39;constants.e&#39; imported but unused
-flake8_example.py:3:1: E302 expected 2 blank lines, found 1
-flake8_example.py:4:16: F821 undefined name &#39;pi&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">F401</span> &#39;constants.e&#39; imported but unused
+<span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>3<span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">E302</span> expected 2 blank lines, found 1
+<span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>4<span class=" -Color -Color-Cyan">:</span>16<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">F821</span> undefined name &#39;pi&#39;
 </pre></div>
 </div>
 </div>
@@ -1093,9 +1241,9 @@ flake8_example.py:4:16: F821 undefined name &#39;pi&#39;
 <p class="admonition-title">Running on multiple files</p>
 <p>All the examples here run a linter on a single file, but they can be run on all the files in a project at once as well (e.g. by just running <code class="docutils literal notranslate"><span class="pre">flake8</span></code> without a filename).</p>
 </div>
-</div>
-<div class="section" id="black">
-<h3><a class="reference external" href="https://black.readthedocs.io/">black</a><a class="headerlink" href="#black" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="black">
+<h3><a class="reference external" href="https://black.readthedocs.io/">black</a><a class="headerlink" href="#black" title="Permalink to this headline">#</a></h3>
 <p>A highly opinionated code formatter, which enforces control of minutiae details of your code.</p>
 <p>For example, in the <code class="docutils literal notranslate"><span class="pre">black_example.py</span></code> file (in the same directory as this notebook) you’ll find this code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1156,9 +1304,9 @@ flake8_example.py:4:16: F821 undefined name &#39;pi&#39;
 <p class="admonition-title">Line length</p>
 <p><code class="docutils literal notranslate"><span class="pre">black</span></code> is not compliant with PEP8 in one way - by default it uses a maximum line length of 88 characters (PEP8 suggests 79 characters). <a class="reference external" href="https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length">This is discussed in the black documentation</a>.</p>
 </div>
-</div>
-<div class="section" id="isort">
-<h3><a class="reference external" href="https://pycqa.github.io/isort/">isort</a><a class="headerlink" href="#isort" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="isort">
+<h3><a class="reference external" href="https://pycqa.github.io/isort/">isort</a><a class="headerlink" href="#isort" title="Permalink to this headline">#</a></h3>
 <p>“Sorts” imports alphabetically in groups in the following order:</p>
 <ol class="simple">
 <li><p>standard library imports (<em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">os</span></code>).</p></li>
@@ -1200,12 +1348,12 @@ flake8_example.py:4:16: F821 undefined name &#39;pi&#39;
 </pre></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">from</span></code> imports are placed at the bottom of each group.</p>
-</div>
-</div>
-<div class="section" id="other-linters">
-<h2>Other Linters<a class="headerlink" href="#other-linters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="mypy">
-<h3><a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a><a class="headerlink" href="#mypy" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="other-linters">
+<h2>Other Linters<a class="headerlink" href="#other-linters" title="Permalink to this headline">#</a></h2>
+<section id="mypy">
+<h3><a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a><a class="headerlink" href="#mypy" title="Permalink to this headline">#</a></h3>
 <p>If you use type annotations in your code, <code class="docutils literal notranslate"><span class="pre">mypy</span></code> can check it for errors that may result from variables being assigned the wrong type. For example, in the file <code class="docutils literal notranslate"><span class="pre">mypy_example.py</span></code> we have this code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">greet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">rep</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -1232,9 +1380,9 @@ flake8_example.py:4:16: F821 undefined name &#39;pi&#39;
 </div>
 </div>
 <p>The error tells us we have passed an <code class="docutils literal notranslate"><span class="pre">int</span></code> as the 2nd argument to <code class="docutils literal notranslate"><span class="pre">hello</span></code>, but in the function definition the second argument (<code class="docutils literal notranslate"><span class="pre">greet</span></code>) is defined to be a <code class="docutils literal notranslate"><span class="pre">str</span></code>. We probably meant to write <code class="docutils literal notranslate"><span class="pre">hello(&quot;Bob&quot;,</span> <span class="pre">rep=5)</span></code>.</p>
-</div>
-<div class="section" id="pylint">
-<h3><a class="reference external" href="https://www.pylint.org/">pylint</a><a class="headerlink" href="#pylint" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pylint">
+<h3><a class="reference external" href="https://www.pylint.org/">pylint</a><a class="headerlink" href="#pylint" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> analyses your code for errors, coding standards, and makes suggestions around where code could be refactored. It checks for a much wider range of code quality issues than <code class="docutils literal notranslate"><span class="pre">flake8</span></code> but is also much more likely to pick up <em>false positives</em>, i.e. <code class="docutils literal notranslate"><span class="pre">pylint</span></code> is more likely to give you warnings about things you don’t want to change.</p>
 <p>Let’s run it on the file we used for a <code class="docutils literal notranslate"><span class="pre">flake8</span></code> example earlier:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">e</span>
@@ -1272,9 +1420,9 @@ Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
 <li><p>The <code class="docutils literal notranslate"><span class="pre">constants</span></code> library we try to import is not available on our system</p></li>
 <li><p>The variable name <code class="docutils literal notranslate"><span class="pre">r</span></code> doesn’t follow conventions (single letter variables are discouraged by convention, we could use <code class="docutils literal notranslate"><span class="pre">radius</span></code> instead)</p></li>
 </ul>
-</div>
-<div class="section" id="nbqa">
-<h3><a class="reference external" href="https://nbqa.readthedocs.io/en/latest/index.html">nbqa</a><a class="headerlink" href="#nbqa" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="nbqa">
+<h3><a class="reference external" href="https://nbqa.readthedocs.io/en/latest/index.html">nbqa</a><a class="headerlink" href="#nbqa" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nbqa</span></code> allows you to run many Python quality tools (including all the ones we’ve introduced here) on jupyter notebooks. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1291,40 +1439,70 @@ Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
 </div>
 </div>
 </div>
+</section>
+<section id="pylama">
+<h3><a class="reference external" href="https://klen.github.io/pylama/">pylama</a><a class="headerlink" href="#pylama" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pylama</span></code> wraps many code quality tools (including <code class="docutils literal notranslate"><span class="pre">isort</span></code>, <code class="docutils literal notranslate"><span class="pre">mypy</span></code>, <code class="docutils literal notranslate"><span class="pre">pylint</span></code> and much of <code class="docutils literal notranslate"><span class="pre">flake8</span></code>) in a single command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pylama --linters eradicate,mccabe,mypy,pycodestyle,pydocstyle,pyflakes,pylint,isort flake8_example.py
+</pre></div>
 </div>
 </div>
-<div class="section" id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="compatibility-between-linters">
-<h3>Compatibility between linters<a class="headerlink" href="#compatibility-between-linters" title="Permalink to this headline">¶</a></h3>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: /home/runner/work/rse-course/rse-course/module07_construction_and_design/flake8_example.py Imports are incorrectly sorted and/or formatted.
+flake8_example.py:0:1  Incorrectly sorted imports. [isort]
+flake8_example.py:1:1 C0114 Missing module docstring [pylint]
+flake8_example.py:1:1 E0401 Unable to import &#39;constants&#39; [pylint]
+flake8_example.py:1:1 W0611 Unused e imported from constants [pylint]
+flake8_example.py:1:1  Cannot find implementation or library stub for module named &quot;constants&quot; [mypy]
+flake8_example.py:1:1  See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports [mypy]
+flake8_example.py:1:1 D100 Missing docstring in public module [pydocstyle]
+flake8_example.py:1:1 W0611 &#39;constants.e&#39; imported but unused [pyflakes]
+flake8_example.py:3:1 C0116 Missing function or method docstring [pylint]
+flake8_example.py:3:19 C0103 Argument name &quot;r&quot; doesn&#39;t conform to snake_case naming style [pylint]
+flake8_example.py:3:1 D103 Missing docstring in public function [pydocstyle]
+flake8_example.py:3:1 E302 expected 2 blank lines, found 1 [pycodestyle]
+flake8_example.py:4:16 E0602 Undefined variable &#39;pi&#39; [pylint]
+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<section id="compatibility-between-linters">
+<h3>Compatibility between linters<a class="headerlink" href="#compatibility-between-linters" title="Permalink to this headline">#</a></h3>
 <p>If you’re using multiple linters in your project you may need to configure them to be compatible with each other. For example, <code class="docutils literal notranslate"><span class="pre">flake8</span></code> warns about lines longer than 79 characters (the PEP8 convention) but <code class="docutils literal notranslate"><span class="pre">black</span></code> will allow lines up to 88 characters by default.</p>
 <p><a class="reference external" href="https://github.com/alan-turing-institute/Python-quality-tools">This repository</a> has an example setup for using <code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">isort</span></code>, and <code class="docutils literal notranslate"><span class="pre">flake8</span></code> together. The <code class="docutils literal notranslate"><span class="pre">.flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> configuration files set <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">isort</span></code> to run in modes compatible with <code class="docutils literal notranslate"><span class="pre">black</span></code>.</p>
-</div>
-<div class="section" id="ignoring-lines-of-code-or-linting-rules">
-<h3>Ignoring lines of code or linting rules<a class="headerlink" href="#ignoring-lines-of-code-or-linting-rules" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ignoring-lines-of-code-or-linting-rules">
+<h3>Ignoring lines of code or linting rules<a class="headerlink" href="#ignoring-lines-of-code-or-linting-rules" title="Permalink to this headline">#</a></h3>
 <p>There will be times where a linter warns you about something in your code but there’s a valid reason it’s structured that way and you don’t want to change it. Most linters can be configured to ignore specific warnings, either by the type of warning, by file, or by individual code line. For example, adding a <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">noqa</span></code> comment to a line will make <code class="docutils literal notranslate"><span class="pre">flake8</span></code> ignore it.</p>
 <p>Each linter does this differently so check their documentation (e.g. <a class="reference external" href="https://flake8.pycqa.org/en/3.1.1/user/ignoring-errors.html">flake8</a>, <a class="reference external" href="https://pycqa.github.io/isort/docs/configuration/options.html">isort</a>, <a class="reference external" href="https://mypy.readthedocs.io/en/stable/config_file.html">mypy</a>, <a class="reference external" href="https://pylint.pycqa.org/en/latest/user_guide/messages/message_control.html">pylint</a>).</p>
-</div>
-<div class="section" id="running-linters">
-<h3>Running Linters<a class="headerlink" href="#running-linters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="running-linters">
+<h3>Running Linters<a class="headerlink" href="#running-linters" title="Permalink to this headline">#</a></h3>
 <p>It’s a good idea to run linters regularly, or even better to have them setup to run automatically so you don’t have to remember. There are various tools to help with that:</p>
-<div class="section" id="ide-integration">
-<h4>IDE Integration<a class="headerlink" href="#ide-integration" title="Permalink to this headline">¶</a></h4>
+<section id="ide-integration">
+<h4>IDE Integration<a class="headerlink" href="#ide-integration" title="Permalink to this headline">#</a></h4>
 <p>Many editors/IDEs have integrations with common linters or have their own built-in. This can include highlighting problems inline, or automatically running linters when files are saved, for example. Here is the <a class="reference external" href="https://code.visualstudio.com/docs/python/linting">VS Code documentation for linting in Python</a>.</p>
 <p>There are also tools like <a class="reference external" href="https://editorconfig.org/">editorconfig</a> to help sharing the conventions used within a project, where each contributor uses different IDEs and tools.</p>
-</div>
-<div class="section" id="pre-commit">
-<h4><a class="reference external" href="https://pre-commit.com/">pre-commit</a><a class="headerlink" href="#pre-commit" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="pre-commit">
+<h4><a class="reference external" href="https://pre-commit.com/">pre-commit</a><a class="headerlink" href="#pre-commit" title="Permalink to this headline">#</a></h4>
 <p>pre-commit is a manager for creating git “hooks” - scripts that run before making a commit. If a hook errors the commit won’t be made, and you’ll be prompted to fix the problems first. There are <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> plugins for all the linters discussed here, and it’s a good way to ensure all code committed to your repo has had a level of quality control applied to it.</p>
-</div>
-<div class="section" id="ci">
-<h4>CI<a class="headerlink" href="#ci" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="ci">
+<h4>CI<a class="headerlink" href="#ci" title="Permalink to this headline">#</a></h4>
 <p>As well as automating unit tests on a CI system like GitHub Actions it’s a good idea to configure them to run linters on your code too.</p>
 <p><a class="reference external" href="https://github.com/alan-turing-institute/AIrsenal/blob/main/.github/workflows/main.yml">Here is an example</a> from a repo using <code class="docutils literal notranslate"><span class="pre">isort</span></code>, <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">black</span></code> in a GitHub Action. Note that in a CI setup tools that usually change your code, like <code class="docutils literal notranslate"><span class="pre">black</span></code> and <code class="docutils literal notranslate"><span class="pre">isort</span></code>, will be configured to only check whether there are changes that need to be made.</p>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1348,47 +1526,53 @@ Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="07_02_coding_conventions.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Coding Conventions</p>
+            <p class="prev-next-title">7.2 Coding conventions</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="07_04_refactoring.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Refactoring</p>
+        <p class="prev-next-title">7.4 Refactoring</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
 Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
 <br/>
-    
-      <div class="extra_footer">
-        <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

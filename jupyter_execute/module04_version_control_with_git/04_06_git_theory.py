@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Git Theory
+# # 4.6 Git Theory
+
+# *Estimated time to complete this notebook: 5 minutes*
+
 # 
 # ## The revision Graph
 # 

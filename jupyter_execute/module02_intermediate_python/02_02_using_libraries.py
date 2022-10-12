@@ -3,7 +3,7 @@
 
 # # 2.2 Using Libraries
 
-# *Estimated time to complete this notebook: 5 minutes*
+# *Estimated time for this notebook: 5 minutes*
 
 # ## 2.2.1 Import
 

@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.0 Introduction to Python
-# *Estimated time to read this notebook: 10 minutes*
+
+# *Estimated time for this notebook: 10 minutes*
 
 # ## 1.0.1 Introduction
 

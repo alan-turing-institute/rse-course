@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.6 Dictionaries
-# *Estimated time to complete this notebook: 10 minutes*
+
+# *Estimated time for this notebook: 10 minutes*
 
 # ## 1.6.1 The Python Dictionary
 

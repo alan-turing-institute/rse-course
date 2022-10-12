@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Rebasing
-# 
+# # 4.10 Rebasing
+
+# *Estimated time to complete this notebook: 10 minutes*
+
 # ## Rebase vs merge
 # 
 # A git *merge* is only one of two ways to get someone else's work into yours.

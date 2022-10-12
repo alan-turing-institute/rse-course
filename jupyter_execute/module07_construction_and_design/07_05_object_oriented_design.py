@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Object-Oriented Design
+# # 7.5 Object-Oriented Design
+
+# *Estimated time for this notebook: 15 minutes*
 
 # In this session, we will finally discuss the thing most people think of when they refer to "Software Engineering": the deliberate *design* of software.
 # We will discuss processes and methodologies for planned development of large-scale software projects: *Software Architecture*.

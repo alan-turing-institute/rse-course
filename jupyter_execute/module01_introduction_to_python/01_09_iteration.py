@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.9 Iteration
-# *Estimated time to complete this notebook: 10 minutes*
+
+# *Estimated time for this notebook: 10 minutes*
 
 # Our other aspect of control is looping back on ourselves.
 # 

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Mocking
+# # 5.4 Mocking
+
+# *Estimated time for this notebook: 15 minutes*
 
 # ## Definition
 # 

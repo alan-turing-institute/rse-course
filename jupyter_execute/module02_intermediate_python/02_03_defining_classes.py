@@ -3,7 +3,7 @@
 
 # # 2.3 Defining your own classes
 
-# *Estimated time to complete this notebook: 20 minutes*
+# *Estimated time for this notebook: 20 minutes*
 
 # ## 2.3.1 User Defined Types
 

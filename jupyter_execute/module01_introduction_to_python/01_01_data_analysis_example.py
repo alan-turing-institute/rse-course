@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 1.1 An example Python data analysis notebook
-# *Estimated time to **read through** this notebook: 20 minutes*
+# # 1.1 Data analysis with Jupyter
+
+# *Estimated time for this notebook: 20 minutes*
 
 # This page illustrates how to use Python to perform a simple but complete analysis: retrieve data, do some computations based on it, and visualise the results.
 # 

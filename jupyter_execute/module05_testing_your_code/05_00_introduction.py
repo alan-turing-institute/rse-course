@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Testing
+# # 5.0 Testing
+
+# *Estimated time for this notebook: 5 minutes*
 
 # ## Introduction
 

@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Debugging With Git Bisect
+# # 4.11 Debugging With git bisect
 # 
+
+# *Estimated time to complete this notebook: 5 minutes*
+
 # You can use
 # 
 # ``` bash

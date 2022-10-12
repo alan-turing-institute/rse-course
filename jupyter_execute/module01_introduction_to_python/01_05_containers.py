@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.5 Containers
-# *Estimated time to complete this notebook: 10 minutes*
+
+# *Estimated time for this notebook: 10 minutes*
 
 # ## 1.5.1 Checking for containment.
 

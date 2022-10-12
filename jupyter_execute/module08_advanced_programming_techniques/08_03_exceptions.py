@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Exceptions
+# # 8.3 Exceptions
+
+# *Estimated time for this notebook: 15 minutes*
 
 # 
 # When we learned about testing, we saw that Python complains when things go wrong by raising an "Exception" naming a type of error:

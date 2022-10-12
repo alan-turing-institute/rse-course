@@ -13,7 +13,7 @@
 # 
 # [1d - Maze Model](#Exercise-1d-Maze-Model) *25 minutes*
 # 
-# [1e - The Maze Population](#Exercise-1e-The-Maze-Poplulation) *10 minutes*
+# [1e - The Maze Population](#Exercise-1e-The-Maze-Population) *10 minutes*
 # 
 
 # ### Exercise 1a Python Libraries

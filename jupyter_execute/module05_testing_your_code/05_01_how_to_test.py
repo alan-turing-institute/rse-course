@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # How to Test
+# # 5.1 How to test
+
+# *Estimated time for this notebook: 15 minutes*
 
 # ## Equivalence partitioning
 

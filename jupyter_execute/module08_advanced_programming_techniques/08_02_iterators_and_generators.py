@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Iterators and Generators
+# # 8.2 Iterators and Generators
+
+# *Estimated time for this notebook: 25 minutes*
 
 # In Python, anything which can be iterated over is called an iterable:
 

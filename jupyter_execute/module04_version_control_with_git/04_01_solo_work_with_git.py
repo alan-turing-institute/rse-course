@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Solo work with Git
+# # 4.1 Solo work with git
+
+# *Estimated time to complete this notebook: 15 minutes*
+
+# ## 4.1.1 Getting started
 
 # So, we're in our git working directory:
 
@@ -17,7 +21,7 @@ os.chdir(working_dir)
 working_dir
 
 
-# ## A first example file
+# ### A first example file
 # 
 # So let's create an example file, and see how to start to manage a history of changes to it.
 
@@ -35,7 +39,7 @@ get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK   \n==
 cat test.md
 
 
-# ## Telling Git about the File
+# ### Telling Git about the File
 # 
 # So, let's tell Git that `test.md` is a file which is important, and we would like to keep track of its history:
 
@@ -47,7 +51,7 @@ get_ipython().run_cell_magic('bash', '', 'git add test.md\n')
 
 # Don't forget: Any files in repositories which you want to "track" need to be added with `git add` after you create them.
 
-# ## Our first commit
+# ### Our first commit
 # 
 # Now, we need to tell Git to record the first version of this file in the history of changes:
 
@@ -61,7 +65,7 @@ get_ipython().run_cell_magic('bash', '', 'git commit -m "First commit of discour
 # 
 # There's a lot of output there you can ignore for now.
 
-# ## Configuring Git with your editor
+# ### Configuring Git with your editor
 # 
 # If you don't type in the log message directly with -m "Some message", then an editor will pop up, to allow you
 # to edit your message on the fly.
@@ -85,7 +89,9 @@ get_ipython().run_cell_magic('bash', '', 'git commit -m "First commit of discour
 
 # I'm going to be using `vim` as my editor, but you can use whatever editor you prefer. (Windows users could use `Notepad++`, Mac users could use `textmate` or `Sublime Text`, Linux users could use `vim`, `nano` or `emacs`.)
 
-# ## Git log
+# ## 4.1.2 Commit logs
+
+# ### Git log
 # 
 # Git now has one change in its history:
 
@@ -97,7 +103,7 @@ get_ipython().run_cell_magic('bash', '', 'git log\n')
 
 # You can see the commit message, author, and date...
 
-# ## Hash Codes
+# ### Hash Codes
 # 
 # The commit "hash code", e.g.
 # 
@@ -107,7 +113,7 @@ get_ipython().run_cell_magic('bash', '', 'git log\n')
 # 
 # (This is a really long code, but whenever you need to use it, you can just use the first few characters, however many characters is long enough to make it unique, `238eaff1` for example. )
 
-# ## Nothing to see here
+# ### Nothing to see here
 # 
 # Note that git will now tell us that our "working directory" is up-to-date with the repository: there are no changes to the files that aren't recorded in the repository history:
 
@@ -116,6 +122,8 @@ get_ipython().run_cell_magic('bash', '', 'git log\n')
 
 get_ipython().run_cell_magic('bash', '', 'git status\n')
 
+
+# ## 4.1.3 Staging changes
 
 # Let's edit the file again:
 # 
@@ -133,7 +141,7 @@ get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK   \n==
 cat test.md
 
 
-# ## Unstaged changes
+# ### Unstaged changes
 
 # In[10]:
 
@@ -159,7 +167,7 @@ get_ipython().run_cell_magic('bash', '', 'git diff\n')
 
 # Deleted lines are prefixed with a minus, added lines prefixed with a plus.
 
-# ## Staging a file to be included in the next commit
+# ### Staging a file to be included in the next commit
 # 
 # To include the file in the next commit, we have a few choices. This is one of the things to be careful of with git: there are lots of ways to do similar things, and it can be hard to keep track of them all.
 
@@ -173,13 +181,15 @@ get_ipython().run_cell_magic('bash', '', 'git add --update\n')
 # 
 # Note that `git add` is the command we use to introduce git to a new file, but also the command we use to "stage" a file to be included in the next commit. 
 
-# ## The staging area
+# ### The staging area
 # 
 # The "staging area" or "index" is the git jargon for the place which contains the list of changes which will be included in the next commit.
 # 
 # You can include specific changes to specific files with `git add`, commit them, add some more files, and commit them. (You can even add specific changes within a file to be included in the index.)
 
-# ## Message Sequence Charts
+# ## 4.1.4 Visualising changes
+
+# ### Message Sequence Charts
 
 # In order to illustrate the behaviour of Git, it will be useful to be able to generate figures in Python
 # of a "message sequence chart" flavour.
@@ -208,7 +218,7 @@ from wsd import wsd
 wsd("Sender->Recipient: Hello\n Recipient->Sender: Message received OK")
 
 
-# ## The Levels of Git
+# ### The Levels of Git
 
 # Let's make ourselves a sequence chart to show the different aspects of Git we've seen so far:
 
@@ -223,7 +233,9 @@ Working Directory -> Local Repository : git commit -a
 wsd(message)
 
 
-# ## Review of status
+# ## 4.1.6 Correcting mistakes
+
+# ### Review of status
 
 # In[16]:
 
@@ -245,7 +257,7 @@ get_ipython().run_cell_magic('bash', '', 'git log\n')
 
 # Great, we now have a file which contains a mistake.
 
-# ## Carry on regardless
+# ### Carry on regardless
 # 
 # In a while, we'll use Git to roll back to the last correct version: this is one of the main reasons we wanted to use version control, after all! But for now, let's do just as we would if we were writing code, not notice our mistake and keep working...
 
@@ -265,7 +277,7 @@ get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the
 cat test.md
 
 
-# ## Commit with a built-in-add
+# ### Commit with a built-in-add
 
 # In[21]:
 
@@ -275,7 +287,7 @@ get_ipython().run_cell_magic('bash', '', 'git commit -am "Change title"\n')
 
 # This last command, `git commit -a` automatically adds changes to all tracked files to the staging area, as part of the commit command. So, if you never want to just add changes to some tracked files but not others, you can just use this and forget about the staging area!
 
-# ## Review of changes
+# ### Review of changes
 
 # In[22]:
 

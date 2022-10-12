@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # 1.4 Types
-# *Estimated time to complete this notebook: 20 minutes*
+
+# *Estimated time for this notebook: 20 minutes*
 
 # We have seen that Python objects have a 'type':
 

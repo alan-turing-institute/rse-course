@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Documentation
+# # 6.5 Documentation
+
+# *Estimated time for this notebook: 10 minutes*
 
 # ## Documentation is hard
 
