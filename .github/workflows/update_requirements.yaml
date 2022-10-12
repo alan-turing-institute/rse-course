@@ -28,6 +28,6 @@ jobs:
       - name: Update requirements file
         run: |
           echo "# AUTOMATICALLY GENERATED. DO NOT EDIT." > requirements.txt
-          poetry export --without-hashes --format=requirements.txt | cut -d ' ' -f 1 >> requirements.txt
+          poetry export --without-hashes --format=requirements.txt >> requirements.txt
       - name: Check for changes
         run: git diff --exit-code
