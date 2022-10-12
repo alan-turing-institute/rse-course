@@ -9,94 +9,90 @@ Unless you already use a specific editor which you are comfortable with we recom
 
 <details>
 
-  <summary>Windows editor tips and final checks</summary><p></p>
-  
-  Using any of these to edit text files including code should be straight forward.
-  `Visual Studio Code` has integrations with [Git Bash](https://code.visualstudio.com/docs/editor/integrated-terminal) and the [Python prompt](https://code.visualstudio.com/docs/python/python-tutorial) that you may want to configure.
+<summary>Windows editor tips and final checks</summary>
 
-  Check this works by opening the Github shell.
-  Once you have a terminal open, type
+Using any of these to edit text files including code should be straight forward.
+`Visual Studio Code` has integrations with [Git Bash](https://code.visualstudio.com/docs/editor/integrated-terminal) and the [Python prompt](https://code.visualstudio.com/docs/python/python-tutorial) that you may want to configure.
 
-  ```bash
-  which code
-  ```
+Check this works by opening the `Git Bash` shell.
+Once you have a terminal open, type
 
-  which should produce readout similar to `/c/Program Files (x86)/Code/Code.exe`
+```bash
+which code
+```
 
-  Also verify that typing:
+which should produce readout similar to `/c/Program Files (x86)/Code/Code.exe`
 
-  ```bash
-  code
-  ```
+Also verify that typing:
 
-  opens the editor and then close it again.
+```bash
+code
+```
 
-  Also test that
+opens the editor and then close it again.
 
-  ```bash
-  which git
-  ```
+Also test that
 
-  produces some output like `/bin/git`.
-  The `which` command is used to figure out where a given program is located on disk.
+```bash
+which git
+```
 
-  Now we need to update the default editor used by `Git`.
+produces some output like `/bin/git`.
+The `which` command is used to figure out where a given program is located on disk.
 
-  ```bash
-  git config --global core.editor "code --wait"
-  ```
+Now we need to update the default editor used by `git`.
 
-  Note that it is not obvious how to copy and paste text in a `Windows` terminal including `Git Bash`.
-  Copy and paste can be found by right clicking on the top bar of the window and selecting the commands from the drop down menu (in a sub menu). Alternatively the keyboard shortcuts are ctrl+insert for copy and shift+insert for paste. 
+```bash
+git config --global core.editor "code --wait"
+```
 
-  Confirm that the `Python` installation has worked by typing:
+Note that it is not obvious how to copy and paste text in the `Git Bash` terminal in `Windows`.
+Copy and paste can be found by right clicking on the top bar of the window and selecting the commands from the drop down menu (in a sub menu). Alternatively the keyboard shortcuts are `Ctrl+Insert` for copy and `Shift+Insert` for paste.
 
-  ```bash
-  python -V
-  ```
+Confirm that the `Python` installation has worked by typing:
 
-  Which should result in details of your installed `Python` version.
-  This should print the installed version of the `Python` and `Git` confirming that both are installed at working correctly.
-  You should now have a working version of `Git`, `Python`, and your chosen editor, all accessible from your shell.
-  
+```bash
+python -V
+```
+
+Which should result in details of your installed `Python` version.
+This should print the installed version of `Python` and `git` confirming that both are installed and working correctly.
+You should now have a working version of `git`, `Python`, and your chosen editor, all accessible from your shell.
+
 </details>
 
 <details>
 
-  <summary>Mac editor tips and final checks</summary><p></p>
-  
-  Mac editor tips and final checks
+<summary>macOS editor tips and final checks</summary>
 
-  The default text editor on `macOS` _textedit_ should be sufficient for our use. To setup `git` to use _textedit_ executing the following in a terminal should do.
+The default text editor on `macOS` _textedit_ should be sufficient for our use.
+To setup `git` to use _textedit_ executing the following in a terminal should do.
 
-  ```bash
-  git config --global core.editor /Applications/TextEdit.app/Contents/MacOS/TextEdit
-  ```
+```bash
+git config --global core.editor /Applications/TextEdit.app/Contents/MacOS/TextEdit
+```
 
-  For VS Code:
+For VS Code:
 
-  ```bash
-  git config --global core.editor "code --wait"
-  ```
+```bash
+git config --global core.editor "code --wait"
+```
 
-  The default terminal on `macOS` should also be sufficient.
-  If you want a more advanced terminal [iTerm2](http://www.iterm2.com/) is an alternative.
-  
+The default terminal on `macOS` should also be sufficient.
+If you want a more advanced terminal [iTerm2](http://www.iterm2.com/) is an alternative.
+
 </details>
 
 <details>
 
-  <summary>Linux editor tips and final checks</summary><p></p>
-  
-  Linux editor tips and final checks
+<summary>Linux editor tips and final checks</summary>
 
-  Regardless of which editor you have chosen you should configure `git` to use it.
-  Executing something like this in a terminal should work:
+Regardless of which editor you have chosen you should configure `git` to use it.
+Executing something like this in a terminal should work:
 
-  ```bash
-  git config --global core.editor NameofYourEditorHere
-  ```
+```bash
+git config --global core.editor NameofYourEditorHere
+```
 
-  The default shell is usually `bash` but if not you can get to `bash` by opening a terminal and typing `bash`.
-  
+The default shell is usually `bash` but if not you can get to `bash` by opening a terminal and typing `bash`.
 </details>
