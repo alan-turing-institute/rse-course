@@ -23,7 +23,8 @@ pip install -U jupyter-book
 Contributions are always welcome! Please do the following:
 
 - add an issue to the [course repo](https://github.com/alan-turing-institute/rse-course), explaining the problem and, potentially, its solution.
-- if you know how to fix it, please also open a pull request that contains the fix. By doing this, you will improve the instructions for future users. 🎉
+- if you know how to fix it, please also open a pull request that contains the fix. By doing this, you will improve the instructions for future users. :tada:
+- if you need to add a dependency, please edit `pyproject.toml` which is used to automatically generate `requirements.txt`
 
 The full list of contributors can be [seen here](https://github.com/alan-turing-institute/rse-course/graphs/contributors).
 
