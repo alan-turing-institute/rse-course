@@ -16,7 +16,7 @@ Navigate to a suitable location in a terminal window and clone the course reposi
 ```bash
 mkdir ~/github_repos
 cd ~/github_repos
-git clone https://github.com/alan-turing-institute/rse-course
+git clone --depth 1 https://github.com/alan-turing-institute/rse-course
 ```
 
 The course contents should take a few moments to download.
