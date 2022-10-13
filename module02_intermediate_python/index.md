@@ -1,4 +1,4 @@
-# Intermediate Python
+# 2. Intermediate Python
 
 - List comprehensions
 - Functions in Python
