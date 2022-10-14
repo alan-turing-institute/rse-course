@@ -5,9 +5,11 @@
 
 # *Estimated time to complete this notebook: 10 minutes*
 
-# We now know enough to understand everything we did in [the initial example chapter on the "Greengraph"](https://alan-turing-institute.github.io/rse-course/html/module01_introduction_to_python/01_01_data_analysis_example.html) ([notebook](../module01_introduction_to_python/01_01_data_analysis_example.ipynb)). Go back to that part of the notes, and re-read the code. 
-
-# Now, we can even write it up into a class, and save it as a module. Remember that it is generally a better idea to create files in an editor or integrated development environment (IDE) rather than through the notebook!
+# In [an earlier module](https://alan-turing-institute.github.io/rse-course/html/module02_intermediate_python/02_06_bringing_it_together.html) we wrote some code to measure the amount of green content on satellite images.
+# See the [notebook here](../module02_intermediate_python/02_06_bringing_it_together.ipynb) if you need to refresh your memory.
+# 
+# Now, we're going to convert this into a "Greengraph" class, and save it as a module.
+# Remember that it is generally a better idea to create files in an editor or integrated development environment (IDE) rather than through the notebook!
 
 # ## 3.6.1 Classes for Greengraph
 

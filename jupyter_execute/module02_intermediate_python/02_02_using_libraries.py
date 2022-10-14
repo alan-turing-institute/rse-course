@@ -7,6 +7,10 @@
 
 # ## 2.2.1 Import
 
+# Research programming is all about using libraries: tools other people have provided programs that do many cool things.
+# By combining them we can feel really powerful but doing minimum work ourselves.
+# 
+# The python syntax to import someone else's library is "import".
 # To use a function or type from a python library, rather than a **built-in** function or type, we have to import the library.
 
 # In[1]:

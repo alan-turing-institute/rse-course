@@ -5,7 +5,34 @@
 
 # *Estimated time for this notebook: 10 minutes*
 
-# ## 1.0.1 Introduction
+# ## 1.0.1 Why write programs for research?
+
+# Programs are a rigorous way of describing data analysis for other researchers, as well as for computers.
+# 
+# - Not just labour saving
+# - Scripted research can be tested and reproduced
+# 
+
+# ### Sensible Input - Reasonable Output
+
+# Computational research suffers from people assuming each other's data manipulation is correct.
+# By sharing code, which is much more easy for a non-author to understand than a spreadsheet, we can avoid the "SIRO" problem.
+# The old saw "Garbage in Garbage out" is not the real problem for science:
+# 
+# - Sensible input
+# - Reasonable output
+# 
+# 
+
+# ### Why write software to manage your data and plots? 
+
+# We can use programs for our entire research pipeline.
+# Not just big scientific simulation codes, but also the small scripts which we use to tidy up data and produce plots.
+# This should be code, so that the whole research pipeline is recorded for reproducibility.
+# Data manipulation in spreadsheets is much harder to share or check.
+# There are many data analysis examples out there, like the on the [software carpentry site](https://swcarpentry.github.io/python-novice-inflammation/01-numpy/index.html).
+
+# ## 1.0.2 Why Python?
 
 # ### Why teach Python?
 
@@ -19,39 +46,20 @@
 # ### Why Python?
 
 # 
-# * Python is quick to program in
-# * Python is popular in research, and has lots of libraries for science
-# * Python interfaces well with faster languages
-# * Python is free, so you'll never have a problem getting hold of it, wherever you go.
+# - Python is quick to program in
+# - Python is popular in research, and has lots of libraries for science
+# - Python interfaces well with faster languages
+# - Python is free, so you'll never have a problem getting hold of it, wherever you go.
 # 
 
-# ### Why write programs for research?
-
-# 
-# * Not just labour saving
-# * Scripted research can be tested and reproduced
-# 
-
-# ### Sensible Input  - Reasonable Output
-
-# Programs are a rigorous way of describing data analysis for other researchers, as well as for computers.
-# 
-# Computational research suffers from people assuming each other's data manipulation is correct. By sharing codes,
-# which are much more easy for a non-author to understand than spreadsheets, we can avoid the "SIRO" problem. The old saw "Garbage in Garbage out" is not the real problem for science:
-# 
-# * Sensible input
-# * Reasonable output
-# 
-# 
-
-# ## 1.0.2 Many kinds of Python
+# ## 1.0.3 Many kinds of Python
 
 # ### The Jupyter Notebook
 
-# The easiest way to get started using Python, and one of the best for research data work, is the Jupyter Notebook.
+# The easiest way to get started using Python, and one that is commonly used for exploratory research, is the Jupyter Notebook.
 
-# In the notebook, you can easily mix code with discussion and commentary, and mix code with the results of that code;
-# including graphs and other data visualisations.
+# In the notebook, you can easily mix code with discussion and commentary.
+# You can also mix code with the results of that code, such as graphs and other data visualisations.
 
 # In[1]:
 
@@ -118,7 +126,8 @@ print("This cell is a code cell")
 
 # ### Python at the command line
 
-# Data science experts tend to use a "command line environment" to work. You can find out more about this by attending a ["Software Carpentry"](https://software-carpentry.org/) or similar workshop, which introduce the skills needed for computationally based research.
+# More experience Python users tend to prefer working in a "command line environment".
+# You can find out more about this by attending a ["Software Carpentry"](https://software-carpentry.org/) or similar workshop, which introduce the skills needed for computationally based research.
 
 # In[3]:
 
@@ -128,8 +137,8 @@ get_ipython().run_cell_magic('bash', '', '# Above line tells Python to execute t
 
 # ### Python scripts
 
-# Once you get good at programming, you'll  want to be able to write your own full programs in Python, which work just
-# like any other program on your computer. Here are some examples:
+# When your code gets more complicated, you'll want to be able to write your own full programs in Python, which can be run just like any other program on your computer.
+# Here are some examples:
 
 # In[4]:
 

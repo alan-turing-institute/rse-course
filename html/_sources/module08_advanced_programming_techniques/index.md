@@ -1,4 +1,4 @@
-# Advanced Programming Techniques
+# 8. Advanced Programming Techniques
 
 - Functional programming
 - Metaprogramming

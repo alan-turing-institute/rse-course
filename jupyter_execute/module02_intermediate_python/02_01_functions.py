@@ -5,12 +5,14 @@
 
 # *Estimated time for this notebook: 15 minutes*
 
+# Defining **functions** which put together code to make a more complex task seem simple from the outside is the most important thing in programming.
+# We can wrap code up in a **function**, so that we can repeatedly get just the information we want.
+# 
+
 # ## 2.1.1 Definition
 
-# 
 # We use `def` to define a function, and `return` to pass back a value:
-# 
-# 
+# The input comes in in brackets after the function name:
 # 
 
 # In[1]:
