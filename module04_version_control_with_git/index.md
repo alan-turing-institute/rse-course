@@ -1,4 +1,4 @@
-# Version Control
+# 4. Version Control
 
 - Why use version control
 - Solo use of version control

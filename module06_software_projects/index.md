@@ -1,4 +1,4 @@
-# Software Projects
+# 6. Software Projects
 
 - Turning your code into a package
 - Releasing code
