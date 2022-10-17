@@ -578,15 +578,15 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # In[36]:
 
 
-from scipy.optimize import newton
-from numpy import linspace, zeros
 from matplotlib import pyplot as plt
+from numpy import linspace, zeros
+from scipy.optimize import newton
 
-solve_me = lambda x: x ** 2 - x
+solve_me = lambda x: x**2 - x
 
 for x0 in [2, 0.2]:
     answer = newton(solve_me, x0)
-    print("Starting from {}, the root I found is {}".format(x0, answer))
+    print(f"Starting from {x0}, the root I found is {answer}")
 
 xs = linspace(-1, 2, 50)
 solved = [xs, list(map(solve_me, xs)), xs, zeros(len(xs))]

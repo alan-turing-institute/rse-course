@@ -38,8 +38,8 @@ class Molecule:
     def __str__(self):
         return "".join(
             [
-                str(element) + Molecule.as_subscript(self.elements[element])
-                for element in self.elements
+                str(element) + Molecule.as_subscript(number)
+                for element, number in self.elements.items()
             ]
         )
 
@@ -59,8 +59,7 @@ class Reaction:
     def print_if_not_one(number):
         if number == 1:
             return ""
-        else:
-            return str(number)
+        return str(number)
 
     @staticmethod
     def side_as_string(side):
@@ -125,7 +124,7 @@ print(combustion)
 # In[3]:
 
 
-from IPython.display import display, Math
+from IPython.display import Math, display
 
 display(Math(str(combustion)))
 
@@ -267,7 +266,7 @@ engine = sqlalchemy.create_engine("sqlite:///molecules.db", echo=True)
 # In[13]:
 
 
-from sqlalchemy import Table, Column, Integer, Float, String, MetaData, ForeignKey
+from sqlalchemy import Column, Float, MetaData, String, Table
 
 metadata = MetaData()
 molecules = Table(
@@ -287,6 +286,8 @@ atoms = Table(
 
 # In[14]:
 
+
+from sqlalchemy import ForeignKey, Integer
 
 atoms_in_molecules = Table(
     "atoms_molecules",
@@ -413,8 +414,8 @@ engine = sqlalchemy.create_engine("sqlite:///molecules.db")
 
 
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
@@ -575,9 +576,8 @@ get_ipython().run_cell_magic('writefile', 'atoms.csv', '\nsymbol,number\nC,6\nN,
 # In[43]:
 
 
-from pathlib import Path
-
-atoms = pandas.read_csv(open("atoms.csv"))
+with open("atoms.csv", "r") as f_csv:
+    atoms = pandas.read_csv(f_csv)
 atoms
 
 

@@ -129,7 +129,7 @@ def mandel1(position, limit=50):
     value = position
     while abs(value) < 2:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         if limit < 0:
             return 0
     return limit
@@ -153,7 +153,7 @@ def mandel2(position, limit=50):
     value = position
     while abs(value) < 2:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         if limit < 0:
             return 0
     return limit
@@ -195,8 +195,7 @@ def mandel_numpy_explode(position, limit=50):
     value = position
     while limit > 0:
         limit -= 1
-        value = value ** 2 + position
-        diverging = abs(value) > 2
+        value = value**2 + position
 
     return abs(value) < 2
 
@@ -216,7 +215,7 @@ def mandel_numpy(position, limit=50):
     value = position
     while limit > 0:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         diverging = abs(value) > 2
         # Avoid overflow
         value[diverging] = 2
@@ -325,7 +324,7 @@ def mandel4(position, limit=50):
     diverged_at_count = np.zeros(position.shape)
     while limit > 0:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         diverging = abs(value) > 2
         # Any positions which are:
         # - diverging
@@ -370,7 +369,7 @@ def mandel5(position, limit=50):
     diverged_at_count = np.zeros(position.shape)
     while limit > 0:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         diverging = value * np.conj(value) > 4
         first_diverged_this_time = np.logical_and(diverging, diverged_at_count == 0)
         diverged_at_count[first_diverged_this_time] = limit
@@ -612,7 +611,7 @@ def mandel7(position, limit=50):
     diverged_at_count = np.zeros(position.shape)
     while limit > 0:
         limit -= 1
-        value = value ** 2 + positions
+        value = value**2 + positions
         diverging_now = value * np.conj(value) > 4
         diverging_now_indices = indices[:, diverging_now]
         carry_on = np.logical_not(diverging_now)

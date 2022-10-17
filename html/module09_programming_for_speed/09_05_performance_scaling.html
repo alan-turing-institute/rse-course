@@ -322,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -508,7 +508,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -565,7 +565,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -677,26 +677,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1040,8 +1020,9 @@ title="Print to PDF"
 <p>We’ve seen that NumPy arrays are really useful. Why wouldn’t we always want to use them for data which is all the same type?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">repeat</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">repeat</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -1112,10 +1093,11 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_lookup_middle_element_in_list</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="n">before</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span>
+    <span class="n">test_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span>
+    <span class="n">middle_position</span> <span class="o">=</span> <span class="n">count</span> <span class="o">//</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">totime</span><span class="p">():</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">before</span><span class="p">[</span><span class="n">count</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">test_list</span><span class="p">[</span><span class="n">middle_position</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="n">totime</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </pre></div>
@@ -1125,10 +1107,11 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_lookup_middle_element_in_ndarray</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="n">before</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">middle_position</span> <span class="o">=</span> <span class="n">count</span> <span class="o">//</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">totime</span><span class="p">():</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">before</span><span class="p">[</span><span class="n">count</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">test_array</span><span class="p">[</span><span class="n">middle_position</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="n">totime</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </pre></div>
@@ -1237,10 +1220,11 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_lookup_middle_element_in_deque</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="n">before</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span><span class="p">)</span>
+    <span class="n">test_deque</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span><span class="p">)</span>
+    <span class="n">middle_position</span> <span class="o">=</span> <span class="n">count</span> <span class="o">//</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">totime</span><span class="p">():</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">before</span><span class="p">[</span><span class="n">count</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">test_deque</span><span class="p">[</span><span class="n">middle_position</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="n">totime</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </pre></div>
@@ -1353,14 +1337,15 @@ title="Print to PDF"
 <p>What if we created a dictionary where we bisect the search?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">sorteddict</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span>
+
+
+<span class="k">class</span> <span class="nc">sorteddict</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">akey</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span>
-
         <span class="n">loc</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">,</span> <span class="n">akey</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">loc</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
@@ -1392,15 +1377,13 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_dict_generic</span><span class="p">(</span><span class="n">ttype</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
-    <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_dict_generic</span><span class="p">(</span><span class="n">ttype</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
     <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
     <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">ttype</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">totime</span><span class="p">():</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">count</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">count</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]]</span>
 
     <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="n">totime</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </pre></div>
@@ -1409,9 +1392,16 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_dict</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">count</span><span class="p">:</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
-<span class="n">time_sorted</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">count</span><span class="p">:</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="n">sorteddict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
-<span class="n">time_evil</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">count</span><span class="p">:</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="n">evildict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_dict</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">time_sorted</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="n">sorteddict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">time_evil</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="n">evildict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

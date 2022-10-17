@@ -66,7 +66,7 @@ class MyCustomErrorType(ArithmeticError):
     pass
 
 
-raise (MyCustomErrorType("Problem"))
+raise MyCustomErrorType("Problem")
 
 
 # 
@@ -87,7 +87,7 @@ class MyCustomErrorType(Exception):
         return f"Error, category {self.category}"
 
 
-raise (MyCustomErrorType(404))
+raise MyCustomErrorType(404)
 
 
 # 

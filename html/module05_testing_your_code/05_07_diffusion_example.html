@@ -322,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -508,7 +508,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -565,7 +565,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -677,26 +677,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1238,13 +1218,11 @@ mkdir DiffusionExample
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;DiffusionExample&quot;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">MonteCarlo</span> <span class="kn">import</span> <span class="n">MonteCarlo</span><span class="p">,</span> <span class="n">energy</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-
+<span class="kn">from</span> <span class="nn">MonteCarlo</span> <span class="kn">import</span> <span class="n">MonteCarlo</span><span class="p">,</span> <span class="n">energy</span>
 
 <span class="n">Temperature</span> <span class="o">=</span> <span class="mf">0.1</span>
 
@@ -1266,110 +1244,13 @@ mkdir DiffusionExample
 <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
     <span class="n">energy</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
     <span class="n">image</span><span class="o">.</span><span class="n">set_offsets</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">)),</span> <span class="n">density</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">txt_energy</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s2">&quot;Energy = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">energy</span><span class="p">))</span>
+    <span class="n">txt_energy</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Energy = </span><span class="si">{</span><span class="n">energy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">simulate</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">HTML</span><span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">())</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">36</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="n">txt_energy</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s2">&quot;Energy = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">energy</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">simulate</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">36</span> <span class="n">HTML</span><span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">())</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/animation.py:1329,</span> in <span class="ni">Animation.to_jshtml</span><span class="nt">(self, fps, embed_frames, default_mode)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1325</span>         <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="s2">&quot;temp.html&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1326</span>         <span class="n">writer</span> <span class="o">=</span> <span class="n">HTMLWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="n">fps</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1327</span>                             <span class="n">embed_frames</span><span class="o">=</span><span class="n">embed_frames</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1328</span>                             <span class="n">default_mode</span><span class="o">=</span><span class="n">default_mode</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1329</span>         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">writer</span><span class="o">=</span><span class="n">writer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1330</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_html_representation</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1332</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_html_representation</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/animation.py:1081,</span> in <span class="ni">Animation.save</span><span class="nt">(self, filename, writer, fps, dpi, codec, bitrate, extra_args, metadata, extra_anim, savefig_kwargs, progress_callback)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1078</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">new_saved_frame_seq</span><span class="p">()</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">all_anim</span><span class="p">]):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1079</span>     <span class="k">for</span> <span class="n">anim</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">all_anim</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1080</span>         <span class="c1"># TODO: See if turning off blit is really necessary</span>
-<span class="ne">-&gt; </span><span class="mi">1081</span>         <span class="n">anim</span><span class="o">.</span><span class="n">_draw_next_frame</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1082</span>         <span class="k">if</span> <span class="n">progress_callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1083</span>             <span class="n">progress_callback</span><span class="p">(</span><span class="n">frame_number</span><span class="p">,</span> <span class="n">total_frames</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/animation.py:1116,</span> in <span class="ni">Animation._draw_next_frame</span><span class="nt">(self, framedata, blit)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1112</span> <span class="k">def</span> <span class="nf">_draw_next_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">framedata</span><span class="p">,</span> <span class="n">blit</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1113</span>     <span class="c1"># Breaks down the drawing of the next frame into steps of pre- and</span>
-<span class="g g-Whitespace">   </span><span class="mi">1114</span>     <span class="c1"># post- draw, as well as the drawing of the frame itself.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1115</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_pre_draw</span><span class="p">(</span><span class="n">framedata</span><span class="p">,</span> <span class="n">blit</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1116</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_draw_frame</span><span class="p">(</span><span class="n">framedata</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1117</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_post_draw</span><span class="p">(</span><span class="n">framedata</span><span class="p">,</span> <span class="n">blit</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/animation.py:1728,</span> in <span class="ni">FuncAnimation._draw_frame</span><span class="nt">(self, framedata)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1724</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_seq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_seq</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">save_count</span><span class="p">:]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1726</span> <span class="c1"># Call the func with framedata and args. If blitting is desired,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1727</span> <span class="c1"># func needs to return a sequence of any artists that were modified.</span>
-<span class="ne">-&gt; </span><span class="mi">1728</span> <span class="bp">self</span><span class="o">.</span><span class="n">_drawn_artists</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_func</span><span class="p">(</span><span class="n">framedata</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1730</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blit</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1732</span>     <span class="n">err</span> <span class="o">=</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;The animation function must return a sequence &#39;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1733</span>                        <span class="s1">&#39;of Artist objects.&#39;</span><span class="p">)</span>
-
-<span class="nn">Cell In [3], line 30,</span> in <span class="ni">simulate</span><span class="nt">(step)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">30</span>     <span class="n">energy</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">image</span><span class="o">.</span><span class="n">set_offsets</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">)),</span> <span class="n">density</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="n">txt_energy</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s2">&quot;Energy = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">energy</span><span class="p">))</span>
-
-<span class="nn">File ~/work/rse-course/rse-course/module05_testing_your_code/DiffusionExample/MonteCarlo.py:87,</span> in <span class="ni">MonteCarlo.step</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="n">iteration</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span> <span class="k">while</span> <span class="n">iteration</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">itermax</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">87</span>     <span class="n">new_density</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_density</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">density</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="n">new_energy</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">new_density</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="n">accept</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">accept_change</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_energy</span><span class="p">,</span> <span class="n">new_energy</span><span class="p">)</span>
-
-<span class="nn">File ~/work/rse-course/rse-course/module05_testing_your_code/DiffusionExample/MonteCarlo.py:66,</span> in <span class="ni">MonteCarlo.change_density</span><span class="nt">(self, density)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="n">direction</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">66</span>     <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_direction</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="c1"># Now make change</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="n">result</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
-
-<span class="nn">File ~/work/rse-course/rse-course/module05_testing_your_code/DiffusionExample/MonteCarlo.py:41,</span> in <span class="ni">MonteCarlo.random_direction</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="k">def</span> <span class="nf">random_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">41</span>     <span class="k">return</span> <span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-
-<span class="nn">File mtrand.pyx:962,</span> in <span class="ni">numpy.random.mtrand.RandomState.choice</span><span class="nt">()</span>
-
-<span class="nn">File mtrand.pyx:748,</span> in <span class="ni">numpy.random.mtrand.RandomState.randint</span><span class="nt">()</span>
-
-<span class="nn">File _bounded_integers.pyx:1228,</span> in <span class="ni">numpy.random._bounded_integers._rand_int64</span><span class="nt">()</span>
-
-<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">prod</span><span class="nt">(*args, **kwargs)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/numpy/core/fromnumeric.py:3045,</span> in <span class="ni">prod</span><span class="nt">(a, axis, dtype, out, keepdims, initial, where)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2927</span> <span class="nd">@array_function_dispatch</span><span class="p">(</span><span class="n">_prod_dispatcher</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2928</span> <span class="k">def</span> <span class="nf">prod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">_NoValue</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2929</span>          <span class="n">initial</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">_NoValue</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2930</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">2931</span><span class="sd">     Return the product of array elements over a given axis.</span>
-<span class="g g-Whitespace">   </span><span class="mi">2932</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3043</span><span class="sd">     10</span>
-<span class="g g-Whitespace">   </span><span class="mi">3044</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">3045</span>     <span class="k">return</span> <span class="n">_wrapreduction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">,</span> <span class="s1">&#39;prod&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">3046</span>                           <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/numpy/core/fromnumeric.py:86,</span> in <span class="ni">_wrapreduction</span><span class="nt">(obj, ufunc, method, axis, dtype, out, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span>             <span class="k">return</span> <span class="n">reduction</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">passkwargs</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">86</span> <span class="k">return</span> <span class="n">ufunc</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">passkwargs</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-<img alt="../_images/05_07_diffusion_example_12_1.png" src="../_images/05_07_diffusion_example_12_1.png" />
 </div>
 </div>
 <div class="cell docutils container">

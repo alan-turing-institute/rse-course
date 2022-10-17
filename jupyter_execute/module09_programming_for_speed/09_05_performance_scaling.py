@@ -10,8 +10,9 @@
 # In[1]:
 
 
-import numpy as np
 from timeit import repeat
+
+import numpy as np
 from matplotlib import pyplot as plt
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -73,10 +74,11 @@ plot_time(time_append_to_ndarray, counts)
 
 
 def time_lookup_middle_element_in_list(count):
-    before = [0] * count
+    test_list = [0] * count
+    middle_position = count // 2
 
     def totime():
-        x = before[count // 2]
+        return test_list[middle_position]
 
     return repeat(totime, number=10000)
 
@@ -85,10 +87,11 @@ def time_lookup_middle_element_in_list(count):
 
 
 def time_lookup_middle_element_in_ndarray(count):
-    before = np.ndarray(count)
+    test_array = np.ndarray(count)
+    middle_position = count // 2
 
     def totime():
-        x = before[count // 2]
+        return test_array[middle_position]
 
     return repeat(totime, number=10000)
 
@@ -171,10 +174,11 @@ plot_time(time_insert_to_deque, counts)
 
 
 def time_lookup_middle_element_in_deque(count):
-    before = deque([0] * count)
+    test_deque = deque([0] * count)
+    middle_position = count // 2
 
     def totime():
-        x = before[count // 2]
+        return test_deque[middle_position]
 
     return repeat(totime, number=10000)
 
@@ -272,14 +276,15 @@ sorted(x, key=lambda el: el.lower())
 # In[28]:
 
 
+from bisect import bisect_left
+
+
 class sorteddict:
     def __init__(self, data):
         self.data = sorted(data, key=lambda x: x[0])
         self.keys = list(map(lambda x: x[0], self.data))
 
     def __getitem__(self, akey):
-        from bisect import bisect_left
-
         loc = bisect_left(self.keys, akey)
 
         if loc != len(self.data):
@@ -303,15 +308,13 @@ eric_sorted["Job"]
 # In[31]:
 
 
-def time_dict_generic(ttype, count, number=10000):
-    from random import randrange
-
+def time_dict_generic(ttype, count):
     keys = list(range(count))
     values = [0] * count
     data = ttype(list(zip(keys, values)))
 
     def totime():
-        x = data[keys[count // 2]]
+        return data[keys[count // 2]]
 
     return repeat(totime, number=10000)
 
@@ -319,9 +322,16 @@ def time_dict_generic(ttype, count, number=10000):
 # In[32]:
 
 
-time_dict = lambda count: time_dict_generic(dict, count)
-time_sorted = lambda count: time_dict_generic(sorteddict, count)
-time_evil = lambda count: time_dict_generic(evildict, count)
+def time_dict(count):
+    return time_dict_generic(dict, count)
+
+
+def time_sorted(count):
+    return time_dict_generic(sorteddict, count)
+
+
+def time_evil(count):
+    return time_dict_generic(evildict, count)
 
 
 # In[33]:

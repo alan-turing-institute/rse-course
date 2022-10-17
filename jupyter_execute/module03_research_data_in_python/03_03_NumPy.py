@@ -132,13 +132,13 @@ big_array = np.arange(10000)
 # In[13]:
 
 
-get_ipython().run_cell_magic('timeit', '', '[x ** 2 for x in big_list]\n')
+get_ipython().run_cell_magic('timeit', '', '[x**2 for x in big_list]\n')
 
 
 # In[14]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'big_array ** 2\n')
+get_ipython().run_cell_magic('timeit', '', 'big_array**2\n')
 
 
 # ## 3.3.5 Arange and linspace
@@ -209,7 +209,7 @@ x
 # In[22]:
 
 
-y = x.reshape([4, 5, 2]) # 4 Arrays - 5 Rows - 2 Columns
+y = x.reshape([4, 5, 2])  # 4 Arrays - 5 Rows - 2 Columns
 y
 
 
@@ -250,13 +250,13 @@ y.transpose()
 # In[27]:
 
 
-y.shape # 4 Arrays - 5 Rows - 2 Columns
+y.shape  # 4 Arrays - 5 Rows - 2 Columns
 
 
 # In[28]:
 
 
-y.transpose().shape # 2 Arrays - 5 Rows - 4 Columns
+y.transpose().shape  # 2 Arrays - 5 Rows - 4 Columns
 
 
 # Some numpy functions apply by default to the whole array, but can be chosen to act only on certain axes:

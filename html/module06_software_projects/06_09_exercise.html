@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Exercise: Packaging Troll Treasure &#8212; Research Software Engineering with Python</title>
+    <title>6.9 Exercise: Packaging Troll Treasure &#8212; Research Software Engineering with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -320,7 +320,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -506,7 +506,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -563,7 +563,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -675,26 +675,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1068,7 +1048,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Exercise: Packaging Troll Treasure</h1>
+                <h1>6.9 Exercise: Packaging Troll Treasure</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1155,7 +1135,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="exercise-packaging-troll-treasure">
-<h1>Exercise: Packaging Troll Treasure<a class="headerlink" href="#exercise-packaging-troll-treasure" title="Permalink to this headline">#</a></h1>
+<h1>6.9 Exercise: Packaging Troll Treasure<a class="headerlink" href="#exercise-packaging-troll-treasure" title="Permalink to this headline">#</a></h1>
 <p>We are going to look at a simplified version of a game with a <a class="reference external" href="https://en.wikipedia.org/wiki/Hunt_the_Wumpus">long history</a>. Games of this kind have been used as test-beds for development of artificial intelligence.</p>
 <p>A <em>dungeon</em> is a network of connected <em>rooms</em> on a square grid. One or more rooms contain <em>treasure</em>. Your character, the <em>adventurer</em>, moves between rooms, looking for the treasure.
 A <em>troll</em> is also in the dungeon and moves between rooms. If the troll catches the adventurer, you lose. If you find treasure before being eaten, you win. (In this simple version, we do not consider the need to leave the dungeon.)</p>
@@ -1248,7 +1228,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <span class="sd">        `(x, y) in room_instance` returns `True` if `room_instance` has a link to</span>
 <span class="sd">        a room at point `(x, y)`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">point</span> <span class="ow">in</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">point</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">point</span> <span class="ow">in</span> <span class="p">[</span><span class="n">link</span><span class="o">.</span><span class="n">point</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">_validate_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1272,6 +1252,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Collection of rooms</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">):</span>
         <span class="c1"># rooms dictionary keyed by (x, y) coordinate (grid cell indices)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="p">{</span><span class="n">r</span><span class="o">.</span><span class="n">point</span><span class="p">:</span> <span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">}</span>
@@ -1298,7 +1279,10 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">room_list</span><span class="p">):</span>
-        <span class="n">rooms</span> <span class="o">=</span> <span class="p">[</span><span class="n">Room</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;point&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">Room</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;links&quot;</span><span class="p">]])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">room_list</span><span class="p">]</span>
+        <span class="n">rooms</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Room</span><span class="p">(</span><span class="n">room</span><span class="p">[</span><span class="s2">&quot;point&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">Room</span><span class="p">(</span><span class="n">link</span><span class="p">)</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">room</span><span class="p">[</span><span class="s2">&quot;links&quot;</span><span class="p">]])</span>
+            <span class="k">for</span> <span class="n">room</span> <span class="ow">in</span> <span class="n">room_list</span>
+        <span class="p">]</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">rooms</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1314,11 +1298,10 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>  <span class="c1"># (x, y) grid location of the treasure</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>  <span class="c1"># single char symbol to show the treasure on dungeon maps</span>
-    
+
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">treasure_dict</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">treasure_dict</span><span class="p">[</span><span class="s2">&quot;point&quot;</span><span class="p">],</span> <span class="n">treasure_dict</span><span class="p">[</span><span class="s2">&quot;symbol&quot;</span><span class="p">])</span>
-        
 </pre></div>
 </div>
 </div>
@@ -1333,10 +1316,11 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base functionality to create and load (but not move) an Agent</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_wait</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>  <span class="c1"># (x, y) grid location of the agent</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>  <span class="c1"># e.g. adventurer or troll</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span> <span class="c1"># single char symbol to show the agent on dungeon maps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>  <span class="c1"># single char symbol to show the agent on dungeon maps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>  <span class="c1"># print output on agent behaviour if True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">allow_wait</span> <span class="o">=</span> <span class="n">allow_wait</span>  <span class="c1"># allow the agent to move nowhere</span>
 
@@ -1365,6 +1349,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Agent that makes random moves</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">rooms</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">]</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
             <span class="c1"># this room isn&#39;t linked to anything, can&#39;t move</span>
@@ -1393,6 +1378,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Agent that prompts the user where to move next</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">rooms</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
@@ -1416,7 +1402,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
         <span class="n">choice</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">while</span> <span class="n">choice</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
             <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Where will </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> move </span><span class="se">\n</span><span class="si">{</span><span class="n">options</span><span class="si">}</span><span class="s2">? &quot;</span><span class="p">)</span>
-        
+
         <span class="c1"># move the agent</span>
         <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -1447,6 +1433,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <span class="sd">    - An adventurer agent with an initial position</span>
 <span class="sd">    - A troll agent with an initial position</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">,</span> <span class="n">treasure</span><span class="p">,</span> <span class="n">adventurer</span><span class="p">,</span> <span class="n">troll</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="n">rooms</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">treasure</span> <span class="o">=</span> <span class="n">treasure</span>
@@ -1573,6 +1560,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+
 <span class="kn">from</span> <span class="nn">art</span> <span class="kn">import</span> <span class="n">tprint</span>
 
 
@@ -1654,6 +1642,7 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
 <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;dungeons&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1711,14 +1700,14 @@ o - a       o - T
 Let the hunt begin!
 
 Turn 1
-Adventurer moves up
-Troll moves nowhere
+Adventurer moves left
+Troll moves left
 
         *           
         |        
-    a - o - o       
+    o - o - o       
     |       |    
-o - o       o - T   
+a - o       T - o   
     |       |    
     o - o - o       
         |        
@@ -1726,7 +1715,63 @@ o - o       o - T
 
 Turn 2
 Adventurer moves right
-Troll moves nowhere
+Troll moves right
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - a       o - T   
+    |       |    
+    o - o - o       
+        |        
+        o           
+
+Turn 3
+Adventurer moves left
+Troll moves left
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+a - o       T - o   
+    |       |    
+    o - o - o       
+        |        
+        o           
+
+Turn 4
+Adventurer moves right
+Troll moves up
+
+        *           
+        |        
+    o - o - T       
+    |       |    
+o - a       o - o   
+    |       |    
+    o - o - o       
+        |        
+        o           
+
+Turn 5
+Adventurer moves up
+Troll moves down
+
+        *           
+        |        
+    a - o - o       
+    |       |    
+o - o       T - o   
+    |       |    
+    o - o - o       
+        |        
+        o           
+
+Turn 6
+Adventurer moves right
+Troll moves right
 
         *           
         |        
@@ -1738,7 +1783,7 @@ o - o       o - T
         |        
         o           
 
-Turn 3
+Turn 7
 Adventurer moves left
 Troll moves nowhere
 
@@ -1752,35 +1797,7 @@ o - o       o - T
         |        
         o           
 
-Turn 4
-Adventurer moves down
-Troll moves nowhere
-
-        *           
-        |        
-    o - o - o       
-    |       |    
-o - a       o - T   
-    |       |    
-    o - o - o       
-        |        
-        o           
-
-Turn 5
-Adventurer moves up
-Troll moves nowhere
-
-        *           
-        |        
-    a - o - o       
-    |       |    
-o - o       o - T   
-    |       |    
-    o - o - o       
-        |        
-        o           
-
-Turn 6
+Turn 8
 Adventurer moves right
 Troll moves nowhere
 
@@ -1794,13 +1811,13 @@ o - o       o - T
         |        
         o           
 
-Turn 7
-Adventurer moves up
+Turn 9
+Adventurer moves left
 Troll moves nowhere
 
-        a           
+        *           
         |        
-    o - o - o       
+    a - o - o       
     |       |    
 o - o       o - T   
     |       |    
@@ -1808,15 +1825,29 @@ o - o       o - T
         |        
         o           
 
-Adventurer gets the treasure and returns a hero!
-__      __ ___  _  _  _  _  ___  ___ 
-\ \    / /|_ _|| \| || \| || __|| _ \
- \ \/\/ /  | | | .` || .` || _| |   /
-  \_/\_/  |___||_|\_||_|\_||___||_|_\
-                                     
+Turn 10
+Adventurer moves down
+Troll moves nowhere
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - a       o - T   
+    |       |    
+    o - o - o       
+        |        
+        o           
+
+No one saw Adventurer or Troll again.
+ ___  _____    _    _     ___  __  __    _    _____  ___ 
+/ __||_   _|  /_\  | |   | __||  \/  |  /_\  |_   _|| __|
+\__ \  | |   / _ \ | |__ | _| | |\/| | / _ \   | |  | _| 
+|___/  |_|  /_/ \_\|____||___||_|  |_|/_/ \_\  |_|  |___|
+                                                         
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
@@ -1834,7 +1865,7 @@ __      __ ___  _  _  _  _  ___  ___
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2227, 0: 0.5983, 1: 0.179}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2238, 0: 0.5916, 1: 0.1846}
 </pre></div>
 </div>
 </div>

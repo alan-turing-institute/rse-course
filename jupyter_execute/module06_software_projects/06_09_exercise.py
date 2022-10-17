@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Exercise: Packaging Troll Treasure
+# # 6.9 Exercise: Packaging Troll Treasure
 
 # We are going to look at a simplified version of a game with a [long history](https://en.wikipedia.org/wiki/Hunt_the_Wumpus). Games of this kind have been used as test-beds for development of artificial intelligence.
 # 
@@ -118,7 +118,7 @@ class Room:
         `(x, y) in room_instance` returns `True` if `room_instance` has a link to
         a room at point `(x, y)`
         """
-        return point in [l.point for l in self.links]
+        return point in [link.point for link in self.links]
 
     def _validate_links(self):
         """
@@ -142,6 +142,7 @@ class Rooms:
     """
     Collection of rooms
     """
+
     def __init__(self, rooms):
         # rooms dictionary keyed by (x, y) coordinate (grid cell indices)
         self.rooms = {r.point: r for r in rooms}
@@ -168,7 +169,10 @@ class Rooms:
 
     @classmethod
     def from_list(cls, room_list):
-        rooms = [Room(r["point"], [Room(l) for l in r["links"]]) for r in room_list]
+        rooms = [
+            Room(room["point"], [Room(link) for link in room["links"]])
+            for room in room_list
+        ]
         return cls(rooms)
 
 
@@ -183,11 +187,10 @@ class Treasure:
     def __init__(self, point, symbol):
         self.point = tuple(point)  # (x, y) grid location of the treasure
         self.symbol = symbol  # single char symbol to show the treasure on dungeon maps
-    
+
     @classmethod
     def from_dict(cls, treasure_dict):
         return cls(treasure_dict["point"], treasure_dict["symbol"])
-        
 
 
 # ### Agents
@@ -201,10 +204,11 @@ class Agent:
     """
     Base functionality to create and load (but not move) an Agent
     """
+
     def __init__(self, point, name, symbol, verbose=True, allow_wait=True, **kwargs):
         self.point = tuple(point)  # (x, y) grid location of the agent
         self.name = name  # e.g. adventurer or troll
-        self.symbol = symbol # single char symbol to show the agent on dungeon maps
+        self.symbol = symbol  # single char symbol to show the agent on dungeon maps
         self.verbose = verbose  # print output on agent behaviour if True
         self.allow_wait = allow_wait  # allow the agent to move nowhere
 
@@ -233,6 +237,7 @@ class RandomAgent(Agent):
     """
     Agent that makes random moves
     """
+
     def move(self, rooms):
         if not rooms[self.point].links:
             # this room isn't linked to anything, can't move
@@ -261,6 +266,7 @@ class HumanAgent(Agent):
     """
     Agent that prompts the user where to move next
     """
+
     def move(self, rooms):
         if not rooms:
             if self.verbose:
@@ -284,7 +290,7 @@ class HumanAgent(Agent):
         choice = None
         while choice not in options:
             choice = input(f"Where will {self.name} move \n{options}? ")
-        
+
         # move the agent
         if choice == "left":
             self.point = (self.point[0] - 1, self.point[1])
@@ -314,6 +320,7 @@ class Dungeon:
     - An adventurer agent with an initial position
     - A troll agent with an initial position
     """
+
     def __init__(self, rooms, treasure, adventurer, troll, verbose=True):
         self.rooms = rooms
         self.treasure = treasure
@@ -439,6 +446,7 @@ class Dungeon:
 
 
 import copy
+
 from art import tprint
 
 
@@ -518,6 +526,7 @@ o - o : connected rooms
 
 
 import os
+
 os.listdir("dungeons")
 
 

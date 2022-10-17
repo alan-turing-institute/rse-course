@@ -29,7 +29,7 @@ def mandel1(position, limit=50):
 
     while abs(value) < 2:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         if limit < 0:
             return 0
 
@@ -85,7 +85,7 @@ def mandel_numpy(position, limit=50):
     diverged_at_count = np.zeros(position.shape)
     while limit > 0:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         diverging = value * np.conj(value) > 4
         first_diverged_this_time = np.logical_and(diverging, diverged_at_count == 0)
         diverged_at_count[first_diverged_this_time] = limit
@@ -116,7 +116,6 @@ data_numpy = mandel_numpy(values)
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-import matplotlib.pyplot as plt
 
 plt.imshow(data_numpy, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 

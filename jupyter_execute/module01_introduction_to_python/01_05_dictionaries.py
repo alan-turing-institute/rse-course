@@ -105,10 +105,7 @@ me.values()
 # In[13]:
 
 
-good_match = {
-    ("Lamb", "Mint"): True,
-    ("Bacon", "Chocolate"): False
-}
+good_match = {("Lamb", "Mint"): True, ("Bacon", "Chocolate"): False}
 
 
 # but:
@@ -116,10 +113,7 @@ good_match = {
 # In[14]:
 
 
-illegal = {
-    ["Lamb", "Mint"]: True,
-    ["Bacon", "Chocolate"]: False
-}
+illegal = {["Lamb", "Mint"]: True, ["Bacon", "Chocolate"]: False}
 
 
 # Remember -- square brackets denote lists, round brackets denote `tuple`s.

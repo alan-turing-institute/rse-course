@@ -37,7 +37,7 @@ import json
 
 example_dictionary = {"somekey": ["a list", "with values", "for json"]}
 
-with open('myfile.json', 'w') as f:
+with open("myfile.json", "w") as f:
     json.dump(example_dictionary, f)
 
 
@@ -59,7 +59,7 @@ my_json_data
 # In[5]:
 
 
-my_json_data['somekey']
+my_json_data["somekey"]
 
 
 # This is a very nice solution for loading and saving Python data structures.
@@ -124,7 +124,7 @@ print(yaml.safe_dump(my_yaml_data, default_flow_style=False))
 # In[11]:
 
 
-with open('myotherfile.yml', 'w') as f:
+with open("myotherfile.yml", "w") as f:
     yaml.safe_dump(my_yaml_data, f, default_flow_style=False)
 
 
@@ -135,7 +135,7 @@ with open('myotherfile.yml', 'w') as f:
 # In[12]:
 
 
-with open('json_to_yaml.yaml', 'w') as f:
+with open("json_to_yaml.yaml", "w") as f:
     yaml.safe_dump(my_json_data, f, default_flow_style=False)
 
 

@@ -33,7 +33,7 @@ print(double(5), double([5]), double("five"))
 
 
 def jeeves(name="Sir"):
-    return "Very good, {}".format(name)
+    return f"Very good, {name}"
 
 
 # In[3]:
@@ -56,7 +56,7 @@ jeeves("James")
 
 
 def jeeves(greeting="Very good", name="Sir"):
-    return "{}, {}".format(greeting, name)
+    return f"{greeting}, {name}"
 
 
 # In[6]:
@@ -103,20 +103,20 @@ jeeves("Hello", "Sailor")
 
 
 def are_there_cats(my_input_list):
-    
-    if "cat" in my_input_list: # If the string "cat" is in the list
-        print("There is a cat in here") # print a statement to screen
+
+    if "cat" in my_input_list:  # If the string "cat" is in the list
+        print("There is a cat in here")  # print a statement to screen
         return
-    
+
     print("Nothing to see here")
 
 
 # In[12]:
 
 
-first_list = ['cat', 'dog', 'hamster', 42]
+first_list = ["cat", "dog", "hamster", 42]
 
-second_list = ['duck', 17, 'elk']
+second_list = ["duck", 17, "elk"]
 
 
 # In[13]:
@@ -148,11 +148,13 @@ x
 # In[16]:
 
 
-x = 5 # Define x now
+x = 5  # Define x now
+
 
 def can_we_see_x():
     print(f"x = {x}")
-    
+
+
 can_we_see_x()
 
 
@@ -162,10 +164,11 @@ can_we_see_x()
 
 
 def can_we_see_y():
-    y = 7 # Define y in the function
+    y = 7  # Define y in the function
     print(f"x = {x}")
     print(f"y = {y}")
-    
+
+
 can_we_see_y()
 
 

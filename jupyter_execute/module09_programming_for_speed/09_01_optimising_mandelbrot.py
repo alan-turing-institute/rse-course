@@ -28,7 +28,7 @@ def mandel1(position, limit=50):
     value = position
     while abs(value) < 2:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         if limit < 0:
             return 0
     return limit
@@ -120,7 +120,7 @@ plt.imshow(data3, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 # In[12]:
 
 
-def mandel_functional():
+def mandel_functional(ys):
     data = []
     for y in ys:
         bind_mandel = lambda x: mandel1(complex(x, y))
@@ -131,13 +131,13 @@ def mandel_functional():
 # In[13]:
 
 
-get_ipython().run_cell_magic('timeit', '', 'data4 = mandel_functional()\n')
+get_ipython().run_cell_magic('timeit', '', 'data4 = mandel_functional(ys)\n')
 
 
 # In[14]:
 
 
-data4 = mandel_functional()
+data4 = mandel_functional(ys)
 plt.imshow(data4, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 

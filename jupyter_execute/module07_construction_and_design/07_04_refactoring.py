@@ -344,7 +344,7 @@ class One:
 
 
 class Two:
-    def __init__():
+    def __init__(self):
         self.child = One()
 
 
@@ -363,7 +363,7 @@ from anotherfile import One
 
 
 class Two:
-    def __init__():
+    def __init__(self):
         self.child = One()
 
 

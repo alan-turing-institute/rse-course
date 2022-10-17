@@ -322,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -508,7 +508,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -565,7 +565,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -677,26 +677,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1082,7 +1062,7 @@ so I’ll define a decorator to help me build up a class definition gradually.</
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Term</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="p">[],</span> <span class="n">powers</span><span class="o">=</span><span class="p">[],</span> <span class="n">coefficient</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">coefficient</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">symbol</span><span class="p">:</span> <span class="n">exponent</span> <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">exponent</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">powers</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">powers</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1145,7 +1125,7 @@ so I’ll define a decorator to help me build up a class definition gradually.</
 
     <span class="k">def</span> <span class="nf">from_lists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="p">[],</span> <span class="n">powers</span><span class="o">=</span><span class="p">[],</span> <span class="n">coefficient</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">coefficient</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">symbol</span><span class="p">:</span> <span class="n">exponent</span> <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">exponent</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">powers</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">powers</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1182,11 +1162,11 @@ so I’ll define a decorator to help me build up a class definition gradually.</
         <span class="n">others</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">Term</span><span class="p">,</span> <span class="n">others</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">another</span> <span class="ow">in</span> <span class="n">others</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">exponent</span> <span class="ow">in</span> <span class="n">another</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">power</span> <span class="ow">in</span> <span class="n">another</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">result_data</span><span class="p">:</span>
-                    <span class="n">result_data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">+=</span> <span class="n">another</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span>
+                    <span class="n">result_data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">+=</span> <span class="n">power</span>  <span class="c1"># add the powers together</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">result_data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="n">another</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span>
+                    <span class="n">result_data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="n">power</span>
             <span class="n">result_coeff</span> <span class="o">*=</span> <span class="n">another</span><span class="o">.</span><span class="n">coefficient</span>
 
         <span class="k">return</span> <span class="n">Term</span><span class="p">(</span><span class="n">result_data</span><span class="p">,</span> <span class="n">result_coeff</span><span class="p">)</span>
@@ -1218,8 +1198,8 @@ so I’ll define a decorator to help me build up a class definition gradually.</
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
 
-<span class="n">first</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">),</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">),</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">))</span>
-<span class="n">second</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">))</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">second</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">third</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">expr</span> <span class="o">=</span> <span class="n">first</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">)</span>
 </pre></div>
@@ -1315,7 +1295,7 @@ However, we can define a multiplication that works backwards, which is used as a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Term at 0x7f4cf053e520&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Term at 0x7fba205a39d0&gt;
 </pre></div>
 </div>
 </div>
@@ -1343,8 +1323,7 @@ However, we can define a multiplication that works backwards, which is used as a
         <span class="k">def</span> <span class="nf">symbol_string</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">power</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">power</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">symbol</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s2">^</span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s2">^</span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s2">&quot;</span>
 
         <span class="n">symbol_strings</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">symbol_string</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">power</span><span class="p">)</span> <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">power</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -1356,8 +1335,7 @@ However, we can define a multiplication that works backwards, which is used as a
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">prod</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="si">}</span><span class="s2">*</span><span class="si">{</span><span class="n">prod</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="si">}</span><span class="s2">*</span><span class="si">{</span><span class="n">prod</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1372,6 +1350,7 @@ However, we can define a multiplication that works backwards, which is used as a
 </div>
 </div>
 </div>
+<p>Now let’s test it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="s2">&quot;x&quot;</span> <span class="o">*</span> <span class="s2">&quot;x&quot;</span> <span class="o">*</span> <span class="s2">&quot;y&quot;</span>

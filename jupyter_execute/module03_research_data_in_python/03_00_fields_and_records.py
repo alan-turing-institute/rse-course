@@ -14,7 +14,7 @@
 
 import requests
 
-spots = requests.get("http://www.sidc.be/silso/INFO/snmtotcsv.php")
+spots = requests.get("http://www.sidc.be/silso/INFO/snmtotcsv.php", timeout=60)
 spots.text.split("\n")[0]
 
 
@@ -68,7 +68,7 @@ import pandas as pd
 # In[3]:
 
 
-df = pd.read_csv('http://www.sidc.be/silso/INFO/snmtotcsv.php', sep=";", header=None)
+df = pd.read_csv("http://www.sidc.be/silso/INFO/snmtotcsv.php", sep=";", header=None)
 df.head()
 
 
@@ -129,17 +129,19 @@ df.plot(x=2, y=3)
 # In[7]:
 
 
-df_w_names = pd.read_csv('http://www.sidc.be/silso/INFO/snmtotcsv.php',
-                         sep=";",
-                         header=None,
-                         names=["year", "month", "date", "mean", "deviation", "observations", "definitive"])
+df_w_names = pd.read_csv(
+    "http://www.sidc.be/silso/INFO/snmtotcsv.php",
+    sep=";",
+    header=None,
+    names=["year", "month", "date", "mean", "deviation", "observations", "definitive"],
+)
 df_w_names.head()
 
 
 # In[8]:
 
 
-df_w_names.plot(x='date', y='mean')
+df_w_names.plot(x="date", y="mean")
 
 
 # Note: The plot method used for the DataFrame is just a wrapper around  matplotlib's plt.plot():
@@ -151,7 +153,7 @@ df_w_names.plot(x='date', y='mean')
 # In[9]:
 
 
-df_w_names.dtypes # Check the data types of all columns in the DataFrame
+df_w_names.dtypes  # Check the data types of all columns in the DataFrame
 
 
 # In this case the data types seem sensible, however if we wanted to convert the year into a floating point number instead, we could via:
@@ -159,7 +161,7 @@ df_w_names.dtypes # Check the data types of all columns in the DataFrame
 # In[10]:
 
 
-df_w_names['year']=df_w_names['year'].astype('float64')
+df_w_names["year"] = df_w_names["year"].astype("float64")
 df_w_names.dtypes
 
 
@@ -176,7 +178,7 @@ df_w_names.head()
 # In[12]:
 
 
-df_twenty_eighteen = df_w_names[(df_w_names['year'] == 2018)]
+df_twenty_eighteen = df_w_names[(df_w_names["year"] == 2018)]
 df_twenty_eighteen.head(20)
 
 
@@ -191,7 +193,7 @@ df_twenty_eighteen.head(20)
 # In[13]:
 
 
-df_nineties = df_w_names[(df_w_names['year'] >= 1997) & (df_w_names['year'] < 2000)]
+df_nineties = df_w_names[(df_w_names["year"] >= 1997) & (df_w_names["year"] < 2000)]
 
 
 # In[14]:

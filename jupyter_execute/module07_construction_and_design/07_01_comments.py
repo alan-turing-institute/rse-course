@@ -23,8 +23,8 @@
 # To find the largest element in an array
 # Set up a variable to track the largest so far
 # Loop over every element
-    # For each element, is it bigger than the previous biggest?
-    # If so, it's the new biggest
+# - For each element, is it bigger than the previous biggest?
+# - If so, it's the new biggest
 # At the end, the biggest so far, is the biggest overall
 
 
@@ -50,7 +50,7 @@ def largest(data):
 # In[3]:
 
 
-largest([0,1,3,6,2,5,3])
+largest([0, 1, 3, 6, 2, 5, 3])
 
 
 # Then, remove only those comments that are now extraneous (see below for examples of extraneous comments)

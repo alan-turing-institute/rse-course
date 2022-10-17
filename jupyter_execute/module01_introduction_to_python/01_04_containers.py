@@ -93,7 +93,7 @@ fish[0] = "R"
 # In[11]:
 
 
-fish = "Rake"  ## OK!
+fish = "Rake"  # OK!
 
 
 # *Supplementary material*: Try the [online memory visualiser](http://www.pythontutor.com/visualize.html#code=name+%3D++%22James+Philip+John+Hetherington%22.split%28%22+%22%29%0A%0Aname%5B0%5D+%3D+%22Dr%22%0Aname%5B1%3A3%5D+%3D+%5B%22Griffiths-%22%5D%0Aname.append%28%22PhD%22%29%0A%0Aname+%3D+%22Bilbo+Baggins%22&mode=display&origin=opt-frontend.js&cumulative=false&heapPrimitives=true&textReferences=false&py=2&rawInputLstJSON=%5B%5D&curInstr=0) for this one.

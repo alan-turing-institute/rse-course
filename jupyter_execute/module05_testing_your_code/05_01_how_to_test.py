@@ -22,9 +22,9 @@
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-from matplotlib.path import Path
-import matplotlib.patches as patches
 import matplotlib.pyplot as plt
+from matplotlib import patches
+from matplotlib.path import Path
 
 
 # Let's make a little fragment of matplotlib code to visualise a pair of fields.

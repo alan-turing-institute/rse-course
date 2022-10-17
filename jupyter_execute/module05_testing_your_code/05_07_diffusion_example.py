@@ -68,13 +68,11 @@ get_ipython().run_cell_magic('writefile', 'DiffusionExample/MonteCarlo.py', 'imp
 import sys
 
 sys.path.append("DiffusionExample")
-from MonteCarlo import MonteCarlo, energy
 import numpy as np
-import numpy.random as random
+from IPython.display import HTML
 from matplotlib import animation
 from matplotlib import pyplot as plt
-from IPython.display import HTML
-
+from MonteCarlo import MonteCarlo, energy
 
 Temperature = 0.1
 
@@ -96,7 +94,7 @@ mc = MonteCarlo(energy, density, temperature=Temperature)
 def simulate(step):
     energy, density = mc.step()
     image.set_offsets(np.vstack((range(len(density)), density)).T)
-    txt_energy.set_text("Energy = {}".format(energy))
+    txt_energy.set_text(f"Energy = {energy}")
 
 
 anim = animation.FuncAnimation(fig, simulate, frames=200, interval=50)

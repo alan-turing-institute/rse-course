@@ -309,9 +309,10 @@ y.describe()
 # In[24]:
 
 
-def broken_birth_year(b_instance):
-    import datetime
+import datetime
 
+
+def broken_birth_year(b_instance):
     current = datetime.datetime.now().year
     return current - b_instance.age
 
@@ -353,11 +354,11 @@ x.birth_year.__name__
 
 class Person:
     def __init__(self, name, age, job, children_count):
-        for name, value in locals().items():
-            if name == "self":
+        for var_name, value in locals().items():
+            if var_name == "self":
                 continue
-            print(f"Setting self.{name} to {value}")
-            setattr(self, name, value)
+            print(f"Setting self.{var_name} to {value}")
+            setattr(self, var_name, value)
 
 
 # In[30]:
@@ -369,7 +370,7 @@ terry = Person("Terry", 78, "Screenwriter", 0)
 # In[31]:
 
 
-terry.name
+terry.first_name
 
 
 # ## Metaprogramming warning!

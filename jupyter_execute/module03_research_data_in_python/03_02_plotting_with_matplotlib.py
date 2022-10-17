@@ -38,7 +38,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # In[3]:
 
 
-from math import sin, cos, pi
+from math import cos, pi, sin
 
 myfig = plt.plot([sin(pi * x / 100.0) for x in range(100)])
 
@@ -156,7 +156,8 @@ sine_graph.savefig("my_graph.png")
 # In[16]:
 
 
-from IPython.display import Image # Get the notebook's own library for manipulating itself.
+# Use the notebook's own library for manipulating itself.
+from IPython.display import Image  .
 
 Image(filename="my_graph.png")
 
@@ -266,10 +267,13 @@ double_graph
 
 
 import pandas as pd
-df = pd.read_csv('http://www.sidc.be/silso/INFO/snmtotcsv.php',
-                    sep=";",
-                    header=None,
-                    names=["year", "month", "date", "mean", "deviation", "observations", "definitive"])
+
+df = pd.read_csv(
+    "http://www.sidc.be/silso/INFO/snmtotcsv.php",
+    sep=";",
+    header=None,
+    names=["year", "month", "date", "mean", "deviation", "observations", "definitive"],
+)
 df.head()
 
 
@@ -286,51 +290,48 @@ df.plot(subplots=True);
 # In[32]:
 
 
-deviation = df['deviation'].tolist() # Get the dataframe column (series) as a list
-observations = df['observations'].tolist()
-mean = df['mean'].tolist()
-date = df['date'].tolist()
+deviation = df["deviation"].tolist()  # Get the dataframe column (series) as a list
+observations = df["observations"].tolist()
+mean = df["mean"].tolist()
+date = df["date"].tolist()
 
 
 # In[33]:
 
 
-fig = plt.figure(figsize=(15,10)) #Set the width of the figure to be 15 inches, and the height to be 5 inches
+fig = plt.figure(
+    figsize=(15, 10)
+)  # Set the width of the figure to be 15 inches, and the height to be 5 inches
 
-ax1 = fig.add_subplot(2,2,1) # 2 rows, 2 columns, 1st subplot
-ax1.errorbar(df['date'], # Date on the x axis
-             df['mean'], # Mean on the y axis
-             yerr=df['deviation'], # Use the deviation for the error bars
-             color = 'orange', # Plot the sunspot (mean) data in orange
-             ecolor='black') # Show the error bars in black
-ax1.set_xlabel('Date')
-ax1.set_ylabel('Mean')
-ax1.set_title('From Dataframe')
+ax1 = fig.add_subplot(2, 2, 1)  # 2 rows, 2 columns, 1st subplot
+ax1.errorbar(
+    df["date"],  # Date on the x axis
+    df["mean"],  # Mean on the y axis
+    yerr=df["deviation"],  # Use the deviation for the error bars
+    color="orange",  # Plot the sunspot (mean) data in orange
+    ecolor="black",
+)  # Show the error bars in black
+ax1.set_xlabel("Date")
+ax1.set_ylabel("Mean")
+ax1.set_title("From Dataframe")
 
-ax2 = fig.add_subplot(2,2,2)  # 2 rows, 2 columns, 2nd subplot
-ax2.scatter(df['date'],
-            df['observations'],
-            color='grey',
-            marker='+')
-ax2.set_xlabel('Date')
-ax2.set_ylabel('Number of Observations')
-ax2.set_title('From Dataframe')
+ax2 = fig.add_subplot(2, 2, 2)  # 2 rows, 2 columns, 2nd subplot
+ax2.scatter(df["date"], df["observations"], color="grey", marker="+")
+ax2.set_xlabel("Date")
+ax2.set_ylabel("Number of Observations")
+ax2.set_title("From Dataframe")
 
-ax3 = fig.add_subplot(2,2,3) # 2 rows, 2 columns, 3rd subplot
-ax3.errorbar(date,
-             mean,
-             yerr = deviation,
-             color = 'pink',
-             ecolor = 'black')
-ax3.set_xlabel('Date')
-ax3.set_ylabel('Mean')
-ax3.set_title('From List')
+ax3 = fig.add_subplot(2, 2, 3)  # 2 rows, 2 columns, 3rd subplot
+ax3.errorbar(date, mean, yerr=deviation, color="pink", ecolor="black")
+ax3.set_xlabel("Date")
+ax3.set_ylabel("Mean")
+ax3.set_title("From List")
 
-ax4 = fig.add_subplot(2,2,4) # 2 rows, 2 columns, 4th subplot
-ax4.scatter(date, observations, color = 'red', marker = 'o')
-ax4.set_xlabel('Date')
-ax4.set_ylabel('Number of Observations')
-ax4.set_title('From List')
+ax4 = fig.add_subplot(2, 2, 4)  # 2 rows, 2 columns, 4th subplot
+ax4.scatter(date, observations, color="red", marker="o")
+ax4.set_xlabel("Date")
+ax4.set_ylabel("Number of Observations")
+ax4.set_title("From List")
 
 
 # In this example we are plotting columns from the Pandas DataFrame (series), and from lists to show this method works for both. Numpy arrays can also be used.

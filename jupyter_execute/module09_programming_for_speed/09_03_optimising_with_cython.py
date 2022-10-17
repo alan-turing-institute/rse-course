@@ -42,7 +42,7 @@ def mandel(position, limit=50):
     value = position
     while abs(value) < 2:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         if limit < 0:
             return 0
     return limit

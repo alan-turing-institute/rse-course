@@ -320,7 +320,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -506,7 +506,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -563,7 +563,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -675,26 +675,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1092,7 +1072,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">spots</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">)</span>
+<span class="n">spots</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">spots</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1145,7 +1125,7 @@ a human comment.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;http://www.sidc.be/silso/INFO/snmtotcsv.php&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1385,10 +1365,12 @@ The separator is the semicolon ‘;’.</p>
 <p>I can actually specify this to the formatter:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;http://www.sidc.be/silso/INFO/snmtotcsv.php&#39;</span><span class="p">,</span>
-                         <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
-                         <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;deviation&quot;</span><span class="p">,</span> <span class="s2">&quot;observations&quot;</span><span class="p">,</span> <span class="s2">&quot;definitive&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;deviation&quot;</span><span class="p">,</span> <span class="s2">&quot;observations&quot;</span><span class="p">,</span> <span class="s2">&quot;definitive&quot;</span><span class="p">],</span>
+<span class="p">)</span>
 <span class="n">df_w_names</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1478,7 +1460,7 @@ The separator is the semicolon ‘;’.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1496,7 +1478,7 @@ The separator is the semicolon ‘;’.</p>
 <p>It’s also often useful to check, and if necessary specify, the datatype of each field.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">dtypes</span> <span class="c1"># Check the data types of all columns in the DataFrame</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">dtypes</span>  <span class="c1"># Check the data types of all columns in the DataFrame</span>
 </pre></div>
 </div>
 </div>
@@ -1516,7 +1498,7 @@ dtype: object
 <p>In this case the data types seem sensible, however if we wanted to convert the year into a floating point number instead, we could via:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df_w_names</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
 <span class="n">df_w_names</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 </div>
@@ -1629,7 +1611,7 @@ dtype: object
 <p>Sometimes it is necessary to filter data, for example to only see the sunspots for the year 2018 you would use:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_twenty_eighteen</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2018</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_twenty_eighteen</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2018</span><span class="p">)]</span>
 <span class="n">df_twenty_eighteen</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1795,7 +1777,7 @@ dtype: object
 <p>If we wanted all data from 1997 to 1999 we could via:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nineties</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1997</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nineties</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1997</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>

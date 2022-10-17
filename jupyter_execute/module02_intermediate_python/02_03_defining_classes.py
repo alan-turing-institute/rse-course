@@ -259,11 +259,7 @@ class Person:
         self.room.delete_occupant(self)
         destination = self.room.destination(exit)
         destination.add_occupant(self)
-        print(
-            "{some} goes {action} to the {where}".format(
-                some=self.name, action=exit, where=destination.name
-            )
-        )
+        print(f"{self.name} goes {exit} to the {destination.name}")
 
     def wander(self):
         exit = self.room.random_valid_exit()
@@ -421,11 +417,7 @@ class Person:
         destination = exit.target
         destination.occupancy += 1
         self.room = destination
-        print(
-            "{some} goes {action} to the {where}".format(
-                some=self.name, action=exit.name, where=destination.name
-            )
-        )
+        print("{self.name} goes {exit.name} to the {destination.name}")
 
     def wander(self):
         exit = self.room.random_valid_exit()
@@ -433,7 +425,7 @@ class Person:
             self.use(exit)
 
     def describe(self):
-        print("{who} is in the {where}".format(who=self.name, where=self.room.name))
+        print(f"{self.name} is in the {self.room.name}")
 
 
 # In[30]:

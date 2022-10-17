@@ -19,7 +19,7 @@ mylist = [3, 7, 15, 2]
 
 
 for whatever in mylist:
-    print(whatever ** 2)
+    print(whatever**2)
 
 
 # Each time through the loop, the variable in the `value` slot is updated to the **next** element of the sequence.
@@ -62,7 +62,7 @@ current_year = 2022
 founded = {"Barack Obama": 1961, "UCL": 1826, "The Alan Turing Institute": 2015}
 
 for thing in founded:
-    print("In ", current_year, " ", thing, "is", current_year - founded[thing], "years old.")
+    print(f"In {current_year} {thing} is {current_year - founded[thing]} years old.")
 
 
 # ## 1.8.2 Unpacking and Iteration

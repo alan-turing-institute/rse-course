@@ -84,7 +84,7 @@ m4
 # In[11]:
 
 
-m3 * m4   # Note elementwise multiply, *not* matrix multiply.
+m3 * m4  # Note elementwise multiply, *not* matrix multiply.
 
 
 # **Except**, that if one array has any Dimension 1, then the data is **REPEATED** to match the other.

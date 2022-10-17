@@ -17,78 +17,16 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-fig = plt.figure(figsize=(15,10)) #Set the width of the figure to be 15 inches, and the height to be 5 inches
+# Use the notebook's own library for manipulating itself.
+from IPython.display import Image  .
 
-ax1 = fig.add_subplot(2,2,1) # 2 rows, 2 columns, 1st subplot
-ax1.errorbar(df['date'], # Date on the x axis
-             df['mean'], # Mean on the y axis
-             yerr=df['deviation'], # Use the deviation for the error bars
-             color = 'orange', # Plot the sunspot (mean) data in orange
-             ecolor='black') # Show the error bars in black
-ax1.set_xlabel('Date')
-ax1.set_ylabel('Mean')
-ax1.set_title('From Dataframe')
-
-ax2 = fig.add_subplot(2,2,2)  # 2 rows, 2 columns, 2nd subplot
-ax2.scatter(df['date'],
-            df['observations'],
-            color='grey',
-            marker='+')
-ax2.set_xlabel('Date')
-ax2.set_ylabel('Number of Observations')
-ax2.set_title('From Dataframe')
-
-ax3 = fig.add_subplot(2,2,3) # 2 rows, 2 columns, 3rd subplot
-ax3.errorbar(date,
-             mean,
-             yerr = deviation,
-             color = 'pink',
-             ecolor = 'black')
-ax3.set_xlabel('Date')
-ax3.set_ylabel('Mean')
-ax3.set_title('From List')
-
-ax4 = fig.add_subplot(2,2,4) # 2 rows, 2 columns, 4th subplot
-ax4.scatter(date, observations, color = 'red', marker = 'o')
-ax4.set_xlabel('Date')
-ax4.set_ylabel('Number of Observations')
-ax4.set_title('From List')
+Image(filename="my_graph.png")
 ------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn [33], line 4[0m
-[1;32m      1[0m fig [38;5;241m=[39m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m15[39m,[38;5;241m10[39m)) [38;5;66;03m#Set the width of the figure to be 15 inches, and the height to be 5 inches[39;00m
-[1;32m      3[0m ax1 [38;5;241m=[39m fig[38;5;241m.[39madd_subplot([38;5;241m2[39m,[38;5;241m2[39m,[38;5;241m1[39m) [38;5;66;03m# 2 rows, 2 columns, 1st subplot[39;00m
-[0;32m----> 4[0m [43max1[49m[38;5;241;43m.[39;49m[43merrorbar[49m[43m([49m[43mdf[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mdate[39;49m[38;5;124;43m'[39;49m[43m][49m[43m,[49m[43m [49m[38;5;66;43;03m# Date on the x axis[39;49;00m
-[1;32m      5[0m [43m             [49m[43mdf[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mmean[39;49m[38;5;124;43m'[39;49m[43m][49m[43m,[49m[43m [49m[38;5;66;43;03m# Mean on the y axis[39;49;00m
-[1;32m      6[0m [43m             [49m[43myerr[49m[38;5;241;43m=[39;49m[43mdf[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mdeviation[39;49m[38;5;124;43m'[39;49m[43m][49m[43m,[49m[43m [49m[38;5;66;43;03m# Use the deviation for the error bars[39;49;00m
-[1;32m      7[0m [43m             [49m[43mcolor[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43morange[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;66;43;03m# Plot the sunspot (mean) data in orange[39;49;00m
-[1;32m      8[0m [43m             [49m[43mecolor[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mblack[39;49m[38;5;124;43m'[39;49m[43m)[49m [38;5;66;03m# Show the error bars in black[39;00m
-[1;32m      9[0m ax1[38;5;241m.[39mset_xlabel([38;5;124m'[39m[38;5;124mDate[39m[38;5;124m'[39m)
-[1;32m     10[0m ax1[38;5;241m.[39mset_ylabel([38;5;124m'[39m[38;5;124mMean[39m[38;5;124m'[39m)
+[0;36m  Cell [0;32mIn [16], line 2[0;36m[0m
+[0;31m    from IPython.display import Image  .[0m
+[0m                                       ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
 
-File [0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/__init__.py:1423[0m, in [0;36m_preprocess_data.<locals>.inner[0;34m(ax, data, *args, **kwargs)[0m
-[1;32m   1420[0m [38;5;129m@functools[39m[38;5;241m.[39mwraps(func)
-[1;32m   1421[0m [38;5;28;01mdef[39;00m [38;5;21minner[39m(ax, [38;5;241m*[39margs, data[38;5;241m=[39m[38;5;28;01mNone[39;00m, [38;5;241m*[39m[38;5;241m*[39mkwargs):
-[1;32m   1422[0m     [38;5;28;01mif[39;00m data [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[0;32m-> 1423[0m         [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[43max[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;28;43mmap[39;49m[43m([49m[43msanitize_sequence[49m[43m,[49m[43m [49m[43margs[49m[43m)[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-[1;32m   1425[0m     bound [38;5;241m=[39m new_sig[38;5;241m.[39mbind(ax, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
-[1;32m   1426[0m     auto_label [38;5;241m=[39m (bound[38;5;241m.[39marguments[38;5;241m.[39mget(label_namer)
-[1;32m   1427[0m                   [38;5;129;01mor[39;00m bound[38;5;241m.[39mkwargs[38;5;241m.[39mget(label_namer))
-
-File [0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/axes/_axes.py:3587[0m, in [0;36mAxes.errorbar[0;34m(self, x, y, yerr, xerr, fmt, ecolor, elinewidth, capsize, barsabove, lolims, uplims, xlolims, xuplims, errorevery, capthick, **kwargs)[0m
-[1;32m   3584[0m res [38;5;241m=[39m np[38;5;241m.[39mzeros(err[38;5;241m.[39mshape, dtype[38;5;241m=[39m[38;5;28mbool[39m)  [38;5;66;03m# Default in case of nan[39;00m
-[1;32m   3585[0m [38;5;28;01mif[39;00m np[38;5;241m.[39many(np[38;5;241m.[39mless(err, [38;5;241m-[39merr, out[38;5;241m=[39mres, where[38;5;241m=[39m(err [38;5;241m==[39m err))):
-[1;32m   3586[0m     [38;5;66;03m# like err<0, but also works for timedelta and nan.[39;00m
-[0;32m-> 3587[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
-[1;32m   3588[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124m'[39m[38;5;132;01m{[39;00mdep_axis[38;5;132;01m}[39;00m[38;5;124merr[39m[38;5;124m'[39m[38;5;124m must not contain negative values[39m[38;5;124m"[39m)
-[1;32m   3589[0m [38;5;66;03m# This is like[39;00m
-[1;32m   3590[0m [38;5;66;03m#     elow, ehigh = np.broadcast_to(...)[39;00m
-[1;32m   3591[0m [38;5;66;03m#     return dep - elow * ~lolims, dep + ehigh * ~uplims[39;00m
-[1;32m   3592[0m [38;5;66;03m# except that broadcast_to would strip units.[39;00m
-[1;32m   3593[0m low, high [38;5;241m=[39m dep [38;5;241m+[39m np[38;5;241m.[39mrow_stack([[38;5;241m-[39m([38;5;241m1[39m [38;5;241m-[39m lolims), [38;5;241m1[39m [38;5;241m-[39m uplims]) [38;5;241m*[39m err
-
-[0;31mValueError[0m: 'yerr' must not contain negative values
-ValueError: 'yerr' must not contain negative values
+SyntaxError: invalid syntax (3504254578.py, line 2)
 

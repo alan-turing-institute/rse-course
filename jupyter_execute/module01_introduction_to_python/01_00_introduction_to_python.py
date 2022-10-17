@@ -64,12 +64,12 @@
 # In[1]:
 
 
-### Make plot
+# Make plot
 get_ipython().run_line_magic('matplotlib', 'inline')
 import math
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 theta = np.arange(0, 4 * math.pi, 0.1)
 eight = plt.figure()
@@ -170,8 +170,7 @@ get_ipython().run_cell_magic('bash', '', 'chmod u+x fourteen.py\n./fourteen.py\n
 get_ipython().run_cell_magic('writefile', 'draw_eight.py', '# Above line tells the notebook to treat the rest of this\n# cell as content for a file on disk.\nimport math\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\ndef make_figure():\n    theta = np.arange(0, 4 * math.pi, 0.1)\n    eight = plt.figure()\n    axes = eight.add_axes([0, 0, 1, 1])\n    axes.plot(0.5 * np.sin(theta), np.cos(theta / 2))\n    return eight\n')
 
 
-# In a real example, we could edit the file on disk
-# using a program such as [Atom](https://atom.io) or [VS code](https://code.visualstudio.com/).
+# In a real example, we could edit the file on disk using a program such as [Atom](https://atom.io) or [VS code](https://code.visualstudio.com/).
 
 # In[8]:
 

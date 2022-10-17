@@ -219,7 +219,7 @@ get_ipython().system(' nbqa flake8 07_02_coding_conventions.ipynb')
 # In[7]:
 
 
-get_ipython().system(' pylama --linters eradicate,mccabe,mypy,pycodestyle,pydocstyle,pyflakes,pylint,isort flake8_example.py')
+get_ipython().system(' pylama --linters isort,mccabe,mypy,pycodestyle,pydocstyle,pyflakes,pylint flake8_example.py')
 
 
 # ## Setup

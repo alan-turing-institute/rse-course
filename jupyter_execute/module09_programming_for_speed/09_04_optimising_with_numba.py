@@ -32,7 +32,7 @@ def mandel(position, limit=50):
     value = position
     while abs(value) < 2:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         if limit < 0:
             return 0
     return limit
@@ -55,8 +55,8 @@ get_ipython().run_line_magic('timeit', 'a = mandel(complex(0, 0))')
 
 
 import numpy as np
-from numba import njit, prange
 from matplotlib import pyplot as plt
+from numba import njit
 
 
 # In[5]:
@@ -67,7 +67,7 @@ def mandel_numba(position, limit=50):
     value = position
     while abs(value) < 2:
         limit -= 1
-        value = value ** 2 + position
+        value = value**2 + position
         if limit < 0:
             return 0
     return limit
@@ -110,6 +110,9 @@ plt.imshow(data_numba, interpolation="none", cmap="plasma")
 # In[9]:
 
 
+from numba import prange
+
+
 @njit(parallel=True)
 def mandel_numba_parallel(position, limit=50):
     xlim = position.shape[1]
@@ -118,13 +121,13 @@ def mandel_numba_parallel(position, limit=50):
     for x in prange(xlim):
         for y in prange(ylim):
             steps = limit
-            value = position[y,x]
-            pos = position[y,x]
+            value = position[y, x]
+            pos = position[y, x]
             while abs(value) < 2 and steps >= 0:
                 steps -= 1
                 value = value**2 + pos
             diverged_at[y, x] = steps
-            
+
     return diverged_at
 
 

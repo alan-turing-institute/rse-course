@@ -13,7 +13,7 @@
 # In[1]:
 
 
-[2 ** x for x in range(10)]
+[2**x for x in range(10)]
 
 
 # Which is equivalent to the following code without using comprehensions:
@@ -23,7 +23,7 @@
 
 result = []
 for x in range(10):
-    result.append(2 ** x)
+    result.append(2**x)
 
 result
 
@@ -33,7 +33,7 @@ result
 # In[3]:
 
 
-[len(str(2 ** x)) for x in range(10)]
+[len(str(2**x)) for x in range(10)]
 
 
 # ## 2.0.2 Selection in comprehensions
@@ -43,7 +43,7 @@ result
 # In[4]:
 
 
-[2 ** x for x in range(30) if x % 3 == 0]
+[2**x for x in range(30) if x % 3 == 0]
 
 
 # Consider the following, and make sure you understand why it works:
@@ -64,7 +64,7 @@ result
 result = []
 for x in range(30):
     if x % 3 == 0:
-        result.append(2 ** x)
+        result.append(2**x)
 result
 
 

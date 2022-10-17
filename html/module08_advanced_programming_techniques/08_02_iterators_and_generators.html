@@ -320,7 +320,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -506,7 +506,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -563,7 +563,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -675,26 +675,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1450,8 +1430,8 @@ moves the iterator forward, and gives us its next element:</p>
 <p>If, to be iterated over, a class just wants to behave as if it were some other iterable, you can just implement <code class="docutils literal notranslate"><span class="pre">__iter__</span></code> and return <code class="docutils literal notranslate"><span class="pre">iter(some_other_iterable)</span></code>, without implementing <code class="docutils literal notranslate"><span class="pre">next</span></code>.  For example, an image class might want to implement some metadata, but behave just as if it were just a 1-d pixel array when being iterated:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
 
 
 <span class="k">class</span> <span class="nc">MyImage</span><span class="p">:</span>
@@ -1676,7 +1656,7 @@ Our Fibonacci example therefore becomes a function rather than a class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f05cd982640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb5638f2fa0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/08_02_iterators_and_generators_59_1.png" src="../_images/08_02_iterators_and_generators_59_1.png" />
@@ -1788,7 +1768,7 @@ derivative example earlier.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeat</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_repeated</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    
+
     <span class="k">return</span> <span class="n">_repeated</span>
 
 
@@ -1897,7 +1877,10 @@ This was nice and concise, but had one flaw: we had just one test, covering all 
 We can do a nicer job with a test <strong>generator</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">assert_exemplar</span><span class="p">(</span><span class="o">**</span><span class="n">fixture</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="k">def</span> <span class="nf">assert_exemplar</span><span class="p">(</span><span class="o">**</span><span class="n">fixture</span><span class="p">):</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">fixture</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;answer&quot;</span><span class="p">)</span>
     <span class="n">assert_equal</span><span class="p">(</span><span class="n">greet</span><span class="p">(</span><span class="o">**</span><span class="n">fixture</span><span class="p">),</span> <span class="n">answer</span><span class="p">)</span>
 
@@ -1906,10 +1889,9 @@ We can do a nicer job with a test <strong>generator</strong>:</p>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span>
         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;fixtures&quot;</span><span class="p">,</span> <span class="s2">&quot;samples.yaml&quot;</span><span class="p">)</span>
     <span class="p">)</span> <span class="k">as</span> <span class="n">fixtures_file</span><span class="p">:</span>
-        <span class="n">fixtures</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fixtures_file</span><span class="p">)</span>
+        <span class="n">fixtures</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fixtures_file</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">fixture</span> <span class="ow">in</span> <span class="n">fixtures</span><span class="p">:</span>
-
             <span class="k">yield</span> <span class="n">assert_exemplar</span><span class="p">(</span><span class="o">**</span><span class="n">fixture</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1934,10 +1916,7 @@ We can do a nicer job with a test <strong>generator</strong>:</p>
 <p>We can now see how <code class="docutils literal notranslate"><span class="pre">pytest</span></code> might have implemented this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
-
-
-<span class="nd">@contextmanager</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@contextmanager</span>
 <span class="k">def</span> <span class="nf">reimplement_raises</span><span class="p">(</span><span class="n">exception</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">yield</span>
@@ -2031,7 +2010,9 @@ test_skipped.py <span class=" -Color -Color-Yellow">s                           
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 platform linux -- Python 3.8.14, pytest-7.1.3, pluggy-1.0.0
-rootdir: /home/runner/work/rse-course/rse-course/module08_advanced_programming_techniques
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module08_advanced_programming_techniques
 plugins: anyio-3.6.1, pylama-8.4.1, cov-4.0.0
 <span class=" -Color -Color-Bold">collecting ... </span>
 <span class=" -Color -Color-Bold">collected 1 item                                                               </span>
@@ -2053,7 +2034,7 @@ test_not_skipped.py
 <span class=" -Color -Color-Bold -Color-Bold-Red">test_not_skipped.py</span>:7: RuntimeError
 =========================== short test summary info ============================
 FAILED test_not_skipped.py::test_python_3 - RuntimeError: something went wrong
-<span class=" -Color -Color-Red">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Red">1 failed</span><span class=" -Color -Color-Red"> in 0.12s ===============================</span>
+<span class=" -Color -Color-Red">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Red">1 failed</span><span class=" -Color -Color-Red"> in 0.13s ===============================</span>
 
 </pre></div>
 </div>
@@ -2069,10 +2050,10 @@ FAILED test_not_skipped.py::test_python_3 - RuntimeError: something went wrong
             <span class="c1"># that just prints a message</span>
             <span class="k">def</span> <span class="nf">do_nothing</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test was skipped&quot;</span><span class="p">)</span>
+
             <span class="k">return</span> <span class="n">do_nothing</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># otherwise use the original function as normal</span>
-            <span class="k">return</span> <span class="n">func</span>
+        <span class="c1"># otherwise use the original function as normal</span>
+        <span class="k">return</span> <span class="n">func</span>
 
     <span class="k">return</span> <span class="n">wrap_function</span>
 </pre></div>
@@ -2084,7 +2065,7 @@ FAILED test_not_skipped.py::test_python_3 - RuntimeError: something went wrong
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@homemade_skip_decorator</span><span class="p">(</span><span class="mf">3.9</span> <span class="o">&lt;</span> <span class="mf">4.0</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_skipped</span><span class="p">():</span>
     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;This test is skipped&quot;</span><span class="p">)</span>
-    
+
 
 <span class="n">test_skipped</span><span class="p">()</span>
 </pre></div>

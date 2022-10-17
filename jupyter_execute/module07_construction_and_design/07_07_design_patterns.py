@@ -68,7 +68,8 @@
 
 get_ipython().run_line_magic('matplotlib', 'inline')
 from unittest.mock import Mock
-from IPython.display import SVG, HTML
+
+from IPython.display import HTML, SVG
 
 
 def yuml(model):
@@ -118,28 +119,21 @@ yuml(
 
 class AgentModel:
     def simulate(self):
-        for agent in agents:
-            for target in agents:
+        for agent in self.agents:
+            for target in self.agents:
                 agent.interact(target)
-        agent.simulate()
+            agent.simulate()
 
 
 # ### Agent model constructor
 
-# 
-# This logic is common to many kinds of Agent based model (ABM), so we can imagine a common class
-# for agent based models: the constructor could parse a configuration specifying how many agents of each type to create,
+# This logic is common to many kinds of Agent based model (ABM), so we can imagine a common class for agent based models: the constructor could parse a configuration specifying how many agents of each type to create,
 # their initial conditions and so on.
 # 
-# However, this common constructor doesn't know what kind of agent to create; as a common base, it could be a model of boids,
-# or the agents could be remote agents on foreign servers, or they could even be physical hardware robots connected to the driving model
-# over Wifi!
+# However, this common constructor doesn't know what kind of agent to create; as a common base, it could be a model of boids, or the agents could be remote agents on foreign servers, or they could even be physical hardware robots connected to the driving model over Wifi!
 # 
-# We need to defer the construction of the agents. We can do this with polymorphism: each derived class of the ABM can have an appropriate
-# method to create its agents:
-# 
-# 
-# 
+# We need to defer the construction of the agents.
+# We can do this with polymorphism: each derived class of the ABM can have an appropriate method to create its agents:
 
 # In[4]:
 
@@ -150,8 +144,16 @@ class AgentModel:
         for agent_config in config:
             self.agents.append(self.create(**agent_config))
 
+    def simulate(self):
+        for agent in self.agents:
+            for target in self.agents:
+                agent.interact(target)
+            agent.simulate()
 
-# This is the *factory method* pattern: a common design solution to the need to defer the construction of daughter objects to a derived class. `self.create` is not defined here, but in each of the agents that inherits from `AgentModel`. Using polimorphism to get deferred behaviour on what you want to create.
+
+# This is the *factory method* pattern: a common design solution to the need to defer the construction of daughter objects to a derived class.
+# `self.create` is not defined here, but in each of the agents that inherits from `AgentModel`.
+# Using polymorphism to get deferred behaviour on what you want to create.
 
 # ### Agent derived classes
 
@@ -165,22 +167,16 @@ class BirdModel(AgentModel):
         return Boid(agent_config)
 
 
-# 
-# 
-# 
 # Agents are the base product, boids or robots are a ConcreteProduct.
-# 
-# 
-# 
 
 # In[6]:
 
 
 class WebAgentFactory(AgentModel):
-    def __init__(self, url):
+    def __init__(self, url, config):
         self.url = url
         self.connection = AmazonCompute.connect(url)
-        AgentModel.__init__(self)
+        super().__init__(config)  # run the AgentModel constructor
 
     def create(self, agent_config):
         return OnlineAgent(agent_config, self.connection)
@@ -195,15 +191,11 @@ class WebAgentFactory(AgentModel):
 
 # ### Refactoring to Patterns
 
+# It's easy to get into a tangle trying to make base classes which somehow "promote" themselves into a derived class based on some code in the base class.
 # 
-# I personally have got into a terrible tangle trying to make base classes which somehow
-# "promote" themselves into a derived class based on some code in the base class.
+# This is an example of an "Antipattern": like a Smell, this is a recognised Wrong Way of doing things.
 # 
-# This is an example of an "Antipattern": like a Smell, this is a recognised Wrong Way
-# of doing things.
-# 
-# What I should have written was a Creator with a FactoryMethod.
-# 
+# What we should write instead is a `Creator` with a `FactoryMethod`.
 
 # Consider the following code:
 
@@ -211,28 +203,30 @@ class WebAgentFactory(AgentModel):
 
 
 class AgentModel:
+    def __init__(self):
+        self.agents = []
+
     def simulate(self):
-        for agent in agents:
-            for target in agents:
+        for agent in self.agents:
+            for target in self.agents:
                 agent.interact(target)
             agent.simulate()
 
 
 class BirdModel(AgentModel):
     def __init__(self, config):
-        self.boids = []
+        super().__init__()  # run the constructor of the AgentModel class
         for boid_config in config:
-            self.boids.append(Boid(**boid_config))
+            self.agents.append(Boid(**boid_config))
 
 
 class WebAgentFactory(AgentModel):
     def __init__(self, url, config):
         self.url = url
         connection = AmazonCompute.connect(url)
-        AgentModel.__init__(self)
-        self.web_agents = []
+        super().__init__()  # run the constructor of the AgentModel class
         for agent_config in config:
-            self.web_agents.append(OnlineAgent(agent_config, connection))
+            self.agents.append(OnlineAgent(agent_config, connection))
 
 
 # The agent creation loop is almost identical in the two classes; so we can be sure we need to refactor it away; but the **type** that is created is different
@@ -265,21 +259,19 @@ yuml(
 # 
 # 
 
-# In[9]:
-
-
-class Model:
-    def __init__(
-        self,
-        xsize,
-        ysize,
-        agent_count,
-        wind_speed,
-        agent_sight_range,
-        eagle_start_location,
-    ):
-        pass
-
+# ```python
+# class AdvancedModel:
+#     def __init__(
+#         self,
+#         xsize,
+#         ysize,
+#         agent_count,
+#         wind_speed,
+#         agent_sight_range,
+#         eagle_start_location,
+#     ):
+#         pass
+# ```
 
 # ### Builder preferred to complex constructor
 
@@ -287,23 +279,19 @@ class Model:
 # However, long constructors easily become very complicated. Instead, it can be cleaner to define a Builder for models. A builder is like a 
 # deferred factory: each step of the construction process is implemented as an individual method call, and the completed object
 # is returned when the model is ready.
-# 
-# 
-# 
-# 
+
+# In[9]:
+
+
+AdvancedModel = Mock()  # Create a temporary mock so the example works!
+
 
 # In[10]:
 
 
-Model = Mock()  # Create a temporary mock so the example works!
-
-
-# In[11]:
-
-
 class ModelBuilder:
     def start_model(self):
-        self.model = Model()
+        self.model = AdvancedModel()
         self.model.xlim = None
         self.model.ylim = None
 
@@ -325,9 +313,6 @@ class ModelBuilder:
         # have indeed been set.
 
 
-# 
-# 
-# 
 # Inheritance of an Abstract Builder for multiple concrete builders could be used where there might be multiple ways to build models
 # with the same set of calls to the builder: for example a version of the model builder yielding models which can be executed
 # in parallel on a remote cluster.
@@ -335,7 +320,7 @@ class ModelBuilder:
 
 # ### Using a builder
 
-# In[12]:
+# In[11]:
 
 
 builder = ModelBuilder()
@@ -371,30 +356,19 @@ model.simulate()
 
 # ### Strategy pattern example: sunspots
 
-# In[13]:
-
-
-import csv
-from datetime import datetime
-from io import StringIO
-import math
-
-import matplotlib.pyplot as plt
-from numpy import linspace, exp, log, sqrt, array
-from numpy.fft import rfft, fft, fftfreq
-from scipy.interpolate import UnivariateSpline
-from scipy.signal import lombscargle
-from scipy.integrate import cumtrapz
-import requests
-
-
 # 
 # Consider the sequence of sunspot observations:
 # 
 # 
 # 
 
-# In[14]:
+# In[12]:
+
+
+import csv
+from io import StringIO
+
+import requests
 
 
 def load_sunspots():
@@ -406,15 +380,18 @@ def load_sunspots():
             "trim_end": "2018-01-01",
             "sort_order": "asc",
         },
+        timeout=60,
     )
     # Convert requests result to look like a file buffer before reading with CSV
-    data = csv.reader(StringIO(x.text))  
+    data = csv.reader(StringIO(x.text))
     next(data)  # Skip header row
     return [float(row[1]) for row in data]
 
 
-# In[15]:
+# In[13]:
 
+
+import matplotlib.pyplot as plt
 
 spots = load_sunspots()
 plt.plot(spots)
@@ -422,10 +399,12 @@ plt.plot(spots)
 
 # ### Sunspot cycle has periodicity
 
-# In[16]:
+# In[14]:
 
 
-spectrum = rfft(spots)
+import numpy as np
+
+spectrum = np.fft.rfft(spots)
 
 plt.figure()
 plt.plot(abs(spectrum))
@@ -488,14 +467,14 @@ plt.savefig("fixed.png")
 # 
 # 
 
-# In[17]:
+# In[15]:
 
 
 class Series:
     """Enhance NumPy N-d array with some helper functions for clarity"""
 
     def __init__(self, data):
-        self.data = array(data)
+        self.data = np.array(data)
         self.count = self.data.shape[0]
         self.start = self.data[0, 0]
         self.end = self.data[-1, 0]
@@ -513,10 +492,11 @@ class Series:
 # 
 # 
 
-# In[18]:
+# In[16]:
 
 
 from datetime import datetime
+
 
 class AnalyseSunspotData:
     def format_date(self, date):
@@ -527,7 +507,6 @@ class AnalyseSunspotData:
         start_date_str = "1700-12-31"
         end_date_str = "2014-01-01"
         self.start_date = self.format_date(start_date_str)
-        end_date = self.format_date(end_date_str)
         url_base = f"https://www.quandl.com/api/v1/datasets/{csv_file}"
         x = requests.get(
             url_base,
@@ -536,6 +515,7 @@ class AnalyseSunspotData:
                 "trim_end": end_date_str,
                 "sort_order": "asc",
             },
+            timeout=60,
         )
         secs_per_year = (datetime(2014, 1, 1) - datetime(2013, 1, 1)).total_seconds()
         data = csv.reader(StringIO(x.text))
@@ -566,13 +546,13 @@ class AnalyseSunspotData:
 # 
 # 
 
-# In[19]:
+# In[17]:
 
 
 class FourierNearestFrequencyStrategy:
     def transform(self, series):
-        transformed = fft(series.values)[0 : series.count // 2]
-        frequencies = fftfreq(series.count, series.step)[0 : series.count // 2]
+        transformed = np.fft.fft(series.values)[0 : series.count // 2]
+        frequencies = np.fft.fftfreq(series.count, series.step)[0 : series.count // 2]
         return Series(list(zip(frequencies, abs(transformed) / series.count)))
 
 
@@ -582,22 +562,27 @@ class FourierNearestFrequencyStrategy:
 # 
 # 
 
-# In[20]:
+# In[18]:
+
+
+from scipy.interpolate import UnivariateSpline
 
 
 class FourierSplineFrequencyStrategy:
     def next_power_of_two(self, value):
         "Return the next power of 2 above value"
-        return 2 ** (1 + int(log(value) / log(2)))
+        return 2 ** (1 + int(np.log(value) / np.log(2)))
 
     def transform(self, series):
         spline = UnivariateSpline(series.times, series.values)
         # Linspace will give us *evenly* spaced points in the series
         fft_count = self.next_power_of_two(series.count)
-        points = linspace(series.start, series.end, fft_count)
+        points = np.linspace(series.start, series.end, fft_count)
         regular_xs = [spline(point) for point in points]
-        transformed = fft(regular_xs)[0 : fft_count // 2]
-        frequencies = fftfreq(fft_count, series.range / fft_count)[0 : fft_count // 2]
+        transformed = np.fft.fft(regular_xs)[0 : fft_count // 2]
+        frequencies = np.fft.fftfreq(fft_count, series.range / fft_count)[
+            0 : fft_count // 2
+        ]
         return Series(list(zip(frequencies, abs(transformed) / fft_count)))
 
 
@@ -607,21 +592,24 @@ class FourierSplineFrequencyStrategy:
 # 
 # 
 
-# In[21]:
+# In[19]:
 
 
-# Currently this fails with "Invalid call to pythranized function". Investigation needed.
+import math
+from copy import deepcopy
+
+from scipy.signal import lombscargle
+
+
 class LombFrequencyStrategy:
     def transform(self, series):
-        frequencies = array(
-            linspace(1.0 / series.range, 0.5 / series.step, series.count)
+        frequencies = np.array(
+            np.linspace(1.0 / series.range, 0.5 / series.step, series.count)
         )
         result = lombscargle(
-            series.times,
-            series.values,
-            2.0 * math.pi * frequencies
+            deepcopy(series.times), deepcopy(series.values), 2.0 * math.pi * frequencies
         )
-        return Series(list(zip(frequencies, sqrt(result / series.count))))
+        return Series(list(zip(frequencies, np.sqrt(result / series.count))))
 
 
 # 
@@ -630,11 +618,11 @@ class LombFrequencyStrategy:
 # 
 # 
 
-# In[22]:
+# In[20]:
 
 
 fourier_model = AnalyseSunspotData(FourierSplineFrequencyStrategy())
-# lomb_model = AnalyseSunspotData(LombFrequencyStrategy())
+lomb_model = AnalyseSunspotData(LombFrequencyStrategy())
 nearest_model = AnalyseSunspotData(FourierNearestFrequencyStrategy())
 
 
@@ -644,49 +632,49 @@ nearest_model = AnalyseSunspotData(FourierNearestFrequencyStrategy())
 # 
 # 
 
-# In[23]:
+# In[21]:
 
 
-import numpy as np
-import scipy.signal as signal
+from scipy import signal
+
 rng = np.random.default_rng()
 
 nin = 1000
 nout = 100000
 frac_points = 0.9
-A = 2.
-w = 1.
+A = 2.0
+w = 1.0
 phi = 0.5 * np.pi
 
 r = rng.standard_normal(nin)
-x = np.linspace(0.01, 10*np.pi, nin)
+x = np.linspace(0.01, 10 * np.pi, nin)
 x = x[r >= frac_points]
-y = A * np.sin(w*x+phi)
+y = A * np.sin(w * x + phi)
 f = np.linspace(0.01, 10, nout)
 
 pgram = signal.lombscargle(x, y, f, normalize=True)
 
 
-# In[24]:
+# In[22]:
 
 
 comparison = fourier_model.frequency_data().inverse_plot_data + ["r"]
-# comparison += lomb_model.frequency_data().inverse_plot_data + ["g"]
+comparison += lomb_model.frequency_data().inverse_plot_data + ["g"]
 comparison += nearest_model.frequency_data().inverse_plot_data + ["b"]
 
 
-# In[25]:
+# In[23]:
 
 
 deviation = 365 * (
     fourier_model.series.times
-    - linspace(
+    - np.linspace(
         fourier_model.series.start, fourier_model.series.end, fourier_model.series.count
     )
 )
 
 
-# In[26]:
+# In[24]:
 
 
 plt.plot(*comparison)
@@ -695,7 +683,7 @@ plt.xlim(0, 16)
 
 # ### Results: Deviation of year length from average
 
-# In[27]:
+# In[25]:
 
 
 plt.plot(deviation)
@@ -721,10 +709,7 @@ plt.plot(deviation)
 # 
 # This is where we describe our internal logic, rules, etc.
 
-# In[28]:
-
-
-import numpy as np
+# In[26]:
 
 
 class Model:
@@ -744,13 +729,11 @@ class Model:
 # 
 # This is where we describe what the user sees of our Model, what's displayed. You may have different type of visualisation (_e.g._, on one type of projection, a 3D view, a surface view, ...) which can be implemented in different _view_ classes.
 
-# In[29]:
+# In[27]:
 
 
 class View:
     def __init__(self, model):
-        from matplotlib import pyplot as plt
-
         self.figure = plt.figure()
         axes = plt.axes()
         self.model = model
@@ -766,7 +749,7 @@ class View:
 # 
 # This is the class that tells the view that the models has changed and updates the model with any change the user has input through the view.
 
-# In[30]:
+# In[28]:
 
 
 from matplotlib import animation
@@ -788,13 +771,13 @@ class Controller:
         return anim.to_jshtml()
 
 
-# In[31]:
+# In[29]:
 
 
 contl = Controller()
 
 
-# In[32]:
+# In[30]:
 
 
 HTML(contl.go())

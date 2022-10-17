@@ -69,7 +69,7 @@ def request_map_at(lat, long, satellite=True, zoom=12, size=(400, 400)):
         l="sat" if satellite else "map",
         lang="en_US",
     )
-    return requests.get(base, params=params)
+    return requests.get(base, params=params, timeout=60)
 
 
 # In[6]:
@@ -128,6 +128,7 @@ def map_at(*args, **kwargs):
 
 
 from IPython.display import Image
+
 map_png = map_at(*london_location)
 
 
@@ -161,8 +162,9 @@ Image(map_at(*geolocate("New Delhi")))
 
 
 from io import BytesIO  # A library to convert between files and strings
-import numpy as np  # A library to deal with matrices
+
 import imageio  # A library to deal with images, https://pypi.org/project/imageio/
+import numpy as np  # A library to deal with matrices
 
 
 # and then define what we count as green:
@@ -231,7 +233,7 @@ def show_green_in_png(data):
     out = green[:, :, np.newaxis] * np.array([0, 1, 0])[np.newaxis, np.newaxis, :]
 
     buffer = BytesIO()
-    result = imageio.imwrite(buffer, out, format="png")
+    imageio.imwrite(buffer, out, format="png")
     return buffer.getvalue()
 
 

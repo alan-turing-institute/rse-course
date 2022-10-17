@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10.2 Domain specific languages" href="10_02_domain_specific_languages.html" />
+    <link rel="next" title="Exercise Solutions" href="../solutions/index.html" />
     <link rel="prev" title="10.0 Serialising and normalising data" href="10_00_serialisation_and_normalisation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -320,7 +320,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -506,7 +506,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -563,7 +563,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -675,26 +675,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1007,28 +987,6 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#normalising-a-yaml-structure">
    Normalising a YAML structure
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reference-counting">
-     Reference counting
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#binary-file-formats">
-     Binary file formats
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#endian-robust-binary-file-formats">
-     Endian-robust binary file formats
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-higher-level-approach-to-binary-file-formats-hdf5">
-     A higher level approach to binary file formats: HDF5
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -1063,28 +1021,6 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#normalising-a-yaml-structure">
    Normalising a YAML structure
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reference-counting">
-     Reference counting
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#binary-file-formats">
-     Binary file formats
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#endian-robust-binary-file-formats">
-     Endian-robust binary file formats
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-higher-level-approach-to-binary-file-formats-hdf5">
-     A higher level approach to binary file formats: HDF5
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -1098,7 +1034,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="deserialisation">
 <h1>10.1 Deserialisation<a class="headerlink" href="#deserialisation" title="Permalink to this headline">#</a></h1>
-<p><em>Estimated time for this notebook: 20 minutes</em></p>
+<p><em>Estimated time for this notebook: 10 minutes</em></p>
 <p>YAML (a recursive acronym for “YAML Ain’t Markup Language”) is a human-readable data-serialization language.</p>
 <p>We’re going to slightly modify our previous model and look at how to serialise it to YAML.</p>
 <div class="cell docutils container">
@@ -1116,7 +1052,7 @@ title="Print to PDF"
         <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">number</span>
 
     <span class="k">def</span> <span class="nf">to_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">symbol</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span><span class="p">:</span> <span class="n">number</span> <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
 
 <span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
@@ -1274,17 +1210,17 @@ sensible, is horribly <strong>non-normal</strong>.</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">candidate</span><span class="o">.</span><span class="n">items</span><span class="p">())]</span> <span class="o">=</span> <span class="n">m</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">candidate</span><span class="o">.</span><span class="n">items</span><span class="p">())]</span>
 
-    <span class="k">def</span> <span class="nf">parse_system</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">parse_system</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system_dict</span><span class="p">):</span>
+        <span class="n">system</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">system_dict</span><span class="p">:</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
             <span class="n">stoichiometries</span> <span class="o">=</span> <span class="n">reaction</span><span class="p">[</span><span class="s2">&quot;stoichiometries&quot;</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="p">[</span><span class="s2">&quot;reactants&quot;</span><span class="p">]:</span>
                 <span class="n">r</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="p">),</span> <span class="n">stoichiometries</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="p">[</span><span class="s2">&quot;products&quot;</span><span class="p">]:</span>
                 <span class="n">r</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="p">),</span> <span class="n">stoichiometries</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">s</span>
+            <span class="n">system</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">system</span>
 </pre></div>
 </div>
 </div>
@@ -1321,9 +1257,9 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C&#39;: &lt;__main__.Element at 0x7fad80ff6fa0&gt;,
- &#39;H&#39;: &lt;__main__.Element at 0x7fad80ff6c40&gt;,
- &#39;O&#39;: &lt;__main__.Element at 0x7fad80ff6d00&gt;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C&#39;: &lt;__main__.Element at 0x7f3fa46b8130&gt;,
+ &#39;H&#39;: &lt;__main__.Element at 0x7f3fa46b81f0&gt;,
+ &#39;O&#39;: &lt;__main__.Element at 0x7f3fa46b8250&gt;}
 </pre></div>
 </div>
 </div>
@@ -1335,11 +1271,11 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{((&#39;C&#39;, 6), (&#39;H&#39;, 12), (&#39;O&#39;, 6)): &lt;__main__.Molecule at 0x7fad80ff6e80&gt;,
- ((&#39;O&#39;, 2),): &lt;__main__.Molecule at 0x7fad80ff6910&gt;,
- ((&#39;C&#39;, 1), (&#39;O&#39;, 2)): &lt;__main__.Molecule at 0x7fad80ff6f40&gt;,
- ((&#39;H&#39;, 2), (&#39;O&#39;, 1)): &lt;__main__.Molecule at 0x7fad80ff6e50&gt;,
- ((&#39;H&#39;, 2),): &lt;__main__.Molecule at 0x7fad90093160&gt;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{((&#39;C&#39;, 6), (&#39;H&#39;, 12), (&#39;O&#39;, 6)): &lt;__main__.Molecule at 0x7f3fa46b8100&gt;,
+ ((&#39;O&#39;, 2),): &lt;__main__.Molecule at 0x7f3fa46b8370&gt;,
+ ((&#39;C&#39;, 1), (&#39;O&#39;, 2)): &lt;__main__.Molecule at 0x7f3fa46b8340&gt;,
+ ((&#39;H&#39;, 2), (&#39;O&#39;, 1)): &lt;__main__.Molecule at 0x7f3fa46b8400&gt;,
+ ((&#39;H&#39;, 2),): &lt;__main__.Molecule at 0x7f3fa46b8610&gt;}
 </pre></div>
 </div>
 </div>
@@ -1457,9 +1393,9 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>elements:
+- C
 - O
 - H
-- C
 molecules:
   C1O2:
     C: 1
@@ -1601,624 +1537,6 @@ reactions:
 </div>
 </div>
 </div>
-<section id="reference-counting">
-<h2>Reference counting<a class="headerlink" href="#reference-counting" title="Permalink to this headline">#</a></h2>
-<p>The above approach of using a dictionary to determine the integer keys
-for objects is a bit clunky.</p>
-<p>Another good approach is to use counted objects either via a static member or by using a factory pattern:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-
-
-<span class="k">class</span> <span class="nc">Molecule</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from element to number of that element in the molecule</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-
-    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">number</span>
-
-    <span class="k">def</span> <span class="nf">to_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">symbol</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">}</span>
-
-
-<span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from reactants to stoichiometries</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from products to stoichiometries</span>
-
-    <span class="k">def</span> <span class="nf">add_reactant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">[</span><span class="n">reactant</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
-
-    <span class="k">def</span> <span class="nf">add_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
-
-    <span class="k">def</span> <span class="nf">to_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">],</span>
-            <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">],</span>
-            <span class="s2">&quot;stoichiometries&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-            <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
-        <span class="p">}</span>
-
-
-<span class="k">class</span> <span class="nc">System</span><span class="p">:</span>  <span class="c1"># This will be our factory</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
-        <span class="n">new_element</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_element</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new_element</span>
-
-    <span class="k">def</span> <span class="nf">add_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">new_molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_molecule</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new_molecule</span>
-
-    <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">new_reaction</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_reaction</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new_reaction</span>
-
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;elements&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">],</span>
-            <span class="s2">&quot;molecules&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="n">molecule</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="n">element</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">number</span> <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;reactions&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="n">reactant</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">stoich</span>
-                        <span class="k">for</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="p">},</span>
-                    <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="n">product</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">stoich</span>
-                        <span class="k">for</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="p">},</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span>
-            <span class="p">],</span>
-        <span class="p">}</span>
-
-        <span class="k">return</span> <span class="n">result</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
-<span class="n">o</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
-
-<span class="n">co2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-<span class="n">h2o</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="n">o2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">o2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-<span class="n">h2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">h2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-<span class="n">glucose</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-
-<span class="n">combustion_glucose</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">()</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">glucose</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">co2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">combustion_hydrogen</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">()</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;elements&#39;: [&#39;C&#39;, &#39;O&#39;, &#39;H&#39;],
- &#39;molecules&#39;: {0: {0: 1, 1: 2},
-  1: {2: 2, 1: 1},
-  2: {1: 2},
-  3: {2: 2},
-  4: {0: 6, 2: 12, 1: 6}},
- &#39;reactions&#39;: [{&#39;reactants&#39;: {4: 1, 2: 6}, &#39;products&#39;: {0: 6, 1: 6}},
-  {&#39;reactants&#39;: {3: 2, 2: 1}, &#39;products&#39;: {1: 2}}]}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">s2</span><span class="o">.</span><span class="n">save</span><span class="p">()))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>elements:
-- C
-- O
-- H
-molecules:
-  0:
-    0: 1
-    1: 2
-  1:
-    1: 1
-    2: 2
-  2:
-    1: 2
-  3:
-    2: 2
-  4:
-    0: 6
-    1: 6
-    2: 12
-reactions:
-- products:
-    0: 6
-    1: 6
-  reactants:
-    2: 6
-    4: 1
-- products:
-    1: 2
-  reactants:
-    2: 1
-    3: 2
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="binary-file-formats">
-<h2>Binary file formats<a class="headerlink" href="#binary-file-formats" title="Permalink to this headline">#</a></h2>
-<p>Now we’re getting toward a numerically-based data structure, using integers for object keys, we should think about binary serialisation.</p>
-<p>Binary file formats are much smaller than human-readable text based formats, so important when handling really big datasets.</p>
-<p>One can compress a textual file format, of course, and with good compression algorithms this will be similar in size to the binary file. (C.f. discussions of Shannon information density!) However, this has performance implications.</p>
-<p>A hand-designed binary format is fast and small, at the loss of human readability.</p>
-<p>The problem with binary file formats, is that, lacking complex data structures, one needs to supply the <em>length</em> of an item before that item:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FakeBinarySavingSystem</span><span class="p">:</span>
-    <span class="c1"># Pretend binary-style writing to a list to make it easier to read at first.</span>
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
-
-        <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">molecules</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-                <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-
-        <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">reactions</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span><span class="p">:</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reactant</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-                <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stoich</span><span class="p">)</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-                <span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stoich</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
-
-<span class="n">arraybuffer</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">FakeBinarySavingSystem</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">arraybuffer</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arraybuffer</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3,
- &#39;C&#39;,
- &#39;O&#39;,
- &#39;H&#39;,
- 5,
- 2,
- 0,
- 1,
- 1,
- 2,
- 2,
- 2,
- 2,
- 1,
- 1,
- 1,
- 1,
- 2,
- 1,
- 2,
- 2,
- 3,
- 0,
- 6,
- 2,
- 12,
- 1,
- 6,
- 2,
- 2,
- 4,
- 1,
- 2,
- 6,
- 2,
- 0,
- 6,
- 1,
- 6,
- 2,
- 3,
- 2,
- 2,
- 1,
- 1,
- 1,
- 2]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Deserialisation is left <strong>as an exercise for the reader</strong> :).</p>
-</section>
-<section id="endian-robust-binary-file-formats">
-<h2>Endian-robust binary file formats<a class="headerlink" href="#endian-robust-binary-file-formats" title="Permalink to this headline">#</a></h2>
-<p>Having prepared our data as a sequence of data which can be recorded in a single byte,
-we might think a binary file format on disk is as simple as saving
-each number in one byte:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, turn symbol characters to equivalent integers (ascii)</span>
-<span class="n">intarray</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arraybuffer</span><span class="p">]</span>
-<span class="n">intarray</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3,
- 67,
- 79,
- 72,
- 5,
- 2,
- 0,
- 1,
- 1,
- 2,
- 2,
- 2,
- 2,
- 1,
- 1,
- 1,
- 1,
- 2,
- 1,
- 2,
- 2,
- 3,
- 0,
- 6,
- 2,
- 12,
- 1,
- 6,
- 2,
- 2,
- 4,
- 1,
- 2,
- 6,
- 2,
- 0,
- 6,
- 1,
- 6,
- 2,
- 3,
- 2,
- 2,
- 1,
- 1,
- 1,
- 2]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bytearray</span><span class="p">(</span><span class="n">intarray</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bytearray(b&#39;\x03COH\x05\x02\x00\x01\x01\x02\x02\x02\x02\x01\x01\x01\x01\x02\x01\x02\x02\x03\x00\x06\x02\x0c\x01\x06\x02\x02\x04\x01\x02\x06\x02\x00\x06\x01\x06\x02\x03\x02\x02\x01\x01\x01\x02&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.mol&quot;</span><span class="p">,</span> <span class="s2">&quot;bw&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">binfile</span><span class="p">:</span>
-    <span class="n">binfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">intarray</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>However, this misses out on an unfortunate problem if we end up with large enough numbers to need more than one byte per integer, or we want to represent floats: different computer designs but the most-significant bytes of a multi-byte integer or float at the beginning or
-end (‘big endian’ or ‘little endian’ data).</p>
-<p>To get around this, we need to use a portable standard for making binary files.</p>
-<p>One possible choice is <strong>XDR</strong> (standing for eXternal Data Representation). XDR is a standard data serialization format that accounts for endian differences between systems.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xdrlib</span>
-
-
-<span class="k">class</span> <span class="nc">XDRSavingSystem</span><span class="p">(</span><span class="n">System</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
-        <span class="c1"># Shallow Copy constructor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">elements</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">molecules</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">xdrlib</span><span class="o">.</span><span class="n">Packer</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">_pack_pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_int</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_int</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">_pack_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_pair</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_pack_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaction</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_pair</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_pair</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">el_symbols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
-        <span class="c1"># Note that pack_array AUTOMATICALLY packs the length of the array first!</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="n">el_symbols</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_string</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_molecule</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pack_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_reaction</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xdrsys</span> <span class="o">=</span> <span class="n">XDRSavingSystem</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xdrbuffer</span> <span class="o">=</span> <span class="n">xdrsys</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="n">xdrbuffer</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x00\x00\x00\x03\x00\x00\x00\x01C\x00\x00\x00\x00\x00\x00\x01O\x00\x00\x00\x00\x00\x00\x01H\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x02\x00\x00\x00\x0c\x00\x00\x00\x01\x00\x00\x00\x06\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x04\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x06\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x01\x00\x00\x00\x06\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x02&#39;
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="a-higher-level-approach-to-binary-file-formats-hdf5">
-<h2>A higher level approach to binary file formats: HDF5<a class="headerlink" href="#a-higher-level-approach-to-binary-file-formats-hdf5" title="Permalink to this headline">#</a></h2>
-<p>This was quite painful. We’ve shown you it because it is very likely
-you will encounter this kind of unpleasant binary file format in your work.</p>
-<p>However, the recommended approach to building binary file formats is to use HDF5 (Hierarchical Data Format), a much higher level binary file format.</p>
-<p>HDF5’s approach requires you to represent your system in terms of high-dimensional matrices, like NumPy arrays.
-It then saves these, and handles all the tedious number-of-field management for you.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<span class="k">class</span> <span class="nc">HDF5SavingSystem</span><span class="p">(</span><span class="n">System</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
-        <span class="c1"># Shallow Copy constructor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">elements</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">molecules</span>
-
-    <span class="k">def</span> <span class="nf">element_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">molecule_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">molecule_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">molecule_matrix</span><span class="p">[</span><span class="n">element</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">molecule</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
-
-        <span class="k">return</span> <span class="n">molecule_matrix</span>
-
-    <span class="k">def</span> <span class="nf">reaction_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">reaction_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
-            <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span>
-        <span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">reaction_matrix</span><span class="p">[</span><span class="n">reactant</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">n</span>
-
-            <span class="k">for</span> <span class="n">product</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">reaction_matrix</span><span class="p">[</span><span class="n">product</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
-
-        <span class="k">return</span> <span class="n">reaction_matrix</span>
-
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-        <span class="n">hdf</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
-        <span class="n">string_type</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">special_dtype</span><span class="p">(</span><span class="n">vlen</span><span class="o">=</span><span class="nb">bytes</span><span class="p">)</span>
-        <span class="n">hdf</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
-            <span class="s2">&quot;symbols&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="n">string_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_symbols</span><span class="p">()</span>
-        <span class="p">)</span>
-        <span class="n">hdf</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;molecules&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">molecule_matrix</span><span class="p">())</span>
-        <span class="n">hdf</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;reactions&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reaction_matrix</span><span class="p">())</span>
-        <span class="n">hdf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saver</span> <span class="o">=</span> <span class="n">HDF5SavingSystem</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">element_symbols</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[b&#39;C&#39;, b&#39;O&#39;, b&#39;H&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">molecule_matrix</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1,  0,  0,  0,  6],
-       [ 2,  1,  2,  0,  6],
-       [ 0,  2,  0,  2, 12]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">reaction_matrix</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 6,  0],
-       [ 6,  2],
-       [-6, -1],
-       [ 0, -2],
-       [-1,  0]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saver</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;foo.hdf5&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that this binary representation is <em>not</em> human readable at all.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-# Read the first 100 characters from the file
-head -c 100 foo.hdf5
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-7&#39; coro=&lt;ScriptMagics.shebang.&lt;locals&gt;._handle_stream() done, defined at /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/script.py:211&gt; exception=UnicodeDecodeError(&#39;utf-8&#39;, b&#39;\x89HDF\r\n&#39;, 0, 1, &#39;invalid start byte&#39;)&gt;
-Traceback (most recent call last):
-  File &quot;/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/script.py&quot;, line 213, in _handle_stream
-    line = (await stream.readline()).decode(&quot;utf8&quot;)
-UnicodeDecodeError: &#39;utf-8&#39; codec can&#39;t decode byte 0x89 in position 0: invalid start byte
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span>
-
-<span class="n">hdf_load</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;foo.hdf5&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hdf_load</span><span class="p">[</span><span class="s2">&quot;reactions&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 6,  0],
-       [ 6,  2],
-       [-6, -1],
-       [ 0, -2],
-       [-1,  0]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Using a <code class="docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">matrix</span></code> storage would be even better here, but we don’t have time for that!</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2255,10 +1573,10 @@ UnicodeDecodeError: &#39;utf-8&#39; codec can&#39;t decode byte 0x89 in position
             <p class="prev-next-title">10.0 Serialising and normalising data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="10_02_domain_specific_languages.html" title="next page">
+    <a class='right-next' id="next-link" href="../solutions/index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">10.2 Domain specific languages</p>
+        <p class="prev-next-title">Exercise Solutions</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

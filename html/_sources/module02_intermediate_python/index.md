@@ -10,19 +10,19 @@
 
 ## Contents
 
-- 2.0 Comprehensions (10 minutes)
-- 2.1 Functions (15 minutes)
-- 2.2 Using Libraries (5 minutes)
-- 2.3 Defining your own classes (20 minutes)
-- 2.4 Working with files (15 minutes)
-- 2.5 Getting data from the Internet (10 minutes)
-- 2.6 Bringing it all together (20 minutes)
+- [2.0 Comprehensions](02_00_comprehensions.ipynb) (10 minutes)
+- [2.1 Functions](02_01_functions.ipynb) (15 minutes)
+- [2.2 Using Libraries](02_02_using_libraries.ipynb) (5 minutes)
+- [2.3 Defining your own classes](02_03_defining_classes.ipynb) (20 minutes)
+- [2.4 Working with files](02_04_working_with_files.ipynb) (15 minutes)
+- [2.5 Getting data from the Internet](02_05_getting_data_from_the_internet.ipynb) (10 minutes)
+- [2.6 Bringing it all together](02_06_bringing_it_together.ipynb) (20 minutes)
 
 **Total time:** 1 hr 35 minutes
 
 ## Exercises
 
-Classroom exercises are grouped together in module `2.7 Classroom Exercises`.
+Classroom exercises are grouped together at the end of the module: [2.7 Classroom Exercises](02_07_classroom_exercises.ipynb).
 Each exercise is labelled with any sections whose contents are relevant.
 We recommend that instructors schedule the exercises to be done in groups during breaks in the taught content.
 However, it is **important** that participants also have some time away from their screens.

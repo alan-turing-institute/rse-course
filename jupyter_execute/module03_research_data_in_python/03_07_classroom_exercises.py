@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Classroom Exercises
+# ## 3.7 Classroom Exercises
 
 # **List of exercises and estimated completion times**
 # 
@@ -70,6 +70,7 @@ quakes = requests.get(
         "endtime": "2021-01-19",
         "orderby": "time-asc",
     },
+    timeout=60,
 )
 
 

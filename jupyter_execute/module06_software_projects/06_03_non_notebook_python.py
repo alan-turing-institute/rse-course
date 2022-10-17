@@ -38,7 +38,6 @@ greet("James", "Hetherington")
 
 import greeter  # note that you don't include the .py extension
 
-
 print(greeter.greet("James", "Hetherington"))
 
 
@@ -48,7 +47,6 @@ print(greeter.greet("James", "Hetherington"))
 
 
 from greeter import greet
-
 
 print(greet("James", "Hetherington"))
 

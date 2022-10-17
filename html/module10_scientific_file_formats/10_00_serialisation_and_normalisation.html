@@ -322,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -508,7 +508,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -565,7 +565,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -677,26 +677,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="10_01_deserialisation.html">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1118,8 +1098,8 @@ title="Print to PDF"
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">+</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">as_subscript</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">])</span>
-                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">+</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">as_subscript</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="p">]</span>
         <span class="p">)</span>
 
@@ -1139,8 +1119,7 @@ title="Print to PDF"
     <span class="k">def</span> <span class="nf">print_if_not_one</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">side_as_string</span><span class="p">(</span><span class="n">side</span><span class="p">):</span>
@@ -1212,7 +1191,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">display</span>
 
 <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">combustion</span><span class="p">)))</span>
 </pre></div>
@@ -1400,7 +1379,7 @@ right across our thinking about data representation, whether these are dataframe
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Removing database to start again from scratch
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No DB since this notebook was last run
 </pre></div>
 </div>
 </div>
@@ -1418,7 +1397,7 @@ right across our thinking about data representation, whether these are dataframe
 <p>The metadata for the database describing the tables present, and their columns, is defined in Python using SQLAlchemy, the leading python database tool, thus:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">ForeignKey</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Table</span>
 
 <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
 <span class="n">molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
@@ -1437,10 +1416,34 @@ right across our thinking about data representation, whether these are dataframe
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="s2">&quot;molecules&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">metadata</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;mass&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">),</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">atoms</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="s2">&quot;atoms&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">metadata</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;symbol&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="ne">---&gt; </span><span class="mi">15</span>     <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;Integer&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms_in_molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Integer</span>
+
+<span class="n">atoms_in_molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
     <span class="s2">&quot;atoms_molecules&quot;</span><span class="p">,</span>
     <span class="n">metadata</span><span class="p">,</span>
     <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;atom&quot;</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;atoms.symbol&quot;</span><span class="p">)),</span>
@@ -1459,68 +1462,38 @@ right across our thinking about data representation, whether these are dataframe
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,742 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,743 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;molecules&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,744 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,745 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;molecules&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,746 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,747 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,748 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,749 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,750 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,751 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms_molecules&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,756 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,757 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms_molecules&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,758 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,759 INFO sqlalchemy.engine.Engine 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-08-04 13:31:53,552 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2021-08-04 13:31:53,553 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;molecules&quot;)
+2021-08-04 13:31:53,555 INFO sqlalchemy.engine.Engine [raw sql] ()
+2021-08-04 13:31:53,558 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;molecules&quot;)
+2021-08-04 13:31:53,560 INFO sqlalchemy.engine.Engine [raw sql] ()
+2021-08-04 13:31:53,563 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms&quot;)
+2021-08-04 13:31:53,566 INFO sqlalchemy.engine.Engine [raw sql] ()
+2021-08-04 13:31:53,568 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms&quot;)
+2021-08-04 13:31:53,570 INFO sqlalchemy.engine.Engine [raw sql] ()
+2021-08-04 13:31:53,572 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms_molecules&quot;)
+2021-08-04 13:31:53,573 INFO sqlalchemy.engine.Engine [raw sql] ()
+2021-08-04 13:31:53,574 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms_molecules&quot;)
+2021-08-04 13:31:53,575 INFO sqlalchemy.engine.Engine [raw sql] ()
+2021-08-04 13:31:53,577 INFO sqlalchemy.engine.Engine 
 CREATE TABLE molecules (
 	name VARCHAR NOT NULL, 
 	mass FLOAT, 
 	PRIMARY KEY (name)
 )
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,760 INFO sqlalchemy.engine.Engine [no key 0.00102s] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,764 INFO sqlalchemy.engine.Engine 
+
+
+2021-08-04 13:31:53,578 INFO sqlalchemy.engine.Engine [no key 0.00094s] ()
+2021-08-04 13:31:53,588 INFO sqlalchemy.engine.Engine 
 CREATE TABLE atoms (
 	symbol VARCHAR NOT NULL, 
 	number INTEGER, 
 	PRIMARY KEY (symbol)
 )
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,765 INFO sqlalchemy.engine.Engine [no key 0.00079s] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,769 INFO sqlalchemy.engine.Engine 
+
+
+2021-08-04 13:31:53,589 INFO sqlalchemy.engine.Engine [no key 0.00143s] ()
+2021-08-04 13:31:53,596 INFO sqlalchemy.engine.Engine 
 CREATE TABLE atoms_molecules (
 	atom VARCHAR, 
 	molecule VARCHAR, 
@@ -1528,15 +1501,11 @@ CREATE TABLE atoms_molecules (
 	FOREIGN KEY(atom) REFERENCES atoms (symbol), 
 	FOREIGN KEY(molecule) REFERENCES molecules (name)
 )
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,770 INFO sqlalchemy.engine.Engine [no key 0.00069s] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-14 09:56:19,774 INFO sqlalchemy.engine.Engine COMMIT
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MetaData()
+
+
+2021-08-04 13:31:53,601 INFO sqlalchemy.engine.Engine [no key 0.00410s] ()
+2021-08-04 13:31:53,613 INFO sqlalchemy.engine.Engine COMMIT
+MetaData()
 </pre></div>
 </div>
 </div>
@@ -1573,7 +1542,7 @@ CREATE TABLE atoms_molecules (
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x7f48e42cd310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x113546610&gt;
 </pre></div>
 </div>
 </div>
@@ -1608,7 +1577,7 @@ CREATE TABLE atoms_molecules (
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x7f48d467a520&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x113563410&gt;
 </pre></div>
 </div>
 </div>
@@ -1674,8 +1643,8 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
 
 <span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
 
@@ -1924,9 +1893,8 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-
-<span class="n">atoms</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;atoms.csv&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;atoms.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_csv</span><span class="p">:</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f_csv</span><span class="p">)</span>
 <span class="n">atoms</span>
 </pre></div>
 </div>
@@ -1972,11 +1940,6 @@ relations while many-to-many join tables often represent aggregation relationshi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;atoms&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">bind</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
 </pre></div>
 </div>
 </div>

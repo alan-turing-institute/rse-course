@@ -44,7 +44,7 @@ get_ipython().run_cell_magic('bash', '', 'pwd\nrm -rf github-example # cleanup a
 
 # Next, the collaborator needs to find out the URL of the repository: they should go to the leader's repository's GitHub page, and note the URL on the top of the screen.
 # 
-# As before, we're using `SSH` to connect - to do this you'll need to make sure the `ssh` button is pushed, and check that the URL begins with `git@github.com`. 
+# As before, we're using `SSH` to connect - to do this you'll need to make sure the `ssh` button is pushed, and check that the URL begins with `git@github.com`.
 # 
 # Copy the URL into your clipboard by clicking on the icon to the right of the URL, and then:
 
@@ -472,22 +472,22 @@ participant Jim as J
 
 note left of S: edit the same line in wales.md
 note right of J: edit the same line in wales.md
-    
+
 note left of S: git commit -am "update wales.md"
 S->SR: add commit to local repo
-    
+
 note right of J: git commit -am "update wales.md"
 J->JR: add commit to local repo
-    
+
 note left of S: git push
 SR->M: transfer commit to remote
-    
+
 note right of J: git push
 JR->M: !Rejected
 
 note right of J: git pull
 M->J: Make conflicted file with conflict markers
-    
+
 note right of J: edit file to resolve conflicts
 note right of J: git add wales.md
 note right of J: git commit
@@ -498,7 +498,7 @@ JR->M: Transfer merged history to remote
 
 note left of S: git pull
 M->SR: Download Jim's resolution of conflict.
-    
+
 """
 
 wsd(message)
@@ -537,9 +537,9 @@ wsd(message)
 
 # ## GitHub as a social network
 # 
-# In addition to being a repository for code, and a way to publish code, GitHub is a social network.  
+# In addition to being a repository for code, and a way to publish code, GitHub is a social network.
 # 
-# You can follow the public work of other coders: go to the profile of your collaborator in your browser, and hit the "follow" button. 
+# You can follow the public work of other coders: go to the profile of your collaborator in your browser, and hit the "follow" button.
 # 
 # [Here's mine](https://github.com/jamespjh) : if you want to you can follow me.
 # 

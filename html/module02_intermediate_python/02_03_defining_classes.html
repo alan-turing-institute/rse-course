@@ -320,7 +320,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
-     Classroom Exercises
+     3.7 Classroom Exercises
     </a>
    </li>
   </ul>
@@ -506,7 +506,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
-     Exercise: Packaging Troll Treasure
+     6.9 Exercise: Packaging Troll Treasure
     </a>
    </li>
   </ul>
@@ -563,7 +563,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
-     Exercise: Refactoring The Bad Boids
+     7.8 Exercise: Refactoring The Bad Boids
     </a>
    </li>
   </ul>
@@ -675,26 +675,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
      10.1 Deserialisation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_02_domain_specific_languages.html">
-     10.2 Domain specific languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     10.3 Markup Languages
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_04_controlled_vocabularies.html">
-     10.4 Saying the same thing in multiple ways
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_05_semantic_models.html">
-     10.5 Semantic file formats
     </a>
    </li>
   </ul>
@@ -1360,11 +1340,7 @@ constructors.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">delete_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">destination</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">destination</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
         <span class="n">destination</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="s2">&quot;</span><span class="si">{some}</span><span class="s2"> goes </span><span class="si">{action}</span><span class="s2"> to the </span><span class="si">{where}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">some</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">exit</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">destination</span><span class="o">.</span><span class="n">name</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> goes </span><span class="si">{</span><span class="n">exit</span><span class="si">}</span><span class="s2"> to the </span><span class="si">{</span><span class="n">destination</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">wander</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">exit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">random_valid_exit</span><span class="p">()</span>
@@ -1446,27 +1422,28 @@ constructors.</p>
 garden: Sue Clare
 bedroom: Bob
 
-James goes outside to the garden
+James goes north to the kitchen
 Sue goes inside to the livingroom
 Clare goes inside to the livingroom
 Bob goes jump to the garden
 
 livingroom: Sue Clare
-garden: James Bob
+kitchen: James
+garden: Bob
 
-Sue goes north to the kitchen
+Sue goes upstairs to the bedroom
 Clare goes outside to the garden
-James goes inside to the livingroom
+James goes south to the livingroom
 Bob goes inside to the livingroom
 
 livingroom: James Bob
-kitchen: Sue
 garden: Clare
+bedroom: Sue
 
-James goes outside to the garden
+James goes north to the kitchen
 Bob goes outside to the garden
-Sue goes south to the livingroom
 Clare goes inside to the livingroom
+Sue goes downstairs to the livingroom
 </pre></div>
 </div>
 </div>
@@ -1560,11 +1537,7 @@ we can use arrays instead of dictionaries, but we have to first define all our r
         <span class="n">destination</span> <span class="o">=</span> <span class="n">exit</span><span class="o">.</span><span class="n">target</span>
         <span class="n">destination</span><span class="o">.</span><span class="n">occupancy</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="n">destination</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="s2">&quot;</span><span class="si">{some}</span><span class="s2"> goes </span><span class="si">{action}</span><span class="s2"> to the </span><span class="si">{where}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">some</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">exit</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">destination</span><span class="o">.</span><span class="n">name</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{self.name}</span><span class="s2"> goes </span><span class="si">{exit.name}</span><span class="s2"> to the </span><span class="si">{destination.name}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">wander</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">exit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">random_valid_exit</span><span class="p">()</span>
@@ -1572,7 +1545,7 @@ we can use arrays instead of dictionaries, but we have to first define all our r
             <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{who}</span><span class="s2"> is in the </span><span class="si">{where}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">who</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is in the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1657,28 +1630,28 @@ Sue is in the garden
 Bob is in the bedroom
 Clare is in the garden
 
-James goes north to the kitchen
-Sue goes inside to the livingroom
-Bob goes jump to the garden
-Clare goes inside to the livingroom
+{self.name} goes {exit.name} to the {destination.name}
+{self.name} goes {exit.name} to the {destination.name}
+{self.name} goes {exit.name} to the {destination.name}
+{self.name} goes {exit.name} to the {destination.name}
 
 James is in the kitchen
 Sue is in the livingroom
 Bob is in the garden
 Clare is in the livingroom
 
-Sue goes outside to the garden
-Bob goes inside to the livingroom
-Clare goes upstairs to the bedroom
+{self.name} goes {exit.name} to the {destination.name}
+{self.name} goes {exit.name} to the {destination.name}
+{self.name} goes {exit.name} to the {destination.name}
 
 James is in the kitchen
 Sue is in the garden
 Bob is in the livingroom
 Clare is in the bedroom
 
-James goes south to the livingroom
-Bob goes north to the kitchen
-Clare goes jump to the garden
+{self.name} goes {exit.name} to the {destination.name}
+{self.name} goes {exit.name} to the {destination.name}
+{self.name} goes {exit.name} to the {destination.name}
 </pre></div>
 </div>
 </div>

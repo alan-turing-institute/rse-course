@@ -202,8 +202,8 @@ sum(fib_iterator(1000))
 # In[19]:
 
 
-from numpy import array
 from matplotlib import pyplot as plt
+from numpy import array
 
 
 class MyImage:
@@ -457,7 +457,7 @@ with verbose_context("Monty") as shouty:
 def repeat(func):
     def _repeated(x):
         return func(func(x))
-    
+
     return _repeated
 
 
@@ -546,6 +546,9 @@ hello("Cleese")
 # In[43]:
 
 
+import os
+
+
 def assert_exemplar(**fixture):
     answer = fixture.pop("answer")
     assert_equal(greet(**fixture), answer)
@@ -555,10 +558,9 @@ def test_greeter():
     with open(
         os.path.join(os.path.dirname(__file__), "fixtures", "samples.yaml")
     ) as fixtures_file:
-        fixtures = yaml.load(fixtures_file)
+        fixtures = yaml.safe_load(fixtures_file)
 
         for fixture in fixtures:
-
             yield assert_exemplar(**fixture)
 
 
@@ -581,9 +583,6 @@ with raises(AttributeError):
 # We can now see how `pytest` might have implemented this:
 
 # In[45]:
-
-
-from contextlib import contextmanager
 
 
 @contextmanager
@@ -644,10 +643,10 @@ def homemade_skip_decorator(skip):
             # that just prints a message
             def do_nothing(*args):
                 print("test was skipped")
+
             return do_nothing
-        else:
-            # otherwise use the original function as normal
-            return func
+        # otherwise use the original function as normal
+        return func
 
     return wrap_function
 
@@ -658,7 +657,7 @@ def homemade_skip_decorator(skip):
 @homemade_skip_decorator(3.9 < 4.0)
 def test_skipped():
     raise RuntimeError("This test is skipped")
-    
+
 
 test_skipped()
 

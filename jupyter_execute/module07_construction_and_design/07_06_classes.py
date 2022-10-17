@@ -176,7 +176,7 @@ print(MyClass().__private_data)  # Generates error
 
 class Person:
     def __init__(self):
-        self.name = "Graham Chapman"
+        self.name = "John Watson"
 
 
 Person().name
@@ -195,8 +195,8 @@ Person().name
 
 class Person:
     def __init__(self):
-        self._first = "Graham"
-        self._second = "Chapman"
+        self._first = "John"
+        self._second = "Watson"
 
     @property
     def name(self):
@@ -225,7 +225,7 @@ Person().name
 
 class Person:
     def __init__(self):
-        self._name = "Graham Chapman"
+        self._name = "John Watson"
 
     def name(self):  # an access function
         return self._name
@@ -244,34 +244,34 @@ Person().name()
 
 class Person:
     def __init__(self, first, second):
-        self._first = first
-        self._second = second
-        self.name = f"{self._first} {self._second}"
+        self._first_ = first
+        self._second_ = second
+        self.name = f"{self._first_} {self._second_}"
 
     def get_married(self, to):
-        self._second = f"{self._second}-{to._second}" 
+        self._second_ = f"{self._second_}-{to._second_}"
 
 
 # In[14]:
 
 
-graham = Person("Graham", "Chapman")
-graham.name
+john = Person("John", "Watson")
+john.name
 
 
 # In[15]:
 
 
-david = Person("David", "Sherlock")
-graham.get_married(david)
+sherlock = Person("Sherlock", "Holmes")
+john.get_married(sherlock)
 
-graham._second
+john._second_
 
 
 # In[16]:
 
 
-graham.name  # Not Graham Chapman-Sherlock?
+john.name  # Not John Watson-Holmes?
 
 
 # This type of situation could makes that the object data structure gets inconsistent with itself. Making variables being out of sync with other variables. Each piece of information should only be stored in once place! In this case, `name` should be calculated each time it's required as previously shown.
@@ -647,10 +647,11 @@ class Animal:
     def noise(self):
         if self.animal_kind == "Dog":
             return "Bark"
-        elif self.animal_kind == "Cat":
+        if self.animal_kind == "Cat":
             return "Miaow"
-        elif self.animal_kind == "Cow":
+        if self.animal_kind == "Cow":
             return "Moo"
+        return "Growl"
 
 
 # which is better replaced by the code above.

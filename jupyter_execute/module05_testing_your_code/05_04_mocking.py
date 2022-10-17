@@ -31,7 +31,6 @@
 
 from unittest.mock import Mock
 
-
 function = Mock(name="myroutine", return_value=2)
 
 
@@ -117,7 +116,7 @@ def map_at(lat, long, satellite=False, zoom=12, size=(400, 400)):
         l="sat" if satellite else "map",
         lang="en_US",
     )
-    return requests.get(base, params=params)
+    return requests.get(base, params=params, timeout=60)
 
 
 # In[11]:
@@ -154,7 +153,7 @@ with patch.object(requests, "get") as mock_get:
 
 def test_build_default_params():
     with patch.object(requests, "get") as mock_get:
-        default_map = map_at(51.0, 0.0)
+        map_at(51.0, 0.0)
         mock_get.assert_called_with(
             "https://static-maps.yandex.ru/1.x/?",
             params={
@@ -164,6 +163,7 @@ def test_build_default_params():
                 "l": "map",
                 "lang": "en_US",
             },
+            timeout=60,
         )
 
 

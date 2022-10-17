@@ -48,7 +48,7 @@ def extend(class_to_extend):
 class Term:
     def __init__(self, symbols=[], powers=[], coefficient=1):
         self.coefficient = coefficient
-        self.data = {symbol: exponent for symbol, exponent in zip(symbols, powers)}
+        self.data = dict(zip(symbols, powers))
 
 
 # In[3]:
@@ -124,7 +124,7 @@ class Term:
 
     def from_lists(self, symbols=[], powers=[], coefficient=1):
         self.coefficient = coefficient
-        self.data = {symbol: exponent for symbol, exponent in zip(symbols, powers)}
+        self.data = dict(zip(symbols, powers))
 
 
 # In[6]:
@@ -165,11 +165,11 @@ class Term:
         others = map(Term, others)
 
         for another in others:
-            for symbol, exponent in another.data.items():
+            for symbol, power in another.data.items():
                 if symbol in result_data:
-                    result_data[symbol] += another.data[symbol]
+                    result_data[symbol] += power  # add the powers together
                 else:
-                    result_data[symbol] = another.data[symbol]
+                    result_data[symbol] = power
             result_coeff *= another.coefficient
 
         return Term(result_data, result_coeff)
@@ -206,8 +206,8 @@ class Expression:
 x = Term("x")
 y = Term("y")
 
-first = Term(5).multiply(Term("x"), Term("x"), Term("y"))
-second = Term(7).multiply(Term("x"))
+first = Term(5).multiply(x, x, y)
+second = Term(7).multiply(x)
 third = Term(2)
 expr = first.add(second, third)
 
@@ -344,8 +344,7 @@ class Term:
         def symbol_string(symbol, power):
             if power == 1:
                 return symbol
-            else:
-                return f"{symbol}^{power}"
+            return f"{symbol}^{power}"
 
         symbol_strings = [
             symbol_string(symbol, power) for symbol, power in self.data.items()
@@ -357,8 +356,7 @@ class Term:
             return str(self.coefficient)
         if self.coefficient == 1:
             return prod
-        else:
-            return f"{self.coefficient}*{prod}"
+        return f"{self.coefficient}*{prod}"
 
 
 # In[20]:
@@ -370,10 +368,7 @@ class Expression:
         return "+".join(map(str, self.terms))
 
 
-# 
-# 
-# 
-# 
+# Now let's test it.
 
 # In[21]:
 

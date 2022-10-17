@@ -64,6 +64,7 @@ response = requests.get(
         "l": "sat",  # map layer (satellite image)
         "lang": "en_US",  # language
     },
+    timeout=60,
 )
 
 
@@ -94,7 +95,7 @@ Image(response.content)
 # In[5]:
 
 
-spots = requests.get("http://www.sidc.be/silso/INFO/snmtotcsv.php").text
+spots = requests.get("http://www.sidc.be/silso/INFO/snmtotcsv.php", timeout=60).text
 
 
 # In[6]:

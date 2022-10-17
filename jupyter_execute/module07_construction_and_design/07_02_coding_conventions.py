@@ -42,10 +42,7 @@
 # In[1]:
 
 
-reaction = {
-    "reactants": ["H", "H", "O"],
-    "products": ["H2O"]
-}
+reaction = {"reactants": ["H", "H", "O"], "products": ["H2O"]}
 
 
 # 
@@ -56,18 +53,7 @@ reaction = {
 # In[2]:
 
 
-reaction2 = {
-    "reactants":
-    [
-        "H",
-        "H",
-        "O"
-    ],
-    "products":
-    [
-        "H2O"
-    ]
-}
+reaction2 = {"reactants": ["H", "H", "O"], "products": ["H2O"]}
 
 
 # ## Layout choices
@@ -88,8 +74,8 @@ reaction2 = {
 
 
 class ClassName:
-    def methodName(variable_name):
-        instance_variable = variable_name
+    def methodName(self, variable_name):
+        self.instance_variable = variable_name
 
 
 # This example uses `underscore_separation` for all the names:
@@ -98,8 +84,8 @@ class ClassName:
 
 
 class class_name:
-    def method_name(a_variable):
-        m_instance_variable = a_variable
+    def method_name(self, a_variable):
+        self.m_instance_variable = a_variable
 
 
 # The usual Python convention (see [PEP8](https://www.python.org/dev/peps/pep-0008)) is UpperCamel for class names, and underscore_separation for function and variable names:
@@ -108,8 +94,8 @@ class class_name:
 
 
 class ClassName:
-    def method_name(variable_name):
-        instance_variable = variable_name
+    def method_name(self, variable_name):
+        self.instance_variable = variable_name
 
 
 # However, particular projects may have their own conventions (and you will even find Python standard libraries that don't follow these conventions). 

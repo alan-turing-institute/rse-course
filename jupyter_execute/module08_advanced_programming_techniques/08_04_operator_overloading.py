@@ -43,7 +43,6 @@
 import os
 from pathlib import Path
 
-
 performance = Path("..") / "module07_construction_and_design"
 os.listdir(performance)
 

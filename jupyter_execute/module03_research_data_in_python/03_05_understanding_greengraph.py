@@ -43,8 +43,8 @@ get_ipython().run_cell_magic('writefile', 'greengraph/__init__.py', 'from .graph
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
-from matplotlib import pyplot as plt
 from greengraph import Greengraph
+from matplotlib import pyplot as plt
 
 mygraph = Greengraph("New York", "Chicago")
 data = mygraph.green_between(20)
