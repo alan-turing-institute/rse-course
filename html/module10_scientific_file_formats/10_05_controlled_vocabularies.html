@@ -1,0 +1,1497 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>10.5 Controlled Vocabularies &#8212; Research Software Engineering with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.6 Semantic file formats" href="10_06_semantic_models.html" />
+    <link rel="prev" title="10.4 Markup Languages" href="10_04_markup_languages.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_git.html">
+     Git &amp; GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/03_editor.html">
+     Text Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/04_jupyter.html">
+     Course Contents in Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   1. Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     1.0 Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_variables.html">
+     1.1 Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_using_functions.html">
+     1.2 Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_types.html">
+     1.3 Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_containers.html">
+     1.4 Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_dictionaries.html">
+     1.5 Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_data_structures.html">
+     1.6 Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_control_and_flow.html">
+     1.7 Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_iteration.html">
+     1.8 Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_classroom_exercises.html">
+     1.9 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   2. Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     2.0 Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     2.1 Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     2.2 Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_defining_classes.html">
+     2.3 Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_working_with_files.html">
+     2.4 Working with files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_getting_data_from_the_internet.html">
+     2.5 Getting data from the Internet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_06_bringing_it_together.html">
+     2.6 Bringing it all together
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_07_classroom_exercises.html">
+     2.7 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   3. Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_fields_and_records.html">
+     3.0 Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_structured_data.html">
+     3.1 Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_plotting_with_matplotlib.html">
+     3.2 Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_NumPy.html">
+     3.3 NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy_continued.html">
+     3.4 Advanced NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_understanding_greengraph.html">
+     3.5 Recap: Understanding the “Greengraph” example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
+     3.7 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   4. Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     4.0 Introduction to version control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     4.1 Solo work with git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     4.2 Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     4.3 Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     4.4 Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     4.5 Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     4.6 Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     4.7 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_github_pages.html">
+     4.9 Publishing from GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     4.10 Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   5. Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     5.0 Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     5.1 How to test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     5.2 Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     5.3 Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     5.4 Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     5.5 Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     5.6 Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   6. Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
+     6.0 Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
+     6.2 Managing Dependencies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     6.3 Python outside the notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     6.4 Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     6.5 Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     6.6 Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     6.7 Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     6.8 Managing software issues
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
+     6.9 Exercise: Packaging Troll Treasure
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   7. Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     7.0 Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_comments.html">
+     7.1 Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_coding_conventions.html">
+     7.2 Coding conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
+     7.3 Linting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
+     7.4 Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
+     7.5 Object-Oriented Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_classes.html">
+     7.6 Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_design_patterns.html">
+     7.7 Design Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
+     7.8 Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   8. Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     8.0 Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     8.1 Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     8.2 Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     8.3 Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     8.4 Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   9. Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     9.0 Performance programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_01_optimising_mandelbrot.html">
+     9.1 Optimising Mandelbrot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3 Optimising with Cython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.5 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance scaling for containers and algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   10. Scientific file formats
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_00_serialisation_and_normalisation.html">
+     10.0 Serialising and normalising data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_01_deserialisation.html">
+     10.1 Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_02_binary_formats.html">
+     10.2 Binary formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_03_domain_specific_languages.html">
+     10.3 Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_04_markup_languages.html">
+     10.4 Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     10.5 Controlled Vocabularies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_06_semantic_models.html">
+     10.6 Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Solutions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../solutions/index.html">
+   Exercise Solutions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_01.html">
+     Module 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_02.html">
+     Module 02
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_03.html">
+     Module 03
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_04.html">
+     Module 04
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_05.html">
+     Module 05
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_06.html">
+     Module 06: Troll Treasure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_07.html">
+     Module 07: Bad Boids
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_08.html">
+     Module 08
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_09.html">
+     Module 09
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_10.html">
+     Module 10
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module10_scientific_file_formats/10_05_controlled_vocabularies.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule10_scientific_file_formats/10_05_controlled_vocabularies.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module10_scientific_file_formats/10_05_controlled_vocabularies.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module10_scientific_file_formats/10_05_controlled_vocabularies.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saying-the-same-thing-in-multiple-ways">
+   Saying the same thing in multiple ways
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-uri">
+   The URI
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xml-namespaces">
+   XML Namespaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#namespaces-and-schema">
+   Namespaces and Schema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-standard-vocabularies">
+   Using standard vocabularies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#taxonomies-and-ontologies">
+   Taxonomies and ontologies
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>10.5 Controlled Vocabularies</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saying-the-same-thing-in-multiple-ways">
+   Saying the same thing in multiple ways
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-uri">
+   The URI
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xml-namespaces">
+   XML Namespaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#namespaces-and-schema">
+   Namespaces and Schema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-standard-vocabularies">
+   Using standard vocabularies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#taxonomies-and-ontologies">
+   Taxonomies and ontologies
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="controlled-vocabularies">
+<h1>10.5 Controlled Vocabularies<a class="headerlink" href="#controlled-vocabularies" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time for this notebook: 15 minutes</em></p>
+<section id="saying-the-same-thing-in-multiple-ways">
+<h2>Saying the same thing in multiple ways<a class="headerlink" href="#saying-the-same-thing-in-multiple-ways" title="Permalink to this headline">#</a></h2>
+<p>What happens when someone comes across a file in our file format?
+How do they know what it means?</p>
+<p>If we can make the tag names in our model globally unique, then the meaning of the file can be made understandable not just to us, but to people and computers all over the world.</p>
+<p>Two file formats which give the same information, in different ways, are <em>syntactically</em> distinct, but so long as they are <strong>semantically</strong> compatible, I can convert from one to the other.</p>
+<p>This is the goal of the technologies introduced this lecture.</p>
+</section>
+<section id="the-uri">
+<h2>The URI<a class="headerlink" href="#the-uri" title="Permalink to this headline">#</a></h2>
+<p>The key concept that underpins these tools is the URI: uniform resource <strong>indicator</strong>.</p>
+<p>These look like URLs:</p>
+<p><code class="docutils literal notranslate"><span class="pre">www.turing.ac.uk/rsd-engineering/schema/reaction/element</span></code></p>
+<p>But, if I load that as a web address, there’s nothing there!</p>
+<p>That’s fine.</p>
+<p>A UR<strong>N</strong> indicates a <strong>name</strong> for an entity, and, by using organisational web addresses as a prefix,
+is likely to be unambiguously unique.</p>
+<p>A URI might be a URL or a URN, or both.</p>
+</section>
+<section id="xml-namespaces">
+<h2>XML Namespaces<a class="headerlink" href="#xml-namespaces" title="Permalink to this headline">#</a></h2>
+<p>It’s cumbersome to use a full URI every time we want to put a tag in our XML file.
+XML defines <em>namespaces</em> to resolve this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile system.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;system xmlns=&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;&gt;
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+            &lt;molecule stoichiometry=&quot;2&quot;&gt;
+                &lt;atom symbol=&quot;H&quot; number=&quot;2&quot;/&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&quot;1&quot;&gt;
+                &lt;atom symbol=&quot;O&quot; number=&quot;2&quot;/&gt;
+            &lt;/molecule&gt;
+        &lt;/reactants&gt;
+        &lt;products&gt;
+            &lt;molecule stoichiometry=&quot;2&quot;&gt;
+                &lt;atom symbol=&quot;H&quot; number=&quot;2&quot;/&gt;
+                &lt;atom symbol=&quot;O&quot; number=&quot;1&quot;/&gt;
+            &lt;/molecule&gt;
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+&lt;/system&gt;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting system.xml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;system xmlns=&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;&gt;
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+            &lt;molecule stoichiometry=&quot;2&quot;&gt;
+                &lt;atom symbol=&quot;H&quot; number=&quot;2&quot;/&gt;
+            &lt;/molecule&gt;
+            &lt;molecule stoichiometry=&quot;1&quot;&gt;
+                &lt;atom symbol=&quot;O&quot; number=&quot;2&quot;/&gt;
+            &lt;/molecule&gt;
+        &lt;/reactants&gt;
+        &lt;products&gt;
+            &lt;molecule stoichiometry=&quot;2&quot;&gt;
+                &lt;atom symbol=&quot;H&quot; number=&quot;2&quot;/&gt;
+                &lt;atom symbol=&quot;O&quot; number=&quot;1&quot;/&gt;
+            &lt;/molecule&gt;
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+&lt;/system&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that our previous XPath query no longer finds anything.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule/atom[@number=&#39;1&#39;]/@symbol&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">namespaces</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//r:molecule/r:atom[@number=&#39;1&#39;]/@symbol&quot;</span><span class="p">,</span> <span class="n">namespaces</span><span class="o">=</span><span class="n">namespaces</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;O&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the prefix <code class="docutils literal notranslate"><span class="pre">r</span></code> used to bind the namespace in the query: any string will do - it’s just a dummy variable.</p>
+<p>The above file specified our namespace as a default namespace: this is like doing <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">numpy</span> <span class="pre">import</span> <span class="pre">*</span></code> in python.</p>
+<p>It’s often better to bind the namespace to a prefix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile system.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;r:system xmlns:r=&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;&gt;
+    &lt;r:reaction&gt;
+        &lt;r:reactants&gt;
+            &lt;r:molecule stoichiometry=&quot;2&quot;&gt;
+                &lt;r:atom symbol=&quot;H&quot; number=&quot;2&quot;/&gt;
+            &lt;/r:molecule&gt;
+            &lt;r:molecule stoichiometry=&quot;1&quot;&gt;
+                &lt;r:atom symbol=&quot;O&quot; number=&quot;2&quot;/&gt;
+            &lt;/r:molecule&gt;
+        &lt;/r:reactants&gt;
+        &lt;r:products&gt;
+            &lt;r:molecule stoichiometry=&quot;2&quot;&gt;
+                &lt;r:atom symbol=&quot;H&quot; number=&quot;2&quot;/&gt;
+                &lt;r:atom symbol=&quot;O&quot; number=&quot;1&quot;/&gt;
+            &lt;/r:molecule&gt;
+        &lt;/r:products&gt;
+    &lt;/r:reaction&gt;
+&lt;/r:system&gt;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting system.xml
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="namespaces-and-schema">
+<h2>Namespaces and Schema<a class="headerlink" href="#namespaces-and-schema" title="Permalink to this headline">#</a></h2>
+<p>It’s a good idea to serve the schema itself from the URI of the namespace treated as a URL, but it’s <em>not a requirement</em>: it’s a URN not necessarily a URL!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> reactions.xsd
+
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">schema</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">xs</span><span class="o">=</span><span class="s2">&quot;http://www.w3.org/2001/XMLSchema&quot;</span>
+    <span class="n">targetNamespace</span><span class="o">=</span><span class="s2">&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;</span>
+    <span class="n">xmlns</span><span class="p">:</span><span class="n">r</span><span class="o">=</span><span class="s2">&quot;http://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;symbol&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:string&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;number&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:integer&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
+    
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;r:atom&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;stoichiometry&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:integer&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
+    
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactants&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;r:molecule&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
+    
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;products&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;r:molecule&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>    
+    
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reaction&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;r:reactants&quot;</span><span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;r:products&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;r:reaction&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>   
+    
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">schema</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting reactions.xsd
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note we’re now defining the target namespace for our schema.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;reactions.xsd&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xsdfile</span><span class="p">:</span>
+    <span class="n">schema_xsd</span> <span class="o">=</span> <span class="n">xsdfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">schema_xsd</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lxml.etree._ElementTree object at 0x7fd9f02ea440&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the power of binding namespaces when using XML files addressing more than one namespace.
+Here, we can clearly see which variables are part of the schema defining XML schema itself (bound to <code class="docutils literal notranslate"><span class="pre">xs</span></code>)
+and the schema for our file format (bound to <code class="docutils literal notranslate"><span class="pre">r</span></code>)</p>
+</section>
+<section id="using-standard-vocabularies">
+<h2>Using standard vocabularies<a class="headerlink" href="#using-standard-vocabularies" title="Permalink to this headline">#</a></h2>
+<p>The work we’ve done so far will enable someone who comes across our file format to track down something about its significance, by following the URI in the namespace. But it’s still somewhat ambiguous. The word “element” means (at least) two things: an element tag in an XML document, and a chemical element. (It also means a heating element in a toaster, and lots of other things.)</p>
+<p>To make it easier to not make mistakes as to the meaning of <strong>found data</strong>, it is helpful to use
+standardised namespaces that already exist for the concepts our file format refers to.</p>
+<p>So that when somebody else picks up one of our data files, the meaning of the stuff it describes is obvious. In this example, it would be hard to get it wrong, of course, but in general, defining file formats so that they are meaningful as found data should be desirable.</p>
+<p>For example, the concepts in our file format are already part of the “DBPedia ontology”,
+among others. So, we could redesign our file format to exploit this, by referencing for example <a class="reference external" href="https://dbpedia.org/ontology/ChemicalCompound">https://dbpedia.org/ontology/ChemicalCompound</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile chemistry_template3.mko
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;system xmlns=&quot;https://www.turing.ac.uk/rsd-engineering/schema/reaction&quot;
+        xmlns:dbo=&quot;https://dbpedia.org/ontology/&quot;&gt;
+%for reaction in reactions:
+    &lt;reaction&gt;
+        &lt;reactants&gt;
+        %for molecule in reaction.reactants.molecules:
+            &lt;dbo:ChemicalCompound stoichiometry=&quot;${reaction.reactants.molecules[molecule]}&quot;&gt;
+                %for element in molecule.elements:
+                    &lt;dbo:ChemicalElement symbol=&quot;${element.symbol}&quot;
+                                         number=&quot;${molecule.elements[element]}&quot;/&gt;
+                %endfor
+            &lt;/dbo:ChemicalCompound&gt;
+        %endfor
+        &lt;/reactants&gt;
+        &lt;products&gt;
+        %for molecule in reaction.products.molecules:
+            &lt;dbo:ChemicalCompound stoichiometry=&quot;${reaction.products.molecules[molecule]}&quot;&gt;
+            %for element in molecule.elements:
+                &lt;dbo:ChemicalElement symbol=&quot;${element.symbol}&quot;
+                                     number=&quot;${molecule.elements[element]}&quot;/&gt;
+            %endfor
+            &lt;/dbo:ChemicalCompound&gt;
+        %endfor
+        &lt;/products&gt;
+    &lt;/reaction&gt;
+%endfor
+&lt;/system&gt;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting chemistry_template3.mko
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, this won’t work properly, because it’s not up to us to define the XML schema for somebody
+else’s entity type: and an XML schema can only target one target namespace.</p>
+<p>Of course we should use somebody else’s file format for chemical reaction networks: compare <a class="reference external" href="http://sbml.org">SBML</a> for example. We already know not to reinvent the wheel - and this whole lecture series is just reinventing the wheel for pedagogical purposes. But what if we’ve already got a bunch of data in our own format. How can we lock down the meaning of our terms?</p>
+<p>So, we instead need to declare that our <code class="docutils literal notranslate"><span class="pre">r:element</span></code> <em>represents the same concept</em> as <code class="docutils literal notranslate"><span class="pre">dbo:ChemicalElement</span></code>. To do this formally we will need the concepts from the next lecture, specifically <code class="docutils literal notranslate"><span class="pre">rdf:sameAs</span></code>, but first, let’s understand the idea of an ontology.</p>
+</section>
+<section id="taxonomies-and-ontologies">
+<h2>Taxonomies and ontologies<a class="headerlink" href="#taxonomies-and-ontologies" title="Permalink to this headline">#</a></h2>
+<p>An Ontology (in computer science terms) is two things: a <strong>controlled vocabulary</strong> of entities (a set of URIs in a namespace), the definitions thereof, and the relationships between them.</p>
+<p>People often casually use the word to mean any formalised taxonomy, but the relation of terms in the ontology to the concepts they represent, and the relationships between them, are also critical.</p>
+<p>Have a look at another example: <a class="reference external" href="https://dublincore.org/documents/dcmi-terms/#terms-creator">https://dublincore.org/documents/dcmi-terms/</a></p>
+<p>Note each concept is a URI, but some of these are also stated to be subclasses or superclasses of the others.</p>
+<p>Some are properties of other things, and the domain and range of these verbs are also stated.</p>
+<p>Why is this useful for us in discussing file formats?</p>
+<p>One of the goals of the <strong>semantic web</strong> is to create a way to make file formats which are universally meaningful
+as found data: if I have a file format defined using any formalised ontology, then by tracing statements
+through <em>rdf:sameAs</em> relationships, I should be able to reconstruct the information I need.</p>
+<p>That will be the goal of the next lecture.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./module10_scientific_file_formats"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="10_04_markup_languages.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">10.4 Markup Languages</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="10_06_semantic_models.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">10.6 Semantic file formats</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
