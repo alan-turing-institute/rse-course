@@ -1,0 +1,28 @@
+name: Lint all repository code
+
+# Run workflow on PRs to main
+on:
+  pull_request:
+    branches: [main]
+
+# checkout needs 'contents:read'
+permissions:
+  contents: read
+
+jobs:
+    # Note that we have to ignore a *lot* of cases as in many places the modules are deliberately showing incorrect code
+  lint_notebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install linters
+        run: pip install black flake8 isort nbqa pylint
+      - name: Run black
+        run: nbqa black module*/*.ipynb --nbqa-diff --verbose
+      - name: Run isort
+        run: nbqa isort module*/*.ipynb --nbqa-diff
+      - name: Run pycodestyle
+        run: nbqa pycodestyle module*/*.ipynb --nbqa-diff --ignore=E203,E402,E501,E712,E722,E731,W503
+      - name: Run flake8
+        run: nbqa flake8 module*/*.ipynb --nbqa-diff --ignore=E203,E402,E501,E712,E722,E731,F403,F405,F632,F811,F821,W503
