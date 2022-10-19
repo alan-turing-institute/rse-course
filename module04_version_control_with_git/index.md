@@ -27,6 +27,11 @@
 
 **Total time:** 2 hrs 25 minutes
 
+## Teaching notes
+
+If you are teaching this course, please remove any `.gitconfig` files you might have in your home directory.
+It is fine to restore them once you've finished teaching but you may otherwise have settings that interfere with the examples shown here.
+
 ## Exercises
 
 Classroom exercises are included inline in the module.
