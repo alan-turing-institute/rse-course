@@ -12,14 +12,13 @@
 - [3.2 Plotting with Matplotlib](03_02_plotting_with_matplotlib.ipynb) (25 minutes)
 - [3.3 NumPy](03_03_NumPy.ipynb) (20 minutes)
 - [3.4 Advanced NumPy](03_04_NumPy_continued.ipynb) (20 minutes)
-- [3.5 Recap: Understanding the Greengraph example](03_05_understanding_greengraph.ipynb) (10 minutes)
-- [3.6 The Boids](03_06_boids.ipynb) (45 minutes)
+- [3.5 The Boids](03_05_boids.ipynb) (45 minutes)
 
-**Total time:** 2 hrs 35 minutes
+**Total time:** 2 hrs 25 minutes
 
 ## Exercises
 
-Classroom exercises are grouped together at the end of the module: [3.7 Classroom Exercises](03_07_classroom_exercises.ipynb).
+Classroom exercises are grouped together at the end of the module: [3.6 Classroom Exercises](03_06_classroom_exercises.ipynb).
 Each exercise is labelled with any sections whose contents are relevant.
 We recommend that instructors schedule the exercises to be done in groups during breaks in the taught content.
 However, it is **important** that participants also have some time away from their screens.
