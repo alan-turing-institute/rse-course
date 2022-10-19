@@ -15,9 +15,9 @@
 - [2.2 Using Libraries](02_02_using_libraries.ipynb) (5 minutes)
 - [2.3 Working with files](02_03_working_with_files.ipynb) (15 minutes)
 - [2.4 Getting data from the Internet](02_04_getting_data_from_the_internet.ipynb) (10 minutes)
-- [2.5 Bringing it all together](02_05_bringing_it_together.ipynb) (20 minutes)
+- [2.5 Data analysis example](02_05_data_analysis_example.ipynb) (20 minutes)
 - [2.6 Defining your own classes](02_06_defining_classes.ipynb) (20 minutes)
-- [2.7 Writing a Greengraph class](02_07_writing_a_greengraph_class.ipynb) (10 minutes)
+- [2.7 Data analysis with classes](02_07_data_analysis_with_classes.ipynb) (10 minutes)
 
 **Total time:** 1 hr 45 minutes
 
