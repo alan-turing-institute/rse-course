@@ -9,9 +9,9 @@
 # 
 # Version control is a tool for __managing changes__ to a set of files.
 # 
-# There are many different __version control systems__: 
+# There are many different __version control systems__:
 # 
-# - Git 
+# - Git
 # - Mercurial (`hg`)
 # - CVS
 # - Subversion (`svn`)
@@ -53,7 +53,7 @@
 # ## What is version control? (Team version)
 # 
 # Sue                | James
-# ------------------ |------   
+# ------------------ |------
 # `my_vcs commit`    | ...
 # ...                | Join the team
 # ...                | `my_vcs checkout`
@@ -68,28 +68,28 @@
 
 # ## Scope
 # 
-# This course will use the `git` version control system, but much of what you learn will be valid with other version control 
-# tools you may encounter, including subversion (`svn`) and mercurial (`hg`).
+# This course will use the `git` version control system, but much of what you learn will be valid with other version control tools you may encounter, including subversion (`svn`) and mercurial (`hg`).
 
 # # 4.0.1 Practising with Git
 
 # ## Example Exercise
 # 
-# In this course, we will use, as an example, the development of a few text files containing a description of a topic of your choice. 
+# In this course, we will use, as an example, the development of a few text files containing a description of a topic of your choice.
 # 
 # This could be your research, a hobby, or something else. In the end, we will show you how to display the content of these files as a very simple website. 
 
 # ## Programming and documents
 # 
-# The purpose of this exercise is to learn how to use Git to manage program code you write, not simple text website content, but we'll just use these text files instead of code for now, so as not to confuse matters with trying to learn version control while thinking about programming too. 
+# The purpose of this exercise is to learn how to use Git to manage program code you write, not simple text website content, but we'll just use these text files instead of code for now, so as not to confuse matters with trying to learn version control while thinking about programming too.
 # 
 # In later parts of the course, you will use the version control tools you learn today with actual Python code.
 
 # ## Markdown
 # 
-# The text files we create will use a simple "wiki" markup style called [markdown](http://daringfireball.net/projects/markdown/basics) to show formatting. This is the convention used in this file, too. 
+# The text files we create will use a simple "wiki" markup style called [markdown](http://daringfireball.net/projects/markdown/basics) to show formatting.
+# This is the convention used in this file, too.
 # 
-# You can view the content of this file in the way Markdown renders it by looking on the [web](https://github.com/alan-turing-institute/rse-course/blob/main/module04_version_control_with_git/04_00_introduction.ipynb), and compare the [raw text](https://raw.githubusercontent.com/alan-turing-institute/rse-course/main/module04_version_control_with_git/04_00_introduction.ipynb).
+# You can view the content of this file in the way Markdown renders it by looking on the [web](https://github.com/alan-turing-institute/rse-course/blob/main/module04_version_control_with_git/04_00_introduction.html), and compare the [raw text](https://raw.githubusercontent.com/alan-turing-institute/rse-course/main/module04_version_control_with_git/04_00_introduction.ipynb).
 
 # ## Displaying Text in this Tutorial
 # 

@@ -10,12 +10,14 @@
 # A git *merge* is only one of two ways to get someone else's work into yours.
 # The other is called a rebase.
 # 
-# In a merge, a revision is added, which brings the branches together. Both histories are retained.
+# In a merge, a revision is added, which brings the branches together.
+# Both histories are retained.
 # In a rebase, git tries to work out
 # 
 # > What would you need to have done, to make your changes, if your colleague had already made theirs?
 # 
-# Git will invent some new revisions, and the result will be a repository with an apparently linear history. This can be useful if you want a cleaner, non-branching history, but it has the risk of creating inconsistencies, since you are, in a way, "rewriting" history.
+# Git will invent some new revisions, and the result will be a repository with an apparently linear history.
+# This can be useful if you want a cleaner, non-branching history, but it has the risk of creating inconsistencies, since you are, in a way, "rewriting" history.
 
 # ## An example rebase
 # 
@@ -99,24 +101,25 @@
 # * 6a4834d Initial state
 # ```
 
-# We have essentially created a new history, in which our changes come after the ones in the carollian branch. Note that, in this case, the hash for our "Dancing" commit has changed (from `2a74d89` to `df618e0`)!
+# We have essentially created a new history, in which our changes come after the ones in the carollian branch.
+# Note that, in this case, the hash for our "Dancing" commit has changed (from `2a74d89` to `df618e0`)!
 # 
 # To trigger the rebase, we did:
-#     
+# 
 # ``` bash
 # git checkout master
 # git rebase carollian
 # ```
 # 
 # If this had been a remote, we would merge it with:
-#     
+# 
 # ``` bash
 # git pull --rebase
 # ```
 
 # ## Fast Forwards
 # 
-# If we want to continue with the translation, and now want to merge the rebased branch into the carollian branch, 
+# If we want to continue with the translation, and now want to merge the rebased branch into the carollian branch,
 # we get:
 # 
 # ```bash
@@ -164,7 +167,7 @@
 
 # ## Using rebase to squash
 # 
-# If we type 
+# If we type
 # 
 # ``` bash
 # git rebase -i ab11 # OR HEAD~~
@@ -210,5 +213,5 @@
 # cd27 Initial commit
 # ```
 
-# Note the commit hash codes for 'Some good work' and 'A great piece of work' have changed, 
+# Note the commit hash codes for 'Some good work' and 'A great piece of work' have changed,
 # as the change they represent has changed.

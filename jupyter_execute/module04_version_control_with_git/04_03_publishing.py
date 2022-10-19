@@ -21,21 +21,26 @@ working_dir
 
 # ## Sharing your work
 
-# So far, all our work has been on our own computer. But a big part of the point of version control is keeping your work safe, on remote servers. Another part is making it easy to share your work with the world In this example, we'll be using the `GitHub` cloud repository to store and publish our work. 
+# So far, all our work has been on our own computer.
+# But a big part of the point of version control is keeping your work safe, on remote servers.
+# Another part is making it easy to share your work with the world.
+# In this example, we'll be using the `GitHub` cloud repository to store and publish our work.
 # 
 # If you have not done so already, you should create an account on `GitHub`: go to [https://github.com/](https://github.com/), fill in a username and password, and click on "sign up for free". 
 
 # ## Creating a repository
 # 
-# Ok, let's create a repository to store our work. Hit "new repository" on the right of the github home screen, or click [here](https://github.com/new). 
+# Ok, let's create a repository to store our work. Hit "new repository" on the right of the github home screen, or click [here](https://github.com/new).
 # 
-# Fill in a short name, and a description. Choose a "public" repository. Don't choose to add a Readme.
+# - Fill in a short name, and a description.
+# - Choose a "public" repository.
+# - Don't choose to add a README.
 
 # ## GitHub private repositories
 # 
-# For this course, you should use public repositories in your personal account for your example work: it's good to share! GitHub is free for open source, but in general, charges a fee if you want to keep your work private. 
+# For this course, you should use public repositories in your personal account for your example work: it's good to share! GitHub is free for open source, but in general, charges a fee if you want to keep your work private.
 # 
-# In the future, you might want to keep your work on GitHub private. 
+# In the future, you might want to keep your work on GitHub private.
 # 
 # Students can get free private repositories on GitHub, by going to [GitHub Education](https://github.com/edu) and filling in a form (look for the Student Developer Pack). 
 
@@ -67,11 +72,11 @@ get_ipython().run_cell_magic('bash', '', "git push -uf origin main # Note we use
 
 # ## Remotes
 # 
-# The first command sets up the server as a new `remote`, called `origin`. 
+# The first command sets up the server as a new `remote`, called `origin`.
 # 
-# Git, unlike some earlier version control systems is a "distributed" version control system, which means you can work with multiple remote servers. 
+# Git, unlike some earlier version control systems is a "distributed" version control system, which means you can work with multiple remote servers.
 # 
-# Usually, commands that work with remotes allow you to specify the remote to use, but assume the `origin` remote if you don't. 
+# Usually, commands that work with remotes allow you to specify the remote to use, but assume the `origin` remote if you don't.
 # 
 # Here, `git push` will push your whole history onto the server, and now you'll be able to see it on the internet! Refresh your web browser where the instructions were, and you'll see your repository!
 
@@ -114,7 +119,7 @@ wsd(message)
 # In[6]:
 
 
-get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland  \n========   \n  \nCumbria has some pretty hills, and lakes too.  \n')
+get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland\n========\n\nCumbria has some pretty hills, and lakes too.  \n')
 
 
 # In[7]:
@@ -158,13 +163,13 @@ get_ipython().run_cell_magic('bash', '', 'git push\n')
 # In[11]:
 
 
-get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland  \n========   \n  \nCumbria has some pretty hills, and lakes too\n\nMountains:\n* Helvellyn\n')
+get_ipython().run_cell_magic('writefile', 'lakeland.md', 'Lakeland\n========\n\nCumbria has some pretty hills, and lakes too\n\nMountains:\n* Helvellyn\n')
 
 
 # In[12]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Lakes in the UK   \n===================   \nEngerland is not very mountainous.\nBut has some tall hills, and maybe a\nmountain or two depending on your definition.\n')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Lakes in the UK\n===================\nEngerland is not very mountainous.\nBut has some tall hills, and maybe a\nmountain or two depending on your definition.\n')
 
 
 # In[13]:

@@ -23,12 +23,13 @@ working_dir
 # 
 # The commit we want to revert to is the one before the latest.
 # 
-# `HEAD` refers to the latest commit. That is, we want to go back to the change before the current `HEAD`. 
+# `HEAD` refers to the latest commit.
+# That is, we want to go back to the change before the current `HEAD`.
 # 
 # We could use the hash code (e.g. 73fbeaf) to reference this, but you can also refer to the commit before the `HEAD` as `HEAD~`, the one before that as `HEAD~~`, the one before that as `HEAD~3`.
 
 # ## Reverting
-#  
+# 
 # Ok, so now we'd like to undo the nasty commit with the lie about Mount Fictional.
 
 # In[2]:
@@ -41,9 +42,9 @@ get_ipython().run_cell_magic('bash', '', 'git revert HEAD~\n')
 
 # ## Conflicted reverts
 # 
-# You may, depending on the changes you've tried to make, get an error message here. 
+# You may, depending on the changes you've tried to make, get an error message here.
 # 
-# If this happens, it is because git could not automagically decide how to combine the change you made after the change you want to revert, with the attempt to revert the change: this could happen, for example, if they both touch the same line. 
+# If this happens, it is because git could not automagically decide how to combine the change you made after the change you want to revert, with the attempt to revert the change: this could happen, for example, if they both touch the same line.
 # 
 # If that happens, you need to manually edit the file to fix the problem. Skip ahead to the section on resolving conflicts, or ask a demonstrator to help.
 
@@ -61,7 +62,7 @@ get_ipython().run_cell_magic('bash', '', 'git log --date=short\n')
 # 
 # Notice how the mistake has stayed in the history.
 # 
-# There is a new commit which undoes the change: this is colloquially called an "antipatch". 
+# There is a new commit which undoes the change: this is colloquially called an "antipatch".
 # This is nice: you have a record of the full story, including the mistake and its correction.
 
 # ## Rewriting history
@@ -73,7 +74,7 @@ get_ipython().run_cell_magic('bash', '', 'git log --date=short\n')
 # In[4]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the UK   \n===================   \nEngerland is not very mountainous.   \nBut has some tall hills, and maybe a\nmountain or two depending on your definition.\n')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the UK\n===================\nEngerland is not very mountainous.\nBut has some tall hills, and maybe a\nmountain or two depending on your definition.\n')
 
 
 # In[5]:
@@ -128,7 +129,7 @@ get_ipython().run_cell_magic('bash', '', 'git log --date=short\n')
 get_ipython().run_cell_magic('bash', '', 'cat test.md\n')
 
 
-# If you want to lose the change from the working directory as well, you can do `git reset --hard`. 
+# If you want to lose the change from the working directory as well, you can do `git reset --hard`.
 # 
 # I'm going to get rid of the silly spelling, and I didn't do `--hard`, so I'll reset the file from the working directory to be the same as in the index:
 

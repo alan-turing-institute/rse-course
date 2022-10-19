@@ -16,12 +16,12 @@
 # [1e - The Maze Population](#Exercise-1e-The-Maze-Population) *10 minutes*
 # 
 
-# ### Exercise 1a Python Libraries
+# ## Exercise 1a Python Libraries
 # *Relevant Sections: 1.0.2*
 # 
 # The directory that contains this workbook also contains a `Python` file titled `draw_infinity.py`. Import it to a notebook and make the figure in the same way as `eight` was drawn in section 1.0.2
 
-# ### Exercise 1b Using Functions
+# ## Exercise 1b Using Functions
 # *Relevant Sections: 1.2.1 to 1.2.5*
 # 
 # Try to find the operator or function you need to calculate the following (the easiest way might be an internet search).
@@ -34,7 +34,7 @@
 # 
 # What is 100! ? (That is, what is the factorial of 100?) Hint: the `factorial` function is in the `math` library
 
-# ### Exercise 1c Operators
+# ## Exercise 1c Operators
 # *Relevant Sections: 1.2.5, 1.3.3*
 # 
 # Which of the operators `+`, `-`, `*`, and `/` do something useful with the lists `[1, 10, 100]` and `[5, 4, 7]`?
@@ -43,7 +43,7 @@
 # 
 # What about a string and a string?
 
-# ### Exercise 1d Maze Model
+# ## Exercise 1d Maze Model
 # *Relevant Sections: 1.5.1, 1.6.1*
 # 
 # Work with a partner to design a data structure to represent a maze using dictionaries and lists.
@@ -75,7 +75,7 @@
 # house = { "Your answer here" }
 # ```
 
-# ### Exercise 1e The Maze Population
+# ## Exercise 1e The Maze Population
 # *Relevant Sections: 1.5.1, 1.6.1, 1.8.1, 1.8.2*
 # 
 # Take your maze data structure. Write a program to count the total number of people in the maze, and also determine the total possible occupants.

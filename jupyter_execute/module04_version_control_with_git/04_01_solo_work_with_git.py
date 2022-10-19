@@ -30,7 +30,7 @@ working_dir
 # In[2]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.\n')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK\n===================\nEngland is not very mountainous.\nBut has some tall hills, and maybe a mountain or two depending on your definition.\n')
 
 
 # In[3]:
@@ -73,7 +73,7 @@ get_ipython().run_cell_magic('bash', '', 'git commit -m "First commit of discour
 # For this to work, you have to tell git where to find your editor.
 # 
 # ```bash
-# git config --global core.editor vim 
+# git config --global core.editor vim
 # ```
 
 # You can find out what you currently have with:
@@ -109,9 +109,10 @@ get_ipython().run_cell_magic('bash', '', 'git log\n')
 # 
 # `238eaff15e2769e0ef1d989f1a2e8be1873fa0ab`
 # 
-# is a unique identifier of that particular revision. 
+# is a unique identifier of that particular revision.
 # 
-# (This is a really long code, but whenever you need to use it, you can just use the first few characters, however many characters is long enough to make it unique, `238eaff1` for example. )
+# This is a really long code, but whenever you need to use it, you can just use the first few characters.
+# You just need however many characters is long enough to make it unique, for example `238eaff1`.
 
 # ### Nothing to see here
 # 
@@ -132,7 +133,7 @@ get_ipython().run_cell_magic('bash', '', 'git status\n')
 # In[8]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.\n\nMount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.\n')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains in the UK\n===================\nEngland is not very mountainous.\nBut has some tall hills, and maybe a mountain or two depending on your definition.\n\nMount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.\n')
 
 
 # In[9]:
@@ -149,9 +150,10 @@ cat test.md
 get_ipython().run_cell_magic('bash', '', 'git status\n')
 
 
-# We can now see that there is a change to "test.md" which is currently "not staged for commit". What does this mean? 
+# We can now see that there is a change to "test.md" which is currently "not staged for commit".
+# What does this mean?
 # 
-# If we do a `git commit` now *nothing will happen*. 
+# If we do a `git commit` now *nothing will happen*.
 # 
 # Git will only commit changes to files that you choose to include in each commit.
 # 
@@ -177,7 +179,7 @@ get_ipython().run_cell_magic('bash', '', 'git diff\n')
 get_ipython().run_cell_magic('bash', '', 'git add --update\n')
 
 
-# This says "include in the next commit, all files which have ever been included before". 
+# This says "include in the next commit, all files which have ever been included before".
 # 
 # Note that `git add` is the command we use to introduce git to a new file, but also the command we use to "stage" a file to be included in the next commit. 
 
@@ -268,7 +270,7 @@ get_ipython().run_cell_magic('bash', '', 'git log\n')
 # In[19]:
 
 
-get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the UK   \n===================   \nEngland is not very mountainous.   \nBut has some tall hills, and maybe a mountain or two depending on your definition.\n\nMount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.\n')
+get_ipython().run_cell_magic('writefile', 'test.md', 'Mountains and Hills in the UK\n===================\nEngland is not very mountainous.\nBut has some tall hills, and maybe a mountain or two depending on your definition.\n\nMount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.\n')
 
 
 # In[20]:

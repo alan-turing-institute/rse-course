@@ -223,7 +223,7 @@ get_ipython().run_cell_magic('bash', '', 'git branch --remote  # list remote bra
 # In[28]:
 
 
-get_ipython().run_cell_magic('bash', '', 'git push --delete origin experiment \n# Remove remote branch. Note that you can also use the GitHub interface to do this.\n')
+get_ipython().run_cell_magic('bash', '', 'git push --delete origin experiment\n# Remove remote branch. Note that you can also use the GitHub interface to do this.\n')
 
 
 # In[29]:

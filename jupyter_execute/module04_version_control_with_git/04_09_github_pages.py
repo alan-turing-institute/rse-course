@@ -9,7 +9,7 @@
 # 
 # ## Yaml Frontmatter
 # 
-# GitHub will publish repositories containing markdown as web pages, automatically. 
+# GitHub will publish repositories containing markdown as web pages, automatically.
 # 
 # You'll need to add this content:
 # 
@@ -51,7 +51,7 @@ os.chdir(working_dir)
 get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -uf origin gh-pages\n')
 
 
-# The first time you do this, GitHub takes a few minutes to generate your pages. 
+# The first time you do this, GitHub takes a few minutes to generate your pages.
 # 
 # The website will appear at `http://username.github.io/repositoryname`, for example:
 # 
@@ -64,5 +64,5 @@ get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -
 # In[19]:
 
 
-get_ipython().run_cell_magic('bash', '', '# Cleanup by removing the gh-pages branch \ngit checkout main\ngit push\ngit branch -d gh-pages\ngit push --delete origin gh-pages \ngit branch --remote\n')
+get_ipython().run_cell_magic('bash', '', '# Cleanup by removing the gh-pages branch\ngit checkout main\ngit push\ngit branch -d gh-pages\ngit push --delete origin gh-pages\ngit branch --remote\n')
 
