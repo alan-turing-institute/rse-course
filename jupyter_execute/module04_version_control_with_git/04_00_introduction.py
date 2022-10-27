@@ -117,7 +117,9 @@ get_ipython().run_cell_magic('bash', '', 'echo some output\n')
 get_ipython().run_cell_magic('writefile', 'somefile.md', 'Some content here\n')
 
 
-# But if you are following along, you should edit the file using a [text editor](https://alan-turing-institute.github.io/rse-course/html/course_prerequisites/03_editor.html).
+# But if you are following along, you should edit the file using a text editor.
+# On windows, we recommend [Notepad++](https://notepad-plus-plus.org).
+# On mac, we recommend [Atom](https://atom.io)
 
 # ## Setting up somewhere to work
 
