@@ -1,9 +1,9 @@
 name: Update requirements
 
-# Run workflow on PRs to main
-on:
-  pull_request:
-    branches: [main]
+# Run workflow once per week
+on:  # yamllint disable-line rule:truthy
+  schedule:
+    - cron: "0 0 */7 * *"  # run once per week
 
 # checkout needs 'contents:read'
 permissions:
@@ -15,12 +15,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Install poetry
         run: pipx install poetry
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.8"
+
       - name: Install required packages
         run: |
           poetry update
@@ -29,13 +32,40 @@ jobs:
         run: |
           echo "# AUTOMATICALLY GENERATED. DO NOT EDIT." > requirements.txt
           poetry export --without-hashes --format=requirements.txt >> requirements.txt
+
       - name: Validate requirements file
         run: |
           pip install -r requirements.txt
+
       - name: Run safety check over requirements file
         run: |
           pip install safety
           safety check -r requirements.txt
         continue-on-error: true
+
       - name: Check for changes
-        run: git diff --exit-code
+        shell: bash
+        run: git --no-pager diff -- .
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - name: Create pull request
+        if: ${{ ! env.ACT }}
+        id: pull-request
+        uses: peter-evans/create-pull-request@b4d51739f96fca8047ad065eccef63442d8e99f7  # This commit corresponds to tag 4.2.0
+        with:
+          commit-message: Update Python requirements
+          committer: GitHub Actions <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          base: main
+          branch: update-python-requirements
+          delete-branch: true
+          title: Update Python requirements
+          body: |
+            ### :arrow_heading_up: Summary
+            - Update Python package version diff from ${{ github.sha }} on ${{ steps.date.outputs.date }}
+          labels: |
+            dependencies
+          draft: false
