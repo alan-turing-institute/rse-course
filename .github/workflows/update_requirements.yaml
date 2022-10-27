@@ -1,7 +1,9 @@
 name: Update requirements
 
-# Run workflow once per week
+# Run workflow once per week and on pushes to main
 on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [main]
   schedule:
     - cron: "0 0 */7 * *"  # run once per week
 
