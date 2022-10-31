@@ -242,8 +242,7 @@ with open("system.mol", "bw") as binfile:
     binfile.write(bytearray(intarray))
 
 
-# However, this misses out on an unfortunate problem if we end up with large enough numbers to need more than one byte per integer, or we want to represent floats: different computer designs but the most-significant bytes of a multi-byte integer or float at the beginning or
-# end ('big endian' or 'little endian' data).
+# However, this misses out on an unfortunate problem if we end up with large enough numbers to need more than one byte per integer, or we want to represent floats: different computer designs will put the most-significant bytes of a multi-byte integer or float either at the beginning ('big endian' systems) or at the end ('little endian' systems).
 
 # To get around this, we need to use a portable standard for making binary files.
 # 
@@ -302,7 +301,7 @@ xdrbuffer.get_buffer()
 # This was quite painful. We've shown you it because it is very likely
 # you will encounter this kind of unpleasant binary file format in your work.
 
-# However, the recommended approach to building binary file formats is to use HDF5 (Hierarchical Data Format), a much higher level binary file format.
+# However, one recommended approach to building binary file formats is to use HDF5 (Hierarchical Data Format), a much higher level binary file format.
 
 # HDF5's approach requires you to represent your system in terms of high-dimensional matrices, like NumPy arrays.
 # It then saves these, and handles all the tedious number-of-field management for you.

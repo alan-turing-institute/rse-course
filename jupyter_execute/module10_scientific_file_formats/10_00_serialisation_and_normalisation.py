@@ -196,7 +196,7 @@ get_ipython().run_cell_magic('writefile', 'molecules.csv', '# name, element, num
 # The existence of the same piece of information in multiple locations (eg. the `18.01` molecular mass of water) indicates that this file format is NOT **second normal form** (2NF).
 # 
 # 
-# However, this would allow our data file to be potentially be self-inconsistent, violating the design principle that each piece of information should be stated only once. A data structure of this type is said to be NOT **second normal form**.
+# Furthermore, this would allow our data file to be potentially be self-inconsistent, violating the design principle that each piece of information should be stated only once. A data structure of this type is said to be NOT **second normal form**.
 # 
 # **Note:** _A table is in second normal form if: it is in first normal form; none of its attributes depend on any other attribute except the primary key._
 
@@ -232,7 +232,7 @@ get_ipython().run_cell_magic('writefile', 'atoms_in_molecules.csv', '\n# rel_num
 # Now, proper database tools use much more sophisticated representations than just csv files -
 # including **indices** to enable hash-table like efficient lookups, and support for managing multiple users at the same time.
 # 
-# However, the **principles** of database normalisation and the relational model will be helpful
+# Furthermore, the **principles** of database normalisation and the relational model will be helpful
 # right across our thinking about data representation, whether these are dataframes in Pandas, tensors in tensorflow, or anything else...
 
 # ## Making a database - SQLite
@@ -593,6 +593,6 @@ atoms.to_sql("atoms", session.bind, if_exists="append", index=False)
 session.query(Element).all()[3].number
 
 
-# However, we know from last term that another common choice is to represent
+# However, we know from last time that another common choice is to represent
 # such complicated data structures in YAML. The implications of what we've just learned for serialising to and from such
 # structured data is the topic of the next lecture.

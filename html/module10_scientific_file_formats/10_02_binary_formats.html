@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10.3 Domain specific languages" href="10_03_domain_specific_languages.html" />
+    <link rel="next" title="10.3 Markup Languages" href="10_03_markup_languages.html" />
     <link rel="prev" title="10.1 Deserialisation" href="10_01_deserialisation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -688,23 +688,38 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_03_domain_specific_languages.html">
-     10.3 Domain specific languages
+    <a class="reference internal" href="10_03_markup_languages.html">
+     10.3 Markup Languages
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_04_markup_languages.html">
-     10.4 Markup Languages
+    <a class="reference internal" href="10_04_beyond_pandas.html">
+     10.04 Larger datasets - beyond pandas and csv
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_05_controlled_vocabularies.html">
-     10.5 Controlled Vocabularies
+    <a class="reference internal" href="10_05_processing_in_parallel.html">
+     10.5 Processing in parallel
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_06_semantic_models.html">
-     10.6 Semantic file formats
+    <a class="reference internal" href="10_06_geospatial_data.html">
+     10.6 Geospatial data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_x0_optional_domain_specific_languages.html">
+     10.x.0 (OPTIONAL):  Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_x1_optional_controlled_vocabularies.html">
+     10.x.1 (OPTIONAL): Controlled Vocabularies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_x2_optional_semantic_models.html">
+     10.x.2 (OPTIONAL):  Semantic file formats
     </a>
    </li>
   </ul>
@@ -1470,8 +1485,7 @@ each number in one byte:</p>
 </div>
 </div>
 </div>
-<p>However, this misses out on an unfortunate problem if we end up with large enough numbers to need more than one byte per integer, or we want to represent floats: different computer designs but the most-significant bytes of a multi-byte integer or float at the beginning or
-end (‘big endian’ or ‘little endian’ data).</p>
+<p>However, this misses out on an unfortunate problem if we end up with large enough numbers to need more than one byte per integer, or we want to represent floats: different computer designs will put the most-significant bytes of a multi-byte integer or float either at the beginning (‘big endian’ systems) or at the end (‘little endian’ systems).</p>
 <p>To get around this, we need to use a portable standard for making binary files.</p>
 <p>One possible choice is <strong>XDR</strong> (standing for eXternal Data Representation). XDR is a standard data serialization format that accounts for endian differences between systems.</p>
 <div class="cell docutils container">
@@ -1535,7 +1549,7 @@ end (‘big endian’ or ‘little endian’ data).</p>
 <h2>A higher level approach to binary file formats: HDF5<a class="headerlink" href="#a-higher-level-approach-to-binary-file-formats-hdf5" title="Permalink to this headline">#</a></h2>
 <p>This was quite painful. We’ve shown you it because it is very likely
 you will encounter this kind of unpleasant binary file format in your work.</p>
-<p>However, the recommended approach to building binary file formats is to use HDF5 (Hierarchical Data Format), a much higher level binary file format.</p>
+<p>However, one recommended approach to building binary file formats is to use HDF5 (Hierarchical Data Format), a much higher level binary file format.</p>
 <p>HDF5’s approach requires you to represent your system in terms of high-dimensional matrices, like NumPy arrays.
 It then saves these, and handles all the tedious number-of-field management for you.</p>
 <div class="cell docutils container">
@@ -1756,10 +1770,10 @@ UnicodeDecodeError: &#39;utf-8&#39; codec can&#39;t decode byte 0x89 in position
             <p class="prev-next-title">10.1 Deserialisation</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="10_03_domain_specific_languages.html" title="next page">
+    <a class='right-next' id="next-link" href="10_03_markup_languages.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">10.3 Domain specific languages</p>
+        <p class="prev-next-title">10.3 Markup Languages</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
