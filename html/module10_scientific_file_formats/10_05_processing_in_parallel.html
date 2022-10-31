@@ -1414,7 +1414,7 @@ For example, if we want to calculate the average of the “home_score” column,
 <div class="output text_html"><table>
     <tr>
         <td>
-            <table>
+            <table style="border-collapse: collapse;">
                 <thead>
                     <tr>
                         <td> </td>
@@ -1436,14 +1436,12 @@ For example, if we want to calculate the average of the “home_score” column,
                         <td> () </td>
                     </tr>
                     <tr>
-                        <th> Count </th>
-                        <td> 6 Graph Layers </td>
-                        <td> 1 Chunks </td>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 6 graph layers </td>
                     </tr>
                     <tr>
-                    <th> Type </th>
-                    <td> float64 </td>
-                    <td> numpy.ndarray </td>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
                     </tr>
                 </tbody>
             </table>
@@ -1515,218 +1513,124 @@ Either way, we do this by creating an instance of the <code class="docutils lite
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-31 15:40:51,922 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/tmp/dask-worker-space/worker-h2060rwl&#39;, purging
-2022-10-31 15:40:51,923 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/tmp/dask-worker-space/worker-yzj_z92h&#39;, purging
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-31 16:08:52,345 - distributed.deploy.spec - WARNING - Cluster closed without starting up
 </pre></div>
 </div>
-<div class="output text_html"><div>
-    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
-    <div style="margin-left: 48px;">
-        <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-65f980ed-5932-11ed-8813-7d565c1288cb</p>
-        <table style="width: 100%; text-align: left;">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/deploy/spec.py:308,</span> in <span class="ni">SpecCluster._start</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="bp">cls</span> <span class="o">=</span> <span class="n">import_term</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">308</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler_spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;options&quot;</span><span class="p">,</span> <span class="p">{}))</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span>
 
-        <tr>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/scheduler.py:3503,</span> in <span class="ni">Scheduler.__init__</span><span class="nt">(self, loop, delete_interval, synchronize_worker_interval, services, service_kwargs, allowed_failures, extensions, validate, scheduler_file, security, worker_ttl, idle_timeout, interface, host, port, protocol, dashboard_address, dashboard, http_prefix, preload, preload_argv, plugins, contact_address, transition_counter_max, jupyter, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3502</span>         <span class="n">http_server_modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;distributed.http.scheduler.missing_bokeh&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3503</span> <span class="n">routes</span> <span class="o">=</span> <span class="n">get_handlers</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3504</span>     <span class="n">server</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="n">http_server_modules</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">http_prefix</span>
+<span class="g g-Whitespace">   </span><span class="mi">3505</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3506</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_http_server</span><span class="p">(</span><span class="n">routes</span><span class="p">,</span> <span class="n">dashboard_address</span><span class="p">,</span> <span class="n">default_port</span><span class="o">=</span><span class="mi">8787</span><span class="p">)</span>
 
-            <td style="text-align: left;"><strong>Connection method:</strong> Cluster object</td>
-            <td style="text-align: left;"><strong>Cluster type:</strong> distributed.LocalCluster</td>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/http/utils.py:40,</span> in <span class="ni">get_handlers</span><span class="nt">(server, modules, prefix)</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="k">for</span> <span class="n">module_name</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">40</span>     <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="n">_routes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">routes</span><span class="p">)</span>
 
-        </tr>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/importlib/__init__.py:127,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">127</span> <span class="k">return</span> <span class="n">_bootstrap</span><span class="o">.</span><span class="n">_gcd_import</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">level</span><span class="p">:],</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
 
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1014,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
 
-            <tr>
-                <td style="text-align: left;">
-                    <strong>Dashboard: </strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
-                </td>
-                <td style="text-align: left;"></td>
-            </tr>
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:991,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
 
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:975,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
 
-        </table>
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:671,</span> in <span class="ni">_load_unlocked</span><span class="nt">(spec)</span>
 
+<span class="nn">File &lt;frozen importlib._bootstrap_external&gt;:843,</span> in <span class="ni">exec_module</span><span class="nt">(self, module)</span>
 
-            <details>
-            <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
-            <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
-    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;">
-    </div>
-    <div style="margin-left: 48px;">
-        <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">d391856e</p>
-        <table style="width: 100%; text-align: left;">
-            <tr>
-                <td style="text-align: left;">
-                    <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
-                </td>
-                <td style="text-align: left;">
-                    <strong>Workers:</strong> 2
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left;">
-                    <strong>Total threads:</strong> 2
-                </td>
-                <td style="text-align: left;">
-                    <strong>Total memory:</strong> 6.78 GiB
-                </td>
-            </tr>
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:219,</span> in <span class="ni">_call_with_frames_removed</span><span class="nt">(f, *args, **kwds)</span>
 
-            <tr>
-    <td style="text-align: left;"><strong>Status:</strong> running</td>
-    <td style="text-align: left;"><strong>Using processes:</strong> True</td>
-</tr>
+<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.14</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">distributed</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">scheduler</span><span class="o">/</span><span class="n">missing_bokeh</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">distributed.dashboard.core</span> <span class="kn">import</span> <span class="n">_min_bokeh_version</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">distributed.http.utils</span> <span class="kn">import</span> <span class="n">RequestHandler</span><span class="p">,</span> <span class="n">redirect</span>
 
+<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.14</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">distributed</span><span class="o">/</span><span class="n">dashboard</span><span class="o">/</span><span class="n">core</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">bokeh.application</span> <span class="kn">import</span> <span class="n">Application</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">bokeh.application.handlers.function</span> <span class="kn">import</span> <span class="n">FunctionHandler</span>
 
-        </table>
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;bokeh&#39;
 
-        <details>
-            <summary style="margin-bottom: 20px;">
-                <h3 style="display: inline;">Scheduler Info</h3>
-            </summary>
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
 
-            <div style="">
-    <div>
-        <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
-        <div style="margin-left: 48px;">
-            <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-a2a9f676-fe15-4a95-88f8-437753e0b5ec</p>
-            <table style="width: 100%; text-align: left;">
-                <tr>
-                    <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:46461
-                    </td>
-                    <td style="text-align: left;">
-                        <strong>Workers:</strong> 2
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">
-                        <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
-                    </td>
-                    <td style="text-align: left;">
-                        <strong>Total threads:</strong> 2
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">
-                        <strong>Started:</strong> Just now
-                    </td>
-                    <td style="text-align: left;">
-                        <strong>Total memory:</strong> 6.78 GiB
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>  <span class="c1"># or Client(&quot;&lt;scheduler URL&gt;&quot;) for remote cluster</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">client</span>
 
-    <details style="margin-left: 48px;">
-        <summary style="margin-bottom: 20px;">
-            <h3 style="display: inline;">Workers</h3>
-        </summary>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/client.py:982,</span> in <span class="ni">Client.__init__</span><span class="nt">(self, address, loop, timeout, set_as_default, scheduler_file, security, asynchronous, name, heartbeat_interval, serializers, deserializers, extensions, direct_to_workers, connection_limit, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span> <span class="n">preload_argv</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;distributed.client.preload-argv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">980</span> <span class="bp">self</span><span class="o">.</span><span class="n">preloads</span> <span class="o">=</span> <span class="n">preloading</span><span class="o">.</span><span class="n">process_preloads</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preload</span><span class="p">,</span> <span class="n">preload_argv</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">982</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">983</span> <span class="n">Client</span><span class="o">.</span><span class="n">_instances</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">985</span> <span class="kn">from</span> <span class="nn">distributed.recreate_tasks</span> <span class="kn">import</span> <span class="n">ReplayTaskClient</span>
 
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/client.py:1172,</span> in <span class="ni">Client.start</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1170</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1171</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1172</span>     <span class="n">sync</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <div style="margin-bottom: 20px;">
-            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
-            <div style="margin-left: 48px;">
-            <details>
-                <summary>
-                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 0</h4>
-                </summary>
-                <table style="width: 100%; text-align: left;">
-                    <tr>
-                        <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:43307
-                        </td>
-                        <td style="text-align: left;">
-                            <strong>Total threads: </strong> 1
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:41473/status" target="_blank">http://127.0.0.1:41473/status</a>
-                        </td>
-                        <td style="text-align: left;">
-                            <strong>Memory: </strong> 3.39 GiB
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:43379
-                        </td>
-                        <td style="text-align: left;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-egr6_izh
-                        </td>
-                    </tr>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/utils.py:406,</span> in <span class="ni">sync</span><span class="nt">(loop, func, callback_timeout, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span> <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">typ</span><span class="p">,</span> <span class="n">exc</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">error</span>
+<span class="ne">--&gt; </span><span class="mi">406</span>     <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>     <span class="k">return</span> <span class="n">result</span>
 
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/utils.py:379,</span> in <span class="ni">sync.&lt;locals&gt;.f</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>         <span class="n">future</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="n">future</span><span class="p">,</span> <span class="n">callback_timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span>     <span class="n">future</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">379</span>     <span class="n">result</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">future</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>     <span class="n">error</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
 
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/tornado/gen.py:762,</span> in <span class="ni">Runner.run</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">759</span> <span class="n">exc_info</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">761</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">762</span>     <span class="n">value</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">763</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">764</span>     <span class="n">exc_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
 
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/client.py:1238,</span> in <span class="ni">Client._start</span><span class="nt">(self, timeout, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_arg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span>     <span class="kn">from</span> <span class="nn">distributed.deploy</span> <span class="kn">import</span> <span class="n">LocalCluster</span>
+<span class="ne">-&gt; </span><span class="mi">1238</span>     <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span> <span class="o">=</span> <span class="k">await</span> <span class="n">LocalCluster</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1239</span>         <span class="n">loop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span>         <span class="n">asynchronous</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_asynchronous</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1241</span>         <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_startup_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1242</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1243</span>     <span class="n">address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">scheduler_address</span>
+<span class="g g-Whitespace">   </span><span class="mi">1245</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gather_semaphore</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/deploy/spec.py:398,</span> in <span class="ni">SpecCluster.__await__.&lt;locals&gt;._</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">created</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">398</span>         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_correct_state</span><span class="p">()</span>
 
-                </table>
-            </details>
-            </div>
-        </div>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/distributed/deploy/spec.py:319,</span> in <span class="ni">SpecCluster._start</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">failed</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_close</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">319</span> <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cluster failed to start: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
-        <div style="margin-bottom: 20px;">
-            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
-            <div style="margin-left: 48px;">
-            <details>
-                <summary>
-                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 1</h4>
-                </summary>
-                <table style="width: 100%; text-align: left;">
-                    <tr>
-                        <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:33979
-                        </td>
-                        <td style="text-align: left;">
-                            <strong>Total threads: </strong> 1
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:39801/status" target="_blank">http://127.0.0.1:39801/status</a>
-                        </td>
-                        <td style="text-align: left;">
-                            <strong>Memory: </strong> 3.39 GiB
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:37795
-                        </td>
-                        <td style="text-align: left;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-v8oprfex
-                        </td>
-                    </tr>
-
-
-
-
-
-                </table>
-            </details>
-            </div>
-        </div>
-
-
-    </details>
+<span class="ne">RuntimeError</span>: Cluster failed to start: No module named &#39;bokeh&#39;
+</pre></div>
 </div>
-
-        </details>
-    </div>
 </div>
-            </details>
-
-
-    </div>
-</div></div></div>
 </div>
 <p>Note the link to the dashboard - this will provide some diagnostics into what the scheduler is doing.</p>
 <p>Once we have created a client, whenever we call <code class="docutils literal notranslate"><span class="pre">compute()</span></code> it will run on the scheduler that the client points to (in this case a local scheduler</p>
