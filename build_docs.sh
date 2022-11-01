@@ -14,7 +14,8 @@ cp docs/index.html _build
 touch _build/.nojekyll
 touch _build/html/.nojekyll
 
-for SOURCEPATH in "module03_research_data_in_python/boids_1.mp4" "module05_testing_your_code/diffusion/htmlcov/index.html"; do
+# Copy required outputs to the build directory
+for SOURCEPATH in module*/*.{png,gif} "module05_testing_your_code/diffusion/htmlcov/index.html"; do
     mkdir -p _build/html/${SOURCEPATH%/*}
     cp $SOURCEPATH _build/html/${SOURCEPATH}
 done
