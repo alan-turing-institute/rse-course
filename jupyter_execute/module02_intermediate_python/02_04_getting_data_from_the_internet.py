@@ -90,7 +90,7 @@ Image(response.content)
 
 # ## 2.4.3 Example: Sunspots
 
-# Let's try to get something scientific: the sunspot cycle data from http://sidc.be/silso/home:
+# Let's try to get something scientific: the sunspot cycle data from http://sidc.be/silso/home
 
 # In[5]:
 
