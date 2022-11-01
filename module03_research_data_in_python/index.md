@@ -13,7 +13,7 @@
 - [3.3 Plotting with Matplotlib](03_03_plotting_with_matplotlib.ipynb) (25 minutes)
 - [3.4 NumPy](03_04_NumPy.ipynb) (20 minutes)
 - [3.5 Advanced NumPy](03_05_advanced_numpy.ipynb) (20 minutes)
-- [3.6 The Boids](03_05_boids.ipynb) (45 minutes)
+- [3.6 The Boids](03_06_boids.ipynb) (45 minutes)
 
 **Total time:** 2 hrs 30 minutes
 
