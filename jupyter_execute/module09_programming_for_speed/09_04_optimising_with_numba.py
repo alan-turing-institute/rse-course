@@ -58,6 +58,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 from numba import njit
 
+plt.set_cmap("cividis")  # use a CVD-friendly palette
+
 
 # In[5]:
 
@@ -98,7 +100,7 @@ get_ipython().run_line_magic('timeit', 'a = mandel_numba(complex(0, 0))')
 
 
 data_numba = [[mandel_numba(complex(x, y)) for x in xs] for y in ys]
-plt.imshow(data_numba, interpolation="none", cmap="plasma")
+plt.imshow(data_numba, interpolation="none")
 
 
 # ## Parallelised numba implementation
@@ -160,5 +162,5 @@ get_ipython().run_line_magic('timeit', 'data_numba_parallel = mandel_numba_paral
 
 
 data_numba_parallel = mandel_numba_parallel(values)
-plt.imshow(data_numba_parallel, interpolation="none", cmap="plasma")
+plt.imshow(data_numba_parallel, interpolation="none")
 

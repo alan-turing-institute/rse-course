@@ -62,7 +62,7 @@ color_idx = feature_names.index("color_intensity")
 proline_idx = feature_names.index("proline")
 
 # Plot the training points
-plt.scatter(X[:, color_idx], X[:, proline_idx], c=y, cmap=plt.cm.bwr, edgecolor="k")
+plt.scatter(X[:, color_idx], X[:, proline_idx], c=y, edgecolor="k")
 plt.xlabel("Color Intensity")
 plt.ylabel("Proline")
 

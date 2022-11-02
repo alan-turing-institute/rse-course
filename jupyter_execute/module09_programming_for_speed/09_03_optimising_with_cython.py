@@ -76,7 +76,8 @@ data_cython = [[mandel_cython(complex(x, y)) for x in xs] for y in ys]
 
 from matplotlib import pyplot as plt
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+plt.set_cmap("cividis")  # use a CVD-friendly palette
+
 f, axarr = plt.subplots(1, 2)
 axarr[0].imshow(data_python, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 axarr[0].set_title("Pure Python")

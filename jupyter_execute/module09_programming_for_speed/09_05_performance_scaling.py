@@ -15,8 +15,6 @@ from timeit import repeat
 import numpy as np
 from matplotlib import pyplot as plt
 
-get_ipython().run_line_magic('matplotlib', 'inline')
-
 
 # Let's look at appending data into a NumPy array, compared to a plain Python list: 
 

@@ -658,9 +658,9 @@ pgram = signal.lombscargle(x, y, f, normalize=True)
 # In[22]:
 
 
-comparison = fourier_model.frequency_data().inverse_plot_data + ["r"]
-comparison += lomb_model.frequency_data().inverse_plot_data + ["g"]
-comparison += nearest_model.frequency_data().inverse_plot_data + ["b"]
+comparison = fourier_model.frequency_data().inverse_plot_data + ["C0"]
+comparison += lomb_model.frequency_data().inverse_plot_data + ["C1"]
+comparison += nearest_model.frequency_data().inverse_plot_data + ["C2"]
 
 
 # In[23]:

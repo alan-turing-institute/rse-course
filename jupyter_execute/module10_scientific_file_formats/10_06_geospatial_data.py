@@ -71,6 +71,8 @@ tco3 = ds.variables["tco3"][0, :, :]
 import matplotlib.pyplot as plt
 import numpy as np
 
+plt.set_cmap("cividis")  # use a CVD-friendly palette
+
 x, y = np.meshgrid(lons, lats)
 plt.contourf(x, y, tco3)
 plt.colorbar()

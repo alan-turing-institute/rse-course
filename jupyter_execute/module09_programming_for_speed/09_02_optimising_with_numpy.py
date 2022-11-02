@@ -172,7 +172,7 @@ data5 = mandel2(values)
 
 from matplotlib import pyplot as plt
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+plt.set_cmap("cividis")  # use a CVD-friendly palette
 plt.imshow(data5, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 

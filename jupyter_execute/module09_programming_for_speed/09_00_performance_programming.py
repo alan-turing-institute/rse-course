@@ -68,6 +68,7 @@ data1 = [[mandel1(complex(x, y)) for x in xs] for y in ys]
 get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 
+plt.set_cmap("cividis")  # use a CVD-friendly palette
 plt.imshow(data1, interpolation="none", extent=[xmin, xmax, ymin, ymax])
 
 
