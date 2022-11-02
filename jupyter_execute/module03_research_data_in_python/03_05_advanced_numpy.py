@@ -393,27 +393,34 @@ y
 # In[50]:
 
 
-iszero = x == y
-iszero
+y_is_one = y == 1
+y_is_one
 
-
-# A logical array can be used to select elements from an array:
 
 # In[51]:
 
 
-y[np.logical_not(iszero)]
+aresame = x == y
+aresame
 
 
-# Although when printed, this comes out as a flat list, if assigned to, the *selected elements of the array are changed!*
+# A logical array can be used to select elements from an array:
 
 # In[52]:
 
 
-y[iszero] = 5
+y[np.logical_not(aresame)]
 
+
+# Although when printed, this comes out as a flat list, if assigned to, the *selected elements of the array are changed!*
 
 # In[53]:
+
+
+y[aresame] = 5
+
+
+# In[54]:
 
 
 y
@@ -421,32 +428,33 @@ y
 
 # ## 3.5.9 Numpy memory
 
-# Numpy memory management can be tricksy:
-
-# In[54]:
-
-
-x = np.arange(5)
-y = x[:]
-
+# NumPy manages memory differently from lists.
+# Changing an element in a copy of a list does not change the original list.
 
 # In[55]:
-
-
-y[2] = 0
-x
-
-
-# It does **not** behave like lists!
-
-# In[56]:
 
 
 x = list(range(5))
 y = x[:]
 
 
+# In[56]:
+
+
+y[2] = 0
+x
+
+
+# But in NumPy, changing the copy **does** change the original array!
+
 # In[57]:
+
+
+x = np.arange(5)
+y = x[:]
+
+
+# In[58]:
 
 
 y[2] = 0
@@ -455,5 +463,3 @@ x
 
 # We must use `np.copy` to force separate memory.
 # Otherwise NumPy tries its hardest to make slices be *views* on data.
-
-# Now, this has all been very theoretical, but let's go through a practical example, and see how powerful NumPy can be.

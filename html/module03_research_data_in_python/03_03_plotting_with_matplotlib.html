@@ -1235,7 +1235,7 @@ The relevant function returns a (figure, axis) pair, which we can deal out with 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4034633490&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc051e593d0&gt;]
 </pre></div>
 </div>
 </div>
@@ -1297,7 +1297,7 @@ As always with the notebook, if we make a variable be returned by the last line 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4034633820&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc051df4430&gt;]
 </pre></div>
 </div>
 </div>
@@ -1320,7 +1320,7 @@ As always with the notebook, if we make a variable be returned by the last line 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f4034633250&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc051df4490&gt;
 </pre></div>
 </div>
 </div>
@@ -1409,7 +1409,7 @@ This is really easy:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4034503730&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc051ce75e0&gt;]
 </pre></div>
 </div>
 </div>
@@ -1433,7 +1433,7 @@ This is really easy:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f40344cbc40&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc051e0f640&gt;]
 </pre></div>
 </div>
 </div>
@@ -1507,7 +1507,7 @@ We usually want to plot something more meaningful:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f40343c0130&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc051bdc2e0&gt;]
 </pre></div>
 </div>
 </div>
@@ -1623,18 +1623,31 @@ We usually want to plot something more meaningful:</p>
 </table>
 </div></div></div>
 </div>
-<p>We can plot all the data in the dataframe seperately, but that isn’t always useful!</p>
+<p>We can plot all the data in the dataframe separately, but that isn’t always useful!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_03_plotting_with_matplotlib_62_0.png" src="../_images/03_03_plotting_with_matplotlib_62_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&lt;AxesSubplot: &gt;, &lt;AxesSubplot: &gt;, &lt;AxesSubplot: &gt;, &lt;AxesSubplot: &gt;,
+       &lt;AxesSubplot: &gt;, &lt;AxesSubplot: &gt;, &lt;AxesSubplot: &gt;], dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/03_03_plotting_with_matplotlib_62_1.png" src="../_images/03_03_plotting_with_matplotlib_62_1.png" />
 </div>
 </div>
-<p>And can produce more meaningful and useful visualisations either with our generated lists or by accessing the dataframe directly</p>
+<p>Let’s produce some more meaningful and useful visualisations by accessing the dataframe directly.</p>
+<p>We start by discarding any rows with an invalid (negative) standard deviation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;deviation&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we use the dataframe to construct some useful lists.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deviation</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;deviation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># Get the dataframe column (series) as a list</span>
@@ -1684,48 +1697,10 @@ We usually want to plot something more meaningful:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">33</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>  <span class="c1"># Set the width of the figure to be 15 inches, and the height to be 5 inches</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 2 rows, 2 columns, 1st subplot</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">ax1</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span>  <span class="c1"># Date on the x axis</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>  <span class="c1"># Mean on the y axis</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">yerr</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;deviation&quot;</span><span class="p">],</span>  <span class="c1"># Use the deviation for the error bars</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span>  <span class="c1"># Plot the sunspot (mean) data in orange</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">ecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="p">)</span>  <span class="c1"># Show the error bars in black</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/__init__.py:1423,</span> in <span class="ni">_preprocess_data.&lt;locals&gt;.inner</span><span class="nt">(ax, data, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1420</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1421</span> <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1422</span>     <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1423</span>         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="n">sanitize_sequence</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1425</span>     <span class="n">bound</span> <span class="o">=</span> <span class="n">new_sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1426</span>     <span class="n">auto_label</span> <span class="o">=</span> <span class="p">(</span><span class="n">bound</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_namer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1427</span>                   <span class="ow">or</span> <span class="n">bound</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_namer</span><span class="p">))</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/axes/_axes.py:3587,</span> in <span class="ni">Axes.errorbar</span><span class="nt">(self, x, y, yerr, xerr, fmt, ecolor, elinewidth, capsize, barsabove, lolims, uplims, xlolims, xuplims, errorevery, capthick, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3584</span> <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>  <span class="c1"># Default in case of nan</span>
-<span class="g g-Whitespace">   </span><span class="mi">3585</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">less</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="o">-</span><span class="n">err</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">err</span> <span class="o">==</span> <span class="n">err</span><span class="p">))):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3586</span>     <span class="c1"># like err&lt;0, but also works for timedelta and nan.</span>
-<span class="ne">-&gt; </span><span class="mi">3587</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">3588</span>         <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">dep_axis</span><span class="si">}</span><span class="s2">err&#39; must not contain negative values&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3589</span> <span class="c1"># This is like</span>
-<span class="g g-Whitespace">   </span><span class="mi">3590</span> <span class="c1">#     elow, ehigh = np.broadcast_to(...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3591</span> <span class="c1">#     return dep - elow * ~lolims, dep + ehigh * ~uplims</span>
-<span class="g g-Whitespace">   </span><span class="mi">3592</span> <span class="c1"># except that broadcast_to would strip units.</span>
-<span class="g g-Whitespace">   </span><span class="mi">3593</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">dep</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">([</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">lolims</span><span class="p">),</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">uplims</span><span class="p">])</span> <span class="o">*</span> <span class="n">err</span>
-
-<span class="ne">ValueError</span>: &#39;yerr&#39; must not contain negative values
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;From List&#39;)
 </pre></div>
 </div>
-<img alt="../_images/03_03_plotting_with_matplotlib_65_1.png" src="../_images/03_03_plotting_with_matplotlib_65_1.png" />
+<img alt="../_images/03_03_plotting_with_matplotlib_67_1.png" src="../_images/03_03_plotting_with_matplotlib_67_1.png" />
 </div>
 </div>
 <p>In this example we are plotting columns from the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (series), and from lists to show this method works for both.

@@ -279,17 +279,27 @@ df = pd.read_csv(
 df.head()
 
 
-# We can plot all the data in the dataframe seperately, but that isn't always useful!
+# We can plot all the data in the dataframe separately, but that isn't always useful!
 
 # In[31]:
 
 
-df.plot(subplots=True);
+df.plot(subplots=True)
 
 
-# And can produce more meaningful and useful visualisations either with our generated lists or by accessing the dataframe directly
+# Let's produce some more meaningful and useful visualisations by accessing the dataframe directly.
+# 
+# We start by discarding any rows with an invalid (negative) standard deviation.
 
 # In[32]:
+
+
+df = df[df["deviation"] > 0]
+
+
+# Next we use the dataframe to construct some useful lists.
+
+# In[33]:
 
 
 deviation = df["deviation"].tolist()  # Get the dataframe column (series) as a list
@@ -298,7 +308,7 @@ mean = df["mean"].tolist()
 date = df["date"].tolist()
 
 
-# In[33]:
+# In[34]:
 
 
 fig = plt.figure(

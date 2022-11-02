@@ -30,8 +30,8 @@ house = {
 
 
 # ### Exercise 3a Answer
-# 
-# **Save as json or yaml**
+
+# **Save as JSON or YAML**
 
 # In[2]:
 
@@ -43,63 +43,100 @@ import yaml
 # In[3]:
 
 
-with open('myfile.json', 'w') as f:
+# Write with json.dump
+with open("myfile.json", "w") as f:
     json.dump(house, f)
 
 
 # In[4]:
 
 
-with open("myotherfile.json", "w") as json_maze_out:
-    json_maze_out.write(json.dumps(house))
+# Look at the file on disk
+get_ipython().system('cat myfile.json')
 
 
 # In[5]:
 
 
-with open('myfile.yml', 'w') as f:
-    yaml.safe_dump(house, f, default_flow_style=False)
+# Or with file.write, using json.dumps to convert to a string
+with open("myotherfile.json", "w") as json_maze_out:
+    json_maze_out.write(json.dumps(house))
 
 
 # In[6]:
 
 
-with open("myotherfile.yaml", "w") as yaml_maze_out:
-    yaml_maze_out.write(yaml.dump(house))
+# Look at the file on disk
+get_ipython().system('cat myotherfile.json')
 
-
-# **Loading with json or yaml**
 
 # In[7]:
 
 
+# Write with yaml.safe_dump
+with open("myfile.yml", "w") as f:
+    yaml.safe_dump(house, f, default_flow_style=False)
+
+
+# In[8]:
+
+
+# Look at the file on disk
+get_ipython().system('cat myfile.yml')
+
+
+# In[9]:
+
+
+# Or with file.write, using yaml.dump to convert to a string
+with open("myotherfile.yaml", "w") as yaml_maze_out:
+    yaml_maze_out.write(yaml.dump(house, default_flow_style=True))
+
+
+# In[10]:
+
+
+# Look at the file on disk
+get_ipython().system('cat myotherfile.yaml')
+
+
+# **Loading with JSON or YAML**
+
+# In[11]:
+
+
+# Read into a string then load with json.loads
 with open("myfile.json", "r") as f:
     mydataasstring = f.read()
 my_json_data = json.loads(mydataasstring)
 print(my_json_data["living"])
 
 
-# In[8]:
+# In[12]:
 
 
-with open("myotherfile.json") as json_maze_in:
-    maze_again = json.load(json_maze_in)
+# Read directly with json.load
+with open("myotherfile.json") as f_json_maze:
+    maze_again = json.load(f_json_maze)
 print(maze_again["living"])
 
 
-# In[9]:
+# In[13]:
 
 
+# Read into a string then load with yaml.safe_load
 with open("myfile.yaml", "r") as f:
-    my_yaml_data = yaml.safe_load(f)
+    mydataasstring = f.read()
+my_yaml_data = yaml.safe_load(mydataasstring)
 print(my_yaml_data["living"])
 
 
-# In[10]:
+# In[14]:
 
 
-with open("myotherfile.yaml") as yaml_maze_in:
-    maze_again = yaml.safe_load(yaml_maze_in)
+# Read directly with yaml.safe_load
+with open("myotherfile.yaml") as f_yaml_maze:
+    maze_again = yaml.safe_load(f_yaml_maze)
 print(maze_again["living"])
 
 
@@ -113,7 +150,7 @@ print(maze_again["living"])
 
 # ### Exercise 3b Answer
 
-# In[11]:
+# In[15]:
 
 
 import matplotlib.pyplot as plt
@@ -145,7 +182,7 @@ ax2.set_ylim(-1.5, 1.5)
 # ### The Problem
 # `GeoJSON` is a json-based file format for sharing geographic data. One example dataset is the USGS earthquake data:
 
-# In[12]:
+# In[16]:
 
 
 import requests
@@ -165,7 +202,7 @@ quakes = requests.get(
 )
 
 
-# In[13]:
+# In[17]:
 
 
 quakes.text[0:100]
@@ -178,7 +215,7 @@ quakes.text[0:100]
 # * Get the text of the web result
 # * Parse the data as JSON
 
-# In[14]:
+# In[18]:
 
 
 import requests
@@ -191,20 +228,20 @@ quakes = requests.get(
         "maxlongitude": "1.67",
         "minlongitude": "-9.756",
         "minmagnitude": "1",
-        "endtime": "2021-08-14", # Change the date to yesterday
+        "endtime": "2022-11-02", # Change the date to yesterday
         "orderby": "time-asc",
     },
 )
 
 
-# In[15]:
+# In[19]:
 
 
 import json
 # Can get the data indirectly via the text and then load json text....
 my_quake_data = json.loads(quakes.text) # Section 3.1 - structured data
 
-# Requests also has a built in json parser
+# Requests also has a built in json parser (note this gives exactly the same result as 'my_quake_data')
 requests_json = quakes.json()
 
 
@@ -215,7 +252,7 @@ requests_json = quakes.json()
 
 # There is no foolproof way of doing this. A good first step is to see the type of our data!
 
-# In[16]:
+# In[20]:
 
 
 type(requests_json)
@@ -223,31 +260,31 @@ type(requests_json)
 
 # Now we can navigate through this dictionary to see how the information is stored in the nested dictionaries and lists. The `keys` method can indicate what kind of information each dictionary holds, and the `len` function tells us how many entries are contained in a list. How you explore is up to you!
 
-# In[17]:
+# In[21]:
 
 
 requests_json.keys()
 
 
-# In[18]:
+# In[22]:
 
 
 type(requests_json["features"])
 
 
-# In[19]:
+# In[23]:
 
 
 len(requests_json["features"])
 
 
-# In[20]:
+# In[24]:
 
 
 requests_json["features"][0]
 
 
-# In[21]:
+# In[25]:
 
 
 requests_json["features"][0].keys()
@@ -255,19 +292,19 @@ requests_json["features"][0].keys()
 
 # It looks like the coordinates are in the `geometry` section and the magnitude is in the `properties` section.
 
-# In[22]:
+# In[26]:
 
 
 requests_json["features"][0]["geometry"]
 
 
-# In[23]:
+# In[27]:
 
 
 requests_json["features"][0]["properties"].keys()
 
 
-# In[24]:
+# In[28]:
 
 
 requests_json["features"][0]["properties"]["mag"]
@@ -277,13 +314,13 @@ requests_json["features"][0]["properties"]["mag"]
 # * Program a search through all the quakes to find the biggest quake
 # * Find the place of the biggest quake
 
-# In[25]:
+# In[29]:
 
 
 quakes = requests_json["features"]
 
 
-# In[26]:
+# In[30]:
 
 
 largest_so_far = quakes[0]
@@ -293,7 +330,7 @@ for quake in quakes:
 largest_so_far["properties"]["mag"]
 
 
-# In[27]:
+# In[31]:
 
 
 lon = largest_so_far["geometry"]["coordinates"][0]
@@ -306,14 +343,14 @@ print(f"Latitude: {lat} Longitude: {lon}")
 # * Form a URL for an online map service at that latitude and longitude: look back at the introductory example
 # * Display that image
 
-# In[28]:
+# In[32]:
 
 
 import IPython
 import requests
 
 
-# In[29]:
+# In[33]:
 
 
 # This is a solution to one of the questions in module 2
@@ -337,4 +374,42 @@ op = op_response(lat, lon)
 IPython.core.display.Image(op)
 
 
-# Note - in this in this instance Pandas probably isn't the first thing that you would use as we have nested dictionaries and json works very well in such cases
+# ## [Optional] Equivalent solution using pandas
+
+# In this instance Pandas probably isn't the first thing that you would use as we have nested dictionaries and JSON works very well in such cases.
+# If we really want to use Pandas we'll need to flatten the nested values before constructing a DataFrame.
+
+# In[34]:
+
+
+features = requests_json["features"]
+features[0]
+
+
+# In[35]:
+
+
+# We can use ** to convert a dictionary into pairs of (key, value)
+# We can then run `{(k1, v1), (k2, v2)}` to convert a list of keys and values back into a dictionary
+combined_features = [{**f["geometry"], **f["properties"]} for f in features]
+combined_features[0]
+
+
+# In[36]:
+
+
+import pandas as pd
+
+df = pd.DataFrame.from_records(combined_features)
+df.head()
+
+
+# In[37]:
+
+
+df.sort_values("mag", ascending=False, inplace=True)
+df.head()
+
+
+# You can see that we haven't really gained much over the JSON solution.
+# We still needed to look at the data to see its structure and we had to manually flatten the structure.

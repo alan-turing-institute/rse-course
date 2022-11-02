@@ -44,6 +44,8 @@ house = {
 # 
 # The first plot should show sin(x) and cos(x) for the range of x between -1 pi and +1 pi.
 # 
+# **Hint:** The `range(start, stop, step)` function only works with integers. Use the `arange` function from `numpy` instead: `np.arange(start, stop, step)`.
+# 
 # The second plot should show sin(x), cos(x) and the sum of sin(x) and cos(x) over the same -pi to +pi range.
 # Set suitable limits on the axes and pick colours, markers, or line-styles that will make it easy to differentiate between the curves.
 # Add legends to both axes.

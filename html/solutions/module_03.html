@@ -1078,6 +1078,11 @@ title="Print to PDF"
    Visualise your answer
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-equivalent-solution-using-pandas">
+   [Optional] Equivalent solution using pandas
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -1152,6 +1157,11 @@ title="Print to PDF"
    Visualise your answer
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-equivalent-solution-using-pandas">
+   [Optional] Equivalent solution using pandas
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -1192,7 +1202,7 @@ title="Print to PDF"
 </section>
 <section id="exercise-3a-answer">
 <h2>Exercise 3a Answer<a class="headerlink" href="#exercise-3a-answer" title="Permalink to this headline">#</a></h2>
-<p><strong>Save as json or yaml</strong></p>
+<p><strong>Save as JSON or YAML</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -1203,7 +1213,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write with json.dump</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">house</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1211,7 +1222,21 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_maze_out</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the file on disk</span>
+<span class="o">!</span>cat myfile.json
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;living&quot;: {&quot;exits&quot;: {&quot;north&quot;: &quot;kitchen&quot;, &quot;outside&quot;: &quot;garden&quot;, &quot;upstairs&quot;: &quot;bedroom&quot;}, &quot;people&quot;: [&quot;James&quot;], &quot;capacity&quot;: 2}, &quot;kitchen&quot;: {&quot;exits&quot;: {&quot;south&quot;: &quot;living&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1}, &quot;garden&quot;: {&quot;exits&quot;: {&quot;inside&quot;: &quot;living&quot;}, &quot;people&quot;: [&quot;Sue&quot;], &quot;capacity&quot;: 3}, &quot;bedroom&quot;: {&quot;exits&quot;: {&quot;downstairs&quot;: &quot;living&quot;, &quot;jump&quot;: &quot;garden&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Or with file.write, using json.dumps to convert to a string</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_maze_out</span><span class="p">:</span>
     <span class="n">json_maze_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">house</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1219,7 +1244,21 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.yml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the file on disk</span>
+<span class="o">!</span>cat myotherfile.json
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;living&quot;: {&quot;exits&quot;: {&quot;north&quot;: &quot;kitchen&quot;, &quot;outside&quot;: &quot;garden&quot;, &quot;upstairs&quot;: &quot;bedroom&quot;}, &quot;people&quot;: [&quot;James&quot;], &quot;capacity&quot;: 2}, &quot;kitchen&quot;: {&quot;exits&quot;: {&quot;south&quot;: &quot;living&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1}, &quot;garden&quot;: {&quot;exits&quot;: {&quot;inside&quot;: &quot;living&quot;}, &quot;people&quot;: [&quot;Sue&quot;], &quot;capacity&quot;: 3}, &quot;bedroom&quot;: {&quot;exits&quot;: {&quot;downstairs&quot;: &quot;living&quot;, &quot;jump&quot;: &quot;garden&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write with yaml.safe_dump</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.yml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">house</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1227,16 +1266,71 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_maze_out</span><span class="p">:</span>
-    <span class="n">yaml_maze_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">house</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the file on disk</span>
+<span class="o">!</span>cat myfile.yml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bedroom:
+  capacity: 1
+  exits:
+    downstairs: living
+    jump: garden
+  people: []
+garden:
+  capacity: 3
+  exits:
+    inside: living
+  people:
+  - Sue
+kitchen:
+  capacity: 1
+  exits:
+    south: living
+  people: []
+living:
+  capacity: 2
+  exits:
+    north: kitchen
+    outside: garden
+    upstairs: bedroom
+  people:
+  - James
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Loading with json or yaml</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Or with file.write, using yaml.dump to convert to a string</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_maze_out</span><span class="p">:</span>
+    <span class="n">yaml_maze_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">house</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the file on disk</span>
+<span class="o">!</span>cat myotherfile.yaml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{bedroom: {capacity: 1, exits: {downstairs: living, jump: garden}, people: []}, garden: {
+    capacity: 3, exits: {inside: living}, people: [Sue]}, kitchen: {capacity: 1, exits: {
+      south: living}, people: []}, living: {capacity: 2, exits: {north: kitchen, outside: garden,
+      upstairs: bedroom}, people: [James]}}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Loading with JSON or YAML</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read into a string then load with json.loads</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">mydataasstring</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="n">my_json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">mydataasstring</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_json_data</span><span class="p">[</span><span class="s2">&quot;living&quot;</span><span class="p">])</span>
@@ -1251,8 +1345,9 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_maze_in</span><span class="p">:</span>
-    <span class="n">maze_again</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_maze_in</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read directly with json.load</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_json_maze</span><span class="p">:</span>
+    <span class="n">maze_again</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f_json_maze</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">maze_again</span><span class="p">[</span><span class="s2">&quot;living&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1265,8 +1360,10 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">my_yaml_data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read into a string then load with yaml.safe_load</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">mydataasstring</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">my_yaml_data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">mydataasstring</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_yaml_data</span><span class="p">[</span><span class="s2">&quot;living&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1279,8 +1376,9 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_maze_in</span><span class="p">:</span>
-    <span class="n">maze_again</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">yaml_maze_in</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read directly with yaml.safe_load</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_yaml_maze</span><span class="p">:</span>
+    <span class="n">maze_again</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f_yaml_maze</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">maze_again</span><span class="p">[</span><span class="s2">&quot;living&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1331,7 +1429,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.5, 1.5)
 </pre></div>
 </div>
-<img alt="../_images/module_03_17_1.png" src="../_images/module_03_17_1.png" />
+<img alt="../_images/module_03_22_1.png" src="../_images/module_03_22_1.png" />
 </div>
 </div>
 </section>
@@ -1369,7 +1467,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;metadata&quot;:{&quot;generated&quot;:1667395331000,&quot;url&quot;:&quot;https://earthquake.usgs.gov&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;metadata&quot;:{&quot;generated&quot;:1667412455000,&quot;url&quot;:&quot;https://earthquake.usgs.gov&#39;
 </pre></div>
 </div>
 </div>
@@ -1397,7 +1495,7 @@ title="Print to PDF"
         <span class="s2">&quot;maxlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1.67&quot;</span><span class="p">,</span>
         <span class="s2">&quot;minlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-9.756&quot;</span><span class="p">,</span>
         <span class="s2">&quot;minmagnitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-08-14&quot;</span><span class="p">,</span> <span class="c1"># Change the date to yesterday</span>
+        <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-11-02&quot;</span><span class="p">,</span> <span class="c1"># Change the date to yesterday</span>
         <span class="s2">&quot;orderby&quot;</span><span class="p">:</span> <span class="s2">&quot;time-asc&quot;</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">)</span>
@@ -1411,7 +1509,7 @@ title="Print to PDF"
 <span class="c1"># Can get the data indirectly via the text and then load json text....</span>
 <span class="n">my_quake_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">quakes</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="c1"># Section 3.1 - structured data</span>
 
-<span class="c1"># Requests also has a built in json parser</span>
+<span class="c1"># Requests also has a built in json parser (note this gives exactly the same result as &#39;my_quake_data&#39;)</span>
 <span class="n">requests_json</span> <span class="o">=</span> <span class="n">quakes</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1473,7 +1571,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>128
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>131
 </pre></div>
 </div>
 </div>
@@ -1652,10 +1750,450 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/module_03_44_0.png" src="../_images/module_03_44_0.png" />
+<img alt="../_images/module_03_49_0.png" src="../_images/module_03_49_0.png" />
 </div>
 </div>
-<p>Note - in this in this instance Pandas probably isn’t the first thing that you would use as we have nested dictionaries and json works very well in such cases</p>
+</section>
+<section id="optional-equivalent-solution-using-pandas">
+<h2>[Optional] Equivalent solution using pandas<a class="headerlink" href="#optional-equivalent-solution-using-pandas" title="Permalink to this headline">#</a></h2>
+<p>In this instance Pandas probably isn’t the first thing that you would use as we have nested dictionaries and JSON works very well in such cases.
+If we really want to use Pandas we’ll need to flatten the nested values before constructing a DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
+<span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;Feature&#39;,
+ &#39;properties&#39;: {&#39;mag&#39;: 2.6,
+  &#39;place&#39;: &#39;12 km NNW of Penrith, United Kingdom&#39;,
+  &#39;time&#39;: 956553055700,
+  &#39;updated&#39;: 1415322596133,
+  &#39;tz&#39;: None,
+  &#39;url&#39;: &#39;https://earthquake.usgs.gov/earthquakes/eventpage/usp0009rst&#39;,
+  &#39;detail&#39;: &#39;https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=usp0009rst&amp;format=geojson&#39;,
+  &#39;felt&#39;: None,
+  &#39;cdi&#39;: None,
+  &#39;mmi&#39;: None,
+  &#39;alert&#39;: None,
+  &#39;status&#39;: &#39;reviewed&#39;,
+  &#39;tsunami&#39;: 0,
+  &#39;sig&#39;: 104,
+  &#39;net&#39;: &#39;us&#39;,
+  &#39;code&#39;: &#39;p0009rst&#39;,
+  &#39;ids&#39;: &#39;,usp0009rst,&#39;,
+  &#39;sources&#39;: &#39;,us,&#39;,
+  &#39;types&#39;: &#39;,impact-text,origin,phase-data,&#39;,
+  &#39;nst&#39;: None,
+  &#39;dmin&#39;: None,
+  &#39;rms&#39;: None,
+  &#39;gap&#39;: None,
+  &#39;magType&#39;: &#39;ml&#39;,
+  &#39;type&#39;: &#39;earthquake&#39;,
+  &#39;title&#39;: &#39;M 2.6 - 12 km NNW of Penrith, United Kingdom&#39;},
+ &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-2.81, 54.77, 14]},
+ &#39;id&#39;: &#39;usp0009rst&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can use ** to convert a dictionary into pairs of (key, value)</span>
+<span class="c1"># We can then run `{(k1, v1), (k2, v2)}` to convert a list of keys and values back into a dictionary</span>
+<span class="n">combined_features</span> <span class="o">=</span> <span class="p">[{</span><span class="o">**</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span><span class="p">]</span>
+<span class="n">combined_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;earthquake&#39;,
+ &#39;coordinates&#39;: [-2.81, 54.77, 14],
+ &#39;mag&#39;: 2.6,
+ &#39;place&#39;: &#39;12 km NNW of Penrith, United Kingdom&#39;,
+ &#39;time&#39;: 956553055700,
+ &#39;updated&#39;: 1415322596133,
+ &#39;tz&#39;: None,
+ &#39;url&#39;: &#39;https://earthquake.usgs.gov/earthquakes/eventpage/usp0009rst&#39;,
+ &#39;detail&#39;: &#39;https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=usp0009rst&amp;format=geojson&#39;,
+ &#39;felt&#39;: None,
+ &#39;cdi&#39;: None,
+ &#39;mmi&#39;: None,
+ &#39;alert&#39;: None,
+ &#39;status&#39;: &#39;reviewed&#39;,
+ &#39;tsunami&#39;: 0,
+ &#39;sig&#39;: 104,
+ &#39;net&#39;: &#39;us&#39;,
+ &#39;code&#39;: &#39;p0009rst&#39;,
+ &#39;ids&#39;: &#39;,usp0009rst,&#39;,
+ &#39;sources&#39;: &#39;,us,&#39;,
+ &#39;types&#39;: &#39;,impact-text,origin,phase-data,&#39;,
+ &#39;nst&#39;: None,
+ &#39;dmin&#39;: None,
+ &#39;rms&#39;: None,
+ &#39;gap&#39;: None,
+ &#39;magType&#39;: &#39;ml&#39;,
+ &#39;title&#39;: &#39;M 2.6 - 12 km NNW of Penrith, United Kingdom&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">combined_features</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>coordinates</th>
+      <th>mag</th>
+      <th>place</th>
+      <th>time</th>
+      <th>updated</th>
+      <th>tz</th>
+      <th>url</th>
+      <th>detail</th>
+      <th>felt</th>
+      <th>...</th>
+      <th>code</th>
+      <th>ids</th>
+      <th>sources</th>
+      <th>types</th>
+      <th>nst</th>
+      <th>dmin</th>
+      <th>rms</th>
+      <th>gap</th>
+      <th>magType</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>earthquake</td>
+      <td>[-2.81, 54.77, 14]</td>
+      <td>2.6</td>
+      <td>12 km NNW of Penrith, United Kingdom</td>
+      <td>956553055700</td>
+      <td>1415322596133</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p0009rst</td>
+      <td>,usp0009rst,</td>
+      <td>,us,</td>
+      <td>,impact-text,origin,phase-data,</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 2.6 - 12 km NNW of Penrith, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>earthquake</td>
+      <td>[-1.61, 52.28, 13.1]</td>
+      <td>4.0</td>
+      <td>1 km WSW of Warwick, United Kingdom</td>
+      <td>969683025790</td>
+      <td>1415322666913</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000a0pm</td>
+      <td>,usp000a0pm,</td>
+      <td>,us,</td>
+      <td>,impact-text,origin,phase-data,</td>
+      <td>55.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 4.0 - 1 km WSW of Warwick, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>earthquake</td>
+      <td>[1.564, 53.236, 10]</td>
+      <td>4.0</td>
+      <td>38 km NNE of Cromer, United Kingdom</td>
+      <td>977442788510</td>
+      <td>1415322705662</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000a6hd</td>
+      <td>,usp000a6hd,</td>
+      <td>,us,</td>
+      <td>,origin,phase-data,</td>
+      <td>27.0</td>
+      <td>NaN</td>
+      <td>1.12</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 4.0 - 38 km NNE of Cromer, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>earthquake</td>
+      <td>[0.872, 58.097, 10]</td>
+      <td>3.3</td>
+      <td>171 km ENE of Peterhead, United Kingdom</td>
+      <td>984608438660</td>
+      <td>1415322741153</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000abdr</td>
+      <td>,usp000abdr,</td>
+      <td>,us,</td>
+      <td>,origin,phase-data,</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>1.44</td>
+      <td>NaN</td>
+      <td>mb</td>
+      <td>M 3.3 - 171 km ENE of Peterhead, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>earthquake</td>
+      <td>[-1.845, 51.432, 10]</td>
+      <td>2.9</td>
+      <td>8 km W of Marlborough, United Kingdom</td>
+      <td>984879824720</td>
+      <td>1415322742102</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000abnc</td>
+      <td>,usp000abnc,</td>
+      <td>,us,</td>
+      <td>,origin,phase-data,</td>
+      <td>19.0</td>
+      <td>NaN</td>
+      <td>0.57</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 2.9 - 8 km W of Marlborough, United Kingdom</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;mag&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>coordinates</th>
+      <th>mag</th>
+      <th>place</th>
+      <th>time</th>
+      <th>updated</th>
+      <th>tz</th>
+      <th>url</th>
+      <th>detail</th>
+      <th>felt</th>
+      <th>...</th>
+      <th>code</th>
+      <th>ids</th>
+      <th>sources</th>
+      <th>types</th>
+      <th>nst</th>
+      <th>dmin</th>
+      <th>rms</th>
+      <th>gap</th>
+      <th>magType</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>earthquake</td>
+      <td>[-2.15, 52.52, 9.4]</td>
+      <td>4.8</td>
+      <td>2 km ESE of Wombourn, United Kingdom</td>
+      <td>1032738794600</td>
+      <td>1600455819229</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000bcxg</td>
+      <td>,usp000bcxg,atlas20020922235314,</td>
+      <td>,us,atlas,</td>
+      <td>,impact-text,origin,phase-data,shakemap,trump-...</td>
+      <td>268.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>mb</td>
+      <td>M 4.8 - 2 km ESE of Wombourn, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>81</th>
+      <td>earthquake</td>
+      <td>[-0.332, 53.403, 18.4]</td>
+      <td>4.8</td>
+      <td>1 km NNE of Market Rasen, United Kingdom</td>
+      <td>1204073807800</td>
+      <td>1657747150218</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>13654.0</td>
+      <td>...</td>
+      <td>p000g02w</td>
+      <td>,us2008nyae,usp000g02w,atlas20080227005647,</td>
+      <td>,us,us,atlas,</td>
+      <td>,associate,dyfi,impact-text,origin,phase-data,...</td>
+      <td>361.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>19.2</td>
+      <td>mb</td>
+      <td>M 4.8 - 1 km NNE of Market Rasen, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>earthquake</td>
+      <td>[1.009, 51.085, 10]</td>
+      <td>4.6</td>
+      <td>1 km WNW of Lympne, United Kingdom</td>
+      <td>1177744691360</td>
+      <td>1657780288041</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>201.0</td>
+      <td>...</td>
+      <td>p000fase</td>
+      <td>,us2007bsal,usp000fase,atlas20070428071811,</td>
+      <td>,us,us,atlas,</td>
+      <td>,associate,dyfi,impact-text,origin,phase-data,...</td>
+      <td>295.0</td>
+      <td>NaN</td>
+      <td>1.12</td>
+      <td>31.8</td>
+      <td>mb</td>
+      <td>M 4.6 - 1 km WNW of Lympne, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>earthquake</td>
+      <td>[-2.219, 53.478, 5]</td>
+      <td>4.3</td>
+      <td>1 km ESE of Manchester, United Kingdom</td>
+      <td>1035200554900</td>
+      <td>1415323007416</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000beyx</td>
+      <td>,usp000beyx,</td>
+      <td>,us,</td>
+      <td>,impact-text,origin,phase-data,</td>
+      <td>46.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 4.3 - 1 km ESE of Manchester, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>earthquake</td>
+      <td>[-3.8559, 51.7231, 11.55]</td>
+      <td>4.3</td>
+      <td>5 km NE of Clydach, United Kingdom</td>
+      <td>1518877865070</td>
+      <td>1664101506468</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>3409.0</td>
+      <td>...</td>
+      <td>2000d3uw</td>
+      <td>,us2000d3uw,</td>
+      <td>,us,</td>
+      <td>,dyfi,impact-text,origin,phase-data,shakemap,</td>
+      <td>NaN</td>
+      <td>2.167</td>
+      <td>1.14</td>
+      <td>92.0</td>
+      <td>mb</td>
+      <td>M 4.3 - 5 km NE of Clydach, United Kingdom</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<p>You can see that we haven’t really gained much over the JSON solution.
+We still needed to look at the data to see its structure and we had to manually flatten the structure.</p>
 </section>
 </section>
 

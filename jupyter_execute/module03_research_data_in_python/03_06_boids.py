@@ -7,6 +7,8 @@
 
 # ⚠️ Warning: Advanced Topic! ⚠️
 # 
+# Our earlier discussion of NumPy was very theoretical, but let's go through a practical example, and see how powerful NumPy can be.
+# 
 # *Note this is more a showcase of what you can do with numpy than an exhaustive notebook to work through*
 
 # ## 3.6.1 Flocking
