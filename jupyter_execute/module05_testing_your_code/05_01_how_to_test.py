@@ -5,7 +5,7 @@
 
 # *Estimated time for this notebook: 15 minutes*
 
-# ## Equivalence partitioning
+# ## Choosing the scenarios to test - "Equivalence partitioning"
 
 # Think hard about the different cases the code will run under: this is science, not coding!
 
@@ -153,7 +153,11 @@ overlap((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 3.0))
 
 # That looks OK.
 
-# But we can do better, we can write code which **raises an error** if it gets an unexpected answer:
+# But we can do better - we don't want to have to manually check our results. We can use the `assert` statement for this:
+# ```
+# assert <some statement>
+# ```
+# If `<some statement>` evaluate to `True` carry on. If not, raise an error.
 
 # In[13]:
 
@@ -260,7 +264,9 @@ assert overlap((1, 1, 4, 4), (4, 4, 4.5, 4.5)) == 0.0
 # ## Positive *and* negative tests
 # 
 # * **Positive tests**: code should give correct answer with various inputs
-# * **Negative tests**: code should crash as expected given invalid inputs, rather than lying
+# * **Negative tests**: code should behave appropriately* given invalid inputs, rather than lying
+# 
+# *(It is up to you to decide what is "appropriate" behaviour in your context.)
 # 
 # <div align="left">
 # Bad input should be expected and should fail early and explicitly.
@@ -295,7 +301,7 @@ I_only_accept_positive_numbers(5)
 I_only_accept_positive_numbers(-5)
 
 
-# There are standard "Exception" types, like `ValueError` we can `raise`
+# There are standard "Exception" types, like `ValueError` we can `raise` (more on this in Module 08.03)
 
 # We would like to be able to write tests like this:
 
@@ -305,8 +311,20 @@ I_only_accept_positive_numbers(-5)
 
 # But to do that, we need to learn about more sophisticated testing tools, called "test frameworks".
 
-# In[ ]:
-
-
-
-
+# ## A note on Test-Driven Development (TDD)
+# 
+# In the overlapping fields example above we planned some of our test scenarios _before_ writing the `overlap` function. This is an example of "Test-Driven Development (TDD)". This was a particularly fashionable approach to development a few years ago. Some TDD advocates have taken an uncompromising approach which has led to it slightly falling out of favour more recently. However, it is worth retaining the benefits that caused its initial popularity.
+# 
+# In its "purest"/uncompromising form:
+# 
+# * Always write and commit your tests _before_ the related production code.
+# * Always write tests to cover every line of your production code (we'll cover how to measure this in the next module).
+# 
+# A more pragmatic interpretation might be:
+# 
+# * Write your tests simultaneously with your production code.
+# * Allow your tests to affect the design of your production code - i.e. ensure that your production code is _testable_.
+# * When you are stuck, break down the problem into smaller, testable stages.
+# * Ensure that your tests cover (i) the core function of the software and (ii) any input sanity checking.
+# 
+# 

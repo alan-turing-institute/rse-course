@@ -1044,6 +1044,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#pytest-framework-usage">
      pytest framework: usage
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#coverage-reports">
+       Coverage reports
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1107,6 +1114,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#pytest-framework-usage">
      pytest framework: usage
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#coverage-reports">
+       Coverage reports
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1370,7 +1384,7 @@ pytest || echo &quot;Tests failed&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================= 1 failed, 2 passed in 0.08s ==========================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================= 1 failed, 2 passed in 0.06s ==========================
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tests failed
@@ -1391,6 +1405,103 @@ pytest || echo &quot;Tests failed&quot;
 <li><p>help: <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">--help</span></code></p></li>
 <li><p>run only tests for a given feature: <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-k</span> <span class="pre">foo</span></code> # tests with ‘foo’ in the test name</p></li>
 </ul>
+<section id="coverage-reports">
+<h3>Coverage reports<a class="headerlink" href="#coverage-reports" title="Permalink to this headline">#</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">pytest</span></code> it is possisble to see, which lines of code have or haven’t been execuded by you tests.</p>
+<p>The command below will produce a html files which highlights the coverage of your tests.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+#%%cmd #(windows)
+cd saskatchewan
+pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
+# MacOS:
+# open htmlcov/index.html
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/saskatchewan
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 3 items
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_overlap.py ..F                                                      [100%]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=================================== FAILURES ===================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_______________________________ test_no_overlap ________________________________
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    def test_no_overlap():
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5)) == 0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E       assert 0.25 == 0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_overlap.py:13: AssertionError
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- coverage: platform linux, python 3.8.14-final-0 -----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coverage HTML written to dir htmlcov
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=========================== short test summary info ============================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FAILED test_overlap.py::test_no_overlap - assert 0.25 == 0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================= 1 failed, 2 passed in 0.05s ==========================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tests failed
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="testing-with-floating-points">

@@ -119,6 +119,18 @@ get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npy
 # * help: `pytest --help`
 # * run only tests for a given feature: `pytest -k foo` # tests with 'foo' in the test name
 
+# ### Coverage reports
+# 
+# Using `pytest` it is possisble to see, which lines of code have or haven't been execuded by you tests.
+# 
+# The command below will produce a html files which highlights the coverage of your tests.
+
+# In[8]:
+
+
+get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npytest --cov=. --cov-report=html || echo "Tests failed"\n# MacOS:\n#\xa0open htmlcov/index.html\n')
+
+
 # # Testing with floating points
 # 
 # ## Floating points are not reals
@@ -130,13 +142,13 @@ get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npy
 
 # This can lead to numerical errors during calculations: $1000 (a - b) \neq 1000a - 1000b$
 
-# In[8]:
+# In[9]:
 
 
 1000.0 * 1.0 - 1000.0 * 0.9999999999999998
 
 
-# In[9]:
+# In[10]:
 
 
 1000.0 * (1.0 - 0.9999999999999998)
@@ -146,7 +158,7 @@ get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npy
 # 
 # The size of the error will depend on the magnitude of the floating points:
 
-# In[10]:
+# In[11]:
 
 
 1000.0 * 1e5 - 1000.0 * 0.9999999999999998e5
@@ -158,7 +170,7 @@ get_ipython().run_cell_magic('bash', '', '#%%cmd #(windows)\ncd saskatchewan\npy
 # 
 # Use the "approx", for a default of a relative tolerance of $10^{-6}$
 
-# In[11]:
+# In[12]:
 
 
 from pytest import approx
@@ -168,7 +180,7 @@ assert 0.7 == approx(0.7 + 1e-7)
 
 # Or be more explicit:
 
-# In[12]:
+# In[13]:
 
 
 magnitude = 0.7
@@ -181,7 +193,7 @@ assert 0.7 == approx(0.701, rel=0.1, abs=0.1)
 # 
 # Numerical vectors are best represented using [numpy](http://www.numpy.org/).
 
-# In[13]:
+# In[14]:
 
 
 from numpy import array, pi
@@ -192,7 +204,7 @@ vector_of_reals = array([0.1, 0.2, 0.3, 0.4]) * pi
 # Numpy ships with a number of assertions (in `numpy.testing`) to make
 # comparison easy:
 
-# In[14]:
+# In[15]:
 
 
 from numpy import array, pi

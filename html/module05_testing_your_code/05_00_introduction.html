@@ -1141,6 +1141,13 @@ title="Print to PDF"
 <p><em>Estimated time for this notebook: 5 minutes</em></p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>As we write code, we want to be sure that it does behaves the way we’d like it to - so we test it. Testing (and re-testing) our code is something that needs to be done regularly (ideally after every change to the code), comprehensively, quickly and reliably. In short testing is an task that is ideally suited to automation.</p>
+<p>We write additional code to test the behaviour for our main code. We use these terms to distinguish between the two types of code:</p>
+<ul class="simple">
+<li><p>“Production code” - the code that fulfills the purpose of the software, and is run by the end user.</p></li>
+<li><p>“Test code” - additional code only used by software development team</p></li>
+</ul>
+<p><strong>For this module we are focusing on <em>automated testing</em>.</strong></p>
 <section id="a-few-reasons-not-to-do-testing">
 <h3>A few reasons not to do testing<a class="headerlink" href="#a-few-reasons-not-to-do-testing" title="Permalink to this headline">#</a></h3>
 <table class="colwidths-auto table">
@@ -1186,15 +1193,15 @@ not do</em></p></li>
 <section id="not-a-panacea">
 <h3>Not a panacea<a class="headerlink" href="#not-a-panacea" title="Permalink to this headline">#</a></h3>
 <blockquote>
-<div><p>Trying to improve the quality of software by doing more testing is like trying to lose weight by
-weighting yourself more often.
-- Steve McConnell</p>
+<div><p>“Trying to improve the quality of software by doing more testing is like trying to lose weight by
+weighting yourself more often.” - Steve McConnell</p>
 </div></blockquote>
 <ul class="simple">
-<li><p>Testing won’t corrrect a buggy code</p></li>
+<li><p>Testing won’t correct a buggy code</p></li>
 <li><p>Testing will tell you were the bugs are…</p></li>
-<li><p>… if the test cases <em>cover</em> the bugs</p></li>
+<li><p>… if (and only if) the test cases <em>cover</em> the scenarios that cause the bugs or occur.</p></li>
 </ul>
+<p>Also, automated tests only test a narrow interpretation of quality software development. They do <em>not</em> help test that your software is <em>useful</em> and help solves a users’ problem. We will touch on this again in Module 06.</p>
 </section>
 <section id="tests-at-different-scales">
 <h3>Tests at different scales<a class="headerlink" href="#tests-at-different-scales" title="Permalink to this headline">#</a></h3>
@@ -1202,23 +1209,27 @@ weighting yourself more often.
 <thead>
 <tr class="row-odd"><th class="head"><p>Level of test</p></th>
 <th class="head"><p>Area covered by test</p></th>
+<th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>Unit testing</strong></p></td>
 <td><p>smallest logical block of work (often &lt; 10 lines of code)</p></td>
+<td><p>Unit tests should run fast (eg ~1/100th sec) so that they can be re-run regularly (eg every git commit). To achieve this they should not invoke network access or substantial disk access.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Component testing</strong></p></td>
 <td><p>several logical blocks of work together</p></td>
+<td><p>These can be useful where you need to tease out the expected/useful behaviour of 3rd party libraries.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Integration testing</strong></p></td>
 <td><p>all components together / whole program</p></td>
+<td><p>These can take longer to run, and can be run less often.</p></td>
 </tr>
 </tbody>
 </table>
 <ul class="simple">
-<li><p>Always start at the smallest scale!</p></li>
-<li><p>If a unit test is too complicated, go smaller.</p></li>
+<li><p>When writing new code (see below) always start by creating tests at the smallest scale (unit tests).</p></li>
+<li><p>If a unit test is too complicated to write, then consider adjusting your production code (possibly by breaking it down into smaller, individually testable functions). Ensuring that your production code is easy to test is a healthy habit.</p></li>
 </ul>
 </section>
 <section id="legacy-code-hardening">
