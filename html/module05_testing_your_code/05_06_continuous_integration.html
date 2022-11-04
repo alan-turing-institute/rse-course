@@ -1024,13 +1024,28 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-servers">
-   Test servers
+  <a class="reference internal nav-link" href="#getting-past-but-it-works-on-my-machine">
+   Getting past “but it works on my machine…”
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#memory-and-profiling">
-   Memory and profiling
+  <a class="reference internal nav-link" href="#options-for-ci-servers">
+   Options for CI Servers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objectives">
+   Objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apply-this-to-the-personal-github-repo-you-made-in-module-04">
+   Apply this to the personal github repo you made in module 04”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#futher-reading">
+   Futher reading:
   </a>
  </li>
 </ul>
@@ -1053,13 +1068,28 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-servers">
-   Test servers
+  <a class="reference internal nav-link" href="#getting-past-but-it-works-on-my-machine">
+   Getting past “but it works on my machine…”
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#memory-and-profiling">
-   Memory and profiling
+  <a class="reference internal nav-link" href="#options-for-ci-servers">
+   Options for CI Servers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objectives">
+   Objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apply-this-to-the-personal-github-repo-you-made-in-module-04">
+   Apply this to the personal github repo you made in module 04”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#futher-reading">
+   Futher reading:
   </a>
  </li>
 </ul>
@@ -1074,32 +1104,270 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="continuous-integration">
 <h1>5.6 Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">#</a></h1>
-<p><em>Estimated time for this notebook: 5 minutes</em></p>
-<section id="test-servers">
-<h2>Test servers<a class="headerlink" href="#test-servers" title="Permalink to this headline">#</a></h2>
-<p>Goal:</p>
-<ol class="simple">
-<li><p>run tests nightly</p></li>
-<li><p>run tests after each commit to github (or other)</p></li>
-<li><p>run tests on different platforms</p></li>
-</ol>
-<p>Various groups run servers that can be used to do this automatically.</p>
+<p><em>Estimated time for this notebook: 15 minutes</em></p>
+<section id="getting-past-but-it-works-on-my-machine">
+<h2>Getting past “but it works on my machine…”<a class="headerlink" href="#getting-past-but-it-works-on-my-machine" title="Permalink to this headline">#</a></h2>
+<p>Try running the code below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+rm -rf continuous_int
+mkdir continuous_int
+touch continuous_int/__init__.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> continuous_int/test_demo.py
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">test_platform</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;\d&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_replace</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing continuous_int/test_demo.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cd continuous_int
+pytest || echo &quot;tests complete&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/continuous_int
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 2 items
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py FF                                                          [100%]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=================================== FAILURES ===================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________ test_platform _________________________________
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    def test_platform():
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert re.search(&quot;\d&quot;, sys.platform)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E       AssertionError: assert None
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +  where None = &lt;function search at 0x7f0d4a20a550&gt;(&#39;\\d&#39;, &#39;linux&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +    where &lt;function search at 0x7f0d4a20a550&gt; = re.search
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +    and   &#39;linux&#39; = sys.platform
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py:5: AssertionError
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________ test_replace _________________________________
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    def test_replace():
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert &quot;&quot;.replace(&quot;&quot;, &quot;A&quot;, 2) == &quot;A&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E       AssertionError: assert &#39;&#39; == &#39;A&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E         - A
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py:8: AssertionError
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=============================== warnings summary ===============================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py:5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  /home/runner/work/rse-course/rse-course/module05_testing_your_code/continuous_int/test_demo.py:5: DeprecationWarning: invalid escape sequence \d
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    assert re.search(&quot;\d&quot;, sys.platform)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=========================== short test summary info ============================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FAILED test_demo.py::test_platform - AssertionError: assert None
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +  where None = &lt;function search at 0x7f0d4a20a550&gt;(&#39;\\d&#39;, &#39;linux&#39;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +    where &lt;function search at 0x7f0d4a20a550&gt; = re.search
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +    and   &#39;linux&#39; = sys.platform
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FAILED test_demo.py::test_replace - AssertionError: assert &#39;&#39; == &#39;A&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  - A
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================= 2 failed, 1 warning in 0.06s =========================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tests complete
+</pre></div>
+</div>
+</div>
+</div>
+<p>The example above is a trival, and deliberate, example of code that will behave differently on different computers.</p>
+<p>Much more subtle instances can occur in real-life, which if allowed to propergate, they can result in bugs and errors that are difficult to trace, let alone fix.</p>
+<p>One mitigation for this problem is to use a process of “Continuous Integration (CI)”. This is a process of drawing together all developer contributions as early as possible and freaquently running the automated tests. Typically this involves the use of CI servers, which provide a common and reliable environment to run our tests. (This is not the only use of CI servers - we will touch on other use cases in later modules)</p>
 </section>
-<section id="memory-and-profiling">
-<h2>Memory and profiling<a class="headerlink" href="#memory-and-profiling" title="Permalink to this headline">#</a></h2>
-<p>For compiled languages (C, C++, Fortran):</p>
+<section id="options-for-ci-servers">
+<h2>Options for CI Servers<a class="headerlink" href="#options-for-ci-servers" title="Permalink to this headline">#</a></h2>
+<p>There are many different open-source or propritory CI Servers available. In some cases it might be appropriate to have <a class="reference external" href="https://en.wikipedia.org/wiki/Comparison_of_continuous_integration_software">on-permise CI Servers</a> at your organisation.</p>
+<p>There are also a number of Continuous-Integration-Server-as-a-Service products that can be use free-of-charge for open source projects. Here we will expand on <a class="reference external" href="https://docs.github.com/en/actions">“GitHub Actions”</a> which is a Continuous-Integration-Server-as-a-Service, which is one component of the wider GitHub ecosystem.</p>
+</section>
+<section id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">#</a></h2>
+<p>We would like to test our code on</p>
 <ul class="simple">
-<li><p>Checking for memory leaks with <a class="reference external" href="http://valgrind.org/">valgrind</a>:
-<code class="docutils literal notranslate"><span class="pre">valgrind</span> <span class="pre">--leak-check=full</span> <span class="pre">program</span></code></p></li>
-<li><p>Checking cache hits and cache misses with
-<a class="reference external" href="http://valgrind.org/docs/manual/cg-manual.html">cachegrind</a>:
-<code class="docutils literal notranslate"><span class="pre">valgrind</span> <span class="pre">--tool=cachegrind</span> <span class="pre">program</span></code></p></li>
-<li><p>Profiling the code with <a class="reference external" href="http://valgrind.org/docs/manual/cl-manual.html">callgrind</a>:
-<code class="docutils literal notranslate"><span class="pre">valgrind</span> <span class="pre">--tool=callgrind</span> <span class="pre">program</span></code></p></li>
+<li><p>different operating systems</p></li>
+<li><p>different versions of python</p></li>
+<li><p>each commit to a pull request</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+mkdir -p continuous_int/.github/workflows
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile continuous_int/.github/workflows/ci-tests.yml
+# This workflow will install Python dependencies, run tests with a variety of Python versions, on Windows and Linux
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Unit tests
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+
+jobs:
+  build:
+    strategy:
+      # We use `fail-fast: false` for teaching purposess. This ensure that all combinations of the matrix
+      # will run even if one or more fail. 
+      fail-fast: false
+      matrix:
+        python-version: [3.8, 3.9, &quot;3.10&quot;]
+        os: [ubuntu-latest, windows-latest]
+    
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    # Yes we have to explictly install pytest. In a &quot;real&quot; example this could be included in a 
+    # requirement.txt or environment.yml to setup your environment
+    - name: Install PyTest
+      run: |
+        python -m pip install pytest
+    # Now run the tests
+    - name: Test with pytest
+      run: |
+        pytest
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing continuous_int/.github/workflows/ci-tests.yml
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="apply-this-to-the-personal-github-repo-you-made-in-module-04">
+<h2>Apply this to the personal github repo you made in module 04”<a class="headerlink" href="#apply-this-to-the-personal-github-repo-you-made-in-module-04" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Python: <a class="reference external" href="http://docs.python.org/2/library/profile.html">profile</a> with <a class="reference external" href="http://www.vrplumber.com/programming/runsnakerun/">runsnake</a></p></li>
-<li><p>R: <a class="reference external" href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/Rprof.html">Rprof</a></p></li>
+<li><p>Create a new branch in your repo.</p></li>
+<li><p>Copy the files in the <code class="docutils literal notranslate"><span class="pre">continuous_int</span></code> directory into your local clone . Note that the <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file must exist in the directory <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>, which must be in the root of your repo. (The <code class="docutils literal notranslate"><span class="pre">.</span></code> prefixed to teh <code class="docutils literal notranslate"><span class="pre">.github</span></code></p></li>
+<li><p>Commit your changes and push them</p></li>
+<li><p>Create a Pull Request to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch of your own repo.</p></li>
+</ul>
+<p>When succesfully applied to your repo, you should see that a number of tests are completed on every commit pushed, on every pull request.</p>
+<p>These tests have been designed that they will both pass only if they are run on Windows and on Python v3.9 or higher, in order to demostrate the matrix workings of GH Actions. In a more more realistic senario, you should aim to have your test pass in all contexts.</p>
+</section>
+<section id="futher-reading">
+<h2>Futher reading:<a class="headerlink" href="#futher-reading" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>There can be cases where is it propriate to expect different behaviour on different platforms. <a class="reference external" href="https://docs.pytest.org/en/6.2.x/skipping.html">PyTest</a> has features that allow for cases.</p></li>
+<li><p>GitHub Actions themselves can be difficult to debug because of the need to commit and push every minor change. “<a class="reference external" href="https://github.com/nektos/act">Act</a>” provides a tool to help debug some GH Actions locally.</p></li>
 </ul>
 </section>
 </section>
