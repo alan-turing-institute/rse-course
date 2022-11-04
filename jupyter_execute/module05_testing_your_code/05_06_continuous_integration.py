@@ -65,7 +65,7 @@ get_ipython().run_cell_magic('writefile', 'continuous_int/.github/workflows/ci-t
 # ## Apply this to the personal github repo you made in module 04"
 # 
 # * Create a new branch in your repo.
-# * Copy the files in the `continuous_int` directory into your local clone . Note that the `.yml` file must exist in the directory `.github/workflows`, which must be in the root of your repo. (The `.` prefixed to teh `.github`
+# * Copy the files in the `continuous_int` directory into your local clone. Note that the `.yml` file must exist in the directory `.github/workflows`, which must be in the root of your repo. (The `.` prefixed to the `.github` directory means that it is hidden by default).
 # * Commit your changes and push them
 # * Create a Pull Request to the `main` branch of your own repo.
 # 
