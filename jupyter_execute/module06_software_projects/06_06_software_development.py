@@ -27,8 +27,13 @@
 # 
 # As a *role*, when *condition or circumstance applies* I want *a goal or desire* so that *benefits occur*.
 # 
-# These are easy to map into the Gherkin behaviour driven design test language.
+# ## Beware "stated" verus "revealed" requirements
 # 
+# Recording requirements early is useful, but beware that there is a risk that these "stated" requirements, only capture what you think you know at the begining of the project. As the project proceeds, you and your users learn more your understanding of your requirements may change. This can be especially true when software deals with abstract concepts.
+# 
+# Ultimely what does (or does not) satsify your users are your "revealed" requirements.
+# 
+# Your project management needs to allow of (or even encourage) this evolution of your requirements.
 
 # ## Functional and architectural design
 
@@ -199,10 +204,9 @@
 
 # 
 # * Don't ignore design
+# * Do try to write down some user stories
 # * See if there's a known design pattern that will help
 # * Do try to think about how your code will work before you start typing
-# * Do use design tools like UML to think about your design without coding straight away
-# * Do try to write down some user stories
 # * Do maintain design documents.
 # 
 # BUT
@@ -211,5 +215,35 @@
 # * Don't go dark -- never do more than a couple of weeks programming without showing what you've done to colleagues
 # * Don't get isolated from the reasons for your code's existence, stay involved in the research, don't be a Code Monkey.
 # * Do keep a list of all the things your code needs, estimate and prioritise tasks carefully.
+# 
+# 
+# **Software Project Management is a huge topic and we've only touched on here. It is worth learning both from experience and from reading and other shared knowledge throughout your career**
+# 
+# 
+
+# ## Further reading
+# 
+# Below is a small seleciton of the many books and articales writen on this topic: 
+# 
+# * **The Mythical Man Month** 
+# https://en.wikipedia.org/wiki/The_Mythical_Man-Month
+# First published in 1975, but still worth reading. 
+# 
+# * **Peopleware**
+# https://en.wikipedia.org/wiki/Peopleware:_Productive_Projects_and_Teams
+# "The major problems of our work are not so much technological as sociological in nature"
+# The first half of the book rails against office design typical of the 1990's, but fortunantly is become less comon in the era of hybrid/remote working. The secound half looks at team dynamics, managing risks in software projects, incremental delivery, working with non-technical stakeholders etc.
+# 
+# * **Manifesto for Agile Software Development**
+# https://agilemanifesto.org/principles.html
+# _The_0 Manifesto.
+# 
+# * **Agile is Dead**
+# https://www.youtube.com/watch?v=a-BOSpxYJ9M
+# A talk given by one of the Manifesto's signators, over a decade after the origional manifesto, expressing his fustration at what "Agile" had become.
+# 
+# * **Five Worlds**
+# https://www.joelonsoftware.com/2002/05/06/five-worlds/
+# Argues that different software development contexts need different approaches (techniquies, methodologies etc). The specific contexts are slightly dated, but the core advice is not - you should interperate any software development advise by considering the context from which it was derived. 
 # 
 # 

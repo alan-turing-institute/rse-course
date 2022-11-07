@@ -25,6 +25,16 @@
 
 # ## Anatomy of an issue
 # 
+# There are [three main pieces of information](https://www.joelonsoftware.com/2000/11/08/painless-bug-tracking/) required when someone reports a bug:
+# 
+# * How to reproduce
+# * Expected outcome
+# * Actual outcome
+# 
+# (Note how conceptually simular this is to the anatomy of a test)
+# 
+# There are other fields that can be useful within a software development team for prioritisation and tracking (but don't ask an user to specify these):
+# 
 # * Reporter
 # * Description
 # * Owner
