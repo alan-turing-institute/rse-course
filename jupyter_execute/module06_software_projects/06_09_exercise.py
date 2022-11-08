@@ -36,6 +36,21 @@
 # 
 # **6.** Install the package in your virtual environment.
 # 
+# - ⚠️ You might get an error that says something like `error: Multiple top-level packages discovered in a flat-layout`. This is because `setuptools` has detected multiple directories that look like python packages and doesn't know which one to choose. You should be able to fix this by adding (only) one of these sections to your `pyproject.toml` file:
+# 
+#   ```yaml
+#   [tool.setuptools]
+#   packages = ["<my_package_directory>"]
+#   ```
+# 
+#   _**or**_
+# 
+#   ```yaml
+#   [tool.setuptools.packages]
+#   include = ["<my_package_directory>*"]
+#   ```
+#   
+#   replacing `<my_package_directory>` with the name of the directory that contains your package (`.py` files)
 # 
 # **7.** Check that you can import your package and run a script to play a game.
 # 

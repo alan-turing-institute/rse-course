@@ -1202,6 +1202,20 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <p><strong>4.</strong> Create a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file to specify the metadata and dependencies for the package. The dependencies are <a class="reference external" href="https://pypi.org/project/PyYAML/">PyYAML</a> version 6.0 and <a class="reference external" href="https://pypi.org/project/art/">art</a> version 5.7.</p>
 <p><strong>5.</strong> Create a virtual environment and activate it</p>
 <p><strong>6.</strong> Install the package in your virtual environment.</p>
+<ul>
+<li><p>⚠️ You might get an error that says something like <code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">Multiple</span> <span class="pre">top-level</span> <span class="pre">packages</span> <span class="pre">discovered</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">flat-layout</span></code>. This is because <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> has detected multiple directories that look like python packages and doesn’t know which one to choose. You should be able to fix this by adding (only) one of these sections to your <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">tool.setuptools</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">packages = [&quot;&lt;my_package_directory&gt;&quot;]</span><span class="w"></span>
+</pre></div>
+</div>
+<p><em><strong>or</strong></em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">tool.setuptools.packages</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">include = [&quot;&lt;my_package_directory&gt;*&quot;]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>replacing <code class="docutils literal notranslate"><span class="pre">&lt;my_package_directory&gt;</span></code> with the name of the directory that contains your package (<code class="docutils literal notranslate"><span class="pre">.py</span></code> files)</p>
+</li>
+</ul>
 <p><strong>7.</strong> Check that you can import your package and run a script to play a game.</p>
 <p><strong>8.</strong> Make a command-line interface:</p>
 <ul class="simple">
@@ -1750,72 +1764,72 @@ o - a       o - T
 Let the hunt begin!
 
 Turn 1
-Adventurer moves left
+Adventurer moves down
 Troll moves nowhere
 
         *           
         |        
     o - o - o       
     |       |    
-a - o       o - T   
+o - o       o - T   
     |       |    
-    o - o - o       
+    a - o - o       
         |        
         o           
 
 Turn 2
-Adventurer moves right
-Troll moves left
+Adventurer moves up
+Troll moves nowhere
 
         *           
         |        
     o - o - o       
     |       |    
-o - a       T - o   
+o - a       o - T   
     |       |    
     o - o - o       
         |        
         o           
 
 Turn 3
-Adventurer moves down
-Troll moves up
+Adventurer moves up
+Troll moves nowhere
 
         *           
         |        
-    o - o - T       
-    |       |    
-o - o       o - o   
-    |       |    
     a - o - o       
+    |       |    
+o - o       o - T   
+    |       |    
+    o - o - o       
         |        
         o           
 
 Turn 4
 Adventurer moves right
-Troll moves left
+Troll moves nowhere
 
         *           
         |        
-    o - T - o       
-    |       |    
-o - o       o - o   
-    |       |    
     o - a - o       
+    |       |    
+o - o       o - T   
+    |       |    
+    o - o - o       
         |        
         o           
 
 Turn 5
 Adventurer moves right
-Troll moves up
+Troll moves left
 
-        T           
+        *           
         |        
-    o - o - o       
-    |       |    
-o - o       o - o   
-    |       |    
     o - o - a       
+    |       |    
+o - o       T - o   
+    |       |    
+    o - o - o       
         |        
         o           
 
@@ -1825,69 +1839,69 @@ Troll moves down
 
         *           
         |        
-    o - T - o       
+    o - a - o       
     |       |    
 o - o       o - o   
     |       |    
-    o - a - o       
+    o - o - T       
         |        
         o           
 
 Turn 7
-Adventurer moves right
-Troll moves nowhere
-
-        *           
-        |        
-    o - T - o       
-    |       |    
-o - o       o - o   
-    |       |    
-    o - o - a       
-        |        
-        o           
-
-Turn 8
 Adventurer moves left
 Troll moves left
 
         *           
         |        
-    T - o - o       
+    a - o - o       
     |       |    
 o - o       o - o   
     |       |    
+    o - T - o       
+        |        
+        o           
+
+Turn 8
+Adventurer moves right
+Troll moves left
+
+        *           
+        |        
     o - a - o       
+    |       |    
+o - o       o - o   
+    |       |    
+    T - o - o       
         |        
         o           
 
 Turn 9
-Adventurer moves left
+Adventurer moves right
 Troll moves right
 
         *           
         |        
-    o - T - o       
+    o - o - a       
     |       |    
 o - o       o - o   
     |       |    
-    a - o - o       
+    o - T - o       
         |        
         o           
 
 Turn 10
-Adventurer moves up
-Troll moves right
+Adventurer moves down
+Troll moves down
 
         *           
         |        
-    o - o - T       
+    o - o - o       
     |       |    
-o - a       o - o   
+o - o       a - o   
     |       |    
     o - o - o       
         |        
-        o           
+        T           
 
 No one saw Adventurer or Troll again.
  ___  _____    _    _     ___  __  __    _    _____  ___ 
@@ -1915,7 +1929,7 @@ No one saw Adventurer or Troll again.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.22, 0: 0.5971, 1: 0.1829}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2245, 0: 0.5887, 1: 0.1868}
 </pre></div>
 </div>
 </div>
