@@ -39,22 +39,31 @@
 
 # ## Layout
 
-# In[1]:
-
-
-reaction = {"reactants": ["H", "H", "O"], "products": ["H2O"]}
-
+# ```
+# reaction = {
+#     "reactants": ["H", "H", "O"], 
+#     "products": ["H2O"]
+# }
+# ```
 
 # 
 # 
 # 
 # 
 
-# In[2]:
-
-
-reaction2 = {"reactants": ["H", "H", "O"], "products": ["H2O"]}
-
+# ```
+# reaction2 = {
+#     "reactants": 
+#         [
+#             "H", 
+#             "H",
+#             "O"
+#         ], 
+#     "products": [
+#         "H2O"
+#     ]
+# }
+# ```
 
 # ## Layout choices
 
@@ -70,7 +79,7 @@ reaction2 = {"reactants": ["H", "H", "O"], "products": ["H2O"]}
 
 # [Camel case](https://en.wikipedia.org/wiki/Camel_case) is used in the following example, where class name is in UpperCamel, functions in lowerCamel and underscore_separation for variables names:
 
-# In[3]:
+# In[1]:
 
 
 class ClassName:
@@ -80,7 +89,7 @@ class ClassName:
 
 # This example uses `underscore_separation` for all the names:
 
-# In[4]:
+# In[2]:
 
 
 class class_name:
@@ -90,7 +99,7 @@ class class_name:
 
 # The usual Python convention (see [PEP8](https://www.python.org/dev/peps/pep-0008)) is UpperCamel for class names, and underscore_separation for function and variable names:
 
-# In[5]:
+# In[3]:
 
 
 class ClassName:
@@ -114,7 +123,7 @@ class ClassName:
 
 # The following two snippets do the same, but the second is separated into more steps, making it more readable.
 
-# In[6]:
+# In[4]:
 
 
 big = True
@@ -126,7 +135,7 @@ if color == "red" and fast or big and cheap:
     print("Vrroom!")
 
 
-# In[7]:
+# In[5]:
 
 
 exciting = color == "red" and fast
@@ -150,7 +159,7 @@ if exciting or practical:
 # 
 # Python is _dynamically_ typed, which means if a variable `x` is an integer:
 
-# In[8]:
+# In[6]:
 
 
 x = 32
@@ -158,7 +167,7 @@ x = 32
 
 # it is valid in Python to make it into a string or any other type later:
 
-# In[9]:
+# In[7]:
 
 
 x = "bananas"
@@ -168,7 +177,7 @@ x = "bananas"
 # 
 # For example, consider the following function:
 
-# In[10]:
+# In[8]:
 
 
 def repeat(x, y, times=2):
@@ -180,7 +189,7 @@ repeat("dog", "woof")
 
 # It looks like a function that repeats its inputs a number of times, but what if the inputs are numbers?
 
-# In[11]:
+# In[9]:
 
 
 repeat(2, 3, times=3)
@@ -190,7 +199,7 @@ repeat(2, 3, times=3)
 # 
 # To help us remember how the function is supposed to be used, we can add type annotations (or type "hints"):
 
-# In[12]:
+# In[10]:
 
 
 def repeat(x: str, y: str, times: int = 3) -> str:
@@ -201,7 +210,7 @@ def repeat(x: str, y: str, times: int = 3) -> str:
 
 # Note that type annotating your code will not change it's behaviour (Python does not enforce variables to be their annotated types):
 
-# In[13]:
+# In[11]:
 
 
 repeat(2, 3, times=3)
@@ -211,7 +220,7 @@ repeat(2, 3, times=3)
 # 
 # In this case we could do this to get what we expected originally:
 
-# In[14]:
+# In[12]:
 
 
 int(repeat("2", "3", times=3))

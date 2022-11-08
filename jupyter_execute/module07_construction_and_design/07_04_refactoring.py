@@ -196,7 +196,7 @@
 # 
 # ```python
 # def can_see(source, target):
-#     return (source["facing"] - target["facing"]) < source["viewport"]
+#     return abs(source["facing"] - target["facing"]) < source["viewport"]
 # ```
 # 
 # Warning: this refactoring greatly improves readability but can make code slower,

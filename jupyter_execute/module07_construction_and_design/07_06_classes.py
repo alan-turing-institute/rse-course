@@ -524,6 +524,8 @@ class Pet(Animal):
 
 
 # ### Polymorphism
+# 
+# Polymorphism refers to having different classes with the same method that does different things.
 
 # In[28]:
 
@@ -558,9 +560,8 @@ for animal in animals:
 # 
 # This will print "Bark Bark Miaow Oink Moo Miaow"
 # 
-# If two classes support the same method, but it does different things for the two classes, 
-# then if an object is of an unknown class, calling the method will invoke the version for
-# whatever class the instance is an instance of.
+# If two classes support the same method, but it does different things for the two classes, calling the method will invoke the version for
+# whatever class the object is an instance of.
 # 
 
 # ## Polymorphism and Inheritance

@@ -187,7 +187,9 @@ def largest(data):
 # # This is how you define a decorator in python
 # # See https://wiki.python.org/moin/PythonDecorators
 # def double(decorated_function):
-#     # Here, the result function forms a closure over
+#     # Here, the result function calls the decorated_function
+#     # twice, first on the entry input and then again on the 
+#     # output of that
 #     # the decorated function
 #     def result_function(entry):
 #         return decorated_function(decorated_function(entry))
