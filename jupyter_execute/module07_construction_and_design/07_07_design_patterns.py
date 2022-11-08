@@ -24,12 +24,11 @@
 
 # 
 # Programmers have noticed that there are certain ways of arranging classes that work better than others.
+# These are called **design patterns**.
 # 
-# These are called "design patterns".
+# They were first collected on one of the [world's first Wikis](http://c2.com/cgi/wiki?WelcomeVisitors), as the [Portland Pattern Repository](http://c2.com/cgi-bin/wiki?PatternIndex).
 # 
-# They were first collected on one of the [world's first Wikis](http://c2.com/cgi/wiki?WelcomeVisitors), 
-# as the [Portland Pattern Repository](http://c2.com/cgi-bin/wiki?PatternIndex).
-# 
+# For a good, modern reference site try: https://sourcemaking.com/design_patterns
 
 # ## Reading a pattern
 

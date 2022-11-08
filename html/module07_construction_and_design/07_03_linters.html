@@ -1103,8 +1103,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ci">
-       CI
+      <a class="reference internal nav-link" href="#continuous-integration">
+       Continuous Integration
       </a>
      </li>
     </ul>
@@ -1210,8 +1210,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ci">
-       CI
+      <a class="reference internal nav-link" href="#continuous-integration">
+       Continuous Integration
       </a>
      </li>
     </ul>
@@ -1244,12 +1244,23 @@ title="Print to PDF"
 <li><p><a class="reference external" href="https://pycodestyle.pycqa.org/en/latest/">pycodestyle</a> - checks whether Python code is compliant with PEP8 conventions</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">flake8</span></code> only checks code and flags any syntax/style errors, it does not attempt to fix them.</p>
-<p>For example, in the <code class="docutils literal notranslate"><span class="pre">flake8_example.py</span></code> file (in the same directory as this notebook) you’ll find this code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">e</span>
+<p>For example, consider this piece of code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> flake8_example.py
+
+<span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">e</span>
 
 <span class="k">def</span> <span class="nf">circumference</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting flake8_example.py
+</pre></div>
+</div>
+</div>
 </div>
 <p>Running <code class="docutils literal notranslate"><span class="pre">flake8</span></code> on it gives the following warnings:</p>
 <div class="cell docutils container">
@@ -1259,9 +1270,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">F401</span> &#39;constants.e&#39; imported but unused
-<span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>3<span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">E302</span> expected 2 blank lines, found 1
-<span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>4<span class=" -Color -Color-Cyan">:</span>16<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">F821</span> undefined name &#39;pi&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>2<span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">F401</span> &#39;constants.e&#39; imported but unused
+<span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>4<span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">E302</span> expected 2 blank lines, found 1
+<span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>5<span class=" -Color -Color-Cyan">:</span>16<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">F821</span> undefined name &#39;pi&#39;
 </pre></div>
 </div>
 </div>
@@ -1274,9 +1285,14 @@ title="Print to PDF"
 </section>
 <section id="black">
 <h3><a class="reference external" href="https://black.readthedocs.io/">black</a><a class="headerlink" href="#black" title="Permalink to this headline">#</a></h3>
-<p>A highly opinionated code formatter, which enforces control of minutiae details of your code.</p>
-<p>For example, in the <code class="docutils literal notranslate"><span class="pre">black_example.py</span></code> file (in the same directory as this notebook) you’ll find this code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<p>A highly opinionated code formatter, which enforces control of minutiae details of your code.
+The name comes from a Henry Ford quote: “Any customer can have a car painted any color that he wants, so long as it is black.”</p>
+<p>For example, consider this piece of code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> black_example.py
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">my_complex_function</span><span class="p">(</span><span class="n">important_argument_1</span><span class="p">,</span><span class="n">important_argument_2</span><span class="p">,</span><span class="n">optional_argument_3</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="n">optional_argument_4</span> <span class="o">=</span> <span class="mi">4</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">important_argument_1</span><span class="o">*</span><span class="n">important_argument_2</span><span class="o">*</span><span class="n">optional_argument_3</span><span class="o">*</span><span class="n">optional_argument_4</span>
@@ -1285,7 +1301,13 @@ title="Print to PDF"
     <span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">,</span>    <span class="n">name</span><span class="p">,</span>    <span class="n">end</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>After running black on the file:</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting black_example.py
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> black black_example.py
@@ -1293,34 +1315,45 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">All done! ✨ 🍰 ✨</span>
-<span class=" -Color -Color-Blue">1 file </span>left unchanged.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">reformatted black_example.py</span>
+
+<span class=" -Color -Color-Bold">All done! ✨ 🍰 ✨</span>
+<span class=" -Color -Color-Bold -Color-Bold-Blue">1 file </span><span class=" -Color -Color-Bold">reformatted</span>.
 </pre></div>
 </div>
 </div>
 </div>
-<p>Its contents become:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<span class="k">def</span> <span class="nf">my_complex_function</span><span class="p">(</span>
-    <span class="n">important_argument_1</span><span class="p">,</span>
-    <span class="n">important_argument_2</span><span class="p">,</span>
-    <span class="n">optional_argument_3</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">optional_argument_4</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-        <span class="o">*</span> <span class="n">important_argument_1</span>
-        <span class="o">*</span> <span class="n">important_argument_2</span>
-        <span class="o">*</span> <span class="n">optional_argument_3</span>
-        <span class="o">*</span> <span class="n">optional_argument_4</span>
-    <span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">greet</span><span class="o">=</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;!&quot;</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<p>After running <code class="docutils literal notranslate"><span class="pre">black</span></code> on the file its contents become:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat black_example.py
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>import numpy as np
+
+
+def my_complex_function(
+    important_argument_1,
+    important_argument_2,
+    optional_argument_3=3,
+    optional_argument_4=4,
+):
+    return (
+        np.random.random()
+        * important_argument_1
+        * important_argument_2
+        * optional_argument_3
+        * optional_argument_4
+    )
+
+
+def hello(name, greet=&quot;Hello&quot;, end=&quot;!&quot;):
+    print(greet, name, end)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Changes made by <code class="docutils literal notranslate"><span class="pre">black</span></code>:</p>
 <ul class="simple">
@@ -1344,8 +1377,12 @@ title="Print to PDF"
 <li><p>local application/library specific imports (<em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">.my_python_file</span> <span class="pre">import</span> <span class="pre">MyClass</span></code>).</p></li>
 </ol>
 <p>with a blank line between each group.</p>
-<p>For example in the file <code class="docutils literal notranslate"><span class="pre">isort_example.py</span></code> (in the same directory as this notebook) we have the following imports:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<p>For example, consider the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> isort_example.py
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">black_example</span>
@@ -1353,7 +1390,13 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">json</span>
 </pre></div>
 </div>
-<p>If we run isort:</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting isort_example.py
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> isort isort_example.py
@@ -1361,21 +1404,31 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fixing /home/runner/work/rse-course/rse-course/module07_construction_and_design/isort_example.py
+
 </pre></div>
 </div>
 </div>
 </div>
-<p>It becomes:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-
-<span class="kn">import</span> <span class="nn">black_example</span>
+<p>If we run isort it becomes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat isort_example.py
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>import json
+import os
+
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+
+import black_example
+</pre></div>
+</div>
+</div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">from</span></code> imports are placed at the bottom of each group.</p>
 </section>
@@ -1384,8 +1437,13 @@ title="Print to PDF"
 <h2>Other Linters<a class="headerlink" href="#other-linters" title="Permalink to this headline">#</a></h2>
 <section id="mypy">
 <h3><a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a><a class="headerlink" href="#mypy" title="Permalink to this headline">#</a></h3>
-<p>If you use type annotations in your code, <code class="docutils literal notranslate"><span class="pre">mypy</span></code> can check it for errors that may result from variables being assigned the wrong type. For example, in the file <code class="docutils literal notranslate"><span class="pre">mypy_example.py</span></code> we have this code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">greet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">rep</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<p>If you use type annotations in your code, <code class="docutils literal notranslate"><span class="pre">mypy</span></code> can check it for errors that may result from variables being assigned the wrong type.
+For example, consider the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> mypy_example.py
+
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">greet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">rep</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rep</span><span class="p">):</span>
         <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">greet</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -1395,6 +1453,13 @@ title="Print to PDF"
 <span class="nb">print</span><span class="p">(</span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting mypy_example.py
+</pre></div>
+</div>
+</div>
+</div>
 <p>If we run <code class="docutils literal notranslate"><span class="pre">mypy</span></code> on it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1403,7 +1468,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mypy_example.py:8: <span class=" -Color -Color-Bold -Color-Bold-Red">error:</span> Argument 2 to <span class=" -Color -Color-Bold">&quot;hello&quot;</span> has incompatible type <span class=" -Color -Color-Bold">&quot;int&quot;</span>; expected <span class=" -Color -Color-Bold">&quot;str&quot;</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mypy_example.py:9: <span class=" -Color -Color-Bold -Color-Bold-Red">error:</span> Argument 2 to <span class=" -Color -Color-Bold">&quot;hello&quot;</span> has incompatible type <span class=" -Color -Color-Bold">&quot;int&quot;</span>; expected <span class=" -Color -Color-Bold">&quot;str&quot;</span>
 <span class=" -Color -Color-Bold -Color-Bold-Red">Found 1 error in 1 file (checked 1 source file)</span>
 </pre></div>
 </div>
@@ -1423,18 +1488,35 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pylint flake8_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> pylint_example.py
+
+<span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">e</span>
+
+<span class="k">def</span> <span class="nf">circumference</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>************* Module flake8_example
-flake8_example.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-flake8_example.py:1:0: E0401: Unable to import &#39;constants&#39; (import-error)
-flake8_example.py:3:0: C0116: Missing function or method docstring (missing-function-docstring)
-flake8_example.py:3:18: C0103: Argument name &quot;r&quot; doesn&#39;t conform to snake_case naming style (invalid-name)
-flake8_example.py:4:15: E0602: Undefined variable &#39;pi&#39; (undefined-variable)
-flake8_example.py:1:0: W0611: Unused e imported from constants (unused-import)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting pylint_example.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pylint pylint_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>************* Module pylint_example
+pylint_example.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+pylint_example.py:2:0: E0401: Unable to import &#39;constants&#39; (import-error)
+pylint_example.py:4:0: C0116: Missing function or method docstring (missing-function-docstring)
+pylint_example.py:4:18: C0103: Argument name &quot;r&quot; doesn&#39;t conform to snake_case naming style (invalid-name)
+pylint_example.py:5:15: E0602: Undefined variable &#39;pi&#39; (undefined-variable)
+pylint_example.py:2:0: W0611: Unused e imported from constants (unused-import)
 
 ------------------------------------------------------------------
 Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
@@ -1481,18 +1563,17 @@ Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>flake8_example.py:0:1  Incorrectly sorted imports. [isort]
-flake8_example.py:1:1 W0611 &#39;constants.e&#39; imported but unused [pyflakes]
-flake8_example.py:1:1  Cannot find implementation or library stub for module named &quot;constants&quot; [mypy]
-flake8_example.py:1:1  See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports [mypy]
 flake8_example.py:1:1 D100 Missing docstring in public module [pydocstyle]
 flake8_example.py:1:1 C0114 Missing module docstring [pylint]
-flake8_example.py:1:1 E0401 Unable to import &#39;constants&#39; [pylint]
-flake8_example.py:1:1 W0611 Unused e imported from constants [pylint]
-flake8_example.py:3:1 E302 expected 2 blank lines, found 1 [pycodestyle]
-flake8_example.py:3:1 D103 Missing docstring in public function [pydocstyle]
-flake8_example.py:3:1 C0116 Missing function or method docstring [pylint]
-flake8_example.py:3:19 C0103 Argument name &quot;r&quot; doesn&#39;t conform to snake_case naming style [pylint]
-flake8_example.py:4:16 E0602 undefined name &#39;pi&#39; [pyflakes]
+flake8_example.py:2:1  Cannot find implementation or library stub for module named &quot;constants&quot; [mypy]
+flake8_example.py:2:1  See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports [mypy]
+flake8_example.py:2:1 W0611 &#39;constants.e&#39; imported but unused [pyflakes]
+flake8_example.py:2:1 E0401 Unable to import &#39;constants&#39; [pylint]
+flake8_example.py:4:1 E302 expected 2 blank lines, found 1 [pycodestyle]
+flake8_example.py:4:1 D103 Missing docstring in public function [pydocstyle]
+flake8_example.py:4:1 C0116 Missing function or method docstring [pylint]
+flake8_example.py:4:19 C0103 Argument name &quot;r&quot; doesn&#39;t conform to snake_case naming style [pylint]
+flake8_example.py:5:16 E0602 undefined name &#39;pi&#39; [pyflakes]
 
 </pre></div>
 </div>
@@ -1524,8 +1605,8 @@ flake8_example.py:4:16 E0602 undefined name &#39;pi&#39; [pyflakes]
 <h4><a class="reference external" href="https://pre-commit.com/">pre-commit</a><a class="headerlink" href="#pre-commit" title="Permalink to this headline">#</a></h4>
 <p>pre-commit is a manager for creating git “hooks” - scripts that run before making a commit. If a hook errors the commit won’t be made, and you’ll be prompted to fix the problems first. There are <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> plugins for all the linters discussed here, and it’s a good way to ensure all code committed to your repo has had a level of quality control applied to it.</p>
 </section>
-<section id="ci">
-<h4>CI<a class="headerlink" href="#ci" title="Permalink to this headline">#</a></h4>
+<section id="continuous-integration">
+<h4>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">#</a></h4>
 <p>As well as automating unit tests on a CI system like GitHub Actions it’s a good idea to configure them to run linters on your code too.</p>
 <p><a class="reference external" href="https://github.com/alan-turing-institute/AIrsenal/blob/main/.github/workflows/main.yml">Here is an example</a> from a repo using <code class="docutils literal notranslate"><span class="pre">isort</span></code>, <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">black</span></code> in a GitHub Action. Note that in a CI setup tools that usually change your code, like <code class="docutils literal notranslate"><span class="pre">black</span></code> and <code class="docutils literal notranslate"><span class="pre">isort</span></code>, will be configured to only check whether there are changes that need to be made.</p>
 </section>

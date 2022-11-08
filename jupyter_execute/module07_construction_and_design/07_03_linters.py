@@ -23,18 +23,17 @@
 # 
 # `flake8` only checks code and flags any syntax/style errors, it does not attempt to fix them.
 # 
-# For example, in the `flake8_example.py` file (in the same directory as this notebook) you'll find this code:
+# For example, consider this piece of code:
 
-# ```python
-# from constants import e
-# 
-# def circumference(r):
-#     return 2 * pi * r
-# ```
+# In[1]:
+
+
+get_ipython().run_cell_magic('writefile', 'flake8_example.py', '\nfrom constants import e\n\ndef circumference(r):\n    return 2 * pi * r\n')
+
 
 # Running `flake8` on it gives the following warnings:
 
-# In[1]:
+# In[2]:
 
 
 get_ipython().system(' flake8 flake8_example.py')
@@ -49,52 +48,30 @@ get_ipython().system(' flake8 flake8_example.py')
 # ### [black](https://black.readthedocs.io/)
 # 
 # A highly opinionated code formatter, which enforces control of minutiae details of your code.
+# The name comes from a Henry Ford quote: "Any customer can have a car painted any color that he wants, so long as it is black."
 # 
-# For example, in the `black_example.py` file (in the same directory as this notebook) you'll find this code:
-# 
-# ```python
-# import numpy as np
-# 
-# def my_complex_function(important_argument_1,important_argument_2,optional_argument_3 = 3,optional_argument_4 = 4):
-#     return np.random.random()*important_argument_1*important_argument_2*optional_argument_3*optional_argument_4
-# 
-# def hello(name,greet='Hello',end="!"):
-#     print(greet,    name,    end)
-# ```
-# 
-# After running black on the file:
+# For example, consider this piece of code:
 
-# In[2]:
+# In[3]:
+
+
+get_ipython().run_cell_magic('writefile', 'black_example.py', '\nimport numpy as np\n\ndef my_complex_function(important_argument_1,important_argument_2,optional_argument_3 = 3,optional_argument_4 = 4):\n    return np.random.random()*important_argument_1*important_argument_2*optional_argument_3*optional_argument_4\n\ndef hello(name,greet=\'Hello\',end="!"):\n    print(greet,    name,    end)\n')
+
+
+# In[4]:
 
 
 get_ipython().system(' black black_example.py')
 
 
-# Its contents become:
-# 
-# ```python
-# import numpy as np
-# 
-# 
-# def my_complex_function(
-#     important_argument_1,
-#     important_argument_2,
-#     optional_argument_3=3,
-#     optional_argument_4=4,
-# ):
-#     return (
-#         np.random.random()
-#         * important_argument_1
-#         * important_argument_2
-#         * optional_argument_3
-#         * optional_argument_4
-#     )
-# 
-# 
-# def hello(name, greet="Hello", end="!"):
-#     print(greet, name, end)
-# ```
-# 
+# After running `black` on the file its contents become:
+
+# In[5]:
+
+
+get_ipython().system('cat black_example.py')
+
+
 # Changes made by `black`:
 # - Ensured there are two blank lines before and after function definitions
 # - Wrapped long lines intelligently
@@ -117,37 +94,27 @@ get_ipython().system(' black black_example.py')
 # 
 # with a blank line between each group.
 # 
-# For example in the file `isort_example.py` (in the same directory as this notebook) we have the following imports:
-# 
-# ```python
-# import pandas as pd
-# import os
-# from matplotlib import pyplot as plt
-# import black_example
-# import numpy as np
-# import json
-# ```
-# 
-# If we run isort:
+# For example, consider the following code:
 
-# In[3]:
+# In[6]:
+
+
+get_ipython().run_cell_magic('writefile', 'isort_example.py', '\nimport pandas as pd\nimport os\nfrom matplotlib import pyplot as plt\nimport black_example\nimport numpy as np\nimport json\n')
+
+
+# In[7]:
 
 
 get_ipython().system(' isort isort_example.py')
 
 
-# It becomes:
-# 
-# ```python
-# import json
-# import os
-# 
-# import numpy as np
-# import pandas as pd
-# from matplotlib import pyplot as plt
-# 
-# import black_example
-# ```
+# If we run isort it becomes:
+
+# In[8]:
+
+
+get_ipython().system('cat isort_example.py')
+
 
 # Note that `from` imports are placed at the bottom of each group.
 
@@ -155,22 +122,18 @@ get_ipython().system(' isort isort_example.py')
 
 # ### [mypy](https://mypy.readthedocs.io/en/stable/)
 # 
-# If you use type annotations in your code, `mypy` can check it for errors that may result from variables being assigned the wrong type. For example, in the file `mypy_example.py` we have this code:
-# 
-# ```python
-# def hello(name: str, greet: str = "Hello", rep: int = 1) -> str:
-#     message: str = ""
-#     for _ in range(rep):
-#         message += f"{greet} {name}\n"
-#     return message
-# 
-# 
-# print(hello("Bob", 5))
-# ```
-# 
+# If you use type annotations in your code, `mypy` can check it for errors that may result from variables being assigned the wrong type.
+# For example, consider the following code:
+
+# In[9]:
+
+
+get_ipython().run_cell_magic('writefile', 'mypy_example.py', '\ndef hello(name: str, greet: str = "Hello", rep: int = 1) -> str:\n    message: str = ""\n    for _ in range(rep):\n        message += f"{greet} {name}\\n"\n    return message\n\n\nprint(hello("Bob", 5))\n')
+
+
 # If we run `mypy` on it:
 
-# In[4]:
+# In[10]:
 
 
 get_ipython().system(' mypy mypy_example.py')
@@ -191,10 +154,16 @@ get_ipython().system(' mypy mypy_example.py')
 #     return 2 * pi * r
 # ```
 
-# In[5]:
+# In[11]:
 
 
-get_ipython().system(' pylint flake8_example.py')
+get_ipython().run_cell_magic('writefile', 'pylint_example.py', '\nfrom constants import e\n\ndef circumference(r):\n    return 2 * pi * r\n')
+
+
+# In[12]:
+
+
+get_ipython().system(' pylint pylint_example.py')
 
 
 # Compared to `flake8`, in this case `pylint` also warns us that:
@@ -206,7 +175,7 @@ get_ipython().system(' pylint flake8_example.py')
 # 
 # `nbqa` allows you to run many Python quality tools (including all the ones we've introduced here) on jupyter notebooks. For example:
 
-# In[6]:
+# In[13]:
 
 
 get_ipython().system(' nbqa flake8 07_02_coding_conventions.ipynb')
@@ -216,7 +185,7 @@ get_ipython().system(' nbqa flake8 07_02_coding_conventions.ipynb')
 # 
 # `pylama` wraps many code quality tools (including `isort`, `mypy`, `pylint` and much of `flake8`) in a single command.
 
-# In[7]:
+# In[14]:
 
 
 get_ipython().system(' pylama --linters isort,mccabe,mypy,pycodestyle,pydocstyle,pyflakes,pylint flake8_example.py')
@@ -251,7 +220,7 @@ get_ipython().system(' pylama --linters isort,mccabe,mypy,pycodestyle,pydocstyle
 # 
 # pre-commit is a manager for creating git "hooks" - scripts that run before making a commit. If a hook errors the commit won't be made, and you'll be prompted to fix the problems first. There are `pre-commit` plugins for all the linters discussed here, and it's a good way to ensure all code committed to your repo has had a level of quality control applied to it.
 
-# #### CI
+# #### Continuous Integration
 # 
 # As well as automating unit tests on a CI system like GitHub Actions it's a good idea to configure them to run linters on your code too.
 # 
