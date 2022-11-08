@@ -176,6 +176,6 @@ sys.path
 # - Ubuntu and Debian: [dpkg](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html) for `apt-get` 
 # - Redhat and Fedora: [rpm](https://rpm.org/) for `yum`
 # - Mac OS: [homebrew](https://brew.sh/)
-# - Windows: [Chocolatey]((https://chocolatey.org))
+# - Windows: [Chocolatey](https://chocolatey.org)
 # 
 # If you're working in a compiled language like C++ or Fortran, there's often no language specific repository. You'll need to write platform installers for as many platforms as you want to support.
