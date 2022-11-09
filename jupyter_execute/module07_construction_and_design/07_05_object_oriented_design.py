@@ -45,11 +45,13 @@
 # 
 # 
 # terry = Person("Terry", 76)
-# terry.home = "Colwyn Bay"
 # ```
+
+# ⚠️ Note that in Python, you can add properties to an object once it's been defined. **Just because you can doesn't mean you should!**
 # 
-# ⚠️ Notice, that in Python, you can add properties to an object once it's been defined. **Just because you can doesn't mean you should!**
-# 
+# ```python
+# terry.home = "Colwyn Bay"  # don't add new properties like this!
+# ```
 
 # ### Declaring a class 
 
@@ -97,7 +99,7 @@
 
 # ### Member Variable
 
-# **Member variable:** a value stored inside an instance of a class.
+# **Member variable:** a value stored inside an instance of a class. Define (and initialise) them in the class constructor.
 
 # In[1]:
 
@@ -109,6 +111,18 @@ class MyClass:
 
 my_object = MyClass()
 print(my_object.member)
+
+
+# Each object has its own set of member variables.
+
+# In[2]:
+
+
+my_object.member = "Changed"
+print(my_object.member)
+
+my_second_object = MyClass()
+print(my_second_object.member)
 
 
 # ## Object refactorings
@@ -132,9 +146,10 @@ print(my_object.member)
 # **after:**
 # 
 # ```python
+# from random import random
+# 
 # class Bird:
 #     def __init__(self, kind):
-#         from random import random
 # 
 #         self.type = kind
 #         self.position = random()
@@ -172,7 +187,7 @@ print(my_object.member)
 #     hawk.hunt()
 # ```
 
-# ### Replace method arguments with class members
+# ### Replace method arguments with member variables
 
 # 💩**Smell**: A variable is nearly always used in arguments to 
 # a class.
@@ -213,7 +228,7 @@ print(my_object.member)
 #         pass
 # ```
 
-# ### Replace global variable with class and member
+# ### Replace global variable with class and member variable
 
 # 💩**Smell**: A global variable is referenced by a few functions
 # 
@@ -263,8 +278,5 @@ print(my_object.member)
 # 
 # * Replace ad-hoc structure with a class
 # * Replace function with a method
-# * Replace method argument with class member
-# * Replace global variable with class data
-# 
-# 
-# 
+# * Replace argument to method with member variable
+# * Replace global variable with member variable

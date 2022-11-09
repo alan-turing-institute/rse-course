@@ -89,18 +89,16 @@ yuml("[Particle|position;velocity|move()]")
 
 # ## Information Hiding
 
-# 
 # Sometimes, our design for a program would be broken if users start messing around with variables we don't want them to change.
 # 
 # Robust class design requires consideration of which subroutines are intended for users to use, and which are internal.
 # Languages provide features to implement this: access control. 
 # 
 # In python, we use leading underscores to control whether member variables and methods can be accessed from outside the class:
-#  - single leading underscore (`_`) is used to document it's private but people could use it if wanted (thought they shouldn't);
-#  - double leading underscore (`__`) raises errors if called.
 # 
-# 
-# 
+# - `_foo`: a single leading underscore (`_`) is a convention to indicate that a variable is private (ie. people are still *able* to use it but they shouldn't)
+# - `__foo`: a double leading underscore (`__`) is used to prevent accidental access. Inside the class the variable can be used with this name, but outside it is replaced by the interpreter with `_classname__foo`.
+# - `__foo__`: this pattern is used by built-in functions like `__init__` or `__str__`. You can (and should) write these for your own classes, but you should only use them for their intended purposes.
 
 # In[4]:
 
@@ -299,10 +297,13 @@ yuml("[Particle|+public;-private|+publicmethod();-privatemethod]")
 
 
 class Counted:
-    number_created = 0
+    number_created = 0  # this is shared between all instances of Counted
 
     def __init__(self):
+        # Increment the class-level variable 'number_created'
         Counted.number_created += 1
+        # Add a member variable: each instance of Counted has its own version of 'local_variable'
+        self.local_variable = 5
 
     @classmethod
     def howMany(cls):

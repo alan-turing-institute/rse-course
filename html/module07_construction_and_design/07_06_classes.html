@@ -547,11 +547,6 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07_03_linters.html">
-     7.3 Linting
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="07_04_refactoring.html">
      7.4 Refactoring
     </a>
@@ -1387,8 +1382,9 @@ the <a class="reference external" href="http://yuml.me/">YUML</a> online UML dra
 Languages provide features to implement this: access control.</p>
 <p>In python, we use leading underscores to control whether member variables and methods can be accessed from outside the class:</p>
 <ul class="simple">
-<li><p>single leading underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) is used to document it’s private but people could use it if wanted (thought they shouldn’t);</p></li>
-<li><p>double leading underscore (<code class="docutils literal notranslate"><span class="pre">__</span></code>) raises errors if called.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_foo</span></code>: a single leading underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) is a convention to indicate that a variable is private (ie. people are still <em>able</em> to use it but they shouldn’t)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__foo</span></code>: a double leading underscore (<code class="docutils literal notranslate"><span class="pre">__</span></code>) is used to prevent accidental access. Inside the class the variable can be used with this name, but outside it is replaced by the interpreter with <code class="docutils literal notranslate"><span class="pre">_classname__foo</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__foo__</span></code>: this pattern is used by built-in functions like <code class="docutils literal notranslate"><span class="pre">__init__</span></code> or <code class="docutils literal notranslate"><span class="pre">__str__</span></code>. You can (and should) write these for your own classes, but you should only use them for their intended purposes.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1636,10 +1632,13 @@ In database design, this is called <a class="reference external" href="https://e
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Counted</span><span class="p">:</span>
-    <span class="n">number_created</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">number_created</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># this is shared between all instances of Counted</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Increment the class-level variable &#39;number_created&#39;</span>
         <span class="n">Counted</span><span class="o">.</span><span class="n">number_created</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># Add a member variable: each instance of Counted has its own version of &#39;local_variable&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_variable</span> <span class="o">=</span> <span class="mi">5</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">howMany</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>

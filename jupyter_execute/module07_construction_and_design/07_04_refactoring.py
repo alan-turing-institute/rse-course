@@ -18,20 +18,8 @@
 # * Which improves the structure or readability
 # * But which leaves the actual behaviour of the program completely unchanged.
 # 
-# 
-
-# ## A word from the Master
-
-# 
-# > Refactoring is a controlled technique for improving the design of an existing code base. 
-# Its essence is applying a series of small behavior-preserving transformations, each of which "too small to be worth doing". 
-# However the cumulative effect of each of these transformations is quite significant. 
-# By doing them in small steps you reduce the risk of introducing errors. 
-# You also avoid having the system broken while you are carrying out the restructuring - 
-# which allows you to gradually refactor a system over an extended period of time.
-# 
-# -- Martin Fowler [Refactoring](https://martinfowler.com/books/refactoring.html).
-# 
+# It is a series of small behaviour-preserving steps that have a significant cumulative effect.
+# Using small steps reduces the risk of error and makes it easier to ensure that the code is working after each change.
 
 # ## List of known refactorings
 
@@ -157,6 +145,12 @@
 # total = 0
 # for value in data:
 #     total += value
+# ```
+# 
+# **even simpler**
+# 
+# ```python
+# total = sum(data)
 # ```
 
 # ### Replace hand-written code with library code
