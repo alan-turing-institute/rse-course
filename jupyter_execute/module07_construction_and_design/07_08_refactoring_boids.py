@@ -2,10 +2,11 @@
 # coding: utf-8
 
 # # 7.8 Exercise: Refactoring The Bad Boids
+# 
+# We have written some _very bad_ code implementing our Boids flocking example. We first looked at the Boids [in Module 3](../module03/module03_research_data_in_python/03_05_boids.html) (but you don't need to have seen the previous example to do this exercise). The task is to refactor and improve this initial implementation.
+# 
 
-# 
-# We have written some _very bad_ code implementing our Boids flocking example. We first looked at the Boids [in Module 3](../module03/module03_research_data_in_python/03_05_boids.html) (but you don't need to have seen the previous example to do this exercise).
-# 
+# ## 7.8.1 Get the bad boids code
 # 
 # Here's the Github link: https://github.com/alan-turing-institute/bad-boids
 # 
@@ -17,173 +18,50 @@
 # # OR git clone https://github.com/yourname/bad-boids.git
 # ```
 
-# ## The Code
-
-# For the Exercise, you should start from the GitHub repository, but here's our terrible code (the contents of the `boids.py` file), which simulates a flock of birds ("boids"):
-
-# In[1]:
-
-
-"""
-A deliberately bad implementation of [Boids](http://dl.acm.org/citation.cfm?doid=37401.37406)
-for use as an exercise on refactoring.
-"""
-
-import random
-
-from matplotlib import animation
-from matplotlib import pyplot as plt
-
-# Deliberately terrible code for teaching purposes
-
-boids_x = [random.uniform(-450, 50.0) for x in range(50)]
-boids_y = [random.uniform(300.0, 600.0) for x in range(50)]
-boid_x_velocities = [random.uniform(0, 10.0) for x in range(50)]
-boid_y_velocities = [random.uniform(-20.0, 20.0) for x in range(50)]
-boids = (boids_x, boids_y, boid_x_velocities, boid_y_velocities)
-
-
-def updateBoids(boids):
-    xs, ys, xvs, yvs = boids
-    deltaXVs = [0] * len(xs)
-    deltaYVs = [0] * len(xs)
-    # Fly towards the middle
-    for i in range(len(xs)):
-        for j in range(len(xs)):
-            deltaXVs[i] = deltaXVs[i] + (xs[j] - xs[i]) * 0.01 / len(xs)
-    for i in range(len(xs)):
-        for j in range(len(xs)):
-            deltaYVs[i] = deltaYVs[i] + (ys[j] - ys[i]) * 0.01 / len(xs)
-    # Fly away from nearby boids
-    for i in range(len(xs)):
-        for j in range(len(xs)):
-            if (xs[j] - xs[i]) ** 2 + (ys[j] - ys[i]) ** 2 < 100:
-                deltaXVs[i] = deltaXVs[i] + (xs[i] - xs[j])
-                deltaYVs[i] = deltaYVs[i] + (ys[i] - ys[j])
-    # Try to match speed with nearby boids
-    for i in range(len(xs)):
-        for j in range(len(xs)):
-            if (xs[j] - xs[i]) ** 2 + (ys[j] - ys[i]) ** 2 < 10000:
-                deltaXVs[i] = deltaXVs[i] + (xvs[j] - xvs[i]) * 0.125 / len(xs)
-                deltaYVs[i] = deltaYVs[i] + (yvs[j] - yvs[i]) * 0.125 / len(xs)
-    # Update velocities
-    for i in range(len(xs)):
-        xvs[i] = xvs[i] + deltaXVs[i]
-        yvs[i] = yvs[i] + deltaYVs[i]
-    # Move according to velocities
-    for i in range(len(xs)):
-        xs[i] = xs[i] + xvs[i]
-        ys[i] = ys[i] + yvs[i]
-
-
-figure = plt.figure()
-axes = plt.axes(xlim=(-500, 1500), ylim=(-500, 1500))
-scatter = axes.scatter(boids[0], boids[1])
-
-
-def ANIMATE(frame):
-    updateBoids(boids)
-    scatter.set_offsets(list(zip(boids[0], boids[1])))
-
-
-anim = animation.FuncAnimation(figure, ANIMATE, frames=50, interval=50)
-
-if __name__ == "__main__":
-    plt.show()
-
-
-# If you go into your folder and run the code:
-
+# ## 7.8.2 Familiarise yourself with the code
+# 
+# Have a look at the `boids.py` file in the `bad-boids` directory and quickly review how it's implemented.
+# 
+# Then run the code:
+# 
 # ``` bash
 # cd bad_boids
 # python boids.py
 # ```
-
 # 
 # You should be able to see some birds flying around, and then disappearing as they leave the window, like this:
 # 
-
-# In[2]:
-
-
-from IPython.display import HTML
-
-HTML(anim.to_jshtml())
-
-
-# ## Regression Test
-
-# 
-# First, have a look at the regression test we made (in the `record_fixture.py` file).
-# 
-# To create it, we saved out the before and after state
-# for one iteration of some boids, using ipython:
+# <img src="bad_boids_animation.gif" width="600"/>
 # 
 
-# ```python
-# from copy import deepcopy
-# import yaml
-# import boids
-# 
-# before = deepcopy(boids.boids)
-# boids.updateBoids(boids.boids)
-# after = boids.boids
-# fixture = {"before": before, "after": after}
-# with open("fixture.yml", "w") as fixture_file:
-#     fixture_file.write(yaml.safe_dump(fixture))
-# ```
-
-# ### Invoking the test
+# ## 7.8.3 Regression Test
 
 # 
-# Then, I used the fixture file to define the test (in `test_boids.py`):
+# First, have a look at the regression test we made in the `record_fixture.py` file. This saves the before and after state for one iteration of some boids, to the file `fixture.yml`.
 # 
-
-# ```python
-# import os
-# import yaml
-# from boids import updateBoids
-# from pytest import approx
+# Then, we used this saved state to define a regression test in `test_boids.py`.
 # 
-# def test_bad_boids_regression():
-#     with open(os.path.join(os.path.dirname(__file__), "fixture.yml")) as fixture_file:
-#         regression_data = yaml.safe_load(fixture_file)
+# Check the tests pass by running pytest from the `bad-boids` directory:
 # 
-#     boid_data = regression_data["before"]
-#     updateBoids(boid_data)
-#     for after, before in zip(regression_data["after"], boid_data):
-#         for after_value, before_value in zip(after, before):
-#             assert after_value == approx(before_value)
-# ```
-
-# ### Make the regression test fail
-
-# Check the tests pass:
-# 
-# ``` bash
+# ```bash
 # pytest
 # ```
 # 
-# Edit the file to make the test fail, see the fail, then reset it:
-# 
-# ```
-# git checkout boids.py
-# ```
 
-# ## Your Task
+# ## 7.8.4 Start refactoring
 
 # Transform bad boids **gradually** into better code, while making sure it still works, using a refactoring approach.
 # 
 # Each time you make a change:
 # 
-# - Ensure the regression test still passes
+# - Ensure the regression test still passes (you may need to update it to reflect any changed functions/classes in your code, but you _**shouldn't**_ change the `fixture.yml` file - the new implementation must reproduce the same results)
 # - Do a git commit on your fork, and write a commit message explaining the refactoring you did.
 # 
 # Try to keep the changes as small as possible.
 # 
-# If your refactoring creates any units (functions, modules, or classes), **write a unit test** for the unit (it's a good idea to not rely on regression testing).
+# If your refactoring creates any units (functions, modules, or classes), **write a unit test** for the unit (it's a good idea to not rely only on regression testing).
 # 
-# Don't worry about the performance of the code, that's a topic for the "Programming for Speed" module later.
+# Don't worry about the performance of the code for this exercise. That's a topic for the "Programming for Speed" module later.
 
 # ### Refactoring Ideas
 # 
@@ -194,6 +72,8 @@ HTML(anim.to_jshtml())
 # - Consider whether any of the code "smells" and refactorings from [07_04_refactoring](07_04_refactoring.html) apply here
 # - Consider whether there is structure in the code that could be refactored into classes (see [07_05_object_oriented_design](07_05_object_oriented_design.html) for ideas)
 # - Add type annotations
+
+# ## 7.8.5 Extensions
 # 
 # You may also like to apply some of what we've learned in previous modules, for example:
 # 
