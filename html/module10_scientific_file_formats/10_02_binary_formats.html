@@ -1479,7 +1479,7 @@ each number in one byte:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.mol&quot;</span><span class="p">,</span> <span class="s2">&quot;bw&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">binfile</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.mol&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">binfile</span><span class="p">:</span>
     <span class="n">binfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">intarray</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1664,56 +1664,14 @@ It then saves these, and handles all the tedious number-of-field management for 
 <p>Note that this binary representation is <em>not</em> human readable at all.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-# Read the first 100 characters from the file
-head -c 100 foo.hdf5
-
-with open(&quot;module10_scientific_file_formats/foo.hdf5&quot;, &quot;rb&quot;) as f_in:bytes = f_in.read()
-...
-&gt;&gt;&gt; bytes[0:100]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;foo.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
+    <span class="nb">bytes</span> <span class="o">=</span> <span class="n">f_in</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bash: line 4: syntax error near unexpected token `(&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bash: line 4: `with open(&quot;module10_scientific_file_formats/foo.hdf5&quot;, &quot;rb&quot;) as f_in:bytes = f_in.read()&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-7&#39; coro=&lt;ScriptMagics.shebang.&lt;locals&gt;._handle_stream() done, defined at /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/script.py:211&gt; exception=UnicodeDecodeError(&#39;utf-8&#39;, b&#39;\x89HDF\r\n&#39;, 0, 1, &#39;invalid start byte&#39;)&gt;
-Traceback (most recent call last):
-  File &quot;/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/script.py&quot;, line 213, in _handle_stream
-    line = (await stream.readline()).decode(&quot;utf8&quot;)
-UnicodeDecodeError: &#39;utf-8&#39; codec can&#39;t decode byte 0x89 in position 0: invalid start byte
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;# Read the first 100 characters from the file</span><span class="se">\n</span><span class="s1">head -c 100 foo.hdf5</span><span class="se">\n\n</span><span class="s1">with open(&quot;module10_scientific_file_formats/foo.hdf5&quot;, &quot;rb&quot;) as f_in:bytes = f_in.read()</span><span class="se">\n</span><span class="s1">...</span><span class="se">\n</span><span class="s1">&gt;&gt;&gt; bytes[0:100]</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/interactiveshell.py:2417,</span> in <span class="ni">InteractiveShell.run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2415</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2416</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2417</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2418</span> <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/script.py:153,</span> in <span class="ni">ScriptMagics._make_script_magic.&lt;locals&gt;.named_script_magic</span><span class="nt">(line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
-<span class="ne">--&gt; </span><span class="mi">153</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/script.py:305,</span> in <span class="ni">ScriptMagics.shebang</span><span class="nt">(self, line, cell)</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="c1"># If we get here and p.returncode is still None, we must have</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="c1"># killed it but not yet seen its return code. We don&#39;t wait for it,</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="c1"># in case it&#39;s stuck in uninterruptible sleep. -9 = SIGKILL</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">rc</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">9</span>
-<span class="ne">--&gt; </span><span class="mi">305</span>     <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-
-<span class="ne">CalledProcessError</span>: Command &#39;b&#39;# Read the first 100 characters from the file\nhead -c 100 foo.hdf5\n\nwith open(&quot;module10_scientific_file_formats/foo.hdf5&quot;, &quot;rb&quot;) as f_in:bytes = f_in.read()\n...\n&gt;&gt;&gt; bytes[0:100]\n&#39;&#39; returned non-zero exit status 2.
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\x89HDF\r\n\x1a\n\x00\x00\x00\x00\x00\x08\x08\x00\x04\x00\x10\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xff\xff\xff\xff\xf8\x18\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00\x00\x00`\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x88\x00\x00\x00\x00\x00\x00\x00\xa8\x02\x00\x00\x00\x00\x00\x00\x01\x00\x01\x00&#39;
 </pre></div>
 </div>
 </div>
@@ -1728,6 +1686,15 @@ UnicodeDecodeError: &#39;utf-8&#39; codec can&#39;t decode byte 0x89 in position
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hdf_load</span><span class="p">[</span><span class="s2">&quot;reactions&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 6,  0],
+       [ 6,  2],
+       [-6, -1],
+       [ 0, -2],
+       [-1,  0]])
 </pre></div>
 </div>
 </div>

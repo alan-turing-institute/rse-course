@@ -266,7 +266,7 @@ engine = sqlalchemy.create_engine("sqlite:///molecules.db", echo=True)
 # In[13]:
 
 
-from sqlalchemy import Column, Float, MetaData, String, Table
+from sqlalchemy import Column, Float, Integer, MetaData, String, Table
 
 metadata = MetaData()
 molecules = Table(

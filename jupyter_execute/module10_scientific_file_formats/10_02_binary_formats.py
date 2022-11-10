@@ -238,7 +238,7 @@ bytearray(intarray)
 # In[11]:
 
 
-with open("system.mol", "bw") as binfile:
+with open("system.mol", "wb") as binfile:
     binfile.write(bytearray(intarray))
 
 
@@ -393,16 +393,18 @@ saver.write("foo.hdf5")
 # In[21]:
 
 
-get_ipython().run_cell_magic('bash', '', '# Read the first 100 characters from the file\nhead -c 100 foo.hdf5\n\nwith open("module10_scientific_file_formats/foo.hdf5", "rb") as f_in:bytes = f_in.read()\n...\n>>> bytes[0:100]\n')
+with open("foo.hdf5", "rb") as f_in:
+    bytes = f_in.read()
+bytes[0:100]
 
 
-# In[ ]:
+# In[22]:
 
 
 hdf_load = h5py.File("foo.hdf5")
 
 
-# In[ ]:
+# In[23]:
 
 
 np.array(hdf_load["reactions"])
