@@ -1021,11 +1021,6 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-as-text">
-   Data as text
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parsing-xml">
    Parsing XML
   </a>
@@ -1065,11 +1060,6 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-as-text">
-   Data as text
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parsing-xml">
    Parsing XML
   </a>
@@ -1106,80 +1096,14 @@ title="Print to PDF"
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;name&gt;James&lt;/name&gt; is a &lt;job&gt;Programmer&lt;/job&gt;
 </pre></div>
 </div>
-<p>One of the easiest ways to make a markup-language based fileformat is the use of a <em>templating language</em>.</p>
+<p>We want to represent the chemical reactions:
+<span class="math notranslate nohighlight">\(C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\ 
+2H_2 + O_2 \rightarrow 2H_2O\)</span></p>
+<p>In xml this might look like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">parsereactions</span> <span class="kn">import</span> <span class="n">parser</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.tex&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_latex</span><span class="p">:</span>
-    <span class="n">system</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">f_latex</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">system</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\ 
-2H_2 + O_2 \rightarrow 2H_2O\end{split}\]</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile chemistry_template.mko
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile system.xml
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;system&gt;
-%for reaction in reactions:
-    &lt;reaction&gt;
-        &lt;reactants&gt;
-        %for molecule in reaction.reactants.molecules:
-            &lt;molecule stoichiometry=&quot;${reaction.reactants.molecules[molecule]}&quot;&gt;
-            %for element in molecule.elements:
-                &lt;atom symbol=&quot;${element.symbol}&quot; number=&quot;${molecule.elements[element]}&quot;/&gt;
-            %endfor
-            &lt;/molecule&gt;
-        %endfor
-        &lt;/reactants&gt;
-        &lt;products&gt;
-        %for molecule in reaction.products.molecules:
-            &lt;molecule stoichiometry=&quot;${reaction.products.molecules[molecule]}&quot;&gt;
-            %for element in molecule.elements:
-                &lt;atom symbol=&quot;${element.symbol}&quot; number=&quot;${molecule.elements[element]}&quot;/&gt;
-            %endfor
-            &lt;/molecule&gt;
-        %endfor
-        &lt;/products&gt;
-    &lt;/reaction&gt;
-%endfor
-&lt;/system&gt;
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing chemistry_template.mko
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mako.template</span> <span class="kn">import</span> <span class="n">Template</span>
-
-<span class="n">mytemplate</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;chemistry_template.mko&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
-    <span class="n">xmlfile</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">mytemplate</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">system</span><span class="p">))))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat system.xml
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;system&gt;
     &lt;reaction&gt;
         &lt;reactants&gt;
@@ -1219,114 +1143,17 @@ title="Print to PDF"
             &lt;/molecule&gt;
         &lt;/products&gt;
     &lt;/reaction&gt;
-&lt;/system&gt;
+&lt;/system&gt;    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting system.xml
 </pre></div>
 </div>
 </div>
 </div>
 <p>Markup languages are verbose (jokingly called the “angle bracket tax”) but very clear.</p>
-<section id="data-as-text">
-<h2>Data as text<a class="headerlink" href="#data-as-text" title="Permalink to this headline">#</a></h2>
-<p>The above serialisation specifies all data as XML “Attributes”. An alternative is to put the data in the text:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile chemistry_template2.mko
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;system&gt;
-%for reaction in reactions:
-    &lt;reaction&gt;
-        &lt;reactants&gt;
-        %for molecule in reaction.reactants.molecules:
-            &lt;molecule stoichiometry=&quot;${reaction.reactants.molecules[molecule]}&quot;&gt;
-            %for element in molecule.elements:
-                &lt;atom symbol=&quot;${element.symbol}&quot;&gt;${molecule.elements[element]}&lt;/atom&gt;
-            %endfor
-            &lt;/molecule&gt;
-        %endfor
-        &lt;/reactants&gt;
-        &lt;products&gt;
-        %for molecule in reaction.products.molecules:
-            &lt;molecule stoichiometry=&quot;${reaction.products.molecules[molecule]}&quot;&gt;
-            %for element in molecule.elements:
-                &lt;atom symbol=&quot;${element.symbol}&quot;&gt;${molecule.elements[element]}&lt;/atom&gt;
-            %endfor
-            &lt;/molecule&gt;
-        %endfor
-        &lt;/products&gt;
-    &lt;/reaction&gt;
-%endfor
-&lt;/system&gt;
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing chemistry_template2.mko
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mytemplate</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;chemistry_template2.mko&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system2.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
-    <span class="n">xmlfile</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">mytemplate</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">system</span><span class="p">))))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat system2.xml
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;system&gt;
-    &lt;reaction&gt;
-        &lt;reactants&gt;
-            &lt;molecule stoichiometry=&quot;1&quot;&gt;
-                &lt;atom symbol=&quot;C&quot;&gt;6&lt;/atom&gt;
-                &lt;atom symbol=&quot;H&quot;&gt;12&lt;/atom&gt;
-                &lt;atom symbol=&quot;O&quot;&gt;6&lt;/atom&gt;
-            &lt;/molecule&gt;
-            &lt;molecule stoichiometry=&quot;6&quot;&gt;
-                &lt;atom symbol=&quot;O&quot;&gt;2&lt;/atom&gt;
-            &lt;/molecule&gt;
-        &lt;/reactants&gt;
-        &lt;products&gt;
-            &lt;molecule stoichiometry=&quot;6&quot;&gt;
-                &lt;atom symbol=&quot;C&quot;&gt;1&lt;/atom&gt;
-                &lt;atom symbol=&quot;O&quot;&gt;2&lt;/atom&gt;
-            &lt;/molecule&gt;
-            &lt;molecule stoichiometry=&quot;6&quot;&gt;
-                &lt;atom symbol=&quot;H&quot;&gt;2&lt;/atom&gt;
-                &lt;atom symbol=&quot;O&quot;&gt;1&lt;/atom&gt;
-            &lt;/molecule&gt;
-        &lt;/products&gt;
-    &lt;/reaction&gt;
-    &lt;reaction&gt;
-        &lt;reactants&gt;
-            &lt;molecule stoichiometry=&quot;2&quot;&gt;
-                &lt;atom symbol=&quot;H&quot;&gt;2&lt;/atom&gt;
-            &lt;/molecule&gt;
-            &lt;molecule stoichiometry=&quot;1&quot;&gt;
-                &lt;atom symbol=&quot;O&quot;&gt;2&lt;/atom&gt;
-            &lt;/molecule&gt;
-        &lt;/reactants&gt;
-        &lt;products&gt;
-            &lt;molecule stoichiometry=&quot;2&quot;&gt;
-                &lt;atom symbol=&quot;H&quot;&gt;2&lt;/atom&gt;
-                &lt;atom symbol=&quot;O&quot;&gt;1&lt;/atom&gt;
-            &lt;/molecule&gt;
-        &lt;/products&gt;
-    &lt;/reaction&gt;
-&lt;/system&gt;
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="parsing-xml">
 <h2>Parsing XML<a class="headerlink" href="#parsing-xml" title="Permalink to this headline">#</a></h2>
 <p>XML is normally parsed by building a tree-structure of all the <code class="docutils literal notranslate"><span class="pre">tags</span></code> in the file, called a <code class="docutils literal notranslate"><span class="pre">DOM</span></code> or Document Object Model.</p>
@@ -1453,23 +1280,6 @@ title="Print to PDF"
 </div>
 <p>It is useful to understand grammars like these using the “FOR-LET-WHERE-ORDER-RETURN” (pronounced Flower) model.</p>
 <p>The above says: “For element in molecules where number is one, return symbol”, roughly equivalent to <code class="docutils literal notranslate"><span class="pre">[element.symbol</span> <span class="pre">for</span> <span class="pre">element</span> <span class="pre">in</span> <span class="pre">molecule</span> <span class="pre">for</span> <span class="pre">molecule</span> <span class="pre">in</span> <span class="pre">document</span> <span class="pre">if</span> <span class="pre">element.number==1]</span></code> in Python.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system2.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
-    <span class="n">tree2</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
-<span class="c1"># For all molecules with a child atom whose text is 1</span>
-<span class="c1"># ... return the symbol attribute of any child (however deeply nested)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tree2</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule[atom=1]//@symbol&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;C&#39;, &#39;O&#39;, &#39;H&#39;, &#39;O&#39;, &#39;H&#39;, &#39;O&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note how we select on text content rather than attributes by using the element tag directly. The above says “for every molecule where at least one element is present with just a single atom, return all the symbols of all the elements in that molecule.”</p>
 </section>
 <section id="transforming-xml-xslt">
 <h2>Transforming XML : XSLT<a class="headerlink" href="#transforming-xml-xslt" title="Permalink to this headline">#</a></h2>
@@ -1539,7 +1349,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing xmltotex.xsl
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting xmltotex.xsl
 </pre></div>
 </div>
 </div>
@@ -1566,18 +1376,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">tree</span><span class="p">))))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O\\
-2H_2 + O_2 \rightarrow 2H_2O\\\end{split}\]</div>
-</div>
-</div>
+<p>Which is back to the LaTeX representation of our reactions.</p>
 </section>
 <section id="validating-xml-schema">
 <h2>Validating XML : Schema<a class="headerlink" href="#validating-xml-schema" title="Permalink to this headline">#</a></h2>
@@ -1702,7 +1501,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing invalid_system.xml
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting invalid_system.xml
 </pre></div>
 </div>
 </div>
