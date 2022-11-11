@@ -36,7 +36,7 @@ def mapper(input_filename):
     with open(input_filename) as inputfile:
         # split the text on spaces
         words = inputfile.read().split(" ")
-        # use list comprehension to output a list of {word: [1]} dicts
+        # use list comprehension to output a list of {word,1} dicts
         output = [{word.strip(): [1]} for word in sorted(words)]
         return output
 
@@ -74,7 +74,8 @@ shuffler(mapper("text_sample_0.txt"))
 
 
 def reducer(word_dict):
-    return {k: sum(v) for k, v in word_dict.items()}
+    for k, v in word_dict.items():
+        return {k: sum(v)}
 
 
 # In[6]:
@@ -86,27 +87,21 @@ reducer({"best": [1, 1]})
 # In[7]:
 
 
-# Map over each input file, locally on the machine where that file is
-input_files = [f"text_sample_{i}.txt" for i in range(7)]
-mapped_data = map(mapper, input_files)
+# loop over 7 input files
+shuffle_outputs = []
+for i in range(7):
+    shuffle_outputs += shuffler(mapper(f"text_sample_{i}.txt"))
+# another shuffle step to bring the outputs from the different mapper processes together
+shuffle_outputs = shuffler(shuffle_outputs)
+# now we can farm each k,v pair from the shuffle_outputs to different reducers
+counts = []
+for word_dict in shuffle_outputs:
+    counts.append(reducer(word_dict))
 
-# Shuffle the data, changing from a distribution where every machine has all the data
-# for a single input file, to one in which every machine has all the data for a single
-# word. This is the only part that would cause inter-machine data-moving if run on a
-# cluster/grid.
-# First run the shuffler locally on each machine...
-shuffle_outputs = [shuffler(md) for md in mapped_data]
-# ... and then again to bring the outputs from the different mapper processes together.
-shuffle_outputs = shuffler(sum(shuffle_outputs, []))
-
-# Each machine can then run the reduction operation locally on the data that it has
-# post-shuffle. In our case each machine takes care of summing up the subcounts for
-# some subset of words.
-counts = [reducer(word_dict) for word_dict in shuffle_outputs]
 print(counts)
 
 
-# Of course, this is a simple example, running entirely on our local machine, using `for` loops and comprehensions.
+# Of course, this is a simple example, running entirely on our local machine, using a `for` loop.
 # But it illustrates that for more complex cases, where there is data distributed over different locations, it is possible to have the "map" stage run in parallel on different machines, and similarly, once the "shuffle" stage has organized the data by key, it can send the "reduce" stage to be run on different machines in parallel.
 
 # ## Spark

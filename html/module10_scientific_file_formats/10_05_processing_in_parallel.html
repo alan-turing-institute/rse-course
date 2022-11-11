@@ -547,11 +547,6 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
-     7.3 Linting
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
      7.4 Refactoring
     </a>
@@ -1118,7 +1113,7 @@ One such implementation is <em>Apache Hadoop</em> <a class="reference external" 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">:</span>
         <span class="c1"># split the text on spaces</span>
         <span class="n">words</span> <span class="o">=</span> <span class="n">inputfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-        <span class="c1"># use list comprehension to output a list of {word: [1]} dicts</span>
+        <span class="c1"># use list comprehension to output a list of {word,1} dicts</span>
         <span class="n">output</span> <span class="o">=</span> <span class="p">[{</span><span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="p">)]</span>
         <span class="k">return</span> <span class="n">output</span>
 </pre></div>
@@ -1185,7 +1180,8 @@ One such implementation is <em>Apache Hadoop</em> <a class="reference external" 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reducer</span><span class="p">(</span><span class="n">word_dict</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">word_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">word_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
@@ -1204,23 +1200,17 @@ One such implementation is <em>Apache Hadoop</em> <a class="reference external" 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Map over each input file, locally on the machine where that file is</span>
-<span class="n">input_files</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;text_sample_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.txt&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
-<span class="n">mapped_data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">input_files</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop over 7 input files</span>
+<span class="n">shuffle_outputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">shuffle_outputs</span> <span class="o">+=</span> <span class="n">shuffler</span><span class="p">(</span><span class="n">mapper</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;text_sample_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.txt&quot;</span><span class="p">))</span>
+<span class="c1"># another shuffle step to bring the outputs from the different mapper processes together</span>
+<span class="n">shuffle_outputs</span> <span class="o">=</span> <span class="n">shuffler</span><span class="p">(</span><span class="n">shuffle_outputs</span><span class="p">)</span>
+<span class="c1"># now we can farm each k,v pair from the shuffle_outputs to different reducers</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">word_dict</span> <span class="ow">in</span> <span class="n">shuffle_outputs</span><span class="p">:</span>
+    <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reducer</span><span class="p">(</span><span class="n">word_dict</span><span class="p">))</span>
 
-<span class="c1"># Shuffle the data, changing from a distribution where every machine has all the data</span>
-<span class="c1"># for a single input file, to one in which every machine has all the data for a single</span>
-<span class="c1"># word. This is the only part that would cause inter-machine data-moving if run on a</span>
-<span class="c1"># cluster/grid.</span>
-<span class="c1"># First run the shuffler locally on each machine...</span>
-<span class="n">shuffle_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">shuffler</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="k">for</span> <span class="n">md</span> <span class="ow">in</span> <span class="n">mapped_data</span><span class="p">]</span>
-<span class="c1"># ... and then again to bring the outputs from the different mapper processes together.</span>
-<span class="n">shuffle_outputs</span> <span class="o">=</span> <span class="n">shuffler</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">shuffle_outputs</span><span class="p">,</span> <span class="p">[]))</span>
-
-<span class="c1"># Each machine can then run the reduction operation locally on the data that it has</span>
-<span class="c1"># post-shuffle. In our case each machine takes care of summing up the subcounts for</span>
-<span class="c1"># some subset of words.</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">reducer</span><span class="p">(</span><span class="n">word_dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">word_dict</span> <span class="ow">in</span> <span class="n">shuffle_outputs</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1231,7 +1221,7 @@ One such implementation is <em>Apache Hadoop</em> <a class="reference external" 
 </div>
 </div>
 </div>
-<p>Of course, this is a simple example, running entirely on our local machine, using <code class="docutils literal notranslate"><span class="pre">for</span></code> loops and comprehensions.
+<p>Of course, this is a simple example, running entirely on our local machine, using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.
 But it illustrates that for more complex cases, where there is data distributed over different locations, it is possible to have the “map” stage run in parallel on different machines, and similarly, once the “shuffle” stage has organized the data by key, it can send the “reduce” stage to be run on different machines in parallel.</p>
 </section>
 <section id="spark">
@@ -1523,15 +1513,14 @@ Either way, we do this by creating an instance of the <code class="docutils lite
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:17:10,925 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/tmp/dask-worker-space/worker-ut97zgem&#39;, purging
-2022-11-11 12:17:10,925 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/tmp/dask-worker-space/worker-m88dnqpe&#39;, purging
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:25,761 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/tmp/dask-worker-space/worker-eeclhl96&#39;, purging
 </pre></div>
 </div>
 <div class="output text_html"><div>
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-c45329f9-61ba-11ed-8760-bb36f52914aa</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-5c190979-61bb-11ed-87dd-d5a0acb405d0</p>
         <table style="width: 100%; text-align: left;">
 
         <tr>
@@ -1560,7 +1549,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">d6328cda</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">a4006711</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
@@ -1597,11 +1586,11 @@ Either way, we do this by creating an instance of the <code class="docutils lite
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-a7cf369d-09b7-44d0-8467-aac5a1b7dd87</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-e0043a37-476d-48e1-8847-ce1236d3b950</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:41821
+                        <strong>Comm:</strong> tcp://127.0.0.1:43063
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 2
@@ -1643,7 +1632,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:42735
+                            <strong>Comm: </strong> tcp://127.0.0.1:40571
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -1651,7 +1640,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:40469/status" target="_blank">http://127.0.0.1:40469/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:40179/status" target="_blank">http://127.0.0.1:40179/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.39 GiB
@@ -1659,13 +1648,13 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:41767
+                            <strong>Nanny: </strong> tcp://127.0.0.1:36693
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-64lkiewn
+                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-xqmbrxjt
                         </td>
                     </tr>
 
@@ -1688,7 +1677,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:37873
+                            <strong>Comm: </strong> tcp://127.0.0.1:46291
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -1696,7 +1685,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:41171/status" target="_blank">http://127.0.0.1:41171/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:39613/status" target="_blank">http://127.0.0.1:39613/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.39 GiB
@@ -1704,13 +1693,13 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:35265
+                            <strong>Nanny: </strong> tcp://127.0.0.1:44281
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-e41rmzzt
+                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-92v35clo
                         </td>
                     </tr>
 
