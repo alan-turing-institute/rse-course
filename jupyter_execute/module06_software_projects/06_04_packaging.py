@@ -235,7 +235,7 @@ get_ipython().run_cell_magic('writefile', 'Greetings/setup.py', 'from setuptools
 # If we have our code in a (public) git repo anyone can now install our package directly from the git URL:
 
 # ```bash
-# pip install git+git://github.com/alan-turing-institute/Greetings
+# pip install git+https://github.com/alan-turing-institute/Greetings
 # ```
 
 # ### Uploading to PyPI
