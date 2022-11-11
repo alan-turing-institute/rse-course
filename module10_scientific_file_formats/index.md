@@ -10,10 +10,11 @@
 
 ## Contents
 
-- [10.0 Serialising and normalising data](10_00_serialisation_and_normalisation.ipynb) (20 minutes)
-- [10.1 Deserialisation](10_01_deserialisation.ipynb) (10 minutes)
-- [10.2 Binary formats](10_02_binary_formats.ipynb) (10 minutes)
-- [10.3 Markup languages](10_03_markup_languages.ipynb) (15 minutes)
+- [10.0 Serialising and normalising data](10_00_serialisation_and_normalisation.ipynb) (15 minutes)
+- [10.0a Serialising and normalising data](10_00a_databases.ipynb) (20 minutes)
+- [10.1 Deserialisation](10_01_deserialisation.ipynb) (15 minutes)
+- [10.2 Binary formats](10_02_binary_formats.ipynb) (15 minutes)
+- [10.3 Markup languages](10_03_markup_languages.ipynb) (10 minutes)
 - [10.4 Beyond Pandas](10_04_beyond_pandas.ipynb) (20 minutes)
 - [10.5 Processing in parallel](10_05_processing_in_parallel.ipynb) (20 minutes)
 - [10.6 Geospatial data](10_06_geospatial_data.ipynb) (15 minutes)
