@@ -11,13 +11,13 @@
 ## Contents
 
 - [10.0 Serialising and normalising data](10_00_serialisation_and_normalisation.ipynb) (15 minutes)
-- [10.0a Serialising and normalising data](10_00a_databases.ipynb) (20 minutes)
-- [10.1 Deserialisation](10_01_deserialisation.ipynb) (15 minutes)
-- [10.2 Binary formats](10_02_binary_formats.ipynb) (15 minutes)
-- [10.3 Markup languages](10_03_markup_languages.ipynb) (10 minutes)
-- [10.4 Beyond Pandas](10_04_beyond_pandas.ipynb) (20 minutes)
-- [10.5 Processing in parallel](10_05_processing_in_parallel.ipynb) (20 minutes)
-- [10.6 Geospatial data](10_06_geospatial_data.ipynb) (15 minutes)
+- [10.1 Serialising and normalising data](10_01_databases.ipynb) (20 minutes)
+- [10.2 Deserialisation](10_02_deserialisation.ipynb) (15 minutes)
+- [10.3 Binary formats](10_03_binary_formats.ipynb) (15 minutes)
+- [10.4 Markup languages](10_04_markup_languages.ipynb) (10 minutes)
+- [10.5 Beyond Pandas](10_05_beyond_pandas.ipynb) (20 minutes)
+- [10.6 Processing in parallel](10_06_processing_in_parallel.ipynb) (30 minutes)
+- [10.7 Geospatial data](10_07_geospatial_data.ipynb) (10 minutes)
 
 ## Additional content
 
@@ -25,7 +25,7 @@
 - [OPTIONAL Controlled Vocabularies](10_x1_optional_controlled_vocabularies.ipynb) (15 minutes)
 - [OPTIONAL Semantic file formats](10_x2_optional_semantic_models.ipynb) (25 minutes)
 
-**Total time:** 2 hrs
+**Total time:** 2 hrs 15 minutes
 
 ## Exercises
 
