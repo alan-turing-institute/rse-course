@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Research Software Engineering with Python</title>
+    <title>7.3 Linting &#8212; Research Software Engineering with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -158,7 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
   Course contents
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../module01_introduction_to_python/index.html">
    1. Introduction to Python
@@ -521,16 +521,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="index.html">
    7. Construction and Design
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
   <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="07_00_introduction.html">
      7.0 Construction
@@ -544,6 +544,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="07_02_coding_conventions.html">
      7.2 Coding conventions
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.3 Linting
     </a>
    </li>
    <li class="toctree-l2">
@@ -678,33 +683,38 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_01_deserialisation.html">
-     10.1 Deserialisation
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_databases.html">
+     10.1 Using databases
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_02_binary_formats.html">
-     10.2 Binary formats
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_deserialisation.html">
+     10.2 Deserialisation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_03_markup_languages.html">
-     10.3 Markup Languages
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_binary_formats.html">
+     10.3 Binary formats
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_04_beyond_pandas.html">
-     10.04 Larger datasets - beyond pandas and csv
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_markup_languages.html">
+     10.4 Markup Languages
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_05_processing_in_parallel.html">
-     10.5 Processing in parallel
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_beyond_pandas.html">
+     10.5 Larger datasets - beyond pandas and CSV
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../module10_scientific_file_formats/10_06_geospatial_data.html">
-     10.6 Geospatial data
+    <a class="reference internal" href="../module10_scientific_file_formats/10_06_processing_in_parallel.html">
+     10.6 Processing in parallel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_07_geospatial_data.html">
+     10.7 Geospatial data
     </a>
    </li>
    <li class="toctree-l2">
@@ -846,6 +856,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module07_construction_and_design/07_03_linters.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -988,7 +1027,95 @@ title="Print to PDF"
         <i class="fas fa-list"></i> Contents
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="simple visible nav section-nav flex-column">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linters-starter-pack">
+   Linters Starter Pack
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flake8">
+     flake8
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#black">
+     black
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#isort">
+     isort
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-linters">
+   Other Linters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mypy">
+     mypy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pylint">
+     pylint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nbqa">
+     nbqa
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pylama">
+     pylama
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compatibility-between-linters">
+     Compatibility between linters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ignoring-lines-of-code-or-linting-rules">
+     Ignoring lines of code or linting rules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#running-linters">
+     Running Linters
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ide-integration">
+       IDE Integration
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pre-commit">
+       pre-commit
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#continuous-integration">
+       Continuous Integration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -998,7 +1125,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1><no title></h1>
+                <h1>7.3 Linting</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1007,7 +1134,95 @@ title="Print to PDF"
                             <h2> Contents </h2>
                         </div>
                         <nav aria-label="Page">
-                            <ul class="simple visible nav section-nav flex-column">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linters-starter-pack">
+   Linters Starter Pack
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flake8">
+     flake8
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#black">
+     black
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#isort">
+     isort
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-linters">
+   Other Linters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mypy">
+     mypy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pylint">
+     pylint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nbqa">
+     nbqa
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pylama">
+     pylama
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compatibility-between-linters">
+     Compatibility between linters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ignoring-lines-of-code-or-linting-rules">
+     Ignoring lines of code or linting rules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#running-linters">
+     Running Linters
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ide-integration">
+       IDE Integration
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pre-commit">
+       pre-commit
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#continuous-integration">
+       Continuous Integration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
 </ul>
 
                         </nav>
@@ -1018,7 +1233,386 @@ title="Print to PDF"
                 
               <div>
                 
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="linting">
+<h1>7.3 Linting<a class="headerlink" href="#linting" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time for this notebook: 15 minutes</em></p>
+<p>There are automated tools which enforce coding conventions and check for common mistakes. These are called <em>linters</em>.</p>
+<p>Do not blindly believe all these automated tools! Style guides are <strong>guides</strong> not <strong>rules</strong>.</p>
+<section id="linters-starter-pack">
+<h2>Linters Starter Pack<a class="headerlink" href="#linters-starter-pack" title="Permalink to this headline">#</a></h2>
+<p>A good starting point for any Python project is to use <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">black</span></code>, and <code class="docutils literal notranslate"><span class="pre">isort</span></code>. All three should improve the style and consistency of your code whilst requiring minimal setup, and generally they are not opinionated about the way your code is designed, only the way it is formatted and syntax or convention errors.</p>
+<section id="flake8">
+<h3><a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html">flake8</a><a class="headerlink" href="#flake8" title="Permalink to this headline">#</a></h3>
+<p>Combines two main tools:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/PyCQA/pyflakes">PyFlakes</a> - checks Python code for syntax errors</p></li>
+<li><p><a class="reference external" href="https://pycodestyle.pycqa.org/en/latest/">pycodestyle</a> - checks whether Python code is compliant with PEP8 conventions</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">flake8</span></code> only checks code and flags any syntax/style errors, it does not attempt to fix them.</p>
+<p>For example, consider this piece of code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> flake8_example.py
+
+<span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">e</span>
+
+<span class="k">def</span> <span class="nf">circumference</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting flake8_example.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Running <code class="docutils literal notranslate"><span class="pre">flake8</span></code> on it gives the following warnings:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> flake8 flake8_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>2<span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">F401</span> &#39;constants.e&#39; imported but unused
+<span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>4<span class=" -Color -Color-Cyan">:</span>1<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">E302</span> expected 2 blank lines, found 1
+<span class=" -Color -Color-Bold">flake8_example.py</span><span class=" -Color -Color-Cyan">:</span>5<span class=" -Color -Color-Cyan">:</span>16<span class=" -Color -Color-Cyan">:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">F821</span> undefined name &#39;pi&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first warning tells us we have imported a variable called <code class="docutils literal notranslate"><span class="pre">e</span></code> but not used it, and the last that we’re trying to use a variable called <code class="docutils literal notranslate"><span class="pre">pi</span></code> but haven’t defined it anywhere. The 2nd warning indicates that in the <a class="reference external" href="https://peps.python.org/pep-0008/#blank-lines">PEP8</a> conventions there should be two blank lines before a function definition, but we only have 1.</p>
+<div class="admonition-running-on-multiple-files admonition">
+<p class="admonition-title">Running on multiple files</p>
+<p>All the examples here run a linter on a single file, but they can be run on all the files in a project at once as well (e.g. by just running <code class="docutils literal notranslate"><span class="pre">flake8</span></code> without a filename).</p>
+</div>
+</section>
+<section id="black">
+<h3><a class="reference external" href="https://black.readthedocs.io/">black</a><a class="headerlink" href="#black" title="Permalink to this headline">#</a></h3>
+<p>A highly opinionated code formatter, which enforces control of minutiae details of your code.
+The name comes from a Henry Ford quote: “Any customer can have a car painted any color that he wants, so long as it is black.”</p>
+<p>For example, consider this piece of code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> black_example.py
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">my_complex_function</span><span class="p">(</span><span class="n">important_argument_1</span><span class="p">,</span><span class="n">important_argument_2</span><span class="p">,</span><span class="n">optional_argument_3</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="n">optional_argument_4</span> <span class="o">=</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">important_argument_1</span><span class="o">*</span><span class="n">important_argument_2</span><span class="o">*</span><span class="n">optional_argument_3</span><span class="o">*</span><span class="n">optional_argument_4</span>
+
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">greet</span><span class="o">=</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;!&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">,</span>    <span class="n">name</span><span class="p">,</span>    <span class="n">end</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting black_example.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> black black_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">reformatted black_example.py</span>
+
+<span class=" -Color -Color-Bold">All done! ✨ 🍰 ✨</span>
+<span class=" -Color -Color-Bold -Color-Bold-Blue">1 file </span><span class=" -Color -Color-Bold">reformatted</span>.
+</pre></div>
+</div>
+</div>
+</div>
+<p>After running <code class="docutils literal notranslate"><span class="pre">black</span></code> on the file its contents become:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat black_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>import numpy as np
+
+
+def my_complex_function(
+    important_argument_1,
+    important_argument_2,
+    optional_argument_3=3,
+    optional_argument_4=4,
+):
+    return (
+        np.random.random()
+        * important_argument_1
+        * important_argument_2
+        * optional_argument_3
+        * optional_argument_4
+    )
+
+
+def hello(name, greet=&quot;Hello&quot;, end=&quot;!&quot;):
+    print(greet, name, end)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Changes made by <code class="docutils literal notranslate"><span class="pre">black</span></code>:</p>
+<ul class="simple">
+<li><p>Ensured there are two blank lines before and after function definitions</p></li>
+<li><p>Wrapped long lines intelligently</p></li>
+<li><p>Removed excess whitespace (e.g. between the arguments in the print statement on the last line)</p></li>
+<li><p>Used double quotes <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> for all strings (rather than a mix of <code class="docutils literal notranslate"><span class="pre">'</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>)</p></li>
+</ul>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">black</span></code> will automatically fix most of the whitespace-related warnings picked up by <code class="docutils literal notranslate"><span class="pre">flake8</span></code> (but it would not fix the import or undefined name errors in the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> example above).</p>
+<div class="admonition-line-length admonition">
+<p class="admonition-title">Line length</p>
+<p><code class="docutils literal notranslate"><span class="pre">black</span></code> is not compliant with PEP8 in one way - by default it uses a maximum line length of 88 characters (PEP8 suggests 79 characters). <a class="reference external" href="https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length">This is discussed in the black documentation</a>.</p>
+</div>
+</section>
+<section id="isort">
+<h3><a class="reference external" href="https://pycqa.github.io/isort/">isort</a><a class="headerlink" href="#isort" title="Permalink to this headline">#</a></h3>
+<p>“Sorts” imports alphabetically in groups in the following order:</p>
+<ol class="simple">
+<li><p>standard library imports (<em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">os</span></code>).</p></li>
+<li><p>third-party imports (<em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span></code>).</p></li>
+<li><p>local application/library specific imports (<em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">.my_python_file</span> <span class="pre">import</span> <span class="pre">MyClass</span></code>).</p></li>
+</ol>
+<p>with a blank line between each group.</p>
+<p>For example, consider the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> isort_example.py
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">black_example</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting isort_example.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> isort isort_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fixing /home/runner/work/rse-course/rse-course/module07_construction_and_design/isort_example.py
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we run isort it becomes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat isort_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>import json
+import os
+
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+
+import black_example
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">from</span></code> imports are placed at the bottom of each group.</p>
+</section>
+</section>
+<section id="other-linters">
+<h2>Other Linters<a class="headerlink" href="#other-linters" title="Permalink to this headline">#</a></h2>
+<section id="mypy">
+<h3><a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a><a class="headerlink" href="#mypy" title="Permalink to this headline">#</a></h3>
+<p>If you use type annotations in your code, <code class="docutils literal notranslate"><span class="pre">mypy</span></code> can check it for errors that may result from variables being assigned the wrong type.
+For example, consider the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> mypy_example.py
+
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">greet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">rep</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rep</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">greet</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">message</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting mypy_example.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we run <code class="docutils literal notranslate"><span class="pre">mypy</span></code> on it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> mypy mypy_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mypy_example.py:9: <span class=" -Color -Color-Bold -Color-Bold-Red">error:</span> Argument 2 to <span class=" -Color -Color-Bold">&quot;hello&quot;</span> has incompatible type <span class=" -Color -Color-Bold">&quot;int&quot;</span>; expected <span class=" -Color -Color-Bold">&quot;str&quot;</span>
+<span class=" -Color -Color-Bold -Color-Bold-Red">Found 1 error in 1 file (checked 1 source file)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The error tells us we have passed an <code class="docutils literal notranslate"><span class="pre">int</span></code> as the 2nd argument to <code class="docutils literal notranslate"><span class="pre">hello</span></code>, but in the function definition the second argument (<code class="docutils literal notranslate"><span class="pre">greet</span></code>) is defined to be a <code class="docutils literal notranslate"><span class="pre">str</span></code>. We probably meant to write <code class="docutils literal notranslate"><span class="pre">hello(&quot;Bob&quot;,</span> <span class="pre">rep=5)</span></code>.</p>
+</section>
+<section id="pylint">
+<h3><a class="reference external" href="https://www.pylint.org/">pylint</a><a class="headerlink" href="#pylint" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> analyses your code for errors, coding standards, and makes suggestions around where code could be refactored. It checks for a much wider range of code quality issues than <code class="docutils literal notranslate"><span class="pre">flake8</span></code> but is also much more likely to pick up <em>false positives</em>, i.e. <code class="docutils literal notranslate"><span class="pre">pylint</span></code> is more likely to give you warnings about things you don’t want to change.</p>
+<p>Let’s run it on the same code we used for our <code class="docutils literal notranslate"><span class="pre">flake8</span></code> example earlier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> pylint_example.py
+
+<span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">e</span>
+
+<span class="k">def</span> <span class="nf">circumference</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting pylint_example.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pylint pylint_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>************* Module pylint_example
+pylint_example.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+pylint_example.py:2:0: E0401: Unable to import &#39;constants&#39; (import-error)
+pylint_example.py:4:0: C0116: Missing function or method docstring (missing-function-docstring)
+pylint_example.py:4:18: C0103: Argument name &quot;r&quot; doesn&#39;t conform to snake_case naming style (invalid-name)
+pylint_example.py:5:15: E0602: Undefined variable &#39;pi&#39; (undefined-variable)
+pylint_example.py:2:0: W0611: Unused e imported from constants (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
+
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compared to <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, in this case <code class="docutils literal notranslate"><span class="pre">pylint</span></code> also warns us that:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">circumference</span></code> function doesn’t have a docstring</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">constants</span></code> library we try to import is not available on our system</p></li>
+<li><p>The variable name <code class="docutils literal notranslate"><span class="pre">r</span></code> doesn’t follow conventions (single letter variables are discouraged by convention, we could use <code class="docutils literal notranslate"><span class="pre">radius</span></code> instead)</p></li>
+</ul>
+</section>
+<section id="nbqa">
+<h3><a class="reference external" href="https://nbqa.readthedocs.io/en/latest/index.html">nbqa</a><a class="headerlink" href="#nbqa" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">nbqa</span></code> allows you to run many Python quality tools (including all the ones we’ve introduced here) on jupyter notebooks. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> nbqa flake8 07_02_coding_conventions.ipynb
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>07_02_coding_conventions.ipynb:cell_3:1:1: F811 redefinition of unused &#39;ClassName&#39; from line 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pylama">
+<h3><a class="reference external" href="https://klen.github.io/pylama/">pylama</a><a class="headerlink" href="#pylama" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pylama</span></code> wraps many code quality tools (including <code class="docutils literal notranslate"><span class="pre">isort</span></code>, <code class="docutils literal notranslate"><span class="pre">mypy</span></code>, <code class="docutils literal notranslate"><span class="pre">pylint</span></code> and much of <code class="docutils literal notranslate"><span class="pre">flake8</span></code>) in a single command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pylama --linters isort,mccabe,mypy,pycodestyle,pydocstyle,pyflakes,pylint flake8_example.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: /home/runner/work/rse-course/rse-course/module07_construction_and_design/flake8_example.py Imports are incorrectly sorted and/or formatted.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>flake8_example.py:0:1  Incorrectly sorted imports. [isort]
+flake8_example.py:1:1 C0114 Missing module docstring [pylint]
+flake8_example.py:1:1 D100 Missing docstring in public module [pydocstyle]
+flake8_example.py:2:1  Cannot find implementation or library stub for module named &quot;constants&quot; [mypy]
+flake8_example.py:2:1  See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports [mypy]
+flake8_example.py:2:1 E0401 Unable to import &#39;constants&#39; [pylint]
+flake8_example.py:2:1 W0611 Unused e imported from constants [pylint]
+flake8_example.py:4:1 C0116 Missing function or method docstring [pylint]
+flake8_example.py:4:19 C0103 Argument name &quot;r&quot; doesn&#39;t conform to snake_case naming style [pylint]
+flake8_example.py:4:1 E302 expected 2 blank lines, found 1 [pycodestyle]
+flake8_example.py:4:1 D103 Missing docstring in public function [pydocstyle]
+flake8_example.py:5:16 E0602 Undefined variable &#39;pi&#39; [pylint]
+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<section id="compatibility-between-linters">
+<h3>Compatibility between linters<a class="headerlink" href="#compatibility-between-linters" title="Permalink to this headline">#</a></h3>
+<p>If you’re using multiple linters in your project you may need to configure them to be compatible with each other. For example, <code class="docutils literal notranslate"><span class="pre">flake8</span></code> warns about lines longer than 79 characters (the PEP8 convention) but <code class="docutils literal notranslate"><span class="pre">black</span></code> will allow lines up to 88 characters by default.</p>
+<p><a class="reference external" href="https://github.com/alan-turing-institute/Python-quality-tools">This repository</a> has an example setup for using <code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">isort</span></code>, and <code class="docutils literal notranslate"><span class="pre">flake8</span></code> together. The <code class="docutils literal notranslate"><span class="pre">.flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> configuration files set <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">isort</span></code> to run in modes compatible with <code class="docutils literal notranslate"><span class="pre">black</span></code>.</p>
+</section>
+<section id="ignoring-lines-of-code-or-linting-rules">
+<h3>Ignoring lines of code or linting rules<a class="headerlink" href="#ignoring-lines-of-code-or-linting-rules" title="Permalink to this headline">#</a></h3>
+<p>There will be times where a linter warns you about something in your code but there’s a valid reason it’s structured that way and you don’t want to change it. Most linters can be configured to ignore specific warnings, either by the type of warning, by file, or by individual code line. For example, adding a <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">noqa</span></code> comment to a line will make <code class="docutils literal notranslate"><span class="pre">flake8</span></code> ignore it.</p>
+<p>Each linter does this differently so check their documentation (e.g. <a class="reference external" href="https://flake8.pycqa.org/en/3.1.1/user/ignoring-errors.html">flake8</a>, <a class="reference external" href="https://pycqa.github.io/isort/docs/configuration/options.html">isort</a>, <a class="reference external" href="https://mypy.readthedocs.io/en/stable/config_file.html">mypy</a>, <a class="reference external" href="https://pylint.pycqa.org/en/latest/user_guide/messages/message_control.html">pylint</a>).</p>
+</section>
+<section id="running-linters">
+<h3>Running Linters<a class="headerlink" href="#running-linters" title="Permalink to this headline">#</a></h3>
+<p>It’s a good idea to run linters regularly, or even better to have them setup to run automatically so you don’t have to remember. There are various tools to help with that:</p>
+<section id="ide-integration">
+<h4>IDE Integration<a class="headerlink" href="#ide-integration" title="Permalink to this headline">#</a></h4>
+<p>Many editors/IDEs have integrations with common linters or have their own built-in. This can include highlighting problems inline, or automatically running linters when files are saved, for example. Here is the <a class="reference external" href="https://code.visualstudio.com/docs/python/linting">VS Code documentation for linting in Python</a>.</p>
+<p>There are also tools like <a class="reference external" href="https://editorconfig.org/">editorconfig</a> to help sharing the conventions used within a project, where each contributor uses different IDEs and tools.</p>
+</section>
+<section id="pre-commit">
+<h4><a class="reference external" href="https://pre-commit.com/">pre-commit</a><a class="headerlink" href="#pre-commit" title="Permalink to this headline">#</a></h4>
+<p>pre-commit is a manager for creating git “hooks” - scripts that run before making a commit. If a hook errors the commit won’t be made, and you’ll be prompted to fix the problems first. There are <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> plugins for all the linters discussed here, and it’s a good way to ensure all code committed to your repo has had a level of quality control applied to it.</p>
+</section>
+<section id="continuous-integration">
+<h4>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">#</a></h4>
+<p>As well as automating unit tests on a CI system like GitHub Actions it’s a good idea to configure them to run linters on your code too.</p>
+<p><a class="reference external" href="https://github.com/alan-turing-institute/AIrsenal/blob/main/.github/workflows/main.yml">Here is an example</a> from a repo using <code class="docutils literal notranslate"><span class="pre">isort</span></code>, <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">black</span></code> in a GitHub Action. Note that in a CI setup tools that usually change your code, like <code class="docutils literal notranslate"><span class="pre">black</span></code> and <code class="docutils literal notranslate"><span class="pre">isort</span></code>, will be configured to only check whether there are changes that need to be made.</p>
+</section>
+</section>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,

@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10.1 Deserialisation" href="10_01_deserialisation.html" />
+    <link rel="next" title="10.1 Using databases" href="10_01_databases.html" />
     <link rel="prev" title="10. Scientific file formats" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -549,6 +549,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
+     7.3 Linting
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
      7.4 Refactoring
     </a>
@@ -680,33 +685,38 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_01_deserialisation.html">
-     10.1 Deserialisation
+    <a class="reference internal" href="10_01_databases.html">
+     10.1 Using databases
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_02_binary_formats.html">
-     10.2 Binary formats
+    <a class="reference internal" href="10_02_deserialisation.html">
+     10.2 Deserialisation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_03_markup_languages.html">
-     10.3 Markup Languages
+    <a class="reference internal" href="10_03_binary_formats.html">
+     10.3 Binary formats
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_04_beyond_pandas.html">
-     10.04 Larger datasets - beyond pandas and csv
+    <a class="reference internal" href="10_04_markup_languages.html">
+     10.4 Markup Languages
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_05_processing_in_parallel.html">
-     10.5 Processing in parallel
+    <a class="reference internal" href="10_05_beyond_pandas.html">
+     10.5 Larger datasets - beyond pandas and CSV
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="10_06_geospatial_data.html">
-     10.6 Geospatial data
+    <a class="reference internal" href="10_06_processing_in_parallel.html">
+     10.6 Processing in parallel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_07_geospatial_data.html">
+     10.7 Geospatial data
     </a>
    </li>
    <li class="toctree-l2">
@@ -1035,21 +1045,6 @@ title="Print to PDF"
    Normalising the model - relations and keys
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#making-a-database-sqlite">
-   Making a database - SQLite
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-and-objects-the-object-relational-mapping">
-   Data and Objects - the Object-Relational-Mapping
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#moving-on-from-databases">
-   Moving on from databases
-  </a>
- </li>
 </ul>
 
     </nav>
@@ -1084,21 +1079,6 @@ title="Print to PDF"
    Normalising the model - relations and keys
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#making-a-database-sqlite">
-   Making a database - SQLite
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-and-objects-the-object-relational-mapping">
-   Data and Objects - the Object-Relational-Mapping
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#moving-on-from-databases">
-   Moving on from databases
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -1111,8 +1091,9 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="serialising-and-normalising-data">
 <h1>10.0 Serialising and normalising data<a class="headerlink" href="#serialising-and-normalising-data" title="Permalink to this headline">#</a></h1>
-<p><em>Estimated time for this notebook: 20 minutes</em></p>
-<p>Consider a simple python computational model of chemical reaction networks:</p>
+<p><em>Estimated time for this notebook: 15 minutes</em></p>
+<p>Consider a simple python computational model of chemical reaction networks.
+In particular let’s consider the combustion of glucose to carbon dioxide and water.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
@@ -1254,8 +1235,7 @@ How hard would it be to <strong>deserialise</strong> it?</p>
 <p>In the wild, such datafiles will have all kinds of complications, and making a hand-coded string parser for such
 text will be highly problematic. In this lecture, we’re going to look at the kind of problems that can arise, and
 some standard ways to solve them, which will lead us to the idea of <strong>normalisation</strong> in databases.</p>
-<p>Next lecture, we’ll look at how we might create a file format which does indeed look like such a fluent mathematical
-representation, which we’ll call a <strong>Domain Specific Language</strong>.</p>
+<p><strong>Note</strong> It is possible to create a structure which does look like such a fluent mathematical representation, which is known as a <strong>Domain Specific Language</strong>. Some information on this is covered in the optional <a class="reference internal" href="10_x0_optional_domain_specific_languages.html"><span class="doc std std-doc">Domain Specific Languages notebook</span></a>.</p>
 <section id="non-normal-data-representations-first-normal-form">
 <h2>Non-normal data representations: First normal form.<a class="headerlink" href="#non-normal-data-representations-first-normal-form" title="Permalink to this headline">#</a></h2>
 <p>Consider the mistakes that someone might make when typing in a reaction in the above format: they could easily, if there are multiple reactions in a system, type glucose in correctly as <code class="docutils literal notranslate"><span class="pre">C_6H_{12}O_6</span></code> the first time, but the second type accidentally type <code class="docutils literal notranslate"><span class="pre">C_6H_{12}o_6.</span></code></p>
@@ -1401,626 +1381,10 @@ representation, which we’ll call a <strong>Domain Specific Language</strong>.<
 </div>
 </div>
 <p>This last table is called a <strong>join table</strong> - and is needed whenever we want to specify a “many-to-many” relationship.
-(Each atom can be in more than one molecule, and each molecule has more than one atom.)</p>
-<p>Note each table needs to have a set of columns which taken together form a unique identifier for that row; called a “key”. If more than one is possible, we choose one and call it a <strong>primary key</strong>. (And in practice, we normally choose a single column for this: hence the ‘rel_number’ column, though the tuple {molecule, symbol} here is another <strong>candidate key</strong>.)</p>
-<p>Now, proper database tools use much more sophisticated representations than just csv files -
-including <strong>indices</strong> to enable hash-table like efficient lookups, and support for managing multiple users at the same time.</p>
-<p>Furthermore, the <strong>principles</strong> of database normalisation and the relational model will be helpful
-right across our thinking about data representation, whether these are dataframes in Pandas, tensors in tensorflow, or anything else…</p>
-</section>
-<section id="making-a-database-sqlite">
-<h2>Making a database - SQLite<a class="headerlink" href="#making-a-database-sqlite" title="Permalink to this headline">#</a></h2>
-<p>Let’s look at how we would use a simple database in Python to represent atoms and molecules. If you’ve never seen SQL before, you might want to attend an introductory course, such as one of the ‘Software Carpentry’ sessions. Here we’re going to assume some existing knowledge but we will use a Python-style way to interact with databases instead of relying on raw SQL.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;molecules.db&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removing database to start again from scratch&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No DB since this notebook was last run&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Removing database to start again from scratch
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span>
-
-<span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///molecules.db&quot;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>SQLite is a simple very-lightweight database tool - without support for concurrent users - but it’s great for little hacks like this. For full-on database work you’ll probably want to use a more fully-featured database like <a class="reference external" href="https://www.postgresql.org">https://www.postgresql.org</a>.</p>
-<p>The metadata for the database describing the tables present, and their columns, is defined in Python using SQLAlchemy, the leading python database tool, thus:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Table</span>
-
-<span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-<span class="n">molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-    <span class="s2">&quot;molecules&quot;</span><span class="p">,</span>
-    <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;mass&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">),</span>
-<span class="p">)</span>
-
-<span class="n">atoms</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-    <span class="s2">&quot;atoms&quot;</span><span class="p">,</span>
-    <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;symbol&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Integer</span>
-
-<span class="n">atoms_in_molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-    <span class="s2">&quot;atoms_molecules&quot;</span><span class="p">,</span>
-    <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;atom&quot;</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;atoms.symbol&quot;</span><span class="p">)),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;molecule&quot;</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;molecules.name&quot;</span><span class="p">)),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,237 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,238 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;molecules&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,239 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,240 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;molecules&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,243 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,244 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,249 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,250 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,252 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,253 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms_molecules&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,253 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,254 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms_molecules&quot;)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,255 INFO sqlalchemy.engine.Engine [raw sql] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,258 INFO sqlalchemy.engine.Engine 
-CREATE TABLE molecules (
-	name VARCHAR NOT NULL, 
-	mass FLOAT, 
-	PRIMARY KEY (name)
-)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,259 INFO sqlalchemy.engine.Engine [no key 0.00088s] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,264 INFO sqlalchemy.engine.Engine 
-CREATE TABLE atoms (
-	symbol VARCHAR NOT NULL, 
-	number INTEGER, 
-	PRIMARY KEY (symbol)
-)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,265 INFO sqlalchemy.engine.Engine [no key 0.00120s] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,268 INFO sqlalchemy.engine.Engine 
-CREATE TABLE atoms_molecules (
-	atom VARCHAR, 
-	molecule VARCHAR, 
-	number INTEGER, 
-	FOREIGN KEY(atom) REFERENCES atoms (symbol), 
-	FOREIGN KEY(molecule) REFERENCES molecules (name)
-)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,269 INFO sqlalchemy.engine.Engine [no key 0.00076s] ()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-11 12:21:09,272 INFO sqlalchemy.engine.Engine COMMIT
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MetaData()
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note the SQL syntax for creating tables is generated by the python tool, and sent to the database server.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">molecules</span> <span class="p">(</span>
-	<span class="n">name</span> <span class="n">VARCHAR</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span> 
-	<span class="n">mass</span> <span class="n">FLOAT</span><span class="p">,</span> 
-	<span class="n">PRIMARY</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>We’ll turn off our automatic printing of all the raw sql to avoid this notebook being unreadable.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span><span class="o">.</span><span class="n">echo</span> <span class="o">=</span> <span class="kc">False</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can also write data to our database using this python tooling:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ins</span> <span class="o">=</span> <span class="n">molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="s2">&quot;18.01&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">ins</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x7f953e638b20&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<p>And query it:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.sql</span> <span class="kn">import</span> <span class="n">select</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">select</span><span class="p">([</span><span class="n">molecules</span><span class="p">])</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="s2">&quot;mass&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18.01
-</pre></div>
-</div>
-</div>
-</div>
-<p>If we have enough understanding of SQL syntax, we can use appropriate <strong>join</strong> statements to find, for example, the mass of all molecules which contain oxygen:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="s2">&quot;32.00&quot;</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x7f953e60caf0&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    SELECT mass</span>
-<span class="sd">    FROM   molecules</span>
-<span class="sd">          JOIN atoms_molecules</span>
-<span class="sd">            ON molecules.NAME = atoms_molecules.molecule</span>
-<span class="sd">          JOIN atoms</span>
-<span class="sd">            ON atoms.symbol = atoms_molecules.atom</span>
-<span class="sd">    WHERE  atoms.symbol = &#39;H&#39;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(18.01,)]
-</pre></div>
-</div>
-</div>
-</div>
-<p>But we can do much better…</p>
-</section>
-<section id="data-and-objects-the-object-relational-mapping">
-<h2>Data and Objects - the Object-Relational-Mapping<a class="headerlink" href="#data-and-objects-the-object-relational-mapping" title="Permalink to this headline">#</a></h2>
-<p>We notice that when we find a correct relational model for our data, many of the rows are suggestive of exactly the data
-we would expect to supply to an object constructor - data about an object. References to keys of other tables in rows suggest composition
-relations while many-to-many join tables often represent aggregation relationships, and data about the relationship.</p>
-<p>As a result of this, powerful tools exist to <strong>automatically</strong> create object structures from database schema, including saving and loading.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;molecules.db&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removing database to start again from scratch&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No DB since this notebook was last run&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Removing database to start again from scratch
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span>
-
-<span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///molecules.db&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
-
-<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
-
-
-<span class="k">class</span> <span class="nc">Element</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;atoms&quot;</span>
-    <span class="n">symbol</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
-    <span class="n">molecules</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;AtomsPerMolecule&quot;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Molecule</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;molecules&quot;</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">mass</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
-    <span class="n">atoms</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;AtomsPerMolecule&quot;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AtomsPerMolecule</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;atoms_per_molecule&quot;</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">atom_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;atoms.symbol&quot;</span><span class="p">))</span>
-    <span class="n">molecule_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;molecules.name&quot;</span><span class="p">))</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>If we now create our tables, the system will automatically create a DB:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span><span class="o">.</span><span class="n">echo</span> <span class="o">=</span> <span class="kc">False</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>And we can create objects with a simple interface that looks just like ordinary classes:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oxygen</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">hydrogen</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">water</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">18.01</span><span class="p">)</span>
-<span class="n">oxygen_m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">16.00</span><span class="p">)</span>
-<span class="n">hydrogen_m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;hydrogen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">2.02</span><span class="p">)</span>
-<span class="n">molecules</span> <span class="o">=</span> <span class="p">[</span><span class="n">water</span><span class="p">,</span> <span class="n">oxygen_m</span><span class="p">,</span> <span class="n">hydrogen_m</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that we are using the `backref` name to construct the `atom_id` and `molecule_id`.</span>
-<span class="c1"># These lookup instances of Element and Molecule that are already in our database</span>
-<span class="n">amounts</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">water</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">hydrogen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">water</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">oxygen_m</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">hydrogen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">hydrogen_m</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
-
-<span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">bulk_save_objects</span><span class="p">(</span><span class="n">elements</span> <span class="o">+</span> <span class="n">molecules</span> <span class="o">+</span> <span class="n">amounts</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oxygen</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">name</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;water&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Molecule</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;water&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>This is a very powerful technique - we get our class-type interface in python, with database persistence and searchability for free!</p>
-</section>
-<section id="moving-on-from-databases">
-<h2>Moving on from databases<a class="headerlink" href="#moving-on-from-databases" title="Permalink to this headline">#</a></h2>
-<p>Databases are often a good choice for storing data, but can only be interacted with programmatically. Often, we want to make a file format to represent our dataset which can be easily replicated or shared. The next part of this module focuses on the design of such file-formats, both binary and <strong>human-readable</strong>.</p>
-<p>One choice, now we know about it, is to serialise all the database tables as CSV:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Molecule</span><span class="p">)</span><span class="o">.</span><span class="n">statement</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;SELECT molecules.name, molecules.mass \nFROM molecules&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataframe</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Molecule</span><span class="p">)</span><span class="o">.</span><span class="n">statement</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">bind</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataframe</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-      <th>mass</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>water</td>
-      <td>18.01</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>oxygen</td>
-      <td>16.00</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>hydrogen</td>
-      <td>2.02</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>,name,mass
-0,water,18.01
-1,oxygen,16.0
-2,hydrogen,2.02
-</pre></div>
-</div>
-</div>
-</div>
-<p>Deserialising is also easy:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> atoms.csv
-
-<span class="n">symbol</span><span class="p">,</span><span class="n">number</span>
-<span class="n">C</span><span class="p">,</span><span class="mi">6</span>
-<span class="n">N</span><span class="p">,</span><span class="mi">7</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting atoms.csv
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;atoms.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_csv</span><span class="p">:</span>
-    <span class="n">atoms</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f_csv</span><span class="p">)</span>
-<span class="n">atoms</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>symbol</th>
-      <th>number</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>C</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>N</td>
-      <td>7</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;atoms&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">bind</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Element</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">number</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
-</pre></div>
-</div>
-</div>
-</div>
-<p>However, we know from last time that another common choice is to represent
-such complicated data structures in YAML. The implications of what we’ve just learned for serialising to and from such
-structured data is the topic of the next lecture.</p>
+Here, each atom can be in more than one molecule, and each molecule has more than one atom.</p>
+<p>Note each table needs to have a set of columns which taken together form a unique identifier for that row; called a “key”.
+If more than one is possible, we choose one and call it a <strong>primary key</strong>.
+In practice, we normally choose a single column for this: hence the ‘rel_number’ column, though the tuple {molecule, symbol} here is another <strong>candidate key</strong>.</p>
 </section>
 </section>
 
@@ -2058,10 +1422,10 @@ structured data is the topic of the next lecture.</p>
             <p class="prev-next-title">10. Scientific file formats</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="10_01_deserialisation.html" title="next page">
+    <a class='right-next' id="next-link" href="10_01_databases.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">10.1 Deserialisation</p>
+        <p class="prev-next-title">10.1 Using databases</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
