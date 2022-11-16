@@ -360,10 +360,12 @@ class Dungeon:
             raise ValueError(f"Treasure{self.treasure.point} is not in the dungeon")
         if self.adventurer.point not in self.rooms:
             raise ValueError(
-                f"{self.adventure.name}{treasure.point} is not in the dungeon"
+                f"{self.adventure.name}{self.adventurer.point} is not in the dungeon"
             )
         if self.troll.point not in self.rooms:
-            raise ValueError(f"{self.troll.name}{treasure.point} is not in the dungeon")
+            raise ValueError(
+                f"{self.troll.name}{self.troll.point} is not in the dungeon"
+            )
 
     @classmethod
     def from_file(cls, path):
