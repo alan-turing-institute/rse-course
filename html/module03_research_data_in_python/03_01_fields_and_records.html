@@ -1126,10 +1126,10 @@ title="Print to PDF"
 We had downloaded some semicolon separated data and decided it was better to use a library than to write our own parser.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import requests
 
-<span class="n">spots</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-<span class="n">spots</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+spots = requests.get(&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;, timeout=60)
+spots.text.split(&quot;\n&quot;)[0]
 </pre></div>
 </div>
 </div>
@@ -1175,15 +1175,15 @@ However, it’s less powerful than the CSV capabilities in other libraries such 
 Here we will use <a class="reference external" href="https://pandas.pydata.org/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> which is built on top of <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.read_csv(&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;, sep=&quot;;&quot;, header=None)
+df.head()
 </pre></div>
 </div>
 </div>
@@ -1279,7 +1279,7 @@ The <code class="docutils literal notranslate"><span class="pre">head</span></co
 The <code class="docutils literal notranslate"><span class="pre">tail</span></code> method shows us the last 5 entries.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.tail()
 </pre></div>
 </div>
 </div>
@@ -1368,7 +1368,7 @@ The <code class="docutils literal notranslate"><span class="pre">tail</span></co
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df[3][0]
 </pre></div>
 </div>
 </div>
@@ -1381,7 +1381,7 @@ The <code class="docutils literal notranslate"><span class="pre">tail</span></co
 <p>We can now plot the “Sunspot cycle”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.plot(x=2, y=3)
 </pre></div>
 </div>
 </div>
@@ -1420,13 +1420,13 @@ The separator is the semicolon ‘;’.</p>
 <p>We can actually specify this to the formatter:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span>
-    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
-    <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;deviation&quot;</span><span class="p">,</span> <span class="s2">&quot;observations&quot;</span><span class="p">,</span> <span class="s2">&quot;definitive&quot;</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="n">df_w_names</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_w_names = pd.read_csv(
+    &quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;,
+    sep=&quot;;&quot;,
+    header=None,
+    names=[&quot;year&quot;, &quot;month&quot;, &quot;date&quot;, &quot;mean&quot;, &quot;deviation&quot;, &quot;observations&quot;, &quot;definitive&quot;],
+)
+df_w_names.head()
 </pre></div>
 </div>
 </div>
@@ -1515,7 +1515,7 @@ The separator is the semicolon ‘;’.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_w_names.plot(x=&quot;date&quot;, y=&quot;mean&quot;)
 </pre></div>
 </div>
 </div>
@@ -1533,7 +1533,7 @@ The separator is the semicolon ‘;’.</p>
 <p>It’s also often useful to check, and if necessary specify, the datatype of each field.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">dtypes</span>  <span class="c1"># Check the data types of all columns in the DataFrame</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_w_names.dtypes  # Check the data types of all columns in the DataFrame
 </pre></div>
 </div>
 </div>
@@ -1553,8 +1553,8 @@ dtype: object
 <p>In this case the data types seem sensible, however if we wanted to convert the year into a floating point number instead, we could via:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
-<span class="n">df_w_names</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_w_names[&quot;year&quot;] = df_w_names[&quot;year&quot;].astype(&quot;float64&quot;)
+df_w_names.dtypes
 </pre></div>
 </div>
 </div>
@@ -1573,7 +1573,7 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_w_names.head()
 </pre></div>
 </div>
 </div>
@@ -1666,8 +1666,8 @@ dtype: object
 <p>Sometimes it is necessary to filter data, for example to only see the sunspots for the year 2018 you would use:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_twenty_eighteen</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2018</span><span class="p">)]</span>
-<span class="n">df_twenty_eighteen</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_twenty_eighteen = df_w_names[(df_w_names[&quot;year&quot;] == 2018)]
+df_twenty_eighteen.head(20)
 </pre></div>
 </div>
 </div>
@@ -1832,14 +1832,14 @@ dtype: object
 <p>If we wanted all data from 1997 to 1999 we could via:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nineties</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1997</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_nineties = df_w_names[(df_w_names[&quot;year&quot;] &gt;= 1997) &amp; (df_w_names[&quot;year&quot;] &lt; 2000)]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nineties</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_nineties.head()
 </pre></div>
 </div>
 </div>
@@ -1928,7 +1928,7 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nineties</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_nineties.tail()
 </pre></div>
 </div>
 </div>

@@ -1248,22 +1248,22 @@ There are many data analysis examples out there, like the on the <a class="refer
 You can also mix code with the results of that code, such as graphs and other data visualisations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make plot</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make plot
+%matplotlib inline
+import math
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+import matplotlib.pyplot as plt
+import numpy as np
 
-<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">eight</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">axes</span> <span class="o">=</span> <span class="n">eight</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+theta = np.arange(0, 4 * math.pi, 0.1)
+eight = plt.figure()
+axes = eight.add_axes([0, 0, 1, 1])
+axes.plot(0.5 * np.sin(theta), np.cos(theta / 2))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffa7e28b340&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff04d5c0c10&gt;]
 </pre></div>
 </div>
 <img alt="../_images/01_00_introduction_to_python_17_1.png" src="../_images/01_00_introduction_to_python_17_1.png" />
@@ -1273,7 +1273,7 @@ You can also mix code with the results of that code, such as graphs and other da
 <p>Jupyter notebooks consist of discussion cells, referred to as “markdown cells”, and “code cells”, which contain Python. This document has been created using Jupyter notebook, and this very cell is a <strong>Markdown Cell</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This cell is a code cell&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;This cell is a code cell&quot;)
 </pre></div>
 </div>
 </div>
@@ -1331,7 +1331,7 @@ for example, to obtain:</p>
 You can find out more about this by attending a <a class="reference external" href="https://software-carpentry.org/">“Software Carpentry”</a> or similar workshop, which introduce the skills needed for computationally based research.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 # Above line tells Python to execute this cell as *shell code*
 # not Python, as if we were in a command line
 # This is called a &#39;cell magic&#39;
@@ -1353,7 +1353,7 @@ python -c &quot;print(2 * 4)&quot;
 Here are some examples:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 echo &quot;print(2 * 4)&quot; &gt; eight.py
 python eight.py
 </pre></div>
@@ -1368,9 +1368,9 @@ python eight.py
 <p>We can make the script directly executable (on Linux or Mac) by inserting a <a class="reference external" href="https://en.wikipedia.org/wiki/Shebang_(Unix%29)">hashbang</a> and <a class="reference external" href="http://v4.software-carpentry.org/shell/perm.html">setting the permissions</a> to execute.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> fourteen.py
-<span class="ch">#! /usr/bin/env python</span>
-<span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile fourteen.py
+#! /usr/bin/env python
+print(2 * 7)
 </pre></div>
 </div>
 </div>
@@ -1382,7 +1382,7 @@ python eight.py
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 chmod u+x fourteen.py
 ./fourteen.py
 </pre></div>
@@ -1400,20 +1400,20 @@ chmod u+x fourteen.py
 <p>We can write our own python libraries, called modules which we can import into the notebook and invoke:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> draw_eight.py
-<span class="c1"># Above line tells the notebook to treat the rest of this</span>
-<span class="c1"># cell as content for a file on disk.</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile draw_eight.py
+# Above line tells the notebook to treat the rest of this
+# cell as content for a file on disk.
+import math
+import numpy as np
+import matplotlib.pyplot as plt
 
 
-<span class="k">def</span> <span class="nf">make_figure</span><span class="p">():</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">eight</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">axes</span> <span class="o">=</span> <span class="n">eight</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-    <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">eight</span>
+def make_figure():
+    theta = np.arange(0, 4 * math.pi, 0.1)
+    eight = plt.figure()
+    axes = eight.add_axes([0, 0, 1, 1])
+    axes.plot(0.5 * np.sin(theta), np.cos(theta / 2))
+    return eight
 </pre></div>
 </div>
 </div>
@@ -1426,14 +1426,14 @@ chmod u+x fourteen.py
 <p>In a real example, we could edit the file on disk using a program such as <a class="reference external" href="https://atom.io">Atom</a> or <a class="reference external" href="https://code.visualstudio.com/">VS code</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">draw_eight</span>  <span class="c1"># Load the library file we just wrote to disk</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import draw_eight  # Load the library file we just wrote to disk
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">draw_eight</span><span class="o">.</span><span class="n">make_figure</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>image = draw_eight.make_figure()
 </pre></div>
 </div>
 </div>

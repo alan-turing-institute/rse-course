@@ -1106,12 +1106,12 @@ title="Print to PDF"
 <p>Consider a bunch of variables, each of which need initialising and incrementing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bananas</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">apples</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">oranges</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">bananas</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="n">apples</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="n">oranges</span> <span class="o">+=</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>bananas = 0
+apples = 0
+oranges = 0
+bananas += 1
+apples += 1
+oranges += 1
 </pre></div>
 </div>
 </div>
@@ -1120,10 +1120,10 @@ title="Print to PDF"
 could of course define a variable for our initial value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_fruit_count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">bananas</span> <span class="o">=</span> <span class="n">initial_fruit_count</span>
-<span class="n">apples</span> <span class="o">=</span> <span class="n">initial_fruit_count</span>
-<span class="n">oranges</span> <span class="o">=</span> <span class="n">initial_fruit_count</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>initial_fruit_count = 0
+bananas = initial_fruit_count
+apples = initial_fruit_count
+oranges = initial_fruit_count
 </pre></div>
 </div>
 </div>
@@ -1132,20 +1132,20 @@ could of course define a variable for our initial value:</p>
 the assignment with, say, a class constructor and a buy operation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Basket</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Basket:
+    def __init__(self):
+        self.count = 0
 
-    <span class="k">def</span> <span class="nf">buy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    def buy(self):
+        self.count += 1
 
 
-<span class="n">bananas</span> <span class="o">=</span> <span class="n">Basket</span><span class="p">()</span>
-<span class="n">apples</span> <span class="o">=</span> <span class="n">Basket</span><span class="p">()</span>
-<span class="n">oranges</span> <span class="o">=</span> <span class="n">Basket</span><span class="p">()</span>
-<span class="n">bananas</span><span class="o">.</span><span class="n">buy</span><span class="p">()</span>
-<span class="n">apples</span><span class="o">.</span><span class="n">buy</span><span class="p">()</span>
-<span class="n">oranges</span><span class="o">.</span><span class="n">buy</span><span class="p">()</span>
+bananas = Basket()
+apples = Basket()
+oranges = Basket()
+bananas.buy()
+apples.buy()
+oranges.buy()
 </pre></div>
 </div>
 </div>
@@ -1157,9 +1157,9 @@ multiple places, you have an opportunity to make the code DRYer.</p>
 just a loop over all the variables we want to initialise:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baskets</span> <span class="o">=</span> <span class="p">[</span><span class="n">bananas</span><span class="p">,</span> <span class="n">apples</span><span class="p">,</span> <span class="n">oranges</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">basket</span> <span class="ow">in</span> <span class="n">baskets</span><span class="p">:</span>
-    <span class="n">basket</span><span class="o">.</span><span class="n">buy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>baskets = [bananas, apples, oranges]
+for basket in baskets:
+    basket.buy()
 </pre></div>
 </div>
 </div>
@@ -1167,14 +1167,14 @@ just a loop over all the variables we want to initialise:</p>
 <p>However, this trick <strong>doesn’t</strong> work for initialising a new variable:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baskets</span> <span class="o">=</span> <span class="p">[</span><span class="n">bananas</span><span class="p">,</span> <span class="n">apples</span><span class="p">,</span> <span class="n">oranges</span><span class="p">,</span> <span class="n">kiwis</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>baskets = [bananas, apples, oranges, kiwis]
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">baskets</span> <span class="o">=</span> <span class="p">[</span><span class="n">bananas</span><span class="p">,</span> <span class="n">apples</span><span class="p">,</span> <span class="n">oranges</span><span class="p">,</span> <span class="n">kiwis</span><span class="p">]</span>
 
 <span class="ne">NameError</span>: name &#39;kiwis&#39; is not defined
@@ -1188,8 +1188,8 @@ just a loop over all the variables we want to initialise:</p>
 dictionary storing the values in its <strong>namespace</strong>. <code class="docutils literal notranslate"><span class="pre">globals()</span></code> gives a reference to the attribute dictionary for the current module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;globals() is a</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="nb">globals</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">With these keys:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;globals() is a\n&quot;, type(globals()))
+print(&quot;\nWith these keys:\n&quot;, globals().keys())
 </pre></div>
 </div>
 </div>
@@ -1206,24 +1206,24 @@ With these keys:
 <p>We can access variables via this dictionary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">globals</span><span class="p">()[</span><span class="s2">&quot;apples&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>globals()[&quot;apples&quot;]
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Basket at 0x7f31ac11b3a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Basket at 0x7f1230460dc0&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apples</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>apples
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Basket at 0x7f31ac11b3a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Basket at 0x7f1230460dc0&gt;
 </pre></div>
 </div>
 </div>
@@ -1231,13 +1231,13 @@ With these keys:
 <p>And create new variables by assigning to this dictionary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basket_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bananas&quot;</span><span class="p">,</span> <span class="s2">&quot;apples&quot;</span><span class="p">,</span> <span class="s2">&quot;oranges&quot;</span><span class="p">,</span> <span class="s2">&quot;kiwis&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>basket_names = [&quot;bananas&quot;, &quot;apples&quot;, &quot;oranges&quot;, &quot;kiwis&quot;]
 
-<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">basket_names</span><span class="p">:</span>
-    <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Basket</span><span class="p">()</span>
+for name in basket_names:
+    globals()[name] = Basket()
 
 
-<span class="n">kiwis</span><span class="o">.</span><span class="n">count</span>
+kiwis.count
 </pre></div>
 </div>
 </div>
@@ -1252,11 +1252,11 @@ With these keys:
 A better, more Pythonic choice here would be to use a data structure to manage your set of fruit baskets:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baskets</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">basket_names</span><span class="p">:</span>
-    <span class="n">baskets</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Basket</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>baskets = {}
+for name in basket_names:
+    baskets[name] = Basket()
 
-<span class="n">baskets</span><span class="p">[</span><span class="s2">&quot;kiwis&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span>
+baskets[&quot;kiwis&quot;].count
 </pre></div>
 </div>
 </div>
@@ -1269,8 +1269,8 @@ A better, more Pythonic choice here would be to use a data structure to manage y
 <p>Or even, using a dictionary comprehension:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baskets</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">Basket</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">baskets</span><span class="p">}</span>
-<span class="n">baskets</span><span class="p">[</span><span class="s2">&quot;kiwis&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>baskets = {name: Basket() for name in baskets}
+baskets[&quot;kiwis&quot;].count
 </pre></div>
 </div>
 </div>
@@ -1292,8 +1292,8 @@ to understand. Nevertheless, metaprogramming is worth knowing.</p>
 <p>This will allow us, for example, to programmatically add members to a class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Boring</span><span class="p">:</span>
-    <span class="k">pass</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Boring:
+    pass
 </pre></div>
 </div>
 </div>
@@ -1301,16 +1301,16 @@ to understand. Nevertheless, metaprogramming is worth knowing.</p>
 <p>If we are adding our own attributes, we can just do so directly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Boring</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = Boring()
 
-<span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>
+x.name = &quot;Michael&quot;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">name</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x.name
 </pre></div>
 </div>
 </div>
@@ -1323,7 +1323,7 @@ to understand. Nevertheless, metaprogramming is worth knowing.</p>
 <p>And these turn up, as expected, in an attribute dictionary for the class:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="vm">__dict__</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x.__dict__
 </pre></div>
 </div>
 </div>
@@ -1336,7 +1336,7 @@ to understand. Nevertheless, metaprogramming is worth knowing.</p>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">getattr</span></code> to access this special dictionary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">getattr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>getattr(x, &quot;name&quot;)
 </pre></div>
 </div>
 </div>
@@ -1349,9 +1349,9 @@ to understand. Nevertheless, metaprogramming is worth knowing.</p>
 <p>If we want to add an attribute given it’s name as a string, we can use setattr:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">setattr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>setattr(x, &quot;age&quot;, 75)
 
-<span class="n">x</span><span class="o">.</span><span class="n">age</span>
+x.age
 </pre></div>
 </div>
 </div>
@@ -1370,14 +1370,14 @@ and
 it becomes a member function!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">setattr</span><span class="p">(</span><span class="n">Boring</span><span class="p">,</span> <span class="s2">&quot;describe&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>setattr(Boring, &quot;describe&quot;, lambda self: f&quot;{self.name} is {self.age}&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x.describe()
 </pre></div>
 </div>
 </div>
@@ -1389,19 +1389,19 @@ it becomes a member function!</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">describe</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x.describe
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method &lt;lambda&gt; of &lt;__main__.Boring object at 0x7f319cf3ef10&gt;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method &lt;lambda&gt; of &lt;__main__.Boring object at 0x7f12302a2670&gt;&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Boring</span><span class="o">.</span><span class="n">describe</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Boring.describe
 </pre></div>
 </div>
 </div>
@@ -1414,16 +1414,16 @@ it becomes a member function!</p>
 <p>Note that we set this method as an attribute of the class, not the instance, so it is available to other instances of <code class="docutils literal notranslate"><span class="pre">Boring</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">Boring</span><span class="p">()</span>
-<span class="n">y</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Terry&quot;</span>
-<span class="n">y</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">78</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y = Boring()
+y.name = &quot;Terry&quot;
+y.age = 78
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y.describe()
 </pre></div>
 </div>
 </div>
@@ -1437,26 +1437,26 @@ it becomes a member function!</p>
 <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import datetime
 
 
-<span class="k">def</span> <span class="nf">broken_birth_year</span><span class="p">(</span><span class="n">b_instance</span><span class="p">):</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">year</span>
-    <span class="k">return</span> <span class="n">current</span> <span class="o">-</span> <span class="n">b_instance</span><span class="o">.</span><span class="n">age</span>
+def broken_birth_year(b_instance):
+    current = datetime.datetime.now().year
+    return current - b_instance.age
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Boring</span><span class="o">.</span><span class="n">birth_year</span> <span class="o">=</span> <span class="n">broken_birth_year</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Boring.birth_year = broken_birth_year
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">birth_year</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x.birth_year()
 </pre></div>
 </div>
 </div>
@@ -1468,19 +1468,19 @@ it becomes a member function!</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">birth_year</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x.birth_year
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method broken_birth_year of &lt;__main__.Boring object at 0x7f319cf3ef10&gt;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method broken_birth_year of &lt;__main__.Boring object at 0x7f12302a2670&gt;&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">birth_year</span><span class="o">.</span><span class="vm">__name__</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x.birth_year.__name__
 </pre></div>
 </div>
 </div>
@@ -1499,20 +1499,20 @@ function with <code class="docutils literal notranslate"><span class="pre">local
 programmatic creation of function-local variables is a flaw in Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="n">children_count</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s2">&quot;self&quot;</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting self.</span><span class="si">{</span><span class="n">var_name</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Person:
+    def __init__(self, name, age, job, children_count):
+        for var_name, value in locals().items():
+            if var_name == &quot;self&quot;:
+                continue
+            print(f&quot;Setting self.{var_name} to {value}&quot;)
+            setattr(self, var_name, value)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terry</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Terry&quot;</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="s2">&quot;Screenwriter&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>terry = Person(&quot;Terry&quot;, 78, &quot;Screenwriter&quot;, 0)
 </pre></div>
 </div>
 </div>
@@ -1527,14 +1527,14 @@ Setting self.children_count to 0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terry</span><span class="o">.</span><span class="n">first_name</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>terry.first_name
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">terry</span><span class="o">.</span><span class="n">first_name</span>
 
 <span class="ne">AttributeError</span>: &#39;Person&#39; object has no attribute &#39;first_name&#39;
@@ -1551,12 +1551,12 @@ Remember, your objective when programming is to produce code which is <strong>de
 <p>The above code is <strong>definitely</strong> less readable, less maintainable and more error prone than:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="n">children_count</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">job</span> <span class="o">=</span> <span class="n">job</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">children_count</span> <span class="o">=</span> <span class="n">children_count</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Person:
+    def __init__(self, name, age, job, children_count):
+        self.name = name
+        self.age = age
+        self.job = job
+        self.children_count = children_count
 </pre></div>
 </div>
 </div>

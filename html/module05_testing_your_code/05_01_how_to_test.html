@@ -1144,10 +1144,10 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">patches</span>
-<span class="kn">from</span> <span class="nn">matplotlib.path</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+import matplotlib.pyplot as plt
+from matplotlib import patches
+from matplotlib.path import Path
 </pre></div>
 </div>
 </div>
@@ -1155,31 +1155,31 @@ title="Print to PDF"
 <p>Let’s make a little fragment of matplotlib code to visualise a pair of fields.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_fields</span><span class="p">(</span><span class="n">field1</span><span class="p">,</span> <span class="n">field2</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">vertices</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">top</span><span class="p">):</span>
-        <span class="n">verts</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">top</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span>
-        <span class="p">]</span>
-        <span class="k">return</span> <span class="n">verts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def show_fields(field1, field2):
+    def vertices(left, bottom, right, top):
+        verts = [
+            (left, bottom),
+            (left, top),
+            (right, top),
+            (right, bottom),
+            (left, bottom),
+        ]
+        return verts
 
-    <span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span><span class="p">,</span> <span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span><span class="p">,</span> <span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span><span class="p">,</span> <span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span><span class="p">,</span> <span class="n">Path</span><span class="o">.</span><span class="n">CLOSEPOLY</span><span class="p">]</span>
-    <span class="n">path1</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">vertices</span><span class="p">(</span><span class="o">*</span><span class="n">field1</span><span class="p">),</span> <span class="n">codes</span><span class="p">)</span>
-    <span class="n">path2</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">vertices</span><span class="p">(</span><span class="o">*</span><span class="n">field2</span><span class="p">),</span> <span class="n">codes</span><span class="p">)</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-    <span class="n">patch1</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">PathPatch</span><span class="p">(</span><span class="n">path1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">patch2</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">PathPatch</span><span class="p">(</span><span class="n">path2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch1</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch2</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    codes = [Path.MOVETO, Path.LINETO, Path.LINETO, Path.LINETO, Path.CLOSEPOLY]
+    path1 = Path(vertices(*field1), codes)
+    path2 = Path(vertices(*field2), codes)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    patch1 = patches.PathPatch(path1, facecolor=&quot;orange&quot;, lw=2)
+    patch2 = patches.PathPatch(path2, facecolor=&quot;blue&quot;, lw=2)
+    ax.add_patch(patch1)
+    ax.add_patch(patch2)
+    ax.set_xlim(0, 5)
+    ax.set_ylim(0, 5)
 
 
-<span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
+show_fields((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 3.0))
 </pre></div>
 </div>
 </div>
@@ -1193,7 +1193,7 @@ title="Print to PDF"
 <p>For example, this case, is still just a full overlap, and is sufficiently equivalent that it’s not worth another test:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>show_fields((1.0, 1.0, 4.0, 4.0), (2.5, 1.7, 3.2, 3.4))
 </pre></div>
 </div>
 </div>
@@ -1204,7 +1204,7 @@ title="Print to PDF"
 <p>But this case is no longer a full overlap, and should be tested separately:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>show_fields((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 4.5))
 </pre></div>
 </div>
 </div>
@@ -1215,8 +1215,8 @@ title="Print to PDF"
 <p>On a piece of paper, sketch now the other cases you think should be treated as non-equivalent. Some answers are below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Spoiler space&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for _ in range(50):
+    print(&quot;Spoiler space&quot;)
 </pre></div>
 </div>
 </div>
@@ -1277,7 +1277,7 @@ Spoiler space
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>  <span class="c1"># Overlap corner</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>show_fields((1.0, 1.0, 4.0, 4.0), (2, 2, 4.5, 4.5))  # Overlap corner
 </pre></div>
 </div>
 </div>
@@ -1287,7 +1287,7 @@ Spoiler space
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">))</span>  <span class="c1"># Just touching</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>show_fields((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 4.0))  # Just touching
 </pre></div>
 </div>
 </div>
@@ -1297,7 +1297,7 @@ Spoiler space
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># No overlap</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>show_fields((1.0, 1.0, 4.0, 4.0), (4.5, 4.5, 5, 5))  # No overlap
 </pre></div>
 </div>
 </div>
@@ -1307,7 +1307,7 @@ Spoiler space
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>  <span class="c1"># Just touching from outside</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>show_fields((1.0, 1.0, 4.0, 4.0), (2.5, 4, 3.5, 4.5))  # Just touching from outside
 </pre></div>
 </div>
 </div>
@@ -1317,7 +1317,7 @@ Spoiler space
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>  <span class="c1"># Touching corner</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>show_fields((1.0, 1.0, 4.0, 4.0), (4, 4, 4.5, 4.5))  # Touching corner
 </pre></div>
 </div>
 </div>
@@ -1331,16 +1331,16 @@ Spoiler space
 <p>Here’s some code that <strong>might</strong> correctly calculate the area of overlap:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">overlap</span><span class="p">(</span><span class="n">field1</span><span class="p">,</span> <span class="n">field2</span><span class="p">):</span>
-    <span class="n">left1</span><span class="p">,</span> <span class="n">bottom1</span><span class="p">,</span> <span class="n">top1</span><span class="p">,</span> <span class="n">right1</span> <span class="o">=</span> <span class="n">field1</span>
-    <span class="n">left2</span><span class="p">,</span> <span class="n">bottom2</span><span class="p">,</span> <span class="n">top2</span><span class="p">,</span> <span class="n">right2</span> <span class="o">=</span> <span class="n">field2</span>
-    <span class="n">overlap_left</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">left1</span><span class="p">,</span> <span class="n">left2</span><span class="p">)</span>
-    <span class="n">overlap_bottom</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">bottom1</span><span class="p">,</span> <span class="n">bottom2</span><span class="p">)</span>
-    <span class="n">overlap_right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">right1</span><span class="p">,</span> <span class="n">right2</span><span class="p">)</span>
-    <span class="n">overlap_top</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">top1</span><span class="p">,</span> <span class="n">top2</span><span class="p">)</span>
-    <span class="n">overlap_height</span> <span class="o">=</span> <span class="n">overlap_top</span> <span class="o">-</span> <span class="n">overlap_bottom</span>
-    <span class="n">overlap_width</span> <span class="o">=</span> <span class="n">overlap_right</span> <span class="o">-</span> <span class="n">overlap_left</span>
-    <span class="k">return</span> <span class="n">overlap_height</span> <span class="o">*</span> <span class="n">overlap_width</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def overlap(field1, field2):
+    left1, bottom1, top1, right1 = field1
+    left2, bottom2, top2, right2 = field2
+    overlap_left = max(left1, left2)
+    overlap_bottom = max(bottom1, bottom2)
+    overlap_right = min(right1, right2)
+    overlap_top = min(top1, top2)
+    overlap_height = overlap_top - overlap_bottom
+    overlap_width = overlap_right - overlap_left
+    return overlap_height * overlap_width
 </pre></div>
 </div>
 </div>
@@ -1349,7 +1349,7 @@ Spoiler space
 <p>The manual approach would be to look at some cases, and, once, run it and check:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">overlap</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>overlap((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 3.0))
 </pre></div>
 </div>
 </div>
@@ -1367,35 +1367,35 @@ Spoiler space
 <p>If <code class="docutils literal notranslate"><span class="pre">&lt;some</span> <span class="pre">statement&gt;</span></code> evaluate to <code class="docutils literal notranslate"><span class="pre">True</span></code> carry on. If not, raise an error.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span> <span class="o">==</span> <span class="mf">1.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert overlap((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 3.0)) == 1.0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">2.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert overlap((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 4.5)) == 2.0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">4.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert overlap((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 4.5, 4.5)) == 4.0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">0.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert overlap((1.0, 1.0, 4.0, 4.0), (4.5, 4.5, 5, 5)) == 0.0
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">0.0</span>
 
 <span class="ne">AssertionError</span>: 
@@ -1405,7 +1405,7 @@ Spoiler space
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">overlap</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(overlap((1.0, 1.0, 4.0, 4.0), (4.5, 4.5, 5, 5)))
 </pre></div>
 </div>
 </div>
@@ -1417,7 +1417,7 @@ Spoiler space
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_fields</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>show_fields((1.0, 1.0, 4.0, 4.0), (4.5, 4.5, 5, 5))
 </pre></div>
 </div>
 </div>
@@ -1429,10 +1429,10 @@ Spoiler space
 <p>In our calculation, we are actually getting:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">overlap_left</span> <span class="o">=</span> <span class="mf">4.5</span>
-<span class="n">overlap_right</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">overlap_width</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span>
-<span class="n">overlap_height</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>overlap_left = 4.5
+overlap_right = 4
+overlap_width = -0.5
+overlap_height = -0.5
 </pre></div>
 </div>
 </div>
@@ -1442,31 +1442,31 @@ The above code didn’t take into account the non-overlap correctly.</p>
 <p>It should be:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">overlap</span><span class="p">(</span><span class="n">field1</span><span class="p">,</span> <span class="n">field2</span><span class="p">):</span>
-    <span class="n">left1</span><span class="p">,</span> <span class="n">bottom1</span><span class="p">,</span> <span class="n">top1</span><span class="p">,</span> <span class="n">right1</span> <span class="o">=</span> <span class="n">field1</span>
-    <span class="n">left2</span><span class="p">,</span> <span class="n">bottom2</span><span class="p">,</span> <span class="n">top2</span><span class="p">,</span> <span class="n">right2</span> <span class="o">=</span> <span class="n">field2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def overlap(field1, field2):
+    left1, bottom1, top1, right1 = field1
+    left2, bottom2, top2, right2 = field2
 
-    <span class="n">overlap_left</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">left1</span><span class="p">,</span> <span class="n">left2</span><span class="p">)</span>
-    <span class="n">overlap_bottom</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">bottom1</span><span class="p">,</span> <span class="n">bottom2</span><span class="p">)</span>
-    <span class="n">overlap_right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">right1</span><span class="p">,</span> <span class="n">right2</span><span class="p">)</span>
-    <span class="n">overlap_top</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">top1</span><span class="p">,</span> <span class="n">top2</span><span class="p">)</span>
+    overlap_left = max(left1, left2)
+    overlap_bottom = max(bottom1, bottom2)
+    overlap_right = min(right1, right2)
+    overlap_top = min(top1, top2)
 
-    <span class="n">overlap_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">overlap_top</span> <span class="o">-</span> <span class="n">overlap_bottom</span><span class="p">))</span>
-    <span class="n">overlap_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">overlap_right</span> <span class="o">-</span> <span class="n">overlap_left</span><span class="p">))</span>
+    overlap_height = max(0, (overlap_top - overlap_bottom))
+    overlap_width = max(0, (overlap_right - overlap_left))
 
-    <span class="k">return</span> <span class="n">overlap_height</span> <span class="o">*</span> <span class="n">overlap_width</span>
+    return overlap_height * overlap_width
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">==</span> <span class="mf">1.0</span>
-<span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">2.0</span>
-<span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">4.0</span>
-<span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">0.0</span>
-<span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">0.0</span>
-<span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">0.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert overlap((1, 1, 4, 4), (2, 2, 3, 3)) == 1.0
+assert overlap((1, 1, 4, 4), (2, 2, 3, 4.5)) == 2.0
+assert overlap((1, 1, 4, 4), (2, 2, 4.5, 4.5)) == 4.0
+assert overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5)) == 0.0
+assert overlap((1, 1, 4, 4), (2.5, 4, 3.5, 4.5)) == 0.0
+assert overlap((1, 1, 4, 4), (4, 4, 4.5, 4.5)) == 0.0
 </pre></div>
 </div>
 </div>
@@ -1507,36 +1507,36 @@ Testing should ensure that explicit failures do indeed happen.</section>
 <p>In Python, we can signal an error state by raising an error:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">I_only_accept_positive_numbers</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
-    <span class="c1"># Check input</span>
-    <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is negative&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def I_only_accept_positive_numbers(number):
+    # Check input
+    if number &lt; 0:
+        raise ValueError(&quot;Input &quot; + str(number) + &quot; is negative&quot;)
 
-    <span class="c1"># Do something</span>
+    # Do something
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I_only_accept_positive_numbers</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>I_only_accept_positive_numbers(5)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I_only_accept_positive_numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>I_only_accept_positive_numbers(-5)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">I_only_accept_positive_numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="nn">Cell In [22], line 4,</span> in <span class="ni">I_only_accept_positive_numbers</span><span class="nt">(number)</span>
+<span class="nn">Cell In[22], line 4,</span> in <span class="ni">I_only_accept_positive_numbers</span><span class="nt">(number)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">I_only_accept_positive_numbers</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="c1"># Check input</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>

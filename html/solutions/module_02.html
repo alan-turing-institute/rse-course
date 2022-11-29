@@ -1035,20 +1035,20 @@ title="Print to PDF"
 <p><strong>Exercise 2a/b</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">house</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;living&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="s2">&quot;kitchen&quot;</span><span class="p">,</span> <span class="s2">&quot;outside&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="s2">&quot;upstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;bedroom&quot;</span><span class="p">},</span>
-        <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;James&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;kitchen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">},</span> <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-    <span class="s2">&quot;garden&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inside&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">},</span> <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Sue&quot;</span><span class="p">],</span> <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-    <span class="s2">&quot;bedroom&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;downstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">,</span> <span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">},</span>
-        <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>house = {
+    &quot;living&quot;: {
+        &quot;exits&quot;: {&quot;north&quot;: &quot;kitchen&quot;, &quot;outside&quot;: &quot;garden&quot;, &quot;upstairs&quot;: &quot;bedroom&quot;},
+        &quot;people&quot;: [&quot;James&quot;],
+        &quot;capacity&quot;: 2,
+    },
+    &quot;kitchen&quot;: {&quot;exits&quot;: {&quot;south&quot;: &quot;living&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1},
+    &quot;garden&quot;: {&quot;exits&quot;: {&quot;inside&quot;: &quot;living&quot;}, &quot;people&quot;: [&quot;Sue&quot;], &quot;capacity&quot;: 3},
+    &quot;bedroom&quot;: {
+        &quot;exits&quot;: {&quot;downstairs&quot;: &quot;living&quot;, &quot;jump&quot;: &quot;garden&quot;},
+        &quot;people&quot;: [],
+        &quot;capacity&quot;: 1,
+    },
+}
 </pre></div>
 </div>
 </div>
@@ -1057,7 +1057,7 @@ title="Print to PDF"
 <p>We can get a simpler dictionary with just capacities like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">room</span><span class="p">[</span><span class="s1">&#39;capacity&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span> <span class="ow">in</span> <span class="n">house</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>{name: room[&#39;capacity&#39;] for name, room in house.items()}
 </pre></div>
 </div>
 </div>
@@ -1071,7 +1071,7 @@ title="Print to PDF"
 <p>To get the current number of occupants, we can use a similar dictionary comprehension. Remember that we can <em>filter</em> (only keep certain rooms) by adding an <code class="docutils literal notranslate"><span class="pre">if</span></code> clause:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">room</span><span class="p">[</span><span class="s2">&quot;people&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span> <span class="ow">in</span> <span class="n">house</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">room</span><span class="p">[</span><span class="s2">&quot;people&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>{name: len(room[&quot;people&quot;]) for name, room in house.items() if len(room[&quot;people&quot;]) &gt; 0}
 </pre></div>
 </div>
 </div>
@@ -1092,11 +1092,11 @@ Floor division (<code class="docutils literal notranslate"><span class="pre">20<
 <p>Can do this in one line using comprehension or could make an empty list and append to it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">example_funct</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="n">op</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">==</span> <span class="nb">int</span> <span class="ow">and</span> <span class="n">a</span><span class="o">%</span><span class="k">2</span> == 0]
-    <span class="k">return</span> <span class="n">op</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def example_funct(*args):
+    op = [a for a in args if type(a)== int and a%2 == 0]
+    return op
 
-<span class="n">example_funct</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.99999999999</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;sju&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+example_funct(1, 1.99999999999, &quot;three&quot;, 20/5, 5, 6, &quot;sju&quot;, &quot;8&quot;, 9, 10., 11, 12)
 </pre></div>
 </div>
 </div>
@@ -1157,142 +1157,142 @@ Floor division (<code class="docutils literal notranslate"><span class="pre">20<
 <p>Note. For more information on type annotations, look into <a class="reference external" href="https://alan-turing-institute.github.io/rse-course/html/module07_construction_and_design/07_02_coding_conventions.html#type-annotations">Module 7.2</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">typing</span>
-<span class="k">class</span> <span class="nc">Maze</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Here we can put a description of the class</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span> 
-        <span class="c1"># We can also use typehints to signal what type a variable should be</span>
-        <span class="c1"># In this case the name of the maze would be a string.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import typing
+class Maze:
+    &quot;&quot;&quot;
+    Here we can put a description of the class
+    &quot;&quot;&quot;
+    def __init__(self, name: str): 
+        # We can also use typehints to signal what type a variable should be
+        # In this case the name of the maze would be a string.
+        self.name = name
+        self.rooms = {}
 
-    <span class="k">def</span> <span class="nf">add_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room</span><span class="p">):</span>
-        <span class="n">room</span><span class="o">.</span><span class="n">maze</span> <span class="o">=</span> <span class="bp">self</span>  <span class="c1"># The Room needs to know which Maze it is a part of</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">[</span><span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">room</span> <span class="c1"># This means that we expect our Rooms class to have a &#39;name&#39; property</span>
+    def add_room(self, room):
+        room.maze = self  # The Room needs to know which Maze it is a part of
+        self.rooms[room.name] = room # This means that we expect our Rooms class to have a &#39;name&#39; property
 
-    <span class="k">def</span> <span class="nf">occupants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return a list containing the occupants of the maze</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">occupant</span> <span class="k">for</span> <span class="n">room</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">occupant</span> <span class="ow">in</span> <span class="n">room</span><span class="o">.</span><span class="n">occupants</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+    def occupants(self):
+        &quot;&quot;&quot;
+        Return a list containing the occupants of the maze
+        &quot;&quot;&quot;
+        return [occupant for room in self.rooms.values() for occupant in room.occupants.values()]
         
     
-    <span class="k">def</span> <span class="nf">wander</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Move all the people in a random direction&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">occupant</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">():</span>
-            <span class="n">occupant</span><span class="o">.</span><span class="n">wander</span><span class="p">()</span>
+    def wander(self):
+        &quot;&quot;&quot;Move all the people in a random direction&quot;&quot;&quot;
+        for occupant in self.occupants():
+            occupant.wander()
     
-    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">room</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">room</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+    def describe(self):
+        for room in self.rooms.values():
+            room.describe()
     
-    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wander</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    def step(self):
+        self.describe()
+        print(&quot;&quot;)
+        self.wander()
+        print(&quot;&quot;)
 
-    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    def simulate(self, steps):
+        for _ in range(steps):
+            self.step()
             
 
             
-<span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">exits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">capacity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">maze</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">maze</span> <span class="o">=</span> <span class="n">maze</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Note the default argument, occupants start empty</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">exits</span> <span class="o">=</span> <span class="n">exits</span>  <span class="c1"># Should be a dictionary from directions to room names</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span>
+class Room:
+    def __init__(self, name: str, exits: dict, capacity: int, maze=None):
+        self.maze = maze
+        self.name = name
+        self.occupants = {}  # Note the default argument, occupants start empty
+        self.exits = exits  # Should be a dictionary from directions to room names
+        self.capacity = capacity
 
-    <span class="k">def</span> <span class="nf">has_space</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Check if the room has space and return a boolean (True/False)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span>
+    def has_space(self) -&gt; bool:
+        &quot;&quot;&quot;
+        Check if the room has space and return a boolean (True/False)
+        &quot;&quot;&quot;
+        return len(self.occupants) &lt; self.capacity
 
-    <span class="k">def</span> <span class="nf">available_exits</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">exit</span>
-            <span class="k">for</span> <span class="n">exit</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exits</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maze</span><span class="o">.</span><span class="n">rooms</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">has_space</span><span class="p">()</span>
-        <span class="p">]</span>
+    def available_exits(self) -&gt; typing.List[str]:
+        return [
+            exit
+            for exit, target in self.exits.items()
+            if self.maze.rooms[target].has_space()
+        ]
 
-    <span class="k">def</span> <span class="nf">random_valid_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">random</span>
+    def random_valid_exit(self):
+        import random
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_exits</span><span class="p">():</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">available_exits</span><span class="p">())</span>
+        if not self.available_exits():
+            return None
+        return random.choice(self.available_exits())
 
-    <span class="k">def</span> <span class="nf">destination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exit</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">maze</span><span class="o">.</span><span class="n">rooms</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">exits</span><span class="p">[</span><span class="n">exit</span><span class="p">]]</span>
+    def destination(self, exit):
+        return self.maze.rooms[self.exits[exit]]
 
-    <span class="k">def</span> <span class="nf">add_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">occupant</span><span class="p">):</span>
-        <span class="n">occupant</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="bp">self</span>  <span class="c1"># The person needs to know which room it is in</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">[</span><span class="n">occupant</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">occupant</span>
+    def add_occupant(self, occupant):
+        occupant.room = self  # The person needs to know which room it is in
+        self.occupants[occupant.name] = occupant
 
-    <span class="k">def</span> <span class="nf">delete_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">occupant</span><span class="p">):</span>
-        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">[</span><span class="n">occupant</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+    def delete_occupant(self, occupant):
+        del self.occupants[occupant.name]
 
-    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    def describe(self):
+        if self.occupants:
+            print(f&quot;{self.name}: &quot; + &quot; &quot;.join(self.occupants.keys()))
 
             
-<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">room</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+class Person:
+    def __init__(self, name: str, room=None):
+        self.name = name
 
-    <span class="k">def</span> <span class="nf">use</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exit</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">delete_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">destination</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">destination</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
-        <span class="n">destination</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="s2">&quot;</span><span class="si">{some}</span><span class="s2"> goes </span><span class="si">{action}</span><span class="s2"> to the </span><span class="si">{where}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">some</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">exit</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">destination</span><span class="o">.</span><span class="n">name</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
+    def use(self, exit):
+        self.room.delete_occupant(self)
+        destination = self.room.destination(exit)
+        destination.add_occupant(self)
+        print(
+            &quot;{some} goes {action} to the {where}&quot;.format(
+                some=self.name, action=exit, where=destination.name
+            )
+        )
 
-    <span class="k">def</span> <span class="nf">wander</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">exit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">room</span><span class="o">.</span><span class="n">random_valid_exit</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">exit</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+    def wander(self):
+        exit = self.room.random_valid_exit()
+        if exit:
+            self.use(exit)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">james</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">)</span>
-<span class="n">sue</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Sue&quot;</span><span class="p">)</span>
-<span class="n">bob</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">)</span>
-<span class="n">clare</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Clare&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>james = Person(&quot;James&quot;)
+sue = Person(&quot;Sue&quot;)
+bob = Person(&quot;Bob&quot;)
+clare = Person(&quot;Clare&quot;)
 
-<span class="n">living</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;livingroom&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;outside&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="s2">&quot;upstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;bedroom&quot;</span><span class="p">,</span> <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="s2">&quot;kitchen&quot;</span><span class="p">},</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">kitchen</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;kitchen&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="s2">&quot;livingroom&quot;</span><span class="p">},</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">garden</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;inside&quot;</span><span class="p">:</span> <span class="s2">&quot;livingroom&quot;</span><span class="p">},</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">bedroom</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;bedroom&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="s2">&quot;downstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;livingroom&quot;</span><span class="p">},</span> <span class="mi">1</span><span class="p">)</span>
+living = Room(&quot;livingroom&quot;, {&quot;outside&quot;: &quot;garden&quot;, &quot;upstairs&quot;: &quot;bedroom&quot;, &quot;north&quot;: &quot;kitchen&quot;}, 2)
+kitchen = Room(&quot;kitchen&quot;, {&quot;south&quot;: &quot;livingroom&quot;}, 1)
+garden = Room(&quot;garden&quot;, {&quot;inside&quot;: &quot;livingroom&quot;}, 3)
+bedroom = Room(&quot;bedroom&quot;, {&quot;jump&quot;: &quot;garden&quot;, &quot;downstairs&quot;: &quot;livingroom&quot;}, 1)
 
-<span class="n">house</span> <span class="o">=</span> <span class="n">Maze</span><span class="p">(</span><span class="s2">&quot;My House&quot;</span><span class="p">)</span>
+house = Maze(&quot;My House&quot;)
 
-<span class="k">for</span> <span class="n">room</span> <span class="ow">in</span> <span class="p">[</span><span class="n">living</span><span class="p">,</span> <span class="n">kitchen</span><span class="p">,</span> <span class="n">garden</span><span class="p">,</span> <span class="n">bedroom</span><span class="p">]:</span>
-    <span class="n">house</span><span class="o">.</span><span class="n">add_room</span><span class="p">(</span><span class="n">room</span><span class="p">)</span>
+for room in [living, kitchen, garden, bedroom]:
+    house.add_room(room)
     
-<span class="n">living</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="n">james</span><span class="p">)</span>
-<span class="n">garden</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="n">sue</span><span class="p">)</span>
-<span class="n">garden</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="n">clare</span><span class="p">)</span>
-<span class="n">bedroom</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="n">bob</span><span class="p">)</span>
+living.add_occupant(james)
+garden.add_occupant(sue)
+garden.add_occupant(clare)
+bedroom.add_occupant(bob)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">house</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>house.simulate(3)
 </pre></div>
 </div>
 </div>
@@ -1301,27 +1301,26 @@ Floor division (<code class="docutils literal notranslate"><span class="pre">20<
 garden: Sue Clare
 bedroom: Bob
 
-James goes north to the kitchen
+James goes outside to the garden
 Sue goes inside to the livingroom
 Clare goes inside to the livingroom
 Bob goes jump to the garden
 
 livingroom: Sue Clare
-kitchen: James
-garden: Bob
+garden: James Bob
 
 Sue goes upstairs to the bedroom
-Clare goes outside to the garden
-James goes south to the livingroom
+Clare goes north to the kitchen
+James goes inside to the livingroom
 Bob goes inside to the livingroom
 
 livingroom: James Bob
-garden: Clare
+kitchen: Clare
 bedroom: Sue
 
-James goes north to the kitchen
+James goes outside to the garden
 Bob goes outside to the garden
-Clare goes inside to the livingroom
+Clare goes south to the livingroom
 Sue goes downstairs to the livingroom
 </pre></div>
 </div>
@@ -1331,37 +1330,37 @@ Sue goes downstairs to the livingroom
 <p>Something along the lines of this for the original question:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import requests
+from IPython.display import Image
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates_as_lat_lon</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">36.2110</span><span class="p">,</span><span class="o">-</span><span class="mf">115.2669</span><span class="p">),</span>
-                          <span class="p">(</span><span class="mf">53.0066</span><span class="p">,</span> <span class="mf">7.1920</span><span class="p">),</span>
-                          <span class="p">(</span><span class="mf">41.3908</span><span class="p">,</span> <span class="mf">2.1631</span><span class="p">),</span>
-                          <span class="p">(</span><span class="mf">40.7822</span><span class="p">,</span> <span class="o">-</span><span class="mf">73.9653</span><span class="p">),</span>
-                          <span class="p">(</span><span class="mf">25.8380</span><span class="p">,</span> <span class="mf">50.6050</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>coordinates_as_lat_lon = [(36.2110,-115.2669),
+                          (53.0066, 7.1920),
+                          (41.3908, 2.1631),
+                          (40.7822, -73.9653),
+                          (25.8380, 50.6050)]
 
-<span class="k">def</span> <span class="nf">op_response</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s2">&quot;https://static-maps.yandex.ru:443/1.x&quot;</span><span class="p">,</span>
-        <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="s2">&quot;400,400&quot;</span><span class="p">,</span>  <span class="c1"># size of map</span>
-            <span class="s2">&quot;ll&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>  <span class="c1"># longitude &amp; latitude of centre</span>
-            <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>  <span class="c1"># zoom level</span>
-            <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;sat&quot;</span><span class="p">,</span>  <span class="c1"># map layer (satellite image)</span>
-            <span class="s2">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;en_US&quot;</span><span class="p">,</span>  <span class="c1"># language</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+def op_response(lat, lon):
+    response = requests.get(
+    &quot;https://static-maps.yandex.ru:443/1.x&quot;,
+        params={
+            &quot;size&quot;: &quot;400,400&quot;,  # size of map
+            &quot;ll&quot;: str(lon) + &quot;,&quot; + str(lat),  # longitude &amp; latitude of centre
+            &quot;z&quot;: 12,  # zoom level
+            &quot;l&quot;: &quot;sat&quot;,  # map layer (satellite image)
+            &quot;lang&quot;: &quot;en_US&quot;,  # language
+            },
+        )
+    return response.content
 
     
-<span class="n">op</span> <span class="o">=</span> <span class="n">op_response</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates_as_lat_lon</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+op = op_response(*coordinates_as_lat_lon[4])
 
-<span class="n">Image</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+Image(op)
 </pre></div>
 </div>
 </div>
@@ -1372,26 +1371,26 @@ Sue goes downstairs to the livingroom
 <p><strong>Answer 2e</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extended_op_response</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">opfname</span><span class="o">=</span><span class="s2">&quot;tmp.png&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def extended_op_response(lat, lon, zoom=15, opfname=&quot;tmp.png&quot;):
 
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s2">&quot;https://static-maps.yandex.ru:443/1.x&quot;</span><span class="p">,</span>
-        <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="s2">&quot;400,400&quot;</span><span class="p">,</span>  <span class="c1"># size of map</span>
-            <span class="s2">&quot;ll&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>  <span class="c1"># longitude &amp; latitude of centre</span>
-            <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">zoom</span><span class="p">,</span>  <span class="c1"># zoom level</span>
-            <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;sat&quot;</span><span class="p">,</span>  <span class="c1"># map layer (satellite image)</span>
-            <span class="s2">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;en_US&quot;</span><span class="p">,</span>  <span class="c1"># language</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
+    response = requests.get(
+    &quot;https://static-maps.yandex.ru:443/1.x&quot;,
+        params={
+            &quot;size&quot;: &quot;400,400&quot;,  # size of map
+            &quot;ll&quot;: str(lon) + &quot;,&quot; + str(lat),  # longitude &amp; latitude of centre
+            &quot;z&quot;: zoom,  # zoom level
+            &quot;l&quot;: &quot;sat&quot;,  # map layer (satellite image)
+            &quot;lang&quot;: &quot;en_US&quot;,  # language
+            },
+        )
         
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">opfname</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">png</span><span class="p">:</span>
-        <span class="n">png</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    with open(opfname, &quot;wb&quot;) as png:
+        png.write(response.content)
 
 
-<span class="n">extended_op_response</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates_as_lat_lon</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">opfname</span><span class="o">=</span><span class="s2">&quot;map_picture_1.png&quot;</span><span class="p">)</span>
+extended_op_response(*coordinates_as_lat_lon[1], zoom=16, opfname=&quot;map_picture_1.png&quot;)
 
-<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;map_picture_1.png&quot;</span><span class="p">)</span>
+Image(&quot;map_picture_1.png&quot;)
 </pre></div>
 </div>
 </div>

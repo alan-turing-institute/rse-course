@@ -1218,9 +1218,9 @@ Let it give us one more final pleasure; drink it and forget it all!
 <p>Where did that go? It went to the current folder, which for a notebook, by default, is where the notebook is on disk.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># The &#39;os&#39; module gives us all the tools we need to search in the file system</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os  # The &#39;os&#39; module gives us all the tools we need to search in the file system
 
-<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>  <span class="c1"># Use the &#39;getcwd&#39; function from the &#39;os&#39; module to find where we are on disk.</span>
+os.getcwd()  # Use the &#39;getcwd&#39; function from the &#39;os&#39; module to find where we are on disk.
 </pre></div>
 </div>
 </div>
@@ -1233,9 +1233,9 @@ Let it give us one more final pleasure; drink it and forget it all!
 <p>Can we see if it is there?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
 
-<span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="k">if</span> <span class="s2">&quot;.txt&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+[x for x in os.listdir(os.getcwd()) if &quot;.txt&quot; in x]
 </pre></div>
 </div>
 </div>
@@ -1253,7 +1253,7 @@ Let it give us one more final pleasure; drink it and forget it all!
 <p>We can use <code class="docutils literal notranslate"><span class="pre">dirname</span></code> to get the parent folder for a folder, in a platform independent-way.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>os.path.dirname(os.getcwd())
 </pre></div>
 </div>
 </div>
@@ -1266,7 +1266,7 @@ Let it give us one more final pleasure; drink it and forget it all!
 <p>We could do this manually using <code class="docutils literal notranslate"><span class="pre">split</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;/&quot;.join(os.getcwd().split(&quot;/&quot;)[:-1])
 </pre></div>
 </div>
 </div>
@@ -1290,14 +1290,14 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>So, let’s read our file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mydata.txt&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>myfile = open(&quot;mydata.txt&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myfile</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(myfile)
 </pre></div>
 </div>
 </div>
@@ -1310,7 +1310,7 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>We can go line-by-line, by treating the file as an iterable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myfile</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[x for x in myfile]
 </pre></div>
 </div>
 </div>
@@ -1345,7 +1345,7 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>If we do that again, the file has already finished, there is no more data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myfile</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[x for x in myfile]
 </pre></div>
 </div>
 </div>
@@ -1358,8 +1358,8 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>We need to ‘rewind’ it!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">myfile</span> <span class="k">if</span> <span class="s2">&quot;know&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>myfile.seek(0)
+[len(x) for x in myfile if &quot;know&quot; in x]
 </pre></div>
 </div>
 </div>
@@ -1376,15 +1376,15 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>We can read one line at a time with <code class="docutils literal notranslate"><span class="pre">readline</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">first</span> <span class="o">=</span> <span class="n">myfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>myfile.seek(0)
+first = myfile.readline()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first
 </pre></div>
 </div>
 </div>
@@ -1396,14 +1396,14 @@ disk looking for relevant files, and so on. These will be important to master fo
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">second</span> <span class="o">=</span> <span class="n">myfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>second = myfile.readline()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">second</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>second
 </pre></div>
 </div>
 </div>
@@ -1416,14 +1416,14 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>We can read the whole remaining file with <code class="docutils literal notranslate"><span class="pre">read</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rest</span> <span class="o">=</span> <span class="n">myfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rest = myfile.read()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rest</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rest
 </pre></div>
 </div>
 </div>
@@ -1436,7 +1436,7 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>Which means that when a file is first opened, read is useful to just get the whole thing as a string:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mydata.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>open(&quot;mydata.txt&quot;).read()
 </pre></div>
 </div>
 </div>
@@ -1449,7 +1449,7 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>You can also read just a few characters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">1335</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>myfile.seek(1335)
 </pre></div>
 </div>
 </div>
@@ -1461,7 +1461,7 @@ disk looking for relevant files, and so on. These will be important to master fo
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>myfile.read(15)
 </pre></div>
 </div>
 </div>
@@ -1477,14 +1477,14 @@ disk looking for relevant files, and so on. These will be important to master fo
 <p>Because files and strings are different types, we CANNOT just treat strings as if they were files:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystring</span> <span class="o">=</span> <span class="s2">&quot;Hello World</span><span class="se">\n</span><span class="s2"> My name is James&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mystring = &quot;Hello World\n My name is James&quot;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystring</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mystring
 </pre></div>
 </div>
 </div>
@@ -1496,14 +1496,14 @@ disk looking for relevant files, and so on. These will be important to master fo
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystring</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mystring.readline()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mystring</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
 
 <span class="ne">AttributeError</span>: &#39;str&#39; object has no attribute &#39;readline&#39;
@@ -1515,21 +1515,21 @@ disk looking for relevant files, and so on. These will be important to master fo
 We can convert between them using the StringIO class of the <a class="reference external" href="https://docs.python.org/3/library/io.html">io module</a> in the standard library:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from io import StringIO
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystringasafile</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">mystring</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mystringasafile = StringIO(mystring)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystringasafile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mystringasafile.readline()
 </pre></div>
 </div>
 </div>
@@ -1541,7 +1541,7 @@ We can convert between them using the StringIO class of the <a class="reference 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mystringasafile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mystringasafile.readline()
 </pre></div>
 </div>
 </div>
@@ -1559,7 +1559,7 @@ We can convert between them using the StringIO class of the <a class="reference 
 this is particularly important)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>myfile.close()
 </pre></div>
 </div>
 </div>
@@ -1568,10 +1568,10 @@ this is particularly important)</p>
 the end of an indented block:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mydata.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">somefile</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">somefile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;mydata.txt&quot;) as somefile:
+    content = somefile.read()
 
-<span class="n">content</span>
+content
 </pre></div>
 </div>
 </div>
@@ -1591,17 +1591,17 @@ just a notebook convenience, and isn’t very programmable.</p>
 <p>When we open a file, we can specify a ‘mode’, in this case, ‘w’ for writing. (‘r’ for reading is the default.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mywrittenfile&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">target</span><span class="p">:</span>
-    <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
-    <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;mywrittenfile&quot;, &quot;w&quot;) as target:
+    target.write(&quot;Hello&quot;)
+    target.write(&quot;World&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mywrittenfile&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;mywrittenfile&quot;, &quot;r&quot;) as source:
+    print(source.read())
 </pre></div>
 </div>
 </div>
@@ -1614,17 +1614,17 @@ just a notebook convenience, and isn’t very programmable.</p>
 <p>And we can “append” to a file with mode ‘a’:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mywrittenfile&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">target</span><span class="p">:</span>
-    <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
-    <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;mywrittenfile&quot;, &quot;a&quot;) as target:
+    target.write(&quot;Hello&quot;)
+    target.write(&quot;James&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mywrittenfile&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;mywrittenfile&quot;, &quot;r&quot;) as source:
+    print(source.read())
 </pre></div>
 </div>
 </div>

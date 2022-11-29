@@ -1083,38 +1083,38 @@ title="Print to PDF"
 <h2>Solution to Exercise 1: Iterators and generators<a class="headerlink" href="#solution-to-exercise-1-iterators-and-generators" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using __iter__ and __next__</span>
-<span class="k">class</span> <span class="nc">range2</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_counter</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max_counter</span> <span class="o">=</span> <span class="n">max_counter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Using __iter__ and __next__
+class range2:
+    def __init__(self, max_counter):
+        self.max_counter = max_counter
+        self.counter = 0
 
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span>
+    def __iter__(self):
+        return self
 
-    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_counter</span><span class="p">:</span>
-            <span class="n">counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">return</span> <span class="n">counter</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StopIteration</span>
+    def __next__(self):
+        if self.counter &lt; self.max_counter:
+            counter = self.counter
+            self.counter += 1
+            return counter
+        else:
+            raise StopIteration
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing it</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">range2</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">range2</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">range2</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Testing it
+print(range2(10))
+print(tuple(range2(10)))
+for i in range2(10):
+    print(i)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.range2 object at 0x7f880c10d7c0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.range2 object at 0x7f8d4028a910&gt;
 (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 0
 1
@@ -1132,28 +1132,28 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using yield</span>
-<span class="k">def</span> <span class="nf">range3</span><span class="p">(</span><span class="n">max_counter</span><span class="p">):</span>
-    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_counter</span><span class="p">:</span>
-        <span class="k">yield</span> <span class="n">counter</span>
-        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Using yield
+def range3(max_counter):
+    counter = 0
+    while counter &lt; max_counter:
+        yield counter
+        counter += 1
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing it</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">range3</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">range3</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">range3</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Testing it
+print(range3(10))
+print(tuple(range3(10)))
+for i in range3(10):
+    print(i)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object range3 at 0x7f88111c34a0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object range3 at 0x7f8d402e6120&gt;
 (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 0
 1
@@ -1174,49 +1174,49 @@ title="Print to PDF"
 <h2>Solution to Exercise 2: Operator Overloading<a class="headerlink" href="#solution-to-exercise-2-operator-overloading" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DataLoader</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class DataLoader:
+    def __init__(self):
+        pass
 
-    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I am loading some data&quot;</span><span class="p">)</span>
+    def process(self):
+        print(&quot;I am loading some data&quot;)
 
 
-<span class="k">class</span> <span class="nc">DataCleaner</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+class DataCleaner:
+    def __init__(self):
+        pass
 
-    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I am cleaning some data&quot;</span><span class="p">)</span>
+    def process(self):
+        print(&quot;I am cleaning some data&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pipeline</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">modules</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Pipeline:
+    def __init__(self):
+        self.modules = []
 
-    <span class="c1"># Add __iadd__ function to overload &#39;+=&#39;</span>
-    <span class="k">def</span> <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span>
+    # Add __iadd__ function to overload &#39;+=&#39;
+    def __iadd__(self, module):
+        self.modules.append(module)
+        return self
 
-    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I&#39;m a pipeline, don&#39;t do anything much by myself&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
-            <span class="n">module</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+    def process(self):
+        print(&quot;I&#39;m a pipeline, don&#39;t do anything much by myself&quot;)
+        for module in self.modules:
+            module.process()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
-<span class="n">p</span> <span class="o">+=</span> <span class="n">DataLoader</span><span class="p">()</span>
-<span class="n">p</span> <span class="o">+=</span> <span class="n">DataCleaner</span><span class="p">()</span>
-<span class="n">p</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>p = Pipeline()
+p += DataLoader()
+p += DataCleaner()
+p.process()
 </pre></div>
 </div>
 </div>

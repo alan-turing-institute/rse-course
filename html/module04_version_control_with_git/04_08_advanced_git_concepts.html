@@ -1154,12 +1154,12 @@ title="Print to PDF"
 For this, you can use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span></code> command, like in the following example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
 
-<span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
-<span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+top_dir = os.getcwd()
+git_dir = os.path.join(top_dir, &quot;learning_git&quot;)
+working_dir = os.path.join(git_dir, &quot;git_example&quot;)
+os.chdir(working_dir)
 </pre></div>
 </div>
 </div>
@@ -1167,30 +1167,30 @@ For this, you can use the <code class="docutils literal notranslate"><span class
 <p>Remind ourselves which branch we are using:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git branch -vv
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main bcd3c70 [origin/main] Merge branch &#39;experiment&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main 5940940 [origin/main] Merge branch &#39;experiment&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Wales.md
-<span class="n">Mountains</span> <span class="n">In</span> <span class="n">Wales</span>
-<span class="o">==================</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile Wales.md
+Mountains In Wales
+==================
 
-<span class="o">*</span> <span class="n">Pen</span> <span class="n">y</span> <span class="n">Fan</span>
-<span class="o">*</span> <span class="n">Tryfan</span>
-<span class="o">*</span> <span class="n">Snowdon</span>
-<span class="o">*</span> <span class="n">Glyder</span> <span class="n">Fawr</span>
-<span class="o">*</span> <span class="n">Fan</span> <span class="n">y</span> <span class="n">Big</span>
-<span class="o">*</span> <span class="n">Cadair</span> <span class="n">Idris</span>
-<span class="o">*</span> <span class="n">Penygader</span>
+* Pen y Fan
+* Tryfan
+* Snowdon
+* Glyder Fawr
+* Fan y Big
+* Cadair Idris
+* Penygader
 </pre></div>
 </div>
 </div>
@@ -1202,20 +1202,20 @@ git branch -vv
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git stash
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved working directory and index state WIP on main: bcd3c70 Merge branch &#39;experiment&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved working directory and index state WIP on main: 5940940 Merge branch &#39;experiment&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git pull
 </pre></div>
 </div>
@@ -1229,7 +1229,7 @@ git pull
 <p>By stashing your work first, your repository becomes clean, allowing you to pull. To restore your changes, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span> <span class="pre">apply</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git stash apply
 </pre></div>
 </div>
@@ -1325,7 +1325,7 @@ default: $(PDFS)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 make
 </pre></div>
 </div>
@@ -1448,7 +1448,7 @@ make
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25% [==========                              ] ETA 00:01 (00:00) page 3
- 37% [===============                         ] ETA 00:01 (00:00) page 3
+ 37% [===============                         ] ETA 00:00 (00:00) page 3
  50% [====================                    ] ETA 00:00 (00:00) page 3
  62% [=========================               ] ETA 00:00 (00:00) page 3
  75% [==============================          ] ETA 00:00 (00:00) page 3
@@ -1483,7 +1483,7 @@ make
 <p>But we don’t want those to show up in git:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git status
 </pre></div>
 </div>
@@ -1551,8 +1551,8 @@ git status
 <p>Use .gitignore files to tell Git not to pay attention to files with certain paths:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> .gitignore
-<span class="o">*.</span><span class="n">pdf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile .gitignore
+*.pdf
 </pre></div>
 </div>
 </div>
@@ -1564,7 +1564,7 @@ git status
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git status
 </pre></div>
 </div>
@@ -1622,7 +1622,7 @@ git status
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git add Makefile
 git add .gitignore
 git commit -am &quot;Add a makefile and ignore generated files&quot;
@@ -1631,7 +1631,7 @@ git push
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main b313038] Add a makefile and ignore generated files
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main f2098d9] Add a makefile and ignore generated files
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 3 files changed, 11 insertions(+)
@@ -1646,7 +1646,7 @@ git push
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   bcd3c70..b313038  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   5940940..f2098d9  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -1657,7 +1657,7 @@ git push
 <p>Sometimes you end up creating various files that you do not want to include in version control. An easy way of deleting them (if that is what you want) is the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span></code> command, which will remove the files that git is not tracking.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git clean -fX
 </pre></div>
 </div>
@@ -1679,7 +1679,7 @@ git clean -fX
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 ls
 </pre></div>
 </div>

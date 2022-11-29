@@ -1296,13 +1296,13 @@ title="Print to PDF"
 <p>As an example, we’ll create a package from the <code class="docutils literal notranslate"><span class="pre">greeter.py</span></code> and <code class="docutils literal notranslate"><span class="pre">command.py</span></code> files from the previous notebook. But we’ll delete the files created last time first, to start from a clean slate:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tidy up files created by previous notebook</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Tidy up files created by previous notebook
+import os
 
-<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;greeter.py&quot;</span><span class="p">,</span> <span class="s2">&quot;command.py&quot;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+files = [&quot;greeter.py&quot;, &quot;command.py&quot;]
+for f in files:
+    if os.path.exists(f):
+        os.remove(f)
 </pre></div>
 </div>
 </div>
@@ -1445,7 +1445,7 @@ project layout is essential. We have a typical example of a package layout in th
 <p>We can now install this code with</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 cd Greetings
 pip install .
 </pre></div>
@@ -1491,10 +1491,10 @@ pip install .
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for greetings (pyproject.toml): finished with status &#39;done&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Created wheel for greetings: filename=greetings-0.0.1-py3-none-any.whl size=2785 sha256=1d5100f790dde208cc467d38fb07e9d044189624bd7b1b96deb5e04b50d509c4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Created wheel for greetings: filename=greetings-0.0.1-py3-none-any.whl size=2785 sha256=c0265fb65b8ee7853cc018e5d30ad46fe9ab639526724ecfcb97f93cc9a162eb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Stored in directory: /tmp/pip-ephem-wheel-cache-me7b7845/wheels/a6/5c/81/c1c48894d5b25832088cf648e757dcc6d8eff3dc2116123a4a
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Stored in directory: /tmp/pip-ephem-wheel-cache-o9y0qslv/wheels/a6/5c/81/c1c48894d5b25832088cf648e757dcc6d8eff3dc2116123a4a
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully built greetings
@@ -1518,15 +1518,6 @@ pip install .
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed greetings-0.0.1
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip available: 22.3 -&gt; 22.3.1
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] To update, run: pip install --upgrade pip
-</pre></div>
-</div>
 </div>
 </div>
 <section id="installing-optional-dependencies">
@@ -1545,10 +1536,10 @@ pip install .
 <p>⚠️ As of August 2022, <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> does not support editable installs with <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> (only) packages, so you will need a small <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file to make this work (see below). But this shouldn’t be necessary <a class="reference external" href="https://discuss.python.org/t/help-testing-pep-660-support-in-setuptools/16904/34?u=astrojuanlu">in the near future</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Greetings/setup.py
-<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile Greetings/setup.py
+from setuptools import setup
 
-<span class="n">setup</span><span class="p">()</span>
+setup()
 </pre></div>
 </div>
 </div>
@@ -1583,9 +1574,9 @@ pip install .
 <p>⚠️ You may need to restart your Jupyter notebook kernel for the newly installed package to be recognised.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greetings.greeter</span> <span class="kn">import</span> <span class="n">greet</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from greetings.greeter import greet
 
-<span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Hetherington&quot;</span><span class="p">))</span>
+print(greet(&quot;James&quot;, &quot;Hetherington&quot;))
 </pre></div>
 </div>
 </div>
@@ -1598,7 +1589,7 @@ pip install .
 <p>And the scripts are now available as command line commands:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 greet --help
 </pre></div>
 </div>
@@ -1644,7 +1635,7 @@ greet --help
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 greet James Hetherington
 greet --polite James Hetherington
 greet James Hetherington --title Dr
@@ -1688,14 +1679,14 @@ greet James Hetherington --title Dr
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 cd Greetings
 pytest
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
@@ -1704,7 +1695,7 @@ pytest
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module06_software_projects/Greetings
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: pylama-8.4.1, anyio-3.6.2, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 1 item
@@ -1713,13 +1704,13 @@ pytest
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tests/test_greeter.py .                                                  [100%]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tests/test_greeter.py <span class=" -Color -Color-Green">.                                                  [100%]</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================== 1 passed in 0.02s ===============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Green">1 passed</span><span class=" -Color -Color-Green"> in 0.02s ===============================</span>
 </pre></div>
 </div>
 </div>
@@ -1756,11 +1747,11 @@ Invoke the tool with greet &lt;FirstName&gt; &lt;Secondname&gt;
 <p>e.g.:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Greetings/LICENSE.md
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile Greetings/LICENSE.md
 
-<span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="n">The</span> <span class="n">Alan</span> <span class="n">Turing</span> <span class="n">Institute</span> <span class="mi">2021</span>
+(C) The Alan Turing Institute 2021
 
-<span class="n">This</span> <span class="s2">&quot;greetings&quot;</span> <span class="n">example</span> <span class="n">package</span> <span class="ow">is</span> <span class="n">granted</span> <span class="n">into</span> <span class="n">the</span> <span class="n">public</span> <span class="n">domain</span><span class="o">.</span>
+This &quot;greetings&quot; example package is granted into the public domain.
 </pre></div>
 </div>
 </div>
@@ -1776,13 +1767,13 @@ Invoke the tool with greet &lt;FirstName&gt; &lt;Secondname&gt;
 <p>e.g.:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Greetings/CITATION.md
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile Greetings/CITATION.md
 
-<span class="n">If</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">refer</span> <span class="n">to</span> <span class="n">this</span> <span class="n">course</span><span class="p">,</span> <span class="n">please</span> <span class="n">cite</span> <span class="n">the</span> <span class="n">URL</span>
-<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">alan</span><span class="o">-</span><span class="n">turing</span><span class="o">-</span><span class="n">institute</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">rse</span><span class="o">-</span><span class="n">course</span>
+If you wish to refer to this course, please cite the URL
+https://alan-turing-institute.github.io/rse-course
 
-<span class="n">Portions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">material</span> <span class="n">are</span> <span class="n">taken</span> <span class="kn">from</span> <span class="nn">Software</span> <span class="n">Carpentry</span>
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">swcarpentry</span><span class="o">.</span><span class="n">org</span>
+Portions of the material are taken from Software Carpentry
+http://swcarpentry.org
 </pre></div>
 </div>
 </div>
@@ -1829,9 +1820,9 @@ this next time.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">greetings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import greetings
 
-<span class="n">help</span><span class="p">(</span><span class="n">greetings</span><span class="o">.</span><span class="n">greeter</span><span class="o">.</span><span class="n">greet</span><span class="p">)</span>
+help(greetings.greeter.greet)
 </pre></div>
 </div>
 </div>

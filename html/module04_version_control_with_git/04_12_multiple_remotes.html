@@ -1169,19 +1169,19 @@ and all commits required an internet.</p>
 <p>With modern distributed systems, we can add a second remote. This might be a personal <em>fork</em> on github:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
 
-<span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
-<span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+top_dir = os.getcwd()
+git_dir = os.path.join(top_dir, &quot;learning_git&quot;)
+working_dir = os.path.join(git_dir, &quot;git_example&quot;)
+os.chdir(working_dir)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git checkout main
 git remote add jack89roberts git@github.com:jack89roberts/github-example.git
 git fetch jack89roberts
@@ -1209,7 +1209,7 @@ git fetch jack89roberts
 <p>Check your remote branches:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git remote -v
 </pre></div>
 </div>
@@ -1232,7 +1232,7 @@ git remote -v
 <p>and ensure that the newly-added remote is up-to-date</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git fetch jack89roberts
 </pre></div>
 </div>
@@ -1240,13 +1240,13 @@ git fetch jack89roberts
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> Pennines.md
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile Pennines.md
 
-<span class="n">Mountains</span> <span class="n">In</span> <span class="n">the</span> <span class="n">Pennines</span>
-<span class="o">========================</span>
+Mountains In the Pennines
+========================
 
-<span class="o">*</span> <span class="n">Cross</span> <span class="n">Fell</span>
-<span class="o">*</span> <span class="n">Whernside</span>
+* Cross Fell
+* Whernside
 </pre></div>
 </div>
 </div>
@@ -1258,14 +1258,14 @@ git fetch jack89roberts
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git add Pennines.md
 git commit -am &quot;Add Whernside&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main f45c967] Add Whernside
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main c79d13f] Add Whernside
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 6 insertions(+)
@@ -1279,7 +1279,7 @@ git commit -am &quot;Add Whernside&quot;
 <p>We can specify which remote to push to by name:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git push -uf jack89roberts main || echo &quot;Push failed&quot;
 </pre></div>
 </div>
@@ -1308,7 +1308,7 @@ git push -uf jack89roberts main || echo &quot;Push failed&quot;
 <p>… but note that you need to have the correct permissions to do so.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git push -uf origin main
 </pre></div>
 </div>
@@ -1317,7 +1317,7 @@ git push -uf origin main
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   b313038..f45c967  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   f2098d9..c79d13f  main -&gt; main
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>branch &#39;main&#39; set up to track &#39;origin/main&#39;.
@@ -1331,74 +1331,74 @@ git push -uf origin main
 <p>You can always refer to commits on a remote like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git fetch
 git log --oneline --left-right jack89roberts/main...origin/main
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; f45c967 Add Whernside
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; c79d13f Add Whernside
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; b313038 Add a makefile and ignore generated files
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; f2098d9 Add a makefile and ignore generated files
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; bcd3c70 Merge branch &#39;experiment&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 5940940 Merge branch &#39;experiment&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 176e827 Commit Aonach onto main branch
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 737495c Commit Aonach onto main branch
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; c73bbc8 Add Cadair Idris
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; c3d8bfc Add Cadair Idris
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 5f22ea0 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 2d6c4c7 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; fb09de4 Add Glyder
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; ac1a74f Add Glyder
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 9697f70 Add another Beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 39721f4 Add another Beacon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 5ea7a1c Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 6f4b3ae Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 149ae82 Translating from the Welsh
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 21b31fa Translating from the Welsh
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 74c9f3c Add a beacon
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 71e9710 Add a beacon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 5464e41 Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 293e18b Merge branch &#39;main&#39; of github.com:alan-turing-institute/github-example
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 014112c Add wales
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 7966242 Add wales
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; f3ebe54 Add Scotland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 9d5dd3e Add Scotland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 233fadc Add Helvellyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; a223f4f Add Helvellyn
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 92a1162 Include lakes in the scope
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; a14ab88 Include lakes in the scope
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 5f7a801 Add lakeland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; dbb250b Add lakeland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; db72992 Revert &quot;Add a lie about a mountain&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; cb58f6a Revert &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 9e41bcb Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 6ef0a9d Change title
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 853bba7 Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; f548bd5 Add a lie about a mountain
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 3172bb2 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; 09ebcb7 First commit of discourse on UK topography
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt; 31ea056 Add Whernside
@@ -1473,7 +1473,7 @@ git log --oneline --left-right jack89roberts/main...origin/main
 <p>To see what files you have changed that aren’t updated on a particular remote, for example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git diff --name-only origin/main
 </pre></div>
 </div>
@@ -1482,13 +1482,13 @@ git diff --name-only origin/main
 <p>When you reference remotes like this, you’re working with a cached copy of the last time you interacted with the remote. You can do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> to update local data with the remotes without actually pulling. You can also get useful information about whether tracking branches are ahead or behind the remote branches they track:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git branch -vv
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main f45c967 [origin/main] Add Whernside
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* main c79d13f [origin/main] Add Whernside
 </pre></div>
 </div>
 </div>
@@ -1508,15 +1508,15 @@ git branch -vv
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bare_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;bare_repo&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">git_dir</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>bare_dir = os.path.join(git_dir, &quot;bare_repo&quot;)
+os.chdir(git_dir)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 mkdir -p bare_repo
 rm -rf bare_repo/*
 cd bare_repo
@@ -1532,14 +1532,14 @@ git init --bare --initial-branch=main
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>os.chdir(working_dir)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git remote add local_bare ../bare_repo
 git push -u local_bare main
 </pre></div>
@@ -1560,7 +1560,7 @@ git push -u local_bare main
 <p>Check your remote branches:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git remote -v
 </pre></div>
 </div>

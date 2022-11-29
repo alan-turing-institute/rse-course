@@ -1191,13 +1191,13 @@ title="Print to PDF"
 <p>We’re still in our working directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
 
-<span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
-<span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
-<span class="n">working_dir</span>
+top_dir = os.getcwd()
+git_dir = os.path.join(top_dir, &quot;learning_git&quot;)
+working_dir = os.path.join(git_dir, &quot;git_example&quot;)
+os.chdir(working_dir)
+working_dir
 </pre></div>
 </div>
 </div>
@@ -1237,7 +1237,7 @@ In this example we are using pre-authorised <code class="docutils literal notran
 If you prefer to use username and password/token, these instructions will be slightly different:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git remote add origin git@github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
@@ -1246,7 +1246,7 @@ git remote add origin git@github.com:alan-turing-institute/github-example.git
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">https</span></code> version of this instruction would be something like <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">origin</span> <span class="pre">https://${YOUR_USERNAME}:${GITHUB_TOKEN}&#64;github.com/alan-turing-institute/github-example.git</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git remote -v
 </pre></div>
 </div>
@@ -1262,7 +1262,7 @@ git remote -v
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an update
 </pre></div>
 </div>
@@ -1271,7 +1271,7 @@ git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an up
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> + b93c7c3...db72992 main -&gt; main (forced update)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> + 27a9165...cb58f6a main -&gt; main (forced update)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>branch &#39;main&#39; set up to track &#39;origin/main&#39;.
@@ -1289,19 +1289,19 @@ git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an up
 <p>Let’s add these commands to our diagram:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">Working Directory -&gt; Staging Area : git add</span>
-<span class="s2">Staging Area -&gt; Local Repository : git commit</span>
-<span class="s2">Working Directory -&gt; Local Repository : git commit -a</span>
-<span class="s2">Local Repository -&gt; Working Directory : git checkout</span>
-<span class="s2">Local Repository -&gt; Staging Area : git reset</span>
-<span class="s2">Local Repository -&gt; Working Directory: git reset --hard</span>
-<span class="s2">Local Repository -&gt; Remote Repository : git push</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">wsd</span> <span class="kn">import</span> <span class="n">wsd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>message = &quot;&quot;&quot;
+Working Directory -&gt; Staging Area : git add
+Staging Area -&gt; Local Repository : git commit
+Working Directory -&gt; Local Repository : git commit -a
+Local Repository -&gt; Working Directory : git checkout
+Local Repository -&gt; Staging Area : git reset
+Local Repository -&gt; Working Directory: git reset --hard
+Local Repository -&gt; Remote Repository : git push
+&quot;&quot;&quot;
+from wsd import wsd
 
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="n">wsd</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+%matplotlib inline
+wsd(message)
 </pre></div>
 </div>
 </div>
@@ -1326,11 +1326,11 @@ git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an up
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> lakeland.md
-<span class="n">Lakeland</span>
-<span class="o">========</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile lakeland.md
+Lakeland
+========
 
-<span class="n">Cumbria</span> <span class="n">has</span> <span class="n">some</span> <span class="n">pretty</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">lakes</span> <span class="n">too</span><span class="o">.</span>  
+Cumbria has some pretty hills, and lakes too.  
 </pre></div>
 </div>
 </div>
@@ -1342,7 +1342,7 @@ git push -uf origin main # Note we use the &#39;-f&#39; flag here to force an up
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">lakeland</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cat lakeland.md
 </pre></div>
 </div>
 </div>
@@ -1360,7 +1360,7 @@ Cumbria has some pretty hills, and lakes too.
 <h2>Git will not by default commit your new file<a class="headerlink" href="#git-will-not-by-default-commit-your-new-file" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git commit -am &quot;Try to add Lakeland&quot; || echo &quot;Commit failed&quot;
 </pre></div>
 </div>
@@ -1407,14 +1407,14 @@ git commit -am &quot;Try to add Lakeland&quot; || echo &quot;Commit failed&quot;
 <h2>Tell git about the new file<a class="headerlink" href="#tell-git-about-the-new-file" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git add lakeland.md
 git commit -am &quot;Add lakeland&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 5f7a801] Add lakeland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main dbb250b] Add lakeland
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 4 insertions(+)
@@ -1428,7 +1428,7 @@ git commit -am &quot;Add lakeland&quot;
 <p>Ok, now we have added the change about Cumbria to the file. Let’s publish it to the origin repository.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git push
 </pre></div>
 </div>
@@ -1437,7 +1437,7 @@ git push
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   db72992..5f7a801  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   cb58f6a..dbb250b  main -&gt; main
 </pre></div>
 </div>
 </div>
@@ -1450,14 +1450,14 @@ git push
 <p>What if we change both files?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> lakeland.md
-<span class="n">Lakeland</span>
-<span class="o">========</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile lakeland.md
+Lakeland
+========
 
-<span class="n">Cumbria</span> <span class="n">has</span> <span class="n">some</span> <span class="n">pretty</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">lakes</span> <span class="n">too</span>
+Cumbria has some pretty hills, and lakes too
 
-<span class="n">Mountains</span><span class="p">:</span>
-<span class="o">*</span> <span class="n">Helvellyn</span>
+Mountains:
+* Helvellyn
 </pre></div>
 </div>
 </div>
@@ -1469,12 +1469,12 @@ git push
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test.md
-<span class="n">Mountains</span> <span class="ow">and</span> <span class="n">Lakes</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">UK</span>
-<span class="o">===================</span>
-<span class="n">Engerland</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">very</span> <span class="n">mountainous</span><span class="o">.</span>
-<span class="n">But</span> <span class="n">has</span> <span class="n">some</span> <span class="n">tall</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">maybe</span> <span class="n">a</span>
-<span class="n">mountain</span> <span class="ow">or</span> <span class="n">two</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">your</span> <span class="n">definition</span><span class="o">.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile test.md
+Mountains and Lakes in the UK
+===================
+Engerland is not very mountainous.
+But has some tall hills, and maybe a
+mountain or two depending on your definition.
 </pre></div>
 </div>
 </div>
@@ -1486,7 +1486,7 @@ git push
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git status
 </pre></div>
 </div>
@@ -1542,14 +1542,14 @@ git status
 <p>These changes should really be separate commits. We can do this with careful use of git add, to <strong>stage</strong> first one commit, then the other.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git add test.md
 git commit -m &quot;Include lakes in the scope&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 92a1162] Include lakes in the scope
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main a14ab88] Include lakes in the scope
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 4 insertions(+), 3 deletions(-)
@@ -1560,13 +1560,13 @@ git commit -m &quot;Include lakes in the scope&quot;
 <p>Because we “staged” only <a class="reference external" href="http://test.md">test.md</a>, the changes to <a class="reference external" href="http://lakeland.md">lakeland.md</a> were not included in that commit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git commit -am &quot;Add Helvellyn&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 233fadc] Add Helvellyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main a223f4f] Add Helvellyn
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 4 insertions(+), 1 deletion(-)
@@ -1576,38 +1576,38 @@ git commit -am &quot;Add Helvellyn&quot;
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git log --oneline
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>233fadc Add Helvellyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a223f4f Add Helvellyn
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>92a1162 Include lakes in the scope
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a14ab88 Include lakes in the scope
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5f7a801 Add lakeland
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dbb250b Add lakeland
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>db72992 Revert &quot;Add a lie about a mountain&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cb58f6a Revert &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9e41bcb Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6ef0a9d Change title
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>853bba7 Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f548bd5 Add a lie about a mountain
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3172bb2 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>09ebcb7 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git push
 </pre></div>
 </div>
@@ -1616,36 +1616,36 @@ git push
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To github.com:alan-turing-institute/github-example.git
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   5f7a801..233fadc  main -&gt; main
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   dbb250b..a223f4f  main -&gt; main
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">participant &quot;Jim&#39;s remote&quot; as M</span>
-<span class="s2">participant &quot;Jim&#39;s repo&quot; as R</span>
-<span class="s2">participant &quot;Jim&#39;s index&quot; as I</span>
-<span class="s2">participant Jim as J</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>message = &quot;&quot;&quot;
+participant &quot;Jim&#39;s remote&quot; as M
+participant &quot;Jim&#39;s repo&quot; as R
+participant &quot;Jim&#39;s index&quot; as I
+participant Jim as J
 
-<span class="s2">note right of J: vim test.md</span>
-<span class="s2">note right of J: vim lakeland.md</span>
+note right of J: vim test.md
+note right of J: vim lakeland.md
 
-<span class="s2">note right of J: git add test.md</span>
-<span class="s2">J-&gt;I: Add *only* the changes to test.md to the staging area</span>
+note right of J: git add test.md
+J-&gt;I: Add *only* the changes to test.md to the staging area
 
-<span class="s2">note right of J: git commit -m &quot;Include lakes&quot;</span>
-<span class="s2">I-&gt;R: Make a commit from currently staged changes: test.md only</span>
+note right of J: git commit -m &quot;Include lakes&quot;
+I-&gt;R: Make a commit from currently staged changes: test.md only
 
-<span class="s2">note right of J: git commit -am &quot;Add Helvellyn&quot;</span>
-<span class="s2">J-&gt;I: Stage *all remaining* changes, (lakeland.md)</span>
-<span class="s2">I-&gt;R: Make a commit from currently staged changes</span>
+note right of J: git commit -am &quot;Add Helvellyn&quot;
+J-&gt;I: Stage *all remaining* changes, (lakeland.md)
+I-&gt;R: Make a commit from currently staged changes
 
-<span class="s2">note right of J: git push</span>
-<span class="s2">R-&gt;M: Transfer commits to Github</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="n">wsd</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+note right of J: git push
+R-&gt;M: Transfer commits to Github
+&quot;&quot;&quot;
+wsd(message)
 </pre></div>
 </div>
 </div>

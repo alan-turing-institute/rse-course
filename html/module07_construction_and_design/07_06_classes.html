@@ -1318,13 +1318,13 @@ independent of language syntax.</p>
 <p>In Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Particle</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">velocity</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Particle:
+    def __init__(self, position, velocity):
+        self.position = position
+        self.velocity = velocity
 
-    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">*</span> <span class="n">delta_t</span>
+    def move(self, delta_t):
+        self.position += self.velocity * delta_t
 </pre></div>
 </div>
 </div>
@@ -1365,18 +1365,18 @@ the <a class="reference external" href="http://yuml.me/">YUML</a> online UML dra
 <p>Here’s how we can use Python code to get an image back from YUML:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from IPython.display import SVG
 
 
-<span class="k">def</span> <span class="nf">yuml</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">SVG</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;http://yuml.me/diagram/boring/class/</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+def yuml(model):
+    return SVG(url=f&quot;http://yuml.me/diagram/boring/class/{model}&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yuml</span><span class="p">(</span><span class="s2">&quot;[Particle|position;velocity|move()]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>yuml(&quot;[Particle|position;velocity|move()]&quot;)
 </pre></div>
 </div>
 </div>
@@ -1398,45 +1398,45 @@ Languages provide features to implement this: access control.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__private_data</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_private_data</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">public_data</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class MyClass:
+    def __init__(self):
+        self.__private_data = 0
+        self._private_data = 0
+        self.public_data = 0
 
-    <span class="k">def</span> <span class="nf">__private_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+    def __private_method(self):
+        pass
 
-    <span class="k">def</span> <span class="nf">_private_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+    def _private_method(self):
+        pass
 
-    <span class="k">def</span> <span class="nf">public_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+    def public_method(self):
+        pass
 
-    <span class="k">def</span> <span class="nf">called_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__private_method</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_private_method</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__private_data</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_private_data</span> <span class="o">=</span> <span class="mi">1</span>
+    def called_inside(self):
+        self.__private_method()
+        self._private_method()
+        self.__private_data = 1
+        self._private_data = 1
 
 
-<span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">called_inside</span><span class="p">()</span>
+MyClass().called_inside()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">_private_method</span><span class="p">()</span>  <span class="c1"># Works, but forbidden by convention</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>MyClass()._private_method()  # Works, but forbidden by convention
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">public_method</span><span class="p">()</span>  <span class="c1"># OK</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>MyClass().public_method()  # OK
 
-<span class="nb">print</span><span class="p">(</span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">_private_data</span><span class="p">)</span>
+print(MyClass()._private_data)
 </pre></div>
 </div>
 </div>
@@ -1448,7 +1448,7 @@ Languages provide features to implement this: access control.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">public_data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(MyClass().public_data)
 </pre></div>
 </div>
 </div>
@@ -1460,14 +1460,14 @@ Languages provide features to implement this: access control.</p>
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">__private_method</span><span class="p">()</span>  <span class="c1"># Generates error</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>MyClass().__private_method()  # Generates error
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">__private_method</span><span class="p">()</span>  <span class="c1"># Generates error</span>
 
 <span class="ne">AttributeError</span>: &#39;MyClass&#39; object has no attribute &#39;__private_method&#39;
@@ -1477,14 +1477,14 @@ Languages provide features to implement this: access control.</p>
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">__private_data</span><span class="p">)</span>  <span class="c1"># Generates error</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(MyClass().__private_data)  # Generates error
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">MyClass</span><span class="p">()</span><span class="o">.</span><span class="n">__private_data</span><span class="p">)</span>  <span class="c1"># Generates error</span>
 
 <span class="ne">AttributeError</span>: &#39;MyClass&#39; object has no attribute &#39;__private_data&#39;
@@ -1499,12 +1499,12 @@ Languages provide features to implement this: access control.</p>
 change the way a class is implemented without changing the interface:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John Watson&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Person:
+    def __init__(self):
+        self.name = &quot;John Watson&quot;
 
 
-<span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+Person().name
 </pre></div>
 </div>
 </div>
@@ -1517,17 +1517,17 @@ change the way a class is implemented without changing the interface:</p>
 <p>becomes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_first</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_second</span> <span class="o">=</span> <span class="s2">&quot;Watson&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Person:
+    def __init__(self):
+        self._first = &quot;John&quot;
+        self._second = &quot;Watson&quot;
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_first</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_second</span><span class="si">}</span><span class="s2">&quot;</span>
+    @property
+    def name(self):
+        return f&quot;{self._first} {self._second}&quot;
 
 
-<span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+Person().name
 </pre></div>
 </div>
 </div>
@@ -1545,15 +1545,15 @@ make data private, and always
 access data through functions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s2">&quot;John Watson&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Person:
+    def __init__(self):
+        self._name = &quot;John Watson&quot;
 
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># an access function</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+    def name(self):  # an access function
+        return self._name
 
 
-<span class="n">Person</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+Person().name()
 </pre></div>
 </div>
 </div>
@@ -1567,22 +1567,22 @@ access data through functions:</p>
 <p>Another way could be to create a member variable <code class="docutils literal notranslate"><span class="pre">name</span></code> which holds the full name. However, this could lead to inconsistent data. If we create a <code class="docutils literal notranslate"><span class="pre">get_married</span></code> function, then the name of the person won’t change!</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_first_</span> <span class="o">=</span> <span class="n">first</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_second_</span> <span class="o">=</span> <span class="n">second</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_first_</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_second_</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Person:
+    def __init__(self, first, second):
+        self._first_ = first
+        self._second_ = second
+        self.name = f&quot;{self._first_} {self._second_}&quot;
 
-    <span class="k">def</span> <span class="nf">get_married</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_second_</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_second_</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">to</span><span class="o">.</span><span class="n">_second_</span><span class="si">}</span><span class="s2">&quot;</span>
+    def get_married(self, to):
+        self._second_ = f&quot;{self._second_}-{to._second_}&quot;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">john</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Watson&quot;</span><span class="p">)</span>
-<span class="n">john</span><span class="o">.</span><span class="n">name</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>john = Person(&quot;John&quot;, &quot;Watson&quot;)
+john.name
 </pre></div>
 </div>
 </div>
@@ -1594,10 +1594,10 @@ access data through functions:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sherlock</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Sherlock&quot;</span><span class="p">,</span> <span class="s2">&quot;Holmes&quot;</span><span class="p">)</span>
-<span class="n">john</span><span class="o">.</span><span class="n">get_married</span><span class="p">(</span><span class="n">sherlock</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sherlock = Person(&quot;Sherlock&quot;, &quot;Holmes&quot;)
+john.get_married(sherlock)
 
-<span class="n">john</span><span class="o">.</span><span class="n">_second_</span>
+john._second_
 </pre></div>
 </div>
 </div>
@@ -1609,7 +1609,7 @@ access data through functions:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">john</span><span class="o">.</span><span class="n">name</span>  <span class="c1"># Not John Watson-Holmes?</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>john.name  # Not John Watson-Holmes?
 </pre></div>
 </div>
 </div>
@@ -1626,7 +1626,7 @@ In database design, this is called <a class="reference external" href="https://e
 <p>We prepend a <code class="docutils literal notranslate"><span class="pre">+</span></code>/<code class="docutils literal notranslate"><span class="pre">-</span></code> on public/private member variables and methods:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yuml</span><span class="p">(</span><span class="s2">&quot;[Particle|+public;-private|+publicmethod();-privatemethod]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>yuml(&quot;[Particle|+public;-private|+publicmethod();-privatemethod]&quot;)
 </pre></div>
 </div>
 </div>
@@ -1641,21 +1641,21 @@ In database design, this is called <a class="reference external" href="https://e
 <p>This is an object that keeps a count on how many have been created of it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Counted</span><span class="p">:</span>
-    <span class="n">number_created</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># this is shared between all instances of Counted</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Counted:
+    number_created = 0  # this is shared between all instances of Counted
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Increment the class-level variable &#39;number_created&#39;</span>
-        <span class="n">Counted</span><span class="o">.</span><span class="n">number_created</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="c1"># Add a member variable: each instance of Counted has its own version of &#39;local_variable&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">local_variable</span> <span class="o">=</span> <span class="mi">5</span>
+    def __init__(self):
+        # Increment the class-level variable &#39;number_created&#39;
+        Counted.number_created += 1
+        # Add a member variable: each instance of Counted has its own version of &#39;local_variable&#39;
+        self.local_variable = 5
 
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">howMany</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">number_created</span>
+    @classmethod
+    def howMany(cls):
+        return cls.number_created
 
 
-<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>
+Counted.howMany()
 </pre></div>
 </div>
 </div>
@@ -1667,8 +1667,8 @@ In database design, this is called <a class="reference external" href="https://e
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Counted</span><span class="p">()</span>
-<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = Counted()
+Counted.howMany()
 </pre></div>
 </div>
 </div>
@@ -1680,8 +1680,8 @@ In database design, this is called <a class="reference external" href="https://e
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counted</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
-<span class="n">Counted</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z = [Counted() for x in range(5)]
+Counted.howMany()
 </pre></div>
 </div>
 </div>
@@ -1693,7 +1693,7 @@ In database design, this is called <a class="reference external" href="https://e
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">howMany</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x.howMany()
 </pre></div>
 </div>
 </div>
@@ -1736,31 +1736,31 @@ In database design, this is called <a class="reference external" href="https://e
 <h3>Inheritance in python<a class="headerlink" href="#inheritance-in-python" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">beBorn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I exist&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Animal:
+    def beBorn(self):
+        print(&quot;I exist&quot;)
 
-    <span class="k">def</span> <span class="nf">die</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Argh!&quot;</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">Bird</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Whee!&quot;</span><span class="p">)</span>
+    def die(self):
+        print(&quot;Argh!&quot;)
 
 
-<span class="k">class</span> <span class="nc">Eagle</span><span class="p">(</span><span class="n">Bird</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">hunt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I&#39;m gonna eatcha!&quot;</span><span class="p">)</span>
+class Bird(Animal):
+    def fly(self):
+        print(&quot;Whee!&quot;)
 
 
-<span class="k">class</span> <span class="nc">Starling</span><span class="p">(</span><span class="n">Bird</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">flew</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I&#39;m flying away!&quot;</span><span class="p">)</span>
+class Eagle(Bird):
+    def hunt(self):
+        print(&quot;I&#39;m gonna eatcha!&quot;)
 
 
-<span class="n">Eagle</span><span class="p">()</span><span class="o">.</span><span class="n">beBorn</span><span class="p">()</span>
-<span class="n">Eagle</span><span class="p">()</span><span class="o">.</span><span class="n">hunt</span><span class="p">()</span>
+class Starling(Bird):
+    def flew(self):
+        print(&quot;I&#39;m flying away!&quot;)
+
+
+Eagle().beBorn()
+Eagle().hunt()
 </pre></div>
 </div>
 </div>
@@ -1795,15 +1795,15 @@ So, we can say:</p>
 <p>To use implicitly constructors from a <em>superclass</em>, we can use <code class="docutils literal notranslate"><span class="pre">super</span></code> as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Animal:
+    def __init__(self, age):
+        self.age = age
 
 
-<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+class Person(Animal):
+    def __init__(self, age, name):
+        super().__init__(age)
+        self.name = name
 </pre></div>
 </div>
 </div>
@@ -1815,7 +1815,7 @@ So, we can say:</p>
 <p>UML shows inheritance with an open triangular arrow pointing from subclass to superclass.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yuml</span><span class="p">(</span><span class="s2">&quot;[Animal]^-[Bird],[Bird]^-[Eagle],[Bird]^-[Starling]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>yuml(&quot;[Animal]^-[Bird],[Bird]^-[Eagle],[Bird]^-[Starling]&quot;)
 </pre></div>
 </div>
 </div>
@@ -1834,7 +1834,7 @@ and each Boid owns two 2-vectors, one for position and one for velocity.</p>
 <p>The Boids situation can be represented thus:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yuml</span><span class="p">(</span><span class="s2">&quot;[Model]&lt;&gt;-*&gt;[Boid],[Boid]position++-&gt;[Vector],[Boid]velocity++-&gt;[Vector]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>yuml(&quot;[Model]&lt;&gt;-*&gt;[Boid],[Boid]position++-&gt;[Vector],[Boid]velocity++-&gt;[Vector]&quot;)
 </pre></div>
 </div>
 </div>
@@ -1851,22 +1851,22 @@ and each Boid owns two 2-vectors, one for position and one for velocity.</p>
 <p><strong>before:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">job</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">job</span> <span class="o">=</span> <span class="n">job</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Person:
+    def __init__(self, age, job):
+        self.age = age
+        self.job = job
 
-    <span class="k">def</span> <span class="nf">birthday</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
+    def birthday(self):
+        self.age += 1
 
 
-<span class="k">class</span> <span class="nc">Pet</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
+class Pet:
+    def __init__(self, age, owner):
+        self.age = age
+        self.owner = owner
 
-    <span class="k">def</span> <span class="nf">birthday</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
+    def birthday(self):
+        self.age += 1
 </pre></div>
 </div>
 </div>
@@ -1874,24 +1874,24 @@ and each Boid owns two 2-vectors, one for position and one for velocity.</p>
 <p><strong>after:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Animal:
+    def __init__(self, age):
+        self.age = age
 
-    <span class="k">def</span> <span class="nf">birthday</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
-
-
-<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">job</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">job</span> <span class="o">=</span> <span class="n">job</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+    def birthday(self):
+        self.age += 1
 
 
-<span class="k">class</span> <span class="nc">Pet</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+class Person(Animal):
+    def __init__(self, age, job):
+        self.job = job
+        super().__init__(age)
+
+
+class Pet(Animal):
+    def __init__(self, age, owner):
+        self.owner = owner
+        super().__init__(age)
 </pre></div>
 </div>
 </div>
@@ -1902,29 +1902,29 @@ and each Boid owns two 2-vectors, one for position and one for velocity.</p>
 <p>Polymorphism refers to having different classes with the same method that does different things.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">noise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;Bark&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Dog:
+    def noise(self):
+        return &quot;Bark&quot;
 
 
-<span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">noise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;Miaow&quot;</span>
+class Cat:
+    def noise(self):
+        return &quot;Miaow&quot;
 
 
-<span class="k">class</span> <span class="nc">Pig</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">noise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;Oink&quot;</span>
+class Pig:
+    def noise(self):
+        return &quot;Oink&quot;
 
 
-<span class="k">class</span> <span class="nc">Cow</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">noise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;Moo&quot;</span>
+class Cow:
+    def noise(self):
+        return &quot;Moo&quot;
 
 
-<span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="n">Dog</span><span class="p">(),</span> <span class="n">Dog</span><span class="p">(),</span> <span class="n">Cat</span><span class="p">(),</span> <span class="n">Pig</span><span class="p">(),</span> <span class="n">Cow</span><span class="p">(),</span> <span class="n">Cat</span><span class="p">()]</span>
-<span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">animals</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">noise</span><span class="p">())</span>
+animals = [Dog(), Dog(), Cat(), Pig(), Cow(), Cat()]
+for animal in animals:
+    print(animal.noise())
 </pre></div>
 </div>
 </div>
@@ -1954,27 +1954,27 @@ Noisy concept.)</p>
 of the derived classes to have.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">noise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;I don&#39;t make a noise.&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Animal:
+    def noise(self):
+        return &quot;I don&#39;t make a noise.&quot;
 
 
-<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">noise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;Bark&quot;</span>
+class Dog(Animal):
+    def noise(self):
+        return &quot;Bark&quot;
 
 
-<span class="k">class</span> <span class="nc">Worm</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">pass</span>
+class Worm(Animal):
+    pass
 
 
-<span class="k">class</span> <span class="nc">Poodle</span><span class="p">(</span><span class="n">Dog</span><span class="p">):</span>
-    <span class="k">pass</span>
+class Poodle(Dog):
+    pass
 
 
-<span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="n">Dog</span><span class="p">(),</span> <span class="n">Worm</span><span class="p">(),</span> <span class="n">Pig</span><span class="p">(),</span> <span class="n">Cow</span><span class="p">(),</span> <span class="n">Poodle</span><span class="p">()]</span>
-<span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">animals</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">noise</span><span class="p">())</span>
+animals = [Dog(), Worm(), Pig(), Cow(), Poodle()]
+for animal in animals:
+    print(animal.noise())
 </pre></div>
 </div>
 </div>
@@ -1994,26 +1994,26 @@ Bark
 <p>Instead, we can explicitly deliberately leave this undefined, and we get a crash if we access an undefined method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
-    <span class="k">pass</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Animal:
+    pass
 
 
-<span class="k">class</span> <span class="nc">Worm</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">pass</span>
+class Worm(Animal):
+    pass
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Worm</span><span class="p">()</span><span class="o">.</span><span class="n">noise</span><span class="p">()</span>  <span class="c1"># Generates error</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Worm().noise()  # Generates error
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Worm</span><span class="p">()</span><span class="o">.</span><span class="n">noise</span><span class="p">()</span>  <span class="c1"># Generates error</span>
 
 <span class="ne">AttributeError</span>: &#39;Worm&#39; object has no attribute &#39;noise&#39;
@@ -2028,18 +2028,18 @@ Bark
 <p><strong>before:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">animal_kind</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">animal_kind</span> <span class="o">=</span> <span class="n">animal_kind</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Animal:
+    def __init__(self, animal_kind):
+        self.animal_kind = animal_kind
 
-    <span class="k">def</span> <span class="nf">noise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_kind</span> <span class="o">==</span> <span class="s2">&quot;Dog&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;Bark&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_kind</span> <span class="o">==</span> <span class="s2">&quot;Cat&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;Miaow&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_kind</span> <span class="o">==</span> <span class="s2">&quot;Cow&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;Moo&quot;</span>
-        <span class="k">return</span> <span class="s2">&quot;Growl&quot;</span>
+    def noise(self):
+        if self.animal_kind == &quot;Dog&quot;:
+            return &quot;Bark&quot;
+        if self.animal_kind == &quot;Cat&quot;:
+            return &quot;Miaow&quot;
+        if self.animal_kind == &quot;Cow&quot;:
+            return &quot;Moo&quot;
+        return &quot;Growl&quot;
 </pre></div>
 </div>
 </div>
@@ -2060,7 +2060,7 @@ built-in Python concepts. A class is said to “implement an interface” or “
 <p>Interfaces implementation (a common ancestor that doesn’t do anything but defines methods to share) in UML is indicated thus:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yuml</span><span class="p">(</span><span class="s2">&quot;[&lt;&lt;Animal&gt;&gt;]^-.-[Dog]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>yuml(&quot;[&lt;&lt;Animal&gt;&gt;]^-.-[Dog]&quot;)
 </pre></div>
 </div>
 </div>

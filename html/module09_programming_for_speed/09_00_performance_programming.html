@@ -1083,68 +1083,68 @@ Traditionally, we plot a color showing how many steps are needed before <span cl
 <p>Here’s a trivial python implementation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel1</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel1(position, limit=50):
 
-    <span class="n">value</span> <span class="o">=</span> <span class="n">position</span>
+    value = position
 
-    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">limit</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">position</span>
-        <span class="k">if</span> <span class="n">limit</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
+    while abs(value) &lt; 2:
+        limit -= 1
+        value = value**2 + position
+        if limit &lt; 0:
+            return 0
 
-    <span class="k">return</span> <span class="n">limit</span>
+    return limit
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
-<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
-<span class="n">xmax</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
-<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
-<span class="n">ystep</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="n">xstep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
-<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ymin</span> <span class="o">+</span> <span class="n">ystep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
+ymin = -1.0
+xmax = 0.5
+ymax = 1.0
+resolution = 300
+xstep = (xmax - xmin) / resolution
+ystep = (ymax - ymin) / resolution
+xs = [(xmin + xstep * i) for i in range(resolution)]
+ys = [(ymin + ystep * i) for i in range(resolution)]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
-<span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel1</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
+data = [[mandel1(complex(x, y)) for x in xs] for y in ys]
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>728 ms ± 1.95 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>601 ms ± 1.53 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data1</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel1</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data1 = [[mandel1(complex(x, y)) for x in xs] for y in ys]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+import matplotlib.pyplot as plt
 
-<span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s2">&quot;cividis&quot;</span><span class="p">)</span>  <span class="c1"># use a CVD-friendly palette</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
+plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
+plt.imshow(data1, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f53f1f75f10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f85a0fc67c0&gt;
 </pre></div>
 </div>
 <img alt="../_images/09_00_performance_programming_13_1.png" src="../_images/09_00_performance_programming_13_1.png" />
@@ -1153,57 +1153,57 @@ Traditionally, we plot a color showing how many steps are needed before <span cl
 <p>We will learn this lesson how to make a version of this code which works Ten Times faster:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
 
 
-<span class="c1"># Do not worry about how this function works - it will be covered in detail later</span>
-<span class="k">def</span> <span class="nf">mandel_numpy</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">position</span>
-    <span class="n">diverged_at_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">limit</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">limit</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">position</span>
-        <span class="n">diverging</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span>
-        <span class="n">first_diverged_this_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">diverging</span><span class="p">,</span> <span class="n">diverged_at_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">diverged_at_count</span><span class="p">[</span><span class="n">first_diverged_this_time</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
-        <span class="n">value</span><span class="p">[</span><span class="n">diverging</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+# Do not worry about how this function works - it will be covered in detail later
+def mandel_numpy(position, limit=50):
+    value = position
+    diverged_at_count = np.zeros(position.shape)
+    while limit &gt; 0:
+        limit -= 1
+        value = value**2 + position
+        diverging = value * np.conj(value) &gt; 4
+        first_diverged_this_time = np.logical_and(diverging, diverged_at_count == 0)
+        diverged_at_count[first_diverged_this_time] = limit
+        value[diverging] = 2
 
-    <span class="k">return</span> <span class="n">diverged_at_count</span>
+    return diverged_at_count
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ymatrix</span><span class="p">,</span> <span class="n">xmatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">:</span><span class="n">ystep</span><span class="p">,</span> <span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="p">:</span><span class="n">xstep</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ymatrix, xmatrix = np.mgrid[ymin:ymax:ystep, xmin:xmax:xstep]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">xmatrix</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ymatrix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>values = xmatrix + 1j * ymatrix
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_numpy</span> <span class="o">=</span> <span class="n">mandel_numpy</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_numpy = mandel_numpy(values)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_numpy</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
+plt.imshow(data_numpy, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f53ecb6a100&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f85a0ba9a00&gt;
 </pre></div>
 </div>
 <img alt="../_images/09_00_performance_programming_19_1.png" src="../_images/09_00_performance_programming_19_1.png" />
@@ -1211,13 +1211,13 @@ Traditionally, we plot a color showing how many steps are needed before <span cl
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
-<span class="n">data_numpy</span> <span class="o">=</span> <span class="n">mandel_numpy</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
+data_numpy = mandel_numpy(values)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52.3 ms ± 116 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42.6 ms ± 25.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1225,7 +1225,7 @@ Traditionally, we plot a color showing how many steps are needed before <span cl
 <p>Note we get the same answer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">data_numpy</span> <span class="o">==</span> <span class="n">data1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(data_numpy == data1).all()
 </pre></div>
 </div>
 </div>

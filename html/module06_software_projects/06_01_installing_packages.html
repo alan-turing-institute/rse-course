@@ -1169,33 +1169,33 @@ to invoke the library-installer program, <code class="docutils literal notransla
 <p>Now, close the Jupyter notebook if you have it open, and reopen it. Check your new library is installed with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_wine</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.datasets import load_wine
 
-<span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">wine</span><span class="o">.</span><span class="n">data</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">wine</span><span class="o">.</span><span class="n">target</span>
-<span class="n">feature_names</span> <span class="o">=</span> <span class="n">wine</span><span class="o">.</span><span class="n">feature_names</span>
+wine = load_wine()
+X = wine.data
+y = wine.target
+feature_names = wine.feature_names
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+plt.figure(figsize=(8, 6))
 
-<span class="c1"># Find the column index of two features to plot</span>
-<span class="n">color_idx</span> <span class="o">=</span> <span class="n">feature_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;color_intensity&quot;</span><span class="p">)</span>
-<span class="n">proline_idx</span> <span class="o">=</span> <span class="n">feature_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;proline&quot;</span><span class="p">)</span>
+# Find the column index of two features to plot
+color_idx = feature_names.index(&quot;color_intensity&quot;)
+proline_idx = feature_names.index(&quot;proline&quot;)
 
-<span class="c1"># Plot the training points</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">color_idx</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">proline_idx</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Color Intensity&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Proline&quot;</span><span class="p">)</span>
+# Plot the training points
+plt.scatter(X[:, color_idx], X[:, proline_idx], c=y, edgecolor=&quot;k&quot;)
+plt.xlabel(&quot;Color Intensity&quot;)
+plt.ylabel(&quot;Proline&quot;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(())</span>
+plt.xticks(())
+plt.yticks(())
 </pre></div>
 </div>
 </div>
@@ -1224,9 +1224,9 @@ to invoke the library-installer program, <code class="docutils literal notransla
 <h2>Where do these libraries go?<a class="headerlink" href="#where-do-these-libraries-go" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy
 
-<span class="n">numpy</span><span class="o">.</span><span class="n">__path__</span>
+numpy.__path__
 </pre></div>
 </div>
 </div>
@@ -1241,9 +1241,9 @@ to invoke the library-installer program, <code class="docutils literal notransla
 It will try each of these places in turn, until it finds a matching library name.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sys
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span>
+sys.path
 </pre></div>
 </div>
 </div>

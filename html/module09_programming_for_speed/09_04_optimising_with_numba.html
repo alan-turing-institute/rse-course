@@ -1086,42 +1086,42 @@ An alternative is to use <a class="reference external" href="https://numba.pydat
 <p>Let’s start by reproducing the pure-Python implementation from earlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
-<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
-<span class="n">xmax</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
-<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
-<span class="n">ystep</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="n">xstep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
-<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ymin</span> <span class="o">+</span> <span class="n">ystep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
+ymin = -1.0
+xmax = 0.5
+ymax = 1.0
+resolution = 300
+xstep = (xmax - xmin) / resolution
+ystep = (ymax - ymin) / resolution
+xs = [(xmin + xstep * i) for i in range(resolution)]
+ys = [(ymin + ystep * i) for i in range(resolution)]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">position</span>
-    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">limit</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">position</span>
-        <span class="k">if</span> <span class="n">limit</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">limit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(position, limit=50):
+    value = position
+    while abs(value) &lt; 2:
+        limit -= 1
+        value = value**2 + position
+        if limit &lt; 0:
+            return 0
+    return limit
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pure python</span>
-<span class="o">%</span><span class="k">timeit</span> a = mandel(complex(0, 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># pure python
+%timeit a = mandel(complex(0, 0))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.7 µs ± 17.5 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.9 µs ± 1.98 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1133,11 +1133,11 @@ We add a Numba decorator to the pure-Python implementation.
 Note that <code class="docutils literal notranslate"><span class="pre">&#64;njit</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">&#64;jit(nopython=True)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+from matplotlib import pyplot as plt
+from numba import njit
 
-<span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s2">&quot;cividis&quot;</span><span class="p">)</span>  <span class="c1"># use a CVD-friendly palette</span>
+plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
 </pre></div>
 </div>
 </div>
@@ -1149,15 +1149,15 @@ Note that <code class="docutils literal notranslate"><span class="pre">&#64;njit
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@njit</span>
-<span class="k">def</span> <span class="nf">mandel_numba</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">position</span>
-    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">limit</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">position</span>
-        <span class="k">if</span> <span class="n">limit</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">limit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@njit
+def mandel_numba(position, limit=50):
+    value = position
+    while abs(value) &lt; 2:
+        limit -= 1
+        value = value**2 + position
+        if limit &lt; 0:
+            return 0
+    return limit
 </pre></div>
 </div>
 </div>
@@ -1165,29 +1165,29 @@ Note that <code class="docutils literal notranslate"><span class="pre">&#64;njit
 <p>Note that <code class="docutils literal notranslate"><span class="pre">numba</span></code> will compile the function the first time we invoke it, so the first call will be notably slower than the rest.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import time
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">mandel_numba</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time taken for first call </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+start = time.time()
+mandel_numba(complex(0, 0))
+print(f&quot;Time taken for first call {time.time() - start}s&quot;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time taken for first call 0.32887816429138184s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time taken for first call 0.28137993812561035s
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple numba</span>
-<span class="o">%</span><span class="k">timeit</span> a = mandel_numba(complex(0, 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Simple numba
+%timeit a = mandel_numba(complex(0, 0))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.03 µs ± 0.908 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>911 ns ± 0.232 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1195,13 +1195,13 @@ Note that <code class="docutils literal notranslate"><span class="pre">&#64;njit
 <p>This provides an approximately 10x increase in performance compared to the pure-Python implementation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_numba</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel_numba</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_numba</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_numba = [[mandel_numba(complex(x, y)) for x in xs] for y in ys]
+plt.imshow(data_numba, interpolation=&quot;none&quot;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7efd29c15c70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f2420fe3ca0&gt;
 </pre></div>
 </div>
 <img alt="../_images/09_04_optimising_with_numba_14_1.png" src="../_images/09_04_optimising_with_numba_14_1.png" />
@@ -1215,59 +1215,59 @@ Let’s see whether we can improve on the performance of <code class="docutils l
 If we are certain that there are no dependencies between different elements in a range, we can parallelize iteration by using the <code class="docutils literal notranslate"><span class="pre">prange</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">prange</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from numba import prange
 
 
-<span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">mandel_numba_parallel</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">xlim</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">ylim</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">diverged_at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ylim</span><span class="p">,</span> <span class="n">xlim</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">xlim</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">ylim</span><span class="p">):</span>
-            <span class="n">steps</span> <span class="o">=</span> <span class="n">limit</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">position</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="n">position</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span>
-            <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">steps</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">steps</span> <span class="o">-=</span> <span class="mi">1</span>
-                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">pos</span>
-            <span class="n">diverged_at</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">steps</span>
+@njit(parallel=True)
+def mandel_numba_parallel(position, limit=50):
+    xlim = position.shape[1]
+    ylim = position.shape[0]
+    diverged_at = np.zeros((ylim, xlim))
+    for x in prange(xlim):
+        for y in prange(ylim):
+            steps = limit
+            value = position[y, x]
+            pos = position[y, x]
+            while abs(value) &lt; 2 and steps &gt;= 0:
+                steps -= 1
+                value = value**2 + pos
+            diverged_at[y, x] = steps
 
-    <span class="k">return</span> <span class="n">diverged_at</span>
+    return diverged_at
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ymatrix</span><span class="p">,</span> <span class="n">xmatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">:</span><span class="n">ystep</span><span class="p">,</span> <span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="p">:</span><span class="n">xstep</span><span class="p">]</span>
-<span class="n">values</span> <span class="o">=</span> <span class="n">xmatrix</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ymatrix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ymatrix, xmatrix = np.mgrid[ymin:ymax:ystep, xmin:xmax:xstep]
+values = xmatrix + 1j * ymatrix
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pure Python</span>
-<span class="o">%</span><span class="k">timeit</span> data_python = [mandel(value) for row in values for value in row]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Pure Python
+%timeit data_python = [mandel(value) for row in values for value in row]
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>756 ms ± 10.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>564 ms ± 771 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parallelised numba</span>
-<span class="o">%</span><span class="k">timeit</span> data_numba_parallel = mandel_numba_parallel(values)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Parallelised numba
+%timeit data_numba_parallel = mandel_numba_parallel(values)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.4 ms ± 383 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.3 ms ± 261 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -1276,13 +1276,13 @@ If we are certain that there are no dependencies between different elements in a
 <p>To wrap this up this section on optimisation, let’s demonstrate the the parallelised numba implementation generates the same figure as the pure-Python implementation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_numba_parallel</span> <span class="o">=</span> <span class="n">mandel_numba_parallel</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_numba_parallel</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_numba_parallel = mandel_numba_parallel(values)
+plt.imshow(data_numba_parallel, interpolation=&quot;none&quot;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7efd1543ba30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f240c98f4f0&gt;
 </pre></div>
 </div>
 <img alt="../_images/09_04_optimising_with_numba_22_1.png" src="../_images/09_04_optimising_with_numba_22_1.png" />

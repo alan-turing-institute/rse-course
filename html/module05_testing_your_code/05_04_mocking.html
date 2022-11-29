@@ -1135,16 +1135,16 @@ title="Print to PDF"
 <p>Mock objects record the calls made to them:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">Mock</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from unittest.mock import Mock
 
-<span class="n">function</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;myroutine&quot;</span><span class="p">,</span> <span class="n">return_value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+function = Mock(name=&quot;myroutine&quot;, return_value=2)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">function</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>function(1)
 </pre></div>
 </div>
 </div>
@@ -1156,7 +1156,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">function</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>function(5, &quot;hello&quot;, a=True)
 </pre></div>
 </div>
 </div>
@@ -1168,7 +1168,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">function</span><span class="o">.</span><span class="n">mock_calls</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>function.mock_calls
 </pre></div>
 </div>
 </div>
@@ -1181,8 +1181,8 @@ title="Print to PDF"
 <p>The arguments of each call can be recovered</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">mock_calls</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>name, args, kwargs = function.mock_calls[1]
+args, kwargs
 </pre></div>
 </div>
 </div>
@@ -1195,14 +1195,14 @@ title="Print to PDF"
 <p>Mock objects can return different values for each call</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;myroutine&quot;</span><span class="p">,</span> <span class="n">side_effect</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;xyz&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>function = Mock(name=&quot;myroutine&quot;, side_effect=[2, &quot;xyz&quot;])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">function</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>function(1)
 </pre></div>
 </div>
 </div>
@@ -1214,7 +1214,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>function(1, &quot;hello&quot;, {&quot;a&quot;: True})
 </pre></div>
 </div>
 </div>
@@ -1227,14 +1227,14 @@ title="Print to PDF"
 <p>We expect an error if there are no return values left in the list:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">function</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>function()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">function</span><span class="p">()</span>
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/unittest/mock.py:1081,</span> in <span class="ni">CallableMixin.__call__</span><span class="nt">(self, *args, **kwargs)</span>
@@ -1269,36 +1269,36 @@ function calls it makes to the remote resource.</p>
 <p>For example, consider the following code that downloads a map from the internet:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import requests
 
 
-<span class="k">def</span> <span class="nf">map_at</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)):</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;https://static-maps.yandex.ru/1.x/?&quot;</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">z</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span>
-        <span class="n">size</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-        <span class="n">ll</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">long</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>
-        <span class="n">l</span><span class="o">=</span><span class="s2">&quot;sat&quot;</span> <span class="k">if</span> <span class="n">satellite</span> <span class="k">else</span> <span class="s2">&quot;map&quot;</span><span class="p">,</span>
-        <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en_US&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+def map_at(lat, long, satellite=False, zoom=12, size=(400, 400)):
+    base = &quot;https://static-maps.yandex.ru/1.x/?&quot;
+    params = dict(
+        z=zoom,
+        size=str(size[0]) + &quot;,&quot; + str(size[1]),
+        ll=str(long) + &quot;,&quot; + str(lat),
+        l=&quot;sat&quot; if satellite else &quot;map&quot;,
+        lang=&quot;en_US&quot;,
+    )
+    return requests.get(base, params=params, timeout=60)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">london_map</span> <span class="o">=</span> <span class="n">map_at</span><span class="p">(</span><span class="mf">51.5073509</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1277583</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>london_map = map_at(51.5073509, -0.1277583)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">IPython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+import IPython
 
-<span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">london_map</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+IPython.core.display.Image(london_map.content)
 </pre></div>
 </div>
 </div>
@@ -1309,11 +1309,11 @@ function calls it makes to the remote resource.</p>
 <p>We would like to test that it is building the parameters correctly. We can do this by <strong>mocking</strong> the requests object. We need to temporarily replace a method in the library with a mock. We can use “patch” to do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">patch</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from unittest.mock import patch
 
-<span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">requests</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mock_get</span><span class="p">:</span>
-    <span class="n">london_map</span> <span class="o">=</span> <span class="n">map_at</span><span class="p">(</span><span class="mf">51.5073509</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1277583</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">mock_get</span><span class="o">.</span><span class="n">mock_calls</span><span class="p">)</span>
+with patch.object(requests, &quot;get&quot;) as mock_get:
+    london_map = map_at(51.5073509, -0.1277583)
+    print(mock_get.mock_calls)
 </pre></div>
 </div>
 </div>
@@ -1326,23 +1326,23 @@ function calls it makes to the remote resource.</p>
 <p>Our tests then look like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_build_default_params</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">requests</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mock_get</span><span class="p">:</span>
-        <span class="n">map_at</span><span class="p">(</span><span class="mf">51.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="n">mock_get</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span>
-            <span class="s2">&quot;https://static-maps.yandex.ru/1.x/?&quot;</span><span class="p">,</span>
-            <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-                <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="s2">&quot;400,400&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;ll&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0,51.0&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;map&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;en_US&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-            <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
-        <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def test_build_default_params():
+    with patch.object(requests, &quot;get&quot;) as mock_get:
+        map_at(51.0, 0.0)
+        mock_get.assert_called_with(
+            &quot;https://static-maps.yandex.ru/1.x/?&quot;,
+            params={
+                &quot;z&quot;: 12,
+                &quot;size&quot;: &quot;400,400&quot;,
+                &quot;ll&quot;: &quot;0.0,51.0&quot;,
+                &quot;l&quot;: &quot;map&quot;,
+                &quot;lang&quot;: &quot;en_US&quot;,
+            },
+            timeout=60,
+        )
 
 
-<span class="n">test_build_default_params</span><span class="p">()</span>
+test_build_default_params()
 </pre></div>
 </div>
 </div>
@@ -1354,12 +1354,12 @@ passing “by accident”, run the tests, then change it back!</p>
 <h2>Testing functions that call other functions<a class="headerlink" href="#testing-functions-that-call-other-functions" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">partial_derivative</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
-    <span class="n">f_x</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">at</span><span class="p">)</span>
-    <span class="n">x_plus_delta</span> <span class="o">=</span> <span class="n">at</span><span class="p">[:]</span>
-    <span class="n">x_plus_delta</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span> <span class="o">+=</span> <span class="n">delta</span>
-    <span class="n">f_x_plus_delta</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">x_plus_delta</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">f_x_plus_delta</span> <span class="o">-</span> <span class="n">f_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def partial_derivative(function, at, direction, delta=1.0):
+    f_x = function(at)
+    x_plus_delta = at[:]
+    x_plus_delta[direction] += delta
+    f_x_plus_delta = function(x_plus_delta)
+    return (f_x_plus_delta - f_x) / delta
 </pre></div>
 </div>
 </div>
@@ -1369,7 +1369,7 @@ of a vector in a particular direction.</p>
 <p>E.g.:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">partial_derivative</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>partial_derivative(sum, [0, 0, 0], 1)
 </pre></div>
 </div>
 </div>
@@ -1382,17 +1382,17 @@ of a vector in a particular direction.</p>
 <p>How do we assert that it is doing the right thing? With tests like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">MagicMock</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from unittest.mock import MagicMock
 
 
-<span class="k">def</span> <span class="nf">test_derivative_2d_y_direction</span><span class="p">():</span>
-    <span class="n">func</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-    <span class="n">partial_derivative</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">func</span><span class="o">.</span><span class="n">assert_any_call</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
-    <span class="n">func</span><span class="o">.</span><span class="n">assert_any_call</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+def test_derivative_2d_y_direction():
+    func = MagicMock()
+    partial_derivative(func, [0, 0], 1)
+    func.assert_any_call([0, 1.0])
+    func.assert_any_call([0, 0])
 
 
-<span class="n">test_derivative_2d_y_direction</span><span class="p">()</span>
+test_derivative_2d_y_direction()
 </pre></div>
 </div>
 </div>
@@ -1400,26 +1400,26 @@ of a vector in a particular direction.</p>
 <p>We made our mock a “Magic Mock” because otherwise, the mock results <code class="docutils literal notranslate"><span class="pre">f_x_plus_delta</span></code> and <code class="docutils literal notranslate"><span class="pre">f_x</span></code> can’t be subtracted:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MagicMock</span><span class="p">()</span> <span class="o">-</span> <span class="n">MagicMock</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>MagicMock() - MagicMock()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;MagicMock name=&#39;mock.__sub__()&#39; id=&#39;140628260367328&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;MagicMock name=&#39;mock.__sub__()&#39; id=&#39;140483978308816&#39;&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mock</span><span class="p">()</span> <span class="o">-</span> <span class="n">Mock</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Mock() - Mock()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Mock</span><span class="p">()</span> <span class="o">-</span> <span class="n">Mock</span><span class="p">()</span>
 
 <span class="ne">TypeError</span>: unsupported operand type(s) for -: &#39;Mock&#39; and &#39;Mock&#39;

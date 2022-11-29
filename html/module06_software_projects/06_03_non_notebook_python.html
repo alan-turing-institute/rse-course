@@ -1134,25 +1134,25 @@ title="Print to PDF"
 <p>Let’s create a file <code class="docutils literal notranslate"><span class="pre">greeter.py</span></code> with a function <code class="docutils literal notranslate"><span class="pre">greet</span></code> that prints a welcome message in multiple colours (using the <a class="reference external" href="https://pypi.org/project/colorama/"><code class="docutils literal notranslate"><span class="pre">colorama</span></code></a> package):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> greeter.py
-<span class="kn">import</span> <span class="nn">colorama</span>  <span class="c1"># used for creating coloured text</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile greeter.py
+import colorama  # used for creating coloured text
 
 
-<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">personal</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">polite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;How do you do, &quot;</span> <span class="k">if</span> <span class="n">polite</span> <span class="k">else</span> <span class="s2">&quot;Hey, &quot;</span>
-    <span class="n">greeting</span> <span class="o">=</span> <span class="n">colorama</span><span class="o">.</span><span class="n">Back</span><span class="o">.</span><span class="n">BLACK</span> <span class="o">+</span> <span class="n">colorama</span><span class="o">.</span><span class="n">Fore</span><span class="o">.</span><span class="n">YELLOW</span> <span class="o">+</span> <span class="n">greeting</span>
-    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
-        <span class="n">greeting</span> <span class="o">+=</span> <span class="n">colorama</span><span class="o">.</span><span class="n">Back</span><span class="o">.</span><span class="n">BLUE</span> <span class="o">+</span> <span class="n">colorama</span><span class="o">.</span><span class="n">Fore</span><span class="o">.</span><span class="n">WHITE</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+def greet(personal, family, title=&quot;&quot;, polite=False):
+    greeting = &quot;How do you do, &quot; if polite else &quot;Hey, &quot;
+    greeting = colorama.Back.BLACK + colorama.Fore.YELLOW + greeting
+    if title:
+        greeting += colorama.Back.BLUE + colorama.Fore.WHITE + title + &quot; &quot;
 
-    <span class="n">greeting</span> <span class="o">+=</span> <span class="p">(</span>
-        <span class="n">colorama</span><span class="o">.</span><span class="n">Back</span><span class="o">.</span><span class="n">WHITE</span>
-        <span class="o">+</span> <span class="n">colorama</span><span class="o">.</span><span class="n">Style</span><span class="o">.</span><span class="n">BRIGHT</span>
-        <span class="o">+</span> <span class="n">colorama</span><span class="o">.</span><span class="n">Fore</span><span class="o">.</span><span class="n">RED</span>
-        <span class="o">+</span> <span class="n">personal</span>
-        <span class="o">+</span> <span class="s2">&quot; &quot;</span>
-        <span class="o">+</span> <span class="n">family</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">greeting</span>
+    greeting += (
+        colorama.Back.WHITE
+        + colorama.Style.BRIGHT
+        + colorama.Fore.RED
+        + personal
+        + &quot; &quot;
+        + family
+    )
+    return greeting
 </pre></div>
 </div>
 </div>
@@ -1168,14 +1168,14 @@ title="Print to PDF"
 <p>We just wrote the file, there is no <code class="docutils literal notranslate"><span class="pre">greet</span></code> function in this notebook yet:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">greet</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Hetherington&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>greet(&quot;James&quot;, &quot;Hetherington&quot;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">greet</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Hetherington&quot;</span><span class="p">)</span>
 
 <span class="ne">NameError</span>: name &#39;greet&#39; is not defined
@@ -1186,9 +1186,9 @@ title="Print to PDF"
 <p>But we can import the functionality from <code class="docutils literal notranslate"><span class="pre">greeter.py</span></code> file that we created:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">greeter</span>  <span class="c1"># note that you don&#39;t include the .py extension</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import greeter  # note that you don&#39;t include the .py extension
 
-<span class="nb">print</span><span class="p">(</span><span class="n">greeter</span><span class="o">.</span><span class="n">greet</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Hetherington&quot;</span><span class="p">))</span>
+print(greeter.greet(&quot;James&quot;, &quot;Hetherington&quot;))
 </pre></div>
 </div>
 </div>
@@ -1201,9 +1201,9 @@ title="Print to PDF"
 <p>Or import the function from the file directly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">greeter</span> <span class="kn">import</span> <span class="n">greet</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from greeter import greet
 
-<span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Hetherington&quot;</span><span class="p">))</span>
+print(greet(&quot;James&quot;, &quot;Hetherington&quot;))
 </pre></div>
 </div>
 </div>
@@ -1216,26 +1216,26 @@ title="Print to PDF"
 <p>Note the file we created is in the same directory as this notebook:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># glob is a library for finding files that match given patterns</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># glob is a library for finding files that match given patterns
+from glob import glob
 
-<span class="c1"># all files with a .py or .ipynb extension in the current directory</span>
-<span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.py&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">)</span>
+# all files with a .py or .ipynb extension in the current directory
+glob(&quot;*.py&quot;) + glob(&quot;*.ipynb&quot;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;greeter.py&#39;,
- &#39;06_05_documentation.ipynb&#39;,
- &#39;06_02_managing_dependencies.ipynb&#39;,
- &#39;06_04_packaging.ipynb&#39;,
- &#39;06_06_software_development.ipynb&#39;,
- &#39;06_01_installing_packages.ipynb&#39;,
- &#39;06_03_non_notebook_python.ipynb&#39;,
- &#39;06_07_software_licensing.ipynb&#39;,
  &#39;06_00_libraries.ipynb&#39;,
+ &#39;06_03_non_notebook_python.ipynb&#39;,
  &#39;06_08_software_issues.ipynb&#39;,
- &#39;06_09_exercise.ipynb&#39;]
+ &#39;06_01_installing_packages.ipynb&#39;,
+ &#39;06_09_exercise.ipynb&#39;,
+ &#39;06_02_managing_dependencies.ipynb&#39;,
+ &#39;06_06_software_development.ipynb&#39;,
+ &#39;06_07_software_licensing.ipynb&#39;,
+ &#39;06_04_packaging.ipynb&#39;,
+ &#39;06_05_documentation.ipynb&#39;]
 </pre></div>
 </div>
 </div>
@@ -1249,31 +1249,31 @@ title="Print to PDF"
 <p>Here’s an example that creates a command-line interface to our <code class="docutils literal notranslate"><span class="pre">greet</span></code> function (in a file named <code class="docutils literal notranslate"><span class="pre">command.py</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> command.py
-<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile command.py
+from argparse import ArgumentParser
 
-<span class="kn">from</span> <span class="nn">greeter</span> <span class="kn">import</span> <span class="n">greet</span>
-
-
-<span class="k">def</span> <span class="nf">process</span><span class="p">():</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Generate appropriate greetings&quot;</span><span class="p">)</span>
-
-    <span class="c1"># required (positional) arguments</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;personal&quot;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">)</span>
-
-    <span class="c1"># optional (keyword) arguments</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--title&quot;</span><span class="p">,</span> <span class="s2">&quot;-t&quot;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--polite&quot;</span><span class="p">,</span> <span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">)</span>
-    <span class="c1">#   polite will be false unless &quot;--polite&quot; or &quot;-p&quot; given at command-line</span>
-
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">personal</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">family</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">polite</span><span class="p">))</span>
+from greeter import greet
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">process</span><span class="p">()</span>
+def process():
+    parser = ArgumentParser(description=&quot;Generate appropriate greetings&quot;)
+
+    # required (positional) arguments
+    parser.add_argument(&quot;personal&quot;)
+    parser.add_argument(&quot;family&quot;)
+
+    # optional (keyword) arguments
+    parser.add_argument(&quot;--title&quot;, &quot;-t&quot;)
+    parser.add_argument(&quot;--polite&quot;, &quot;-p&quot;, action=&quot;store_true&quot;)
+    #   polite will be false unless &quot;--polite&quot; or &quot;-p&quot; given at command-line
+
+    args = parser.parse_args()
+
+    print(greet(args.personal, args.family, args.title, args.polite))
+
+
+if __name__ == &quot;__main__&quot;:
+    process()
 </pre></div>
 </div>
 </div>
@@ -1287,7 +1287,7 @@ title="Print to PDF"
 <p><code class="docutils literal notranslate"><span class="pre">argparse</span></code> generates some documentation to help us understand how to use it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 python command.py --help
 </pre></div>
 </div>
@@ -1334,7 +1334,7 @@ python command.py --help
 <p>A few examples:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 python command.py James Hetherington
 </pre></div>
 </div>
@@ -1347,7 +1347,7 @@ python command.py James Hetherington
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 python command.py --polite James Hetherington
 </pre></div>
 </div>
@@ -1360,7 +1360,7 @@ python command.py --polite James Hetherington
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 python command.py James Hetherington --title Dr
 </pre></div>
 </div>
@@ -1379,16 +1379,16 @@ python command.py James Hetherington --title Dr
 <p>Let’s create a simplified version of <code class="docutils literal notranslate"><span class="pre">greeter.py</span></code> that prints the name of the special <code class="docutils literal notranslate"><span class="pre">__name__</span></code> variable when it is called:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> greeter.py
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;executing greeter.py, __name__ is&quot;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile greeter.py
+print(&quot;executing greeter.py, __name__ is&quot;, __name__)
 
 
-<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">personal</span><span class="p">,</span> <span class="n">family</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;Hey, &quot;</span> <span class="o">+</span> <span class="n">personal</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">family</span>
+def greet(personal, family):
+    return &quot;Hey, &quot; + personal + &quot; &quot; + family
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">(</span><span class="s2">&quot;Laura&quot;</span><span class="p">,</span> <span class="s2">&quot;Greeter&quot;</span><span class="p">))</span>
+if __name__ == &quot;__main__&quot;:
+    print(greet(&quot;Laura&quot;, &quot;Greeter&quot;))
 </pre></div>
 </div>
 </div>
@@ -1401,7 +1401,7 @@ python command.py James Hetherington --title Dr
 <p>If we invoke <code class="docutils literal notranslate"><span class="pre">greeter.py</span></code> directly, Python sets the value of <code class="docutils literal notranslate"><span class="pre">__name__</span></code> to <code class="docutils literal notranslate"><span class="pre">&quot;__main__&quot;</span></code> and the code in the if block runs:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 python greeter.py
 </pre></div>
 </div>
@@ -1418,23 +1418,23 @@ python greeter.py
 <p>Now let’s create a simplified <code class="docutils literal notranslate"><span class="pre">command.py</span></code> that also prints <code class="docutils literal notranslate"><span class="pre">__name__</span></code>, and imports the <code class="docutils literal notranslate"><span class="pre">greet</span></code> function from <code class="docutils literal notranslate"><span class="pre">greeter.py</span></code> as before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> command.py
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;executing command.py, __name__ is&quot;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile command.py
+print(&quot;executing command.py, __name__ is&quot;, __name__)
 
-<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
-<span class="kn">from</span> <span class="nn">greeter</span> <span class="kn">import</span> <span class="n">greet</span>
-
-
-<span class="k">def</span> <span class="nf">process</span><span class="p">():</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Generate appropriate greetings&quot;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;personal&quot;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">personal</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">family</span><span class="p">))</span>
+from argparse import ArgumentParser
+from greeter import greet
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">process</span><span class="p">()</span>
+def process():
+    parser = ArgumentParser(description=&quot;Generate appropriate greetings&quot;)
+    parser.add_argument(&quot;personal&quot;)
+    parser.add_argument(&quot;family&quot;)
+    args = parser.parse_args()
+    print(greet(args.personal, args.family))
+
+
+if __name__ == &quot;__main__&quot;:
+    process()
 </pre></div>
 </div>
 </div>
@@ -1447,7 +1447,7 @@ python greeter.py
 <p>And run the command script:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 python command.py Sarah Command
 </pre></div>
 </div>

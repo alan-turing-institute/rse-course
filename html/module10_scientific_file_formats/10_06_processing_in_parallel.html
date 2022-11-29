@@ -1119,20 +1119,20 @@ One such implementation is <em>Apache Hadoop</em> <a class="reference external" 
 <p>First we write a mapper function that takes a single filename as input, and outputs a sorted list of <code class="docutils literal notranslate"><span class="pre">{word:[1]}</span></code> dicts:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mapper</span><span class="p">(</span><span class="n">input_filename</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">:</span>
-        <span class="c1"># split the text on spaces</span>
-        <span class="n">words</span> <span class="o">=</span> <span class="n">inputfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-        <span class="c1"># use list comprehension to output a list of {word: [1]} dicts</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="p">[{</span><span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="p">)]</span>
-        <span class="k">return</span> <span class="n">output</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mapper(input_filename):
+    with open(input_filename) as inputfile:
+        # split the text on spaces
+        words = inputfile.read().split(&quot; &quot;)
+        # use list comprehension to output a list of {word: [1]} dicts
+        output = [{word.strip(): [1]} for word in sorted(words)]
+        return output
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mapper</span><span class="p">(</span><span class="s2">&quot;text_sample_0.txt&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mapper(&quot;text_sample_0.txt&quot;)
 </pre></div>
 </div>
 </div>
@@ -1156,21 +1156,21 @@ One such implementation is <em>Apache Hadoop</em> <a class="reference external" 
 <p>The next step is to <em>shuffle</em>, bringing together all the items in the mapper output with the same key, so that each key’s data can be sent to a different <em>reducer</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">shuffler</span><span class="p">(</span><span class="n">word_dicts</span><span class="p">):</span>
-    <span class="n">output_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">word_dict</span> <span class="ow">in</span> <span class="n">word_dicts</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">word_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">output_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="n">output_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">output_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span>
-    <span class="k">return</span> <span class="p">[{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">output_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def shuffler(word_dicts):
+    output_dict = {}
+    for word_dict in word_dicts:
+        for k, v in word_dict.items():
+            if not k in output_dict.keys():
+                output_dict[k] = []
+            output_dict[k] += v
+    return [{k: v} for k, v in output_dict.items()]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shuffler</span><span class="p">(</span><span class="n">mapper</span><span class="p">(</span><span class="s2">&quot;text_sample_0.txt&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>shuffler(mapper(&quot;text_sample_0.txt&quot;))
 </pre></div>
 </div>
 </div>
@@ -1189,15 +1189,15 @@ One such implementation is <em>Apache Hadoop</em> <a class="reference external" 
 <p>The <em>reducer</em> in this case is very simple - given a key (which is a word), and a value (which is a list <code class="docutils literal notranslate"><span class="pre">[1,1,1,...]</span></code>) sum up the values of the list to return a single value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reducer</span><span class="p">(</span><span class="n">word_dict</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">word_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def reducer(word_dict):
+    return {k: sum(v) for k, v in word_dict.items()}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reducer</span><span class="p">({</span><span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>reducer({&quot;best&quot;: [1, 1]})
 </pre></div>
 </div>
 </div>
@@ -1209,24 +1209,24 @@ One such implementation is <em>Apache Hadoop</em> <a class="reference external" 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Map over each input file, locally on the machine where that file is</span>
-<span class="n">input_files</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;text_sample_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.txt&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
-<span class="n">mapped_data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">input_files</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Map over each input file, locally on the machine where that file is
+input_files = [f&quot;text_sample_{i}.txt&quot; for i in range(7)]
+mapped_data = map(mapper, input_files)
 
-<span class="c1"># Shuffle the data, changing from a distribution where every machine has all the data</span>
-<span class="c1"># for a single input file, to one in which every machine has all the data for a single</span>
-<span class="c1"># word. This is the only part that would cause inter-machine data-moving if run on a</span>
-<span class="c1"># cluster/grid.</span>
-<span class="c1"># First run the shuffler locally on each machine...</span>
-<span class="n">shuffle_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">shuffler</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="k">for</span> <span class="n">md</span> <span class="ow">in</span> <span class="n">mapped_data</span><span class="p">]</span>
-<span class="c1"># ... and then again to bring the outputs from the different mapper processes together.</span>
-<span class="n">shuffle_outputs</span> <span class="o">=</span> <span class="n">shuffler</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">shuffle_outputs</span><span class="p">,</span> <span class="p">[]))</span>
+# Shuffle the data, changing from a distribution where every machine has all the data
+# for a single input file, to one in which every machine has all the data for a single
+# word. This is the only part that would cause inter-machine data-moving if run on a
+# cluster/grid.
+# First run the shuffler locally on each machine...
+shuffle_outputs = [shuffler(md) for md in mapped_data]
+# ... and then again to bring the outputs from the different mapper processes together.
+shuffle_outputs = shuffler(sum(shuffle_outputs, []))
 
-<span class="c1"># Each machine can then run the reduction operation locally on the data that it has</span>
-<span class="c1"># post-shuffle. In our case each machine takes care of summing up the subcounts for</span>
-<span class="c1"># some subset of words.</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">reducer</span><span class="p">(</span><span class="n">word_dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">word_dict</span> <span class="ow">in</span> <span class="n">shuffle_outputs</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+# Each machine can then run the reduction operation locally on the data that it has
+# post-shuffle. In our case each machine takes care of summing up the subcounts for
+# some subset of words.
+counts = [reducer(word_dict) for word_dict in shuffle_outputs]
+print(counts)
 </pre></div>
 </div>
 </div>
@@ -1260,18 +1260,18 @@ One of the tricks to facilitate this is “lazy evaluation” - when the code is
 Let’s use our “match_results.csv” for input again:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import dask.dataframe as dd
+import numpy as np
+import pandas as pd
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;match_results.csv&quot;</span><span class="p">)</span>
-<span class="n">ddf</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">npartitions</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ddf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.read_csv(&quot;match_results.csv&quot;)
+ddf = dd.from_pandas(df, npartitions=10)
+ddf
 </pre></div>
 </div>
 </div>
@@ -1394,7 +1394,7 @@ Let’s use our “match_results.csv” for input again:</p>
 <p>The <em>Dask</em> dataframe has 10 partitions, meaning that the 44k rows in the original csv are now divided into 10 batches of about 4.4k rows each.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ddf</span><span class="o">.</span><span class="n">divisions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ddf.divisions
 </pre></div>
 </div>
 </div>
@@ -1408,7 +1408,7 @@ Let’s use our “match_results.csv” for input again:</p>
 For example, if we want to calculate the average of the “home_score” column, in <em>pandas</em> we can do:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">home_score</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.home_score.values.mean()
 </pre></div>
 </div>
 </div>
@@ -1421,7 +1421,7 @@ For example, if we want to calculate the average of the “home_score” column,
 <p>If we do the same in our <em>Dask</em> dataframe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ddf</span><span class="o">.</span><span class="n">home_score</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ddf.home_score.values.mean()
 </pre></div>
 </div>
 </div>
@@ -1471,7 +1471,7 @@ For example, if we want to calculate the average of the “home_score” column,
 In order to actually run the calculation, we need to add <code class="docutils literal notranslate"><span class="pre">compute()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ddf</span><span class="o">.</span><span class="n">home_score</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ddf.home_score.values.mean().compute()
 </pre></div>
 </div>
 </div>
@@ -1487,26 +1487,26 @@ We have columns in the dataset for “home_team”, “away_team” etc., but so
 Having done that, we can just calculate the number of matches that the home team won, minus the number that the home team lost.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">home_team_wins</span><span class="p">(</span><span class="n">home_score</span><span class="p">,</span> <span class="n">away_score</span><span class="p">,</span> <span class="n">neutral</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">neutral</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">if</span> <span class="n">home_score</span> <span class="o">&gt;</span> <span class="n">away_score</span><span class="p">:</span>  <span class="c1"># home win</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">elif</span> <span class="n">home_score</span> <span class="o">&lt;</span> <span class="n">away_score</span><span class="p">:</span>  <span class="c1"># away win</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>  <span class="c1"># draw</span>
-        <span class="k">return</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def home_team_wins(home_score, away_score, neutral):
+    if neutral:
+        return 0
+    if home_score &gt; away_score:  # home win
+        return 1
+    elif home_score &lt; away_score:  # away win
+        return -1
+    else:  # draw
+        return 0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ddf</span><span class="p">[</span><span class="s2">&quot;home_win&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-    <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">home_team_wins</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;home_score&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;away_score&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;neutral&quot;</span><span class="p">]),</span>
-    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">ddf</span><span class="p">[</span><span class="s2">&quot;home_win&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ddf[&quot;home_win&quot;] = df.apply(
+    lambda row: home_team_wins(row[&quot;home_score&quot;], row[&quot;away_score&quot;], row[&quot;neutral&quot;]),
+    axis=1,
+)
+result = ddf[&quot;home_win&quot;].values.sum()
 </pre></div>
 </div>
 </div>
@@ -1520,23 +1520,19 @@ Either way, we do this by creating an instance of the <code class="docutils lite
 <p>There are instructions on setting up a Dask cluster here: <a class="reference external" href="https://docs.dask.org/en/stable/deploying.html">https://docs.dask.org/en/stable/deploying.html</a> but for now, let’s just run on our local machine, with a local scheduler.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from dask.distributed import Client
 
-<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>  <span class="c1"># or Client(&quot;&lt;scheduler URL&gt;&quot;) for remote cluster</span>
-<span class="n">client</span>
+client = Client()  # or Client(&quot;&lt;scheduler URL&gt;&quot;) for remote cluster
+client
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:41,863 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/tmp/dask-worker-space/worker-_hzji05s&#39;, purging
-2022-11-16 13:21:41,864 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/tmp/dask-worker-space/worker-whp3j1vv&#39;, purging
-</pre></div>
-</div>
 <div class="output text_html"><div>
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-9b5ed373-65b1-11ed-8877-15948c0a5761</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-dc0080ab-6f7e-11ed-8732-aff239ce555b</p>
         <table style="width: 100%; text-align: left;">
 
         <tr>
@@ -1558,6 +1554,8 @@ Either way, we do this by creating an instance of the <code class="docutils lite
         </table>
 
 
+
+
             <details>
             <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
             <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
@@ -1565,7 +1563,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">36221a09</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">c632d4a9</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
@@ -1602,11 +1600,11 @@ Either way, we do this by creating an instance of the <code class="docutils lite
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-9cf1d7b7-212b-4dc8-a4a1-7cfa560d6d9a</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-3d43a50d-da35-4b9d-a681-afc6dd4c4e1b</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:42977
+                        <strong>Comm:</strong> tcp://127.0.0.1:42791
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 2
@@ -1648,7 +1646,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:37541
+                            <strong>Comm: </strong> tcp://127.0.0.1:44371
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -1656,7 +1654,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:32855/status" target="_blank">http://127.0.0.1:32855/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:45971/status" target="_blank">http://127.0.0.1:45971/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.39 GiB
@@ -1664,13 +1662,13 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:42443
+                            <strong>Nanny: </strong> tcp://127.0.0.1:46143
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-svtx71oq
+                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-fblh58fw
                         </td>
                     </tr>
 
@@ -1693,7 +1691,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:42621
+                            <strong>Comm: </strong> tcp://127.0.0.1:34101
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -1701,7 +1699,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:38109/status" target="_blank">http://127.0.0.1:38109/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:41021/status" target="_blank">http://127.0.0.1:41021/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.39 GiB
@@ -1709,13 +1707,13 @@ Either way, we do this by creating an instance of the <code class="docutils lite
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:40911
+                            <strong>Nanny: </strong> tcp://127.0.0.1:32931
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-2jhfj3m4
+                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-ah413hbx
                         </td>
                     </tr>
 
@@ -1745,7 +1743,7 @@ Either way, we do this by creating an instance of the <code class="docutils lite
 <p>Once we have created a client, whenever we call <code class="docutils literal notranslate"><span class="pre">compute()</span></code> it will run on the scheduler that the client points to (in this case a local scheduler</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result.compute()
 </pre></div>
 </div>
 </div>

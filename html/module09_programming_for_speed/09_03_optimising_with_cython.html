@@ -1164,29 +1164,29 @@ title="Print to PDF"
 <h3>Pure python Mandelbrot set:<a class="headerlink" href="#pure-python-mandelbrot-set" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
-<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
-<span class="n">xmax</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
-<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
-<span class="n">ystep</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
-<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ymin</span> <span class="o">+</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
+ymin = -1.0
+xmax = 0.5
+ymax = 1.0
+resolution = 300
+xstep = (xmax - xmin) / resolution
+ystep = (ymax - ymin) / resolution
+xs = [(xmin + (xmax - xmin) * i / resolution) for i in range(resolution)]
+ys = [(ymin + (ymax - ymin) * i / resolution) for i in range(resolution)]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">position</span>
-    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">limit</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">position</span>
-        <span class="k">if</span> <span class="n">limit</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">limit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(position, limit=50):
+    value = position
+    while abs(value) &lt; 2:
+        limit -= 1
+        value = value**2 + position
+        if limit &lt; 0:
+            return 0
+    return limit
 </pre></div>
 </div>
 </div>
@@ -1196,14 +1196,14 @@ title="Print to PDF"
 <h3>Compiled by Cython:<a class="headerlink" href="#compiled-by-cython" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> Cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext Cython
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
 
 def mandel_cython(position, limit=50):
     value = position
@@ -1220,23 +1220,23 @@ def mandel_cython(position, limit=50):
 <p>Let’s verify the result</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_python</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
-<span class="n">data_cython</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel_cython</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_python = [[mandel(complex(x, y)) for x in xs] for y in ys]
+data_cython = [[mandel_cython(complex(x, y)) for x in xs] for y in ys]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from matplotlib import pyplot as plt
 
-<span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s2">&quot;cividis&quot;</span><span class="p">)</span>  <span class="c1"># use a CVD-friendly palette</span>
+plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
 
-<span class="n">f</span><span class="p">,</span> <span class="n">axarr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_python</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
-<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Pure Python&quot;</span><span class="p">)</span>
-<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_cython</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
-<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cython&quot;</span><span class="p">)</span>
+f, axarr = plt.subplots(1, 2)
+axarr[0].imshow(data_python, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
+axarr[0].set_title(&quot;Pure Python&quot;)
+axarr[1].imshow(data_cython, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
+axarr[1].set_title(&quot;Cython&quot;)
 </pre></div>
 </div>
 </div>
@@ -1252,16 +1252,16 @@ def mandel_cython(position, limit=50):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> [[mandel(complex(x,y)) for x in xs] for y in ys] # pure python
-<span class="o">%</span><span class="k">timeit</span> [[mandel_cython(complex(x,y)) for x in xs] for y in ys] # cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit [[mandel(complex(x,y)) for x in xs] for y in ys] # pure python
+%timeit [[mandel_cython(complex(x,y)) for x in xs] for y in ys] # cython
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>726 ms ± 883 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>620 ms ± 1.01 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>538 ms ± 3.11 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>456 ms ± 2.35 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -1274,7 +1274,7 @@ def mandel_cython(position, limit=50):
 <p><em>typed variable</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
 def var_typed_mandel_cython(position, limit=50):
     cdef double complex value # typed variable
     value = position
@@ -1291,7 +1291,7 @@ def var_typed_mandel_cython(position, limit=50):
 <p><em>typed function + typed variable</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
 cpdef call_typed_mandel_cython(double complex position, int limit=50): # typed function
     cdef double complex value # typed variable
     value = position
@@ -1308,52 +1308,52 @@ cpdef call_typed_mandel_cython(double complex position, int limit=50): # typed f
 <p>performance of one number:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pure python</span>
-<span class="o">%</span><span class="k">timeit</span> a = mandel(complex(0, 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># pure python
+%timeit a = mandel(complex(0, 0))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.7 µs ± 11.1 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.2 µs ± 63 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># primitive cython</span>
-<span class="o">%</span><span class="k">timeit</span> a = mandel_cython(complex(0, 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># primitive cython
+%timeit a = mandel_cython(complex(0, 0))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.3 µs ± 16.3 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.71 µs ± 1.57 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cython with C type variable</span>
-<span class="o">%</span><span class="k">timeit</span> a = var_typed_mandel_cython(complex(0, 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># cython with C type variable
+%timeit a = var_typed_mandel_cython(complex(0, 0))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.4 µs ± 11.8 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.35 µs ± 4.24 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cython with typed variable + function</span>
-<span class="o">%</span><span class="k">timeit</span> a = call_typed_mandel_cython(complex(0, 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># cython with typed variable + function
+%timeit a = call_typed_mandel_cython(complex(0, 0))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>797 ns ± 3.15 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>686 ns ± 0.11 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1364,17 +1364,17 @@ cpdef call_typed_mandel_cython(double complex position, int limit=50): # typed f
 <p>You can use NumPy from Cython exactly the same as in regular Python, but by doing so you are losing potentially high speedups because Cython has support for fast access to NumPy arrays.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
 
-<span class="n">ymatrix</span><span class="p">,</span> <span class="n">xmatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">:</span><span class="n">ystep</span><span class="p">,</span> <span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="p">:</span><span class="n">xstep</span><span class="p">]</span>
-<span class="n">values</span> <span class="o">=</span> <span class="n">xmatrix</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ymatrix</span>
+ymatrix, xmatrix = np.mgrid[ymin:ymax:ystep, xmin:xmax:xstep]
+values = xmatrix + 1j * ymatrix
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
 import numpy as np
 cimport numpy as np 
 
@@ -1408,36 +1408,36 @@ cpdef numpy_cython_1(np.ndarray[double complex, ndim=2] position, int limit=50):
 <p>Note the double import of numpy: the standard numpy module and a Cython-enabled version of numpy that ensures fast indexing of and other operations on arrays. <strong>Both import statements are necessary</strong> in code that uses numpy arrays. The new thing in the code above is declaration of arrays by np.ndarray.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> data_python = [mandel(value) for row in values for value in row] # pure python
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit data_python = [mandel(value) for row in values for value in row] # pure python
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>727 ms ± 1.18 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>591 ms ± 1.88 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> data_cython = [call_typed_mandel_cython(value) for row in values for value in row] # typed cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit data_cython = [call_typed_mandel_cython(value) for row in values for value in row] # typed cython
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>47.6 ms ± 996 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41 ms ± 856 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> data_numpy_cython = numpy_cython_1(values) # ndarray
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit data_numpy_cython = numpy_cython_1(values) # ndarray
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33.5 ms ± 304 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29.7 ms ± 26.1 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1446,19 +1446,19 @@ cpdef numpy_cython_1(np.ndarray[double complex, ndim=2] position, int limit=50):
 Note that this is no faster than explicitly writing the vectorised version of the function yourself, as we can see below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy_cython_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">call_typed_mandel_cython</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>numpy_cython_2 = np.vectorize(call_typed_mandel_cython)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> numpy_cython_2(values) #  vectorize
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit numpy_cython_2(values) #  vectorize
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>44.2 ms ± 105 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>37.3 ms ± 25.8 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1471,7 +1471,7 @@ Note that this is no faster than explicitly writing the vectorised version of th
 <h4>Example: compare <code class="docutils literal notranslate"><span class="pre">sin()</span></code> from Python and C library<a class="headerlink" href="#example-compare-sin-from-python-and-c-library" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
 import math
 cpdef py_sin():
     cdef int x
@@ -1484,7 +1484,7 @@ cpdef py_sin():
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
 from libc.math cimport sin as csin # import from C library
 cpdef c_sin():
     cdef int x
@@ -1497,36 +1497,36 @@ cpdef c_sin():
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> [math.sin(i) for i in range(int(1e7))] # python
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit [math.sin(i) for i in range(int(1e7))] # python
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.22 s ± 2.5 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.64 s ± 1.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> py_sin()                                # cython call python library
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit py_sin()                                # cython call python library
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.28 s ± 1.23 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>919 ms ± 15.3 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> c_sin()                                 # cython call C library
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit c_sin()                                 # cython call C library
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.2 ms ± 7.98 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.69 ms ± 905 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>

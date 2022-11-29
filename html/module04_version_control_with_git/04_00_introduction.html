@@ -1352,7 +1352,7 @@ This is the convention used in this file, too.</p>
 <p>If you are running the notebook on windows you’ll have to use %%cmd.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 echo some output
 </pre></div>
 </div>
@@ -1367,8 +1367,8 @@ echo some output
 <p>In this document, we will show the new content of an edited document like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> somefile.md
-<span class="n">Some</span> <span class="n">content</span> <span class="n">here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile somefile.md
+Some content here
 </pre></div>
 </div>
 </div>
@@ -1384,7 +1384,7 @@ echo some output
 <h2>Setting up somewhere to work<a class="headerlink" href="#setting-up-somewhere-to-work" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 rm -rf learning_git/git_example # Just in case it&#39;s left over from a previous class; you won&#39;t need this
 mkdir -p learning_git/git_example
 cd learning_git/git_example
@@ -1395,10 +1395,10 @@ cd learning_git/git_example
 <p>I just need to move this Jupyter notebook’s current directory as well:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
 
-<span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">top_dir</span>
+top_dir = os.getcwd()
+top_dir
 </pre></div>
 </div>
 </div>
@@ -1410,8 +1410,8 @@ cd learning_git/git_example
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
-<span class="n">git_dir</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>git_dir = os.path.join(top_dir, &quot;learning_git&quot;)
+git_dir
 </pre></div>
 </div>
 </div>
@@ -1423,14 +1423,14 @@ cd learning_git/git_example
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>working_dir = os.path.join(git_dir, &quot;git_example&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>os.chdir(working_dir)
 </pre></div>
 </div>
 </div>
@@ -1450,7 +1450,7 @@ git config --global user.email <span class="s2">&quot;yourname@example.com&quot;
 <p>Now check that this worked</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git config --get user.name
 </pre></div>
 </div>
@@ -1463,7 +1463,7 @@ git config --get user.name
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git config --get user.email
 </pre></div>
 </div>
@@ -1480,7 +1480,7 @@ git config --get user.email
 <p>Now, we will tell Git to track the content of this folder as a git “repository”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 pwd # Note where we are standing-- MAKE SURE YOU INITIALISE THE RIGHT FOLDER
 git init --initial-branch=main
 </pre></div>
@@ -1498,7 +1498,7 @@ git init --initial-branch=main
 <p>As yet, this repository contains no files:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 ls
 </pre></div>
 </div>
@@ -1506,7 +1506,7 @@ ls
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git status
 </pre></div>
 </div>

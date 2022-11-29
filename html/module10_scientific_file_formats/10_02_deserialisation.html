@@ -1108,96 +1108,96 @@ title="Print to PDF"
 <p>We’re going to slightly modify our previous model and look at how to serialise it to YAML.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Element:
+    def __init__(self, symbol):
+        self.symbol = symbol
 
 
-<span class="k">class</span> <span class="nc">Molecule</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from element to number of that element in the molecule</span>
+class Molecule:
+    def __init__(self):
+        self.elements = {}  # Map from element to number of that element in the molecule
 
-    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">number</span>
+    def add_element(self, element, number):
+        self.elements[element] = number
 
-    <span class="k">def</span> <span class="nf">to_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span><span class="p">:</span> <span class="n">number</span> <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-
-
-<span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from reactants to stoichiometries</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from products to stoichiometries</span>
-
-    <span class="k">def</span> <span class="nf">add_reactant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">[</span><span class="n">reactant</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
-
-    <span class="k">def</span> <span class="nf">add_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
-
-    <span class="k">def</span> <span class="nf">to_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">],</span>
-            <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">],</span>
-            <span class="s2">&quot;stoichiometries&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-            <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
-        <span class="p">}</span>
+    def to_struct(self):
+        return {element.symbol: number for element, number in self.elements.items()}
 
 
-<span class="k">class</span> <span class="nc">System</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="p">[]</span>
+class Reaction:
+    def __init__(self):
+        self.reactants = {}  # Map from reactants to stoichiometries
+        self.products = {}  # Map from products to stoichiometries
 
-    <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaction</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reaction</span><span class="p">)</span>
+    def add_reactant(self, reactant, stoichiometry):
+        self.reactants[reactant] = stoichiometry
 
-    <span class="k">def</span> <span class="nf">to_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">]</span>
+    def add_product(self, product, stoichiometry):
+        self.products[product] = stoichiometry
+
+    def to_struct(self):
+        return {
+            &quot;reactants&quot;: [x.to_struct() for x in self.reactants],
+            &quot;products&quot;: [x.to_struct() for x in self.products],
+            &quot;stoichiometries&quot;: list(self.reactants.values())
+            + list(self.products.values()),
+        }
+
+
+class System:
+    def __init__(self):
+        self.reactions = []
+
+    def add_reaction(self, reaction):
+        self.reactions.append(reaction)
+
+    def to_struct(self):
+        return [x.to_struct() for x in self.reactions]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
-<span class="n">o</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>c = Element(&quot;C&quot;)
+o = Element(&quot;O&quot;)
+h = Element(&quot;H&quot;)
 
-<span class="n">co2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
-<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+co2 = Molecule()
+co2.add_element(c, 1)
+co2.add_element(o, 2)
 
-<span class="n">h2o</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
-<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+h2o = Molecule()
+h2o.add_element(h, 2)
+h2o.add_element(o, 1)
 
-<span class="n">o2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
-<span class="n">o2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+o2 = Molecule()
+o2.add_element(o, 2)
 
-<span class="n">h2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
-<span class="n">h2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+h2 = Molecule()
+h2.add_element(h, 2)
 
-<span class="n">glucose</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+glucose = Molecule()
+glucose.add_element(c, 6)
+glucose.add_element(h, 12)
+glucose.add_element(o, 6)
 
-<span class="n">combustion_glucose</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">glucose</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">co2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+combustion_glucose = Reaction()
+combustion_glucose.add_reactant(glucose, 1)
+combustion_glucose.add_reactant(o2, 6)
+combustion_glucose.add_product(co2, 6)
+combustion_glucose.add_product(h2o, 6)
 
-<span class="n">combustion_hydrogen</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+combustion_hydrogen = Reaction()
+combustion_hydrogen.add_reactant(h2, 2)
+combustion_hydrogen.add_reactant(o2, 1)
+combustion_hydrogen.add_product(h2o, 2)
 
-<span class="n">s</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
-<span class="n">s</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">combustion_glucose</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">combustion_hydrogen</span><span class="p">)</span>
+s = System()
+s.add_reaction(combustion_glucose)
+s.add_reaction(combustion_hydrogen)
 
-<span class="n">s</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span>
+s.to_struct()
 </pre></div>
 </div>
 </div>
@@ -1214,9 +1214,9 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import yaml
 
-<span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()))</span>
+print(yaml.dump(s.to_struct()))
 </pre></div>
 </div>
 </div>
@@ -1261,50 +1261,50 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">YamlDeSerialisingSystem</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class YamlDeSerialisingSystem:
+    def __init__(self):
+        self.elements = {}
+        self.molecules = {}
 
-    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidate</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">candidate</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span>
+    def add_element(self, candidate):
+        if candidate not in self.elements:
+            self.elements[candidate] = Element(candidate)
+        return self.elements[candidate]
 
-    <span class="k">def</span> <span class="nf">add_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidate</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">candidate</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
-            <span class="n">m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">candidate</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">m</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">symbol</span><span class="p">),</span> <span class="n">number</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">candidate</span><span class="o">.</span><span class="n">items</span><span class="p">())]</span> <span class="o">=</span> <span class="n">m</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">candidate</span><span class="o">.</span><span class="n">items</span><span class="p">())]</span>
+    def add_molecule(self, candidate):
+        if tuple(candidate.items()) not in self.molecules:
+            m = Molecule()
+            for symbol, number in candidate.items():
+                m.add_element(self.add_element(symbol), number)
+            self.molecules[tuple(candidate.items())] = m
+        return self.molecules[tuple(candidate.items())]
 
-    <span class="k">def</span> <span class="nf">parse_system</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system_dict</span><span class="p">):</span>
-        <span class="n">system</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">system_dict</span><span class="p">:</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
-            <span class="n">stoichiometries</span> <span class="o">=</span> <span class="n">reaction</span><span class="p">[</span><span class="s2">&quot;stoichiometries&quot;</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="p">[</span><span class="s2">&quot;reactants&quot;</span><span class="p">]:</span>
-                <span class="n">r</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="p">),</span> <span class="n">stoichiometries</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="p">[</span><span class="s2">&quot;products&quot;</span><span class="p">]:</span>
-                <span class="n">r</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="p">),</span> <span class="n">stoichiometries</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-            <span class="n">system</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">system</span>
+    def parse_system(self, system_dict):
+        system = System()
+        for reaction in system_dict:
+            r = Reaction()
+            stoichiometries = reaction[&quot;stoichiometries&quot;]
+            for molecule in reaction[&quot;reactants&quot;]:
+                r.add_reactant(self.add_molecule(molecule), stoichiometries.pop(0))
+            for molecule in reaction[&quot;products&quot;]:
+                r.add_product(self.add_molecule(molecule), stoichiometries.pop(0))
+            system.add_reaction(r)
+        return system
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">de_serialiser</span> <span class="o">=</span> <span class="n">YamlDeSerialisingSystem</span><span class="p">()</span>
-<span class="n">round_trip</span> <span class="o">=</span> <span class="n">de_serialiser</span><span class="o">.</span><span class="n">parse_system</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">to_struct</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>de_serialiser = YamlDeSerialisingSystem()
+round_trip = de_serialiser.parse_system(s.to_struct())
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">round_trip</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>round_trip.to_struct()
 </pre></div>
 </div>
 </div>
@@ -1321,37 +1321,37 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">de_serialiser</span><span class="o">.</span><span class="n">elements</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>de_serialiser.elements
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C&#39;: &lt;__main__.Element at 0x7f38109a19d0&gt;,
- &#39;H&#39;: &lt;__main__.Element at 0x7f38109f0d30&gt;,
- &#39;O&#39;: &lt;__main__.Element at 0x7f38109f0520&gt;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C&#39;: &lt;__main__.Element at 0x7fe1fc6a9a90&gt;,
+ &#39;H&#39;: &lt;__main__.Element at 0x7fe1fc6a9730&gt;,
+ &#39;O&#39;: &lt;__main__.Element at 0x7fe1fc6a9ac0&gt;}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">de_serialiser</span><span class="o">.</span><span class="n">molecules</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>de_serialiser.molecules
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{((&#39;C&#39;, 6), (&#39;H&#39;, 12), (&#39;O&#39;, 6)): &lt;__main__.Molecule at 0x7f38109a1f40&gt;,
- ((&#39;O&#39;, 2),): &lt;__main__.Molecule at 0x7f38109f0310&gt;,
- ((&#39;C&#39;, 1), (&#39;O&#39;, 2)): &lt;__main__.Molecule at 0x7f38109f03d0&gt;,
- ((&#39;H&#39;, 2), (&#39;O&#39;, 1)): &lt;__main__.Molecule at 0x7f38109f0340&gt;,
- ((&#39;H&#39;, 2),): &lt;__main__.Molecule at 0x7f381092dac0&gt;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{((&#39;C&#39;, 6), (&#39;H&#39;, 12), (&#39;O&#39;, 6)): &lt;__main__.Molecule at 0x7fe1fc6a9700&gt;,
+ ((&#39;O&#39;, 2),): &lt;__main__.Molecule at 0x7fe1fc6a9a00&gt;,
+ ((&#39;C&#39;, 1), (&#39;O&#39;, 2)): &lt;__main__.Molecule at 0x7fe1fc6a9a60&gt;,
+ ((&#39;H&#39;, 2), (&#39;O&#39;, 1)): &lt;__main__.Molecule at 0x7fe1fc6fdd60&gt;,
+ ((&#39;H&#39;, 2),): &lt;__main__.Molecule at 0x7fe1fc6fd490&gt;}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">round_trip</span><span class="o">.</span><span class="n">reactions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(round_trip.reactions[0].reactants.keys())[1].to_struct()
 </pre></div>
 </div>
 </div>
@@ -1363,7 +1363,7 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">round_trip</span><span class="o">.</span><span class="n">reactions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(round_trip.reactions[1].reactants.keys())[1].to_struct()
 </pre></div>
 </div>
 </div>
@@ -1377,7 +1377,7 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 <p>Effectively, we ended up choosing primary keys for our datatypes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">de_serialiser</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(de_serialiser.molecules.keys())
 </pre></div>
 </div>
 </div>
@@ -1399,72 +1399,72 @@ sensible, is horribly <strong>non-normal</strong>.</p>
 <p>To make this structure easier to de-serialise, we can make a normalised file-format, by defining primary keys (hashable types) for each entity on write:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">YamlSavingSystem</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class YamlSavingSystem:
+    def __init__(self):
+        self.elements = set()
+        self.molecules = set()
 
-    <span class="k">def</span> <span class="nf">element_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">symbol</span>
+    def element_key(self, element):
+        return element.symbol
 
-    <span class="k">def</span> <span class="nf">molecule_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">):</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">key</span> <span class="o">+=</span> <span class="n">element</span><span class="o">.</span><span class="n">symbol</span>
-            <span class="n">key</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">key</span>
+    def molecule_key(self, molecule):
+        key = &quot;&quot;
+        for element, number in molecule.elements.items():
+            key += element.symbol
+            key += str(number)
+        return key
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    def save(self, system):
+        for reaction in system.reactions:
+            for molecule in reaction.reactants:
+                self.molecules.add(molecule)
+                for element in molecule.elements:
+                    self.elements.add(element)
+            for molecule in reaction.products:
+                self.molecules.add(molecule)
+                for element in molecule.elements:
+                    self.elements.add(element)
 
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;elements&quot;</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">element_key</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">],</span>
-            <span class="s2">&quot;molecules&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">molecule_key</span><span class="p">(</span><span class="n">molecule</span><span class="p">):</span> <span class="p">{</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">element_key</span><span class="p">(</span><span class="n">element</span><span class="p">):</span> <span class="n">number</span>
-                    <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;reactions&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">molecule_key</span><span class="p">(</span><span class="n">reactant</span><span class="p">):</span> <span class="n">stoich</span>
-                        <span class="k">for</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="p">},</span>
-                    <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">molecule_key</span><span class="p">(</span><span class="n">product</span><span class="p">):</span> <span class="n">stoich</span>
-                        <span class="k">for</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="p">},</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span>
-            <span class="p">],</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">result</span>
+        result = {
+            &quot;elements&quot;: [self.element_key(element) for element in self.elements],
+            &quot;molecules&quot;: {
+                self.molecule_key(molecule): {
+                    self.element_key(element): number
+                    for element, number in molecule.elements.items()
+                }
+                for molecule in self.molecules
+            },
+            &quot;reactions&quot;: [
+                {
+                    &quot;reactants&quot;: {
+                        self.molecule_key(reactant): stoich
+                        for reactant, stoich in reaction.reactants.items()
+                    },
+                    &quot;products&quot;: {
+                        self.molecule_key(product): stoich
+                        for product, stoich in reaction.products.items()
+                    },
+                }
+                for reaction in system.reactions
+            ],
+        }
+        return result
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saver</span> <span class="o">=</span> <span class="n">YamlSavingSystem</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>saver = YamlSavingSystem()
+print(yaml.dump(saver.save(s)))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>elements:
+- O
 - C
 - H
-- O
 molecules:
   C1O2:
     C: 1
@@ -1503,70 +1503,70 @@ the same tables as found for the database model.</p>
 <p>An alternative is to use a simple integer for such a primary key:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">YamlIntegerKeySavingSystem</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class YamlIntegerKeySavingSystem:
+    def __init__(self):
+        self.elements = {}
+        self.molecules = {}
 
-    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+    def add_element(self, element):
+        if element not in self.elements:
+            self.elements[element] = len(self.elements)
+        return self.elements[element]
 
-    <span class="k">def</span> <span class="nf">add_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">molecule</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="n">molecule</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="n">molecule</span><span class="p">]</span>
+    def add_molecule(self, molecule):
+        if molecule not in self.molecules:
+            self.molecules[molecule] = len(self.molecules)
+        return self.molecules[molecule]
 
-    <span class="k">def</span> <span class="nf">element_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+    def element_key(self, element):
+        return self.elements[element]
 
-    <span class="k">def</span> <span class="nf">molecule_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="n">molecule</span><span class="p">]</span>
+    def molecule_key(self, molecule):
+        return self.molecules[molecule]
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    def save(self, system):
+        for reaction in system.reactions:
+            for molecule in reaction.reactants:
+                self.add_molecule(molecule)
+                for element in molecule.elements:
+                    self.add_element(element)
+            for molecule in reaction.products:
+                self.add_molecule(molecule)
+                for element in molecule.elements:
+                    self.add_element(element)
 
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;elements&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">],</span>
-            <span class="s2">&quot;molecules&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">molecule_key</span><span class="p">(</span><span class="n">molecule</span><span class="p">):</span> <span class="p">{</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">element_key</span><span class="p">(</span><span class="n">element</span><span class="p">):</span> <span class="n">number</span>
-                    <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;reactions&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">molecule_key</span><span class="p">(</span><span class="n">reactant</span><span class="p">):</span> <span class="n">stoich</span>
-                        <span class="k">for</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="p">},</span>
-                    <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">molecule_key</span><span class="p">(</span><span class="n">product</span><span class="p">):</span> <span class="n">stoich</span>
-                        <span class="k">for</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="p">},</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">reactions</span>
-            <span class="p">],</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">result</span>
+        result = {
+            &quot;elements&quot;: [element.symbol for element in self.elements],
+            &quot;molecules&quot;: {
+                self.molecule_key(molecule): {
+                    self.element_key(element): number
+                    for element, number in molecule.elements.items()
+                }
+                for molecule in self.molecules
+            },
+            &quot;reactions&quot;: [
+                {
+                    &quot;reactants&quot;: {
+                        self.molecule_key(reactant): stoich
+                        for reactant, stoich in reaction.reactants.items()
+                    },
+                    &quot;products&quot;: {
+                        self.molecule_key(product): stoich
+                        for product, stoich in reaction.products.items()
+                    },
+                }
+                for reaction in system.reactions
+            ],
+        }
+        return result
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saver</span> <span class="o">=</span> <span class="n">YamlIntegerKeySavingSystem</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>saver = YamlIntegerKeySavingSystem()
+print(yaml.dump(saver.save(s)))
 </pre></div>
 </div>
 </div>
@@ -1612,144 +1612,144 @@ reactions:
 <p>A better approach is to use counted objects either via a static member or by using a factory pattern:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Element:
+    def __init__(self, symbol, id):
+        self.symbol = symbol
+        self.id = id
 
 
-<span class="k">class</span> <span class="nc">Molecule</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from element to number of that element in the molecule</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+class Molecule:
+    def __init__(self, id):
+        self.elements = {}  # Map from element to number of that element in the molecule
+        self.id = id
 
-    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">number</span>
+    def add_element(self, element, number):
+        self.elements[element] = number
 
-    <span class="k">def</span> <span class="nf">to_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span><span class="p">:</span> <span class="n">number</span> <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-
-
-<span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from reactants to stoichiometries</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from products to stoichiometries</span>
-
-    <span class="k">def</span> <span class="nf">add_reactant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">[</span><span class="n">reactant</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
-
-    <span class="k">def</span> <span class="nf">add_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
-
-    <span class="k">def</span> <span class="nf">to_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">],</span>
-            <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_struct</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">],</span>
-            <span class="s2">&quot;stoichiometries&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-            <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
-        <span class="p">}</span>
+    def to_struct(self):
+        return {element.symbol: number for element, number in self.elements.items()}
 
 
-<span class="k">class</span> <span class="nc">System</span><span class="p">:</span>  <span class="c1"># This will be our factory</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">[]</span>
+class Reaction:
+    def __init__(self):
+        self.reactants = {}  # Map from reactants to stoichiometries
+        self.products = {}  # Map from products to stoichiometries
 
-    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
-        <span class="n">new_element</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_element</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new_element</span>
+    def add_reactant(self, reactant, stoichiometry):
+        self.reactants[reactant] = stoichiometry
 
-    <span class="k">def</span> <span class="nf">add_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">new_molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_molecule</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new_molecule</span>
+    def add_product(self, product, stoichiometry):
+        self.products[product] = stoichiometry
 
-    <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">new_reaction</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_reaction</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new_reaction</span>
+    def to_struct(self):
+        return {
+            &quot;reactants&quot;: [x.to_struct() for x in self.reactants],
+            &quot;products&quot;: [x.to_struct() for x in self.products],
+            &quot;stoichiometries&quot;: list(self.reactants.values())
+            + list(self.products.values()),
+        }
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;elements&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">],</span>
-            <span class="s2">&quot;molecules&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="n">molecule</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="n">element</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">number</span> <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;reactions&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s2">&quot;reactants&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="n">reactant</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">stoich</span>
-                        <span class="k">for</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="p">},</span>
-                    <span class="s2">&quot;products&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="n">product</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">stoich</span>
-                        <span class="k">for</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="p">},</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span>
-            <span class="p">],</span>
-        <span class="p">}</span>
+class System:  # This will be our factory
+    def __init__(self):
+        self.reactions = []
+        self.elements = []
+        self.molecules = []
 
-        <span class="k">return</span> <span class="n">result</span>
+    def add_element(self, symbol):
+        new_element = Element(symbol, len(self.elements))
+        self.elements.append(new_element)
+        return new_element
+
+    def add_molecule(self):
+        new_molecule = Molecule(len(self.molecules))
+        self.molecules.append(new_molecule)
+        return new_molecule
+
+    def add_reaction(self):
+        new_reaction = Reaction()
+        self.reactions.append(new_reaction)
+        return new_reaction
+
+    def save(self):
+
+        result = {
+            &quot;elements&quot;: [element.symbol for element in self.elements],
+            &quot;molecules&quot;: {
+                molecule.id: {
+                    element.id: number for element, number in molecule.elements.items()
+                }
+                for molecule in self.molecules
+            },
+            &quot;reactions&quot;: [
+                {
+                    &quot;reactants&quot;: {
+                        reactant.id: stoich
+                        for reactant, stoich in reaction.reactants.items()
+                    },
+                    &quot;products&quot;: {
+                        product.id: stoich
+                        for product, stoich in reaction.products.items()
+                    },
+                }
+                for reaction in self.reactions
+            ],
+        }
+
+        return result
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>s2 = System()
 
-<span class="n">c</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
-<span class="n">o</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
+c = s2.add_element(&quot;C&quot;)
+o = s2.add_element(&quot;O&quot;)
+h = s2.add_element(&quot;H&quot;)
 
-<span class="n">co2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+co2 = s2.add_molecule()
+co2.add_element(c, 1)
+co2.add_element(o, 2)
 
-<span class="n">h2o</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+h2o = s2.add_molecule()
+h2o.add_element(h, 2)
+h2o.add_element(o, 1)
 
-<span class="n">o2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">o2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+o2 = s2.add_molecule()
+o2.add_element(o, 2)
 
-<span class="n">h2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">h2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+h2 = s2.add_molecule()
+h2.add_element(h, 2)
 
-<span class="n">glucose</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">()</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+glucose = s2.add_molecule()
+glucose.add_element(c, 6)
+glucose.add_element(h, 12)
+glucose.add_element(o, 6)
 
-<span class="n">combustion_glucose</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">()</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">glucose</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">co2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+combustion_glucose = s2.add_reaction()
+combustion_glucose.add_reactant(glucose, 1)
+combustion_glucose.add_reactant(o2, 6)
+combustion_glucose.add_product(co2, 6)
+combustion_glucose.add_product(h2o, 6)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">combustion_hydrogen</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">()</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>combustion_hydrogen = s2.add_reaction()
+combustion_hydrogen.add_reactant(h2, 2)
+combustion_hydrogen.add_reactant(o2, 1)
+combustion_hydrogen.add_product(h2o, 2)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>s2.save()
 </pre></div>
 </div>
 </div>
@@ -1768,9 +1768,9 @@ reactions:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import yaml
 
-<span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">s2</span><span class="o">.</span><span class="n">save</span><span class="p">()))</span>
+print(yaml.dump(s2.save()))
 </pre></div>
 </div>
 </div>

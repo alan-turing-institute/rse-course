@@ -1075,10 +1075,10 @@ title="Print to PDF"
 <p>We’ve seen that NumPy arrays are really useful. Why wouldn’t we always want to use them for data which is all the same type?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">repeat</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from timeit import repeat
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+import numpy as np
+from matplotlib import pyplot as plt
 </pre></div>
 </div>
 </div>
@@ -1086,44 +1086,44 @@ title="Print to PDF"
 <p>Let’s look at appending data into a NumPy array, compared to a plain Python list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_append_to_ndarray</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="c1"># the function repeat does the same that the `%timeit` magic</span>
-    <span class="c1"># but as a function; so we can plot it.</span>
-    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span>
-        <span class="s2">&quot;np.append(before, [0])&quot;</span><span class="p">,</span>
-        <span class="sa">f</span><span class="s2">&quot;import numpy as np; before=np.ndarray(</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-        <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-    <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_append_to_ndarray(count):
+    # the function repeat does the same that the `%timeit` magic
+    # but as a function; so we can plot it.
+    return repeat(
+        &quot;np.append(before, [0])&quot;,
+        f&quot;import numpy as np; before=np.ndarray({count})&quot;,
+        number=10000,
+    )
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_append_to_list</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="s2">&quot;before.append(0)&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;before = [0] * </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_append_to_list(count):
+    return repeat(&quot;before.append(0)&quot;, f&quot;before = [0] * {count}&quot;, number=10000)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts = np.arange(1, 100000, 10000)
 
 
-<span class="k">def</span> <span class="nf">plot_time</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">counts</span><span class="p">)))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;seconds&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;array size&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="n">function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+def plot_time(function, counts, title=None):
+    plt.plot(counts, list(map(function, counts)))
+    plt.ylim(bottom=0)
+    plt.ylabel(&quot;seconds&quot;)
+    plt.xlabel(&quot;array size&quot;)
+    plt.title(title or function.__name__)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_append_to_list</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_append_to_list, counts)
 </pre></div>
 </div>
 </div>
@@ -1133,7 +1133,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_append_to_ndarray</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_append_to_ndarray, counts)
 </pre></div>
 </div>
 </div>
@@ -1145,35 +1145,35 @@ title="Print to PDF"
 <p>How do they perform when accessing an element in the middle?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_lookup_middle_element_in_list</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="n">test_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span>
-    <span class="n">middle_position</span> <span class="o">=</span> <span class="n">count</span> <span class="o">//</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_lookup_middle_element_in_list(count):
+    test_list = [0] * count
+    middle_position = count // 2
 
-    <span class="k">def</span> <span class="nf">totime</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">test_list</span><span class="p">[</span><span class="n">middle_position</span><span class="p">]</span>
+    def totime():
+        return test_list[middle_position]
 
-    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="n">totime</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+    return repeat(totime, number=10000)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_lookup_middle_element_in_ndarray</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-    <span class="n">middle_position</span> <span class="o">=</span> <span class="n">count</span> <span class="o">//</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_lookup_middle_element_in_ndarray(count):
+    test_array = np.ndarray(count)
+    middle_position = count // 2
 
-    <span class="k">def</span> <span class="nf">totime</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">test_array</span><span class="p">[</span><span class="n">middle_position</span><span class="p">]</span>
+    def totime():
+        return test_array[middle_position]
 
-    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="n">totime</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+    return repeat(totime, number=10000)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_lookup_middle_element_in_list</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_lookup_middle_element_in_list, counts)
 </pre></div>
 </div>
 </div>
@@ -1183,7 +1183,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_lookup_middle_element_in_ndarray</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_lookup_middle_element_in_ndarray, counts)
 </pre></div>
 </div>
 </div>
@@ -1196,8 +1196,8 @@ title="Print to PDF"
 <p>If we want to insert an element at the beginning of a Python list we can do:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">x</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = list(range(5))
+x
 </pre></div>
 </div>
 </div>
@@ -1209,8 +1209,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">x</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x[0:0] = [-1]
+x
 </pre></div>
 </div>
 </div>
@@ -1222,15 +1222,15 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_insert_to_list</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="s2">&quot;before[0:0] = [0]&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;before = [0] * </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_insert_to_list(count):
+    return repeat(&quot;before[0:0] = [0]&quot;, f&quot;before = [0] * {count}&quot;, number=10000)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_insert_to_list</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_insert_to_list, counts)
 </pre></div>
 </div>
 </div>
@@ -1242,26 +1242,26 @@ title="Print to PDF"
 <p>There are containers in Python that work well for insertion at the start:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from collections import deque
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_insert_to_deque</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span>
-        <span class="s2">&quot;before.appendleft(0)&quot;</span><span class="p">,</span>
-        <span class="sa">f</span><span class="s2">&quot;from collections import deque; before = deque([0] * </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-        <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-    <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_insert_to_deque(count):
+    return repeat(
+        &quot;before.appendleft(0)&quot;,
+        f&quot;from collections import deque; before = deque([0] * {count})&quot;,
+        number=10000,
+    )
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_insert_to_deque</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_insert_to_deque, counts)
 </pre></div>
 </div>
 </div>
@@ -1272,21 +1272,21 @@ title="Print to PDF"
 <p>But looking up in the middle scales badly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_lookup_middle_element_in_deque</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="n">test_deque</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span><span class="p">)</span>
-    <span class="n">middle_position</span> <span class="o">=</span> <span class="n">count</span> <span class="o">//</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_lookup_middle_element_in_deque(count):
+    test_deque = deque([0] * count)
+    middle_position = count // 2
 
-    <span class="k">def</span> <span class="nf">totime</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">test_deque</span><span class="p">[</span><span class="n">middle_position</span><span class="p">]</span>
+    def totime():
+        return test_deque[middle_position]
 
-    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="n">totime</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+    return repeat(totime, number=10000)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_lookup_middle_element_in_deque</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_lookup_middle_element_in_deque, counts)
 </pre></div>
 </div>
 </div>
@@ -1309,15 +1309,15 @@ title="Print to PDF"
 <p>For another example, let’s consider the performance of a dictionary versus a couple of other ways in which we could implement an associative array.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">evildict</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class evildict:
+    def __init__(self, data):
+        self.data = data
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">akey</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">akey</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">value</span>
-        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">()</span>
+    def __getitem__(self, akey):
+        for key, value in self.data:
+            if key == akey:
+                return value
+        raise KeyError()
 </pre></div>
 </div>
 </div>
@@ -1325,21 +1325,21 @@ title="Print to PDF"
 <p>If we have an evil dictionary of N elements, how long would it take - on average - to find an element?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eric</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Eric Idle&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Job&quot;</span><span class="p">,</span> <span class="s2">&quot;Comedian&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Home&quot;</span><span class="p">,</span> <span class="s2">&quot;London&quot;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric = [[&quot;Name&quot;, &quot;Eric Idle&quot;], [&quot;Job&quot;, &quot;Comedian&quot;], [&quot;Home&quot;, &quot;London&quot;]]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eric_evil</span> <span class="o">=</span> <span class="n">evildict</span><span class="p">(</span><span class="n">eric</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_evil = evildict(eric)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eric_evil</span><span class="p">[</span><span class="s2">&quot;Job&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_evil[&quot;Job&quot;]
 </pre></div>
 </div>
 </div>
@@ -1351,14 +1351,14 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eric_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">eric</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_dict = dict(eric)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eric_evil</span><span class="p">[</span><span class="s2">&quot;Job&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_evil[&quot;Job&quot;]
 </pre></div>
 </div>
 </div>
@@ -1370,14 +1370,14 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot;License&quot;</span><span class="p">,</span> <span class="s2">&quot;Fish&quot;</span><span class="p">,</span> <span class="s2">&quot;Eric&quot;</span><span class="p">,</span> <span class="s2">&quot;Pet&quot;</span><span class="p">,</span> <span class="s2">&quot;Halibut&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = [&quot;Hello&quot;, &quot;License&quot;, &quot;Fish&quot;, &quot;Eric&quot;, &quot;Pet&quot;, &quot;Halibut&quot;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sorted(x, key=lambda el: el.lower())
 </pre></div>
 </div>
 </div>
@@ -1390,35 +1390,35 @@ title="Print to PDF"
 <p>What if we created a dictionary where we bisect the search?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from bisect import bisect_left
 
 
-<span class="k">class</span> <span class="nc">sorteddict</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+class sorteddict:
+    def __init__(self, data):
+        self.data = sorted(data, key=lambda x: x[0])
+        self.keys = list(map(lambda x: x[0], self.data))
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">akey</span><span class="p">):</span>
-        <span class="n">loc</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">,</span> <span class="n">akey</span><span class="p">)</span>
+    def __getitem__(self, akey):
+        loc = bisect_left(self.keys, akey)
 
-        <span class="k">if</span> <span class="n">loc</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">loc</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        if loc != len(self.data):
+            return self.data[loc][1]
 
-        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">()</span>
+        raise KeyError()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eric_sorted</span> <span class="o">=</span> <span class="n">sorteddict</span><span class="p">(</span><span class="n">eric</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_sorted = sorteddict(eric)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eric_sorted</span><span class="p">[</span><span class="s2">&quot;Job&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_sorted[&quot;Job&quot;]
 </pre></div>
 </div>
 </div>
@@ -1430,38 +1430,38 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_dict_generic</span><span class="p">(</span><span class="n">ttype</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
-    <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">ttype</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_dict_generic(ttype, count):
+    keys = list(range(count))
+    values = [0] * count
+    data = ttype(list(zip(keys, values)))
 
-    <span class="k">def</span> <span class="nf">totime</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">count</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]]</span>
+    def totime():
+        return data[keys[count // 2]]
 
-    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="n">totime</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+    return repeat(totime, number=10000)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_dict</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_dict(count):
+    return time_dict_generic(dict, count)
 
 
-<span class="k">def</span> <span class="nf">time_sorted</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="n">sorteddict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+def time_sorted(count):
+    return time_dict_generic(sorteddict, count)
 
 
-<span class="k">def</span> <span class="nf">time_evil</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">time_dict_generic</span><span class="p">(</span><span class="n">evildict</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+def time_evil(count):
+    return time_dict_generic(evildict, count)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_sorted</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;sorted&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_sorted, counts, title=&quot;sorted&quot;)
 </pre></div>
 </div>
 </div>
@@ -1472,8 +1472,8 @@ title="Print to PDF"
 <p>We can’t really see what’s going on here for the sorted example as there’s too much noise, but theoretically we should get <strong>logarithmic</strong> asymptotic performance. We write this down as <span class="math notranslate nohighlight">\(O(\ln N)\)</span>. This doesn’t mean there isn’t also a constant term, or a term proportional to something that grows slower (such as <span class="math notranslate nohighlight">\(\ln(\ln N)\)</span>): we always write down just the term that is dominant for large <span class="math notranslate nohighlight">\(N\)</span>. We saw before that <code class="docutils literal notranslate"><span class="pre">list</span></code> is <span class="math notranslate nohighlight">\(O(1)\)</span> for appends, <span class="math notranslate nohighlight">\(O(N)\)</span> for inserts. Numpy’s <code class="docutils literal notranslate"><span class="pre">array</span></code> is <span class="math notranslate nohighlight">\(O(N)\)</span> for appends.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">plot_time</span><span class="p">(</span><span class="n">time_evil</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;evil&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts = np.arange(1, 1000, 100)
+plot_time(time_evil, counts, title=&quot;evil&quot;)
 </pre></div>
 </div>
 </div>
@@ -1484,8 +1484,8 @@ title="Print to PDF"
 <p>The simple check-each-in-turn solution is <span class="math notranslate nohighlight">\(O(N)\)</span> - linear time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-<span class="n">plot_time</span><span class="p">(</span><span class="n">time_dict</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;dict&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts = np.arange(1, 100000, 10000)
+plot_time(time_dict, counts, title=&quot;dict&quot;)
 </pre></div>
 </div>
 </div>

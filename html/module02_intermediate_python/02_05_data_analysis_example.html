@@ -1159,7 +1159,7 @@ We will retrieve data, do some computations based on it, and visualise the resul
 <h2>2.5.1 Geolocation<a class="headerlink" href="#geolocation" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopy</span>  <span class="c1"># A python library for investigating geographic information. https://pypi.org/project/geopy/</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import geopy  # A python library for investigating geographic information. https://pypi.org/project/geopy/
 </pre></div>
 </div>
 </div>
@@ -1169,8 +1169,8 @@ We will retrieve data, do some computations based on it, and visualise the resul
 For now, just follow along and try get the feel for how programming for data-focused research works.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geocoder</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">geocoders</span><span class="o">.</span><span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s2">&quot;rse-course&quot;</span><span class="p">)</span>
-<span class="n">geocoder</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s2">&quot;Cambridge&quot;</span><span class="p">,</span> <span class="n">exactly_one</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>geocoder = geopy.geocoders.Nominatim(user_agent=&quot;rse-course&quot;)
+geocoder.geocode(&quot;Cambridge&quot;, exactly_one=False)
 </pre></div>
 </div>
 </div>
@@ -1193,16 +1193,16 @@ For now, just follow along and try get the feel for how programming for data-foc
 <p>Let’s define and test a <code class="docutils literal notranslate"><span class="pre">geolocate</span></code> function, storing the result in a variable</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">geolocate</span><span class="p">(</span><span class="n">place</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">geocoder</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="n">place</span><span class="p">,</span> <span class="n">exactly_one</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def geolocate(place):
+    return geocoder.geocode(place, exactly_one=False)[0][1]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">london_location</span> <span class="o">=</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">london_location</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>london_location = geolocate(&quot;London&quot;)
+print(london_location)
 </pre></div>
 </div>
 </div>
@@ -1220,26 +1220,26 @@ The URLs look like: <a class="reference external" href="https://static-maps.yand
 We’ll probably end up working out these URLs quite a bit. So we’ll make ourselves another function to build up a URL given our parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import requests
 
 
-<span class="k">def</span> <span class="nf">request_map_at</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)):</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;https://static-maps.yandex.ru/1.x/?&quot;</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">z</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span>
-        <span class="n">size</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-        <span class="n">ll</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">long</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>
-        <span class="n">l</span><span class="o">=</span><span class="s2">&quot;sat&quot;</span> <span class="k">if</span> <span class="n">satellite</span> <span class="k">else</span> <span class="s2">&quot;map&quot;</span><span class="p">,</span>
-        <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en_US&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+def request_map_at(lat, long, satellite=True, zoom=12, size=(400, 400)):
+    base = &quot;https://static-maps.yandex.ru/1.x/?&quot;
+    params = dict(
+        z=zoom,
+        size=str(size[0]) + &quot;,&quot; + str(size[1]),
+        ll=str(long) + &quot;,&quot; + str(lat),
+        l=&quot;sat&quot; if satellite else &quot;map&quot;,
+        lang=&quot;en_US&quot;,
+    )
+    return requests.get(base, params=params, timeout=60)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_response</span> <span class="o">=</span> <span class="n">request_map_at</span><span class="p">(</span><span class="mf">51.5072</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1275</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>map_response = request_map_at(51.5072, -0.1275)
 </pre></div>
 </div>
 </div>
@@ -1250,8 +1250,8 @@ We’ll probably end up working out these URLs quite a bit. So we’ll make ours
 <p>Let’s see what URL we ended up with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="n">map_response</span><span class="o">.</span><span class="n">url</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>url = map_response.url
+print(url)
 </pre></div>
 </div>
 </div>
@@ -1264,10 +1264,10 @@ We’ll probably end up working out these URLs quite a bit. So we’ll make ours
 <p>We can write <strong>automated tests</strong> so that if we change our code later, we can check the results are still valid.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="s2">&quot;https://static-maps.yandex.ru/1.x/?&quot;</span> <span class="ow">in</span> <span class="n">url</span>
-<span class="k">assert</span> <span class="s2">&quot;ll=-0.1275%2C51.5072&quot;</span> <span class="ow">in</span> <span class="n">url</span>
-<span class="k">assert</span> <span class="s2">&quot;z=12&quot;</span> <span class="ow">in</span> <span class="n">url</span>
-<span class="k">assert</span> <span class="s2">&quot;size=400%2C400&quot;</span> <span class="ow">in</span> <span class="n">url</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert &quot;https://static-maps.yandex.ru/1.x/?&quot; in url
+assert &quot;ll=-0.1275%2C51.5072&quot; in url
+assert &quot;z=12&quot; in url
+assert &quot;size=400%2C400&quot; in url
 </pre></div>
 </div>
 </div>
@@ -1277,7 +1277,7 @@ In object oriented programming, we use the <code class="docutils literal notrans
 It’s a big file, so we’ll just show the first few characters here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_response</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>map_response.content[0:20]
 </pre></div>
 </div>
 </div>
@@ -1293,8 +1293,8 @@ It’s a big file, so we’ll just show the first few characters here:</p>
 <p>We’ll need to do this a lot, so let’s wrap up our previous function in another function, to save on typing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">request_map_at</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def map_at(*args, **kwargs):
+    return request_map_at(*args, **kwargs).content
 </pre></div>
 </div>
 </div>
@@ -1303,16 +1303,16 @@ It’s a big file, so we’ll just show the first few characters here:</p>
 Being able to work with variables which contain images, or documents, or any other weird kind of data, just as easily as we can with numbers or letters, is one of the really powerful things about modern programming languages like Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from IPython.display import Image
 
-<span class="n">map_png</span> <span class="o">=</span> <span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">london_location</span><span class="p">)</span>
+map_png = map_at(*london_location)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The type of our map result is actually a: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">map_png</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;The type of our map result is actually a: &quot;, type(map_png))
 </pre></div>
 </div>
 </div>
@@ -1324,7 +1324,7 @@ Being able to work with variables which contain images, or documents, or any oth
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">map_png</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Image(map_png)
 </pre></div>
 </div>
 </div>
@@ -1334,7 +1334,7 @@ Being able to work with variables which contain images, or documents, or any oth
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;New Delhi&quot;</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Image(map_at(*geolocate(&quot;New Delhi&quot;)))
 </pre></div>
 </div>
 </div>
@@ -1351,10 +1351,10 @@ We expect the satellite image to be greener in the countryside.</p>
 <p>Let’s start by importing the libraries we need.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>  <span class="c1"># A library to convert between files and strings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from io import BytesIO  # A library to convert between files and strings
 
-<span class="kn">import</span> <span class="nn">imageio</span>  <span class="c1"># A library to deal with images, https://pypi.org/project/imageio/</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># A library to deal with matrices</span>
+import imageio  # A library to deal with images, https://pypi.org/project/imageio/
+import numpy as np  # A library to deal with matrices
 </pre></div>
 </div>
 </div>
@@ -1362,12 +1362,12 @@ We expect the satellite image to be greener in the countryside.</p>
 <p>and then define what we count as green:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_green</span><span class="p">(</span><span class="n">pixels</span><span class="p">):</span>
-    <span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.1</span>
-    <span class="n">greener_than_red</span> <span class="o">=</span> <span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="o">*</span> <span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
-    <span class="n">greener_than_blue</span> <span class="o">=</span> <span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="o">*</span> <span class="n">pixels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
-    <span class="n">green</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">greener_than_red</span><span class="p">,</span> <span class="n">greener_than_blue</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">green</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def is_green(pixels):
+    threshold = 1.1
+    greener_than_red = pixels[:, :, 1] &gt; threshold * pixels[:, :, 0]
+    greener_than_blue = pixels[:, :, 1] &gt; threshold * pixels[:, :, 2]
+    green = np.logical_and(greener_than_red, greener_than_blue)
+    return green
 </pre></div>
 </div>
 </div>
@@ -1378,17 +1378,17 @@ with each of the three layers being red, green, and blue pixels.</p>
 <p>Now we just need to read in our data, which is a PNG image, and convert it into our matrix format:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_green_in_png</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">pixels</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># Get our PNG image as a numpy array</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_green</span><span class="p">(</span><span class="n">pixels</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def count_green_in_png(data):
+    f = BytesIO(data)
+    pixels = imageio.v2.imread(f)  # Get our PNG image as a numpy array
+    return np.sum(is_green(pixels))
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">count_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">london_location</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(count_green_in_png(map_at(*london_location)))
 </pre></div>
 </div>
 </div>
@@ -1401,17 +1401,17 @@ with each of the three layers being red, green, and blue pixels.</p>
 <p>We’ll also need a function to get an evenly spaced set of places between two endpoints:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">location_sequence</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
-    <span class="n">lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">steps</span><span class="p">)</span>  <span class="c1"># &quot;Linearly spaced&quot; data</span>
-    <span class="n">longs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">steps</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">lats</span><span class="p">,</span> <span class="n">longs</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def location_sequence(start, end, steps):
+    lats = np.linspace(start[0], end[0], steps)  # &quot;Linearly spaced&quot; data
+    longs = np.linspace(start[1], end[1], steps)
+    return np.vstack([lats, longs]).transpose()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">location_sequence</span><span class="p">(</span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Cambridge&quot;</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>location_sequence(geolocate(&quot;London&quot;), geolocate(&quot;Cambridge&quot;), 5)
 </pre></div>
 </div>
 </div>
@@ -1431,22 +1431,22 @@ with each of the three layers being red, green, and blue pixels.</p>
 <p>We should display the green content to check our work:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_green_in_png</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">pixels</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>  <span class="c1"># Get our PNG image as rows of pixels</span>
-    <span class="n">green</span> <span class="o">=</span> <span class="n">is_green</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def show_green_in_png(data):
+    pixels = imageio.imread(BytesIO(data))  # Get our PNG image as rows of pixels
+    green = is_green(pixels)
 
-    <span class="n">out</span> <span class="o">=</span> <span class="n">green</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+    out = green[:, :, np.newaxis] * np.array([0, 1, 0])[np.newaxis, np.newaxis, :]
 
-    <span class="n">buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
-    <span class="n">imageio</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+    buffer = BytesIO()
+    imageio.imwrite(buffer, out, format=&quot;png&quot;)
+    return buffer.getvalue()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">london_location</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Image(map_at(*london_location, satellite=True))
 </pre></div>
 </div>
 </div>
@@ -1456,12 +1456,12 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">show_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">london_location</span><span class="p">,</span> <span class="n">satellite</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Image(show_green_in_png(map_at(*london_location, satellite=True)))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_12910/3094229650.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_12508/3094229650.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   pixels = imageio.imread(BytesIO(data))  # Get our PNG image as rows of pixels
 Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior to saving to suppress this warning.
 </pre></div>
@@ -1475,8 +1475,8 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 <p>We can loop over each element in out list of coordinates, and get a map for that place:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">location_sequence</span><span class="p">(</span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Birmingham&quot;</span><span class="p">),</span> <span class="mi">4</span><span class="p">):</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for location in location_sequence(geolocate(&quot;London&quot;), geolocate(&quot;Birmingham&quot;), 4):
+    display(Image(map_at(*location)))
 </pre></div>
 </div>
 </div>
@@ -1490,10 +1490,10 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 <p>So now we can count the green from London to Birmingham!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-    <span class="n">count_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">location_sequence</span><span class="p">(</span><span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Birmingham&quot;</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
-<span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[
+    count_green_in_png(map_at(*location))
+    for location in location_sequence(geolocate(&quot;London&quot;), geolocate(&quot;Birmingham&quot;), 10)
+]
 </pre></div>
 </div>
 </div>
@@ -1509,21 +1509,21 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 <p>Let’s plot a graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="n">count_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">location_sequence</span><span class="p">(</span>
-            <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;London&quot;</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="s2">&quot;Birmingham&quot;</span><span class="p">),</span> <span class="mi">10</span>
-        <span class="p">)</span>
-    <span class="p">]</span>
-<span class="p">)</span>
+plt.plot(
+    [
+        count_green_in_png(map_at(*location))
+        for location in location_sequence(
+            geolocate(&quot;London&quot;), geolocate(&quot;Birmingham&quot;), 10
+        )
+    ]
+)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa34df891c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f84d44a8a00&gt;]
 </pre></div>
 </div>
 <img alt="../_images/02_05_data_analysis_example_55_1.png" src="../_images/02_05_data_analysis_example_55_1.png" />
@@ -1545,23 +1545,23 @@ Lossy conversion from int64 to uint8. Range [0, 1]. Convert image to uint8 prior
 <p>By putting these together, we can make a function which can plot this graph automatically for any two places:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">green_between</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span>
-        <span class="n">count_green_in_png</span><span class="p">(</span><span class="n">map_at</span><span class="p">(</span><span class="o">*</span><span class="n">location</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">location_sequence</span><span class="p">(</span><span class="n">geolocate</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="n">geolocate</span><span class="p">(</span><span class="n">end</span><span class="p">),</span> <span class="n">steps</span><span class="p">)</span>
-    <span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def green_between(start, end, steps):
+    return [
+        count_green_in_png(map_at(*location))
+        for location in location_sequence(geolocate(start), geolocate(end), steps)
+    ]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">green_between</span><span class="p">(</span><span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Chicago&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(green_between(&quot;New York&quot;, &quot;Chicago&quot;, 20))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa34dea9b50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f84d43db3d0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/02_05_data_analysis_example_61_1.png" src="../_images/02_05_data_analysis_example_61_1.png" />

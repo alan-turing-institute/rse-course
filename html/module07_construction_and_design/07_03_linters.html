@@ -1252,12 +1252,12 @@ title="Print to PDF"
 <p>For example, consider this piece of code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> flake8_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile flake8_example.py
 
-<span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">e</span>
+from constants import e
 
-<span class="k">def</span> <span class="nf">circumference</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
+def circumference(r):
+    return 2 * pi * r
 </pre></div>
 </div>
 </div>
@@ -1270,7 +1270,7 @@ title="Print to PDF"
 <p>Running <code class="docutils literal notranslate"><span class="pre">flake8</span></code> on it gives the following warnings:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> flake8 flake8_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! flake8 flake8_example.py
 </pre></div>
 </div>
 </div>
@@ -1295,15 +1295,15 @@ The name comes from a Henry Ford quote: “Any customer can have a car painted a
 <p>For example, consider this piece of code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> black_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile black_example.py
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+import numpy as np
 
-<span class="k">def</span> <span class="nf">my_complex_function</span><span class="p">(</span><span class="n">important_argument_1</span><span class="p">,</span><span class="n">important_argument_2</span><span class="p">,</span><span class="n">optional_argument_3</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="n">optional_argument_4</span> <span class="o">=</span> <span class="mi">4</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">important_argument_1</span><span class="o">*</span><span class="n">important_argument_2</span><span class="o">*</span><span class="n">optional_argument_3</span><span class="o">*</span><span class="n">optional_argument_4</span>
+def my_complex_function(important_argument_1,important_argument_2,optional_argument_3 = 3,optional_argument_4 = 4):
+    return np.random.random()*important_argument_1*important_argument_2*optional_argument_3*optional_argument_4
 
-<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">greet</span><span class="o">=</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;!&quot;</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">greet</span><span class="p">,</span>    <span class="n">name</span><span class="p">,</span>    <span class="n">end</span><span class="p">)</span>
+def hello(name,greet=&#39;Hello&#39;,end=&quot;!&quot;):
+    print(greet,    name,    end)
 </pre></div>
 </div>
 </div>
@@ -1315,7 +1315,7 @@ The name comes from a Henry Ford quote: “Any customer can have a car painted a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> black black_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! black black_example.py
 </pre></div>
 </div>
 </div>
@@ -1331,7 +1331,7 @@ The name comes from a Henry Ford quote: “Any customer can have a car painted a
 <p>After running <code class="docutils literal notranslate"><span class="pre">black</span></code> on the file its contents become:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat black_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!cat black_example.py
 </pre></div>
 </div>
 </div>
@@ -1385,14 +1385,14 @@ def hello(name, greet=&quot;Hello&quot;, end=&quot;!&quot;):
 <p>For example, consider the following code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> isort_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile isort_example.py
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">black_example</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">json</span>
+import pandas as pd
+import os
+from matplotlib import pyplot as plt
+import black_example
+import numpy as np
+import json
 </pre></div>
 </div>
 </div>
@@ -1404,7 +1404,7 @@ def hello(name, greet=&quot;Hello&quot;, end=&quot;!&quot;):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> isort isort_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! isort isort_example.py
 </pre></div>
 </div>
 </div>
@@ -1418,7 +1418,7 @@ def hello(name, greet=&quot;Hello&quot;, end=&quot;!&quot;):
 <p>If we run isort it becomes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat isort_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!cat isort_example.py
 </pre></div>
 </div>
 </div>
@@ -1446,16 +1446,16 @@ import black_example
 For example, consider the following code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> mypy_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile mypy_example.py
 
-<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">greet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">rep</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rep</span><span class="p">):</span>
-        <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">greet</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="k">return</span> <span class="n">message</span>
+def hello(name: str, greet: str = &quot;Hello&quot;, rep: int = 1) -&gt; str:
+    message: str = &quot;&quot;
+    for _ in range(rep):
+        message += f&quot;{greet} {name}\n&quot;
+    return message
 
 
-<span class="nb">print</span><span class="p">(</span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+print(hello(&quot;Bob&quot;, 5))
 </pre></div>
 </div>
 </div>
@@ -1468,7 +1468,7 @@ For example, consider the following code:</p>
 <p>If we run <code class="docutils literal notranslate"><span class="pre">mypy</span></code> on it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> mypy mypy_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! mypy mypy_example.py
 </pre></div>
 </div>
 </div>
@@ -1487,12 +1487,12 @@ For example, consider the following code:</p>
 <p>Let’s run it on the same code we used for our <code class="docutils literal notranslate"><span class="pre">flake8</span></code> example earlier:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> pylint_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile pylint_example.py
 
-<span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="n">e</span>
+from constants import e
 
-<span class="k">def</span> <span class="nf">circumference</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
+def circumference(r):
+    return 2 * pi * r
 </pre></div>
 </div>
 </div>
@@ -1504,7 +1504,7 @@ For example, consider the following code:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pylint pylint_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! pylint pylint_example.py
 </pre></div>
 </div>
 </div>
@@ -1537,7 +1537,7 @@ Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
 <p><code class="docutils literal notranslate"><span class="pre">nbqa</span></code> allows you to run many Python quality tools (including all the ones we’ve introduced here) on jupyter notebooks. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> nbqa flake8 07_02_coding_conventions.ipynb
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! nbqa flake8 07_02_coding_conventions.ipynb
 </pre></div>
 </div>
 </div>
@@ -1553,7 +1553,7 @@ Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
 <p><code class="docutils literal notranslate"><span class="pre">pylama</span></code> wraps many code quality tools (including <code class="docutils literal notranslate"><span class="pre">isort</span></code>, <code class="docutils literal notranslate"><span class="pre">mypy</span></code>, <code class="docutils literal notranslate"><span class="pre">pylint</span></code> and much of <code class="docutils literal notranslate"><span class="pre">flake8</span></code>) in a single command.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pylama --linters isort,mccabe,mypy,pycodestyle,pydocstyle,pyflakes,pylint flake8_example.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! pylama --linters isort,mccabe,mypy,pycodestyle,pydocstyle,pyflakes,pylint flake8_example.py
 </pre></div>
 </div>
 </div>
@@ -1562,16 +1562,16 @@ Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>flake8_example.py:0:1  Incorrectly sorted imports. [isort]
-flake8_example.py:1:1 C0114 Missing module docstring [pylint]
 flake8_example.py:1:1 D100 Missing docstring in public module [pydocstyle]
-flake8_example.py:2:1 E0401 Unable to import &#39;constants&#39; [pylint]
-flake8_example.py:2:1 W0611 Unused e imported from constants [pylint]
+flake8_example.py:1:1 C0114 Missing module docstring [pylint]
 flake8_example.py:2:1  Cannot find implementation or library stub for module named &quot;constants&quot; [mypy]
 flake8_example.py:2:1  See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports [mypy]
+flake8_example.py:2:1 E0401 Unable to import &#39;constants&#39; [pylint]
+flake8_example.py:2:1 W0611 Unused e imported from constants [pylint]
+flake8_example.py:4:1 D103 Missing docstring in public function [pydocstyle]
+flake8_example.py:4:1 E302 expected 2 blank lines, found 1 [pycodestyle]
 flake8_example.py:4:1 C0116 Missing function or method docstring [pylint]
 flake8_example.py:4:19 C0103 Argument name &quot;r&quot; doesn&#39;t conform to snake_case naming style [pylint]
-flake8_example.py:4:1 E302 expected 2 blank lines, found 1 [pycodestyle]
-flake8_example.py:4:1 D103 Missing docstring in public function [pydocstyle]
 flake8_example.py:5:16 E0602 Undefined variable &#39;pi&#39; [pylint]
 
 </pre></div>

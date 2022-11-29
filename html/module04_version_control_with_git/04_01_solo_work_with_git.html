@@ -1305,13 +1305,13 @@ title="Print to PDF"
 <p>So, we’re in our git working directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
 
-<span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
-<span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
-<span class="n">working_dir</span>
+top_dir = os.getcwd()
+git_dir = os.path.join(top_dir, &quot;learning_git&quot;)
+working_dir = os.path.join(git_dir, &quot;git_example&quot;)
+os.chdir(working_dir)
+working_dir
 </pre></div>
 </div>
 </div>
@@ -1329,11 +1329,11 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test.md
-<span class="n">Mountains</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">UK</span>
-<span class="o">===================</span>
-<span class="n">England</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">very</span> <span class="n">mountainous</span><span class="o">.</span>
-<span class="n">But</span> <span class="n">has</span> <span class="n">some</span> <span class="n">tall</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">maybe</span> <span class="n">a</span> <span class="n">mountain</span> <span class="ow">or</span> <span class="n">two</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">your</span> <span class="n">definition</span><span class="o">.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile test.md
+Mountains in the UK
+===================
+England is not very mountainous.
+But has some tall hills, and maybe a mountain or two depending on your definition.
 </pre></div>
 </div>
 </div>
@@ -1345,7 +1345,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">test</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cat test.md
 </pre></div>
 </div>
 </div>
@@ -1364,7 +1364,7 @@ But has some tall hills, and maybe a mountain or two depending on your definitio
 <p>So, let’s tell Git that <code class="docutils literal notranslate"><span class="pre">test.md</span></code> is a file which is important, and we would like to keep track of its history:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git add test.md
 </pre></div>
 </div>
@@ -1377,13 +1377,13 @@ git add test.md
 <p>Now, we need to tell Git to record the first version of this file in the history of changes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git commit -m &quot;First commit of discourse on UK topography&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main (root-commit) 3172bb2] First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main (root-commit) 09ebcb7] First commit of discourse on UK topography
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 4 insertions(+)
@@ -1423,19 +1423,19 @@ to edit your message on the fly.</p>
 <p>Git now has one change in its history:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git log
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 3172bb29c28c09ec886345ecdb5d25de798bd583
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 09ebcb7dfc4631946f9b4e1289f3921c7ca7e472
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Wed Nov 16 13:12:33 2022 +0000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Tue Nov 29 00:36:21 2022 +0000
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1461,7 +1461,7 @@ You just need however many characters is long enough to make it unique, for exam
 <p>Note that git will now tell us that our “working directory” is up-to-date with the repository: there are no changes to the files that aren’t recorded in the repository history:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git status
 </pre></div>
 </div>
@@ -1485,13 +1485,13 @@ git status
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test.md
-<span class="n">Mountains</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">UK</span>
-<span class="o">===================</span>
-<span class="n">England</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">very</span> <span class="n">mountainous</span><span class="o">.</span>
-<span class="n">But</span> <span class="n">has</span> <span class="n">some</span> <span class="n">tall</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">maybe</span> <span class="n">a</span> <span class="n">mountain</span> <span class="ow">or</span> <span class="n">two</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">your</span> <span class="n">definition</span><span class="o">.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile test.md
+Mountains in the UK
+===================
+England is not very mountainous.
+But has some tall hills, and maybe a mountain or two depending on your definition.
 
-<span class="n">Mount</span> <span class="n">Fictional</span><span class="p">,</span> <span class="ow">in</span> <span class="n">Barsetshire</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">K</span><span class="o">.</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">tallest</span> <span class="n">mountain</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">world</span><span class="o">.</span>
+Mount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.
 </pre></div>
 </div>
 </div>
@@ -1503,7 +1503,7 @@ git status
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">test</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cat test.md
 </pre></div>
 </div>
 </div>
@@ -1522,7 +1522,7 @@ Mount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.
 <h3>Unstaged changes<a class="headerlink" href="#unstaged-changes" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git status
 </pre></div>
 </div>
@@ -1559,7 +1559,7 @@ What does this mean?</p>
 <p>We can see the differences in the file with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git diff
 </pre></div>
 </div>
@@ -1604,7 +1604,7 @@ git diff
 <p>To include the file in the next commit, we have a few choices. This is one of the things to be careful of with git: there are lots of ways to do similar things, and it can be hard to keep track of them all.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git add --update
 </pre></div>
 </div>
@@ -1632,28 +1632,28 @@ This is part of our “reproducible computing” approach; always generating all
 <p>Here’s some quick code in the Notebook to download and display an MSC illustration, using the Web Sequence Diagrams API:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> wsd.py
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">IPython</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile wsd.py
+import requests
+import re
+import IPython
 
 
-<span class="k">def</span> <span class="nf">wsd</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-        <span class="s2">&quot;http://www.websequencediagrams.com/index.php&quot;</span><span class="p">,</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">code</span><span class="p">,</span>
-            <span class="s2">&quot;apiVersion&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="p">},</span>
-    <span class="p">)</span>
-    <span class="n">expr</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;(\?(img|pdf|png|svg)=[a-zA-Z0-9]+)&quot;</span><span class="p">)</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid response from server.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">False</span>
+def wsd(code):
+    response = requests.post(
+        &quot;http://www.websequencediagrams.com/index.php&quot;,
+        data={
+            &quot;message&quot;: code,
+            &quot;apiVersion&quot;: 1,
+        },
+    )
+    expr = re.compile(&quot;(\?(img|pdf|png|svg)=[a-zA-Z0-9]+)&quot;)
+    m = expr.search(response.text)
+    if m == None:
+        print(&quot;Invalid response from server.&quot;)
+        return False
 
-    <span class="n">image</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.websequencediagrams.com/&quot;</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    image = requests.get(&quot;http://www.websequencediagrams.com/&quot; + m.group(0))
+    return IPython.core.display.Image(image.content)
 </pre></div>
 </div>
 </div>
@@ -1665,10 +1665,10 @@ This is part of our “reproducible computing” approach; always generating all
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">from</span> <span class="nn">wsd</span> <span class="kn">import</span> <span class="n">wsd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+from wsd import wsd
 
-<span class="n">wsd</span><span class="p">(</span><span class="s2">&quot;Sender-&gt;Recipient: Hello</span><span class="se">\n</span><span class="s2"> Recipient-&gt;Sender: Message received OK&quot;</span><span class="p">)</span>
+wsd(&quot;Sender-&gt;Recipient: Hello\n Recipient-&gt;Sender: Message received OK&quot;)
 </pre></div>
 </div>
 </div>
@@ -1682,12 +1682,12 @@ This is part of our “reproducible computing” approach; always generating all
 <p>Let’s make ourselves a sequence chart to show the different aspects of Git we’ve seen so far:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">Working Directory -&gt; Staging Area : git add</span>
-<span class="s2">Staging Area -&gt; Local Repository : git commit</span>
-<span class="s2">Working Directory -&gt; Local Repository : git commit -a</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="n">wsd</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>message = &quot;&quot;&quot;
+Working Directory -&gt; Staging Area : git add
+Staging Area -&gt; Local Repository : git commit
+Working Directory -&gt; Local Repository : git commit -a
+&quot;&quot;&quot;
+wsd(message)
 </pre></div>
 </div>
 </div>
@@ -1703,7 +1703,7 @@ This is part of our “reproducible computing” approach; always generating all
 <h3>Review of status<a class="headerlink" href="#review-of-status" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git status
 </pre></div>
 </div>
@@ -1743,13 +1743,13 @@ git status
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git commit -m &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 853bba7] Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main f548bd5] Add a lie about a mountain
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 2 insertions(+)
@@ -1759,19 +1759,19 @@ git commit -m &quot;Add a lie about a mountain&quot;
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git log
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 853bba730945195abee218633fff47e7794e071e
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit f548bd5d7e371fa8ac9f0c7ddf9c5823f01779d8
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Wed Nov 16 13:12:36 2022 +0000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Tue Nov 29 00:36:23 2022 +0000
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1783,13 +1783,13 @@ git log
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 3172bb29c28c09ec886345ecdb5d25de798bd583
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 09ebcb7dfc4631946f9b4e1289f3921c7ca7e472
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Wed Nov 16 13:12:33 2022 +0000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Tue Nov 29 00:36:21 2022 +0000
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1810,13 +1810,13 @@ git log
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test.md
-<span class="n">Mountains</span> <span class="ow">and</span> <span class="n">Hills</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">UK</span>
-<span class="o">===================</span>
-<span class="n">England</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">very</span> <span class="n">mountainous</span><span class="o">.</span>
-<span class="n">But</span> <span class="n">has</span> <span class="n">some</span> <span class="n">tall</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">maybe</span> <span class="n">a</span> <span class="n">mountain</span> <span class="ow">or</span> <span class="n">two</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">your</span> <span class="n">definition</span><span class="o">.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile test.md
+Mountains and Hills in the UK
+===================
+England is not very mountainous.
+But has some tall hills, and maybe a mountain or two depending on your definition.
 
-<span class="n">Mount</span> <span class="n">Fictional</span><span class="p">,</span> <span class="ow">in</span> <span class="n">Barsetshire</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">K</span><span class="o">.</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">tallest</span> <span class="n">mountain</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">world</span><span class="o">.</span>
+Mount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.
 </pre></div>
 </div>
 </div>
@@ -1828,7 +1828,7 @@ git log
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">test</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cat test.md
 </pre></div>
 </div>
 </div>
@@ -1848,13 +1848,13 @@ Mount Fictional, in Barsetshire, U.K. is the tallest mountain in the world.
 <h3>Commit with a built-in-add<a class="headerlink" href="#commit-with-a-built-in-add" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git commit -am &quot;Change title&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 9e41bcb] Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 6ef0a9d] Change title
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 1 insertion(+), 1 deletion(-)
@@ -1868,19 +1868,19 @@ git commit -am &quot;Change title&quot;
 <h3>Review of changes<a class="headerlink" href="#review-of-changes" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git log | head
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 9e41bcb4fa861aa3543e2efe95f2f38f83be50e3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 6ef0a9d4e55c953987f8ed5b46bb0564ff1b045e
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Wed Nov 16 13:12:36 2022 +0000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Tue Nov 29 00:36:24 2022 +0000
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1892,13 +1892,13 @@ git log | head
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 853bba730945195abee218633fff47e7794e071e
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit f548bd5d7e371fa8ac9f0c7ddf9c5823f01779d8
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Wed Nov 16 13:12:36 2022 +0000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   Tue Nov 29 00:36:23 2022 +0000
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1909,19 +1909,19 @@ git log | head
 <p>We now have three changes in the history:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
 git log --oneline
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9e41bcb Change title
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6ef0a9d Change title
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>853bba7 Add a lie about a mountain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f548bd5 Add a lie about a mountain
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3172bb2 First commit of discourse on UK topography
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>09ebcb7 First commit of discourse on UK topography
 </pre></div>
 </div>
 </div>
@@ -1933,35 +1933,35 @@ git log --oneline
 <p>We can make a diagram that summarises the above story:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">participant &quot;Jim&#39;s repo&quot; as R</span>
-<span class="s2">participant &quot;Jim&#39;s index&quot; as I</span>
-<span class="s2">participant Jim as J</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>message = &quot;&quot;&quot;
+participant &quot;Jim&#39;s repo&quot; as R
+participant &quot;Jim&#39;s index&quot; as I
+participant Jim as J
 
-<span class="s2">note right of J: vim test.md</span>
+note right of J: vim test.md
 
-<span class="s2">note right of J: git init</span>
-<span class="s2">J-&gt;R: create</span>
+note right of J: git init
+J-&gt;R: create
 
-<span class="s2">note right of J: git add test.md</span>
+note right of J: git add test.md
 
-<span class="s2">J-&gt;I: Add content of test.md</span>
+J-&gt;I: Add content of test.md
 
-<span class="s2">note right of J: git commit</span>
-<span class="s2">I-&gt;R: Commit content of test.md</span>
+note right of J: git commit
+I-&gt;R: Commit content of test.md
 
-<span class="s2">note right of J:  vim test.md</span>
+note right of J:  vim test.md
 
-<span class="s2">note right of J: git add --update</span>
-<span class="s2">J-&gt;I: Add content of test.md</span>
-<span class="s2">note right of J: git commit -m &quot;Add a lie&quot;</span>
-<span class="s2">I-&gt;R: Commit change to test.md</span>
+note right of J: git add --update
+J-&gt;I: Add content of test.md
+note right of J: git commit -m &quot;Add a lie&quot;
+I-&gt;R: Commit change to test.md
 
-<span class="s2">note right of J:  vim test.md</span>
-<span class="s2">note right of J: git commit -am &quot;Change title&quot;</span>
-<span class="s2">J-&gt;R: Add and commit change to test.md (and all tracked files)</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="n">wsd</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+note right of J:  vim test.md
+note right of J: git commit -am &quot;Change title&quot;
+J-&gt;R: Add and commit change to test.md (and all tracked files)
+&quot;&quot;&quot;
+wsd(message)
 </pre></div>
 </div>
 </div>

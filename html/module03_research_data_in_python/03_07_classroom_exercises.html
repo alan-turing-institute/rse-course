@@ -1158,20 +1158,20 @@ title="Print to PDF"
 <p>The maze would have looked something like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">house</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;living&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="s2">&quot;kitchen&quot;</span><span class="p">,</span> <span class="s2">&quot;outside&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="s2">&quot;upstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;bedroom&quot;</span><span class="p">},</span>
-        <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;James&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;kitchen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">},</span> <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-    <span class="s2">&quot;garden&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inside&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">},</span> <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Sue&quot;</span><span class="p">],</span> <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-    <span class="s2">&quot;bedroom&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;downstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">,</span> <span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">},</span>
-        <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>house = {
+    &quot;living&quot;: {
+        &quot;exits&quot;: {&quot;north&quot;: &quot;kitchen&quot;, &quot;outside&quot;: &quot;garden&quot;, &quot;upstairs&quot;: &quot;bedroom&quot;},
+        &quot;people&quot;: [&quot;James&quot;],
+        &quot;capacity&quot;: 2,
+    },
+    &quot;kitchen&quot;: {&quot;exits&quot;: {&quot;south&quot;: &quot;living&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1},
+    &quot;garden&quot;: {&quot;exits&quot;: {&quot;inside&quot;: &quot;living&quot;}, &quot;people&quot;: [&quot;Sue&quot;], &quot;capacity&quot;: 3},
+    &quot;bedroom&quot;: {
+        &quot;exits&quot;: {&quot;downstairs&quot;: &quot;living&quot;, &quot;jump&quot;: &quot;garden&quot;},
+        &quot;people&quot;: [],
+        &quot;capacity&quot;: 1,
+    },
+}
 </pre></div>
 </div>
 </div>
@@ -1192,34 +1192,34 @@ Add legends to both axes.</p>
 One example dataset is the USGS earthquake data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import requests
 
-<span class="n">quakes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s2">&quot;http://earthquake.usgs.gov/fdsnws/event/1/query.geojson&quot;</span><span class="p">,</span>
-    <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;starttime&quot;</span><span class="p">:</span> <span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;maxlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;58.723&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;minlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;50.008&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;maxlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1.67&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;minlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-9.756&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;minmagnitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-01-19&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;orderby&quot;</span><span class="p">:</span> <span class="s2">&quot;time-asc&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
-<span class="p">)</span>
+quakes = requests.get(
+    &quot;http://earthquake.usgs.gov/fdsnws/event/1/query.geojson&quot;,
+    params={
+        &quot;starttime&quot;: &quot;2000-01-01&quot;,
+        &quot;maxlatitude&quot;: &quot;58.723&quot;,
+        &quot;minlatitude&quot;: &quot;50.008&quot;,
+        &quot;maxlongitude&quot;: &quot;1.67&quot;,
+        &quot;minlongitude&quot;: &quot;-9.756&quot;,
+        &quot;minmagnitude&quot;: &quot;1&quot;,
+        &quot;endtime&quot;: &quot;2021-01-19&quot;,
+        &quot;orderby&quot;: &quot;time-asc&quot;,
+    },
+    timeout=60,
+)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quakes</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>quakes.text[0:100]
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;metadata&quot;:{&quot;generated&quot;:1668604348000,&quot;url&quot;:&quot;https://earthquake.usgs.gov&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;metadata&quot;:{&quot;generated&quot;:1669682178000,&quot;url&quot;:&quot;https://earthquake.usgs.gov&#39;
 </pre></div>
 </div>
 </div>

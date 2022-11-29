@@ -1104,13 +1104,13 @@ If you’ve never seen SQL before, you might want to attend an introductory cour
 Here we’re going to assume some existing knowledge but we will use a Python-style way to interact with databases instead of relying on raw SQL.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;molecules.db&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removing database to start again from scratch&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No DB since this notebook was last run&quot;</span><span class="p">)</span>
+try:
+    os.remove(&quot;molecules.db&quot;)
+    print(&quot;Removing database to start again from scratch&quot;)
+except FileNotFoundError:
+    print(&quot;No DB since this notebook was last run&quot;)
 </pre></div>
 </div>
 </div>
@@ -1122,9 +1122,9 @@ Here we’re going to assume some existing knowledge but we will use a Python-st
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sqlalchemy
 
-<span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///molecules.db&quot;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+engine = sqlalchemy.create_engine(&quot;sqlite:///molecules.db&quot;, echo=True)
 </pre></div>
 </div>
 </div>
@@ -1133,89 +1133,89 @@ Here we’re going to assume some existing knowledge but we will use a Python-st
 <p>The metadata for the database describing the tables present, and their columns, is defined in Python using SQLAlchemy, the leading python database tool, thus:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Table</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sqlalchemy import Column, Float, Integer, MetaData, String, Table
 
-<span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-<span class="n">molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-    <span class="s2">&quot;molecules&quot;</span><span class="p">,</span>
-    <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;mass&quot;</span><span class="p">,</span> <span class="n">Float</span><span class="p">),</span>
-<span class="p">)</span>
+metadata = MetaData()
+molecules = Table(
+    &quot;molecules&quot;,
+    metadata,
+    Column(&quot;name&quot;, String, primary_key=True),
+    Column(&quot;mass&quot;, Float),
+)
 
-<span class="n">atoms</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-    <span class="s2">&quot;atoms&quot;</span><span class="p">,</span>
-    <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;symbol&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
-<span class="p">)</span>
+atoms = Table(
+    &quot;atoms&quot;,
+    metadata,
+    Column(&quot;symbol&quot;, String, primary_key=True),
+    Column(&quot;number&quot;, Integer),
+)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Integer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sqlalchemy import ForeignKey, Integer
 
-<span class="n">atoms_in_molecules</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-    <span class="s2">&quot;atoms_molecules&quot;</span><span class="p">,</span>
-    <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;atom&quot;</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;atoms.symbol&quot;</span><span class="p">)),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;molecule&quot;</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;molecules.name&quot;</span><span class="p">)),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
-<span class="p">)</span>
+atoms_in_molecules = Table(
+    &quot;atoms_molecules&quot;,
+    metadata,
+    Column(&quot;atom&quot;, ForeignKey(&quot;atoms.symbol&quot;)),
+    Column(&quot;molecule&quot;, ForeignKey(&quot;molecules.name&quot;)),
+    Column(&quot;number&quot;, Integer),
+)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>metadata.create_all(engine)
+print(metadata)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,596 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,743 INFO sqlalchemy.engine.Engine BEGIN (implicit)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,596 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;molecules&quot;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,744 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;molecules&quot;)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,597 INFO sqlalchemy.engine.Engine [raw sql] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,744 INFO sqlalchemy.engine.Engine [raw sql] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,598 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;molecules&quot;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,745 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;molecules&quot;)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,599 INFO sqlalchemy.engine.Engine [raw sql] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,746 INFO sqlalchemy.engine.Engine [raw sql] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,599 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms&quot;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,746 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms&quot;)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,600 INFO sqlalchemy.engine.Engine [raw sql] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,747 INFO sqlalchemy.engine.Engine [raw sql] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,601 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms&quot;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,747 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms&quot;)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,601 INFO sqlalchemy.engine.Engine [raw sql] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,748 INFO sqlalchemy.engine.Engine [raw sql] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,602 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms_molecules&quot;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,748 INFO sqlalchemy.engine.Engine PRAGMA main.table_info(&quot;atoms_molecules&quot;)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,603 INFO sqlalchemy.engine.Engine [raw sql] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,749 INFO sqlalchemy.engine.Engine [raw sql] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,609 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms_molecules&quot;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,749 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info(&quot;atoms_molecules&quot;)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,609 INFO sqlalchemy.engine.Engine [raw sql] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,750 INFO sqlalchemy.engine.Engine [raw sql] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,610 INFO sqlalchemy.engine.Engine 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,750 INFO sqlalchemy.engine.Engine 
 CREATE TABLE molecules (
 	name VARCHAR NOT NULL, 
 	mass FLOAT, 
@@ -1223,10 +1223,10 @@ CREATE TABLE molecules (
 )
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,611 INFO sqlalchemy.engine.Engine [no key 0.00074s] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,752 INFO sqlalchemy.engine.Engine [no key 0.00156s] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,614 INFO sqlalchemy.engine.Engine 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,755 INFO sqlalchemy.engine.Engine 
 CREATE TABLE atoms (
 	symbol VARCHAR NOT NULL, 
 	number INTEGER, 
@@ -1234,10 +1234,10 @@ CREATE TABLE atoms (
 )
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,615 INFO sqlalchemy.engine.Engine [no key 0.00075s] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,756 INFO sqlalchemy.engine.Engine [no key 0.00071s] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,619 INFO sqlalchemy.engine.Engine 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,758 INFO sqlalchemy.engine.Engine 
 CREATE TABLE atoms_molecules (
 	atom VARCHAR, 
 	molecule VARCHAR, 
@@ -1247,10 +1247,10 @@ CREATE TABLE atoms_molecules (
 )
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,620 INFO sqlalchemy.engine.Engine [no key 0.00070s] ()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,759 INFO sqlalchemy.engine.Engine [no key 0.00058s] ()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-16 13:21:26,623 INFO sqlalchemy.engine.Engine COMMIT
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-29 00:43:24,761 INFO sqlalchemy.engine.Engine COMMIT
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MetaData()
@@ -1269,7 +1269,7 @@ CREATE TABLE atoms_molecules (
 <p>We’ll turn off our automatic printing of all the raw sql to avoid this notebook being unreadable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span><span class="o">.</span><span class="n">echo</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>engine.echo = False
 </pre></div>
 </div>
 </div>
@@ -1277,20 +1277,20 @@ CREATE TABLE atoms_molecules (
 <p>We can also write data to our database using this python tooling:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ins</span> <span class="o">=</span> <span class="n">molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="s2">&quot;18.01&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ins = molecules.insert().values(name=&quot;water&quot;, mass=&quot;18.01&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">ins</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>conn = engine.connect()
+conn.execute(ins)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x7f0988932910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x7f62b4842400&gt;
 </pre></div>
 </div>
 </div>
@@ -1298,11 +1298,11 @@ CREATE TABLE atoms_molecules (
 <p>And query it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.sql</span> <span class="kn">import</span> <span class="n">select</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sqlalchemy.sql import select
 
-<span class="n">s</span> <span class="o">=</span> <span class="n">select</span><span class="p">([</span><span class="n">molecules</span><span class="p">])</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="s2">&quot;mass&quot;</span><span class="p">])</span>
+s = select([molecules])
+result = conn.execute(s)
+print(result.fetchone()[&quot;mass&quot;])
 </pre></div>
 </div>
 </div>
@@ -1315,35 +1315,35 @@ CREATE TABLE atoms_molecules (
 <p>If we have enough understanding of SQL syntax, we can use appropriate <strong>join</strong> statements to find, for example, the mass of all molecules which contain oxygen:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="s2">&quot;32.00&quot;</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">atoms_in_molecules</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>conn.execute(molecules.insert().values(name=&quot;oxygen&quot;, mass=&quot;32.00&quot;))
+conn.execute(atoms.insert().values(symbol=&quot;O&quot;, number=8))
+conn.execute(atoms.insert().values(symbol=&quot;H&quot;, number=1))
+conn.execute(atoms_in_molecules.insert().values(molecule=&quot;water&quot;, atom=&quot;O&quot;, number=1))
+conn.execute(atoms_in_molecules.insert().values(molecule=&quot;oxygen&quot;, atom=&quot;O&quot;, number=1))
+conn.execute(atoms_in_molecules.insert().values(molecule=&quot;water&quot;, atom=&quot;H&quot;, number=2))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x7f098c336fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlalchemy.engine.cursor.LegacyCursorResult at 0x7f62b92c5be0&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    SELECT mass</span>
-<span class="sd">    FROM   molecules</span>
-<span class="sd">          JOIN atoms_molecules</span>
-<span class="sd">            ON molecules.NAME = atoms_molecules.molecule</span>
-<span class="sd">          JOIN atoms</span>
-<span class="sd">            ON atoms.symbol = atoms_molecules.atom</span>
-<span class="sd">    WHERE  atoms.symbol = &#39;H&#39;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result = conn.execute(
+    &quot;&quot;&quot;
+    SELECT mass
+    FROM   molecules
+          JOIN atoms_molecules
+            ON molecules.NAME = atoms_molecules.molecule
+          JOIN atoms
+            ON atoms.symbol = atoms_molecules.atom
+    WHERE  atoms.symbol = &#39;H&#39;
+    &quot;&quot;&quot;
+)
+print(result.fetchall())
 </pre></div>
 </div>
 </div>
@@ -1363,13 +1363,13 @@ relations while many-to-many join tables often represent aggregation relationshi
 <p>As a result of this, powerful tools exist to <strong>automatically</strong> create object structures from database schema, including saving and loading.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;molecules.db&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removing database to start again from scratch&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No DB since this notebook was last run&quot;</span><span class="p">)</span>
+try:
+    os.remove(&quot;molecules.db&quot;)
+    print(&quot;Removing database to start again from scratch&quot;)
+except FileNotFoundError:
+    print(&quot;No DB since this notebook was last run&quot;)
 </pre></div>
 </div>
 </div>
@@ -1381,50 +1381,50 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sqlalchemy
 
-<span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///molecules.db&quot;</span><span class="p">)</span>
+engine = sqlalchemy.create_engine(&quot;sqlite:///molecules.db&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
-<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+Base = declarative_base()
 
 
-<span class="k">class</span> <span class="nc">Element</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;atoms&quot;</span>
-    <span class="n">symbol</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
-    <span class="n">molecules</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;AtomsPerMolecule&quot;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span><span class="p">)</span>
+class Element(Base):
+    __tablename__ = &quot;atoms&quot;
+    symbol = Column(String, primary_key=True)
+    number = Column(Integer)
+    molecules = relationship(&quot;AtomsPerMolecule&quot;, backref=&quot;atom&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Molecule</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;molecules&quot;</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">mass</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
-    <span class="n">atoms</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;AtomsPerMolecule&quot;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Molecule(Base):
+    __tablename__ = &quot;molecules&quot;
+    name = Column(String, primary_key=True)
+    mass = Column(Float)
+    atoms = relationship(&quot;AtomsPerMolecule&quot;, backref=&quot;molecule&quot;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AtomsPerMolecule</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;atoms_per_molecule&quot;</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">atom_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;atoms.symbol&quot;</span><span class="p">))</span>
-    <span class="n">molecule_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;molecules.name&quot;</span><span class="p">))</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class AtomsPerMolecule(Base):
+    __tablename__ = &quot;atoms_per_molecule&quot;
+    id = Column(Integer, primary_key=True)
+    atom_id = Column(None, ForeignKey(&quot;atoms.symbol&quot;))
+    molecule_id = Column(None, ForeignKey(&quot;molecules.name&quot;))
+    number = Column(Integer)
 </pre></div>
 </div>
 </div>
@@ -1432,14 +1432,14 @@ relations while many-to-many join tables often represent aggregation relationshi
 <p>If we now create our tables, the system will automatically create a DB:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Base.metadata.create_all(engine)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span><span class="o">.</span><span class="n">echo</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>engine.echo = False
 </pre></div>
 </div>
 </div>
@@ -1447,57 +1447,57 @@ relations while many-to-many join tables often represent aggregation relationshi
 <p>And we can create objects with a simple interface that looks just like ordinary classes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oxygen</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">hydrogen</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>oxygen = Element(symbol=&quot;O&quot;, number=8)
+hydrogen = Element(symbol=&quot;H&quot;, number=1)
+elements = [oxygen, hydrogen]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">water</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">18.01</span><span class="p">)</span>
-<span class="n">oxygen_m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;oxygen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">16.00</span><span class="p">)</span>
-<span class="n">hydrogen_m</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;hydrogen&quot;</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">2.02</span><span class="p">)</span>
-<span class="n">molecules</span> <span class="o">=</span> <span class="p">[</span><span class="n">water</span><span class="p">,</span> <span class="n">oxygen_m</span><span class="p">,</span> <span class="n">hydrogen_m</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>water = Molecule(name=&quot;water&quot;, mass=18.01)
+oxygen_m = Molecule(name=&quot;oxygen&quot;, mass=16.00)
+hydrogen_m = Molecule(name=&quot;hydrogen&quot;, mass=2.02)
+molecules = [water, oxygen_m, hydrogen_m]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that we are using the `backref` name to construct the `atom_id` and `molecule_id`.</span>
-<span class="c1"># These lookup instances of Element and Molecule that are already in our database</span>
-<span class="n">amounts</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">water</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">hydrogen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">water</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">oxygen_m</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">AtomsPerMolecule</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">hydrogen</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">hydrogen_m</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-<span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Note that we are using the `backref` name to construct the `atom_id` and `molecule_id`.
+# These lookup instances of Element and Molecule that are already in our database
+amounts = [
+    AtomsPerMolecule(atom=oxygen, molecule=water, number=1),
+    AtomsPerMolecule(atom=hydrogen, molecule=water, number=2),
+    AtomsPerMolecule(atom=oxygen, molecule=oxygen_m, number=2),
+    AtomsPerMolecule(atom=hydrogen, molecule=hydrogen_m, number=2),
+]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sqlalchemy.orm import sessionmaker
 
-<span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+Session = sessionmaker(bind=engine)
+session = Session()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">bulk_save_objects</span><span class="p">(</span><span class="n">elements</span> <span class="o">+</span> <span class="n">molecules</span> <span class="o">+</span> <span class="n">amounts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>session.bulk_save_objects(elements + molecules + amounts)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oxygen</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">name</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>oxygen.molecules[0].molecule.name
 </pre></div>
 </div>
 </div>
@@ -1509,7 +1509,7 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Molecule</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>session.query(Molecule).all()[0].name
 </pre></div>
 </div>
 </div>
@@ -1521,7 +1521,7 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>session.commit()
 </pre></div>
 </div>
 </div>
@@ -1534,14 +1534,14 @@ relations while many-to-many join tables often represent aggregation relationshi
 <p>One choice, now we know about it, is to serialise all the database tables as CSV:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Molecule</span><span class="p">)</span><span class="o">.</span><span class="n">statement</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>str(session.query(Molecule).statement)
 </pre></div>
 </div>
 </div>
@@ -1553,14 +1553,14 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataframe</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Molecule</span><span class="p">)</span><span class="o">.</span><span class="n">statement</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">bind</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dataframe = pandas.read_sql(session.query(Molecule).statement, session.bind)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataframe</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dataframe
 </pre></div>
 </div>
 </div>
@@ -1609,7 +1609,7 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(dataframe.to_csv())
 </pre></div>
 </div>
 </div>
@@ -1625,11 +1625,11 @@ relations while many-to-many join tables often represent aggregation relationshi
 <p>Deserialising is also easy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> atoms.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile atoms.csv
 
-<span class="n">symbol</span><span class="p">,</span><span class="n">number</span>
-<span class="n">C</span><span class="p">,</span><span class="mi">6</span>
-<span class="n">N</span><span class="p">,</span><span class="mi">7</span>
+symbol,number
+C,6
+N,7
 </pre></div>
 </div>
 </div>
@@ -1641,9 +1641,9 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;atoms.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_csv</span><span class="p">:</span>
-    <span class="n">atoms</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f_csv</span><span class="p">)</span>
-<span class="n">atoms</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;atoms.csv&quot;, &quot;r&quot;) as f_csv:
+    atoms = pandas.read_csv(f_csv)
+atoms
 </pre></div>
 </div>
 </div>
@@ -1687,7 +1687,7 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;atoms&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">bind</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>atoms.to_sql(&quot;atoms&quot;, session.bind, if_exists=&quot;append&quot;, index=False)
 </pre></div>
 </div>
 </div>
@@ -1699,7 +1699,7 @@ relations while many-to-many join tables often represent aggregation relationshi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Element</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">number</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>session.query(Element).all()[3].number
 </pre></div>
 </div>
 </div>

@@ -1152,12 +1152,12 @@ to say the things we need:</p>
 <p>We can then use these defined terms to specify facts, using a URI for the subject, verb, and object of our sentence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> reaction.ttl 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile reaction.ttl 
 
-<span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/</span><span class="n">water</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/</span><span class="n">PATO_0001681</span><span class="o">&gt;</span>
-        <span class="s2">&quot;18.01528&quot;</span><span class="o">^^&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/</span><span class="n">UO_0000088</span><span class="o">&gt;</span>
-            <span class="o">.</span>
+&lt;http://dbpedia.org/ontology/water&gt;
+    &lt;http://purl.obolibrary.org/obo/PATO_0001681&gt;
+        &quot;18.01528&quot;^^&lt;http://purl.obolibrary.org/obo/UO_0000088&gt;
+            .
 </pre></div>
 </div>
 </div>
@@ -1184,15 +1184,15 @@ to say the things we need:</p>
 <p>We can parse it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">Graph</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from rdflib import Graph
 
-<span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;reaction.ttl&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ttl&quot;</span><span class="p">)</span>
+graph = Graph()
+graph.parse(&quot;reaction.ttl&quot;, format=&quot;ttl&quot;)
 
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>
+print(len(graph))
 
-<span class="k">for</span> <span class="n">statement</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+for statement in graph:
+    print(statement)
 </pre></div>
 </div>
 </div>
@@ -1206,7 +1206,7 @@ to say the things we need:</p>
 <p>The equivalent in <strong>RDF-XML</strong> is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;xml&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(graph.serialize(format=&quot;xml&quot;))
 </pre></div>
 </div>
 </div>
@@ -1227,7 +1227,7 @@ to say the things we need:</p>
 <p>We can also use namespace prefixes in Turtle:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ttl&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(graph.serialize(format=&quot;ttl&quot;))
 </pre></div>
 </div>
 </div>
@@ -1251,14 +1251,14 @@ what we need, and because the Semantic Web tools make rigorous the concepts of <
 <p>However, there’s a problem. We can do:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> reaction.ttl 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile reaction.ttl 
 
-<span class="nd">@prefix</span> <span class="n">disr</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">turing</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">rsd</span><span class="o">-</span><span class="n">engineering</span><span class="o">/</span><span class="n">ontologies</span><span class="o">/</span><span class="n">reactions</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">dbo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">obo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/&gt;</span> <span class="o">.</span>
+@prefix disr: &lt;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/&gt; .
+@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .
+@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .
 
-<span class="n">dbo</span><span class="p">:</span><span class="n">water</span> <span class="n">obo</span><span class="p">:</span><span class="n">PATO_0001681</span> <span class="s2">&quot;18.01528&quot;</span><span class="o">^^</span><span class="n">obo</span><span class="p">:</span><span class="n">UO_0000088</span> <span class="p">;</span>
-          <span class="n">disr</span><span class="p">:</span><span class="n">containsElement</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_33260</span> <span class="o">.</span>
+dbo:water obo:PATO_0001681 &quot;18.01528&quot;^^obo:UO_0000088 ;
+          disr:containsElement obo:CHEBI_33260 .
 </pre></div>
 </div>
 </div>
@@ -1274,10 +1274,10 @@ what we need, and because the Semantic Web tools make rigorous the concepts of <
 <p>We’ve introduced the semicolon in Turtle to say two statements about the same entity. The equivalent RDF-XML is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;reaction.ttl&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ttl&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;xml&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>graph = Graph()
+graph.parse(&quot;reaction.ttl&quot;, format=&quot;ttl&quot;)
+print(len(graph))
+print(graph.serialize(format=&quot;xml&quot;))
 </pre></div>
 </div>
 </div>
@@ -1314,19 +1314,19 @@ number of atoms was metadata on the join.</p>
 <p>Imagine if we had to make a URN for oxygen-in-water, hydrogen-in-water etc!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> reaction.ttl 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile reaction.ttl 
 
-<span class="nd">@prefix</span> <span class="n">disr</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">turing</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">rsd</span><span class="o">-</span><span class="n">engineering</span><span class="o">/</span><span class="n">ontologies</span><span class="o">/</span><span class="n">reactions</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">dbo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">obo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">xs</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2001</span><span class="o">/</span><span class="n">XMLSchema</span><span class="o">&gt;</span> <span class="o">.</span>
+@prefix disr: &lt;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/&gt; .
+@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .
+@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .
+@prefix xs: &lt;http://www.w3.org/2001/XMLSchema&gt; .
 
-<span class="n">dbo</span><span class="p">:</span><span class="n">water</span> <span class="n">obo</span><span class="p">:</span><span class="n">PATO_0001681</span> <span class="s2">&quot;18.01528&quot;</span><span class="o">^^</span><span class="n">obo</span><span class="p">:</span><span class="n">UO_0000088</span> <span class="p">;</span>
-          <span class="n">disr</span><span class="p">:</span><span class="n">containsElement</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_33260</span> <span class="p">;</span>
-          <span class="n">disr</span><span class="p">:</span><span class="n">hasElementQuantity</span> <span class="p">[</span> 
-              <span class="n">disr</span><span class="p">:</span><span class="n">countedElement</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_33260</span> <span class="p">;</span> 
-              <span class="n">disr</span><span class="p">:</span><span class="n">countOfElement</span> <span class="s2">&quot;2&quot;</span><span class="o">^^</span><span class="n">xs</span><span class="p">:</span><span class="n">integer</span>
-          <span class="p">]</span> <span class="o">.</span>
+dbo:water obo:PATO_0001681 &quot;18.01528&quot;^^obo:UO_0000088 ;
+          disr:containsElement obo:CHEBI_33260 ;
+          disr:hasElementQuantity [ 
+              disr:countedElement obo:CHEBI_33260 ; 
+              disr:countOfElement &quot;2&quot;^^xs:integer
+          ] .
 </pre></div>
 </div>
 </div>
@@ -1341,19 +1341,19 @@ two predicates on that subject, using properties corresponding to our column nam
 <p>Another turtle syntax for an anonymous “blank node” is this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> reaction.ttl 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile reaction.ttl 
 
-<span class="nd">@prefix</span> <span class="n">disr</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">turing</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">rsd</span><span class="o">-</span><span class="n">engineering</span><span class="o">/</span><span class="n">ontologies</span><span class="o">/</span><span class="n">reactions</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">dbo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">obo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">xs</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2001</span><span class="o">/</span><span class="n">XMLSchema</span><span class="o">&gt;</span> <span class="o">.</span>
+@prefix disr: &lt;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/&gt; .
+@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .
+@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .
+@prefix xs: &lt;http://www.w3.org/2001/XMLSchema&gt; .
 
-<span class="n">dbo</span><span class="p">:</span><span class="n">water</span> <span class="n">obo</span><span class="p">:</span><span class="n">PATO_0001681</span> <span class="s2">&quot;18.01528&quot;</span><span class="o">^^</span><span class="n">obo</span><span class="p">:</span><span class="n">UO_0000088</span> <span class="p">;</span>
-          <span class="n">disr</span><span class="p">:</span><span class="n">containsElement</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_33260</span> <span class="p">;</span>
-          <span class="n">disr</span><span class="p">:</span><span class="n">hasElementQuantity</span> <span class="n">_</span><span class="p">:</span><span class="n">a</span> <span class="o">.</span>
+dbo:water obo:PATO_0001681 &quot;18.01528&quot;^^obo:UO_0000088 ;
+          disr:containsElement obo:CHEBI_33260 ;
+          disr:hasElementQuantity _:a .
                 
-<span class="n">_</span><span class="p">:</span><span class="n">a</span> <span class="n">disr</span><span class="p">:</span><span class="n">countedElement</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_33260</span> <span class="p">;</span> 
-    <span class="n">disr</span><span class="p">:</span><span class="n">countOfElement</span> <span class="s2">&quot;2&quot;</span><span class="o">^^</span><span class="n">xs</span><span class="p">:</span><span class="n">integer</span> <span class="o">.</span>
+_:a disr:countedElement obo:CHEBI_33260 ; 
+    disr:countOfElement &quot;2&quot;^^xs:integer .
 </pre></div>
 </div>
 </div>
@@ -1369,48 +1369,48 @@ two predicates on that subject, using properties corresponding to our column nam
 <p>Here’s code to write our model to Turtle:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> chemistry_turtle_template.mko
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile chemistry_turtle_template.mko
 
-<span class="nd">@prefix</span> <span class="n">disr</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">turing</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">rsd</span><span class="o">-</span><span class="n">engineering</span><span class="o">/</span><span class="n">ontologies</span><span class="o">/</span><span class="n">reactions</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">obo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">xs</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2001</span><span class="o">/</span><span class="n">XMLSchema</span><span class="o">&gt;</span> <span class="o">.</span>
+@prefix disr: &lt;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/&gt; .
+@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .
+@prefix xs: &lt;http://www.w3.org/2001/XMLSchema&gt; .
         
-<span class="p">[</span> 
-<span class="o">%</span><span class="k">for</span> <span class="n">reaction</span> <span class="ow">in</span> <span class="n">reactions</span><span class="p">:</span>
-    <span class="n">disr</span><span class="p">:</span><span class="n">hasReaction</span> <span class="p">[</span>
-        <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
-            <span class="n">disr</span><span class="p">:</span><span class="n">hasReactant</span> <span class="p">[</span>
-                <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="n">disr</span><span class="p">:</span><span class="n">hasElementQuantity</span> <span class="p">[</span>
-                        <span class="n">disr</span><span class="p">:</span><span class="n">countedElement</span> <span class="p">[</span>
-                            <span class="n">a</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_33259</span><span class="p">;</span>
-                            <span class="n">disr</span><span class="p">:</span><span class="n">symbol</span> <span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span><span class="o">^^</span><span class="n">xs</span><span class="p">:</span><span class="n">string</span>
-                        <span class="p">]</span> <span class="p">;</span>
-                        <span class="n">disr</span><span class="p">:</span><span class="n">countOfElement</span> <span class="s2">&quot;$</span><span class="si">{molecule.elements[element]}</span><span class="s2">&quot;</span><span class="o">^^</span><span class="n">xs</span><span class="p">:</span><span class="n">integer</span>
-                    <span class="p">];</span>
-                <span class="o">%</span><span class="n">endfor</span>
-                <span class="n">a</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_23367</span>
-            <span class="p">]</span> <span class="p">;</span>
-        <span class="o">%</span><span class="n">endfor</span>
-        <span class="o">%</span><span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">reaction</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">molecules</span><span class="p">:</span>
-            <span class="n">disr</span><span class="p">:</span><span class="n">hasProduct</span> <span class="p">[</span>
-                <span class="o">%</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
-                    <span class="n">disr</span><span class="p">:</span><span class="n">hasElementQuantity</span> <span class="p">[</span>
-                        <span class="n">disr</span><span class="p">:</span><span class="n">countedElement</span> <span class="p">[</span>
-                            <span class="n">a</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_33259</span><span class="p">;</span>
-                            <span class="n">disr</span><span class="p">:</span><span class="n">symbol</span> <span class="s2">&quot;$</span><span class="si">{element.symbol}</span><span class="s2">&quot;</span><span class="o">^^</span><span class="n">xs</span><span class="p">:</span><span class="n">string</span>
-                        <span class="p">]</span> <span class="p">;</span>
-                        <span class="n">disr</span><span class="p">:</span><span class="n">countOfElement</span> <span class="s2">&quot;$</span><span class="si">{molecule.elements[element]}</span><span class="s2">&quot;</span><span class="o">^^</span><span class="n">xs</span><span class="p">:</span><span class="n">integer</span>
-                    <span class="p">]</span> <span class="p">;</span>
-                <span class="o">%</span><span class="n">endfor</span>
-                <span class="n">a</span> <span class="n">obo</span><span class="p">:</span><span class="n">CHEBI_23367</span>
-            <span class="p">]</span> <span class="p">;</span>
-        <span class="o">%</span><span class="n">endfor</span>
-        <span class="n">a</span> <span class="n">disr</span><span class="p">:</span><span class="n">reaction</span>
-    <span class="p">]</span> <span class="p">;</span>
-<span class="o">%</span><span class="n">endfor</span>
-<span class="n">a</span> <span class="n">disr</span><span class="p">:</span><span class="n">system</span>
-<span class="p">]</span><span class="o">.</span>
+[ 
+%for reaction in reactions:
+    disr:hasReaction [
+        %for molecule in reaction.reactants.molecules:
+            disr:hasReactant [
+                %for element in molecule.elements:
+                    disr:hasElementQuantity [
+                        disr:countedElement [
+                            a obo:CHEBI_33259;
+                            disr:symbol &quot;${element.symbol}&quot;^^xs:string
+                        ] ;
+                        disr:countOfElement &quot;${molecule.elements[element]}&quot;^^xs:integer
+                    ];
+                %endfor
+                a obo:CHEBI_23367
+            ] ;
+        %endfor
+        %for molecule in reaction.products.molecules:
+            disr:hasProduct [
+                %for element in molecule.elements:
+                    disr:hasElementQuantity [
+                        disr:countedElement [
+                            a obo:CHEBI_33259;
+                            disr:symbol &quot;${element.symbol}&quot;^^xs:string
+                        ] ;
+                        disr:countOfElement &quot;${molecule.elements[element]}&quot;^^xs:integer
+                    ] ;
+                %endfor
+                a obo:CHEBI_23367
+            ] ;
+        %endfor
+        a disr:reaction
+    ] ;
+%endfor
+a disr:system
+].
 </pre></div>
 </div>
 </div>
@@ -1432,12 +1432,12 @@ relationship class for molecule-in-reaction.</p>
 isn’t recording this at the moment. We could add this statement later.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">parsereactions</span> <span class="kn">import</span> <span class="n">parser</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from IPython.display import Math, display
+from parsereactions import parser
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.tex&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">texfile</span><span class="p">:</span>
-    <span class="n">system</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">texfile</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">system</span><span class="p">)))</span>
+with open(&quot;system.tex&quot;, &quot;r&quot;) as texfile:
+    system = parser.parse(texfile.read())
+display(Math(str(system)))
 </pre></div>
 </div>
 </div>
@@ -1449,18 +1449,18 @@ isn’t recording this at the moment. We could add this statement later.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mako.template</span> <span class="kn">import</span> <span class="n">Template</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from mako.template import Template
 
-<span class="n">mytemplate</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;chemistry_turtle_template.mko&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.ttl&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ttlfile</span><span class="p">:</span>
-    <span class="n">ttlfile</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">mytemplate</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">system</span><span class="p">))))</span>
+mytemplate = Template(filename=&quot;chemistry_turtle_template.mko&quot;)
+with open(&quot;system.ttl&quot;, &quot;w&quot;) as ttlfile:
+    ttlfile.write((mytemplate.render(**vars(system))))
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat system.ttl
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!cat system.ttl
 </pre></div>
 </div>
 </div>
@@ -1589,9 +1589,9 @@ a disr:system
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;system.ttl&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ttl&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;xml&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>graph = Graph()
+graph.parse(&quot;system.ttl&quot;, format=&quot;ttl&quot;)
+print(graph.serialize(format=&quot;xml&quot;))
 </pre></div>
 </div>
 </div>
@@ -1601,152 +1601,152 @@ a disr:system
    xmlns:disr=&quot;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/&quot;
    xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
 &gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b19&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b20&quot;/&gt;
-    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b5&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
+    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;C&lt;/disr:symbol&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b24&quot;&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b25&quot;/&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b18&quot;&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b19&quot;/&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b21&quot;/&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b17&quot;&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b29&quot;&gt;
     &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
     &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;O&lt;/disr:symbol&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b29&quot;&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b18&quot;&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b19&quot;/&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b21&quot;/&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b33&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b34&quot;/&gt;
+    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;1&lt;/disr:countOfElement&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b22&quot;&gt;
     &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
     &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;O&lt;/disr:symbol&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b32&quot;&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b20&quot;&gt;
     &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
     &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;H&lt;/disr:symbol&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b27&quot;&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b28&quot;/&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b2&quot;&gt;
-    &lt;disr:hasReactant rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b3&quot;/&gt;
-    &lt;disr:hasReactant rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b10&quot;/&gt;
-    &lt;disr:hasProduct rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b13&quot;/&gt;
-    &lt;disr:hasProduct rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b18&quot;/&gt;
-    &lt;rdf:type rdf:resource=&quot;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/reaction&quot;/&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b25&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b26&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b28&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b29&quot;/&gt;
     &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b4&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b5&quot;/&gt;
-    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;6&lt;/disr:countOfElement&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b25&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b26&quot;/&gt;
+    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b6&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b7&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b15&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
+    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;C&lt;/disr:symbol&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b6&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b7&quot;/&gt;
     &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;12&lt;/disr:countOfElement&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b26&quot;&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
-    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;H&lt;/disr:symbol&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b24&quot;&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b25&quot;/&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b8&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b9&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b19&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b20&quot;/&gt;
+    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b14&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b15&quot;/&gt;
+    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;1&lt;/disr:countOfElement&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b8&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b9&quot;/&gt;
     &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;6&lt;/disr:countOfElement&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b5&quot;&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
-    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;C&lt;/disr:symbol&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b13&quot;&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b14&quot;/&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b16&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b30&quot;&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b31&quot;/&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b33&quot;/&gt;
     &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b34&quot;&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
-    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;O&lt;/disr:symbol&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b16&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b17&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b11&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b12&quot;/&gt;
     &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b7&quot;&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
-    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;H&lt;/disr:symbol&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b20&quot;&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
-    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;H&lt;/disr:symbol&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b21&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b22&quot;/&gt;
-    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;1&lt;/disr:countOfElement&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b30&quot;&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b31&quot;/&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b33&quot;/&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b23&quot;&gt;
-    &lt;disr:hasReactant rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b24&quot;/&gt;
-    &lt;disr:hasReactant rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b27&quot;/&gt;
-    &lt;disr:hasProduct rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b30&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b2&quot;&gt;
+    &lt;disr:hasReactant rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b3&quot;/&gt;
+    &lt;disr:hasReactant rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b10&quot;/&gt;
+    &lt;disr:hasProduct rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b13&quot;/&gt;
+    &lt;disr:hasProduct rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b18&quot;/&gt;
     &lt;rdf:type rdf:resource=&quot;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/reaction&quot;/&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b3&quot;&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b4&quot;/&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b6&quot;/&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b8&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b32&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
+    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;H&lt;/disr:symbol&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b34&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
+    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;O&lt;/disr:symbol&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b7&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
+    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;H&lt;/disr:symbol&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b3&quot;&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b4&quot;/&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b6&quot;/&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b8&quot;/&gt;
     &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b14&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b15&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b10&quot;&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b11&quot;/&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b26&quot;&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
+    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;H&lt;/disr:symbol&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b4&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b5&quot;/&gt;
+    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;6&lt;/disr:countOfElement&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b23&quot;&gt;
+    &lt;disr:hasReactant rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b24&quot;/&gt;
+    &lt;disr:hasReactant rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b27&quot;/&gt;
+    &lt;disr:hasProduct rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b30&quot;/&gt;
+    &lt;rdf:type rdf:resource=&quot;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/reaction&quot;/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b21&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b22&quot;/&gt;
     &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;1&lt;/disr:countOfElement&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b12&quot;&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b16&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b17&quot;/&gt;
+    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b9&quot;&gt;
     &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
     &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;O&lt;/disr:symbol&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b22&quot;&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
-    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;O&lt;/disr:symbol&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b13&quot;&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b14&quot;/&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b16&quot;/&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b1&quot;&gt;
-    &lt;disr:hasReaction rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b2&quot;/&gt;
-    &lt;disr:hasReaction rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b23&quot;/&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b31&quot;&gt;
+    &lt;disr:countedElement rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b32&quot;/&gt;
+    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b1&quot;&gt;
+    &lt;disr:hasReaction rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b2&quot;/&gt;
+    &lt;disr:hasReaction rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b23&quot;/&gt;
     &lt;rdf:type rdf:resource=&quot;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/system&quot;/&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b9&quot;&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b17&quot;&gt;
     &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
     &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;O&lt;/disr:symbol&gt;
   &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b31&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b32&quot;/&gt;
-    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b28&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b29&quot;/&gt;
-    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b10&quot;&gt;
-    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b11&quot;/&gt;
-    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b11&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b12&quot;/&gt;
-    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;2&lt;/disr:countOfElement&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b33&quot;&gt;
-    &lt;disr:countedElement rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b34&quot;/&gt;
-    &lt;disr:countOfElement rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemainteger&quot;&gt;1&lt;/disr:countOfElement&gt;
-  &lt;/rdf:Description&gt;
-  &lt;rdf:Description rdf:nodeID=&quot;nf5606006dd4b4a099fbfd246dd88dcd8b15&quot;&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b12&quot;&gt;
     &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_33259&quot;/&gt;
-    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;C&lt;/disr:symbol&gt;
+    &lt;disr:symbol rdf:datatype=&quot;http://www.w3.org/2001/XMLSchemastring&quot;&gt;O&lt;/disr:symbol&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b27&quot;&gt;
+    &lt;disr:hasElementQuantity rdf:nodeID=&quot;nebb62a1bd940485fb048ee6763423fa7b28&quot;/&gt;
+    &lt;rdf:type rdf:resource=&quot;http://purl.obolibrary.org/obo/CHEBI_23367&quot;/&gt;
   &lt;/rdf:Description&gt;
 &lt;/rdf:RDF&gt;
 </pre></div>
@@ -1783,19 +1783,19 @@ and the domain and range (valid subjects and objects) of our properties.</p>
 <p>For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> turing_ontology.ttl
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile turing_ontology.ttl
 
-<span class="nd">@prefix</span> <span class="n">disr</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">turing</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">rsd</span><span class="o">-</span><span class="n">engineering</span><span class="o">/</span><span class="n">ontologies</span><span class="o">/</span><span class="n">reactions</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">obo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">xs</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2001</span><span class="o">/</span><span class="n">XMLSchema</span><span class="o">&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">rdfs</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2000</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="n">rdf</span><span class="o">-</span><span class="n">schema</span><span class="c1">#&gt; .</span>
-<span class="nd">@prefix</span> <span class="n">rdf</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">1999</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="mi">22</span><span class="o">-</span><span class="n">rdf</span><span class="o">-</span><span class="n">syntax</span><span class="o">-</span><span class="n">ns</span><span class="c1">#&gt; .</span>
+@prefix disr: &lt;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/&gt; .
+@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .
+@prefix xs: &lt;http://www.w3.org/2001/XMLSchema&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 
-<span class="n">disr</span><span class="p">:</span><span class="n">system</span> <span class="n">a</span> <span class="n">rdfs</span><span class="p">:</span><span class="n">Class</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">reaction</span> <span class="n">a</span> <span class="n">rdfs</span><span class="p">:</span><span class="n">Class</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">hasReaction</span> <span class="n">a</span> <span class="n">rdf</span><span class="p">:</span><span class="n">Property</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">hasReaction</span> <span class="n">rdfs</span><span class="p">:</span><span class="n">domain</span> <span class="n">disr</span><span class="p">:</span><span class="n">system</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">hasReaction</span> <span class="n">rdfs</span><span class="p">:</span><span class="nb">range</span> <span class="n">disr</span><span class="p">:</span><span class="n">reaction</span> <span class="o">.</span>          
+disr:system a rdfs:Class .
+disr:reaction a rdfs:Class .
+disr:hasReaction a rdf:Property .
+disr:hasReaction rdfs:domain disr:system .
+disr:hasReaction rdfs:range disr:reaction .          
 </pre></div>
 </div>
 </div>
@@ -1814,23 +1814,23 @@ and the domain and range (valid subjects and objects) of our properties.</p>
 <p>This can get very interesting:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> turing_ontology.ttl
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile turing_ontology.ttl
 
-<span class="nd">@prefix</span> <span class="n">disr</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">turing</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">rsd</span><span class="o">-</span><span class="n">engineering</span><span class="o">/</span><span class="n">ontologies</span><span class="o">/</span><span class="n">reactions</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">obo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">xs</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2001</span><span class="o">/</span><span class="n">XMLSchema</span><span class="o">&gt;</span> <span class="o">.</span>
-<span class="nd">@prefix</span> <span class="n">rdfs</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2000</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="n">rdf</span><span class="o">-</span><span class="n">schema</span><span class="c1">#&gt; .</span>
-<span class="nd">@prefix</span> <span class="n">rdf</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">1999</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="mi">22</span><span class="o">-</span><span class="n">rdf</span><span class="o">-</span><span class="n">syntax</span><span class="o">-</span><span class="n">ns</span><span class="c1">#&gt; .</span>
+@prefix disr: &lt;http://www.turing.ac.uk/rsd-engineering/ontologies/reactions/&gt; .
+@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .
+@prefix xs: &lt;http://www.w3.org/2001/XMLSchema&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 
-<span class="n">disr</span><span class="p">:</span><span class="n">system</span> <span class="n">a</span> <span class="n">rdfs</span><span class="p">:</span><span class="n">Class</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">reaction</span> <span class="n">a</span> <span class="n">rdfs</span><span class="p">:</span><span class="n">Class</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">hasReaction</span> <span class="n">a</span> <span class="n">rdf</span><span class="p">:</span><span class="n">Property</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">hasReaction</span> <span class="n">rdfs</span><span class="p">:</span><span class="n">domain</span> <span class="n">disr</span><span class="p">:</span><span class="n">system</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">hasReaction</span> <span class="n">rdfs</span><span class="p">:</span><span class="nb">range</span> <span class="n">disr</span><span class="p">:</span><span class="n">reaction</span> <span class="o">.</span>     
+disr:system a rdfs:Class .
+disr:reaction a rdfs:Class .
+disr:hasReaction a rdf:Property .
+disr:hasReaction rdfs:domain disr:system .
+disr:hasReaction rdfs:range disr:reaction .     
 
-<span class="n">disr</span><span class="p">:</span><span class="n">hasParticipant</span> <span class="n">a</span> <span class="n">rdf</span><span class="p">:</span><span class="n">Property</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">hasReactant</span> <span class="n">rdfs</span><span class="p">:</span><span class="n">subPropertyOf</span> <span class="n">disr</span><span class="p">:</span><span class="n">hasParticipant</span> <span class="o">.</span>
-<span class="n">disr</span><span class="p">:</span><span class="n">hasProduct</span> <span class="n">rdfs</span><span class="p">:</span><span class="n">subPropertyOf</span> <span class="n">disr</span><span class="p">:</span><span class="n">hasParticipant</span>
+disr:hasParticipant a rdf:Property .
+disr:hasReactant rdfs:subPropertyOf disr:hasParticipant .
+disr:hasProduct rdfs:subPropertyOf disr:hasParticipant
 </pre></div>
 </div>
 </div>
@@ -1850,29 +1850,29 @@ is so verbose it seems useless!</p>
 <p>SPARQL is a very powerful language for asking questions of knowledge bases defined in RDF triples:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    SELECT DISTINCT ?asymbol ?bsymbol</span>
-<span class="sd">    WHERE {</span>
-<span class="sd">        ?molecule disr:hasElementQuantity ?a .</span>
-<span class="sd">        ?a disr:countedElement ?elementa .</span>
-<span class="sd">        ?elementa disr:symbol ?asymbol .</span>
-<span class="sd">        ?molecule disr:hasElementQuantity ?b .</span>
-<span class="sd">        ?b disr:countedElement ?elementb .</span>
-<span class="sd">        ?elementb disr:symbol ?bsymbol</span>
-<span class="sd">    }</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>results = graph.query(
+    &quot;&quot;&quot;
+    SELECT DISTINCT ?asymbol ?bsymbol
+    WHERE {
+        ?molecule disr:hasElementQuantity ?a .
+        ?a disr:countedElement ?elementa .
+        ?elementa disr:symbol ?asymbol .
+        ?molecule disr:hasElementQuantity ?b .
+        ?b disr:countedElement ?elementb .
+        ?elementb disr:symbol ?bsymbol
+    }
+    &quot;&quot;&quot;
+)
 
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elements </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> and %s are found in the same molecule&quot;</span> <span class="o">%</span> <span class="n">row</span><span class="p">)</span>
+for row in results:
+    print(f&quot;Elements {row[0]} and %s are found in the same molecule&quot; % row)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">results</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="sd">&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd">     SELECT DISTINCT ?asymbol ?bsymbol</span>
@@ -1893,38 +1893,38 @@ are compatible with the statements in your query.</p>
 <p>We can also use SPARQL to specify <strong>inference rules</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    INSERT { ?elementa disr:inMoleculeWith ?elementb }</span>
-<span class="sd">    WHERE {</span>
-<span class="sd">        ?molecule disr:hasElementQuantity ?a .</span>
-<span class="sd">        ?a disr:countedElement ?elementa .</span>
-<span class="sd">        ?elementa disr:symbol ?asymbol .</span>
-<span class="sd">        ?molecule disr:hasElementQuantity ?b .</span>
-<span class="sd">        ?b disr:countedElement ?elementb .</span>
-<span class="sd">        ?elementb disr:symbol ?bsymbol</span>
-<span class="sd">    }</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>graph.update(
+    &quot;&quot;&quot;
+    INSERT { ?elementa disr:inMoleculeWith ?elementb }
+    WHERE {
+        ?molecule disr:hasElementQuantity ?a .
+        ?a disr:countedElement ?elementa .
+        ?elementa disr:symbol ?asymbol .
+        ?molecule disr:hasElementQuantity ?b .
+        ?b disr:countedElement ?elementb .
+        ?elementb disr:symbol ?bsymbol
+    }
+    &quot;&quot;&quot;
+)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    SELECT DISTINCT ?asymbol ?bsymbol</span>
-<span class="sd">    WHERE {</span>
-<span class="sd">          ?elementa disr:inMoleculeWith ?elementb .</span>
-<span class="sd">          ?elementa disr:symbol ?asymbol .</span>
-<span class="sd">          ?elementb disr:symbol ?bsymbol</span>
-<span class="sd">    }</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>graph.query(
+    &quot;&quot;&quot;
+    SELECT DISTINCT ?asymbol ?bsymbol
+    WHERE {
+          ?elementa disr:inMoleculeWith ?elementb .
+          ?elementa disr:symbol ?asymbol .
+          ?elementb disr:symbol ?bsymbol
+    }
+    &quot;&quot;&quot;
+)
 
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elements </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> are found in the same molecule&quot;</span><span class="p">)</span>
+for row in results:
+    print(f&quot;Elements {row[0]} and {row[1]} are found in the same molecule&quot;)
 </pre></div>
 </div>
 </div>
