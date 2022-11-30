@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>9.5 Performance scaling for containers and algorithms &#8212; Research Software Engineering with Python</title>
+    <title>9.5 Performance Scaling for Containers and Algorithms &#8212; Research Software Engineering with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="10. Scientific file formats" href="../module10_scientific_file_formats/index.html" />
-    <link rel="prev" title="9.5 Optimising with Numba" href="09_04_optimising_with_numba.html" />
+    <link rel="prev" title="9.4 Optimising with Numba" href="09_04_optimising_with_numba.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -639,12 +639,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="09_00_performance_programming.html">
-     9.0 Performance programming
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_01_optimising_mandelbrot.html">
-     9.1 Optimising Mandelbrot
+     9.0 Performance Programming
     </a>
    </li>
    <li class="toctree-l2">
@@ -654,17 +649,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_03_optimising_with_cython.html">
-     9.3 Optimising with Cython
+     9.3.0 How to Build Cython Code
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_04_optimising_with_numba.html">
-     9.5 Optimising with Numba
+     9.4 Optimising with Numba
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     9.5 Performance scaling for containers and algorithms
+     9.5 Performance Scaling for Containers and Algorithms
     </a>
    </li>
   </ul>
@@ -1031,8 +1026,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dictionary-performance">
-   Dictionary performance
+  <a class="reference internal nav-link" href="#python-lists-vs-numpy-arrays">
+   9.5.0 Python Lists vs NumPy Arrays
   </a>
  </li>
 </ul>
@@ -1044,7 +1039,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>9.5 Performance scaling for containers and algorithms</h1>
+                <h1>9.5 Performance Scaling for Containers and Algorithms</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1055,8 +1050,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dictionary-performance">
-   Dictionary performance
+  <a class="reference internal nav-link" href="#python-lists-vs-numpy-arrays">
+   9.5.0 Python Lists vs NumPy Arrays
   </a>
  </li>
 </ul>
@@ -1070,8 +1065,10 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="performance-scaling-for-containers-and-algorithms">
-<h1>9.5 Performance scaling for containers and algorithms<a class="headerlink" href="#performance-scaling-for-containers-and-algorithms" title="Permalink to this headline">#</a></h1>
+<h1>9.5 Performance Scaling for Containers and Algorithms<a class="headerlink" href="#performance-scaling-for-containers-and-algorithms" title="Permalink to this headline">#</a></h1>
 <p><em>Estimated time for this notebook: 15 minutes</em></p>
+<section id="python-lists-vs-numpy-arrays">
+<h2>9.5.0 Python Lists vs NumPy Arrays<a class="headerlink" href="#python-lists-vs-numpy-arrays" title="Permalink to this headline">#</a></h2>
 <p>We’ve seen that NumPy arrays are really useful. Why wouldn’t we always want to use them for data which is all the same type?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1083,7 +1080,7 @@ from matplotlib import pyplot as plt
 </div>
 </div>
 </div>
-<p>Let’s look at appending data into a NumPy array, compared to a plain Python list:</p>
+<p>Let’s look at appending data to a NumPy array, compared to a plain Python list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_append_to_ndarray(count):
@@ -1094,6 +1091,21 @@ from matplotlib import pyplot as plt
         f&quot;import numpy as np; before=np.ndarray({count})&quot;,
         number=10000,
     )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(repeat)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function repeat in module timeit:
+
+repeat(stmt=&#39;pass&#39;, setup=&#39;pass&#39;, timer=&lt;built-in function perf_counter&gt;, repeat=5, number=1000000, globals=None)
+    Convenience function to create Timer object and call repeat method.
 </pre></div>
 </div>
 </div>
@@ -1111,9 +1123,9 @@ from matplotlib import pyplot as plt
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts = np.arange(1, 100000, 10000)
 
 
-def plot_time(function, counts, title=None):
+def plot_time(function, counts, title=None, top=None):
     plt.plot(counts, list(map(function, counts)))
-    plt.ylim(bottom=0)
+    plt.ylim(bottom=0, top=top)
     plt.ylabel(&quot;seconds&quot;)
     plt.xlabel(&quot;array size&quot;)
     plt.title(title or function.__name__)
@@ -1128,7 +1140,7 @@ def plot_time(function, counts, title=None):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_8_0.png" src="../_images/09_05_performance_scaling_8_0.png" />
+<img alt="../_images/09_05_performance_scaling_10_0.png" src="../_images/09_05_performance_scaling_10_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1138,365 +1150,16 @@ def plot_time(function, counts, title=None):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_9_0.png" src="../_images/09_05_performance_scaling_9_0.png" />
+<img alt="../_images/09_05_performance_scaling_11_0.png" src="../_images/09_05_performance_scaling_11_0.png" />
 </div>
 </div>
 <p>Adding an element to a Python list is way faster! Also, it seems that adding an element to a Python list is independent of the length of the list, but it’s not so for a NumPy array.</p>
-<p>How do they perform when accessing an element in the middle?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_lookup_middle_element_in_list(count):
-    test_list = [0] * count
-    middle_position = count // 2
-
-    def totime():
-        return test_list[middle_position]
-
-    return repeat(totime, number=10000)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_lookup_middle_element_in_ndarray(count):
-    test_array = np.ndarray(count)
-    middle_position = count // 2
-
-    def totime():
-        return test_array[middle_position]
-
-    return repeat(totime, number=10000)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_lookup_middle_element_in_list, counts)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_14_0.png" src="../_images/09_05_performance_scaling_14_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_lookup_middle_element_in_ndarray, counts)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_15_0.png" src="../_images/09_05_performance_scaling_15_0.png" />
-</div>
-</div>
-<p>Both scale well for accessing the middle element.</p>
-<p>What about inserting at the beginning?</p>
-<p>If we want to insert an element at the beginning of a Python list we can do:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = list(range(5))
-x
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x[0:0] = [-1]
-x
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1, 0, 1, 2, 3, 4]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_insert_to_list(count):
-    return repeat(&quot;before[0:0] = [0]&quot;, f&quot;before = [0] * {count}&quot;, number=10000)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_insert_to_list, counts)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_21_0.png" src="../_images/09_05_performance_scaling_21_0.png" />
-</div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">list</span></code> performs <strong>badly</strong> for insertions at the beginning!</p>
-<p>There are containers in Python that work well for insertion at the start:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from collections import deque
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_insert_to_deque(count):
-    return repeat(
-        &quot;before.appendleft(0)&quot;,
-        f&quot;from collections import deque; before = deque([0] * {count})&quot;,
-        number=10000,
-    )
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_insert_to_deque, counts)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_26_0.png" src="../_images/09_05_performance_scaling_26_0.png" />
-</div>
-</div>
-<p>But looking up in the middle scales badly:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_lookup_middle_element_in_deque(count):
-    test_deque = deque([0] * count)
-    middle_position = count // 2
-
-    def totime():
-        return test_deque[middle_position]
-
-    return repeat(totime, number=10000)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_lookup_middle_element_in_deque, counts)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_29_0.png" src="../_images/09_05_performance_scaling_29_0.png" />
-</div>
-</div>
-<p>What is going on here?</p>
-<p>Arrays are stored as contiguous memory. Anything which changes the length of the array requires the whole array to be copied elsewhere in memory.</p>
-<p>This copy takes time proportional to the array size.</p>
-<p><img alt="Adding an element to an array - memory representation" src="../_images/array_memory.svg" /></p>
-<p>The Python <code class="docutils literal notranslate"><span class="pre">list</span></code> type is <strong>also</strong> an array, but it is allocated with <strong>extra memory</strong>. Only when that memory is exhausted is a copy needed.</p>
-<p><img alt="Adding an element to a list - memory representation" src="../_images/list_memory.svg" /></p>
-<p>If the extra memory is typically the size of the current array, a copy is needed every 1/N appends, and costs N to make, so <strong>on average</strong> copies are cheap. We call this <strong>amortized constant time</strong>.</p>
-<p>This makes it fast to look up values in the middle. However, it may also use more space than is needed.</p>
-<p>The deque type works differently: each element contains a pointer to the next. Inserting elements is therefore very cheap, but looking up the Nth element requires traversing N such pointers.</p>
-<p><img alt="Adding an element to a deque - memory representation" src="../_images/deque_memory.svg" /></p>
-<section id="dictionary-performance">
-<h2>Dictionary performance<a class="headerlink" href="#dictionary-performance" title="Permalink to this headline">#</a></h2>
-<p>For another example, let’s consider the performance of a dictionary versus a couple of other ways in which we could implement an associative array.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class evildict:
-    def __init__(self, data):
-        self.data = data
-
-    def __getitem__(self, akey):
-        for key, value in self.data:
-            if key == akey:
-                return value
-        raise KeyError()
-</pre></div>
-</div>
-</div>
-</div>
-<p>If we have an evil dictionary of N elements, how long would it take - on average - to find an element?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric = [[&quot;Name&quot;, &quot;Eric Idle&quot;], [&quot;Job&quot;, &quot;Comedian&quot;], [&quot;Home&quot;, &quot;London&quot;]]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_evil = evildict(eric)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_evil[&quot;Job&quot;]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Comedian&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_dict = dict(eric)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_evil[&quot;Job&quot;]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Comedian&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = [&quot;Hello&quot;, &quot;License&quot;, &quot;Fish&quot;, &quot;Eric&quot;, &quot;Pet&quot;, &quot;Halibut&quot;]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sorted(x, key=lambda el: el.lower())
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Eric&#39;, &#39;Fish&#39;, &#39;Halibut&#39;, &#39;Hello&#39;, &#39;License&#39;, &#39;Pet&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-<p>What if we created a dictionary where we bisect the search?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from bisect import bisect_left
-
-
-class sorteddict:
-    def __init__(self, data):
-        self.data = sorted(data, key=lambda x: x[0])
-        self.keys = list(map(lambda x: x[0], self.data))
-
-    def __getitem__(self, akey):
-        loc = bisect_left(self.keys, akey)
-
-        if loc != len(self.data):
-            return self.data[loc][1]
-
-        raise KeyError()
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_sorted = sorteddict(eric)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eric_sorted[&quot;Job&quot;]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Comedian&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_dict_generic(ttype, count):
-    keys = list(range(count))
-    values = [0] * count
-    data = ttype(list(zip(keys, values)))
-
-    def totime():
-        return data[keys[count // 2]]
-
-    return repeat(totime, number=10000)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_dict(count):
-    return time_dict_generic(dict, count)
-
-
-def time_sorted(count):
-    return time_dict_generic(sorteddict, count)
-
-
-def time_evil(count):
-    return time_dict_generic(evildict, count)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_sorted, counts, title=&quot;sorted&quot;)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_56_0.png" src="../_images/09_05_performance_scaling_56_0.png" />
-</div>
-</div>
-<p>We can’t really see what’s going on here for the sorted example as there’s too much noise, but theoretically we should get <strong>logarithmic</strong> asymptotic performance. We write this down as <span class="math notranslate nohighlight">\(O(\ln N)\)</span>. This doesn’t mean there isn’t also a constant term, or a term proportional to something that grows slower (such as <span class="math notranslate nohighlight">\(\ln(\ln N)\)</span>): we always write down just the term that is dominant for large <span class="math notranslate nohighlight">\(N\)</span>. We saw before that <code class="docutils literal notranslate"><span class="pre">list</span></code> is <span class="math notranslate nohighlight">\(O(1)\)</span> for appends, <span class="math notranslate nohighlight">\(O(N)\)</span> for inserts. Numpy’s <code class="docutils literal notranslate"><span class="pre">array</span></code> is <span class="math notranslate nohighlight">\(O(N)\)</span> for appends.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts = np.arange(1, 1000, 100)
-plot_time(time_evil, counts, title=&quot;evil&quot;)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_58_0.png" src="../_images/09_05_performance_scaling_58_0.png" />
-</div>
-</div>
-<p>The simple check-each-in-turn solution is <span class="math notranslate nohighlight">\(O(N)\)</span> - linear time.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts = np.arange(1, 100000, 10000)
-plot_time(time_dict, counts, title=&quot;dict&quot;)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/09_05_performance_scaling_60_0.png" src="../_images/09_05_performance_scaling_60_0.png" />
-</div>
-</div>
-<p>Python’s built-in dictionary is, amazingly, O(1): the time is <strong>independent</strong> of the size of the dictionary.</p>
-<p>This uses a miracle of programming called the <em>Hash Table</em>:
-you can learn more about <a class="reference external" href="https://www.youtube.com/watch?v=h2d9b_nEzoA">these issues at this video from Harvard University</a>. This material is pretty advanced, but, I think, really interesting!</p>
-<p>Optional exercise: determine what the asymptotic peformance for the Boids model in terms of the number of Boids. Make graphs to support this. Bonus: how would the performance scale with the number of dimensions?</p>
+<p>We would say that adding an element to a Python list is “constant time”. This is often written <span class="math notranslate nohighlight">\(O(1)\)</span></p>
+<p>We would say that adding an element to a Numpy array is “linear time”. This is written <span class="math notranslate nohighlight">\(O(n)\)</span>.</p>
+<p>If something is <span class="math notranslate nohighlight">\(O(n + 1)\)</span> then we shorten that to <span class="math notranslate nohighlight">\(O(n)\)</span> because the <span class="math notranslate nohighlight">\(1\)</span> becomes negligible as <span class="math notranslate nohighlight">\(n\)</span> grows very large.</p>
+<p><span class="math notranslate nohighlight">\(O()\)</span> or “big oh” notation is also used to describe the amount of memory required to perform some operation such as sorting.</p>
+<p>Go to notebook <strong>9.6 Classroom Exercises</strong> and do <em>Exercise 9e</em>.</p>
+<p>More on optimising with numba in notebook: <strong>9.8 Self study</strong>.</p>
 </section>
 </section>
 
@@ -1531,7 +1194,7 @@ you can learn more about <a class="reference external" href="https://www.youtube
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">9.5 Optimising with Numba</p>
+            <p class="prev-next-title">9.4 Optimising with Numba</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../module10_scientific_file_formats/index.html" title="next page">

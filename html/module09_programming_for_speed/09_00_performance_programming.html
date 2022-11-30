@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>9.0 Performance programming &#8212; Research Software Engineering with Python</title>
+    <title>9.0 Performance Programming &#8212; Research Software Engineering with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9.1 Optimising Mandelbrot" href="09_01_optimising_mandelbrot.html" />
+    <link rel="next" title="9.2 Optimising with NumPy" href="09_02_optimising_with_numpy.html" />
     <link rel="prev" title="9. Programming for Speed" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -639,12 +639,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     9.0 Performance programming
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_01_optimising_mandelbrot.html">
-     9.1 Optimising Mandelbrot
+     9.0 Performance Programming
     </a>
    </li>
    <li class="toctree-l2">
@@ -654,17 +649,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_03_optimising_with_cython.html">
-     9.3 Optimising with Cython
+     9.3.0 How to Build Cython Code
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_04_optimising_with_numba.html">
-     9.5 Optimising with Numba
+     9.4 Optimising with Numba
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_05_performance_scaling.html">
-     9.5 Performance scaling for containers and algorithms
+     9.5 Performance Scaling for Containers and Algorithms
     </a>
    </li>
   </ul>
@@ -1031,8 +1026,23 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#two-mandelbrots">
-   Two Mandelbrots
+  <a class="reference internal nav-link" href="#motivation">
+   9.0.1 Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mandelbrot-set">
+   9.0.2 Mandelbrot Set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fractals">
+   9.0.3 Fractals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#timing">
+   9.0.4 Timing
   </a>
  </li>
 </ul>
@@ -1044,7 +1054,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>9.0 Performance programming</h1>
+                <h1>9.0 Performance Programming</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1055,8 +1065,23 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#two-mandelbrots">
-   Two Mandelbrots
+  <a class="reference internal nav-link" href="#motivation">
+   9.0.1 Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mandelbrot-set">
+   9.0.2 Mandelbrot Set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fractals">
+   9.0.3 Fractals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#timing">
+   9.0.4 Timing
   </a>
  </li>
 </ul>
@@ -1070,45 +1095,338 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="performance-programming">
-<h1>9.0 Performance programming<a class="headerlink" href="#performance-programming" title="Permalink to this headline">#</a></h1>
+<h1>9.0 Performance Programming<a class="headerlink" href="#performance-programming" title="Permalink to this headline">#</a></h1>
 <p><em>Estimated time for this notebook: 10 minutes</em></p>
 <p>We’ve spent most of this course looking at how to make code readable and reliable. For research work, it is often also important that code is efficient: that it does what it needs to do <em>quickly</em>.</p>
-<p>It is very hard to work out beforehand whether code will be efficient or not: it is essential to <em>Profile</em> code, to measure its performance, to determine what aspects of it are slow.</p>
-<p>When we looked at Functional programming, we claimed that code which is conceptualised in terms of actions on whole data-sets rather than individual elements is more efficient. Let’s measure the performance of some different ways of implementing some code and see how they perform.</p>
-<section id="two-mandelbrots">
-<h2>Two Mandelbrots<a class="headerlink" href="#two-mandelbrots" title="Permalink to this headline">#</a></h2>
-<p>You’re probably familiar with a famous fractal called the <a class="reference external" href="https://www.youtube.com/watch?v=ZDU40eUcTj0">Mandelbrot Set</a>.</p>
-<p>For a complex number <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(c\)</span> is in the Mandelbrot set if the series <span class="math notranslate nohighlight">\(z_{i+1}=z_{i}^2+c\)</span> (with <span class="math notranslate nohighlight">\(z_0=0\)</span>) does not tend to infinity.
-Traditionally, we plot a color showing how many steps are needed before <span class="math notranslate nohighlight">\(\left|z_i\right|&gt;2\)</span>. At this point we are sure that <span class="math notranslate nohighlight">\(c\)</span> is <em>not</em> in the Mandelbrot set as the series will diverge.</p>
-<p>Here’s a trivial python implementation:</p>
+<p>It is very hard to work out beforehand whether code will be efficient or not: it is essential to <em>profile</em> code, to measure its performance, to determine what aspects of it are slow.</p>
+<section id="motivation">
+<h2>9.0.1 Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h2>
+<p>First, we’ll need some code to profile. Let’s consider the series</p>
+<p><span class="math notranslate nohighlight">\(z_{i+1}=z_{i}^2\)</span>, starting from <span class="math notranslate nohighlight">\(z_0=c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a real number and <span class="math notranslate nohighlight">\(i = 1, 2, 3, \dots\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel1(position, limit=50):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def series1(start, iterations=4):
+    &quot;&quot;&quot;Returns the value of the series after the provided number of iterations.&quot;&quot;&quot;
+    value = start
+    for _ in range(iterations):
+        value = value**2
 
-    value = position
+    return value
 
-    while abs(value) &lt; 2:
-        limit -= 1
-        value = value**2 + position
-        if limit &lt; 0:
-            return 0
 
-    return limit
+assert series1(0) == 0
+assert series1(1) == 1
+assert series1(-2) == 65536
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the values of series after 4 iterations for different starting points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -2
+xmax = 2
+resolution = 300
+xstep = (xmax - xmin) / resolution
+xs = [(xmin + (xstep * i)) for i in range(resolution)]  # list of starting points
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
-ymin = -1.0
-xmax = 0.5
-ymax = 1.0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>zs = [series1(x) for x in xs]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+
+plt.plot(xs, zs)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb8712c6e20&gt;]
+</pre></div>
+</div>
+<img alt="../_images/09_00_performance_programming_9_1.png" src="../_images/09_00_performance_programming_9_1.png" />
+</div>
+</div>
+<p>Note how quickly the series grows outside of +/- 1.</p>
+<p>In practice, it is probably a good idea to have a way of stopping the function early (i.e., before we reach the maximum number of iterations) when we notice that the values are exploding. So we need to pick a threshold and tell our function to stop once the value of the series surpasses this threshold. For now (and without obvious reason) we pick 2 as our threshold. It would be interesting to know if the function computed all iterations or stopped early (and if so, how early). We can easily get this information by modifying the return value of our function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def series2(start, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+
+    The function stops when the value of the series surpasses a threshold or when it reaches the maximum
+    number of iterations.
+
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+    value = start
+
+    counter = 0
+
+    while counter &lt; max_iterations:
+        # Arbitrary threshold, for now
+        if abs(value) &gt; 2:
+            break
+
+        value = value**2
+
+        counter = counter + 1
+
+    return counter
+
+
+assert series2(0) == 50
+assert series2(1) == 50
+assert series2(2) == 1
+assert series2(1.5) == 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>zs = [series2(x) for x in xs]
+plt.plot(xs, zs)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb8711609a0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/09_00_performance_programming_12_1.png" src="../_images/09_00_performance_programming_12_1.png" />
+</div>
+</div>
+<p>We can generalise this to complex numbers.
+A complex number <span class="math notranslate nohighlight">\(c\)</span>, for example <span class="math notranslate nohighlight">\(c = 5 + 6 \cdot j\)</span>, has a real part <span class="math notranslate nohighlight">\(Re(c) = 5\)</span> and an imaginary part <span class="math notranslate nohighlight">\(Im(c) = 6\)</span>.
+The definition of the imaginary unit <span class="math notranslate nohighlight">\(j\)</span> is given by <span class="math notranslate nohighlight">\(j = \sqrt{-1}\)</span>.
+Note that we use the <span class="math notranslate nohighlight">\(j\)</span> (instead of <span class="math notranslate nohighlight">\(i\)</span>) as it is common for engineers and this is the convention that Python follows.</p>
+<p>There’s more than one way to make a complex number in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Option 1
+c = complex(5, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Option 2
+d = 5 + 1j * 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can visualise complex numbers by plotting them in a 2D coordinate system, where the x-axis denotes the real part and the y-axis the imaginary part. Let’s do that for our example <span class="math notranslate nohighlight">\(c = 5 + 6 \cdot j\)</span>. The distance from the origin is the <em>absolute value</em> of the complex number which we compute as <span class="math notranslate nohighlight">\(\sqrt{Re(c)^2 + Im(c)^2}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(c.real, c.imag, marker=&quot;o&quot;, markersize=10)
+plt.xlim(-7, 7)
+plt.ylim(-7, 7)
+plt.xlabel(&quot;Re(c)&quot;)
+plt.ylabel(&quot;Im(c)&quot;)
+plt.plot([0, c.real], [0, c.imag], &quot;--&quot;)
+plt.plot([-7, 7], [0, 0], color=&quot;black&quot;)
+plt.plot([0, 0], [-7, 7], color=&quot;black&quot;)
+plt.grid()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_00_performance_programming_18_0.png" src="../_images/09_00_performance_programming_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># absolute value (distance from origin)
+abs(c)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.810249675906654
+</pre></div>
+</div>
+</div>
+</div>
+<p>Back to our series. We want to apply our function on different complex starting points and visualise the result.
+This means we need to change our line plot to a 2D heatmap.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># we need some complex starting points
+xmin = -3
+ymin = -3
+xmax = 3
+ymax = 3
 resolution = 300
 xstep = (xmax - xmin) / resolution
 ystep = (ymax - ymin) / resolution
 xs = [(xmin + xstep * i) for i in range(resolution)]
 ys = [(ymin + ystep * i) for i in range(resolution)]
+zs = [[series2(x + y * 1j) for x in xs] for y in ys]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questions for you:</p>
+<ul class="simple">
+<li><p>How would you describe the data structure of <code class="docutils literal notranslate"><span class="pre">zs</span></code>?</p></li>
+<li><p>How many complex numbers are in the list <code class="docutils literal notranslate"><span class="pre">zs</span></code>?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.set_cmap(&quot;cividis&quot;)  # use a color vision deficiency-friendly palette
+plt.xlabel(&quot;Real&quot;)
+plt.ylabel(&quot;Imaginary&quot;)
+plt.imshow(zs, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax], origin=&quot;lower&quot;)
+plt.colorbar()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fb871035bb0&gt;
+</pre></div>
+</div>
+<img alt="../_images/09_00_performance_programming_23_1.png" src="../_images/09_00_performance_programming_23_1.png" />
+</div>
+</div>
+<p>We see that there is a circle of radius 1 so we know that series will diverge whenever the start point is further than 1 from the origin.</p>
+</section>
+<section id="mandelbrot-set">
+<h2>9.0.2 Mandelbrot Set<a class="headerlink" href="#mandelbrot-set" title="Permalink to this headline">#</a></h2>
+<p>Things get much more interesting when we change the series from</p>
+<p><span class="math notranslate nohighlight">\(z_{i+1}=z_{i}^2\)</span> (with <span class="math notranslate nohighlight">\(z_0=c\)</span>)</p>
+<p>to</p>
+<p><span class="math notranslate nohighlight">\(z_{i+1}=z_{i}^2 + c\)</span>, starting from <span class="math notranslate nohighlight">\(z_0 = 0\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a complex constant and <span class="math notranslate nohighlight">\(i = 1, 2, 3, \dots\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(constant, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+
+    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum
+    number of iterations.
+
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+
+    value = 0
+
+    counter = 0
+    while counter &lt; max_iterations:
+        if abs(value) &gt; 2:
+            break
+
+        value = (value**2) + constant
+
+        counter = counter + 1
+
+    return counter
+
+
+assert mandel(0) == 50
+assert mandel(3) == 1
+assert mandel(0.5) == 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the heatmap for the new series.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.xlabel(&quot;Real&quot;)
+plt.ylabel(&quot;Imaginary&quot;)
+plt.imshow(
+    [[mandel(x + y * 1j) for x in xs] for y in ys],
+    interpolation=&quot;none&quot;,
+    extent=[xmin, xmax, ymin, ymax],
+    origin=&quot;lower&quot;,
+)
+plt.colorbar()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fb870f98820&gt;
+</pre></div>
+</div>
+<img alt="../_images/09_00_performance_programming_28_1.png" src="../_images/09_00_performance_programming_28_1.png" />
+</div>
+</div>
+<div class="alert alert-block alert-info">  The Mandelbrot set consists of all values of complex numbers $c$ for which the series $z_{i+1} = z_i^2 + c$ does not diverge to infinity when iterated from the seed $z_0 = 0$. 
+<p>It can be proven that if there is an <span class="math notranslate nohighlight">\(i\)</span> for which <span class="math notranslate nohighlight">\(|z_i| &gt; 2\)</span>, then the sequence tends to infinity. </div></p>
+</section>
+<section id="fractals">
+<h2>9.0.3 Fractals<a class="headerlink" href="#fractals" title="Permalink to this headline">#</a></h2>
+<p>The yellow area are those complex values for which the series hasn’t exploded. The values within the yellow area form the Mandelbrot set.</p>
+<p>It was first defined and drawn by Robert W. Brooks and Peter Matelski in 1978 but is named after Benoit Mandelbrot, who obtained high quality visualizations of it, in 1980, while working at IBM’s Thomas J. Watson Research Center.</p>
+<p>The boundary of the Mandelbrot set is a fractal. <strong>Fractals</strong> are geometrical patterns that are <strong>self-similar</strong> at different scales, which means that every part of a fractal, no matter how much we zoom in, looks similar to the whole.
+It’s easier to understand what that means by looking at some examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1
+ymin = -1
+xmax = 0
+ymax = 0
+resolution = 300
+xstep = (xmax - xmin) / resolution
+ystep = (ymax - ymin) / resolution
+xs = [(xmin + xstep * i) for i in range(resolution)]
+ys = [(ymin + ystep * i) for i in range(resolution)]
+zs = [[mandel(x + y * 1j) for x in xs] for y in ys]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.xlabel(&quot;Real&quot;)
+plt.ylabel(&quot;Imaginary&quot;)
+plt.imshow(zs, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax], origin=&quot;lower&quot;)
+plt.colorbar()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fb870e62ac0&gt;
+</pre></div>
+</div>
+<img alt="../_images/09_00_performance_programming_32_1.png" src="../_images/09_00_performance_programming_32_1.png" />
+</div>
+</div>
+<p>Here’s a nice visualisation for this on <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Mandelbrot_sequence_new.gif#/media/File:Mandelbrot_sequence_new.gif">Wikipedia</a>.</p>
+</section>
+<section id="timing">
+<h2>9.0.4 Timing<a class="headerlink" href="#timing" title="Permalink to this headline">#</a></h2>
+<p>For the rest of this module, we will focus on the  <code class="docutils literal notranslate"><span class="pre">mandel()</span></code> function and try to speed up our initial implementation. If we want to get an idea for how fast or slow our code is, we need a way to time how long it takes to run.
+We can use the <code class="docutils literal notranslate"><span class="pre">%%timeit</span></code> magic in a notebook to time a cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit?
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit -n 3 -r 7 value=10
+# timeit results are only useful as comparisons
+# the absolute values are not meaningful
+# variables created in timeit cells aren&#39;t available outside
+value**value
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>448 ns ± 131 ns per loop (mean ± std. dev. of 7 runs, 3 loops each)
 </pre></div>
 </div>
 </div>
@@ -1116,125 +1434,18 @@ ys = [(ymin + ystep * i) for i in range(resolution)]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-data = [[mandel1(complex(x, y)) for x in xs] for y in ys]
+[[mandel(x + y * 1j) for x in xs] for y in ys]
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>601 ms ± 1.53 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>915 ms ± 3.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data1 = [[mandel1(complex(x, y)) for x in xs] for y in ys]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import matplotlib.pyplot as plt
-
-plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
-plt.imshow(data1, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f85a0fc67c0&gt;
-</pre></div>
-</div>
-<img alt="../_images/09_00_performance_programming_13_1.png" src="../_images/09_00_performance_programming_13_1.png" />
-</div>
-</div>
-<p>We will learn this lesson how to make a version of this code which works Ten Times faster:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-
-
-# Do not worry about how this function works - it will be covered in detail later
-def mandel_numpy(position, limit=50):
-    value = position
-    diverged_at_count = np.zeros(position.shape)
-    while limit &gt; 0:
-        limit -= 1
-        value = value**2 + position
-        diverging = value * np.conj(value) &gt; 4
-        first_diverged_this_time = np.logical_and(diverging, diverged_at_count == 0)
-        diverged_at_count[first_diverged_this_time] = limit
-        value[diverging] = 2
-
-    return diverged_at_count
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ymatrix, xmatrix = np.mgrid[ymin:ymax:ystep, xmin:xmax:xstep]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>values = xmatrix + 1j * ymatrix
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_numpy = mandel_numpy(values)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-
-plt.imshow(data_numpy, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f85a0ba9a00&gt;
-</pre></div>
-</div>
-<img alt="../_images/09_00_performance_programming_19_1.png" src="../_images/09_00_performance_programming_19_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-data_numpy = mandel_numpy(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42.6 ms ± 25.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note we get the same answer:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(data_numpy == data1).all()
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
-</div>
+<p>Our Mandelbrot function will loop up to 50 times for each number in our grid, which is resolution * resolution in size. You cannot calculate the set in it’s entirety as there are infinitely many complex numbers. You need to recalculate the set/fractal for your region of interest.</p>
+<p>The performance of our function is limited by how quickly we can do calculations on the CPU. This isn’t always the case and other functions could be limited by reading/writing data to a network or storage. Depending on the bottleneck, the techniques we cover in this module might not always work to speed up code.</p>
 </section>
 </section>
 
@@ -1272,10 +1483,10 @@ data_numpy = mandel_numpy(values)
             <p class="prev-next-title">9. Programming for Speed</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="09_01_optimising_mandelbrot.html" title="next page">
+    <a class='right-next' id="next-link" href="09_02_optimising_with_numpy.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">9.1 Optimising Mandelbrot</p>
+        <p class="prev-next-title">9.2 Optimising with NumPy</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

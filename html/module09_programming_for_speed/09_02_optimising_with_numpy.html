@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9.3 Optimising with Cython" href="09_03_optimising_with_cython.html" />
-    <link rel="prev" title="9.1 Optimising Mandelbrot" href="09_01_optimising_mandelbrot.html" />
+    <link rel="next" title="9.3.0 How to Build Cython Code" href="09_03_optimising_with_cython.html" />
+    <link rel="prev" title="9.0 Performance Programming" href="09_00_performance_programming.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -639,12 +639,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="09_00_performance_programming.html">
-     9.0 Performance programming
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_01_optimising_mandelbrot.html">
-     9.1 Optimising Mandelbrot
+     9.0 Performance Programming
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -654,17 +649,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_03_optimising_with_cython.html">
-     9.3 Optimising with Cython
+     9.3.0 How to Build Cython Code
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_04_optimising_with_numba.html">
-     9.5 Optimising with Numba
+     9.4 Optimising with Numba
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_05_performance_scaling.html">
-     9.5 Performance scaling for containers and algorithms
+     9.5 Performance Scaling for Containers and Algorithms
     </a>
    </li>
   </ul>
@@ -1031,38 +1026,18 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numpy-constructors">
-   NumPy constructors
+  <a class="reference internal nav-link" href="#operations-on-arrays">
+   9.2.1 Operations on arrays
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arraywise-algorithms">
-   Arraywise Algorithms
+  <a class="reference internal nav-link" href="#attempt-1-binary-mandelbrot">
+   9.2.2 Attempt 1: Binary Mandelbrot
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-mandelbrot">
-   More Mandelbrot
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numpy-testing">
-   NumPy Testing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arraywise-operations-are-fast">
-   Arraywise operations are fast
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#indexing-with-arrays">
-   Indexing with arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#profiling">
-   Profiling
+  <a class="reference internal nav-link" href="#attempt-2-return-iterations">
+   9.2.3 Attempt 2: Return iterations
   </a>
  </li>
 </ul>
@@ -1085,38 +1060,18 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numpy-constructors">
-   NumPy constructors
+  <a class="reference internal nav-link" href="#operations-on-arrays">
+   9.2.1 Operations on arrays
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arraywise-algorithms">
-   Arraywise Algorithms
+  <a class="reference internal nav-link" href="#attempt-1-binary-mandelbrot">
+   9.2.2 Attempt 1: Binary Mandelbrot
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-mandelbrot">
-   More Mandelbrot
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numpy-testing">
-   NumPy Testing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arraywise-operations-are-fast">
-   Arraywise operations are fast
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#indexing-with-arrays">
-   Indexing with arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#profiling">
-   Profiling
+  <a class="reference internal nav-link" href="#attempt-2-return-iterations">
+   9.2.3 Attempt 2: Return iterations
   </a>
  </li>
 </ul>
@@ -1132,37 +1087,63 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="optimising-with-numpy">
 <h1>9.2 Optimising with NumPy<a class="headerlink" href="#optimising-with-numpy" title="Permalink to this headline">#</a></h1>
 <p><em>Estimated time for this notebook: 30 minutes</em></p>
-<section id="numpy-constructors">
-<h2>NumPy constructors<a class="headerlink" href="#numpy-constructors" title="Permalink to this headline">#</a></h2>
-<p>We saw previously that NumPy’s core type is the <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>, or N-Dimensional Array:</p>
+<p>If we have our values in a numpy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>, we apply operations to each element in the array in one go, without having to loop over it.</p>
+<section id="operations-on-arrays">
+<h2>9.2.1 Operations on arrays<a class="headerlink" href="#operations-on-arrays" title="Permalink to this headline">#</a></h2>
+<p>First, we want a <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> containing the complex values that we previously used as input to our function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
+ymin = -1.0
+xmax = 0.5
+ymax = 1.0
+resolution = 300
+xstep = (xmax - xmin) / resolution
+ystep = (ymax - ymin) / resolution
+xs = [(xmin + xstep * i) for i in range(resolution)]
+ys = [(ymin + ystep * i) for i in range(resolution)]
+# list with complex values
+cs_listcomp = [[(x + y * 1j) for x in xs] for y in ys]
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-
-np.zeros([3, 4, 2, 5])[2, :, :, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cs = np.asarray(cs_listcomp)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cs.shape
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0.],
-       [0., 0.],
-       [0., 0.],
-       [0., 0.]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(300, 300)
 </pre></div>
 </div>
 </div>
 </div>
-<p>The real magic of numpy arrays is that most python operations are applied, quickly, on an elementwise basis:</p>
+<p>We now want to compare adding a constant to every element of the array by</p>
+<ol class="simple">
+<li><p>using a for loop</p></li>
+<li><p>using numpy operators.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = np.arange(0, 256, 4).reshape(8, 8)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y = np.zeros((8, 8))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># we need to make copies of array to avoid overwriting it
+cs_loop = cs.copy()
+cs_numpy = cs.copy()
 </pre></div>
 </div>
 </div>
@@ -1170,734 +1151,241 @@ np.zeros([3, 4, 2, 5])[2, :, :, 1]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-for i in range(8):
-    for j in range(8):
-        y[i][j] = x[i][j] + 10
+for i in range(cs_loop.shape[0]):
+    for j in range(cs_loop.shape[1]):
+        cs_loop[i][j] = cs_loop[i][j] + 10
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.8 µs ± 340 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>54 ms ± 146 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
 </div>
+<p>Sometimes, you can use operators such as <code class="docutils literal notranslate"><span class="pre">+</span></code> as if we were dealing with single values. This is because the Numpy ndarrays have overridden the <code class="docutils literal notranslate"><span class="pre">__add__</span></code> operation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x + 10
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
+cs_numpy + 10
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 10,  14,  18,  22,  26,  30,  34,  38],
-       [ 42,  46,  50,  54,  58,  62,  66,  70],
-       [ 74,  78,  82,  86,  90,  94,  98, 102],
-       [106, 110, 114, 118, 122, 126, 130, 134],
-       [138, 142, 146, 150, 154, 158, 162, 166],
-       [170, 174, 178, 182, 186, 190, 194, 198],
-       [202, 206, 210, 214, 218, 222, 226, 230],
-       [234, 238, 242, 246, 250, 254, 258, 262]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>105 µs ± 3.67 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
 </pre></div>
 </div>
 </div>
 </div>
-<p>Numpy’s mathematical functions also happen this way, and are said to be “vectorized” functions.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.sqrt(x)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.        ,  2.        ,  2.82842712,  3.46410162,  4.        ,
-         4.47213595,  4.89897949,  5.29150262],
-       [ 5.65685425,  6.        ,  6.32455532,  6.63324958,  6.92820323,
-         7.21110255,  7.48331477,  7.74596669],
-       [ 8.        ,  8.24621125,  8.48528137,  8.71779789,  8.94427191,
-         9.16515139,  9.38083152,  9.59166305],
-       [ 9.79795897, 10.        , 10.19803903, 10.39230485, 10.58300524,
-        10.77032961, 10.95445115, 11.13552873],
-       [11.3137085 , 11.48912529, 11.66190379, 11.83215957, 12.        ,
-        12.16552506, 12.32882801, 12.489996  ],
-       [12.64911064, 12.80624847, 12.9614814 , 13.11487705, 13.26649916,
-        13.41640786, 13.56465997, 13.7113092 ],
-       [13.85640646, 14.        , 14.14213562, 14.28285686, 14.4222051 ,
-        14.56021978, 14.69693846, 14.83239697],
-       [14.96662955, 15.09966887, 15.23154621, 15.3622915 , 15.49193338,
-        15.62049935, 15.74801575, 15.87450787]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Numpy contains many useful functions for creating matrices. In our earlier lectures we’ve seen <code class="docutils literal notranslate"><span class="pre">linspace</span></code> and <code class="docutils literal notranslate"><span class="pre">arange</span></code> for evenly spaced numbers.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.linspace(0, 10, 21)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0. ,  0.5,  1. ,  1.5,  2. ,  2.5,  3. ,  3.5,  4. ,  4.5,  5. ,
-        5.5,  6. ,  6.5,  7. ,  7.5,  8. ,  8.5,  9. ,  9.5, 10. ])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.arange(0, 10, 0.5)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0. , 0.5, 1. , 1.5, 2. , 2.5, 3. , 3.5, 4. , 4.5, 5. , 5.5, 6. ,
-       6.5, 7. , 7.5, 8. , 8.5, 9. , 9.5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here’s one for creating matrices like coordinates in a grid:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
-ymin = -1.0
-xmax = 0.5
-ymax = 1.0
-resolution = 300
-xstep = (xmax - xmin) / resolution
-ystep = (ymax - ymin) / resolution
-# A numpy &quot;meshgrid&quot; creates a rectangular grid from an array of x values and an array of y values.
-ymatrix, xmatrix = np.mgrid[ymin:ymax:ystep, xmin:xmax:xstep]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(ymatrix)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1.         -1.         -1.         ... -1.         -1.
-  -1.        ]
- [-0.99333333 -0.99333333 -0.99333333 ... -0.99333333 -0.99333333
-  -0.99333333]
- [-0.98666667 -0.98666667 -0.98666667 ... -0.98666667 -0.98666667
-  -0.98666667]
- ...
- [ 0.98        0.98        0.98       ...  0.98        0.98
-   0.98      ]
- [ 0.98666667  0.98666667  0.98666667 ...  0.98666667  0.98666667
-   0.98666667]
- [ 0.99333333  0.99333333  0.99333333 ...  0.99333333  0.99333333
-   0.99333333]]
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can add these together to make a grid containing the complex numbers we want to test for membership in the Mandelbrot set.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>values = xmatrix + 1j * ymatrix
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1.5       -1.j         -1.49333333-1.j         -1.48666667-1.j
-  ...  0.48      -1.j          0.48666667-1.j
-   0.49333333-1.j        ]
- [-1.5       -0.99333333j -1.49333333-0.99333333j -1.48666667-0.99333333j
-  ...  0.48      -0.99333333j  0.48666667-0.99333333j
-   0.49333333-0.99333333j]
- [-1.5       -0.98666667j -1.49333333-0.98666667j -1.48666667-0.98666667j
-  ...  0.48      -0.98666667j  0.48666667-0.98666667j
-   0.49333333-0.98666667j]
- ...
- [-1.5       +0.98j       -1.49333333+0.98j       -1.48666667+0.98j
-  ...  0.48      +0.98j        0.48666667+0.98j
-   0.49333333+0.98j      ]
- [-1.5       +0.98666667j -1.49333333+0.98666667j -1.48666667+0.98666667j
-  ...  0.48      +0.98666667j  0.48666667+0.98666667j
-   0.49333333+0.98666667j]
- [-1.5       +0.99333333j -1.49333333+0.99333333j -1.48666667+0.99333333j
-  ...  0.48      +0.99333333j  0.48666667+0.99333333j
-   0.49333333+0.99333333j]]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="arraywise-algorithms">
-<h2>Arraywise Algorithms<a class="headerlink" href="#arraywise-algorithms" title="Permalink to this headline">#</a></h2>
-<p>We can use this to apply the mandelbrot algorithm to whole <em>ARRAYS</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z0 = values
-z1 = z0 * z0 + values
-z2 = z1 * z1 + values
-z3 = z2 * z2 + values
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(z3)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[24.06640625+20.75j       23.16610231+20.97899073j
-  22.27540349+21.18465854j ... 11.20523832 -1.88650846j
-  11.5734533  -1.6076251j  11.94394738 -1.31225596j]
- [23.82102149+19.85687829j 22.94415031+20.09504528j
-  22.07634812+20.31020645j ... 10.93323949 -1.5275283j
-  11.28531994 -1.24641067j 11.63928527 -0.94911594j]
- [23.56689029+18.98729242j 22.71312709+19.23410533j
-  21.86791017+19.4582314j  ... 10.65905064 -1.18433756j
-  10.99529965 -0.90137318j 11.33305161 -0.60254144j]
- ...
- [23.30453709-18.14090998j 22.47355537-18.39585192j
-  21.65061048-18.62842771j ... 10.38305264 +0.85663867j
-  10.70377437 +0.57220289j 11.02562928 +0.27221042j]
- [23.56689029-18.98729242j 22.71312709-19.23410533j
-  21.86791017-19.4582314j  ... 10.65905064 +1.18433756j
-  10.99529965 +0.90137318j 11.33305161 +0.60254144j]
- [23.82102149-19.85687829j 22.94415031-20.09504528j
-  22.07634812-20.31020645j ... 10.93323949 +1.5275283j
-  11.28531994 +1.24641067j 11.63928527 +0.94911594j]]
-</pre></div>
-</div>
-</div>
-</div>
-<p>So can we just apply our <code class="docutils literal notranslate"><span class="pre">mandel1</span></code> function to the whole matrix?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel1(position, limit=50):
-    value = position
-    while abs(value) &lt; 2:
-        limit -= 1
-        value = value**2 + position
-        if limit &lt; 0:
-            return 0
-    return limit
-</pre></div>
-</div>
-</div>
-</div>
+<p>But most Python functions do not know how to handle multi-dimensional arrays so we’ll use Numpy implementations where they exist.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mandel1(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mandel1</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import math
 
-<span class="nn">Cell In[15], line 3,</span> in <span class="ni">mandel1</span><span class="nt">(position, limit)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">mandel1</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">value</span> <span class="o">=</span> <span class="n">position</span>
-<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">limit</span> <span class="o">-=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">position</span>
-
-<span class="ne">ValueError</span>: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
-</pre></div>
-</div>
-</div>
-</div>
-<p>No. The <em>logic</em> of our current routine would require stopping for some elements and not for others.</p>
-<p>We can ask numpy to <strong>vectorise</strong> our method for us:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@np.vectorize
-def mandel2(position, limit=50):
-    value = position
-    while abs(value) &lt; 2:
-        limit -= 1
-        value = value**2 + position
-        if limit &lt; 0:
-            return 0
-    return limit
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that we use a <strong>decorator</strong> here (np.vectorize takes a function as input and returns a function). An equivalent way to write this would be <code class="docutils literal notranslate"><span class="pre">mandel2</span> <span class="pre">=</span> <span class="pre">np.vectorize(mandel1)</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data5 = mandel2(values)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from matplotlib import pyplot as plt
-
-plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
-plt.imshow(data5, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4c0d04e100&gt;
-</pre></div>
-</div>
-<img alt="../_images/09_02_optimising_with_numpy_33_1.png" src="../_images/09_02_optimising_with_numpy_33_1.png" />
-</div>
-</div>
-<p>Is that any faster?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-data5 = mandel2(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>595 ms ± 138 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
-</pre></div>
-</div>
-</div>
-</div>
-<p>This is not significantly faster. When we use <em>vectorize</em> it’s just hiding an plain old python for loop under the hood. We want to make the loop over matrix elements take place in the “<strong>C Layer</strong>”.</p>
-<p>What if we just apply the Mandelbrot algorithm without checking for divergence until the end:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel_numpy_explode(position, limit=50):
-    value = position
-    while limit &gt; 0:
-        limit -= 1
-        value = value**2 + position
-
-    return abs(value) &lt; 2
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data6 = mandel_numpy_explode(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_17954/3249494863.py:5: RuntimeWarning: overflow encountered in square
-  value = value**2 + position
-/tmp/ipykernel_17954/3249494863.py:5: RuntimeWarning: invalid value encountered in square
-  value = value**2 + position
-</pre></div>
-</div>
-</div>
-</div>
-<p>OK, we need to prevent it from running off to <span class="math notranslate nohighlight">\(\infty\)</span></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel_numpy(position, limit=50):
-    value = position
-    while limit &gt; 0:
-        limit -= 1
-        value = value**2 + position
-        diverging = abs(value) &gt; 2
-        # Avoid overflow
-        value[diverging] = 2
-
-    return abs(value) &lt; 2
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data6 = mandel_numpy(values)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-
-data6 = mandel_numpy(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28.6 ms ± 14.2 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from matplotlib import pyplot as plt
-
-%matplotlib inline
-plt.imshow(data6, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4c08f4fbe0&gt;
-</pre></div>
-</div>
-<img alt="../_images/09_02_optimising_with_numpy_44_1.png" src="../_images/09_02_optimising_with_numpy_44_1.png" />
-</div>
-</div>
-<p>Wow, that was TEN TIMES faster.</p>
-<p>There’s quite a few NumPy tricks there, let’s remind ourselves of how they work:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>diverging = abs(z3) &gt; 2
-z3[diverging] = 2
-</pre></div>
-</div>
-</div>
-</div>
-<p>When we apply a logical condition to a NumPy array, we get a logical array.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = np.arange(10)
-y = np.ones([10]) * 5
-z = x &gt; y
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5., 5., 5., 5., 5., 5., 5., 5., 5., 5.])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(z)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[False False False False False False  True  True  True  True]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Logical arrays can be used to index into arrays:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x[x &gt; 3]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 5, 6, 7, 8, 9])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x[np.logical_not(z)]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>And you can use such an index as the target of an assignment:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x[z] = 5
-x
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5, 5, 5, 5, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that we didn’t compare two arrays to get our logical array, but an array to a scalar integer – this is referred to as <em>broadcasting</em>.</p>
-</section>
-<section id="more-mandelbrot">
-<h2>More Mandelbrot<a class="headerlink" href="#more-mandelbrot" title="Permalink to this headline">#</a></h2>
-<p>Of course, we didn’t calculate the number-of-iterations-to-diverge, just whether the point was in the set.</p>
-<p>Let’s correct our code to do that:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel4(position, limit=50):
-    value = position
-    # An array which keeps track of the first step at which each position diverged
-    diverged_at_count = np.zeros(position.shape)
-    while limit &gt; 0:
-        limit -= 1
-        value = value**2 + position
-        diverging = abs(value) &gt; 2
-        # Any positions which are:
-        # - diverging
-        # - haven&#39;t diverged before
-        # are diverging for the first time
-        first_diverged_this_time = np.logical_and(diverging, diverged_at_count == 0)
-        # Update diverged_at_count for all positions which first diverged at this step
-        diverged_at_count[first_diverged_this_time] = limit
-        # Reset any divergent values to exactly 2
-        value[diverging] = 2
-
-    return diverged_at_count
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data7 = mandel4(values)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.imshow(data7, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4c08ee1250&gt;
-</pre></div>
-</div>
-<img alt="../_images/09_02_optimising_with_numpy_64_1.png" src="../_images/09_02_optimising_with_numpy_64_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-
-data7 = mandel4(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32 ms ± 15 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that here, all the looping over mandelbrot steps was in Python, but everything below the loop-over-positions happened in C. The code was amazingly quick compared to pure Python.</p>
-<p>Can we do better by avoiding a square root?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel5(position, limit=50):
-    value = position
-    diverged_at_count = np.zeros(position.shape)
-    while limit &gt; 0:
-        limit -= 1
-        value = value**2 + position
-        diverging = value * np.conj(value) &gt; 4
-        first_diverged_this_time = np.logical_and(diverging, diverged_at_count == 0)
-        diverged_at_count[first_diverged_this_time] = limit
-        value[diverging] = 2
-
-    return diverged_at_count
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-
-data8 = mandel5(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42.2 ms ± 47.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Probably not worth the time I spent thinking about it!</p>
-</section>
-<section id="numpy-testing">
-<h2>NumPy Testing<a class="headerlink" href="#numpy-testing" title="Permalink to this headline">#</a></h2>
-<p>Now, let’s look at calculating those residuals, the differences between the different datasets.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data8 = mandel5(values)
-data5 = mandel2(values)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.sum((data8 - data5) ** 2)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
-</pre></div>
-</div>
-</div>
-</div>
-<p>For our non-numpy datasets, numpy knows to turn them into arrays:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
-ymin = -1.0
-xmax = 0.5
-ymax = 1.0
-resolution = 300
-xstep = (xmax - xmin) / resolution
-ystep = (ymax - ymin) / resolution
-xs = [(xmin + (xmax - xmin) * i / resolution) for i in range(resolution)]
-ys = [(ymin + (ymax - ymin) * i / resolution) for i in range(resolution)]
-data1 = [[mandel1(complex(x, y)) for x in xs] for y in ys]
-sum(sum((data1 - data7) ** 2))
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
-</pre></div>
-</div>
-</div>
-</div>
-<p>But this doesn’t work for pure non-numpy arrays</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data2 = []
-for y in ys:
-    row = []
-    for x in xs:
-        row.append(mandel1(complex(x, y)))
-    data2.append(row)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_raises-exception docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data2 - data1
+math.sqrt(cs)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">45</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">data2</span> <span class="o">-</span> <span class="n">data1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
 
-<span class="ne">TypeError</span>: unsupported operand type(s) for -: &#39;list&#39; and &#39;list&#39;
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
 </div>
 </div>
-<p>So we have to convert to NumPy arrays explicitly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sum(sum((np.array(data2) - np.array(data1)) ** 2))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.sqrt(cs)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-</pre></div>
-</div>
-</div>
-</div>
-<p>NumPy provides some convenient assertions to help us write unit tests with NumPy arrays:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = [1e-5, 1e-3, 1e-1]
-y = np.arccos(np.cos(x))
-y
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.00000004e-05, 1.00000000e-03, 1.00000000e-01])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.testing.assert_allclose(x, y, rtol=1e-6, atol=1e-20)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.testing.assert_allclose(data7, data1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.38908588-1.28506335j, 0.38980707-1.28268581j,
+        0.39053184-1.28030535j, ..., 0.89141291-0.56090729j,
+        0.89409221-0.55922644j, 0.8967725 -0.55755501j],
+       [0.38670802-1.2843454j , 0.38742629-1.2819643j ,
+        0.38814812-1.27958025j, ..., 0.88972681-0.55822378j,
+        0.89241558-0.55654191j, 0.89510532-0.55486953j],
+       [0.38432663-1.28363038j, 0.38504193-1.28124573j,
+        0.3857608 -1.27885811j, ..., 0.88803965-0.55553075j,
+        0.89073797-0.55384788j, 0.89343724-0.55217458j],
+       ...,
+       [0.38194169+1.28291834j, 0.38265402+1.28053014j,
+        0.3833699 +1.27813894j, ..., 0.88635146+0.55282811j,
+        0.88905943+0.55114426j, 0.8917683 +0.54947008j],
+       [0.38432663+1.28363038j, 0.38504193+1.28124573j,
+        0.3857608 +1.27885811j, ..., 0.88803965+0.55553075j,
+        0.89073797+0.55384788j, 0.89343724+0.55217458j],
+       [0.38670802+1.2843454j , 0.38742629+1.2819643j ,
+        0.38814812+1.27958025j, ..., 0.88972681+0.55822378j,
+        0.89241558+0.55654191j, 0.89510532+0.55486953j]])
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="arraywise-operations-are-fast">
-<h2>Arraywise operations are fast<a class="headerlink" href="#arraywise-operations-are-fast" title="Permalink to this headline">#</a></h2>
-<p>Note that we might worry that we carry on calculating the mandelbrot values for points that have already diverged.</p>
+<section id="attempt-1-binary-mandelbrot">
+<h2>9.2.2 Attempt 1: Binary Mandelbrot<a class="headerlink" href="#attempt-1-binary-mandelbrot" title="Permalink to this headline">#</a></h2>
+<p>Numpy allows us to perform an iteration for our series on all complex values we’re interested in in a single line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel6(position, limit=50):
-    value = np.zeros(position.shape) + position
-    calculating = np.ones(position.shape, dtype=&quot;bool&quot;)
-    diverged_at_count = np.zeros(position.shape)
-    while limit &gt; 0:
-        limit -= 1
-        value[calculating] = value[calculating] ** 2 + position[calculating]
-        diverging_now = np.zeros(position.shape, dtype=&quot;bool&quot;)
-        diverging_now[calculating] = (
-            value[calculating] * np.conj(value[calculating]) &gt; 4
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z0 = cs
+z1 = z0 * z0 + cs
+z2 = z1 * z1 + cs
+z3 = z2 * z2 + cs
+</pre></div>
+</div>
+</div>
+</div>
+<p>So can we just apply our <code class="docutils literal notranslate"><span class="pre">mandel</span></code> function to the whole matrix?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(constant, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+
+    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum
+    number of iterations.
+
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+
+    value = 0
+
+    counter = 0
+    while counter &lt; max_iterations:
+        if abs(value) &gt; 2:
+            break
+
+        value = (value * value) + constant
+
+        counter = counter + 1
+
+    return counter
+
+
+assert mandel(0) == 50
+assert mandel(3) == 1
+assert mandel(0.5) == 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mandel(cs)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mandel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
+
+<span class="nn">Cell In[11], line 14,</span> in <span class="ni">mandel</span><span class="nt">(constant, max_iterations)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">14</span>     <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="k">break</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">constant</span>
+
+<span class="ne">ValueError</span>: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking at the error message, we learn a few things:</p>
+<ul class="simple">
+<li><p>There’s a problem with line 14, where we check if the value of the series has divereged.</p></li>
+<li><p>There’s some confusion about the <em>truth</em> value of our array.
+Our array has more than one element (300 x 300 elements to be precise), and the <code class="docutils literal notranslate"><span class="pre">if</span></code> condition on line 14 returns <code class="docutils literal notranslate"><span class="pre">True</span></code> for some elements and <code class="docutils literal notranslate"><span class="pre">False</span></code> for others. But what does <code class="docutils literal notranslate"><span class="pre">True</span></code> mean for the entire array: Does every element have to be <code class="docutils literal notranslate"><span class="pre">True</span></code> or is it enough if any element is <code class="docutils literal notranslate"><span class="pre">True</span></code>? Since there’s no good answer to this, an error is raised.</p></li>
+</ul>
+<p>What if we just apply the Mandelbrot algorithm without checking for divergence until the end:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel_numpy_explode(constants, max_iterations=50):
+    &quot;&quot;&quot;Has the series diverged after all iterations?
+
+    Returns an array with True if the series doesn&#39;t explode and False otherwise.
+    &quot;&quot;&quot;
+    value = np.zeros(constants.shape)
+
+    counter = 0
+    while counter &lt; max_iterations:
+
+        value = (value * value) + constants
+
+        counter = counter + 1
+
+    return abs(value) &lt; 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_numpy_explode = mandel_numpy_explode(cs)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_17985/3334138926.py:11: RuntimeWarning: overflow encountered in multiply
+  value = (value * value) + constants
+/tmp/ipykernel_17985/3334138926.py:11: RuntimeWarning: invalid value encountered in multiply
+  value = (value * value) + constants
+</pre></div>
+</div>
+</div>
+</div>
+<p>We get an <code class="docutils literal notranslate"><span class="pre">Overflow</span></code> warning that we shouldn’t ignore. The overflow is caused by some values in the series exploding and running off to <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+<p>Go to notebook <strong>9.6 Classroom Exercises</strong> and do <em>Exercise 9c</em> to fix the overflow issue.</p>
+</section>
+<section id="attempt-2-return-iterations">
+<h2>9.2.3 Attempt 2: Return iterations<a class="headerlink" href="#attempt-2-return-iterations" title="Permalink to this headline">#</a></h2>
+<p>The function <code class="docutils literal notranslate"><span class="pre">mandel_binary</span></code> (see <em>Exercise 9c</em>) runs on an array and is faster than our previous implementations. At the moment, it returns a boolean value for each element of the input: <code class="docutils literal notranslate"><span class="pre">True</span></code> if the element is in the Mandelbrot set, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<p>It would be nice if the function returned, as before, the number of iterations that were performed. Let’s modify the function to do exactly that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel_numpy(constants, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+
+    The function stops values from exploding once diverged.
+
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+
+    value = np.zeros(constants.shape)
+    # An array which keeps track of the first step at which each position diverged
+    diverged_at_count = np.ones(constants.shape) * max_iterations
+    counter = 0
+    while counter &lt; max_iterations:
+        value = value * value + constants
+        diverging = abs(value) &gt; 2
+
+        # Any positions which are:
+        # - diverging
+        # - haven&#39;t diverged before
+        # are diverging for the first time
+        first_diverged_this_time = np.logical_and(
+            diverging, diverged_at_count == max_iterations
         )
-        calculating = np.logical_and(calculating, np.logical_not(diverging_now))
-        diverged_at_count[diverging_now] = limit
+
+        # Update diverged_at_count for all positions which first diverged at this step
+        diverged_at_count[first_diverged_this_time] = counter
+        # Reset any divergent values to exactly 2
+        value[diverging] = 2
+        counter = counter + 1
 
     return diverged_at_count
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data8 = mandel6(values)
+
+
+assert mandel_numpy(np.asarray([0])) == np.asarray([50])
+assert mandel_numpy(np.asarray([4])) == np.asarray([0])
 </pre></div>
 </div>
 </div>
@@ -1905,317 +1393,45 @@ y
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
+mandel_numpy(cs)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.1 ms ± 311 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_numpy = mandel_numpy(cs)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 
-data8 = mandel6(values)
+plt.set_cmap(&quot;cividis&quot;)
+plt.xlabel(&quot;Real&quot;)
+plt.ylabel(&quot;Imaginary&quot;)
+plt.imshow(
+    result_numpy, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax], origin=&quot;lower&quot;
+)
+plt.colorbar()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59.4 ms ± 142 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f9a182fd460&gt;
 </pre></div>
 </div>
+<img alt="../_images/09_02_optimising_with_numpy_33_1.png" src="../_images/09_02_optimising_with_numpy_33_1.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.imshow(data8, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4c08d783d0&gt;
-</pre></div>
-</div>
-<img alt="../_images/09_02_optimising_with_numpy_91_1.png" src="../_images/09_02_optimising_with_numpy_91_1.png" />
-</div>
-</div>
-<p>This was <strong>not faster</strong> even though it was <strong>doing less work</strong></p>
-<p>This often happens: on modern computers, <strong>branches</strong> (if statements, function calls) and <strong>memory access</strong> is usually the rate-determining step, not maths.</p>
-<p>Complicating your logic to avoid calculations sometimes therefore slows you down. The only way to know is to <strong>measure</strong></p>
-</section>
-<section id="indexing-with-arrays">
-<h2>Indexing with arrays<a class="headerlink" href="#indexing-with-arrays" title="Permalink to this headline">#</a></h2>
-<p>We’ve been using Boolean arrays a lot to get access to some elements of an array. We can also do this with integers, as well as lists of integers:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = np.arange(64)
-y = x.reshape([8, 8])
-y[3]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([24, 25, 26, 27, 28, 29, 30, 31])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y[[2, 5]]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[16, 17, 18, 19, 20, 21, 22, 23],
-       [40, 41, 42, 43, 44, 45, 46, 47]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y[[0, 2, 5], [1, 2, 7]]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1, 18, 47])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can use a : to indicate we want all the values from a particular axis:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y[0:4:2, [0, 2]]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  2],
-       [16, 18]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can mix array selectors, boolean selectors, :s and ordinary array seqeuencers:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z = x.reshape([4, 4, 4])
-z
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0,  1,  2,  3],
-        [ 4,  5,  6,  7],
-        [ 8,  9, 10, 11],
-        [12, 13, 14, 15]],
-
-       [[16, 17, 18, 19],
-        [20, 21, 22, 23],
-        [24, 25, 26, 27],
-        [28, 29, 30, 31]],
-
-       [[32, 33, 34, 35],
-        [36, 37, 38, 39],
-        [40, 41, 42, 43],
-        [44, 45, 46, 47]],
-
-       [[48, 49, 50, 51],
-        [52, 53, 54, 55],
-        [56, 57, 58, 59],
-        [60, 61, 62, 63]]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z[:, [1, 3], 0:3]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 4,  5,  6],
-        [12, 13, 14]],
-
-       [[20, 21, 22],
-        [28, 29, 30]],
-
-       [[36, 37, 38],
-        [44, 45, 46]],
-
-       [[52, 53, 54],
-        [60, 61, 62]]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can manipulate shapes by adding new indices in selectors with np.newaxis:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z[:, np.newaxis, [1, 3], 0].shape
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 1, 2)
-</pre></div>
-</div>
-</div>
-</div>
-<p>When we use basic indexing with integers and : expressions, we get a <strong>view</strong> on the matrix so a copy is avoided:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a = z[:, :, 2]
-a[0, 0] = -500
-z
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[   0,    1, -500,    3],
-        [   4,    5,    6,    7],
-        [   8,    9,   10,   11],
-        [  12,   13,   14,   15]],
-
-       [[  16,   17,   18,   19],
-        [  20,   21,   22,   23],
-        [  24,   25,   26,   27],
-        [  28,   29,   30,   31]],
-
-       [[  32,   33,   34,   35],
-        [  36,   37,   38,   39],
-        [  40,   41,   42,   43],
-        [  44,   45,   46,   47]],
-
-       [[  48,   49,   50,   51],
-        [  52,   53,   54,   55],
-        [  56,   57,   58,   59],
-        [  60,   61,   62,   63]]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can also use … to specify “: for as many as possible intervening axes”:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z[1]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[16, 17, 18, 19],
-       [20, 21, 22, 23],
-       [24, 25, 26, 27],
-       [28, 29, 30, 31]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z[..., 2]
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-500,    6,   10,   14],
-       [  18,   22,   26,   30],
-       [  34,   38,   42,   46],
-       [  50,   54,   58,   62]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>However, boolean mask indexing and array filter indexing always causes a copy.</p>
-<p>Let’s try again at avoiding doing unnecessary work by using new arrays containing the reduced data instead of a mask:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel7(position, limit=50):
-    positions = np.zeros(position.shape) + position
-    value = np.zeros(position.shape) + position
-    indices = np.mgrid[0 : values.shape[0], 0 : values.shape[1]]
-    diverged_at_count = np.zeros(position.shape)
-    while limit &gt; 0:
-        limit -= 1
-        value = value**2 + positions
-        diverging_now = value * np.conj(value) &gt; 4
-        diverging_now_indices = indices[:, diverging_now]
-        carry_on = np.logical_not(diverging_now)
-
-        value = value[carry_on]
-        indices = indices[:, carry_on]
-        positions = positions[carry_on]
-        diverged_at_count[
-            diverging_now_indices[0, :], diverging_now_indices[1, :]
-        ] = limit
-
-    return diverged_at_count
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data9 = mandel7(values)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.imshow(data9, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4c08cf5c70&gt;
-</pre></div>
-</div>
-<img alt="../_images/09_02_optimising_with_numpy_116_1.png" src="../_images/09_02_optimising_with_numpy_116_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-
-data9 = mandel7(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>72.9 ms ± 73.4 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Still slower. Probably due to lots of copies – the point here is that you need to <em>experiment</em> to see which optimisations will work. Performance programming needs to be empirical.</p>
-</section>
-<section id="profiling">
-<h2>Profiling<a class="headerlink" href="#profiling" title="Permalink to this headline">#</a></h2>
-<p>We’ve seen how to compare different functions by the time they take to run. However, we haven’t obtained much information about where the code is spending more time. For that we need to use a profiler. IPython offers a profiler through the <code class="docutils literal notranslate"><span class="pre">%prun</span></code> magic. Let’s use it to see how it works:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%prun mandel7(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">%prun</span></code> shows a line per each function call ordered by the total time spent on each of these. However, sometimes a line-by-line output may be more helpful. For that we can use the <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> package (you need to install it using <code class="docutils literal notranslate"><span class="pre">pip</span></code>). Once installed you can activate it in any notebook by running:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext line_profiler
-</pre></div>
-</div>
-</div>
-</div>
-<p>And the <code class="docutils literal notranslate"><span class="pre">%lprun</span></code> magic should be now available:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%lprun -f mandel7 mandel7(values)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here, it is clearer to see which operations are keeping the code busy.</p>
+<p>Even though we’re doing unnecessary calculations (compared to our pure Python implementation), we are much faster.</p>
 </section>
 </section>
 
@@ -2246,17 +1462,17 @@ data9 = mandel7(values)
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="09_01_optimising_mandelbrot.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="09_00_performance_programming.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">9.1 Optimising Mandelbrot</p>
+            <p class="prev-next-title">9.0 Performance Programming</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="09_03_optimising_with_cython.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">9.3 Optimising with Cython</p>
+        <p class="prev-next-title">9.3.0 How to Build Cython Code</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

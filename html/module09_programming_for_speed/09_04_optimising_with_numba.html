@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>9.5 Optimising with Numba &#8212; Research Software Engineering with Python</title>
+    <title>9.4 Optimising with Numba &#8212; Research Software Engineering with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9.5 Performance scaling for containers and algorithms" href="09_05_performance_scaling.html" />
-    <link rel="prev" title="9.3 Optimising with Cython" href="09_03_optimising_with_cython.html" />
+    <link rel="next" title="9.5 Performance Scaling for Containers and Algorithms" href="09_05_performance_scaling.html" />
+    <link rel="prev" title="9.3.0 How to Build Cython Code" href="09_03_optimising_with_cython.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -637,12 +637,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="09_00_performance_programming.html">
-     9.0 Performance programming
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09_01_optimising_mandelbrot.html">
-     9.1 Optimising Mandelbrot
+     9.0 Performance Programming
     </a>
    </li>
    <li class="toctree-l2">
@@ -652,17 +647,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_03_optimising_with_cython.html">
-     9.3 Optimising with Cython
+     9.3.0 How to Build Cython Code
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     9.5 Optimising with Numba
+     9.4 Optimising with Numba
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_05_performance_scaling.html">
-     9.5 Performance scaling for containers and algorithms
+     9.5 Performance Scaling for Containers and Algorithms
     </a>
    </li>
   </ul>
@@ -1029,13 +1024,23 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#single-value-numba-implementation">
-   Single value numba implementation
+  <a class="reference internal nav-link" href="#define-a-pure-python-function">
+   9.4.0 Define a Pure Python Function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parallelised-numba-implementation">
-   Parallelised numba implementation
+  <a class="reference internal nav-link" href="#the-njit-decorator">
+   9.4.1 The @njit Decorator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallelisation-with-multiprocessing">
+   9.4.2 Parallelisation with Multiprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallelisation-with-numba">
+   9.4.3 Parallelisation with numba
   </a>
  </li>
 </ul>
@@ -1047,7 +1052,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>9.5 Optimising with Numba</h1>
+                <h1>9.4 Optimising with Numba</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1058,13 +1063,23 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#single-value-numba-implementation">
-   Single value numba implementation
+  <a class="reference internal nav-link" href="#define-a-pure-python-function">
+   9.4.0 Define a Pure Python Function
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parallelised-numba-implementation">
-   Parallelised numba implementation
+  <a class="reference internal nav-link" href="#the-njit-decorator">
+   9.4.1 The @njit Decorator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallelisation-with-multiprocessing">
+   9.4.2 Parallelisation with Multiprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallelisation-with-numba">
+   9.4.3 Parallelisation with numba
   </a>
  </li>
 </ul>
@@ -1078,11 +1093,13 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="optimising-with-numba">
-<h1>9.5 Optimising with Numba<a class="headerlink" href="#optimising-with-numba" title="Permalink to this headline">#</a></h1>
+<h1>9.4 Optimising with Numba<a class="headerlink" href="#optimising-with-numba" title="Permalink to this headline">#</a></h1>
 <p><em>Estimated time for this notebook: 15 minutes</em></p>
 <p>We saw that we can use Cython to get an approximate 40x speed up when compared to pure Python.
-However, this comes with the cost of having to substantially rewrite the Python code to use C syntax.
+However, this comes with the cost of having to substantially rewrite the Python code.
 An alternative is to use <a class="reference external" href="https://numba.pydata.org/">numba</a>, an open source just-in-time compiler that translates a subset of Python and NumPy code into fast machine code.</p>
+<section id="define-a-pure-python-function">
+<h2>9.4.0 Define a Pure Python Function<a class="headerlink" href="#define-a-pure-python-function" title="Permalink to this headline">#</a></h2>
 <p>Let’s start by reproducing the pure-Python implementation from earlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1101,33 +1118,53 @@ ys = [(ymin + ystep * i) for i in range(resolution)]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(position, limit=50):
-    value = position
-    while abs(value) &lt; 2:
-        limit -= 1
-        value = value**2 + position
-        if limit &lt; 0:
-            return 0
-    return limit
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(constant, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+
+    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum
+    number of iterations.
+
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+
+    value = 0
+
+    counter = 0
+    while counter &lt; max_iterations:
+        if abs(value) &gt; 2:
+            break
+
+        value = (value * value) + constant
+
+        counter = counter + 1
+
+    return counter
+
+
+assert mandel(0) == 50
+assert mandel(3) == 1
+assert mandel(0.5) == 5
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># pure python
-%timeit a = mandel(complex(0, 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
+
+[[mandel(x + 1j * y) for x in xs] for y in ys]
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.9 µs ± 1.98 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>583 ms ± 952 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
-<section id="single-value-numba-implementation">
-<h2>Single value numba implementation<a class="headerlink" href="#single-value-numba-implementation" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="the-njit-decorator">
+<h2>9.4.1 The &#64;njit Decorator<a class="headerlink" href="#the-njit-decorator" title="Permalink to this headline">#</a></h2>
 <p>Now let’s look at a numba implementation for a single value.
 We add a Numba decorator to the pure-Python implementation.
 Note that <code class="docutils literal notranslate"><span class="pre">&#64;njit</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">&#64;jit(nopython=True)</span></code>.</p>
@@ -1136,13 +1173,6 @@ Note that <code class="docutils literal notranslate"><span class="pre">&#64;njit
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
 from matplotlib import pyplot as plt
 from numba import njit
-
-plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
 </div>
@@ -1150,14 +1180,27 @@ plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@njit
-def mandel_numba(position, limit=50):
-    value = position
-    while abs(value) &lt; 2:
-        limit -= 1
-        value = value**2 + position
-        if limit &lt; 0:
-            return 0
-    return limit
+def mandel_numba(constant, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+
+    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum
+    number of iterations.
+
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+
+    value = 0
+
+    counter = 0
+    while counter &lt; max_iterations:
+        if abs(value) &gt; 2:
+            break
+
+        value = (value * value) + constant
+
+        counter = counter + 1
+
+    return counter
 </pre></div>
 </div>
 </div>
@@ -1165,29 +1208,38 @@ def mandel_numba(position, limit=50):
 <p>Note that <code class="docutils literal notranslate"><span class="pre">numba</span></code> will compile the function the first time we invoke it, so the first call will be notably slower than the rest.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import time
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit -r 1 -n 1
 
-start = time.time()
 mandel_numba(complex(0, 0))
-print(f&quot;Time taken for first call {time.time() - start}s&quot;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time taken for first call 0.28137993812561035s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>329 ms ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Simple numba
-%timeit a = mandel_numba(complex(0, 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Run after our first, timed, invocation
+assert mandel_numba(0) == 50
+assert mandel_numba(3) == 1
+assert mandel_numba(0.5) == 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
+
+[[mandel_numba(x + 1j * y) for x in xs] for y in ys]
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>911 ns ± 0.232 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>79.4 ms ± 211 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1196,98 +1248,277 @@ print(f&quot;Time taken for first call {time.time() - start}s&quot;)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_numba = [[mandel_numba(complex(x, y)) for x in xs] for y in ys]
-plt.imshow(data_numba, interpolation=&quot;none&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.set_cmap(&quot;cividis&quot;)  # use a color vision deficiency-friendly palette
+plt.xlabel(&quot;Real&quot;)
+plt.ylabel(&quot;Imaginary&quot;)
+plt.imshow(
+    data_numba, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax], origin=&quot;lower&quot;
+)
+plt.colorbar()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f2420fe3ca0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f664ba3eb80&gt;
 </pre></div>
 </div>
-<img alt="../_images/09_04_optimising_with_numba_14_1.png" src="../_images/09_04_optimising_with_numba_14_1.png" />
+<img alt="../_images/09_04_optimising_with_numba_16_1.png" src="../_images/09_04_optimising_with_numba_16_1.png" />
 </div>
 </div>
 </section>
-<section id="parallelised-numba-implementation">
-<h2>Parallelised numba implementation<a class="headerlink" href="#parallelised-numba-implementation" title="Permalink to this headline">#</a></h2>
+<section id="parallelisation-with-multiprocessing">
+<h2>9.4.2 Parallelisation with Multiprocessing<a class="headerlink" href="#parallelisation-with-multiprocessing" title="Permalink to this headline">#</a></h2>
+<p>Modern CPUs have more than one core. You can find out how many there are on your machine with</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from os import cpu_count
+
+cpu_count()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’s <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing library</a> works better with <code class="docutils literal notranslate"><span class="pre">.py</span></code> files than notebooks so we’ll write our slow function to file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile sleeping.py
+
+from time import sleep
+
+def square(argument):
+    sleep(0.5)
+    return argument * argument
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting sleeping.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we change the cell above, we’ll need to <code class="docutils literal notranslate"><span class="pre">reload()</span></code> the <code class="docutils literal notranslate"><span class="pre">sleeping</span></code> module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import importlib
+
+import sleeping
+
+importlib.reload(sleeping)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;sleeping&#39; from &#39;/home/runner/work/rse-course/rse-course/module09_programming_for_speed/sleeping.py&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can apply our <code class="docutils literal notranslate"><span class="pre">square()</span></code> function to each element in a list with <code class="docutils literal notranslate"><span class="pre">map()</span></code>. <code class="docutils literal notranslate"><span class="pre">map()</span></code> returns an iterator so we use <code class="docutils literal notranslate"><span class="pre">list()</span></code> to get all of the results as a list, for comparison.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert list(map(sleeping.square, [0, 1, 2, 3])) == [0, 1, 4, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">square()</span></code> sleeps for 0.5 second each time it is called so calling it 8 times should take around 4 seconds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit -n 2 -r 2
+
+list(map(sleeping.square, [0, 1, 2, 3, 4, 5, 6, 7, 8]))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.51 s ± 158 µs per loop (mean ± std. dev. of 2 runs, 2 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can make use of our other CPU cores by creating a pool of processes and assigning some work to each. By default, <code class="docutils literal notranslate"><span class="pre">Pool()</span></code> will make one worker process for each core on the machine.</p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">Pool</span></code> as a context manager…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from multiprocessing import Pool
+
+with Pool() as pool:
+    results = pool.map(sleeping.square, [1, 2, 3, 4, 5, 6, 7, 8])
+results
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64]
+</pre></div>
+</div>
+</div>
+</div>
+<p>…or you can assign it on the same line as <code class="docutils literal notranslate"><span class="pre">%%timeit</span></code> so that the time taken to create the pool doesn’t count towards the performance timing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit pool = Pool()
+
+pool.map(sleeping.square, [1, 2, 3, 4, 5, 6, 7, 8])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.01 s ± 410 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that processing all 8 elements now only takes a little over 0.5s.</p>
+<p>If you don’t use the context manager, you should remember to close the pool.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pool.close()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Go to notebook <strong>9.6 Classroom Exercises</strong> and do <em>Exercise 9d</em>.</p>
+</section>
+<section id="parallelisation-with-numba">
+<h2>9.4.3 Parallelisation with numba<a class="headerlink" href="#parallelisation-with-numba" title="Permalink to this headline">#</a></h2>
 <p>Similarly to <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">numba</span></code> has optimisations related to parallelisation.
-Let’s see whether we can improve on the performance of <code class="docutils literal notranslate"><span class="pre">numpy_cython_1</span></code>, the best Cython solution we found earlier.
+Let’s see whether we can improve on the performance of <code class="docutils literal notranslate"><span class="pre">mandel_cython_numpy</span></code>, the best Cython solution we found earlier.
 If we are certain that there are no dependencies between different elements in a range, we can parallelize iteration by using the <code class="docutils literal notranslate"><span class="pre">prange</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from numba import prange
 
+help(prange)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class prange in module numba.misc.special:
 
-@njit(parallel=True)
-def mandel_numba_parallel(position, limit=50):
-    xlim = position.shape[1]
-    ylim = position.shape[0]
-    diverged_at = np.zeros((ylim, xlim))
-    for x in prange(xlim):
-        for y in prange(ylim):
-            steps = limit
-            value = position[y, x]
-            pos = position[y, x]
-            while abs(value) &lt; 2 and steps &gt;= 0:
-                steps -= 1
-                value = value**2 + pos
-            diverged_at[y, x] = steps
+class prange(builtins.object)
+ |  prange(*args)
+ |  
+ |  Provides a 1D parallel iterator that generates a sequence of integers.
+ |  In non-parallel contexts, prange is identical to range.
+ |  
+ |  Static methods defined here:
+ |  
+ |  __new__(cls, *args)
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@njit(parallel=True)
+def mandel_numba_parallel(constants, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
 
-    return diverged_at
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+    xlim = constants.shape[1]
+    ylim = constants.shape[0]
+
+    diverged_at_count = np.zeros((ylim, xlim))
+
+    for y in prange(ylim):
+        for x in prange(xlim):
+
+            value = 0
+            counter = 0
+
+            while counter &lt; max_iterations:
+                if abs(value) &gt; 2:
+                    break
+
+                value = (value * value) + constants[y, x]
+
+                counter = counter + 1
+
+            diverged_at_count[y, x] = counter
+
+    return diverged_at_count
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ymatrix, xmatrix = np.mgrid[ymin:ymax:ystep, xmin:xmax:xstep]
-values = xmatrix + 1j * ymatrix
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert mandel_numba_parallel(np.asarray([[0]])) == np.asarray([[50]])
+assert mandel_numba_parallel(np.asarray([[4]])) == np.asarray([[1]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Pure Python
-%timeit data_python = [mandel(value) for row in values for value in row]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cs_listcomp = [[(x + y * 1j) for x in xs] for y in ys]
+cs = np.asarray(cs_listcomp)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
+mandel_numba_parallel(cs)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>564 ms ± 771 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.9 ms ± 416 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Parallelised numba
-%timeit data_numba_parallel = mandel_numba_parallel(values)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.3 ms ± 261 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>zs = mandel_numba_parallel(cs)
 </pre></div>
 </div>
 </div>
 </div>
-<p>This is approximately a <strong>300x speed up</strong> without ever needing non-Python syntax. This shows how powerful <code class="docutils literal notranslate"><span class="pre">numba</span></code> can be!</p>
-<p>To wrap this up this section on optimisation, let’s demonstrate the the parallelised numba implementation generates the same figure as the pure-Python implementation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_numba_parallel = mandel_numba_parallel(values)
-plt.imshow(data_numba_parallel, interpolation=&quot;none&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.xlabel(&quot;Real&quot;)
+plt.ylabel(&quot;Imaginary&quot;)
+plt.imshow(zs, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax], origin=&quot;lower&quot;)
+plt.colorbar()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f240c98f4f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f66418b6be0&gt;
 </pre></div>
 </div>
-<img alt="../_images/09_04_optimising_with_numba_22_1.png" src="../_images/09_04_optimising_with_numba_22_1.png" />
+<img alt="../_images/09_04_optimising_with_numba_41_1.png" src="../_images/09_04_optimising_with_numba_41_1.png" />
 </div>
 </div>
+<p>We see that allowing numba to use all of our CPU cores has increased the performance with relatively few code changes. The best possible speedup with parallelisation with be a factor of <code class="docutils literal notranslate"><span class="pre">cpu_count()</span></code> but this often won’t be realised in practice.</p>
+<p>More on optimising with numba in notebook <strong>9.8 Self study</strong>.</p>
 </section>
 </section>
 
@@ -1322,13 +1553,13 @@ plt.imshow(data_numba_parallel, interpolation=&quot;none&quot;)
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">9.3 Optimising with Cython</p>
+            <p class="prev-next-title">9.3.0 How to Build Cython Code</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="09_05_performance_scaling.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">9.5 Performance scaling for containers and algorithms</p>
+        <p class="prev-next-title">9.5 Performance Scaling for Containers and Algorithms</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
