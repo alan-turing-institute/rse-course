@@ -1113,16 +1113,16 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import numpy as np
-from matplotlib import pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-density = np.array([0, 0, 3, 5, 8, 4, 2, 1])
-fig, ax = plt.subplots()
-ax.bar(np.arange(len(density)) - 0.5, density)
-ax.xrange = [-0.5, len(density) - 0.5]
-ax.set_ylabel(&quot;Particle count $n_i$&quot;)
-ax.set_xlabel(&quot;Position $i$&quot;)
+<span class="n">density</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">density</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xrange</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Particle count $n_i$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Position $i$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1141,7 +1141,7 @@ total energy.</p>
 <p>Create a Python module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 rm -rf diffusion
 mkdir diffusion
 touch diffusion/__init__.py
@@ -1162,19 +1162,19 @@ type nul &gt; diffusion/__init__.py
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile diffusion/model.py
-def energy(density, coeff=1.0):
-    &quot;&quot;&quot;Energy associated with the diffusion model
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> diffusion/model.py
+<span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="n">density</span><span class="p">,</span> <span class="n">coeff</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Energy associated with the diffusion model</span>
 
-    Parameters
-    ----------
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
 
-    density: array of positive integers
-        Number of particles at each position i in the array
-    coeff: float
-        Diffusion coefficient.
-    &quot;&quot;&quot;
-    # implementation goes here
+<span class="sd">    density: array of positive integers</span>
+<span class="sd">        Number of particles at each position i in the array</span>
+<span class="sd">    coeff: float</span>
+<span class="sd">        Diffusion coefficient.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># implementation goes here</span>
 </pre></div>
 </div>
 </div>
@@ -1189,13 +1189,13 @@ def energy(density, coeff=1.0):
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile diffusion/test_model.py
-from .model import energy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> diffusion/test_model.py
+<span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">energy</span>
 
 
-def test_energy():
-    pass
-    # Test something
+<span class="k">def</span> <span class="nf">test_energy</span><span class="p">():</span>
+    <span class="k">pass</span>
+    <span class="c1"># Test something</span>
 </pre></div>
 </div>
 </div>
@@ -1208,23 +1208,23 @@ def test_energy():
 <p>Invoke the tests:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 cd diffusion
 pytest
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.15, pytest-7.2.0, pluggy-1.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/diffusion
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: pylama-8.4.1, anyio-3.6.2, cov-4.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 1 item
@@ -1233,13 +1233,13 @@ pytest
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_model.py .                                                          [100%]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_model.py <span class=" -Color -Color-Green">.                                                          [100%]</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================== 1 passed in 0.02s ===============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Green">1 passed</span><span class=" -Color -Color-Green"> in 0.01s ===============================</span>
 </pre></div>
 </div>
 </div>
@@ -1252,69 +1252,69 @@ pytest
 <p>In the spirit of test-driven development let’s first consider our tests.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile diffusion/test_model.py
-&quot;&quot;&quot;Unit tests for a diffusion model.&quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> diffusion/test_model.py
+<span class="sd">&quot;&quot;&quot;Unit tests for a diffusion model.&quot;&quot;&quot;</span>
 
-from pytest import raises
-from .model import energy
-
-
-def test_energy_fails_on_non_integer_density():
-    with raises(TypeError):
-        energy([1.0, 2, 3])
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">raises</span>
+<span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">energy</span>
 
 
-def test_energy_fails_on_negative_density():
-    with raises(ValueError):
-        energy([-1, 2, 3])
+<span class="k">def</span> <span class="nf">test_energy_fails_on_non_integer_density</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+        <span class="n">energy</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
 
-def test_energy_fails_ndimensional_density():
-    with raises(ValueError):
-        energy([[1, 2, 3], [3, 4, 5]])
+<span class="k">def</span> <span class="nf">test_energy_fails_on_negative_density</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">energy</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
 
-def test_zero_energy_cases():
-    # Zero energy at zero density
-    densities = [[], [0], [0, 0, 0]]
-    for density in densities:
-        assert energy(density) == 0
+<span class="k">def</span> <span class="nf">test_energy_fails_ndimensional_density</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">energy</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
 
 
-def test_derivative():
-    from numpy.random import randint
-
-    # Loop over vectors of different sizes (but not empty)
-    for vector_size in randint(1, 1000, size=30):
-
-        # Create random density of size N
-        density = randint(50, size=vector_size)
-
-        # will do derivative at this index
-        element_index = randint(vector_size)
-
-        # modified densities
-        density_plus_one = density.copy()
-        density_plus_one[element_index] += 1
-
-        # Compute and check result
-        # d(n^2-1)/dn = 2n
-        expected = 2.0 * density[element_index] if density[element_index] &gt; 0 else 0
-        actual = energy(density_plus_one) - energy(density)
-        assert expected == actual
+<span class="k">def</span> <span class="nf">test_zero_energy_cases</span><span class="p">():</span>
+    <span class="c1"># Zero energy at zero density</span>
+    <span class="n">densities</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">density</span> <span class="ow">in</span> <span class="n">densities</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
 
 
-def test_derivative_no_self_energy():
-    &quot;&quot;&quot;If particle is alone, then its participation to energy is zero.&quot;&quot;&quot;
-    from numpy import array
+<span class="k">def</span> <span class="nf">test_derivative</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">randint</span>
 
-    density = array([1, 0, 1, 10, 15, 0])
-    density_plus_one = density.copy()
-    density[1] += 1
+    <span class="c1"># Loop over vectors of different sizes (but not empty)</span>
+    <span class="k">for</span> <span class="n">vector_size</span> <span class="ow">in</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
 
-    expected = 0
-    actual = energy(density_plus_one) - energy(density)
-    assert expected == actual
+        <span class="c1"># Create random density of size N</span>
+        <span class="n">density</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">vector_size</span><span class="p">)</span>
+
+        <span class="c1"># will do derivative at this index</span>
+        <span class="n">element_index</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">vector_size</span><span class="p">)</span>
+
+        <span class="c1"># modified densities</span>
+        <span class="n">density_plus_one</span> <span class="o">=</span> <span class="n">density</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">density_plus_one</span><span class="p">[</span><span class="n">element_index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Compute and check result</span>
+        <span class="c1"># d(n^2-1)/dn = 2n</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">density</span><span class="p">[</span><span class="n">element_index</span><span class="p">]</span> <span class="k">if</span> <span class="n">density</span><span class="p">[</span><span class="n">element_index</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">density_plus_one</span><span class="p">)</span> <span class="o">-</span> <span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">actual</span>
+
+
+<span class="k">def</span> <span class="nf">test_derivative_no_self_energy</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If particle is alone, then its participation to energy is zero.&quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+
+    <span class="n">density</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">density_plus_one</span> <span class="o">=</span> <span class="n">density</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">density</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">expected</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">density_plus_one</span><span class="p">)</span> <span class="o">-</span> <span class="n">energy</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">actual</span>
 </pre></div>
 </div>
 </div>
@@ -1327,35 +1327,35 @@ def test_derivative_no_self_energy():
 <p>Now let’s write an implementation that passes the tests.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile diffusion/model.py
-&quot;&quot;&quot;Simplistic 1-dimensional diffusion model.&quot;&quot;&quot;
-from numpy import array, any, sum
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> diffusion/model.py
+<span class="sd">&quot;&quot;&quot;Simplistic 1-dimensional diffusion model.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="nb">any</span><span class="p">,</span> <span class="nb">sum</span>
 
 
-def energy(density):
-    &quot;&quot;&quot;Energy associated with the diffusion model
-    :Parameters:
-      density: array of positive integers
-         Number of particles at each position i in the array/geometry
-    &quot;&quot;&quot;
+<span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="n">density</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Energy associated with the diffusion model</span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">      density: array of positive integers</span>
+<span class="sd">         Number of particles at each position i in the array/geometry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    # Make sure input is an numpy array
-    density = array(density)
+    <span class="c1"># Make sure input is an numpy array</span>
+    <span class="n">density</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">density</span><span class="p">)</span>
 
-    # ...of the right kind (integer). Unless it is zero length,
-    #    in which case type does not matter.
+    <span class="c1"># ...of the right kind (integer). Unless it is zero length,</span>
+    <span class="c1">#    in which case type does not matter.</span>
 
-    if density.dtype.kind != &quot;i&quot; and len(density) &gt; 0:
-        raise TypeError(&quot;Density should be a array of *integers*.&quot;)
-    # and the right values (positive or null)
-    if any(density &lt; 0):
-        raise ValueError(&quot;Density should be an array of *positive* integers.&quot;)
-    if density.ndim != 1:
-        raise ValueError(
-            &quot;Density should be an a *1-dimensional*&quot; + &quot;array of positive integers.&quot;
-        )
+    <span class="k">if</span> <span class="n">density</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">!=</span> <span class="s2">&quot;i&quot;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Density should be a array of *integers*.&quot;</span><span class="p">)</span>
+    <span class="c1"># and the right values (positive or null)</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">density</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Density should be an array of *positive* integers.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">density</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Density should be an a *1-dimensional*&quot;</span> <span class="o">+</span> <span class="s2">&quot;array of positive integers.&quot;</span>
+        <span class="p">)</span>
 
-    return sum(density * (density - 1))
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">density</span> <span class="o">*</span> <span class="p">(</span><span class="n">density</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1367,23 +1367,23 @@ def energy(density):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 cd diffusion
 pytest
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.15, pytest-7.2.0, pluggy-1.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/diffusion
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: pylama-8.4.1, anyio-3.6.2, cov-4.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 6 items
@@ -1392,13 +1392,13 @@ pytest
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_model.py ......                                                     [100%]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_model.py <span class=" -Color -Color-Green">......                                                     [100%]</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================== 6 passed in 0.18s ===============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Green">6 passed</span><span class=" -Color -Color-Green"> in 0.13s ===============================</span>
 </pre></div>
 </div>
 </div>
@@ -1409,23 +1409,23 @@ pytest
 <p>With pytest, you can use the <a class="reference external" href="https://github.com/pytest-dev/pytest-cov">“pytest-cov” plugin</a> to measure test coverage</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 cd diffusion
 pytest --cov
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.15, pytest-7.2.0, pluggy-1.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/diffusion
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: pylama-8.4.1, anyio-3.6.2, cov-4.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 6 items
@@ -1434,13 +1434,13 @@ pytest --cov
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_model.py ......                                                     [100%]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_model.py <span class=" -Color -Color-Green">......                                                     [100%]</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- coverage: platform linux, python 3.8.14-final-0 -----------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- coverage: platform linux, python 3.8.15-final-0 -----------
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name            Stmts   Miss  Cover
@@ -1470,7 +1470,7 @@ pytest --cov
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================== 6 passed in 0.22s ===============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Green">6 passed</span><span class=" -Color -Color-Green"> in 0.17s ===============================</span>
 </pre></div>
 </div>
 </div>
@@ -1478,7 +1478,7 @@ pytest --cov
 <p>Or an html report:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 #%%cmd (windows)
 cd diffusion
 pytest --cov --cov-report html
@@ -1486,16 +1486,16 @@ pytest --cov --cov-report html
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.15, pytest-7.2.0, pluggy-1.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/diffusion
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: pylama-8.4.1, anyio-3.6.2, cov-4.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 6 items
@@ -1504,13 +1504,13 @@ pytest --cov --cov-report html
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_model.py ......                                                     [100%]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_model.py <span class=" -Color -Color-Green">......                                                     [100%]</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- coverage: platform linux, python 3.8.14-final-0 -----------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- coverage: platform linux, python 3.8.15-final-0 -----------
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coverage HTML written to dir htmlcov
@@ -1522,7 +1522,7 @@ pytest --cov --cov-report html
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================== 6 passed in 0.23s ===============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Green">6 passed</span><span class=" -Color -Color-Green"> in 0.19s ===============================</span>
 </pre></div>
 </div>
 </div>

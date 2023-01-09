@@ -1166,14 +1166,14 @@ This can be useful if you want a cleaner, non-branching history, but it has the 
 </pre></div>
 </div>
 <p>So the logs look like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log --oneline --graph master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--graph<span class="w"> </span>master
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="mi">2</span><span class="n">a74d89</span> <span class="n">Dancing</span>
 <span class="o">*</span> <span class="mi">6</span><span class="n">a4834d</span> <span class="n">Initial</span> <span class="n">state</span>
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log --oneline --graph carollian
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--graph<span class="w"> </span>carollian
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="mi">2232</span><span class="n">bf3</span> <span class="n">Translate</span> <span class="n">into</span> <span class="n">Caroll</span><span class="s1">&#39;s language</span>
@@ -1199,7 +1199,7 @@ This can be useful if you want a cleaner, non-branching history, but it has the 
 </pre></div>
 </div>
 <p>But if we <strong>rebase</strong>, the final content of the file is still the same, but the graph is different:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log --oneline --graph master_rebase_carollian
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--graph<span class="w"> </span>master_rebase_carollian
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">df618e0</span> <span class="n">Dancing</span>
@@ -1210,12 +1210,12 @@ This can be useful if you want a cleaner, non-branching history, but it has the 
 <p>We have essentially created a new history, in which our changes come after the ones in the carollian branch.
 Note that, in this case, the hash for our “Dancing” commit has changed (from <code class="docutils literal notranslate"><span class="pre">2a74d89</span></code> to <code class="docutils literal notranslate"><span class="pre">df618e0</span></code>)!</p>
 <p>To trigger the rebase, we did:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
-git rebase carollian
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>master
+git<span class="w"> </span>rebase<span class="w"> </span>carollian
 </pre></div>
 </div>
 <p>If this had been a remote, we would merge it with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull --rebase
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>--rebase
 </pre></div>
 </div>
 </section>
@@ -1223,14 +1223,14 @@ git rebase carollian
 <h2>Fast Forwards<a class="headerlink" href="#fast-forwards" title="Permalink to this headline">#</a></h2>
 <p>If we want to continue with the translation, and now want to merge the rebased branch into the carollian branch,
 we get:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout carollian
-git merge master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>carollian
+git<span class="w"> </span>merge<span class="w"> </span>master
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Updating 2232bf3..df618e0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Updating<span class="w"> </span>2232bf3..df618e0
 Fast-forward
- wocky.md <span class="p">|</span> <span class="m">1</span> +
- <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+<span class="w"> </span>wocky.md<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>+
+<span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
 </pre></div>
 </div>
 <p>The master branch was already <strong>rebased on</strong> the carollian branch, so this merge was just a question of updating <em>metadata</em> (moving the label for the carollian branch so that it points to the same commit master does): a “fast forward”.</p>
@@ -1248,7 +1248,7 @@ If in doubt, just merge.</p>
 <h1>Squashing<a class="headerlink" href="#squashing" title="Permalink to this headline">#</a></h1>
 <p>A second way to use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span></code> command is to rebase your work on top of one of <em>your own</em> earlier commits,
 in interactive mode (<code class="docutils literal notranslate"><span class="pre">-i</span></code>). A common use of this is to “squash” several commits that should really be one, i.e. combine them into a single commit that contains all their changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ea15</span> <span class="n">Some</span> <span class="n">good</span> <span class="n">work</span>
@@ -1261,7 +1261,7 @@ in interactive mode (<code class="docutils literal notranslate"><span class="pre
 <section id="using-rebase-to-squash">
 <h2>Using rebase to squash<a class="headerlink" href="#using-rebase-to-squash" title="Permalink to this headline">#</a></h2>
 <p>If we type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git rebase -i ab11 <span class="c1"># OR HEAD~~</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>ab11<span class="w"> </span><span class="c1"># OR HEAD~~</span>
 </pre></div>
 </div>
 <p>an edit window pops up with:</p>
@@ -1289,7 +1289,7 @@ This is a great idea if you have lots of trivial typo commits.</p>
 </pre></div>
 </div>
 <p>save the interactive rebase config file, and rebase will build a new history:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">de82</span> <span class="n">Some</span> <span class="n">good</span> <span class="n">work</span>

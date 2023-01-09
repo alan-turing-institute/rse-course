@@ -1140,24 +1140,24 @@ replacing it with <code class="docutils literal notranslate"><span class="pre">%
 <p>To request the above URL, for example, we write:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import requests
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>response = requests.get(
-    &quot;https://static-maps.yandex.ru:443/1.x&quot;,
-    params={
-        &quot;size&quot;: &quot;400,400&quot;,  # size of map
-        &quot;ll&quot;: &quot;-0.1275,51.51&quot;,  # longitude &amp; latitude of centre
-        &quot;z&quot;: 12,  # zoom level
-        &quot;l&quot;: &quot;sat&quot;,  # map layer (satellite image)
-        &quot;lang&quot;: &quot;en_US&quot;,  # language
-    },
-    timeout=60,
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;https://static-maps.yandex.ru:443/1.x&quot;</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="s2">&quot;400,400&quot;</span><span class="p">,</span>  <span class="c1"># size of map</span>
+        <span class="s2">&quot;ll&quot;</span><span class="p">:</span> <span class="s2">&quot;-0.1275,51.51&quot;</span><span class="p">,</span>  <span class="c1"># longitude &amp; latitude of centre</span>
+        <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>  <span class="c1"># zoom level</span>
+        <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;sat&quot;</span><span class="p">,</span>  <span class="c1"># map layer (satellite image)</span>
+        <span class="s2">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;en_US&quot;</span><span class="p">,</span>  <span class="c1"># language</span>
+    <span class="p">},</span>
+    <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1165,7 +1165,7 @@ replacing it with <code class="docutils literal notranslate"><span class="pre">%
 <p>When we do a request, the result comes back as text. For the png image in the above, this isn’t very readable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>response.content[0:50]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1178,9 +1178,9 @@ replacing it with <code class="docutils literal notranslate"><span class="pre">%
 <p>Just as for file access, therefore, we will need to send the text we get to a python module which understands that file format.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from IPython.display import Image
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 
-Image(response.content)
+<span class="n">Image</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1195,14 +1195,14 @@ Image(response.content)
 <p>Let’s try to get something scientific: the sunspot cycle data from <a class="reference external" href="http://sidc.be/silso/home">http://sidc.be/silso/home</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>spots = requests.get(&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;, timeout=60).text
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spots</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>spots[0:80]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spots</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">80</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1220,8 +1220,8 @@ Image(response.content)
 <p>You might be thinking: “But I can do that myself!”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lines = spots.split(&quot;\n&quot;)
-lines[0:5]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">spots</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1237,14 +1237,14 @@ lines[0:5]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>years = [line.split(&quot;;&quot;)[0] for line in lines]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>years[0:15]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

@@ -1130,7 +1130,7 @@ eclipse are GUIs for gdb)</p></li>
 <section id="using-the-python-debugger">
 <h2>Using the python debugger<a class="headerlink" href="#using-the-python-debugger" title="Permalink to this headline">#</a></h2>
 <p>Unfortunately this doesn’t work nicely in the notebook. But from the command line, you can run a python program with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pdb my_program.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pdb<span class="w"> </span>my_program.py
 </pre></div>
 </div>
 </section>
@@ -1159,10 +1159,10 @@ We say</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile energy_example.py
-from diffusion.model import energy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> energy_example.py
+<span class="kn">from</span> <span class="nn">diffusion.model</span> <span class="kn">import</span> <span class="n">energy</span>
 
-print(energy([5, 6, 7, 8, 0, 1]))
+<span class="nb">print</span><span class="p">(</span><span class="n">energy</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -1175,12 +1175,12 @@ print(energy([5, 6, 7, 8, 0, 1]))
 <p>The debugger is, of course, most used interactively, but here I’m showing a prewritten debugger script:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile commands
-restart        # restart session
-n
-b energy       # program will stop when entering energy
-c              # continue program until break point is reached
-print(density) # We are now &quot;inside&quot; the energy function and can print any variable.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> commands
+<span class="n">restart</span>        <span class="c1"># restart session</span>
+<span class="n">n</span>
+<span class="n">b</span> <span class="n">energy</span>       <span class="c1"># program will stop when entering energy</span>
+<span class="n">c</span>              <span class="c1"># continue program until break point is reached</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">density</span><span class="p">)</span> <span class="c1"># We are now &quot;inside&quot; the energy function and can print any variable.</span>
 </pre></div>
 </div>
 </div>
@@ -1192,7 +1192,7 @@ print(density) # We are now &quot;inside&quot; the energy function and can print
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 python -m pdb energy_example.py &lt; commands
 </pre></div>
 </div>

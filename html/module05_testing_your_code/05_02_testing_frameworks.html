@@ -1227,27 +1227,27 @@ title="Print to PDF"
 <p>We can use its tools in the notebook for on-the-fly tests in the notebook. This, happily, includes the negative-tests example we were looking for a moment ago.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def I_only_accept_positive_numbers(number):
-    # Check input
-    if number &lt; 0:
-        raise ValueError(&quot;Input &quot; + str(number) + &quot; is negative&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">I_only_accept_positive_numbers</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="c1"># Check input</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is negative&quot;</span><span class="p">)</span>
 
-    # Do something
+    <span class="c1"># Do something</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from pytest import raises
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">raises</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with raises(ValueError):
-    I_only_accept_positive_numbers(-5)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+    <span class="n">I_only_accept_positive_numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1255,7 +1255,7 @@ title="Print to PDF"
 <p>but the real power comes when we write a test file alongside our code files in our homemade packages:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 #on windows replace &#39;%%bash&#39; with %%cmd
 rm -rf saskatchewan
 mkdir -p saskatchewan
@@ -1266,20 +1266,20 @@ touch saskatchewan/__init__.py #on windows replace with &#39;type nul &gt; saska
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile saskatchewan/overlap.py
-def overlap(field1, field2):
-    left1, bottom1, top1, right1 = field1
-    left2, bottom2, top2, right2 = field2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> saskatchewan/overlap.py
+<span class="k">def</span> <span class="nf">overlap</span><span class="p">(</span><span class="n">field1</span><span class="p">,</span> <span class="n">field2</span><span class="p">):</span>
+    <span class="n">left1</span><span class="p">,</span> <span class="n">bottom1</span><span class="p">,</span> <span class="n">top1</span><span class="p">,</span> <span class="n">right1</span> <span class="o">=</span> <span class="n">field1</span>
+    <span class="n">left2</span><span class="p">,</span> <span class="n">bottom2</span><span class="p">,</span> <span class="n">top2</span><span class="p">,</span> <span class="n">right2</span> <span class="o">=</span> <span class="n">field2</span>
 
-    overlap_left = max(left1, left2)
-    overlap_bottom = max(bottom1, bottom2)
-    overlap_right = min(right1, right2)
-    overlap_top = min(top1, top2)
-    # Here&#39;s our wrong code again
-    overlap_height = overlap_top - overlap_bottom
-    overlap_width = overlap_right - overlap_left
+    <span class="n">overlap_left</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">left1</span><span class="p">,</span> <span class="n">left2</span><span class="p">)</span>
+    <span class="n">overlap_bottom</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">bottom1</span><span class="p">,</span> <span class="n">bottom2</span><span class="p">)</span>
+    <span class="n">overlap_right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">right1</span><span class="p">,</span> <span class="n">right2</span><span class="p">)</span>
+    <span class="n">overlap_top</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">top1</span><span class="p">,</span> <span class="n">top2</span><span class="p">)</span>
+    <span class="c1"># Here&#39;s our wrong code again</span>
+    <span class="n">overlap_height</span> <span class="o">=</span> <span class="n">overlap_top</span> <span class="o">-</span> <span class="n">overlap_bottom</span>
+    <span class="n">overlap_width</span> <span class="o">=</span> <span class="n">overlap_right</span> <span class="o">-</span> <span class="n">overlap_left</span>
 
-    return overlap_height * overlap_width
+    <span class="k">return</span> <span class="n">overlap_height</span> <span class="o">*</span> <span class="n">overlap_width</span>
 </pre></div>
 </div>
 </div>
@@ -1291,20 +1291,20 @@ def overlap(field1, field2):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile saskatchewan/test_overlap.py
-from .overlap import overlap
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> saskatchewan/test_overlap.py
+<span class="kn">from</span> <span class="nn">.overlap</span> <span class="kn">import</span> <span class="n">overlap</span>
 
 
-def test_full_overlap():
-    assert overlap((1.0, 1.0, 4.0, 4.0), (2.0, 2.0, 3.0, 3.0)) == 1.0
+<span class="k">def</span> <span class="nf">test_full_overlap</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span> <span class="o">==</span> <span class="mf">1.0</span>
 
 
-def test_partial_overlap():
-    assert overlap((1, 1, 4, 4), (2, 2, 3, 4.5)) == 2.0
+<span class="k">def</span> <span class="nf">test_partial_overlap</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">2.0</span>
 
 
-def test_no_overlap():
-    assert overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5)) == 0.0
+<span class="k">def</span> <span class="nf">test_no_overlap</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">overlap</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">==</span> <span class="mf">0.0</span>
 </pre></div>
 </div>
 </div>
@@ -1316,7 +1316,7 @@ def test_no_overlap():
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 #%%cmd #(windows)
 cd saskatchewan
 pytest || echo &quot;Tests failed&quot;
@@ -1324,16 +1324,16 @@ pytest || echo &quot;Tests failed&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.15, pytest-7.2.0, pluggy-1.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/saskatchewan
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: pylama-8.4.1, anyio-3.6.2, cov-4.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 3 items
@@ -1342,7 +1342,7 @@ pytest || echo &quot;Tests failed&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_overlap.py ..F                                                      [100%]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_overlap.py <span class=" -Color -Color-Green">..</span><span class=" -Color -Color-Red">F                                                      [100%]</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1351,7 +1351,7 @@ pytest || echo &quot;Tests failed&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=================================== FAILURES ===================================
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_______________________________ test_no_overlap ________________________________
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">_______________________________ test_no_overlap ________________________________</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1363,28 +1363,28 @@ pytest || echo &quot;Tests failed&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5)) == 0.0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E       assert 0.25 == 0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E       assert 0.25 == 0.0</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E        +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_overlap.py:13: AssertionError
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">test_overlap.py</span>:13: AssertionError
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=========================== short test summary info ============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Cyan">=========================== short test summary info ============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FAILED test_overlap.py::test_no_overlap - assert 0.25 == 0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">FAILED</span> test_overlap.py::<span class=" -Color -Color-Bold">test_no_overlap</span> - assert 0.25 == 0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================= 1 failed, 2 passed in 0.11s ==========================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">========================= </span><span class=" -Color -Color-Bold -Color-Bold-Red">1 failed</span>, <span class=" -Color -Color-Green">2 passed</span><span class=" -Color -Color-Red"> in 0.16s ==========================</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tests failed
@@ -1411,7 +1411,7 @@ pytest || echo &quot;Tests failed&quot;
 <p>The command below will produce a html files which highlights the coverage of your tests.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 #%%cmd #(windows)
 cd saskatchewan
 pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
@@ -1421,16 +1421,16 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.15, pytest-7.2.0, pluggy-1.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/saskatchewan
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: pylama-8.4.1, anyio-3.6.2, cov-4.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 3 items
@@ -1439,7 +1439,7 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_overlap.py ..F                                                      [100%]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_overlap.py <span class=" -Color -Color-Green">..</span><span class=" -Color -Color-Red">F                                                      [100%]</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1448,7 +1448,7 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=================================== FAILURES ===================================
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_______________________________ test_no_overlap ________________________________
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">_______________________________ test_no_overlap ________________________________</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1460,22 +1460,22 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5)) == 0.0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E       assert 0.25 == 0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E       assert 0.25 == 0.0</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_overlap.py:13: AssertionError
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E        +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- coverage: platform linux, python 3.8.14-final-0 -----------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">test_overlap.py</span>:13: AssertionError
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------- coverage: platform linux, python 3.8.15-final-0 -----------
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coverage HTML written to dir htmlcov
@@ -1484,16 +1484,16 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=========================== short test summary info ============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Cyan">=========================== short test summary info ============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FAILED test_overlap.py::test_no_overlap - assert 0.25 == 0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">FAILED</span> test_overlap.py::<span class=" -Color -Color-Bold">test_no_overlap</span> - assert 0.25 == 0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +  where 0.25 = overlap((1, 1, 4, 4), (4.5, 4.5, 5, 5))
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================= 1 failed, 2 passed in 0.07s ==========================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">========================= </span><span class=" -Color -Color-Bold -Color-Bold-Red">1 failed</span>, <span class=" -Color -Color-Green">2 passed</span><span class=" -Color -Color-Red"> in 0.14s ==========================</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tests failed
@@ -1513,7 +1513,7 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 <p>This can lead to numerical errors during calculations: <span class="math notranslate nohighlight">\(1000 (a - b) \neq 1000a - 1000b\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>1000.0 * 1.0 - 1000.0 * 0.9999999999999998
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1000.0</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">1000.0</span> <span class="o">*</span> <span class="mf">0.9999999999999998</span>
 </pre></div>
 </div>
 </div>
@@ -1525,7 +1525,7 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>1000.0 * (1.0 - 0.9999999999999998)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1000.0</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">0.9999999999999998</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1539,7 +1539,7 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 <p>The size of the error will depend on the magnitude of the floating points:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>1000.0 * 1e5 - 1000.0 * 0.9999999999999998e5
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1000.0</span> <span class="o">*</span> <span class="mf">1e5</span> <span class="o">-</span> <span class="mf">1000.0</span> <span class="o">*</span> <span class="mf">0.9999999999999998e5</span>
 </pre></div>
 </div>
 </div>
@@ -1556,9 +1556,9 @@ pytest --cov=. --cov-report=html || echo &quot;Tests failed&quot;
 <p>Use the “approx”, for a default of a relative tolerance of <span class="math notranslate nohighlight">\(10^{-6}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from pytest import approx
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
 
-assert 0.7 == approx(0.7 + 1e-7)
+<span class="k">assert</span> <span class="mf">0.7</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">+</span> <span class="mf">1e-7</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1566,8 +1566,8 @@ assert 0.7 == approx(0.7 + 1e-7)
 <p>Or be more explicit:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>magnitude = 0.7
-assert 0.7 == approx(0.701, rel=0.1, abs=0.1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">magnitude</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="k">assert</span> <span class="mf">0.7</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="mf">0.701</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1579,9 +1579,9 @@ assert 0.7 == approx(0.701, rel=0.1, abs=0.1)
 <p>Numerical vectors are best represented using <a class="reference external" href="http://www.numpy.org/">numpy</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from numpy import array, pi
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">pi</span>
 
-vector_of_reals = array([0.1, 0.2, 0.3, 0.4]) * pi
+<span class="n">vector_of_reals</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span> <span class="o">*</span> <span class="n">pi</span>
 </pre></div>
 </div>
 </div>
@@ -1590,13 +1590,13 @@ vector_of_reals = array([0.1, 0.2, 0.3, 0.4]) * pi
 comparison easy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from numpy import array, pi
-from numpy.testing import assert_allclose
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">numpy.testing</span> <span class="kn">import</span> <span class="n">assert_allclose</span>
 
-expected = array([0.1, 0.2, 0.3, 0.4, 1e-12]) * pi
-actual = array([0.1, 0.2, 0.3, 0.4, 2e-12]) * pi
-actual[:-1] += 1e-6
-assert_allclose(actual, expected, rtol=1e-5, atol=1e-8)
+<span class="n">expected</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">1e-12</span><span class="p">])</span> <span class="o">*</span> <span class="n">pi</span>
+<span class="n">actual</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">2e-12</span><span class="p">])</span> <span class="o">*</span> <span class="n">pi</span>
+<span class="n">actual</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1e-6</span>
+<span class="n">assert_allclose</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

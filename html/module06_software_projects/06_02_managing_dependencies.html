@@ -1186,7 +1186,7 @@ requests
 </pre></div>
 </div>
 <p>To install dependencies from a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file do the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> files are not the only way of specifying dependencies, we’ll refer to some others and the differences between them here and later in this module.</p>
@@ -1203,7 +1203,7 @@ requests==2.28.1
 </pre></div>
 </div>
 <p>To automatically generate a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file like this, containing the versions of all the libraries installed in your current Python environment, you can run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip freeze
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>freeze
 </pre></div>
 </div>
 <p>However, note that <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code> won’t output only your direct dependencies, but also</p>
@@ -1243,11 +1243,11 @@ requests==2.28.1
 <section id="updating-dependencies">
 <h3>Updating dependencies<a class="headerlink" href="#updating-dependencies" title="Permalink to this headline">#</a></h3>
 <p>Running</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip list --outdated
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>list<span class="w"> </span>--outdated
 </pre></div>
 </div>
 <p>will show a list of installed packages that have newer versions available. You can upgrade to the latest version by running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade PACKAGE_NAME
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>PACKAGE_NAME
 </pre></div>
 </div>
 <p>(and then update <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> to reflect the new version you’re using, if needed).</p>
@@ -1271,7 +1271,7 @@ requests==2.28.1
 <p>To create a virtual environment:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 
 python -m venv myenv
 </pre></div>
@@ -1281,7 +1281,7 @@ python -m venv myenv
 <p>where <code class="docutils literal notranslate"><span class="pre">myenv</span></code> is the name of the directory that will be created to store the environment’s configuration. The initial contents of the <code class="docutils literal notranslate"><span class="pre">myenv</span></code> directory are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 
 ls -F myenv/
 </pre></div>
@@ -1308,14 +1308,14 @@ ls -F myenv/
 <p>The <code class="docutils literal notranslate"><span class="pre">which</span></code> bash command returns the path to an executable on your system. Currently, <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> will return the path to the environment you’re using to run the course notebooks:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 
 which python
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/bin/python
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.15/x64/bin/python
 </pre></div>
 </div>
 </div>
@@ -1323,7 +1323,7 @@ which python
 <p>To use our new virtual environment instead, we need to “activate” it, as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 source myenv/bin/activate
 
 which python
@@ -1340,7 +1340,7 @@ which python
 <p>We can then install and run libraries without it impacting other Python environments on our system, e.g.:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 source myenv/bin/activate
 
 pip install pyjokes
@@ -1358,7 +1358,7 @@ pyjoke
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>You should consider upgrading via the &#39;/home/runner/work/rse-course/rse-course/module06_software_projects/myenv/bin/python -m pip install --upgrade pip&#39; command.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hardware: The part of a computer that you can kick.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>What did the Java code say to the C code? A: You&#39;ve got no class.
 </pre></div>
 </div>
 </div>
@@ -1371,7 +1371,7 @@ pyjoke
 <p>To leave the virtual environment and return to using your system Python (or the previously activated environment), you need to “deactivate” it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 source myenv/bin/activate
 
 echo &quot;======================&quot;
@@ -1401,7 +1401,7 @@ echo &quot;======================&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/rse-course/rse-course/module06_software_projects/myenv/bin/python
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Why are you always smiling? That&#39;s just my... regular expression.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Waiter: He&#39;s choking! Is anyone a doctor? Programmer: I&#39;m a Vim user.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================
@@ -1416,7 +1416,7 @@ echo &quot;======================&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outside myenv, python path:
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/bin/python
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.15/x64/bin/python
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bash: line 15: pyjoke: command not found
@@ -1443,28 +1443,28 @@ echo &quot;======================&quot;
 <li><p>There’s a bit more bloat than other tools, and the dependency resolver can be quite slow.</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">conda</span></code> environments a specified in the YAML format, typically in a file called <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, and look like this:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myenv</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myenv</span>
 
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geopy=2.2.0</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imageio=2.19.3</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib=3.5.2</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy=1.23.0</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requests=2.28.1</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geopy=2.2.0</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imageio=2.19.3</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib=3.5.2</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy=1.23.0</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requests=2.28.1</span>
 </pre></div>
 </div>
 <p>Note that a version of Python itself is specified in the dependencies - you can install any version of Python in a conda environment.</p>
 <p>To create the environment:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
 </pre></div>
 </div>
 <p>And to use it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate myenv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>myenv
 
 <span class="c1"># work in the environment</span>
 
-conda deactivate
+conda<span class="w"> </span>deactivate
 </pre></div>
 </div>
 </section>

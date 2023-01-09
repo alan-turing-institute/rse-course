@@ -1105,18 +1105,18 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(z_{i+1}=z_{i}^2\)</span>, starting from <span class="math notranslate nohighlight">\(z_0=c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a real number and <span class="math notranslate nohighlight">\(i = 1, 2, 3, \dots\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def series1(start, iterations=4):
-    &quot;&quot;&quot;Returns the value of the series after the provided number of iterations.&quot;&quot;&quot;
-    value = start
-    for _ in range(iterations):
-        value = value**2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">series1</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the value of the series after the provided number of iterations.&quot;&quot;&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span>
 
-    return value
+    <span class="k">return</span> <span class="n">value</span>
 
 
-assert series1(0) == 0
-assert series1(1) == 1
-assert series1(-2) == 65536
+<span class="k">assert</span> <span class="n">series1</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="n">series1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">series1</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">65536</span>
 </pre></div>
 </div>
 </div>
@@ -1124,32 +1124,32 @@ assert series1(-2) == 65536
 <p>Let’s look at the values of series after 4 iterations for different starting points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -2
-xmax = 2
-resolution = 300
-xstep = (xmax - xmin) / resolution
-xs = [(xmin + (xstep * i)) for i in range(resolution)]  # list of starting points
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="p">(</span><span class="n">xstep</span> <span class="o">*</span> <span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>  <span class="c1"># list of starting points</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>zs = [series1(x) for x in xs]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zs</span> <span class="o">=</span> <span class="p">[</span><span class="n">series1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-plt.plot(xs, zs)
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">zs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb66a48ea90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fcb606788b0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/09_00_performance_programming_9_1.png" src="../_images/09_00_performance_programming_9_1.png" />
@@ -1159,47 +1159,47 @@ plt.plot(xs, zs)
 <p>In practice, it is probably a good idea to have a way of stopping the function early (i.e., before we reach the maximum number of iterations) when we notice that the values are exploding. So we need to pick a threshold and tell our function to stop once the value of the series surpasses this threshold. For now (and without obvious reason) we pick 2 as our threshold. It would be interesting to know if the function computed all iterations or stopped early (and if so, how early). We can easily get this information by modifying the return value of our function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def series2(start, max_iterations=50):
-    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">series2</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.</span>
 
-    The function stops when the value of the series surpasses a threshold or when it reaches the maximum
-    number of iterations.
+<span class="sd">    The function stops when the value of the series surpasses a threshold or when it reaches the maximum</span>
+<span class="sd">    number of iterations.</span>
 
-    Returns the number of iterations.
-    &quot;&quot;&quot;
-    value = start
+<span class="sd">    Returns the number of iterations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">start</span>
 
-    counter = 0
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
 
-    while counter &lt; max_iterations:
-        # Arbitrary threshold, for now
-        if abs(value) &gt; 2:
-            break
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span>
+        <span class="c1"># Arbitrary threshold, for now</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">break</span>
 
-        value = value**2
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span>
 
-        counter = counter + 1
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
 
-    return counter
+    <span class="k">return</span> <span class="n">counter</span>
 
 
-assert series2(0) == 50
-assert series2(1) == 50
-assert series2(2) == 1
-assert series2(1.5) == 1
+<span class="k">assert</span> <span class="n">series2</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">50</span>
+<span class="k">assert</span> <span class="n">series2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">50</span>
+<span class="k">assert</span> <span class="n">series2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">series2</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>zs = [series2(x) for x in xs]
-plt.plot(xs, zs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zs</span> <span class="o">=</span> <span class="p">[</span><span class="n">series2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">zs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb66832a8b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fcb602d4670&gt;]
 </pre></div>
 </div>
 <img alt="../_images/09_00_performance_programming_12_1.png" src="../_images/09_00_performance_programming_12_1.png" />
@@ -1212,16 +1212,16 @@ Note that we use the <span class="math notranslate nohighlight">\(j\)</span> (in
 <p>There’s more than one way to make a complex number in Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Option 1
-c = complex(5, 6)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Option 1</span>
+<span class="n">c</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Option 2
-d = 5 + 1j * 6
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Option 2</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="mi">6</span>
 </pre></div>
 </div>
 </div>
@@ -1229,15 +1229,15 @@ d = 5 + 1j * 6
 <p>We can visualise complex numbers by plotting them in a 2D coordinate system, where the x-axis denotes the real part and the y-axis the imaginary part. Let’s do that for our example <span class="math notranslate nohighlight">\(c = 5 + 6 \cdot j\)</span>. The distance from the origin is the <em>absolute value</em> of the complex number which we compute as <span class="math notranslate nohighlight">\(\sqrt{Re(c)^2 + Im(c)^2}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(c.real, c.imag, marker=&quot;o&quot;, markersize=10)
-plt.xlim(-7, 7)
-plt.ylim(-7, 7)
-plt.xlabel(&quot;Re(c)&quot;)
-plt.ylabel(&quot;Im(c)&quot;)
-plt.plot([0, c.real], [0, c.imag], &quot;--&quot;)
-plt.plot([-7, 7], [0, 0], color=&quot;black&quot;)
-plt.plot([0, 0], [-7, 7], color=&quot;black&quot;)
-plt.grid()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Re(c)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Im(c)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span> <span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1247,8 +1247,8 @@ plt.grid()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># absolute value (distance from origin)
-abs(c)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># absolute value (distance from origin)</span>
+<span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1262,17 +1262,17 @@ abs(c)
 This means we need to change our line plot to a 2D heatmap.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># we need some complex starting points
-xmin = -3
-ymin = -3
-xmax = 3
-ymax = 3
-resolution = 300
-xstep = (xmax - xmin) / resolution
-ystep = (ymax - ymin) / resolution
-xs = [(xmin + xstep * i) for i in range(resolution)]
-ys = [(ymin + ystep * i) for i in range(resolution)]
-zs = [[series2(x + y * 1j) for x in xs] for y in ys]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we need some complex starting points</span>
+<span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">ystep</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="n">xstep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ymin</span> <span class="o">+</span> <span class="n">ystep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<span class="n">zs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">series2</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1284,16 +1284,16 @@ zs = [[series2(x + y * 1j) for x in xs] for y in ys]
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.set_cmap(&quot;cividis&quot;)  # use a color vision deficiency-friendly palette
-plt.xlabel(&quot;Real&quot;)
-plt.ylabel(&quot;Imaginary&quot;)
-plt.imshow(zs, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax], origin=&quot;lower&quot;)
-plt.colorbar()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s2">&quot;cividis&quot;</span><span class="p">)</span>  <span class="c1"># use a color vision deficiency-friendly palette</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Imaginary&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zs</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fb6681fc7c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fcb601ac3a0&gt;
 </pre></div>
 </div>
 <img alt="../_images/09_00_performance_programming_23_1.png" src="../_images/09_00_performance_programming_23_1.png" />
@@ -1309,32 +1309,32 @@ plt.colorbar()
 <p><span class="math notranslate nohighlight">\(z_{i+1}=z_{i}^2 + c\)</span>, starting from <span class="math notranslate nohighlight">\(z_0 = 0\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a complex constant and <span class="math notranslate nohighlight">\(i = 1, 2, 3, \dots\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(constant, max_iterations=50):
-    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.</span>
 
-    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum
-    number of iterations.
+<span class="sd">    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum</span>
+<span class="sd">    number of iterations.</span>
 
-    Returns the number of iterations.
-    &quot;&quot;&quot;
+<span class="sd">    Returns the number of iterations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    value = 0
+    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
 
-    counter = 0
-    while counter &lt; max_iterations:
-        if abs(value) &gt; 2:
-            break
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">break</span>
 
-        value = (value**2) + constant
+        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">constant</span>
 
-        counter = counter + 1
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
 
-    return counter
+    <span class="k">return</span> <span class="n">counter</span>
 
 
-assert mandel(0) == 50
-assert mandel(3) == 1
-assert mandel(0.5) == 5
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">50</span>
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
 </pre></div>
 </div>
 </div>
@@ -1342,20 +1342,20 @@ assert mandel(0.5) == 5
 <p>Let’s plot the heatmap for the new series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.xlabel(&quot;Real&quot;)
-plt.ylabel(&quot;Imaginary&quot;)
-plt.imshow(
-    [[mandel(x + y * 1j) for x in xs] for y in ys],
-    interpolation=&quot;none&quot;,
-    extent=[xmin, xmax, ymin, ymax],
-    origin=&quot;lower&quot;,
-)
-plt.colorbar()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Imaginary&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="p">[[</span><span class="n">mandel</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">],</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">],</span>
+    <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fb6680e16d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fcb60082d90&gt;
 </pre></div>
 </div>
 <img alt="../_images/09_00_performance_programming_28_1.png" src="../_images/09_00_performance_programming_28_1.png" />
@@ -1372,31 +1372,31 @@ plt.colorbar()
 It’s easier to understand what that means by looking at some examples:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1
-ymin = -1
-xmax = 0
-ymax = 0
-resolution = 300
-xstep = (xmax - xmin) / resolution
-ystep = (ymax - ymin) / resolution
-xs = [(xmin + xstep * i) for i in range(resolution)]
-ys = [(ymin + ystep * i) for i in range(resolution)]
-zs = [[mandel(x + y * 1j) for x in xs] for y in ys]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">ystep</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="n">xstep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ymin</span> <span class="o">+</span> <span class="n">ystep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<span class="n">zs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.xlabel(&quot;Real&quot;)
-plt.ylabel(&quot;Imaginary&quot;)
-plt.imshow(zs, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax], origin=&quot;lower&quot;)
-plt.colorbar()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Imaginary&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zs</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fb668026a90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fcb600591f0&gt;
 </pre></div>
 </div>
 <img alt="../_images/09_00_performance_programming_32_1.png" src="../_images/09_00_performance_programming_32_1.png" />
@@ -1410,36 +1410,36 @@ plt.colorbar()
 We can use the <code class="docutils literal notranslate"><span class="pre">%%timeit</span></code> magic in a notebook to time a cell.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit?
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it?
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit -n 3 -r 7 value=10
-# timeit results are only useful as comparisons
-# the absolute values are not meaningful
-# variables created in timeit cells aren&#39;t available outside
-value**value
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it -n 3 -r 7 value=10
+<span class="c1"># timeit results are only useful as comparisons</span>
+<span class="c1"># the absolute values are not meaningful</span>
+<span class="c1"># variables created in timeit cells aren&#39;t available outside</span>
+<span class="n">value</span><span class="o">**</span><span class="n">value</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>457 ns ± 168 ns per loop (mean ± std. dev. of 7 runs, 3 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>410 ns ± 108 ns per loop (mean ± std. dev. of 7 runs, 3 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-[[mandel(x + y * 1j) for x in xs] for y in ys]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.02 s ± 18.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>763 ms ± 1.15 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>

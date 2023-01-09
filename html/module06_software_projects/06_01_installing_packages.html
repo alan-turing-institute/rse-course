@@ -1164,33 +1164,33 @@ to invoke the library-installer program, <code class="docutils literal notransla
 <p>Now, close the Jupyter notebook if you have it open, and reopen it. Check your new library is installed with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.datasets import load_wine
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_wine</span>
 
-wine = load_wine()
-X = wine.data
-y = wine.target
-feature_names = wine.feature_names
+<span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">wine</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">wine</span><span class="o">.</span><span class="n">target</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">wine</span><span class="o">.</span><span class="n">feature_names</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-plt.figure(figsize=(8, 6))
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-# Find the column index of two features to plot
-color_idx = feature_names.index(&quot;color_intensity&quot;)
-proline_idx = feature_names.index(&quot;proline&quot;)
+<span class="c1"># Find the column index of two features to plot</span>
+<span class="n">color_idx</span> <span class="o">=</span> <span class="n">feature_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;color_intensity&quot;</span><span class="p">)</span>
+<span class="n">proline_idx</span> <span class="o">=</span> <span class="n">feature_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;proline&quot;</span><span class="p">)</span>
 
-# Plot the training points
-plt.scatter(X[:, color_idx], X[:, proline_idx], c=y, edgecolor=&quot;k&quot;)
-plt.xlabel(&quot;Color Intensity&quot;)
-plt.ylabel(&quot;Proline&quot;)
+<span class="c1"># Plot the training points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">color_idx</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">proline_idx</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Color Intensity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Proline&quot;</span><span class="p">)</span>
 
-plt.xticks(())
-plt.yticks(())
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(())</span>
 </pre></div>
 </div>
 </div>
@@ -1219,14 +1219,14 @@ plt.yticks(())
 <h2>Where do these libraries go?<a class="headerlink" href="#where-do-these-libraries-go" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
 
-numpy.__path__
+<span class="n">numpy</span><span class="o">.</span><span class="n">__path__</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/numpy&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/numpy&#39;]
 </pre></div>
 </div>
 </div>
@@ -1236,19 +1236,19 @@ numpy.__path__
 It will try each of these places in turn, until it finds a matching library name.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sys
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
-sys.path
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/runner/work/rse-course/rse-course/module06_software_projects&#39;,
- &#39;/opt/hostedtoolcache/Python/3.8.14/x64/lib/python38.zip&#39;,
- &#39;/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8&#39;,
- &#39;/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/lib-dynload&#39;,
+ &#39;/opt/hostedtoolcache/Python/3.8.15/x64/lib/python38.zip&#39;,
+ &#39;/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8&#39;,
+ &#39;/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/lib-dynload&#39;,
  &#39;&#39;,
- &#39;/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages&#39;]
+ &#39;/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages&#39;]
 </pre></div>
 </div>
 </div>
@@ -1264,7 +1264,7 @@ sys.path
 <section id="the-library-is-in-a-git-repo">
 <h3>The library is in a git repo<a class="headerlink" href="#the-library-is-in-a-git-repo" title="Permalink to this headline">#</a></h3>
 <p>If the library is available on GitHub or another service hosting git repos, <code class="docutils literal notranslate"><span class="pre">pip</span></code> can install it from the repo instead of PyPI:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/alan-turing-institute/sktime.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/alan-turing-institute/sktime.git
 </pre></div>
 </div>
 <p>This could also be an option if you need a development version of a library that hasn’t been released yet.</p>
@@ -1273,8 +1273,8 @@ sys.path
 <section id="download-and-install-locally">
 <h3>Download and install locally<a class="headerlink" href="#download-and-install-locally" title="Permalink to this headline">#</a></h3>
 <p>Sometimes you’ll need to download the source code directly, or to test the installation of a library you’re working on yourself. To do this, download the code, then,  in a terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;path_to_library_code&gt;  <span class="c1"># change to the code directory</span>
-pip install .  <span class="c1"># install the library at the current path</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;path_to_library_code&gt;<span class="w">  </span><span class="c1"># change to the code directory</span>
+pip<span class="w"> </span>install<span class="w"> </span>.<span class="w">  </span><span class="c1"># install the library at the current path</span>
 </pre></div>
 </div>
 </section>
@@ -1286,7 +1286,7 @@ some python libraries depend not on other <strong>python</strong> libraries, but
 <p>This can cause you to run into difficulties installing some libraries.
 Fortunately, Anaconda provide a carefully managed set of scripts for installing lots of these awkward non-python libraries too. You can do this with the <code class="docutils literal notranslate"><span class="pre">conda</span></code> command line tool, if you’re using Anaconda.</p>
 <p>Simply type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install &lt;whatever&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>&lt;whatever&gt;
 </pre></div>
 </div>
 <p>instead of <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>. This will fetch the python package not from PyPI, but from Anaconda’s distribution for your platform, and manage any non-python dependencies too.</p>

@@ -1091,116 +1091,116 @@ title="Print to PDF"
 In particular let’s consider the combustion of glucose to carbon dioxide and water.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Element:
-    def __init__(self, symbol, number):
-        self.symbol = symbol
-        self.number = number
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
 
-    def __str__(self):
-        return str(self.symbol)
-
-
-class Molecule:
-    def __init__(self, mass):
-        self.elements = {}  # Map from element to number of that element in the molecule
-        self.mass = mass
-
-    def add_element(self, element, number):
-        self.elements[element] = number
-
-    @staticmethod
-    def as_subscript(number):
-        if number == 1:
-            return &quot;&quot;
-        if number &lt; 10:
-            return &quot;_&quot; + str(number)
-        return &quot;_{&quot; + str(number) + &quot;}&quot;
-
-    def __str__(self):
-        return &quot;&quot;.join(
-            [
-                str(element) + Molecule.as_subscript(number)
-                for element, number in self.elements.items()
-            ]
-        )
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
 
 
-class Reaction:
-    def __init__(self):
-        self.reactants = {}  # Map from reactants to stoichiometries
-        self.products = {}  # Map from products to stoichiometries
+<span class="k">class</span> <span class="nc">Molecule</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from element to number of that element in the molecule</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="n">mass</span>
 
-    def add_reactant(self, reactant, stoichiometry):
-        self.reactants[reactant] = stoichiometry
+    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">number</span>
 
-    def add_product(self, product, stoichiometry):
-        self.products[product] = stoichiometry
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">as_subscript</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;_{&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
 
-    @staticmethod
-    def print_if_not_one(number):
-        if number == 1:
-            return &quot;&quot;
-        return str(number)
-
-    @staticmethod
-    def side_as_string(side):
-        return &quot; + &quot;.join(
-            [
-                Reaction.print_if_not_one(side[molecule]) + str(molecule)
-                for molecule in side
-            ]
-        )
-
-    def __str__(self):
-        return (
-            Reaction.side_as_string(self.reactants)
-            + &quot; \\rightarrow &quot;
-            + Reaction.side_as_string(self.products)
-        )
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">+</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">as_subscript</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
 
 
-class System:
-    def __init__(self):
-        self.reactions = []
+<span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from reactants to stoichiometries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from products to stoichiometries</span>
 
-    def add_reaction(self, reaction):
-        self.reactions.append(reaction)
+    <span class="k">def</span> <span class="nf">add_reactant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">[</span><span class="n">reactant</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
 
-    def __str__(self):
-        return &quot;\n&quot;.join(self.reactions)
+    <span class="k">def</span> <span class="nf">add_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">print_if_not_one</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">side_as_string</span><span class="p">(</span><span class="n">side</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">Reaction</span><span class="o">.</span><span class="n">print_if_not_one</span><span class="p">(</span><span class="n">side</span><span class="p">[</span><span class="n">molecule</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">side</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">Reaction</span><span class="o">.</span><span class="n">side_as_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\\</span><span class="s2">rightarrow &quot;</span>
+            <span class="o">+</span> <span class="n">Reaction</span><span class="o">.</span><span class="n">side_as_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">)</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">System</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaction</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reaction</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>c = Element(&quot;C&quot;, 12)
-o = Element(&quot;O&quot;, 8)
-h = Element(&quot;H&quot;, 1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">o</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-co2 = Molecule(44.01)
-co2.add_element(c, 1)
-co2.add_element(o, 2)
+<span class="n">co2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="mf">44.01</span><span class="p">)</span>
+<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-h2o = Molecule(18.01)
-h2o.add_element(h, 2)
-h2o.add_element(o, 1)
+<span class="n">h2o</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="mf">18.01</span><span class="p">)</span>
+<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-o2 = Molecule(32.00)
-o2.add_element(o, 2)
+<span class="n">o2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="mf">32.00</span><span class="p">)</span>
+<span class="n">o2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-glucose = Molecule(180.16)
-glucose.add_element(c, 6)
-glucose.add_element(h, 12)
-glucose.add_element(o, 6)
+<span class="n">glucose</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="mf">180.16</span><span class="p">)</span>
+<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
-combustion = Reaction()
-combustion.add_reactant(glucose, 1)
-combustion.add_reactant(o2, 6)
-combustion.add_product(co2, 6)
-combustion.add_product(h2o, 6)
+<span class="n">combustion</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
+<span class="n">combustion</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">glucose</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">combustion</span><span class="o">.</span><span class="n">add_reactant</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">combustion</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">co2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">combustion</span><span class="o">.</span><span class="n">add_product</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
-print(combustion)
+<span class="nb">print</span><span class="p">(</span><span class="n">combustion</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1212,9 +1212,9 @@ print(combustion)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from IPython.display import Math, display
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">display</span>
 
-display(Math(str(combustion)))
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">combustion</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1238,13 +1238,13 @@ some standard ways to solve them, which will lead us to the idea of <strong>norm
 <p>The natural-seeming solution to this is, in your data format, to name each molecule and atom, and consider a representation in terms of CSV files:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile molecules.csv
-# name, elements, numbers
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> molecules.csv
+<span class="c1"># name, elements, numbers</span>
 
-water, H O, 2 1
-oxygen, O, 2
-carbon_dioxide, C O, 1 2
-glucose, C H O, 6 12 6
+<span class="n">water</span><span class="p">,</span> <span class="n">H</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span> <span class="mi">1</span>
+<span class="n">oxygen</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">carbon_dioxide</span><span class="p">,</span> <span class="n">C</span> <span class="n">O</span><span class="p">,</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="n">glucose</span><span class="p">,</span> <span class="n">C</span> <span class="n">H</span> <span class="n">O</span><span class="p">,</span> <span class="mi">6</span> <span class="mi">12</span> <span class="mi">6</span>
 </pre></div>
 </div>
 </div>
@@ -1256,11 +1256,11 @@ glucose, C H O, 6 12 6
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile reactions.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> reactions.csv
 
-# name, reactants, products, reactant_stoichiometries, product_stoichiometries
+<span class="c1"># name, reactants, products, reactant_stoichiometries, product_stoichiometries</span>
 
-combustion_of_glucose, glucose oxygen, carbon_dioxide water, 1 6, 6 6
+<span class="n">combustion_of_glucose</span><span class="p">,</span> <span class="n">glucose</span> <span class="n">oxygen</span><span class="p">,</span> <span class="n">carbon_dioxide</span> <span class="n">water</span><span class="p">,</span> <span class="mi">1</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span> <span class="mi">6</span>
 </pre></div>
 </div>
 </div>
@@ -1281,14 +1281,14 @@ combustion_of_glucose, glucose oxygen, carbon_dioxide water, 1 6, 6 6
 <p>How could we go about normalising this model. One choice is to list each molecule-element <strong>relation</strong> as a separate table row:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile molecules.csv
-# name, element, number
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> molecules.csv
+<span class="c1"># name, element, number</span>
 
-water, H, 2
-water, O, 1
-oxygen, O, 2
-carbon_dioxide, C, 1
-carbon_dioxide, O, 2
+<span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">water</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">oxygen</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">carbon_dioxide</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">carbon_dioxide</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -1302,12 +1302,12 @@ carbon_dioxide, O, 2
 <p>We could repeat the data each time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile molecules.csv
-# name, element, number, molecular_mass, atomic_number
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> molecules.csv
+<span class="c1"># name, element, number, molecular_mass, atomic_number</span>
 
-water, H, 2, 18.01, 1
-water, O, 1, 18.01, 8
-oxygen, O, 2, 32.00, 8
+<span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">18.01</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">water</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">18.01</span><span class="p">,</span> <span class="mi">8</span>
+<span class="n">oxygen</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">32.00</span><span class="p">,</span> <span class="mi">8</span>
 </pre></div>
 </div>
 </div>
@@ -1327,11 +1327,11 @@ oxygen, O, 2, 32.00, 8
 <p>We need to specify data about each molecule, reaction and atom once, and then specify the <strong>relations</strong> between them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile molecules.csv
-# name, molecular_mass
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> molecules.csv
+<span class="c1"># name, molecular_mass</span>
 
-water, 18.01
-oxygen, 32.00
+<span class="n">water</span><span class="p">,</span> <span class="mf">18.01</span>
+<span class="n">oxygen</span><span class="p">,</span> <span class="mf">32.00</span>
 </pre></div>
 </div>
 </div>
@@ -1343,12 +1343,12 @@ oxygen, 32.00
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile atoms.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> atoms.csv
 
-# symbol, atomic number
-H, 1
-O, 8
-C, 6
+<span class="c1"># symbol, atomic number</span>
+<span class="n">H</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">O</span><span class="p">,</span> <span class="mi">8</span>
+<span class="n">C</span><span class="p">,</span> <span class="mi">6</span>
 </pre></div>
 </div>
 </div>
@@ -1360,12 +1360,12 @@ C, 6
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile atoms_in_molecules.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> atoms_in_molecules.csv
 
-# rel_number, molecule, symbol, number
-0, water, H, 2
-1, water, O, 1
-2, oxygen, O, 2
+<span class="c1"># rel_number, molecule, symbol, number</span>
+<span class="mi">0</span><span class="p">,</span> <span class="n">water</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">2</span>
+<span class="mi">1</span><span class="p">,</span> <span class="n">water</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">1</span>
+<span class="mi">2</span><span class="p">,</span> <span class="n">oxygen</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>

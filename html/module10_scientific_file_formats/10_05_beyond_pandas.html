@@ -1165,10 +1165,10 @@ We have already (briefly) seen how we can read and write csv files from pandas, 
 <p>Let’s read a csv file containing international men’s football results into a <em>pandas DataFrame</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-df = pd.read_csv(&quot;match_results.csv&quot;)
-df.head()
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;match_results.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1277,8 +1277,8 @@ df.head()
 If we want to look at a certain match, we can pick it out using its index, and then look at it in detail:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>match = df.iloc[3]
-print(f&quot;{match.home_team} {match.home_score}:{match.away_score} {match.away_team}&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">match</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">match</span><span class="o">.</span><span class="n">home_team</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">match</span><span class="o">.</span><span class="n">home_score</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">match</span><span class="o">.</span><span class="n">away_score</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">match</span><span class="o">.</span><span class="n">away_team</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1300,18 +1300,18 @@ If we look at the data in a <em>columnar</em> way, we can make use of this, and 
 Most matches will be at non-neutral venues, but every two or four years there will be a cluster of “neutral” matches.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># find the longest run of matches with the same value of &#39;neutral&#39;
-previous_val = df.neutral.values[0]
-run = 0
-longest_run = 0
-for val in df.neutral.values[1:]:
-    if val == previous_val:
-        run += 1
-        if run &gt; longest_run:
-            longest_run = run
-    else:
-        run = 0
-print(&quot;longest run is:&quot;, longest_run)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find the longest run of matches with the same value of &#39;neutral&#39;</span>
+<span class="n">previous_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">neutral</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">run</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">longest_run</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">neutral</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">previous_val</span><span class="p">:</span>
+        <span class="n">run</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">run</span> <span class="o">&gt;</span> <span class="n">longest_run</span><span class="p">:</span>
+            <span class="n">longest_run</span> <span class="o">=</span> <span class="n">run</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">run</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;longest run is:&quot;</span><span class="p">,</span> <span class="n">longest_run</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1331,12 +1331,12 @@ The former option takes less space, but is much less efficient when it comes to 
 <p>However, in many data tables, the same values are repeated many times.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># how many rows in the table?
-print(f&quot;Table has {len(df)} rows&quot;)
-# how many unique values in &#39;home_team&#39; column?
-print(f&quot;Number of unique home_team values: {len(df.home_team.unique())}&quot;)
-# how many times does &#39;Brazil&#39; appear?
-print(f&quot;Brazil has been the home team {df.home_team.value_counts().Brazil} times&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># how many rows in the table?</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
+<span class="c1"># how many unique values in &#39;home_team&#39; column?</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of unique home_team values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">home_team</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># how many times does &#39;Brazil&#39; appear?</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brazil has been the home team </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">home_team</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">Brazil</span><span class="si">}</span><span class="s2"> times&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1377,7 +1377,7 @@ Parquet files can be read in many languages, including Python, R, C++, and Java.
 <p>Let’s write our dataframe as a <em>parquet</em> file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.to_parquet(&quot;match_results.parquet&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;match_results.parquet&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1385,7 +1385,7 @@ Parquet files can be read in many languages, including Python, R, C++, and Java.
 <p>How much space did we save compared to the csv?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!du -skh match_results.*
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>du<span class="w"> </span>-skh<span class="w"> </span>match_results.*
 </pre></div>
 </div>
 </div>
@@ -1408,18 +1408,18 @@ It is an “in-memory” columnar data format with some nice properties: random 
 <p>We can convert our pandas dataframe directly into an arrow table:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from timeit import timeit
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
 
-import pyarrow as pa
-import pyarrow.compute as pc
+<span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+<span class="kn">import</span> <span class="nn">pyarrow.compute</span> <span class="k">as</span> <span class="nn">pc</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>table = pa.Table.from_pandas(df)
-table
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">table</span>
 </pre></div>
 </div>
 </div>
@@ -1453,14 +1453,14 @@ neutral: [[false,false,false,false,false,...,false,false,false,false,true]]
 <p>Some things such as summing over columns are usually faster than in pandas:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ptime = timeit(&quot;df.away_score.sum()&quot;, globals=globals(), number=10000)
-atime = timeit(&#39;pc.sum(table.column(&quot;away_score&quot;))&#39;, globals=globals(), number=10000)
-print(f&quot;Pandas took {ptime}, Arrow took {atime} to sum this column 10k times&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ptime</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">(</span><span class="s2">&quot;df.away_score.sum()&quot;</span><span class="p">,</span> <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">atime</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">(</span><span class="s1">&#39;pc.sum(table.column(&quot;away_score&quot;))&#39;</span><span class="p">,</span> <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pandas took </span><span class="si">{</span><span class="n">ptime</span><span class="si">}</span><span class="s2">, Arrow took </span><span class="si">{</span><span class="n">atime</span><span class="si">}</span><span class="s2"> to sum this column 10k times&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pandas took 1.067040478999843, Arrow took 0.27230443500002366 to sum this column 10k times
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pandas took 0.5438434970001254, Arrow took 0.11556293500007087 to sum this column 10k times
 </pre></div>
 </div>
 </div>
@@ -1478,9 +1478,9 @@ Another option is <em>feather</em>.
 <p>Let’s write our <em>arrow</em> table to a <em>feather</em> file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pyarrow.feather as feather
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyarrow.feather</span> <span class="k">as</span> <span class="nn">feather</span>
 
-feather.write_feather(table, &quot;match_results.feather&quot;)
+<span class="n">feather</span><span class="o">.</span><span class="n">write_feather</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s2">&quot;match_results.feather&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1489,7 +1489,7 @@ feather.write_feather(table, &quot;match_results.feather&quot;)
 Compare the sizes again:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! du -skh match_results.*
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>du<span class="w"> </span>-skh<span class="w"> </span>match_results.*
 </pre></div>
 </div>
 </div>

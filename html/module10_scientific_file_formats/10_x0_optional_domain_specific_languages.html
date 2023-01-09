@@ -1112,84 +1112,84 @@ title="Print to PDF"
 <p>Let’s go back to our nice looks-like LaTeX file format:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile system.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> system.py
 
 
-class Element:
-    def __init__(self, symbol):
-        self.symbol = symbol
+<span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>
 
-    def __str__(self):
-        return str(self.symbol)
-
-
-class Molecule:
-    def __init__(self):
-        self.elements = {}  # Map from element to number of that element in the molecule
-
-    def add_element(self, element, number):
-        if not isinstance(element, Element):
-            element = Element(element)
-        self.elements[element] = number
-
-    @staticmethod
-    def as_subscript(number):
-        if number == 1:
-            return &quot;&quot;
-        if number &lt; 10:
-            return &quot;_&quot; + str(number)
-        return &quot;_{&quot; + str(number) + &quot;}&quot;
-
-    def __str__(self):
-        return &quot;&quot;.join(
-            [
-                str(element) + Molecule.as_subscript(self.elements[element])
-                for element in self.elements
-            ]
-        )
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
 
 
-class Side:
-    def __init__(self):
-        self.molecules = {}
+<span class="k">class</span> <span class="nc">Molecule</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from element to number of that element in the molecule</span>
 
-    def add(self, reactant, stoichiometry):
-        self.molecules[reactant] = stoichiometry
+    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">Element</span><span class="p">):</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">number</span>
 
-    @staticmethod
-    def print_if_not_one(number):
-        if number == 1:
-            return &quot;&quot;
-        else:
-            return str(number)
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">as_subscript</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;_{&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
 
-    def __str__(self):
-        return &quot; + &quot;.join(
-            [
-                Side.print_if_not_one(self.molecules[molecule]) + str(molecule)
-                for molecule in self.molecules
-            ]
-        )
-
-
-class Reaction:
-    def __init__(self):
-        self.reactants = Side()
-        self.products = Side()
-
-    def __str__(self):
-        return str(self.reactants) + &quot; \\rightarrow &quot; + str(self.products)
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">+</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">as_subscript</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
 
 
-class System:
-    def __init__(self):
-        self.reactions = []
+<span class="k">class</span> <span class="nc">Side</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">{}</span>
 
-    def add_reaction(self, reaction):
-        self.reactions.append(reaction)
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="n">reactant</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
 
-    def __str__(self):
-        return &quot;\\\\ \n&quot;.join(map(str, self.reactions))
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">print_if_not_one</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">Side</span><span class="o">.</span><span class="n">print_if_not_one</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="n">molecule</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\\</span><span class="s2">rightarrow &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">System</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaction</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reaction</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1201,48 +1201,48 @@ class System:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from system import Element, Molecule, Reaction, System
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">system</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">Molecule</span><span class="p">,</span> <span class="n">Reaction</span><span class="p">,</span> <span class="n">System</span>
 
-s2 = System()
+<span class="n">s2</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
 
-c = Element(&quot;C&quot;)
-o = Element(&quot;O&quot;)
-h = Element(&quot;H&quot;)
+<span class="n">c</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+<span class="n">o</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
 
-co2 = Molecule()
-co2.add_element(c, 1)
-co2.add_element(o, 2)
+<span class="n">co2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
+<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">co2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-h2o = Molecule()
-h2o.add_element(h, 2)
-h2o.add_element(o, 1)
+<span class="n">h2o</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
+<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">h2o</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-o2 = Molecule()
-o2.add_element(o, 2)
+<span class="n">o2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
+<span class="n">o2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-h2 = Molecule()
-h2.add_element(h, 2)
+<span class="n">h2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
+<span class="n">h2</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-glucose = Molecule()
-glucose.add_element(c, 6)
-glucose.add_element(h, 12)
-glucose.add_element(o, 6)
+<span class="n">glucose</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
+<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">glucose</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
-combustion_glucose = Reaction()
-combustion_glucose.reactants.add(glucose, 1)
-combustion_glucose.reactants.add(o2, 6)
-combustion_glucose.products.add(co2, 6)
-combustion_glucose.products.add(h2o, 6)
-s2.add_reaction(combustion_glucose)
+<span class="n">combustion_glucose</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
+<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">glucose</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">co2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">combustion_glucose</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">s2</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">combustion_glucose</span><span class="p">)</span>
 
 
-combustion_hydrogen = Reaction()
-combustion_hydrogen.reactants.add(h2, 2)
-combustion_hydrogen.reactants.add(o2, 1)
-combustion_hydrogen.products.add(h2o, 2)
-s2.add_reaction(combustion_hydrogen)
+<span class="n">combustion_hydrogen</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
+<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">reactants</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">combustion_hydrogen</span><span class="o">.</span><span class="n">products</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">h2o</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">s2</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">combustion_hydrogen</span><span class="p">)</span>
 
-print(s2)
+<span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1255,9 +1255,9 @@ print(s2)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from IPython.display import Math, display
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">display</span>
 
-display(Math(str(s2)))
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s2</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1279,49 +1279,49 @@ and atom only gets one object instance, but we solved this by using an appropria
 <p>First, we need to turn our file into a “token stream”, using regular expressions to match the kinds of symbol in our source:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile lexreactions.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> lexreactions.py
 
-from ply import lex
+<span class="kn">from</span> <span class="nn">ply</span> <span class="kn">import</span> <span class="n">lex</span>
 
-tokens = (
-    &quot;ELEMENT&quot;,
-    &quot;NUMBER&quot;,
-    &quot;SUBSCRIPT&quot;,
-    &quot;LBRACE&quot;,
-    &quot;RBRACE&quot;,
-    &quot;PLUS&quot;,
-    &quot;ARROW&quot;,
-    &quot;NEWLINE&quot;,
-    &quot;TEXNEWLINE&quot;,
-)
+<span class="n">tokens</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;ELEMENT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NUMBER&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SUBSCRIPT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LBRACE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RBRACE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PLUS&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ARROW&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NEWLINE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TEXNEWLINE&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
-# Tokens
-t_PLUS = r&quot;\+&quot;
-t_SUBSCRIPT = r&quot;_&quot;
-t_LBRACE = r&quot;\{&quot;
-t_RBRACE = r&quot;\}&quot;
-t_TEXNEWLINE = r&quot;\\\\&quot;
-t_ARROW = r&quot;\\rightarrow&quot;
-t_ELEMENT = r&quot;[A-Z][a-z]?&quot;
-t_NEWLINE = r&quot;\n+&quot;
-
-
-def t_NUMBER(t):
-    r&quot;\d+&quot;
-    t.value = int(t.value)
-    return t
+<span class="c1"># Tokens</span>
+<span class="n">t_PLUS</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\+&quot;</span>
+<span class="n">t_SUBSCRIPT</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;_&quot;</span>
+<span class="n">t_LBRACE</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\{&quot;</span>
+<span class="n">t_RBRACE</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\}&quot;</span>
+<span class="n">t_TEXNEWLINE</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2">&quot;</span>
+<span class="n">t_ARROW</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">rightarrow&quot;</span>
+<span class="n">t_ELEMENT</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[A-Z][a-z]?&quot;</span>
+<span class="n">t_NEWLINE</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\n+&quot;</span>
 
 
-t_ignore = &quot; &quot;
+<span class="k">def</span> <span class="nf">t_NUMBER</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="sa">r</span><span class="s2">&quot;\d+&quot;</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span>
 
 
-def t_error(t):
-    print(f&quot;Did not recognise character &#39;{t.value[0]:s}&#39; as part of a valid token&quot;)
-    t.lexer.skip(1)
+<span class="n">t_ignore</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
 
 
-# Build the lexer
-lexer = lex.lex()
+<span class="k">def</span> <span class="nf">t_error</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Did not recognise character &#39;</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&#39; as part of a valid token&quot;</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">lexer</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="c1"># Build the lexer</span>
+<span class="n">lexer</span> <span class="o">=</span> <span class="n">lex</span><span class="o">.</span><span class="n">lex</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1333,27 +1333,27 @@ lexer = lex.lex()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from lexreactions import lexer
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lexreactions</span> <span class="kn">import</span> <span class="n">lexer</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tokens = []
-lexer.input(str(s2))
-while True:
-    tok = lexer.token()
-    if not tok:
-        break  # No more input
-    tokens.append(tok)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">lexer</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tok</span> <span class="o">=</span> <span class="n">lexer</span><span class="o">.</span><span class="n">token</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tok</span><span class="p">:</span>
+        <span class="k">break</span>  <span class="c1"># No more input</span>
+    <span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tok</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(str(s2))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1366,7 +1366,7 @@ while True:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tokens
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokens</span>
 </pre></div>
 </div>
 </div>
@@ -1422,12 +1422,12 @@ while True:
 <p>Note that the parser will reject invalid tokens:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lexer.input(&quot;&quot;&quot;2H_2 + O_2 \\leftarrow 2H_2O&quot;&quot;&quot;)
-while True:
-    tok = lexer.token()
-    if not tok:
-        break  # No more input
-    print(tok)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lexer</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;2H_2 + O_2 </span><span class="se">\\</span><span class="s2">leftarrow 2H_2O&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tok</span> <span class="o">=</span> <span class="n">lexer</span><span class="o">.</span><span class="n">token</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tok</span><span class="p">:</span>
+        <span class="k">break</span>  <span class="c1"># No more input</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tok</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1507,98 +1507,98 @@ as the individual tokens coalesce into the full grammar.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile parsereactions.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> parsereactions.py
 
-# Yacc example
-import ply.yacc as yacc
+<span class="c1"># Yacc example</span>
+<span class="kn">import</span> <span class="nn">ply.yacc</span> <span class="k">as</span> <span class="nn">yacc</span>
 
-# Get the components of our system
-from system import Element, Molecule, Side, Reaction, System
+<span class="c1"># Get the components of our system</span>
+<span class="kn">from</span> <span class="nn">system</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">Molecule</span><span class="p">,</span> <span class="n">Side</span><span class="p">,</span> <span class="n">Reaction</span><span class="p">,</span> <span class="n">System</span>
 
-# Get the token map from the lexer.  This is required.
-from lexreactions import tokens
-
-
-def p_expression_system(p):
-    &quot;system : equation&quot;
-    p[0] = System()
-    p[0].add_reaction(p[1])
+<span class="c1"># Get the token map from the lexer.  This is required.</span>
+<span class="kn">from</span> <span class="nn">lexreactions</span> <span class="kn">import</span> <span class="n">tokens</span>
 
 
-def p_expression_combine_system(p):
-    &quot;system : system TEXNEWLINE NEWLINE equation&quot;
-    p[0] = p[1]
-    p[0].add_reaction(p[4])
+<span class="k">def</span> <span class="nf">p_expression_system</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;system : equation&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
 
-def p_equation(p):
-    &quot;equation : side ARROW side&quot;
-    p[0] = Reaction()
-    p[0].reactants = p[1]
-    p[0].products = p[3]
+<span class="k">def</span> <span class="nf">p_expression_combine_system</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;system : system TEXNEWLINE NEWLINE equation&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
 
 
-def p_side(p):
-    &quot;side : molecules&quot;
-    p[0] = Side()
-    p[0].add(p[1][0], p[1][1])
+<span class="k">def</span> <span class="nf">p_equation</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;equation : side ARROW side&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 
 
-def p_molecules(p):
-    &quot;molecules : molecule&quot;
-    p[0] = (p[1], 1)
+<span class="k">def</span> <span class="nf">p_side</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;side : molecules&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 
 
-def p_stoichiometry(p):
-    &quot;molecules : NUMBER molecule&quot;
-    p[0] = (p[2], p[1])
+<span class="k">def</span> <span class="nf">p_molecules</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;molecules : molecule&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
 
 
-def p_plus(p):
-    &quot;side : side PLUS molecules&quot;
-    p[0] = p[1]
-    p[0].add(p[3][0], p[3][1])
+<span class="k">def</span> <span class="nf">p_stoichiometry</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;molecules : NUMBER molecule&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
 
-def p_molecule(p):
-    &quot;molecule : countedelement&quot;
-    p[0] = Molecule()
-    p[0].add_element(p[1][0], p[1][1])
+<span class="k">def</span> <span class="nf">p_plus</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;side : side PLUS molecules&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 
 
-def p_countedelement(p):
-    &quot;countedelement : ELEMENT&quot;
-    p[0] = (p[1], 1)
+<span class="k">def</span> <span class="nf">p_molecule</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;molecule : countedelement&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 
 
-def p_ncountedelement(p):
-    &quot;countedelement : ELEMENT atomcount&quot;
-    p[0] = (p[1], p[2])
+<span class="k">def</span> <span class="nf">p_countedelement</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;countedelement : ELEMENT&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
 
 
-def p_multi_element(p):
-    &quot;molecule : molecule countedelement&quot;
-    p[0] = p[1]
-    p[0].add_element(p[2][0], p[2][1])
+<span class="k">def</span> <span class="nf">p_ncountedelement</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;countedelement : ELEMENT atomcount&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 
 
-def p_multi_atoms(p):
-    &quot;atomcount : SUBSCRIPT NUMBER&quot;
-    p[0] = int(p[2])
+<span class="k">def</span> <span class="nf">p_multi_element</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;molecule : molecule countedelement&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 
 
-def p_many_atoms(p):
-    &quot;atomcount : SUBSCRIPT LBRACE NUMBER RBRACE&quot;
-    p[0] = int(p[3])
+<span class="k">def</span> <span class="nf">p_multi_atoms</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;atomcount : SUBSCRIPT NUMBER&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 
 
-# Error rule for syntax errors
-def p_error(p):
-    print(&quot;Syntax error in input!&quot;)
+<span class="k">def</span> <span class="nf">p_many_atoms</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">&quot;atomcount : SUBSCRIPT LBRACE NUMBER RBRACE&quot;</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 
 
-# Build the parser
-parser = yacc.yacc()
+<span class="c1"># Error rule for syntax errors</span>
+<span class="k">def</span> <span class="nf">p_error</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Syntax error in input!&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Build the parser</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">yacc</span><span class="o">.</span><span class="n">yacc</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1610,16 +1610,16 @@ parser = yacc.yacc()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from parsereactions import parser
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parsereactions</span> <span class="kn">import</span> <span class="n">parser</span>
 
-roundtrip_system = parser.parse(str(s2))
+<span class="n">roundtrip_system</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 # Read the first 100 lines from the file
 head -n 100 parser.out
 </pre></div>
@@ -1930,7 +1930,7 @@ head -n 100 parser.out
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>display(Math(str(roundtrip_system)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">roundtrip_system</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1942,15 +1942,15 @@ head -n 100 parser.out
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;system.tex&quot;, &quot;w&quot;) as texfile:
-    texfile.write(str(roundtrip_system))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.tex&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">texfile</span><span class="p">:</span>
+    <span class="n">texfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">roundtrip_system</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!cat system.tex
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>system.tex
 </pre></div>
 </div>
 </div>
@@ -1972,135 +1972,135 @@ as fluent, without having to write our own grammar,
 by using operator overloading and metaprogramming tricks:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile reactionsdsl.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> reactionsdsl.py
 
 
-class Element:
-    def __init__(self, symbol):
-        self.symbol = symbol
+<span class="k">class</span> <span class="nc">Element</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>
 
-    def __str__(self):
-        return str(self.symbol)
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
 
-    def __mul__(self, other):
-        &quot;&quot;&quot;Let Molecule handle the multiplication&quot;&quot;&quot;
-        return (self / 1) * other
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Let Molecule handle the multiplication&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">/</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">other</span>
 
-    def __truediv__(self, number):
-        &quot;&quot;&quot;`Element / number =&gt; Molecule`&quot;&quot;&quot;
-        res = Molecule()
-        res.add_element(self, number)
-        return res
-
-
-class Molecule:
-    def __init__(self):
-        self.elements = {}  # Map from element to number of that element in the molecule
-
-    def add_element(self, element, number):
-        if not isinstance(element, Element):
-            element = Element(element)
-        self.elements[element] = number
-
-    @staticmethod
-    def as_subscript(number):
-        if number == 1:
-            return &quot;&quot;
-        if number &lt; 10:
-            return &quot;_&quot; + str(number)
-        return &quot;_{&quot; + str(number) + &quot;}&quot;
-
-    def __str__(self):
-        return &quot;&quot;.join(
-            [
-                str(element) + Molecule.as_subscript(self.elements[element])
-                for element in self.elements
-            ]
-        )
-
-    def __mul__(self, other):
-        &quot;&quot;&quot;`Molecule * Element =&gt; Molecule`
-        `Molecule * Molecule =&gt; Molecule`
-        &quot;&quot;&quot;
-        if type(other) == Molecule:
-            self.elements.update(other.elements)
-        else:
-            self.add_element(other, 1)
-        return self
-
-    def __rmul__(self, stoich):
-        &quot;&quot;&quot;`Number * Molecule =&gt; Side`&quot;&quot;&quot;
-        res = Side()
-        res.add(self, stoich)
-        return res
-
-    def __add__(self, other):
-        &quot;&quot;&quot;`Molecule + X =&gt; Side`&quot;&quot;&quot;
-        if type(other) == Side:
-            other.molecules[self] = 1
-            return other
-        res = Side()
-        res.add(self, 1)
-        res.add(other, 1)
-        return res
+    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;`Element / number =&gt; Molecule`&quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
 
 
-class Side:
-    def __init__(self):
-        self.molecules = {}
+<span class="k">class</span> <span class="nc">Molecule</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Map from element to number of that element in the molecule</span>
 
-    def add(self, reactant, stoichiometry):
-        self.molecules[reactant] = stoichiometry
+    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">Element</span><span class="p">):</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">number</span>
 
-    @staticmethod
-    def print_if_not_one(number):
-        if number == 1:
-            return &quot;&quot;
-        else:
-            return str(number)
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">as_subscript</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;_{&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
 
-    def __str__(self):
-        return &quot; + &quot;.join(
-            [
-                Side.print_if_not_one(self.molecules[molecule]) + str(molecule)
-                for molecule in self.molecules
-            ]
-        )
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">+</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">as_subscript</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
 
-    def __add__(self, other):
-        &quot;&quot;&quot;Side + X =&gt; Side&quot;&quot;&quot;
-        self.molecules.update(other.molecules)
-        return self
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;`Molecule * Element =&gt; Molecule`</span>
+<span class="sd">        `Molecule * Molecule =&gt; Molecule`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="n">Molecule</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">elements</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
 
-    def __eq__(self, other):
-        res = Reaction()
-        res.reactants = self
-        res.products = other
-        current_system.add_reaction(res)  # Closure!
-        return f&quot;Added: &#39;{res}&#39;&quot;
+    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stoich</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;`Number * Molecule =&gt; Side`&quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stoich</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
 
-
-class Reaction:
-    def __init__(self):
-        self.reactants = Side()
-        self.products = Side()
-
-    def __str__(self):
-        return str(self.reactants) + &quot; \\rightarrow &quot; + str(self.products)
-
-
-class System:
-    def __init__(self):
-        self.reactions = []
-
-    def add_reaction(self, reaction):
-        self.reactions.append(reaction)
-
-    def __str__(self):
-        return &quot;\\\\ \n&quot;.join(map(str, self.reactions))
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;`Molecule + X =&gt; Side`&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="n">Side</span><span class="p">:</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">other</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
 
 
-current_system = System()
+<span class="k">class</span> <span class="nc">Side</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactant</span><span class="p">,</span> <span class="n">stoichiometry</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="n">reactant</span><span class="p">]</span> <span class="o">=</span> <span class="n">stoichiometry</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">print_if_not_one</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">Side</span><span class="o">.</span><span class="n">print_if_not_one</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="n">molecule</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Side + X =&gt; Side&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">molecules</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">()</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="n">other</span>
+        <span class="n">current_system</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>  <span class="c1"># Closure!</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Added: &#39;</span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Reaction</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactants</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="n">Side</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reactants</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\\</span><span class="s2">rightarrow &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">System</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaction</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reaction</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactions</span><span class="p">))</span>
+
+
+<span class="n">current_system</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2112,24 +2112,24 @@ current_system = System()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from reactionsdsl import Element, current_system
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">reactionsdsl</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">current_system</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Here we add new symbols to the global scope
-# This is *not* good practice, we do it here to demonstrate that it is possible to do
-for symbol in (&quot;C&quot;, &quot;O&quot;, &quot;H&quot;):
-    globals()[symbol] = Element(symbol)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we add new symbols to the global scope</span>
+<span class="c1"># This is *not* good practice, we do it here to demonstrate that it is possible to do</span>
+<span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">):</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>O / 2 + 2 * (H / 2) == 2 * (H / 2 * O)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">O</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">O</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2141,7 +2141,7 @@ for symbol in (&quot;C&quot;, &quot;O&quot;, &quot;H&quot;):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(C / 6) * (H / 12) * (O / 6) + 6 * (O / 2) == 6 * (H / 2 * O) + 6 * (C * (O / 2))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">C</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">O</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">O</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">O</span><span class="p">)</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">C</span> <span class="o">*</span> <span class="p">(</span><span class="n">O</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2153,7 +2153,7 @@ for symbol in (&quot;C&quot;, &quot;O&quot;, &quot;H&quot;):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>display(Math(str(current_system)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">current_system</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>

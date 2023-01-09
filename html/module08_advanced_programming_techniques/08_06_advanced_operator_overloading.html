@@ -1085,20 +1085,20 @@ I want to be able to put explanatory text in between parts of a class definition
 so I’ll define a decorator to help me build up a class definition gradually.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def extend(class_to_extend):
-    &quot;&quot;&quot;
-    Metaprogramming to allow gradual implementation of class during notebook.
-    Thanks to http://www.ianbicking.org/blog/2007/08/opening-python-classes.html
-    &quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extend</span><span class="p">(</span><span class="n">class_to_extend</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Metaprogramming to allow gradual implementation of class during notebook.</span>
+<span class="sd">    Thanks to http://www.ianbicking.org/blog/2007/08/opening-python-classes.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    def decorator(extending_class):
-        for name, value in extending_class.__dict__.items():
-            if name in [&quot;__dict__&quot;, &quot;__module__&quot;, &quot;__weakref__&quot;, &quot;__doc__&quot;]:
-                continue
-            setattr(class_to_extend, name, value)
-        return class_to_extend
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">extending_class</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">extending_class</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;__dict__&quot;</span><span class="p">,</span> <span class="s2">&quot;__module__&quot;</span><span class="p">,</span> <span class="s2">&quot;__weakref__&quot;</span><span class="p">,</span> <span class="s2">&quot;__doc__&quot;</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">class_to_extend</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">class_to_extend</span>
 
-    return decorator
+    <span class="k">return</span> <span class="n">decorator</span>
 </pre></div>
 </div>
 </div>
@@ -1109,19 +1109,19 @@ so I’ll define a decorator to help me build up a class definition gradually.</
 <p>Imagine we wanted to make a library to describe some kind of symbolic algebra system:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Term:
-    def __init__(self, symbols=[], powers=[], coefficient=1):
-        self.coefficient = coefficient
-        self.data = dict(zip(symbols, powers))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Term</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="p">[],</span> <span class="n">powers</span><span class="o">=</span><span class="p">[],</span> <span class="n">coefficient</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">coefficient</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">powers</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Expression:
-    def __init__(self, terms):
-        self.terms = terms
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Expression</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="n">terms</span>
 </pre></div>
 </div>
 </div>
@@ -1129,13 +1129,13 @@ so I’ll define a decorator to help me build up a class definition gradually.</
 <p>So that <span class="math notranslate nohighlight">\(5x^2y+7x+2\)</span> might be constructed as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first = Term([&quot;x&quot;, &quot;y&quot;], [2, 1], 5)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span> <span class="o">=</span> <span class="n">Term</span><span class="p">([</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
 
-second = Term([&quot;x&quot;], [1], 7)
+<span class="n">second</span> <span class="o">=</span> <span class="n">Term</span><span class="p">([</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
 
-third = Term([], [], 2)
+<span class="n">third</span> <span class="o">=</span> <span class="n">Term</span><span class="p">([],</span> <span class="p">[],</span> <span class="mi">2</span><span class="p">)</span>
 
-result = Expression([first, second, third])
+<span class="n">result</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">([</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1145,46 +1145,46 @@ result = Expression([first, second, third])
 <p>First, we’ll define things so that we can construct our terms and expressions in different ways.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Term:
-    def __init__(self, *args):
-        lead = args[0]
-        if type(lead) == type(self):
-            # Copy constructor
-            self.data = dict(lead.data)
-            self.coefficient = lead.coefficient
-        elif type(lead) == int:
-            self.from_constant(lead)
-        elif type(lead) == str:
-            self.from_symbol(*args)
-        elif type(lead) == dict:
-            self.from_dictionary(*args)
-        else:
-            self.from_lists(*args)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Term</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">lead</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">lead</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="c1"># Copy constructor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">lead</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">lead</span><span class="o">.</span><span class="n">coefficient</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">lead</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_constant</span><span class="p">(</span><span class="n">lead</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">lead</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_symbol</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">lead</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_lists</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
-    def from_constant(self, constant):
-        self.coefficient = constant
-        self.data = {}
+    <span class="k">def</span> <span class="nf">from_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constant</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">constant</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
 
-    def from_symbol(self, symbol, coefficient=1, power=1):
-        self.coefficient = coefficient
-        self.data = {symbol: power}
+    <span class="k">def</span> <span class="nf">from_symbol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">coefficient</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">coefficient</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">symbol</span><span class="p">:</span> <span class="n">power</span><span class="p">}</span>
 
-    def from_dictionary(self, data, coefficient=1):
-        self.data = data
-        self.coefficient = coefficient
+    <span class="k">def</span> <span class="nf">from_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">coefficient</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">coefficient</span>
 
-    def from_lists(self, symbols=[], powers=[], coefficient=1):
-        self.coefficient = coefficient
-        self.data = dict(zip(symbols, powers))
+    <span class="k">def</span> <span class="nf">from_lists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="p">[],</span> <span class="n">powers</span><span class="o">=</span><span class="p">[],</span> <span class="n">coefficient</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">=</span> <span class="n">coefficient</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">powers</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Expression:
-    def __init__(self, terms=[]):
-        self.terms = list(terms)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Expression</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terms</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1192,52 +1192,52 @@ result = Expression([first, second, third])
 <p>We could define add() and multiply() operations on expressions and terms:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Term)
-class Term:
-    def add(self, *others):
-        return Expression((self,) + others)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Term</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Term</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">others</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Expression</span><span class="p">((</span><span class="bp">self</span><span class="p">,)</span> <span class="o">+</span> <span class="n">others</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Term)
-class Term:
-    def multiply(self, *others):
-        result_data = dict(self.data)
-        result_coeff = self.coefficient
-        # Convert arguments to Terms first if they are
-        # constants or integers
-        others = map(Term, others)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Term</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Term</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">others</span><span class="p">):</span>
+        <span class="n">result_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">result_coeff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span>
+        <span class="c1"># Convert arguments to Terms first if they are</span>
+        <span class="c1"># constants or integers</span>
+        <span class="n">others</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">Term</span><span class="p">,</span> <span class="n">others</span><span class="p">)</span>
 
-        for another in others:
-            for symbol, power in another.data.items():
-                if symbol in result_data:
-                    result_data[symbol] += power  # add the powers together
-                else:
-                    result_data[symbol] = power
-            result_coeff *= another.coefficient
+        <span class="k">for</span> <span class="n">another</span> <span class="ow">in</span> <span class="n">others</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">power</span> <span class="ow">in</span> <span class="n">another</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">result_data</span><span class="p">:</span>
+                    <span class="n">result_data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">+=</span> <span class="n">power</span>  <span class="c1"># add the powers together</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">result_data</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="n">power</span>
+            <span class="n">result_coeff</span> <span class="o">*=</span> <span class="n">another</span><span class="o">.</span><span class="n">coefficient</span>
 
-        return Term(result_data, result_coeff)
+        <span class="k">return</span> <span class="n">Term</span><span class="p">(</span><span class="n">result_data</span><span class="p">,</span> <span class="n">result_coeff</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Expression)
-class Expression:
-    def add(self, *others):
-        result = Expression(self.terms)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Expression</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Expression</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">others</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">)</span>
 
-        for another in others:
-            if type(another) == Term:
-                result.terms.append(another)
-            else:
-                result.terms += another.terms
+        <span class="k">for</span> <span class="n">another</span> <span class="ow">in</span> <span class="n">others</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">another</span><span class="p">)</span> <span class="o">==</span> <span class="n">Term</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">another</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">terms</span> <span class="o">+=</span> <span class="n">another</span><span class="o">.</span><span class="n">terms</span>
 
-        return result
+        <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
 </div>
@@ -1245,13 +1245,13 @@ class Expression:
 <p>We can now construct the above expression as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = Term(&quot;x&quot;)
-y = Term(&quot;y&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
 
-first = Term(5).multiply(x, x, y)
-second = Term(7).multiply(x)
-third = Term(2)
-expr = first.add(second, third)
+<span class="n">first</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">second</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">third</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">first</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1260,35 +1260,35 @@ expr = first.add(second, third)
 <p>However, we can define what <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">+</span></code> do when applied to Terms!:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Term)
-class Term:
-    def __add__(self, other):
-        return self.add(other)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Term</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Term</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
-    def __mul__(self, other):
-        return self.multiply(other)
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Expression)
-class Expression:
-    def multiply(self, another):
-        # Distributive law left as exercise
-        pass
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Expression</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Expression</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">another</span><span class="p">):</span>
+        <span class="c1"># Distributive law left as exercise</span>
+        <span class="k">pass</span>
 
-    def __add__(self, other):
-        return self.add(other)
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_plus_y = Term(&quot;x&quot;) + &quot;y&quot;
-x_plus_y.terms[1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_plus_y</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;y&quot;</span>
+<span class="n">x_plus_y</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1300,9 +1300,9 @@ x_plus_y.terms[1]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>five_x_ysq = Term(&quot;x&quot;) * 5 * &quot;y&quot; * &quot;y&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">five_x_ysq</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="s2">&quot;y&quot;</span> <span class="o">*</span> <span class="s2">&quot;y&quot;</span>
 
-print(five_x_ysq.data, five_x_ysq.coefficient)
+<span class="nb">print</span><span class="p">(</span><span class="n">five_x_ysq</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">five_x_ysq</span><span class="o">.</span><span class="n">coefficient</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1317,35 +1317,35 @@ print(five_x_ysq.data, five_x_ysq.coefficient)
 However, we can define a multiplication that works backwards, which is used as a fallback if the left multiply raises an error:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Expression)
-class Expression:
-    def __radd__(self, other):
-        return self.__add__(other)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Expression</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Expression</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Term)
-class Term:
-    def __rmul__(self, other):
-        return self.__mul__(other)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Term</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Term</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
-    def __radd__(self, other):
-        return self.__add__(other)
+    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>5 * Term(&quot;x&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">*</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Term at 0x7f994c2d47c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Term at 0x7f1bd8f85970&gt;
 </pre></div>
 </div>
 </div>
@@ -1353,8 +1353,8 @@ class Term:
 <p>It’s not easy at the moment to see if these things are working!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fivex = 5 * Term(&quot;x&quot;)
-fivex.data, fivex.coefficient
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fivex</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">fivex</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">fivex</span><span class="o">.</span><span class="n">coefficient</span>
 </pre></div>
 </div>
 </div>
@@ -1367,35 +1367,35 @@ fivex.data, fivex.coefficient
 <p>We can add another operator method <code class="docutils literal notranslate"><span class="pre">__str__</span></code>, which defines what happens if we try to print our class:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Term)
-class Term:
-    def __str__(self):
-        def symbol_string(symbol, power):
-            if power == 1:
-                return symbol
-            return f&quot;{symbol}^{power}&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Term</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Term</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">symbol_string</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">power</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">power</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">symbol</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s2">^</span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s2">&quot;</span>
 
-        symbol_strings = [
-            symbol_string(symbol, power) for symbol, power in self.data.items()
-        ]
+        <span class="n">symbol_strings</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">symbol_string</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">power</span><span class="p">)</span> <span class="k">for</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">power</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
 
-        prod = &quot;*&quot;.join(symbol_strings)
+        <span class="n">prod</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">symbol_strings</span><span class="p">)</span>
 
-        if not prod:
-            return str(self.coefficient)
-        if self.coefficient == 1:
-            return prod
-        return f&quot;{self.coefficient}*{prod}&quot;
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">prod</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">prod</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">coefficient</span><span class="si">}</span><span class="s2">*</span><span class="si">{</span><span class="n">prod</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@extend(Expression)
-class Expression:
-    def __str__(self):
-        return &quot;+&quot;.join(map(str, self.terms))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@extend</span><span class="p">(</span><span class="n">Expression</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Expression</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1403,17 +1403,17 @@ class Expression:
 <p>Now let’s test it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first = Term(5) * &quot;x&quot; * &quot;x&quot; * &quot;y&quot;
-second = Term(7) * &quot;x&quot;
-third = Term(2)
-expr = first + second + third
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="s2">&quot;x&quot;</span> <span class="o">*</span> <span class="s2">&quot;x&quot;</span> <span class="o">*</span> <span class="s2">&quot;y&quot;</span>
+<span class="n">second</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="s2">&quot;x&quot;</span>
+<span class="n">third</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">first</span> <span class="o">+</span> <span class="n">second</span> <span class="o">+</span> <span class="n">third</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(expr)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

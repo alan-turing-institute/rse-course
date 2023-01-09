@@ -1164,11 +1164,11 @@ title="Print to PDF"
 <p>XML is normally parsed by building a tree-structure of all the <code class="docutils literal notranslate"><span class="pre">tags</span></code> in the file, called a <code class="docutils literal notranslate"><span class="pre">DOM</span></code> or Document Object Model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from lxml import etree
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
 
-with open(&quot;system.xml&quot;, &quot;r&quot;) as xmlfile:
-    tree = etree.parse(xmlfile)
-print(etree.tostring(tree, pretty_print=True, encoding=str))
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1220,7 +1220,7 @@ print(etree.tostring(tree, pretty_print=True, encoding=str))
 <p>We can navigate the tree, with each <strong>element</strong> being an iterable yielding its children:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tree.getroot()[0][0][1].attrib[&quot;stoichiometry&quot;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;stoichiometry&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1270,10 +1270,10 @@ print(etree.tostring(tree, pretty_print=True, encoding=str))
 </table>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># For all molecules
-# ... with a child atom whose number attribute is &#39;1&#39;
-# ... return the symbol attribute of that child
-tree.xpath(&quot;//molecule/atom[@number=&#39;1&#39;]/@symbol&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For all molecules</span>
+<span class="c1"># ... with a child atom whose number attribute is &#39;1&#39;</span>
+<span class="c1"># ... return the symbol attribute of that child</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//molecule/atom[@number=&#39;1&#39;]/@symbol&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1361,16 +1361,16 @@ tree.xpath(&quot;//molecule/atom[@number=&#39;1&#39;]/@symbol&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;xmltotex.xsl&quot;) as xslfile:
-    transform_xsl = xslfile.read()
-transform = etree.XSLT(etree.XML(transform_xsl))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;xmltotex.xsl&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xslfile</span><span class="p">:</span>
+    <span class="n">transform_xsl</span> <span class="o">=</span> <span class="n">xslfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XSLT</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">transform_xsl</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(str(transform(tree)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">tree</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1389,56 +1389,56 @@ transform = etree.XSLT(etree.XML(transform_xsl))
 <p>You should always define one of these when using an XML file format.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile reactions.xsd
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> reactions.xsd
 
-&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">schema</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">xs</span><span class="o">=</span><span class="s2">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="o">&gt;</span>
 
-&lt;xs:element name=&quot;atom&quot;&gt;
-    &lt;xs:complexType&gt;
-        &lt;xs:attribute name=&quot;symbol&quot; type=&quot;xs:string&quot;/&gt;
-        &lt;xs:attribute name=&quot;number&quot; type=&quot;xs:integer&quot;/&gt;
-    &lt;/xs:complexType&gt;
-&lt;/xs:element&gt;
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;symbol&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:string&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;number&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:integer&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
     
-&lt;xs:element name=&quot;molecule&quot;&gt;
-    &lt;xs:complexType&gt;
-        &lt;xs:sequence&gt;
-            &lt;xs:element ref=&quot;atom&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-        &lt;/xs:sequence&gt;
-        &lt;xs:attribute name=&quot;stoichiometry&quot; type=&quot;xs:integer&quot;/&gt;
-    &lt;/xs:complexType&gt;
-&lt;/xs:element&gt;
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;stoichiometry&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;xs:integer&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
     
-&lt;xs:element name=&quot;reaction&quot;&gt;
-    &lt;xs:complexType&gt;
-        &lt;xs:sequence&gt;
-            &lt;xs:element name=&quot;reactants&quot;&gt;
-                &lt;xs:complexType&gt;
-                    &lt;xs:sequence&gt;
-                        &lt;xs:element ref=&quot;molecule&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;/xs:sequence&gt;
-                &lt;/xs:complexType&gt;
-            &lt;/xs:element&gt;
-            &lt;xs:element name=&quot;products&quot;&gt;
-                &lt;xs:complexType&gt;
-                    &lt;xs:sequence&gt;
-                        &lt;xs:element ref=&quot;molecule&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;/xs:sequence&gt;
-                &lt;/xs:complexType&gt;
-            &lt;/xs:element&gt;
-        &lt;/xs:sequence&gt;
-    &lt;/xs:complexType&gt;
-&lt;/xs:element&gt;
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reaction&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactants&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;products&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;molecule&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
 
-&lt;xs:element name=&quot;system&quot;&gt;
-    &lt;xs:complexType&gt;
-        &lt;xs:sequence&gt;
-            &lt;xs:element ref=&quot;reaction&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-        &lt;/xs:sequence&gt;
-    &lt;/xs:complexType&gt;
-&lt;/xs:element&gt;
+<span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;system&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span> <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;reaction&quot;</span> <span class="n">maxOccurs</span><span class="o">=</span><span class="s2">&quot;unbounded&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">sequence</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">complexType</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">element</span><span class="o">&gt;</span>
     
-&lt;/xs:schema&gt;
+<span class="o">&lt;/</span><span class="n">xs</span><span class="p">:</span><span class="n">schema</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -1450,26 +1450,26 @@ transform = etree.XSLT(etree.XML(transform_xsl))
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;reactions.xsd&quot;) as xsdfile:
-    schema_xsd = xsdfile.read()
-schema = etree.XMLSchema(etree.XML(schema_xsd))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;reactions.xsd&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xsdfile</span><span class="p">:</span>
+    <span class="n">schema_xsd</span> <span class="o">=</span> <span class="n">xsdfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">schema_xsd</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>parser = etree.XMLParser(schema=schema)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;system.xml&quot;) as xmlfile:
-    tree = etree.parse(xmlfile, parser)
-# For all atoms return their symbol attribute
-tree.xpath(&quot;//atom/@symbol&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
+<span class="c1"># For all atoms return their symbol attribute</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//atom/@symbol&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1482,26 +1482,26 @@ tree.xpath(&quot;//atom/@symbol&quot;)
 <p>Compare parsing something that is not valid under the schema:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile invalid_system.xml
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> invalid_system.xml
 
-&lt;system&gt;
-    &lt;reaction&gt;
-        &lt;reactants&gt;
-            &lt;molecule stoichiometry=&quot;two&quot;&gt;
-                &lt;atom symbol=&quot;H&quot; number=&quot;2&quot;/&gt;
-            &lt;/molecule&gt;
-            &lt;molecule stoichiometry=&quot;1&quot;&gt;
-                &lt;atom symbol=&quot;O&quot; number=&quot;2&quot;/&gt;
-            &lt;/molecule&gt;
-        &lt;/reactants&gt;
-        &lt;products&gt;
-            &lt;molecule stoichiometry=&quot;2&quot;&gt;
-                &lt;atom symbol=&quot;H&quot; number=&quot;2&quot;/&gt;
-                &lt;atom symbol=&quot;O&quot; number=&quot;1&quot;/&gt;
-            &lt;/molecule&gt;
-        &lt;/products&gt;
-    &lt;/reaction&gt;
-&lt;/system&gt;
+<span class="o">&lt;</span><span class="n">system</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">reaction</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">reactants</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;two&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">reactants</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">products</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">stoichiometry</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;H&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="n">atom</span> <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;O&quot;</span> <span class="n">number</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">molecule</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">products</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">reaction</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">system</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -1513,12 +1513,12 @@ tree.xpath(&quot;//atom/@symbol&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>try:
-    with open(&quot;invalid_system.xml&quot;) as xmlfile:
-        tree = etree.parse(xmlfile, parser)
-    tree.xpath(&quot;//element//@symbol&quot;)
-except etree.XMLSyntaxError as e:
-    print(e)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;invalid_system.xml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//element//@symbol&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSyntaxError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

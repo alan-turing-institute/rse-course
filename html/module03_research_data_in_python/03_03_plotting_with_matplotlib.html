@@ -1153,7 +1153,7 @@ title="Print to PDF"
 We usually abbreviate it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from matplotlib import pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
 </div>
 </div>
@@ -1164,7 +1164,7 @@ We usually abbreviate it.</p>
 <p>When we write:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
@@ -1179,9 +1179,9 @@ we’ve seen <code class="docutils literal notranslate"><span class="pre">%%writ
 <p>When we write:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from math import cos, pi, sin
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span>
 
-myfig = plt.plot([sin(pi * x / 100.0) for x in range(100)])
+<span class="n">myfig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -1195,8 +1195,8 @@ The notebook then displays this.</p>
 For convenience, matplotlib allows us to do this just by issuing commands to change the “current figure”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot([sin(pi * x / 100.0) for x in range(100)])
-plt.title(&quot;Hello&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1219,7 +1219,7 @@ brand new axes.
 The relevant function returns a (figure, axis) pair, which we can deal out with parallel assignment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph, sine_graph_axes = plt.subplots()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph</span><span class="p">,</span> <span class="n">sine_graph_axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1230,12 +1230,12 @@ The relevant function returns a (figure, axis) pair, which we can deal out with 
 <p>Once we have some axes, we can plot a graph on them:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph_axes.plot([sin(pi * x / 100.0) for x in range(100)], label=&quot;sin(x)&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph_axes</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;sin(x)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f39afc11d30&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57c1166b50&gt;]
 </pre></div>
 </div>
 </div>
@@ -1243,7 +1243,7 @@ The relevant function returns a (figure, axis) pair, which we can deal out with 
 <p>We can add a title to a pair of axes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph_axes.set_title(&quot;My graph&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph_axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;My graph&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1255,7 +1255,7 @@ The relevant function returns a (figure, axis) pair, which we can deal out with 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph_axes.set_ylabel(&quot;f(x)&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph_axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;f(x)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1267,7 +1267,7 @@ The relevant function returns a (figure, axis) pair, which we can deal out with 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph_axes.set_xlabel(&quot;100 x&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph_axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;100 x&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1281,7 +1281,7 @@ The relevant function returns a (figure, axis) pair, which we can deal out with 
 As always with the notebook, if we make a variable be returned by the last line of a code cell, it gets displayed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph</span>
 </pre></div>
 </div>
 </div>
@@ -1292,19 +1292,19 @@ As always with the notebook, if we make a variable be returned by the last line 
 <p>We can add another curve:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph_axes.plot([cos(pi * x / 100.0) for x in range(100)], label=&quot;cos(x)&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph_axes</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">cos</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;cos(x)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f39afb8aac0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57c11660d0&gt;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph</span>
 </pre></div>
 </div>
 </div>
@@ -1315,19 +1315,19 @@ As always with the notebook, if we make a variable be returned by the last line 
 <p>A legend will help us distinguish the curves:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph_axes.legend()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph_axes</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f39afb606a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f57c1166070&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph</span>
 </pre></div>
 </div>
 </div>
@@ -1342,7 +1342,7 @@ As always with the notebook, if we make a variable be returned by the last line 
 This is really easy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sine_graph.savefig(&quot;my_graph.png&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine_graph</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;my_graph.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1351,10 +1351,10 @@ This is really easy:</p>
 <p>The programmatic way is like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Use the notebook&#39;s own library for manipulating itself.
-from IPython.display import Image
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the notebook&#39;s own library for manipulating itself.</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 
-Image(filename=&quot;my_graph.png&quot;)
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;my_graph.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1368,7 +1368,7 @@ Image(filename=&quot;my_graph.png&quot;)
 <p>We might have wanted the <span class="math notranslate nohighlight">\(\sin\)</span> and <span class="math notranslate nohighlight">\(\cos\)</span> graphs on separate axes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>double_graph = plt.figure()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">double_graph</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1380,21 +1380,21 @@ Image(filename=&quot;my_graph.png&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sin_axes = double_graph.add_subplot(2, 1, 1)  # 2 rows, 1 column, 1st subplot
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sin_axes</span> <span class="o">=</span> <span class="n">double_graph</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 2 rows, 1 column, 1st subplot</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cos_axes = double_graph.add_subplot(2, 1, 2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cos_axes</span> <span class="o">=</span> <span class="n">double_graph</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>double_graph
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">double_graph</span>
 </pre></div>
 </div>
 </div>
@@ -1404,19 +1404,19 @@ Image(filename=&quot;my_graph.png&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sin_axes.plot([sin(pi * x / 100.0) for x in range(100)])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sin_axes</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f39afa84fd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57c1074c10&gt;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sin_axes.set_ylabel(&quot;sin(x)&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sin_axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;sin(x)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1428,19 +1428,19 @@ Image(filename=&quot;my_graph.png&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cos_axes.plot([cos(pi * x / 100.0) for x in range(100)])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cos_axes</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">cos</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f39afab6fa0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57c0dc00a0&gt;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cos_axes.set_ylabel(&quot;cos(x)&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cos_axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;cos(x)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1452,7 +1452,7 @@ Image(filename=&quot;my_graph.png&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cos_axes.set_xlabel(&quot;100 x&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cos_axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;100 x&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1464,7 +1464,7 @@ Image(filename=&quot;my_graph.png&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>double_graph
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">double_graph</span>
 </pre></div>
 </div>
 </div>
@@ -1479,12 +1479,12 @@ Image(filename=&quot;my_graph.png&quot;)
 We usually want to plot something more meaningful:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>double_graph = plt.figure()
-sin_axes = double_graph.add_subplot(2, 1, 1)
-cos_axes = double_graph.add_subplot(2, 1, 2)
-cos_axes.set_ylabel(&quot;cos(x)&quot;)
-sin_axes.set_ylabel(&quot;sin(x)&quot;)
-cos_axes.set_xlabel(&quot;x&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">double_graph</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">sin_axes</span> <span class="o">=</span> <span class="n">double_graph</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">cos_axes</span> <span class="o">=</span> <span class="n">double_graph</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">cos_axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;cos(x)&quot;</span><span class="p">)</span>
+<span class="n">sin_axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;sin(x)&quot;</span><span class="p">)</span>
+<span class="n">cos_axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1497,24 +1497,24 @@ cos_axes.set_xlabel(&quot;x&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sin_axes.plot(
-    [x / 100.0 for x in range(100)], [sin(pi * x / 100.0) for x in range(100)]
-)
-cos_axes.plot(
-    [x / 100.0 for x in range(100)], [cos(pi * x / 100.0) for x in range(100)]
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sin_axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="p">[</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="n">cos_axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="p">[</span><span class="n">cos</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f39af97ab50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57c0d16af0&gt;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>double_graph
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">double_graph</span>
 </pre></div>
 </div>
 </div>
@@ -1528,15 +1528,15 @@ cos_axes.plot(
 <p>We can incorporate what we have learned in the sunspots example to produce graphs of the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-df = pd.read_csv(
-    &quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;,
-    sep=&quot;;&quot;,
-    header=None,
-    names=[&quot;year&quot;, &quot;month&quot;, &quot;date&quot;, &quot;mean&quot;, &quot;deviation&quot;, &quot;observations&quot;, &quot;definitive&quot;],
-)
-df.head()
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;deviation&quot;</span><span class="p">,</span> <span class="s2">&quot;observations&quot;</span><span class="p">,</span> <span class="s2">&quot;definitive&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1626,7 +1626,7 @@ df.head()
 <p>We can plot all the data in the dataframe separately, but that isn’t always useful!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.plot(subplots=True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1642,7 +1642,7 @@ df.head()
 <p>We start by discarding any rows with an invalid (negative) standard deviation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = df[df[&quot;deviation&quot;] &gt; 0]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;deviation&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1650,49 +1650,49 @@ df.head()
 <p>Next we use the dataframe to construct some useful lists.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>deviation = df[&quot;deviation&quot;].tolist()  # Get the dataframe column (series) as a list
-observations = df[&quot;observations&quot;].tolist()
-mean = df[&quot;mean&quot;].tolist()
-date = df[&quot;date&quot;].tolist()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deviation</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;deviation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># Get the dataframe column (series) as a list</span>
+<span class="n">observations</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;observations&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = plt.figure(
-    figsize=(15, 10)
-)  # Set the width of the figure to be 15 inches, and the height to be 5 inches
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>  <span class="c1"># Set the width of the figure to be 15 inches, and the height to be 5 inches</span>
 
-ax1 = fig.add_subplot(2, 2, 1)  # 2 rows, 2 columns, 1st subplot
-ax1.errorbar(
-    df[&quot;date&quot;],  # Date on the x axis
-    df[&quot;mean&quot;],  # Mean on the y axis
-    yerr=df[&quot;deviation&quot;],  # Use the deviation for the error bars
-    color=&quot;orange&quot;,  # Plot the sunspot (mean) data in orange
-    ecolor=&quot;black&quot;,
-)  # Show the error bars in black
-ax1.set_xlabel(&quot;Date&quot;)
-ax1.set_ylabel(&quot;Mean&quot;)
-ax1.set_title(&quot;From Dataframe&quot;)
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 2 rows, 2 columns, 1st subplot</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span>  <span class="c1"># Date on the x axis</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>  <span class="c1"># Mean on the y axis</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;deviation&quot;</span><span class="p">],</span>  <span class="c1"># Use the deviation for the error bars</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span>  <span class="c1"># Plot the sunspot (mean) data in orange</span>
+    <span class="n">ecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># Show the error bars in black</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;From Dataframe&quot;</span><span class="p">)</span>
 
-ax2 = fig.add_subplot(2, 2, 2)  # 2 rows, 2 columns, 2nd subplot
-ax2.scatter(df[&quot;date&quot;], df[&quot;observations&quot;], color=&quot;grey&quot;, marker=&quot;+&quot;)
-ax2.set_xlabel(&quot;Date&quot;)
-ax2.set_ylabel(&quot;Number of Observations&quot;)
-ax2.set_title(&quot;From Dataframe&quot;)
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># 2 rows, 2 columns, 2nd subplot</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;observations&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Observations&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;From Dataframe&quot;</span><span class="p">)</span>
 
-ax3 = fig.add_subplot(2, 2, 3)  # 2 rows, 2 columns, 3rd subplot
-ax3.errorbar(date, mean, yerr=deviation, color=&quot;pink&quot;, ecolor=&quot;black&quot;)
-ax3.set_xlabel(&quot;Date&quot;)
-ax3.set_ylabel(&quot;Mean&quot;)
-ax3.set_title(&quot;From List&quot;)
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 2 rows, 2 columns, 3rd subplot</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">deviation</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;pink&quot;</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;From List&quot;</span><span class="p">)</span>
 
-ax4 = fig.add_subplot(2, 2, 4)  # 2 rows, 2 columns, 4th subplot
-ax4.scatter(date, observations, color=&quot;red&quot;, marker=&quot;o&quot;)
-ax4.set_xlabel(&quot;Date&quot;)
-ax4.set_ylabel(&quot;Number of Observations&quot;)
-ax4.set_title(&quot;From List&quot;)
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># 2 rows, 2 columns, 4th subplot</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">observations</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Observations&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;From List&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

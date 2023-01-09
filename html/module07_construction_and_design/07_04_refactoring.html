@@ -1385,10 +1385,10 @@ depending on memory layout. Be careful.</p>
 <p><strong>before:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>flight_speed = 2.0  # mph
-bounds = [0, 0, 100, 100]
-turning_circle = 3.0  # m
-bird_counts = {&quot;hawk&quot;: 5, &quot;starling&quot;: 500}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flight_speed</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># mph</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">turning_circle</span> <span class="o">=</span> <span class="mf">3.0</span>  <span class="c1"># m</span>
+<span class="n">bird_counts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;hawk&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;starling&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1396,13 +1396,13 @@ bird_counts = {&quot;hawk&quot;: 5, &quot;starling&quot;: 500}
 <p><strong>after:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile config.yaml
-bounds: [0, 0, 100, 100]
-counts:
-    hawk: 5
-    starling: 500
-speed: 2.0
-turning_circle: 3.0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> config.yaml
+<span class="n">bounds</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">counts</span><span class="p">:</span>
+    <span class="n">hawk</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="n">starling</span><span class="p">:</span> <span class="mi">500</span>
+<span class="n">speed</span><span class="p">:</span> <span class="mf">2.0</span>
+<span class="n">turning_circle</span><span class="p">:</span> <span class="mf">3.0</span>
 </pre></div>
 </div>
 </div>
@@ -1414,10 +1414,10 @@ turning_circle: 3.0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import yaml
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
 
-config = yaml.safe_load(open(&quot;config.yaml&quot;))
-print(config)
+<span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.yaml&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1517,13 +1517,13 @@ and <a class="reference external" href="https://docs.python.org/3/library/os.htm
 <p><strong>before:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class One:
-    pass
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">One</span><span class="p">:</span>
+    <span class="k">pass</span>
 
 
-class Two:
-    def __init__(self):
-        self.child = One()
+<span class="k">class</span> <span class="nc">Two</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">One</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1531,9 +1531,9 @@ class Two:
 <p><strong>after:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile anotherfile.py
-class One:
-    pass
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> anotherfile.py
+<span class="k">class</span> <span class="nc">One</span><span class="p">:</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
@@ -1545,12 +1545,12 @@ class One:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from anotherfile import One
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">anotherfile</span> <span class="kn">import</span> <span class="n">One</span>
 
 
-class Two:
-    def __init__(self):
-        self.child = One()
+<span class="k">class</span> <span class="nc">Two</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">One</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

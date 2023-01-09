@@ -1069,7 +1069,7 @@ title="Print to PDF"
 <p>For example, <code class="docutils literal notranslate"><span class="pre">+</span></code> adds numbers but concatenates strings or lists:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>4 + 2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -1081,7 +1081,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;4&quot; + &quot;2&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;4&quot;</span> <span class="o">+</span> <span class="s2">&quot;2&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1094,7 @@ title="Print to PDF"
 <p><code class="docutils literal notranslate"><span class="pre">*</span></code> is used for multiplication, or repeated addition:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>6 * 7
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span> <span class="o">*</span> <span class="mi">7</span>
 </pre></div>
 </div>
 </div>
@@ -1106,7 +1106,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;me&quot; * 3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;me&quot;</span> <span class="o">*</span> <span class="mi">3</span>
 </pre></div>
 </div>
 </div>
@@ -1119,36 +1119,36 @@ title="Print to PDF"
 <p><code class="docutils literal notranslate"><span class="pre">/</span></code> is division for numbers, and wouldn’t have a real meaning on strings. However, it’s used to separate files and directories on your file system. Therefore, this has been <em>overloaded</em> in the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
-from pathlib import Path
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-performance = Path(&quot;..&quot;) / &quot;module07_construction_and_design&quot;
-os.listdir(performance)
+<span class="n">performance</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;module07_construction_and_design&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">performance</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mypy_example.py&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;07_04_refactoring.ipynb&#39;,
+ &#39;anotherfile.py&#39;,
+ &#39;black_example.py&#39;,
+ &#39;config.yaml&#39;,
+ &#39;07_07_design_patterns.ipynb&#39;,
+ &#39;mypy_example.py&#39;,
+ &#39;07_05_object_oriented_design.ipynb&#39;,
+ &#39;07_02_coding_conventions.ipynb&#39;,
+ &#39;07_00_introduction.ipynb&#39;,
+ &#39;__pycache__&#39;,
+ &#39;bad_boids_animation.gif&#39;,
+ &#39;pylint_example.py&#39;,
+ &#39;07_01_comments.ipynb&#39;,
  &#39;flake8_example.py&#39;,
  &#39;07_08_refactoring_boids.ipynb&#39;,
- &#39;07_07_design_patterns.ipynb&#39;,
  &#39;index.md&#39;,
- &#39;isort_example.py&#39;,
- &#39;07_02_coding_conventions.ipynb&#39;,
- &#39;07_05_object_oriented_design.ipynb&#39;,
- &#39;__pycache__&#39;,
  &#39;07_06_classes.ipynb&#39;,
- &#39;bad_boids_animation.gif&#39;,
- &#39;anotherfile.py&#39;,
  &#39;07_03_linters.ipynb&#39;,
- &#39;07_00_introduction.ipynb&#39;,
- &#39;pylint_example.py&#39;,
- &#39;fixed.png&#39;,
- &#39;config.yaml&#39;,
- &#39;07_01_comments.ipynb&#39;,
- &#39;black_example.py&#39;,
- &#39;07_04_refactoring.ipynb&#39;,
- &#39;.mypy_cache&#39;]
+ &#39;isort_example.py&#39;,
+ &#39;.mypy_cache&#39;,
+ &#39;fixed.png&#39;]
 </pre></div>
 </div>
 </div>
@@ -1156,7 +1156,7 @@ os.listdir(performance)
 <p>The above works because one of the elements is a <code class="docutils literal notranslate"><span class="pre">Path</span></code> object. Note, that the <code class="docutils literal notranslate"><span class="pre">/</span></code> works similarly to <code class="docutils literal notranslate"><span class="pre">os.path.join()</span></code>, so whether you are using Unix file systems or Windows, <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> will know what path separator to use.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>performance = os.path.join(&quot;..&quot;, &quot;module07_construction_and_design&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">performance</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;module07_construction_and_design&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1167,10 +1167,10 @@ os.listdir(performance)
 <p>Let’s go back to our Maze example, and simplify our room object so it’s defined as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Room:
-    def __init__(self, name, area):
-        self.name = name
-        self.area = area
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
 </pre></div>
 </div>
 </div>
@@ -1178,13 +1178,13 @@ os.listdir(performance)
 <p>We can now create a room as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>small = Room(&quot;small&quot;, 9)
-print(small)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">small</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;small&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">small</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Room object at 0x7fe3cc3dd8e0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Room object at 0x7f3730fed6d0&gt;
 </pre></div>
 </div>
 </div>
@@ -1192,21 +1192,21 @@ print(small)
 <p>However, when we print it we don’t get much infomation on the object. So, the first operator we are overloading is its string represenation defining <code class="docutils literal notranslate"><span class="pre">__str__</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Room:
-    def __init__(self, name, area):
-        self.name = name
-        self.area = area
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
 
-    def __str__(self):
-        return f&quot;&lt;Room: {self.name} {self.area}m²&gt;&quot;
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;Room: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">area</span><span class="si">}</span><span class="s2">m²&gt;&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>small = Room(&quot;small&quot;, 9)
-print(small)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">small</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;small&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">small</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1219,25 +1219,25 @@ print(small)
 <p>How can we add two rooms together? What does it mean? Let’s define that the addition (<code class="docutils literal notranslate"><span class="pre">+</span></code>) of two rooms makes up one with the combined size. We produce this behaviour by defining the <code class="docutils literal notranslate"><span class="pre">__add__</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Room:
-    def __init__(self, name, area):
-        self.name = name
-        self.area = area
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
 
-    def __add__(self, other):
-        return Room(f&quot;{self.name}_{other.name}&quot;, self.area + other.area)
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Room</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
 
-    def __str__(self):
-        return f&quot;&lt;Room: {self.name} {self.area}m²&gt;&quot;
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;Room: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">area</span><span class="si">}</span><span class="s2">m²&gt;&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>small = Room(&quot;small&quot;, 9)
-big = Room(&quot;big&quot;, 21)
-print(small, big, small + big)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">small</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;small&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">big</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;big&quot;</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">small</span><span class="p">,</span> <span class="n">big</span><span class="p">,</span> <span class="n">small</span> <span class="o">+</span> <span class="n">big</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1254,18 +1254,18 @@ print(small, big, small + big)
 <p>That bring us to another operator, equal to: <code class="docutils literal notranslate"><span class="pre">==</span></code>. The method needed to produce such comparison is <code class="docutils literal notranslate"><span class="pre">__eq__</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Room:
-    def __init__(self, name, area):
-        self.name = name
-        self.area = area
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
 
-    def __add__(self, other):
-        return Room(f&quot;{self.name}_{other.name}&quot;, self.area + other.area)
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Room</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
 
-    def __eq__(self, other):
-        return self.area == other.area and set(self.name.split(&quot;_&quot;)) == set(
-            other.name.split(&quot;_&quot;)
-        )
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">area</span> <span class="ow">and</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1273,11 +1273,11 @@ print(small, big, small + big)
 <p>So, in this way two rooms of the same area are “equal” if their names are composed by the same.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>small = Room(&quot;small&quot;, 9)
-big = Room(&quot;big&quot;, 21)
-large = Room(&quot;superbig&quot;, 30)
-print(small + big == big + small)
-print(small + big == large)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">small</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;small&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">big</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;big&quot;</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">large</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;superbig&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">small</span> <span class="o">+</span> <span class="n">big</span> <span class="o">==</span> <span class="n">big</span> <span class="o">+</span> <span class="n">small</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">small</span> <span class="o">+</span> <span class="n">big</span> <span class="o">==</span> <span class="n">large</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1313,20 +1313,20 @@ False
 <p>Let’s add people to the rooms and check whether they are in one room or not.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Room:
-    def __init__(self, name, area):
-        self.name = name
-        self.area = area
-        self.occupants = []
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span> <span class="o">=</span> <span class="p">[]</span>
 
-    def add_occupant(self, name):
-        self.occupants.append(name)
+    <span class="k">def</span> <span class="nf">add_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 
-circus = Room(&quot;Circus&quot;, 3)
-circus.add_occupant(&quot;Graham&quot;)
-circus.add_occupant(&quot;Eric&quot;)
-circus.add_occupant(&quot;Terry&quot;)
+<span class="n">circus</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;Circus&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">circus</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="s2">&quot;Graham&quot;</span><span class="p">)</span>
+<span class="n">circus</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="s2">&quot;Eric&quot;</span><span class="p">)</span>
+<span class="n">circus</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="s2">&quot;Terry&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1334,7 +1334,7 @@ circus.add_occupant(&quot;Terry&quot;)
 <p>How do we know if John is in the room? We can check the <code class="docutils literal notranslate"><span class="pre">occupants</span></code> list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;John&quot; in circus.occupants
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;John&quot;</span> <span class="ow">in</span> <span class="n">circus</span><span class="o">.</span><span class="n">occupants</span>
 </pre></div>
 </div>
 </div>
@@ -1347,25 +1347,25 @@ circus.add_occupant(&quot;Terry&quot;)
 <p>Or making it more readable adding a membership definition:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Room:
-    def __init__(self, name, area):
-        self.name = name
-        self.area = area
-        self.occupants = []
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span> <span class="o">=</span> <span class="p">[]</span>
 
-    def add_occupant(self, name):
-        self.occupants.append(name)
+    <span class="k">def</span> <span class="nf">add_occupant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-    def __contains__(self, value):
-        return value in self.occupants
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">occupants</span>
 
 
-circus = Room(&quot;Circus&quot;, 3)
-circus.add_occupant(&quot;Graham&quot;)
-circus.add_occupant(&quot;Eric&quot;)
-circus.add_occupant(&quot;Terry&quot;)
+<span class="n">circus</span> <span class="o">=</span> <span class="n">Room</span><span class="p">(</span><span class="s2">&quot;Circus&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">circus</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="s2">&quot;Graham&quot;</span><span class="p">)</span>
+<span class="n">circus</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="s2">&quot;Eric&quot;</span><span class="p">)</span>
+<span class="n">circus</span><span class="o">.</span><span class="n">add_occupant</span><span class="p">(</span><span class="s2">&quot;Terry&quot;</span><span class="p">)</span>
 
-&quot;Terry&quot; in circus
+<span class="s2">&quot;Terry&quot;</span> <span class="ow">in</span> <span class="n">circus</span>
 </pre></div>
 </div>
 </div>
@@ -1379,17 +1379,17 @@ circus.add_occupant(&quot;Terry&quot;)
 one is <code class="docutils literal notranslate"><span class="pre">__call__</span></code>, which overrides the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator; this allows us to define classes that <em>behave like functions</em>! We call these <strong>callables</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Greeter:
-    def __init__(self, greeting):
-        self.greeting = greeting
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Greeter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">greeting</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">greeting</span> <span class="o">=</span> <span class="n">greeting</span>
 
-    def __call__(self, name):
-        print(self.greeting, name)
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">greeting</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 
-greeter_instance = Greeter(&quot;Hello&quot;)
+<span class="n">greeter_instance</span> <span class="o">=</span> <span class="n">Greeter</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
 
-greeter_instance(&quot;Eric&quot;)
+<span class="n">greeter_instance</span><span class="p">(</span><span class="s2">&quot;Eric&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

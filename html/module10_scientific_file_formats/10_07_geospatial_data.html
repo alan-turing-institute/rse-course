@@ -1086,13 +1086,13 @@ Libraries are available to read and write <em>netCDF</em> files in many programm
 <p>Let’s download an example <em>netCDF</em> file - this one is from the European Centre for Medium-range Weather Forecasting (ECMWF).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import requests
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 
-url = &quot;https://www.unidata.ucar.edu/software/netcdf/examples/ECMWF_ERA-40_subset.nc&quot;
-filename = url.split(&quot;/&quot;)[-1]
-r = requests.get(url, allow_redirects=True)
-with open(filename, &quot;wb&quot;) as saved_file:
-    saved_file.write(r.content)
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.unidata.ucar.edu/software/netcdf/examples/ECMWF_ERA-40_subset.nc&quot;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">saved_file</span><span class="p">:</span>
+    <span class="n">saved_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1100,10 +1100,10 @@ with open(filename, &quot;wb&quot;) as saved_file:
 <p>To read this file in Python we can use the netCDF4 package:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import netCDF4 as nc
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc</span>
 
-ds = nc.Dataset(filename)
-ds
+<span class="n">ds</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">ds</span>
 </pre></div>
 </div>
 </div>
@@ -1122,8 +1122,8 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <p>We can see that the metadata tells us the “dimensions” (lat, long, time), and “variables” (those, plus lots of weather-related things that we could look up on <a class="reference external" href="https://apps.ecmwf.int/codes/grib/param-db/">https://apps.ecmwf.int/codes/grib/param-db/</a> ).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for dim in ds.dimensions.values():
-    print(dim)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1140,9 +1140,9 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 We can put the longitude and latitude (which will be our <em>x</em> and <em>y</em> coordinates), and tco3 (which will be the <em>z</em> coordinate)) into numpy data structures:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lats = ds.variables[&quot;latitude&quot;][:]
-lons = ds.variables[&quot;longitude&quot;][:]
-tco3 = ds.variables[&quot;tco3&quot;][0, :, :]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lats</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">][:]</span>
+<span class="n">lons</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">][:]</span>
+<span class="n">tco3</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;tco3&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -1150,19 +1150,19 @@ tco3 = ds.variables[&quot;tco3&quot;][0, :, :]
 <p>A matplotlib contour plot is a simple way of visualizing this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
+<span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s2">&quot;cividis&quot;</span><span class="p">)</span>  <span class="c1"># use a CVD-friendly palette</span>
 
-x, y = np.meshgrid(lons, lats)
-plt.contourf(x, y, tco3)
-plt.colorbar()
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">tco3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fe228534a60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f5ec63febb0&gt;
 </pre></div>
 </div>
 <img alt="../_images/10_07_geospatial_data_13_1.png" src="../_images/10_07_geospatial_data_13_1.png" />

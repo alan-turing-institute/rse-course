@@ -1096,7 +1096,7 @@ title="Print to PDF"
 <h1>4.11 Debugging With git bisect<a class="headerlink" href="#debugging-with-git-bisect" title="Permalink to this headline">#</a></h1>
 <p><em>Estimated time to complete this notebook: 5 minutes</em></p>
 <p>You can use</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git bisect
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>bisect
 </pre></div>
 </div>
 <p>to find out which commit caused a bug.</p>
@@ -1105,18 +1105,18 @@ title="Print to PDF"
 <p>In a nice open source example, I found an arbitrary exemplar on github</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-top_dir = os.getcwd()
-git_dir = os.path.join(top_dir, &quot;learning_git&quot;)
-os.chdir(git_dir)
+<span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">git_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 rm -rf bisectdemo
 git clone https://github.com/shawnsi/bisectdemo.git
 </pre></div>
@@ -1130,15 +1130,15 @@ git clone https://github.com/shawnsi/bisectdemo.git
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>bisect_dir = os.path.join(git_dir, &quot;bisectdemo&quot;)
-os.chdir(bisect_dir)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bisect_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;bisectdemo&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">bisect_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 python squares.py 2 # 4
 </pre></div>
 </div>
@@ -1153,7 +1153,7 @@ python squares.py 2 # 4
 bisect to work out where it has broken:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 ./breakme.sh &gt; break_output
 </pre></div>
 </div>
@@ -1170,7 +1170,7 @@ bisect to work out where it has broken:</p>
 <p>Which will make a bunch of commits, of which one is broken, and leave you in the broken final state</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>python squares.py 2 # Error message
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">squares</span><span class="o">.</span><span class="n">py</span> <span class="mi">2</span> <span class="c1"># Error message</span>
 </pre></div>
 </div>
 </div>
@@ -1188,7 +1188,7 @@ bisect to work out where it has broken:</p>
 <h2>Bisecting manually<a class="headerlink" href="#bisecting-manually" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git bisect start
 git bisect bad # We know the current state is broken
 git checkout master
@@ -1212,7 +1212,7 @@ git bisect good # We know the master branch state is OK
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 500 revisions left to test after this (roughly 9 steps)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[043f6e4c99a8535cbcea4228244891fe116e5479] Comment 500
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[37892abf1cc439a865631388afc36095ddc500b7] Comment 499
 </pre></div>
 </div>
 </div>
@@ -1221,45 +1221,45 @@ git bisect good # We know the master branch state is OK
 </section>
 <section id="solving-manually">
 <h2>Solving Manually<a class="headerlink" href="#solving-manually" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python squares.py <span class="m">2</span> <span class="c1"># 4</span>
-git bisect good
-python squares.py <span class="m">2</span> <span class="c1"># 4</span>
-git bisect good
-python squares.py <span class="m">2</span> <span class="c1"># 4</span>
-git bisect good
-python squares.py <span class="m">2</span> <span class="c1"># Crash</span>
-git bisect bad
-python squares.py <span class="m">2</span> <span class="c1"># Crash</span>
-git bisect bad
-python squares.py <span class="m">2</span> <span class="c1"># Crash</span>
-git bisect bad
-python squares.py <span class="m">2</span> <span class="c1">#Crash</span>
-git bisect bad
-python squares.py <span class="m">2</span> <span class="c1"># 4</span>
-git bisect good
-python squares.py <span class="m">2</span> <span class="c1"># 4</span>
-git bisect good
-python squares.py <span class="m">2</span> <span class="c1"># 4</span>
-git bisect good
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># 4</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># 4</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># 4</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># Crash</span>
+git<span class="w"> </span>bisect<span class="w"> </span>bad
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># Crash</span>
+git<span class="w"> </span>bisect<span class="w"> </span>bad
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># Crash</span>
+git<span class="w"> </span>bisect<span class="w"> </span>bad
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1">#Crash</span>
+git<span class="w"> </span>bisect<span class="w"> </span>bad
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># 4</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># 4</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># 4</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good
 </pre></div>
 </div>
 <p>And eventually:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git bisect good
-    Bisecting: <span class="m">0</span> revisions left to <span class="nb">test</span> after this <span class="o">(</span>roughly <span class="m">0</span> steps<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>bisect<span class="w"> </span>good
+<span class="w">    </span>Bisecting:<span class="w"> </span><span class="m">0</span><span class="w"> </span>revisions<span class="w"> </span>left<span class="w"> </span>to<span class="w"> </span><span class="nb">test</span><span class="w"> </span>after<span class="w"> </span>this<span class="w"> </span><span class="o">(</span>roughly<span class="w"> </span><span class="m">0</span><span class="w"> </span>steps<span class="o">)</span>
 
-python squares.py <span class="m">2</span>
-    <span class="m">4</span>
+python<span class="w"> </span>squares.py<span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="m">4</span>
 
-git bisect good
-2777975a2334c2396ccb9faf98ab149824ec465b is the first bad commit
-commit 2777975a2334c2396ccb9faf98ab149824ec465b
-Author: Shawn Siefkas &lt;shawn.siefkas@meredith.com&gt;
-Date:   Thu Nov <span class="m">14</span> <span class="m">09</span>:23:55 <span class="m">2013</span> -0600
+git<span class="w"> </span>bisect<span class="w"> </span>good
+2777975a2334c2396ccb9faf98ab149824ec465b<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>bad<span class="w"> </span>commit
+commit<span class="w"> </span>2777975a2334c2396ccb9faf98ab149824ec465b
+Author:<span class="w"> </span>Shawn<span class="w"> </span>Siefkas<span class="w"> </span>&lt;shawn.siefkas@meredith.com&gt;
+Date:<span class="w">   </span>Thu<span class="w"> </span>Nov<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">09</span>:23:55<span class="w"> </span><span class="m">2013</span><span class="w"> </span>-0600
 
-    Breaking argument <span class="nb">type</span>
+<span class="w">    </span>Breaking<span class="w"> </span>argument<span class="w"> </span><span class="nb">type</span>
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git bisect end
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>bisect<span class="w"> </span>end
 </pre></div>
 </div>
 </section>
@@ -1268,7 +1268,7 @@ Date:   Thu Nov <span class="m">14</span> <span class="m">09</span>:23:55 <span 
 <p>If we have an appropriate unit test, we can do all this automatically:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git bisect start
 git bisect bad HEAD # We know the current state is broken
 git bisect good master # We know master is good
@@ -1277,7 +1277,7 @@ git bisect run python squares.py 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Previous HEAD position was 043f6e4 Comment 500
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Previous HEAD position was 37892ab Comment 499
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Switched to branch &#39;buggy&#39;
@@ -1292,31 +1292,49 @@ git bisect run python squares.py 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 500 revisions left to test after this (roughly 9 steps)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[043f6e4c99a8535cbcea4228244891fe116e5479] Comment 500
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[37892abf1cc439a865631388afc36095ddc500b7] Comment 499
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 250 revisions left to test after this (roughly 8 steps)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[f3e19cc6b85ae0f1588afd3336a1865e1f9a3fec] Comment 750
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    print(integer**2)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 249 revisions left to test after this (roughly 8 steps)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[db976ba27e3f44e001c6e936af3c9728fb3a07d1] Comment 249
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 125 revisions left to test after this (roughly 7 steps)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[545c86cb901d22e52483cf14c10ab099543b2c5f] Comment 874
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    print(integer**2)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 124 revisions left to test after this (roughly 7 steps)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[b62373c0e79e22a66a4b159820a215bcd3e05a90] Comment 124
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
@@ -1337,19 +1355,7 @@ git bisect run python squares.py 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 62 revisions left to test after this (roughly 6 steps)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8b7588a1ddf595875f6ade8fb7380b0b22c067b3] Comment 812
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 31 revisions left to test after this (roughly 5 steps)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3972f3067449e922e178274303c1a961e918b985] Comment 842
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1b2c29b3d8e54f7c5acfd243261e44110f746d83] Comment 61
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
@@ -1365,54 +1371,24 @@ git bisect run python squares.py 2
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 30 revisions left to test after this (roughly 5 steps)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[a180626fbcd76e640c09a898197b2cfc44e6dc93] Comment 31
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 15 revisions left to test after this (roughly 4 steps)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ab1b76c570cd47224fa93e72490b3a310fe62858] Comment 826
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    print(integer**2)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 7 revisions left to test after this (roughly 3 steps)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17dd5e791f442a79f04cf0d1b71342cfb6c89939] Breaking argument type
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    print(integer**2)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 3 revisions left to test after this (roughly 2 steps)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[116458d97265ff642f8f684b95ac61039f842172] Comment 815
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[339de36af5dee9fa7a9b48d7c5006c45b3151263] Comment 46
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
@@ -1421,10 +1397,43 @@ git bisect run python squares.py 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 7 revisions left to test after this (roughly 3 steps)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[069eddad0fdf26ffcaba279e6a0451d35ed65cc9] Comment 54
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 3 revisions left to test after this (roughly 2 steps)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[75a4012a398d816559a4a764739522d70c33f645] Comment 57
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    print(integer**2)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 1 revision left to test after this (roughly 1 step)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[d07734ca2af88e1254609229043aacae38dc68cc] Comment 817
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[d871a947359c5e3e0eb4a3a9ec11142afecf62bb] Comment 56
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
@@ -1436,19 +1445,28 @@ git bisect run python squares.py 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisecting: 0 revisions left to test after this (roughly 0 steps)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5c8225f24c53c46cd5642ee16501325401fc4fd5] Comment 818
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[599fe90d20292d1a4ef3535f943c25315ed58ae0] Breaking argument type
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running  &#39;python&#39; &#39;squares.py&#39; &#39;2&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17dd5e791f442a79f04cf0d1b71342cfb6c89939 is the first bad commit
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;squares.py&quot;, line 9, in &lt;module&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 17dd5e791f442a79f04cf0d1b71342cfb6c89939
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    print(integer**2)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>599fe90d20292d1a4ef3535f943c25315ed58ae0 is the first bad commit
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 599fe90d20292d1a4ef3535f943c25315ed58ae0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Shawn Siefkas &lt;shawn.siefkas@meredith.com&gt;

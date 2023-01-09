@@ -1144,47 +1144,47 @@ In a Jupyter notebook, everything is a lot easier. One needs only to load the Cy
 <p>We’ll copy our pure Python <code class="docutils literal notranslate"><span class="pre">mandel()</span></code> function from the earlier notebook and redefine our real and imaginary inputs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
-ymin = -1.0
-xmax = 0.5
-ymax = 1.0
-resolution = 300
-xstep = (xmax - xmin) / resolution
-ystep = (ymax - ymin) / resolution
-xs = [(xmin + (xmax - xmin) * i / resolution) for i in range(resolution)]
-ys = [(ymin + (ymax - ymin) * i / resolution) for i in range(resolution)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">ystep</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ymin</span> <span class="o">+</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(constant, max_iterations=50):
-    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.</span>
 
-    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum
-    number of iterations.
+<span class="sd">    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum</span>
+<span class="sd">    number of iterations.</span>
 
-    Returns the number of iterations.
-    &quot;&quot;&quot;
+<span class="sd">    Returns the number of iterations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    value = 0
+    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
 
-    counter = 0
-    while counter &lt; max_iterations:
-        if abs(value) &gt; 2:
-            break
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">break</span>
 
-        value = (value * value) + constant
+        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">constant</span>
 
-        counter = counter + 1
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
 
-    return counter
+    <span class="k">return</span> <span class="n">counter</span>
 
 
-assert mandel(0) == 50
-assert mandel(3) == 1
-assert mandel(0.5) == 5
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">50</span>
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
 </pre></div>
 </div>
 </div>
@@ -1192,14 +1192,14 @@ assert mandel(0.5) == 5
 <p>We will cythonise our function without adding any type hints.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%load_ext Cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> Cython
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
 
 def mandel_cython():
     value = 0
@@ -1209,14 +1209,14 @@ def mandel_cython():
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mandel_cython()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mandel_cython</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
 
 def mandel_cython(constant, max_iterations=50):
     &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. 
@@ -1251,28 +1251,28 @@ assert mandel_cython(0.5) == 5
 <p>Let’s verify the result</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_python = [[mandel(x + 1j * y) for x in xs] for y in ys]
-data_cython = [[mandel_cython(x + 1j * y) for x in xs] for y in ys]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_python</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<span class="n">data_cython</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel_cython</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from matplotlib import pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-plt.set_cmap(&quot;cividis&quot;)  # use a CVD-friendly palette
+<span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s2">&quot;cividis&quot;</span><span class="p">)</span>  <span class="c1"># use a CVD-friendly palette</span>
 
-f, axarr = plt.subplots(1, 2)
-axarr[0].imshow(data_python, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-axarr[0].set_title(&quot;Pure Python&quot;)
-axarr[0].set_ylabel(&quot;Imaginary&quot;)
-axarr[0].set_xlabel(&quot;Real&quot;)
-axarr[1].imshow(data_cython, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax])
-axarr[1].set_title(&quot;Cython&quot;)
-axarr[1].set_ylabel(&quot;Imaginary&quot;)
-axarr[1].set_xlabel(&quot;Real&quot;)
-f.tight_layout()
+<span class="n">f</span><span class="p">,</span> <span class="n">axarr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_python</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Pure Python&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Imaginary&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_cython</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cython&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Imaginary&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1285,26 +1285,26 @@ f.tight_layout()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-[[mandel(x + 1j * y) for x in xs] for y in ys]  # pure python
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>  <span class="c1"># pure python</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>658 ms ± 9.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>492 ms ± 2.07 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-[[mandel_cython(x + 1j * y) for x in xs] for y in ys]  # cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel_cython</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>  <span class="c1"># cython</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>428 ms ± 13.3 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>332 ms ± 1.04 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -1319,7 +1319,7 @@ f.tight_layout()
 <p>If we pass the <code class="docutils literal notranslate"><span class="pre">--annotate</span></code>/<code class="docutils literal notranslate"><span class="pre">-a</span></code> option to <code class="docutils literal notranslate"><span class="pre">%%cython</span></code> then it will output information about the line-by-line cost of running your function. You can use this to target the most costly operations first or to estimate how much more optimising there is to do.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython --annotate
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span> --annotate
 
 def mandel_cython(constant, max_iterations=50):
     &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. 
@@ -1347,11 +1347,11 @@ def mandel_cython(constant, max_iterations=50):
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><!DOCTYPE html>
-<!-- Generated by Cython 0.29.32 -->
+<!-- Generated by Cython 0.29.33 -->
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Cython: _cython_magic_712938bcc9bb229d5c24243ea2356784.pyx</title>
+    <title>Cython: _cython_magic_d23bbee03fe218b31f238587887680b1.pyx</title>
     <style type="text/css">
 
 body.cython { font-family: courier; font-size: 12; }
@@ -1711,7 +1711,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     </style>
 </head>
 <body class="cython">
-<p><span style="border-bottom: solid 1px grey;">Generated by Cython 0.29.32</span></p>
+<p><span style="border-bottom: solid 1px grey;">Generated by Cython 0.29.33</span></p>
 <p>
     <span style="background-color: #FFFF00">Yellow lines</span> hint at Python interaction.<br />
     Click on a line that starts with a "<code>+</code>" to see the C code that Cython generated for it.
@@ -1719,10 +1719,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cython"><pre class="cython line score-0">&#xA0;<span class="">01</span>: </pre>
 <pre class="cython line score-39" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">02</span>: <span class="k">def</span> <span class="nf">mandel_cython</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mf">50</span><span class="p">):</span></pre>
 <pre class='cython code score-39 '>/* Python wrapper */
-static PyObject *__pyx_pw_46_cython_magic_712938bcc9bb229d5c24243ea2356784_1mandel_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_46_cython_magic_712938bcc9bb229d5c24243ea2356784_mandel_cython[] = "Computes the values of the series for up to a maximum number of iterations. \n    \n    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum \n    number of iterations.\n    \n    Returns the number of iterations.\n    ";
-static PyMethodDef __pyx_mdef_46_cython_magic_712938bcc9bb229d5c24243ea2356784_1mandel_cython = {"mandel_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_46_cython_magic_712938bcc9bb229d5c24243ea2356784_1mandel_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_46_cython_magic_712938bcc9bb229d5c24243ea2356784_mandel_cython};
-static PyObject *__pyx_pw_46_cython_magic_712938bcc9bb229d5c24243ea2356784_1mandel_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_46_cython_magic_d23bbee03fe218b31f238587887680b1_1mandel_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_46_cython_magic_d23bbee03fe218b31f238587887680b1_mandel_cython[] = "Computes the values of the series for up to a maximum number of iterations. \n    \n    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum \n    number of iterations.\n    \n    Returns the number of iterations.\n    ";
+static PyMethodDef __pyx_mdef_46_cython_magic_d23bbee03fe218b31f238587887680b1_1mandel_cython = {"mandel_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_46_cython_magic_d23bbee03fe218b31f238587887680b1_1mandel_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_46_cython_magic_d23bbee03fe218b31f238587887680b1_mandel_cython};
+static PyObject *__pyx_pw_46_cython_magic_d23bbee03fe218b31f238587887680b1_1mandel_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_constant = 0;
   PyObject *__pyx_v_max_iterations = 0;
   PyObject *__pyx_r = 0;
@@ -1774,11 +1774,11 @@ static PyObject *__pyx_pw_46_cython_magic_712938bcc9bb229d5c24243ea2356784_1mand
   __pyx_L5_argtuple_error:;
   <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("mandel_cython", 0, 1, 2, <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)); <span class='error_goto'>__PYX_ERR(0, 2, __pyx_L3_error)</span>
   __pyx_L3_error:;
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("_cython_magic_712938bcc9bb229d5c24243ea2356784.mandel_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("_cython_magic_d23bbee03fe218b31f238587887680b1.mandel_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_46_cython_magic_712938bcc9bb229d5c24243ea2356784_mandel_cython(__pyx_self, __pyx_v_constant, __pyx_v_max_iterations);
+  __pyx_r = __pyx_pf_46_cython_magic_d23bbee03fe218b31f238587887680b1_mandel_cython(__pyx_self, __pyx_v_constant, __pyx_v_max_iterations);
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -1788,7 +1788,7 @@ static PyObject *__pyx_pw_46_cython_magic_712938bcc9bb229d5c24243ea2356784_1mand
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_46_cython_magic_712938bcc9bb229d5c24243ea2356784_mandel_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_constant, PyObject *__pyx_v_max_iterations) {
+static PyObject *__pyx_pf_46_cython_magic_d23bbee03fe218b31f238587887680b1_mandel_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_constant, PyObject *__pyx_v_max_iterations) {
   PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_v_counter = NULL;
   PyObject *__pyx_r = NULL;
@@ -1799,7 +1799,7 @@ static PyObject *__pyx_pf_46_cython_magic_712938bcc9bb229d5c24243ea2356784_mande
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("_cython_magic_712938bcc9bb229d5c24243ea2356784.mandel_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("_cython_magic_d23bbee03fe218b31f238587887680b1.mandel_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_value);
@@ -1813,11 +1813,11 @@ static PyObject *__pyx_pf_46_cython_magic_712938bcc9bb229d5c24243ea2356784_mande
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple_);
   <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple_);
 /* … */
-  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_46_cython_magic_712938bcc9bb229d5c24243ea2356784_1mandel_cython, NULL, __pyx_n_s_cython_magic_712938bcc9bb229d5c);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)</span>
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_46_cython_magic_d23bbee03fe218b31f238587887680b1_1mandel_cython, NULL, __pyx_n_s_cython_magic_d23bbee03fe218b31f);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_mandel_cython, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 2, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
-</pre><pre class="cython line score-0">&#xA0;<span class="">03</span>:     <span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. </span></pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">03</span>: <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. </span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">04</span>: <span class="sd">    </span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">05</span>: <span class="sd">    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum </span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">06</span>: <span class="sd">    number of iterations.</span></pre>
@@ -1880,7 +1880,7 @@ static PyObject *__pyx_pf_46_cython_magic_712938bcc9bb229d5c24243ea2356784_mande
 <h2>Typing Variables<a class="headerlink" href="#typing-variables" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
 
 def mandel_cython_var_typed(constant, max_iterations=50):
     &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. 
@@ -1914,13 +1914,13 @@ assert mandel_cython_var_typed(0.5) == 5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-[[mandel_cython_var_typed(x + 1j * y) for x in xs] for y in ys]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel_cython_var_typed</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>241 ms ± 5.64 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211 ms ± 739 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -1930,7 +1930,7 @@ assert mandel_cython_var_typed(0.5) == 5
 <h2>Typing Function Parameters and Return Values<a class="headerlink" href="#typing-function-parameters-and-return-values" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
 
 cpdef int mandel_cython_func_typed(double complex constant, int max_iterations=50):
     &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. 
@@ -1964,13 +1964,13 @@ assert mandel_cython_func_typed(0.5) == 5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-[[mandel_cython_func_typed(x + 1j * y) for x in xs] for y in ys]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel_cython_func_typed</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57.3 ms ± 1.55 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45.5 ms ± 26.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1981,17 +1981,17 @@ assert mandel_cython_func_typed(0.5) == 5
 <p>You can use NumPy from Cython exactly the same as in regular Python, but by doing so you are losing potentially high speedups because Cython has support for fast access to NumPy arrays.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-cs_listcomp = [[(x + 1j * y) for x in xs] for y in ys]
-cs = np.asarray(cs_listcomp)
+<span class="n">cs_listcomp</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cs_listcomp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%cython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
 
 import numpy as np
 cimport numpy as np 
@@ -2039,8 +2039,8 @@ assert mandel_cython_numpy(np.asarray([[4 + 1j*0]])) == np.asarray([[0]])
 <p><strong>Both import statements are necessary</strong> in code that uses numpy arrays. The new thing in the code above is declaration of arrays by np.ndarray.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-mandel_cython_numpy(cs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="n">mandel_cython_numpy</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2050,7 +2050,7 @@ mandel_cython_numpy(cs)
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2061,7 +2061,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2072,7 +2072,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2083,7 +2083,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2094,7 +2094,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2105,7 +2105,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2116,7 +2116,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2127,7 +2127,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2138,7 +2138,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2149,7 +2149,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2160,7 +2160,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2171,7 +2171,700 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 </pre></div>
@@ -2184,7 +2877,7 @@ Traceback (most recent call last):
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2195,7 +2888,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2206,7 +2899,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2217,7 +2910,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2228,7 +2921,7 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
@@ -2239,710 +2932,13 @@ TypeError: only size-1 arrays can be converted to Python scalars
 <span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_7ba72c4670c6c60abeecd028b4474a58.mandel_cython_numpy&#39;
 Traceback (most recent call last):
   File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
 TypeError: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_c49b71403e156475009052dae7254ce8.mandel_cython_numpy&#39;
-Traceback (most recent call last):
-  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
-TypeError: only size-1 arrays can be converted to Python scalars
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99.8 ms ± 1.07 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.4 ms ± 780 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>

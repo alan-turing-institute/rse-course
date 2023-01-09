@@ -1136,11 +1136,11 @@ in theory, you only ever need functions with <strong>one</strong> argument, even
 <p>Let’s define a program to add two numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def add(a, b):
-    return a + b
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
 
-add(5, 6)
+<span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1156,11 +1156,11 @@ of functional programming. Let’s start with a program which just adds five to
 something:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def add_five(a):
-    return a + 5
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_five</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">5</span>
 
 
-add_five(6)
+<span class="n">add_five</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1176,15 +1176,15 @@ function which returns these add_N() functions.</p>
 <p>Let’s start with the easy case: a function which returns a function which adds 5 to something:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def generate_five_adder():
-    def _five_adder(a):
-        return a + 5
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_five_adder</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">_five_adder</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">5</span>
 
-    return _five_adder
+    <span class="k">return</span> <span class="n">_five_adder</span>
 
 
-coolfunction = generate_five_adder()
-coolfunction(7)
+<span class="n">coolfunction</span> <span class="o">=</span> <span class="n">generate_five_adder</span><span class="p">()</span>
+<span class="n">coolfunction</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1197,17 +1197,17 @@ coolfunction(7)
 <p>OK, so what happened there? Well, we defined a function <strong>inside</strong> the other function. We can always do that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def thirty_function():
-    def times_three(a):
-        return a * 3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">thirty_function</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">times_three</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">3</span>
 
-    def add_seven(a):
-        return a + 7
+    <span class="k">def</span> <span class="nf">add_seven</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">7</span>
 
-    return times_three(add_seven(3))
+    <span class="k">return</span> <span class="n">times_three</span><span class="p">(</span><span class="n">add_seven</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
 
-thirty_function()
+<span class="n">thirty_function</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1220,7 +1220,7 @@ thirty_function()
 <p>When we do this, the functions enclosed inside the outer function are <strong>local</strong> functions, and can’t be seen outside:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>add_seven
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_seven</span>
 </pre></div>
 </div>
 </div>
@@ -1240,34 +1240,34 @@ in python. A function is just a variable which can have () put after it to call
 the code!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(thirty_function)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">thirty_function</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function thirty_function at 0x7fd7b0e26820&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function thirty_function at 0x7fbaf03c3160&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = [thirty_function, add_five, add]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">thirty_function</span><span class="p">,</span> <span class="n">add_five</span><span class="p">,</span> <span class="n">add</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for fun in x:
-    print(fun)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fun</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function thirty_function at 0x7fd7b0e26820&gt;
-&lt;function add_five at 0x7fd7b0e269d0&gt;
-&lt;function add at 0x7fd7b0e26670&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function thirty_function at 0x7fbaf03c3160&gt;
+&lt;function add_five at 0x7fbaf03c3b80&gt;
+&lt;function add at 0x7fbaf03c38b0&gt;
 </pre></div>
 </div>
 </div>
@@ -1275,22 +1275,22 @@ the code!</p>
 <p>And we know that one of the things we can do with a variable is <code class="docutils literal notranslate"><span class="pre">return</span></code> it. So we can return a function, and then call it outside:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def deferred_greeting():
-    def greet():
-        print(&quot;Hello&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">deferred_greeting</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">greet</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
 
-    return greet
+    <span class="k">return</span> <span class="n">greet</span>
 
 
-friendlyfunction = deferred_greeting()
+<span class="n">friendlyfunction</span> <span class="o">=</span> <span class="n">deferred_greeting</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Do something else
-print(&quot;Just passing the time...&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do something else</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Just passing the time...&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1302,8 +1302,8 @@ print(&quot;Just passing the time...&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># OK, Go!
-friendlyfunction()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># OK, Go!</span>
+<span class="n">friendlyfunction</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1316,21 +1316,21 @@ friendlyfunction()
 <p>So now, to finish this, we just need to return a function to add an arbitrary amount:</p>
 <div id="generate_adder"></div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def generate_adder(increment):
-    def _adder(a):
-        return a + increment
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_adder</span><span class="p">(</span><span class="n">increment</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_adder</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">increment</span>
 
-    return _adder
+    <span class="k">return</span> <span class="n">_adder</span>
 
 
-add_3 = generate_adder(3)
+<span class="n">add_3</span> <span class="o">=</span> <span class="n">generate_adder</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>add_3(9)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_3</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1343,7 +1343,7 @@ add_3 = generate_adder(3)
 <p>We can make this even prettier: let’s make another variable pointing to our generate_adder() function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>add = generate_adder
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add</span> <span class="o">=</span> <span class="n">generate_adder</span>
 </pre></div>
 </div>
 </div>
@@ -1351,7 +1351,7 @@ add_3 = generate_adder(3)
 <p>And now we can do the real magic:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>add(8)(5)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="mi">8</span><span class="p">)(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1372,14 +1372,14 @@ add_3 = generate_adder(3)
 <p>You can close over global module variables as well:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>name = &quot;Eric&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Eric&quot;</span>
 
 
-def greet():
-    print(&quot;Hello, &quot;, name)
+<span class="k">def</span> <span class="nf">greet</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 
-greet()
+<span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1392,9 +1392,9 @@ greet()
 <p>And note that the closure stores a reference to the variable in the surrounding scope: (“Late Binding”)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>name = &quot;John&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>
 
-greet()
+<span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1410,9 +1410,9 @@ greet()
 <p>We often want to apply a function to each variable in an array, to return a new array. We can do this with a list comprehension:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>numbers = range(10)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
-[add_five(i) for i in numbers]
+<span class="p">[</span><span class="n">add_five</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1425,7 +1425,7 @@ greet()
 <p>But this is sufficiently common that there’s a quick built-in:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(map(add_five, numbers))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">add_five</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1445,20 +1445,20 @@ science” explosion.</p>
 <p>We very often want to loop with some kind of accumulator (an intermediate result that we update), such as when finding a sum:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def summer(data):
-    total = 0.0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">summer</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-    for x in data:
-        total += x
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">x</span>
 
-    return total
+    <span class="k">return</span> <span class="n">total</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>summer(range(10))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summer</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1471,25 +1471,25 @@ science” explosion.</p>
 <p>or finding a maximum:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sys
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 
-def my_max(data):
-    # Start with the smallest possible number
-    highest = -sys.float_info.max
+<span class="k">def</span> <span class="nf">my_max</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Start with the smallest possible number</span>
+    <span class="n">highest</span> <span class="o">=</span> <span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span>
 
-    for x in data:
-        if x &gt; highest:
-            highest = x
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">highest</span><span class="p">:</span>
+            <span class="n">highest</span> <span class="o">=</span> <span class="n">x</span>
 
-    return highest
+    <span class="k">return</span> <span class="n">highest</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>my_max([2, 5, 10, -11, -5])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_max</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1501,7 +1501,7 @@ def my_max(data):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>-sys.float_info.max
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span>
 </pre></div>
 </div>
 </div>
@@ -1516,25 +1516,25 @@ and the result is updated with some operation, can be gathered together as a
 functional program, taking in (as an argument) the operation to be used to combine results:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def accumulate(operation, data, initial):
-    accumulator = initial
-    for x in data:
-        accumulator = operation(accumulator, x)
-    return accumulator
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">accumulate</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">initial</span><span class="p">):</span>
+    <span class="n">accumulator</span> <span class="o">=</span> <span class="n">initial</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">accumulator</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="n">accumulator</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">accumulator</span>
 
 
-def my_sum(data):
-    def _add(a, b):
-        return a + b
+<span class="k">def</span> <span class="nf">my_sum</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
-    return accumulate(_add, data, 0)
+    <span class="k">return</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">_add</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>my_sum(range(5))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1546,17 +1546,17 @@ def my_sum(data):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def bigger(a, b):
-    if b &gt; a:
-        return b
-    return a
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bigger</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">a</span>
 
 
-def my_max(data):
-    return accumulate(bigger, data, -sys.float_info.max)
+<span class="k">def</span> <span class="nf">my_max</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">bigger</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
 
 
-my_max([2, 5, 10, -11, -5])
+<span class="n">my_max</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1571,14 +1571,14 @@ computing that it’s usually in standard libraries for languages which allow
 functional programming:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from functools import reduce
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
 
 
-def my_max(data):
-    return reduce(bigger, data, -sys.float_info.max)
+<span class="k">def</span> <span class="nf">my_max</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">bigger</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
 
 
-my_max([2, 5, 10, -11, -5])
+<span class="n">my_max</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1612,21 +1612,21 @@ O() notation when we think about programming for performance.</p>
 <p>When doing functional programming, we often want to be able to define a function on the fly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def most_Cs_in_any_sequence(sequences):
-    def count_Cs(sequence):
-        return sequence.count(&quot;C&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">most_Cs_in_any_sequence</span><span class="p">(</span><span class="n">sequences</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">count_Cs</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
 
-    counts = map(count_Cs, sequences)
-    return max(counts)
-
-
-def most_Gs_in_any_sequence(sequences):
-    return max(map(lambda sequence: sequence.count(&quot;G&quot;), sequences))
+    <span class="n">counts</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">count_Cs</span><span class="p">,</span> <span class="n">sequences</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
 
 
-data = [&quot;CGTA&quot;, &quot;CGGGTAAACG&quot;, &quot;GATTACA&quot;]
+<span class="k">def</span> <span class="nf">most_Gs_in_any_sequence</span><span class="p">(</span><span class="n">sequences</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sequence</span><span class="p">:</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;G&quot;</span><span class="p">),</span> <span class="n">sequences</span><span class="p">))</span>
 
-most_Gs_in_any_sequence(data)
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CGTA&quot;</span><span class="p">,</span> <span class="s2">&quot;CGGGTAAACG&quot;</span><span class="p">,</span> <span class="s2">&quot;GATTACA&quot;</span><span class="p">]</span>
+
+<span class="n">most_Gs_in_any_sequence</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1639,11 +1639,11 @@ most_Gs_in_any_sequence(data)
 <p>The syntax here means that these two definitions are identical:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>func_name = lambda a, b, c: a + b + c
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func_name</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
 
 
-def func_name(a, b, c):
-    return a + b + c
+<span class="k">def</span> <span class="nf">func_name</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
 </pre></div>
 </div>
 </div>
@@ -1651,11 +1651,11 @@ def func_name(a, b, c):
 <p>The <strong>lambda</strong> keyword defines an “anonymous” function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def most_of_given_base_in_any_sequence(sequences, base):
-    return max(map(lambda sequence: sequence.count(base), sequences))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">most_of_given_base_in_any_sequence</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sequence</span><span class="p">:</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">base</span><span class="p">),</span> <span class="n">sequences</span><span class="p">))</span>
 
 
-most_of_given_base_in_any_sequence(data, &quot;A&quot;)
+<span class="n">most_of_given_base_in_any_sequence</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1669,8 +1669,8 @@ most_of_given_base_in_any_sequence(data, &quot;A&quot;)
 <p>To double all elements in an array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data = range(10)
-list(map(lambda x: 2 * x, data))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1682,7 +1682,7 @@ list(map(lambda x: 2 * x, data))
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[2 * x for x in data]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1695,11 +1695,11 @@ list(map(lambda x: 2 * x, data))
 <p>Similarly, to find the maximum value in a sequence:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def my_max(data):
-    return reduce(lambda a, b: a if a &gt; b else b, data, -sys.float_info.max)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_max</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="k">else</span> <span class="n">b</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
 
 
-my_max([2, 5, 10, -11, -5])
+<span class="n">my_max</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1718,27 +1718,27 @@ is the application of a numerical method to a function.</p>
 <p>We will be using this to find the roots of the function <span class="math notranslate nohighlight">\(f(x) = x^2 - x\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from matplotlib import pyplot as plt
-from numpy import linspace, zeros
-from scipy.optimize import newton
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">zeros</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton</span>
 
-solve_me = lambda x: x**2 - x
+<span class="n">solve_me</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span>
 
-for x0 in [2, 0.2]:
-    answer = newton(solve_me, x0)
-    print(f&quot;Starting from {x0}, the root I found is {answer}&quot;)
+<span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">solve_me</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting from </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s2">, the root I found is </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-xs = linspace(-1, 2, 50)
-solved = [xs, list(map(solve_me, xs)), xs, zeros(len(xs))]
+<span class="n">xs</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">solved</span> <span class="o">=</span> <span class="p">[</span><span class="n">xs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">solve_me</span><span class="p">,</span> <span class="n">xs</span><span class="p">)),</span> <span class="n">xs</span><span class="p">,</span> <span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">))]</span>
 
-plt.plot(*solved)
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">solved</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1747,8 +1747,8 @@ plt.plot(*solved)
 Starting from 0.2, the root I found is -3.441905100203782e-21
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd7799621f0&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fd779962250&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbabbf4b490&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fbabbf4b4f0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/08_01_functional_programming_71_2.png" src="../_images/08_01_functional_programming_71_2.png" />
@@ -1757,22 +1757,22 @@ Starting from 0.2, the root I found is -3.441905100203782e-21
 <p>Sometimes such tools return another function, for example the derivative of their input function. This is what a naive implementation of that could look like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def derivative_simple(func, eps, at):
-    return (func(at + eps) - func(at)) / eps
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivative_simple</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">at</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">at</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span> <span class="o">-</span> <span class="n">func</span><span class="p">(</span><span class="n">at</span><span class="p">))</span> <span class="o">/</span> <span class="n">eps</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def derivative(func, eps):
-    def _func_derived(x):
-        return (func(x + eps) - func(x)) / eps
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivative</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_func_derived</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span> <span class="o">-</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">eps</span>
 
-    return _func_derived
+    <span class="k">return</span> <span class="n">_func_derived</span>
 
 
-straight = derivative(solve_me, 0.01)
+<span class="n">straight</span> <span class="o">=</span> <span class="n">derivative</span><span class="p">(</span><span class="n">solve_me</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1781,7 +1781,7 @@ straight = derivative(solve_me, 0.01)
 We can verify that our computations are correct, i.e. that the returned function <code class="docutils literal notranslate"><span class="pre">straight</span></code> matches <span class="math notranslate nohighlight">\(f'(x)\)</span>, by checking the value of <code class="docutils literal notranslate"><span class="pre">straight</span></code> at some <span class="math notranslate nohighlight">\(x\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>straight(3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">straight</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1794,9 +1794,9 @@ We can verify that our computations are correct, i.e. that the returned function
 <p>or by plotting it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>derived = (xs, list(map(solve_me, xs)), xs, list(map(derivative(solve_me, 0.01), xs)))
-plt.plot(*derived)
-print(newton(derivative(solve_me, 0.01), 0))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">derived</span> <span class="o">=</span> <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">solve_me</span><span class="p">,</span> <span class="n">xs</span><span class="p">)),</span> <span class="n">xs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">solve_me</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">xs</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">derived</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newton</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">solve_me</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1811,17 +1811,17 @@ print(newton(derivative(solve_me, 0.01), 0))
 <p>For example, the above definition could be replaced by:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import scipy.misc
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.misc</span>
 
 
-def derivative(func):
-    def _func_derived(x):
-        return scipy.misc.derivative(func, x)
+<span class="k">def</span> <span class="nf">derivative</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_func_derived</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">derivative</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 
-    return _func_derived
+    <span class="k">return</span> <span class="n">_func_derived</span>
 
 
-newton(derivative(solve_me), 0)
+<span class="n">newton</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="n">solve_me</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

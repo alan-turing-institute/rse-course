@@ -1072,10 +1072,10 @@ title="Print to PDF"
 <p>We’ve seen that NumPy arrays are really useful. Why wouldn’t we always want to use them for data which is all the same type?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from timeit import repeat
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">repeat</span>
 
-import numpy as np
-from matplotlib import pyplot as plt
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
 </div>
 </div>
@@ -1083,21 +1083,21 @@ from matplotlib import pyplot as plt
 <p>Let’s look at appending data to a NumPy array, compared to a plain Python list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_append_to_ndarray(count):
-    # the function repeat does the same that the `%timeit` magic
-    # but as a function; so we can plot it.
-    return repeat(
-        &quot;np.append(before, [0])&quot;,
-        f&quot;import numpy as np; before=np.ndarray({count})&quot;,
-        number=10000,
-    )
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_append_to_ndarray</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="c1"># the function repeat does the same that the `%timeit` magic</span>
+    <span class="c1"># but as a function; so we can plot it.</span>
+    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span>
+        <span class="s2">&quot;np.append(before, [0])&quot;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;import numpy as np; before=np.ndarray(</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(repeat)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">repeat</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1112,30 +1112,30 @@ repeat(stmt=&#39;pass&#39;, setup=&#39;pass&#39;, timer=&lt;built-in function pe
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def time_append_to_list(count):
-    return repeat(&quot;before.append(0)&quot;, f&quot;before = [0] * {count}&quot;, number=10000)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_append_to_list</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">repeat</span><span class="p">(</span><span class="s2">&quot;before.append(0)&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;before = [0] * </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts = np.arange(1, 100000, 10000)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 
 
-def plot_time(function, counts, title=None, top=None):
-    plt.plot(counts, list(map(function, counts)))
-    plt.ylim(bottom=0, top=top)
-    plt.ylabel(&quot;seconds&quot;)
-    plt.xlabel(&quot;array size&quot;)
-    plt.title(title or function.__name__)
+<span class="k">def</span> <span class="nf">plot_time</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">counts</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;seconds&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;array size&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="n">function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_append_to_list, counts)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_append_to_list</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1145,7 +1145,7 @@ def plot_time(function, counts, title=None, top=None):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_time(time_append_to_ndarray, counts)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_time</span><span class="p">(</span><span class="n">time_append_to_ndarray</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

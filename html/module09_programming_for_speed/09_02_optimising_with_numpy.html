@@ -1093,38 +1093,38 @@ title="Print to PDF"
 <p>First, we want a <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> containing the complex values that we previously used as input to our function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xmin = -1.5
-ymin = -1.0
-xmax = 0.5
-ymax = 1.0
-resolution = 300
-xstep = (xmax - xmin) / resolution
-ystep = (ymax - ymin) / resolution
-xs = [(xmin + xstep * i) for i in range(resolution)]
-ys = [(ymin + ystep * i) for i in range(resolution)]
-# list with complex values
-cs_listcomp = [[(x + y * 1j) for x in xs] for y in ys]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">ystep</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="n">xstep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ymin</span> <span class="o">+</span> <span class="n">ystep</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<span class="c1"># list with complex values</span>
+<span class="n">cs_listcomp</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cs = np.asarray(cs_listcomp)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cs_listcomp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cs.shape
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cs</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1141,24 +1141,24 @@ cs_listcomp = [[(x + y * 1j) for x in xs] for y in ys]
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># we need to make copies of array to avoid overwriting it
-cs_loop = cs.copy()
-cs_numpy = cs.copy()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we need to make copies of array to avoid overwriting it</span>
+<span class="n">cs_loop</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cs_numpy</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-for i in range(cs_loop.shape[0]):
-    for j in range(cs_loop.shape[1]):
-        cs_loop[i][j] = cs_loop[i][j] + 10
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cs_loop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cs_loop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">cs_loop</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">cs_loop</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">10</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>61.7 ms ± 1.33 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>51.4 ms ± 184 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1166,13 +1166,13 @@ for i in range(cs_loop.shape[0]):
 <p>Sometimes, you can use operators such as <code class="docutils literal notranslate"><span class="pre">+</span></code> as if we were dealing with single values. This is because the Numpy ndarrays have overridden the <code class="docutils literal notranslate"><span class="pre">__add__</span></code> operation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-cs_numpy + 10
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="n">cs_numpy</span> <span class="o">+</span> <span class="mi">10</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>149 µs ± 1.27 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>115 µs ± 34.2 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1180,9 +1180,9 @@ cs_numpy + 10
 <p>But most Python functions do not know how to handle multi-dimensional arrays so we’ll use Numpy implementations where they exist.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import math
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 
-math.sqrt(cs)
+<span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1200,7 +1200,7 @@ math.sqrt(cs)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.sqrt(cs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1234,10 +1234,10 @@ math.sqrt(cs)
 <p>Numpy allows us to perform an iteration for our series on all complex values we’re interested in in a single line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>z0 = cs
-z1 = z0 * z0 + cs
-z2 = z1 * z1 + cs
-z3 = z2 * z2 + cs
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z0</span> <span class="o">=</span> <span class="n">cs</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="n">z0</span> <span class="o">*</span> <span class="n">z0</span> <span class="o">+</span> <span class="n">cs</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="n">z1</span> <span class="o">*</span> <span class="n">z1</span> <span class="o">+</span> <span class="n">cs</span>
+<span class="n">z3</span> <span class="o">=</span> <span class="n">z2</span> <span class="o">*</span> <span class="n">z2</span> <span class="o">+</span> <span class="n">cs</span>
 </pre></div>
 </div>
 </div>
@@ -1245,39 +1245,39 @@ z3 = z2 * z2 + cs
 <p>So can we just apply our <code class="docutils literal notranslate"><span class="pre">mandel</span></code> function to the whole matrix?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel(constant, max_iterations=50):
-    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.</span>
 
-    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum
-    number of iterations.
+<span class="sd">    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum</span>
+<span class="sd">    number of iterations.</span>
 
-    Returns the number of iterations.
-    &quot;&quot;&quot;
+<span class="sd">    Returns the number of iterations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    value = 0
+    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
 
-    counter = 0
-    while counter &lt; max_iterations:
-        if abs(value) &gt; 2:
-            break
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">break</span>
 
-        value = (value * value) + constant
+        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">constant</span>
 
-        counter = counter + 1
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
 
-    return counter
+    <span class="k">return</span> <span class="n">counter</span>
 
 
-assert mandel(0) == 50
-assert mandel(3) == 1
-assert mandel(0.5) == 5
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">50</span>
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mandel(cs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mandel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1308,35 +1308,35 @@ Our array has more than one element (300 x 300 elements to be precise), and the 
 <p>What if we just apply the Mandelbrot algorithm without checking for divergence until the end:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel_numpy_explode(constants, max_iterations=50):
-    &quot;&quot;&quot;Has the series diverged after all iterations?
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel_numpy_explode</span><span class="p">(</span><span class="n">constants</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Has the series diverged after all iterations?</span>
 
-    Returns an array with True if the series doesn&#39;t explode and False otherwise.
-    &quot;&quot;&quot;
-    value = np.zeros(constants.shape)
+<span class="sd">    Returns an array with True if the series doesn&#39;t explode and False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-    counter = 0
-    while counter &lt; max_iterations:
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span>
 
-        value = (value * value) + constants
+        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">constants</span>
 
-        counter = counter + 1
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
 
-    return abs(value) &lt; 2
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_numpy_explode = mandel_numpy_explode(cs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_numpy_explode</span> <span class="o">=</span> <span class="n">mandel_numpy_explode</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_17990/3334138926.py:11: RuntimeWarning: overflow encountered in multiply
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_17166/3334138926.py:11: RuntimeWarning: overflow encountered in multiply
   value = (value * value) + constants
-/tmp/ipykernel_17990/3334138926.py:11: RuntimeWarning: invalid value encountered in multiply
+/tmp/ipykernel_17166/3334138926.py:11: RuntimeWarning: invalid value encountered in multiply
   value = (value * value) + constants
 </pre></div>
 </div>
@@ -1351,81 +1351,81 @@ Our array has more than one element (300 x 300 elements to be precise), and the 
 <p>It would be nice if the function returned, as before, the number of iterations that were performed. Let’s modify the function to do exactly that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def mandel_numpy(constants, max_iterations=50):
-    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel_numpy</span><span class="p">(</span><span class="n">constants</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.</span>
 
-    The function stops values from exploding once diverged.
+<span class="sd">    The function stops values from exploding once diverged.</span>
 
-    Returns the number of iterations.
-    &quot;&quot;&quot;
+<span class="sd">    Returns the number of iterations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    value = np.zeros(constants.shape)
-    # An array which keeps track of the first step at which each position diverged
-    diverged_at_count = np.ones(constants.shape) * max_iterations
-    counter = 0
-    while counter &lt; max_iterations:
-        value = value * value + constants
-        diverging = abs(value) &gt; 2
+    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="c1"># An array which keeps track of the first step at which each position diverged</span>
+    <span class="n">diverged_at_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">max_iterations</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span> <span class="o">+</span> <span class="n">constants</span>
+        <span class="n">diverging</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span>
 
-        # Any positions which are:
-        # - diverging
-        # - haven&#39;t diverged before
-        # are diverging for the first time
-        first_diverged_this_time = np.logical_and(
-            diverging, diverged_at_count == max_iterations
-        )
+        <span class="c1"># Any positions which are:</span>
+        <span class="c1"># - diverging</span>
+        <span class="c1"># - haven&#39;t diverged before</span>
+        <span class="c1"># are diverging for the first time</span>
+        <span class="n">first_diverged_this_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+            <span class="n">diverging</span><span class="p">,</span> <span class="n">diverged_at_count</span> <span class="o">==</span> <span class="n">max_iterations</span>
+        <span class="p">)</span>
 
-        # Update diverged_at_count for all positions which first diverged at this step
-        diverged_at_count[first_diverged_this_time] = counter
-        # Reset any divergent values to exactly 2
-        value[diverging] = 2
-        counter = counter + 1
+        <span class="c1"># Update diverged_at_count for all positions which first diverged at this step</span>
+        <span class="n">diverged_at_count</span><span class="p">[</span><span class="n">first_diverged_this_time</span><span class="p">]</span> <span class="o">=</span> <span class="n">counter</span>
+        <span class="c1"># Reset any divergent values to exactly 2</span>
+        <span class="n">value</span><span class="p">[</span><span class="n">diverging</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
 
-    return diverged_at_count
+    <span class="k">return</span> <span class="n">diverged_at_count</span>
 
 
-assert mandel_numpy(np.asarray([0])) == np.asarray([50])
-assert mandel_numpy(np.asarray([4])) == np.asarray([0])
+<span class="k">assert</span> <span class="n">mandel_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">0</span><span class="p">]))</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">50</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">mandel_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">4</span><span class="p">]))</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%timeit
-mandel_numpy(cs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="n">mandel_numpy</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>90.1 ms ± 709 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30.9 ms ± 57.3 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>result_numpy = mandel_numpy(cs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_numpy</span> <span class="o">=</span> <span class="n">mandel_numpy</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-plt.set_cmap(&quot;cividis&quot;)
-plt.xlabel(&quot;Real&quot;)
-plt.ylabel(&quot;Imaginary&quot;)
-plt.imshow(
-    result_numpy, interpolation=&quot;none&quot;, extent=[xmin, xmax, ymin, ymax], origin=&quot;lower&quot;
-)
-plt.colorbar()
+<span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s2">&quot;cividis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Imaginary&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">result_numpy</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f32f5959fa0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f07ca0db460&gt;
 </pre></div>
 </div>
 <img alt="../_images/09_02_optimising_with_numpy_33_1.png" src="../_images/09_02_optimising_with_numpy_33_1.png" />

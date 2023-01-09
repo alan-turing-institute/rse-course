@@ -1119,7 +1119,7 @@ Structured data formats like JSON, YAML, and XML are designed for this.</p>
 looks a bit like a Javascript (or Python) data literal.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import json
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 </pre></div>
 </div>
 </div>
@@ -1129,10 +1129,10 @@ looks a bit like a Javascript (or Python) data literal.</p>
 <p>To save a dictionary as a json file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>example_dictionary = {&quot;somekey&quot;: [&quot;a list&quot;, &quot;with values&quot;, &quot;for json&quot;]}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;somekey&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a list&quot;</span><span class="p">,</span> <span class="s2">&quot;with values&quot;</span><span class="p">,</span> <span class="s2">&quot;for json&quot;</span><span class="p">]}</span>
 
-with open(&quot;myfile.json&quot;, &quot;w&quot;) as f:
-    json.dump(example_dictionary, f)
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">example_dictionary</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1140,15 +1140,15 @@ with open(&quot;myfile.json&quot;, &quot;w&quot;) as f:
 <p>And read in the data back in from the file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;myfile.json&quot;, &quot;r&quot;) as f:
-    my_json_data = json.load(f)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>my_json_data
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_json_data</span>
 </pre></div>
 </div>
 </div>
@@ -1160,7 +1160,7 @@ with open(&quot;myfile.json&quot;, &quot;w&quot;) as f:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>my_json_data[&quot;somekey&quot;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_json_data</span><span class="p">[</span><span class="s2">&quot;somekey&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1185,11 +1185,11 @@ with open(&quot;myfile.json&quot;, &quot;w&quot;) as f:
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile myfile.yaml
-somekey:
-    - a list # Look, this is a list
-    - with values
-    - for yaml
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> myfile.yaml
+<span class="n">somekey</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">a</span> <span class="nb">list</span> <span class="c1"># Look, this is a list</span>
+    <span class="o">-</span> <span class="k">with</span> <span class="n">values</span>
+    <span class="o">-</span> <span class="k">for</span> <span class="n">yaml</span>
 </pre></div>
 </div>
 </div>
@@ -1201,16 +1201,16 @@ somekey:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import yaml  # This may need installed as pyyaml
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>  <span class="c1"># This may need installed as pyyaml</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;myfile.yaml&quot;) as myfile:
-    my_yaml_data = yaml.safe_load(myfile)
-print(my_yaml_data)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myfile</span><span class="p">:</span>
+    <span class="n">my_yaml_data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">myfile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_yaml_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1228,7 +1228,7 @@ of Anaconda and Canopy), so some people still prefer JSON for its universality.<
 you can control this choice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(yaml.safe_dump(my_yaml_data, default_flow_style=True))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">my_yaml_data</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1240,7 +1240,7 @@ you can control this choice:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(yaml.safe_dump(my_yaml_data, default_flow_style=False))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">my_yaml_data</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1258,8 +1258,8 @@ you can control this choice:</p>
 <p>In addition to saving a yaml file via cell magics, they can also be written:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;myotherfile.yml&quot;, &quot;w&quot;) as f:
-    yaml.safe_dump(my_yaml_data, f, default_flow_style=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.yml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">my_yaml_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1271,8 +1271,8 @@ you can control this choice:</p>
 Here we are taking the data we read in for the JSON example and saving it as a yaml file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;json_to_yaml.yaml&quot;, &quot;w&quot;) as f:
-    yaml.safe_dump(my_json_data, f, default_flow_style=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;json_to_yaml.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">my_json_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1280,10 +1280,10 @@ Here we are taking the data we read in for the JSON example and saving it as a y
 <p>You can compare the original json file to the json-data-saved-as-yaml either when loaded….</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># The original json file
-with open(&quot;myfile.json&quot;, &quot;r&quot;) as f:
-    mydataasstring = f.read()
-print(json.loads(mydataasstring))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The original json file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">mydataasstring</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">mydataasstring</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1295,10 +1295,10 @@ print(json.loads(mydataasstring))
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># The data from the json file saved as a yaml then read in
-with open(&quot;json_to_yaml.yaml&quot;) as f:
-    my_json_yaml_data = yaml.safe_load(f)
-print(my_json_yaml_data)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The data from the json file saved as a yaml then read in</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;json_to_yaml.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">my_json_yaml_data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_json_yaml_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1311,7 +1311,7 @@ print(my_json_yaml_data)
 <p>To how they appear in their respective file formats</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 #%%cmd (windows)
 cat &#39;myfile.json&#39; # The original json file
 </pre></div>
@@ -1325,7 +1325,7 @@ cat &#39;myfile.json&#39; # The original json file
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 #%%cmd (windows)
 cat &#39;json_to_yaml.yaml&#39; # The data from the json file saved as a yaml
 </pre></div>

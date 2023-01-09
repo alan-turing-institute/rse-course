@@ -1103,15 +1103,15 @@ title="Print to PDF"
 <p>We use <code class="docutils literal notranslate"><span class="pre">for</span></code> … <code class="docutils literal notranslate"><span class="pre">in</span></code> to “iterate” over lists:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mylist = [3, 7, 15, 2]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for whatever in mylist:
-    print(whatever**2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">whatever</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">whatever</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1130,18 +1130,18 @@ title="Print to PDF"
 <p>Any sequence type is iterable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>vowels = &quot;aeiou&quot;
-sarcasm = []
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vowels</span> <span class="o">=</span> <span class="s2">&quot;aeiou&quot;</span>
+<span class="n">sarcasm</span> <span class="o">=</span> <span class="p">[]</span>
 
-for letter in &quot;Okay&quot;:
-    if letter.lower() in vowels:
-        repetition = 3
-    else:
-        repetition = 1
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="s2">&quot;Okay&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">letter</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">vowels</span><span class="p">:</span>
+        <span class="n">repetition</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">repetition</span> <span class="o">=</span> <span class="mi">1</span>
 
-    sarcasm.append(letter * repetition)
+    <span class="n">sarcasm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">letter</span> <span class="o">*</span> <span class="n">repetition</span><span class="p">)</span>
 
-&quot;&quot;.join(sarcasm)
+<span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sarcasm</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1157,11 +1157,11 @@ for letter in &quot;Okay&quot;:
 <p>All sequences are iterables. Some iterables (things you can <code class="docutils literal notranslate"><span class="pre">for</span></code> loop over) are not sequences (things with you can do <code class="docutils literal notranslate"><span class="pre">x[5]</span></code> to), for example sets and dictionaries.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>current_year = 2022
-founded = {&quot;Barack Obama&quot;: 1961, &quot;UCL&quot;: 1826, &quot;The Alan Turing Institute&quot;: 2015}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">current_year</span> <span class="o">=</span> <span class="mi">2022</span>
+<span class="n">founded</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Barack Obama&quot;</span><span class="p">:</span> <span class="mi">1961</span><span class="p">,</span> <span class="s2">&quot;UCL&quot;</span><span class="p">:</span> <span class="mi">1826</span><span class="p">,</span> <span class="s2">&quot;The Alan Turing Institute&quot;</span><span class="p">:</span> <span class="mi">2015</span><span class="p">}</span>
 
-for thing in founded:
-    print(f&quot;In {current_year} {thing} is {current_year - founded[thing]} years old.&quot;)
+<span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="n">founded</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;In </span><span class="si">{</span><span class="n">current_year</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">thing</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">current_year</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">founded</span><span class="p">[</span><span class="n">thing</span><span class="p">]</span><span class="si">}</span><span class="s2"> years old.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1180,15 +1180,15 @@ In 2022 The Alan Turing Institute is 7 years old.
 <p>Unpacking can be useful with iteration:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>triples = [[4, 11, 15], [39, 4, 18]]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triples</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">18</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for whatever in triples:
-    print(whatever)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">whatever</span> <span class="ow">in</span> <span class="n">triples</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">whatever</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1201,8 +1201,8 @@ In 2022 The Alan Turing Institute is 7 years old.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for first, middle, last in triples:
-    print(middle)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="n">triples</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1215,9 +1215,9 @@ In 2022 The Alan Turing Institute is 7 years old.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># A reminder that the words you use for variable names are arbitrary:
-for hedgehog, badger, fox in triples:
-    print(badger)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A reminder that the words you use for variable names are arbitrary:</span>
+<span class="k">for</span> <span class="n">hedgehog</span><span class="p">,</span> <span class="n">badger</span><span class="p">,</span> <span class="n">fox</span> <span class="ow">in</span> <span class="n">triples</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">badger</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1231,13 +1231,13 @@ for hedgehog, badger, fox in triples:
 <p>for example, to iterate over the items in a dictionary as pairs:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>things = {
-    &quot;James&quot;: [1976, &quot;Kendal&quot;],
-    &quot;UCL&quot;: [1826, &quot;Bloomsbury&quot;],
-    &quot;Cambridge&quot;: [1209, &quot;Cambridge&quot;],
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">things</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;James&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1976</span><span class="p">,</span> <span class="s2">&quot;Kendal&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;UCL&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1826</span><span class="p">,</span> <span class="s2">&quot;Bloomsbury&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Cambridge&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1209</span><span class="p">,</span> <span class="s2">&quot;Cambridge&quot;</span><span class="p">],</span>
+<span class="p">}</span>
 
-print(things.items())
+<span class="nb">print</span><span class="p">(</span><span class="n">things</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1249,8 +1249,8 @@ print(things.items())
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for name, year in founded.items():
-    print(name, &quot;is&quot;, current_year - year, &quot;years old.&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">founded</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">current_year</span> <span class="o">-</span> <span class="n">year</span><span class="p">,</span> <span class="s2">&quot;years old.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1271,12 +1271,12 @@ The Alan Turing Institute is 7 years old.
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for n in range(50):
-    if n == 20:
-        break
-    if n % 2 == 0:
-        continue
-    print(n)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

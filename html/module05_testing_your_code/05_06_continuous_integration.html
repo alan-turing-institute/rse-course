@@ -1110,7 +1110,7 @@ title="Print to PDF"
 <p>Try running the code below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 rm -rf continuous_int
 mkdir continuous_int
 touch continuous_int/__init__.py
@@ -1120,15 +1120,15 @@ touch continuous_int/__init__.py
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile continuous_int/test_demo.py
-import sys
-import re
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> continuous_int/test_demo.py
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
 
-def test_platform():
-    assert re.search(&quot;\d&quot;, sys.platform)
+<span class="k">def</span> <span class="nf">test_platform</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;\d&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">)</span>
 
-def test_replace():
-    assert &quot;&quot;.replace(&quot;&quot;, &quot;A&quot;, 2) == &quot;A&quot;
+<span class="k">def</span> <span class="nf">test_replace</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1140,23 +1140,23 @@ def test_replace():
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 cd continuous_int
 pytest || echo &quot;tests complete&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================= test session starts ==============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.14, pytest-7.2.0, pluggy-1.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>platform linux -- Python 3.8.15, pytest-7.2.0, pluggy-1.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rootdir: /home/runner/work/rse-course/rse-course/module05_testing_your_code/continuous_int
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: pylama-8.4.1, anyio-3.6.2, cov-4.0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plugins: anyio-3.6.2, pylama-8.4.1, cov-4.0.0
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collected 2 items
@@ -1165,7 +1165,7 @@ pytest || echo &quot;tests complete&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py FF                                                          [100%]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py <span class=" -Color -Color-Red">FF                                                          [100%]</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1174,7 +1174,7 @@ pytest || echo &quot;tests complete&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=================================== FAILURES ===================================
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________ test_platform _________________________________
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">________________________________ test_platform _________________________________</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1183,28 +1183,28 @@ pytest || echo &quot;tests complete&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    def test_platform():
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert re.search(&quot;\d&quot;, sys.platform)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert re.search(<span class=" -Color -Color-Yellow">&quot;\d&quot;</span>, sys.platform)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E       AssertionError: assert None
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E       AssertionError: assert None</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +  where None = &lt;function search at 0x7f3e732a3550&gt;(&#39;\\d&#39;, &#39;linux&#39;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E        +  where None = &lt;function search at 0x7fbacbe80550&gt;(&#39;\\d&#39;, &#39;linux&#39;)</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +    where &lt;function search at 0x7f3e732a3550&gt; = re.search
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E        +    where &lt;function search at 0x7fbacbe80550&gt; = re.search</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E        +    and   &#39;linux&#39; = sys.platform
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E        +    and   &#39;linux&#39; = sys.platform</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py:5: AssertionError
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">test_demo.py</span>:5: AssertionError
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________ test_replace _________________________________
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">_________________________________ test_replace _________________________________</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1213,22 +1213,22 @@ pytest || echo &quot;tests complete&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    def test_replace():
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert &quot;&quot;.replace(&quot;&quot;, &quot;A&quot;, 2) == &quot;A&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;       assert <span class=" -Color -Color-Yellow">&quot;&quot;</span>.replace(<span class=" -Color -Color-Yellow">&quot;&quot;</span>, <span class=" -Color -Color-Yellow">&quot;A&quot;</span>, 2) == <span class=" -Color -Color-Yellow">&quot;A&quot;</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E       AssertionError: assert &#39;&#39; == &#39;A&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E       AssertionError: assert &#39;&#39; == &#39;A&#39;</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E         - A
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">E         - A</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py:8: AssertionError
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">test_demo.py</span>:8: AssertionError
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=============================== warnings summary ===============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">=============================== warnings summary ===============================</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test_demo.py:5
@@ -1246,28 +1246,28 @@ pytest || echo &quot;tests complete&quot;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=========================== short test summary info ============================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Cyan">=========================== short test summary info ============================</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FAILED test_demo.py::test_platform - AssertionError: assert None
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">FAILED</span> test_demo.py::<span class=" -Color -Color-Bold">test_platform</span> - AssertionError: assert None
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +  where None = &lt;function search at 0x7f3e732a3550&gt;(&#39;\\d&#39;, &#39;linux&#39;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +  where None = &lt;function search at 0x7fbacbe80550&gt;(&#39;\\d&#39;, &#39;linux&#39;)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +    where &lt;function search at 0x7f3e732a3550&gt; = re.search
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +    where &lt;function search at 0x7fbacbe80550&gt; = re.search
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +    and   &#39;linux&#39; = sys.platform
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FAILED test_demo.py::test_replace - AssertionError: assert &#39;&#39; == &#39;A&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">FAILED</span> test_demo.py::<span class=" -Color -Color-Bold">test_replace</span> - AssertionError: assert &#39;&#39; == &#39;A&#39;
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  - A
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================= 2 failed, 1 warning in 0.09s =========================
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">========================= </span><span class=" -Color -Color-Bold -Color-Bold-Red">2 failed</span>, <span class=" -Color -Color-Yellow">1 warning</span><span class=" -Color -Color-Red"> in 0.16s =========================</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tests complete
@@ -1294,7 +1294,7 @@ pytest || echo &quot;tests complete&quot;
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 mkdir -p continuous_int/.github/workflows
 </pre></div>
 </div>

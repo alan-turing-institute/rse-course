@@ -1158,13 +1158,13 @@ title="Print to PDF"
 <p>We’re still in our git working directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-top_dir = os.getcwd()
-git_dir = os.path.join(top_dir, &quot;learning_git&quot;)
-working_dir = os.path.join(git_dir, &quot;git_example&quot;)
-os.chdir(working_dir)
-working_dir
+<span class="n">top_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">git_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_dir</span><span class="p">,</span> <span class="s2">&quot;learning_git&quot;</span><span class="p">)</span>
+<span class="n">working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">git_dir</span><span class="p">,</span> <span class="s2">&quot;git_example&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+<span class="n">working_dir</span>
 </pre></div>
 </div>
 </div>
@@ -1186,7 +1186,7 @@ That is, we want to go back to the change before the current <code class="docuti
 <p>Ok, so now we’d like to undo the nasty commit with the lie about Mount Fictional.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git revert HEAD~
 </pre></div>
 </div>
@@ -1195,10 +1195,10 @@ git revert HEAD~
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-merging test.md
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 78d756d] Revert &quot;Add a lie about a mountain&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 9331a3e] Revert &quot;Add a lie about a mountain&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Date: Thu Dec 1 01:02:37 2022 +0000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Date: Mon Jan 9 12:40:31 2023 +0000
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 2 deletions(-)
@@ -1219,19 +1219,19 @@ git revert HEAD~
 <p>The file should now contain the change to the title, but not the extra line with the lie. Note the log:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git log --date=short
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 78d756df8f4a3536dcecad9ceb019f7cf939565f
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 9331a3e3b358927291b0a842573350ffc2448b5d
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1243,19 +1243,19 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    This reverts commit 4b08e9641312ec77c4c29e79ae725c6ce981c208.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    This reverts commit 6d129c56c474e125589b0e8bd8f6e62383625ca3.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 659807ad304a971ca448ad343c2d266f638b8ae3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit e7d47b7ac09c1948e90384a0d49ad297ee76e31c
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1267,13 +1267,13 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 4b08e9641312ec77c4c29e79ae725c6ce981c208
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 6d129c56c474e125589b0e8bd8f6e62383625ca3
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1285,13 +1285,13 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 91adc5252be76ebf28f91344486738ab6d7a12c3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 7fedcd44a53f012ef40689b3949c446604e1993b
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1317,12 +1317,12 @@ This is nice: you have a record of the full story, including the mistake and its
 <h2>A new lie<a class="headerlink" href="#a-new-lie" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile test.md
-Mountains and Hills in the UK
-===================
-Engerland is not very mountainous.
-But has some tall hills, and maybe a
-mountain or two depending on your definition.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test.md
+<span class="n">Mountains</span> <span class="ow">and</span> <span class="n">Hills</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">UK</span>
+<span class="o">===================</span>
+<span class="n">Engerland</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">very</span> <span class="n">mountainous</span><span class="o">.</span>
+<span class="n">But</span> <span class="n">has</span> <span class="n">some</span> <span class="n">tall</span> <span class="n">hills</span><span class="p">,</span> <span class="ow">and</span> <span class="n">maybe</span> <span class="n">a</span>
+<span class="n">mountain</span> <span class="ow">or</span> <span class="n">two</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">your</span> <span class="n">definition</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -1334,7 +1334,7 @@ mountain or two depending on your definition.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 cat test.md
 </pre></div>
 </div>
@@ -1359,7 +1359,7 @@ cat test.md
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git diff
 </pre></div>
 </div>
@@ -1405,13 +1405,13 @@ git diff
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git commit -am &quot;Add a silly spelling&quot;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main 17be00e] Add a silly spelling
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[main cc8cd90] Add a silly spelling
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1 file changed, 3 insertions(+), 2 deletions(-)
@@ -1421,19 +1421,19 @@ git commit -am &quot;Add a silly spelling&quot;
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git log --date=short
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 17be00eec949f77dc8a4be40cebe70e0fcf5fc97
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit cc8cd9004f35c6ae2ef8ea7d70fec92757bdfc3d
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1445,13 +1445,13 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 78d756df8f4a3536dcecad9ceb019f7cf939565f
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 9331a3e3b358927291b0a842573350ffc2448b5d
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1463,19 +1463,19 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    This reverts commit 4b08e9641312ec77c4c29e79ae725c6ce981c208.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    This reverts commit 6d129c56c474e125589b0e8bd8f6e62383625ca3.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 659807ad304a971ca448ad343c2d266f638b8ae3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit e7d47b7ac09c1948e90384a0d49ad297ee76e31c
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1487,13 +1487,13 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 4b08e9641312ec77c4c29e79ae725c6ce981c208
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 6d129c56c474e125589b0e8bd8f6e62383625ca3
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1505,13 +1505,13 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 91adc5252be76ebf28f91344486738ab6d7a12c3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 7fedcd44a53f012ef40689b3949c446604e1993b
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1527,7 +1527,7 @@ git log --date=short
 <h2>Using reset to rewrite history<a class="headerlink" href="#using-reset-to-rewrite-history" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git reset HEAD~
 </pre></div>
 </div>
@@ -1543,19 +1543,19 @@ git reset HEAD~
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git log --date=short
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 78d756df8f4a3536dcecad9ceb019f7cf939565f
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 9331a3e3b358927291b0a842573350ffc2448b5d
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1567,19 +1567,19 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    This reverts commit 4b08e9641312ec77c4c29e79ae725c6ce981c208.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    This reverts commit 6d129c56c474e125589b0e8bd8f6e62383625ca3.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 659807ad304a971ca448ad343c2d266f638b8ae3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit e7d47b7ac09c1948e90384a0d49ad297ee76e31c
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1591,13 +1591,13 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 4b08e9641312ec77c4c29e79ae725c6ce981c208
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 6d129c56c474e125589b0e8bd8f6e62383625ca3
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1609,13 +1609,13 @@ git log --date=short
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 91adc5252be76ebf28f91344486738ab6d7a12c3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>commit 7fedcd44a53f012ef40689b3949c446604e1993b
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Author: Turing Developer &lt;developer@example.com&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2022-12-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date:   2023-01-09
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1636,7 +1636,7 @@ git log --date=short
 <p>When <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> removes commits, it leaves your working directory unchanged – so you can keep the work in the bad change if you want.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 cat test.md
 </pre></div>
 </div>
@@ -1663,7 +1663,7 @@ cat test.md
 <p>I’m going to get rid of the silly spelling, and I didn’t do <code class="docutils literal notranslate"><span class="pre">--hard</span></code>, so I’ll reset the file from the working directory to be the same as in the index:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 git checkout test.md
 </pre></div>
 </div>
@@ -1676,7 +1676,7 @@ git checkout test.md
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%bash
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 cat test.md
 </pre></div>
 </div>
@@ -1699,18 +1699,18 @@ cat test.md
 <p>We can add this to our diagram:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>message = &quot;&quot;&quot;
-Working Directory -&gt; Staging Area : git add
-Staging Area -&gt; Local Repository : git commit
-Working Directory -&gt; Local Repository : git commit -a
-Local Repository -&gt; Working Directory : git checkout
-Local Repository -&gt; Staging Area : git reset
-Local Repository -&gt; Working Directory: git reset --hard
-&quot;&quot;&quot;
-from wsd import wsd
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Working Directory -&gt; Staging Area : git add</span>
+<span class="s2">Staging Area -&gt; Local Repository : git commit</span>
+<span class="s2">Working Directory -&gt; Local Repository : git commit -a</span>
+<span class="s2">Local Repository -&gt; Working Directory : git checkout</span>
+<span class="s2">Local Repository -&gt; Staging Area : git reset</span>
+<span class="s2">Local Repository -&gt; Working Directory: git reset --hard</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">wsd</span> <span class="kn">import</span> <span class="n">wsd</span>
 
-%matplotlib inline
-wsd(message)
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">wsd</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1721,36 +1721,36 @@ wsd(message)
 <p>We can add it to Jim’s story:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>message = &quot;&quot;&quot;
-participant &quot;Jim&#39;s repo&quot; as R
-participant &quot;Jim&#39;s index&quot; as I
-participant Jim as J
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">participant &quot;Jim&#39;s repo&quot; as R</span>
+<span class="s2">participant &quot;Jim&#39;s index&quot; as I</span>
+<span class="s2">participant Jim as J</span>
 
-note right of J: git revert HEAD~
+<span class="s2">note right of J: git revert HEAD~</span>
 
-J-&gt;R: Add new commit reversing change
-R-&gt;I: update staging area to reverted version
-I-&gt;J: update file to reverted version
-
-
-
-note right of J: vim test.md
-note right of J: git commit -am &quot;Add another mistake&quot;
-J-&gt;I: Add mistake
-I-&gt;R: Add mistake
-
-note right of J: git reset HEAD~
-
-J-&gt;R: Delete mistaken commit
-R-&gt;I: Update staging area to reset commit
-
-note right of J: git checkout test.md
-
-I-&gt;J: Update file to reverted version
+<span class="s2">J-&gt;R: Add new commit reversing change</span>
+<span class="s2">R-&gt;I: update staging area to reverted version</span>
+<span class="s2">I-&gt;J: update file to reverted version</span>
 
 
-&quot;&quot;&quot;
-wsd(message)
+
+<span class="s2">note right of J: vim test.md</span>
+<span class="s2">note right of J: git commit -am &quot;Add another mistake&quot;</span>
+<span class="s2">J-&gt;I: Add mistake</span>
+<span class="s2">I-&gt;R: Add mistake</span>
+
+<span class="s2">note right of J: git reset HEAD~</span>
+
+<span class="s2">J-&gt;R: Delete mistaken commit</span>
+<span class="s2">R-&gt;I: Update staging area to reset commit</span>
+
+<span class="s2">note right of J: git checkout test.md</span>
+
+<span class="s2">I-&gt;J: Update file to reverted version</span>
+
+
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">wsd</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

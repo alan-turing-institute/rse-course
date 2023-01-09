@@ -1204,13 +1204,13 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <p><strong>6.</strong> Install the package in your virtual environment.</p>
 <ul>
 <li><p>⚠️ You might get an error that says something like <code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">Multiple</span> <span class="pre">top-level</span> <span class="pre">packages</span> <span class="pre">discovered</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">flat-layout</span></code>. This is because <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> has detected multiple directories that look like python packages and doesn’t know which one to choose. You should be able to fix this by adding (only) one of these sections to your <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">tool.setuptools</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">packages = [&quot;&lt;my_package_directory&gt;&quot;]</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">tool.setuptools</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">packages = [&quot;&lt;my_package_directory&gt;&quot;]</span>
 </pre></div>
 </div>
 <p><em><strong>or</strong></em></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">tool.setuptools.packages</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">include = [&quot;&lt;my_package_directory&gt;*&quot;]</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">tool.setuptools.packages</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">include = [&quot;&lt;my_package_directory&gt;*&quot;]</span>
 </pre></div>
 </div>
 <p>replacing <code class="docutils literal notranslate"><span class="pre">&lt;my_package_directory&gt;</span></code> with the name of the directory that contains your package (<code class="docutils literal notranslate"><span class="pre">.py</span></code> files)</p>
@@ -1255,25 +1255,25 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <p>The <code class="docutils literal notranslate"><span class="pre">direction</span></code> function determines the direction from grid point <code class="docutils literal notranslate"><span class="pre">a</span></code> to grid point <code class="docutils literal notranslate"><span class="pre">b</span></code> (length two tuples, x and y coordinte) if they are neighbouring points in the grid, or <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def direction(point_a, point_b):
-    &quot;&quot;&quot;
-    Returns the direction from point_a to point_b, or None if they
-    are not neighhbouring grid points.
-    &quot;&quot;&quot;
-    if point_b == point_a:
-        return &quot;nowhere&quot;
-    if point_b[1] == point_a[1]:
-        if point_b[0] == point_a[0] - 1:
-            return &quot;left&quot;
-        if point_b[0] == point_a[0] + 1:
-            return &quot;right&quot;
-    if point_b[0] == point_a[0]:
-        if point_b[1] == point_a[1] - 1:
-            return &quot;up&quot;
-        if point_b[1] == point_a[1] + 1:
-            return &quot;down&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="n">point_a</span><span class="p">,</span> <span class="n">point_b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the direction from point_a to point_b, or None if they</span>
+<span class="sd">    are not neighhbouring grid points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">point_b</span> <span class="o">==</span> <span class="n">point_a</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;nowhere&quot;</span>
+    <span class="k">if</span> <span class="n">point_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">point_a</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">point_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">point_a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;left&quot;</span>
+        <span class="k">if</span> <span class="n">point_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">point_a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;right&quot;</span>
+    <span class="k">if</span> <span class="n">point_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">point_a</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">point_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">point_a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;up&quot;</span>
+        <span class="k">if</span> <span class="n">point_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">point_a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;down&quot;</span>
 
-    return None
+    <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -1281,30 +1281,30 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <p>A <code class="docutils literal notranslate"><span class="pre">Room</span></code> has a location (point) and optionally can link to other <code class="docutils literal notranslate"><span class="pre">Room</span></code>s at neighbouring grid points. :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Room:
-    def __init__(self, point, links=None):
-        self.point = tuple(point)  # grid point of this room
-        self.links = links  # other rooms this rooms connects to
-        self._validate_links()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Room</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">links</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>  <span class="c1"># grid point of this room</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">links</span> <span class="o">=</span> <span class="n">links</span>  <span class="c1"># other rooms this rooms connects to</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_links</span><span class="p">()</span>
 
-    def __contains__(self, point):
-        &quot;&quot;&quot;
-        `(x, y) in room_instance` returns `True` if `room_instance` has a link to
-        a room at point `(x, y)`
-        &quot;&quot;&quot;
-        return point in [link.point for link in self.links]
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        `(x, y) in room_instance` returns `True` if `room_instance` has a link to</span>
+<span class="sd">        a room at point `(x, y)`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">point</span> <span class="ow">in</span> <span class="p">[</span><span class="n">link</span><span class="o">.</span><span class="n">point</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">]</span>
 
-    def _validate_links(self):
-        &quot;&quot;&quot;
-        Verifies all linked rooms are at neighbouring grid points
-        &quot;&quot;&quot;
-        if not self.links:
-            return
-        for link in self.links:
-            if not direction(self.point, link.point):
-                raise ValueError(
-                    f&quot;Invalid link: {link.point} is not connected to {self.point}&quot;
-                )
+    <span class="k">def</span> <span class="nf">_validate_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Verifies all linked rooms are at neighbouring grid points</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">direction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">link</span><span class="o">.</span><span class="n">point</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Invalid link: </span><span class="si">{</span><span class="n">link</span><span class="o">.</span><span class="n">point</span><span class="si">}</span><span class="s2"> is not connected to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1312,42 +1312,42 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <p><code class="docutils literal notranslate"><span class="pre">Rooms</span></code> is a collection of rooms (that must be on a square grid), with each room stored in a dictionary keyed by its <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code> coordinate (point):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Rooms:
-    &quot;&quot;&quot;
-    Collection of rooms
-    &quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Rooms</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Collection of rooms</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    def __init__(self, rooms):
-        # rooms dictionary keyed by (x, y) coordinate (grid cell indices)
-        self.rooms = {r.point: r for r in rooms}
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">):</span>
+        <span class="c1"># rooms dictionary keyed by (x, y) coordinate (grid cell indices)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="p">{</span><span class="n">r</span><span class="o">.</span><span class="n">point</span><span class="p">:</span> <span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">}</span>
 
-    def __iter__(self):
-        &quot;&quot;&quot;
-        Allows Rooms objects to be iterated over (see Module 7)
-        &quot;&quot;&quot;
-        return iter(self.rooms.values())
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Allows Rooms objects to be iterated over (see Module 7)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 
-    def __getitem__(self, point):
-        &quot;&quot;&quot;
-        rooms[(x, y)] will retrieve the room at coordinate (x, y) (where
-        rooms is an instance of the Rooms class)
-        &quot;&quot;&quot;
-        return self.rooms[point]
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        rooms[(x, y)] will retrieve the room at coordinate (x, y) (where</span>
+<span class="sd">        rooms is an instance of the Rooms class)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">[</span><span class="n">point</span><span class="p">]</span>
 
-    def __contains__(self, point):
-        &quot;&quot;&quot;
-        (x, y) in rooms will return True if a room at coordinates (x, y)
-        is in rooms (where rooms is an instance of the Rooms class)
-        &quot;&quot;&quot;
-        return point in self.rooms
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (x, y) in rooms will return True if a room at coordinates (x, y)</span>
+<span class="sd">        is in rooms (where rooms is an instance of the Rooms class)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">point</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span>
 
-    @classmethod
-    def from_list(cls, room_list):
-        rooms = [
-            Room(room[&quot;point&quot;], [Room(link) for link in room[&quot;links&quot;]])
-            for room in room_list
-        ]
-        return cls(rooms)
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">room_list</span><span class="p">):</span>
+        <span class="n">rooms</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Room</span><span class="p">(</span><span class="n">room</span><span class="p">[</span><span class="s2">&quot;point&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">Room</span><span class="p">(</span><span class="n">link</span><span class="p">)</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">room</span><span class="p">[</span><span class="s2">&quot;links&quot;</span><span class="p">]])</span>
+            <span class="k">for</span> <span class="n">room</span> <span class="ow">in</span> <span class="n">room_list</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">rooms</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1358,14 +1358,14 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <p>Treausre has a location (point) and a single character symbol to represent it when printing dungeon maps:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Treasure:
-    def __init__(self, point, symbol):
-        self.point = tuple(point)  # (x, y) grid location of the treasure
-        self.symbol = symbol  # single char symbol to show the treasure on dungeon maps
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Treasure</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>  <span class="c1"># (x, y) grid location of the treasure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>  <span class="c1"># single char symbol to show the treasure on dungeon maps</span>
 
-    @classmethod
-    def from_dict(cls, treasure_dict):
-        return cls(treasure_dict[&quot;point&quot;], treasure_dict[&quot;symbol&quot;])
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">treasure_dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">treasure_dict</span><span class="p">[</span><span class="s2">&quot;point&quot;</span><span class="p">],</span> <span class="n">treasure_dict</span><span class="p">[</span><span class="s2">&quot;symbol&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1376,29 +1376,29 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <p>The <code class="docutils literal notranslate"><span class="pre">Agent</span></code> class stores general properties used by all agents (trolls or adventurers):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Agent:
-    &quot;&quot;&quot;
-    Base functionality to create and load (but not move) an Agent
-    &quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base functionality to create and load (but not move) an Agent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    def __init__(self, point, name, symbol, verbose=True, allow_wait=True, **kwargs):
-        self.point = tuple(point)  # (x, y) grid location of the agent
-        self.name = name  # e.g. adventurer or troll
-        self.symbol = symbol  # single char symbol to show the agent on dungeon maps
-        self.verbose = verbose  # print output on agent behaviour if True
-        self.allow_wait = allow_wait  # allow the agent to move nowhere
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_wait</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>  <span class="c1"># (x, y) grid location of the agent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>  <span class="c1"># e.g. adventurer or troll</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>  <span class="c1"># single char symbol to show the agent on dungeon maps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>  <span class="c1"># print output on agent behaviour if True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_wait</span> <span class="o">=</span> <span class="n">allow_wait</span>  <span class="c1"># allow the agent to move nowhere</span>
 
-    def move(self, rooms):
-        raise NotImplementedError(&quot;Use an Agent base class&quot;)
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Use an Agent base class&quot;</span><span class="p">)</span>
 
-    @classmethod
-    def from_dict(cls, agent_dict):
-        return cls(
-            agent_dict[&quot;point&quot;],
-            agent_dict[&quot;name&quot;],
-            agent_dict[&quot;symbol&quot;],
-            allow_wait=agent_dict[&quot;allow_wait&quot;],
-        )
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">agent_dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">agent_dict</span><span class="p">[</span><span class="s2">&quot;point&quot;</span><span class="p">],</span>
+            <span class="n">agent_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+            <span class="n">agent_dict</span><span class="p">[</span><span class="s2">&quot;symbol&quot;</span><span class="p">],</span>
+            <span class="n">allow_wait</span><span class="o">=</span><span class="n">agent_dict</span><span class="p">[</span><span class="s2">&quot;allow_wait&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1406,31 +1406,31 @@ A <em>troll</em> is also in the dungeon and moves between rooms. If the troll ca
 <p><code class="docutils literal notranslate"><span class="pre">RandomAgent</span></code>s choose to move to a connecting room at random (or stay where they are):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import random
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
 
-class RandomAgent(Agent):
-    &quot;&quot;&quot;
-    Agent that makes random moves
-    &quot;&quot;&quot;
+<span class="k">class</span> <span class="nc">RandomAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Agent that makes random moves</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    def move(self, rooms):
-        if not rooms[self.point].links:
-            # this room isn&#39;t linked to anything, can&#39;t move
-            if self.verbose:
-                print(f&quot;{self.name} is trapped&quot;)
-            return
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rooms</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">]</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+            <span class="c1"># this room isn&#39;t linked to anything, can&#39;t move</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is trapped&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
 
-        # pick a random room to move to
-        options = rooms[self.point].links
-        if self.allow_wait:
-            options.append(self)
-        new_room = random.choice(options)
+        <span class="c1"># pick a random room to move to</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">rooms</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">]</span><span class="o">.</span><span class="n">links</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_wait</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">new_room</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
 
-        if self.verbose:
-            move = direction(self.point, new_room.point)
-            print(f&quot;{self.name} moves {move}&quot;)
-        self.point = new_room.point
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">move</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">new_room</span><span class="o">.</span><span class="n">point</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> moves </span><span class="si">{</span><span class="n">move</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">new_room</span><span class="o">.</span><span class="n">point</span>
 </pre></div>
 </div>
 </div>
@@ -1438,44 +1438,44 @@ class RandomAgent(Agent):
 <p><code class="docutils literal notranslate"><span class="pre">HumanAgent</span></code>s ask the user where to move next:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class HumanAgent(Agent):
-    &quot;&quot;&quot;
-    Agent that prompts the user where to move next
-    &quot;&quot;&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HumanAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Agent that prompts the user where to move next</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    def move(self, rooms):
-        if not rooms:
-            if self.verbose:
-                print(f&quot;{self.name} is trapped&quot;)
-            return
-        # populate movement options depending on available rooms
-        if self.allow_wait:
-            options = [&quot;wait&quot;]
-        else:
-            options = []
-        if (self.point[0] - 1, self.point[1]) in rooms:
-            options.append(&quot;left&quot;)
-        if (self.point[0] + 1, self.point[1]) in rooms:
-            options.append(&quot;right&quot;)
-        if (self.point[0], self.point[1] - 1) in rooms:
-            options.append(&quot;up&quot;)
-        if (self.point[0], self.point[1] + 1) in rooms:
-            options.append(&quot;down&quot;)
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rooms</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is trapped&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="c1"># populate movement options depending on available rooms</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_wait</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;wait&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;up&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;down&quot;</span><span class="p">)</span>
 
-        # prompt user for movement input
-        choice = None
-        while choice not in options:
-            choice = input(f&quot;Where will {self.name} move \n{options}? &quot;)
+        <span class="c1"># prompt user for movement input</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="n">choice</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Where will </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> move </span><span class="se">\n</span><span class="si">{</span><span class="n">options</span><span class="si">}</span><span class="s2">? &quot;</span><span class="p">)</span>
 
-        # move the agent
-        if choice == &quot;left&quot;:
-            self.point = (self.point[0] - 1, self.point[1])
-        elif choice == &quot;right&quot;:
-            self.point = (self.point[0] + 1, self.point[1])
-        elif choice == &quot;up&quot;:
-            self.point = (self.point[0], self.point[1] - 1)
-        elif choice == &quot;down&quot;:
-            self.point = (self.point[0], self.point[1] + 1)
+        <span class="c1"># move the agent</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;down&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1486,135 +1486,135 @@ class RandomAgent(Agent):
 <p><code class="docutils literal notranslate"><span class="pre">Dungeon</span></code> have rooms, a piece of treasure, an adventurer, and a troll, and provide the functionality to update the agents, check whether the treasure or adventurer have found, and to draw a map of the dungeon:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import yaml
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
 
 
-class Dungeon:
-    &quot;&quot;&quot;
-    Dungeon with:
-    - Connected set of rooms on a square grid
-    - The location of some treasure
-    - An adventurer agent with an initial position
-    - A troll agent with an initial position
-    &quot;&quot;&quot;
+<span class="k">class</span> <span class="nc">Dungeon</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Dungeon with:</span>
+<span class="sd">    - Connected set of rooms on a square grid</span>
+<span class="sd">    - The location of some treasure</span>
+<span class="sd">    - An adventurer agent with an initial position</span>
+<span class="sd">    - A troll agent with an initial position</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    def __init__(self, rooms, treasure, adventurer, troll, verbose=True):
-        self.rooms = rooms
-        self.treasure = treasure
-        self.adventurer = adventurer
-        self.troll = troll
-        self.verbose = True
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rooms</span><span class="p">,</span> <span class="n">treasure</span><span class="p">,</span> <span class="n">adventurer</span><span class="p">,</span> <span class="n">troll</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="n">rooms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">treasure</span> <span class="o">=</span> <span class="n">treasure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span> <span class="o">=</span> <span class="n">adventurer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">troll</span> <span class="o">=</span> <span class="n">troll</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
 
-        # the extent of the square grid
-        self.xlim = (
-            min(r.point[0] for r in self.rooms),
-            max(r.point[0] for r in self.rooms),
-        )
-        self.ylim = (
-            min(r.point[1] for r in self.rooms),
-            max(r.point[1] for r in self.rooms),
-        )
+        <span class="c1"># the extent of the square grid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">),</span>
+            <span class="nb">max</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">),</span>
+            <span class="nb">max</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">),</span>
+        <span class="p">)</span>
 
-        self._validate()
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span>
 
-    def _validate(self):
-        if self.treasure.point not in self.rooms:
-            raise ValueError(f&quot;Treasure{self.treasure.point} is not in the dungeon&quot;)
-        if self.adventurer.point not in self.rooms:
-            raise ValueError(
-                f&quot;{self.adventure.name}{self.adventurer.point} is not in the dungeon&quot;
-            )
-        if self.troll.point not in self.rooms:
-            raise ValueError(
-                f&quot;{self.troll.name}{self.troll.point} is not in the dungeon&quot;
-            )
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">treasure</span><span class="o">.</span><span class="n">point</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Treasure</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">treasure</span><span class="o">.</span><span class="n">point</span><span class="si">}</span><span class="s2"> is not in the dungeon&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">point</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">adventure</span><span class="o">.</span><span class="n">name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">point</span><span class="si">}</span><span class="s2"> is not in the dungeon&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">point</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">point</span><span class="si">}</span><span class="s2"> is not in the dungeon&quot;</span>
+            <span class="p">)</span>
 
-    @classmethod
-    def from_file(cls, path):
-        with open(path) as f:
-            spec = yaml.safe_load(f)
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">spec</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
-        rooms = Rooms.from_list(spec[&quot;rooms&quot;])
-        treasure = Treasure.from_dict(spec[&quot;treasure&quot;])
+        <span class="n">rooms</span> <span class="o">=</span> <span class="n">Rooms</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">&quot;rooms&quot;</span><span class="p">])</span>
+        <span class="n">treasure</span> <span class="o">=</span> <span class="n">Treasure</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">&quot;treasure&quot;</span><span class="p">])</span>
 
-        agent_keys = [&quot;adventurer&quot;, &quot;troll&quot;]
-        agents = {}
-        for agent in agent_keys:
-            if spec[agent][&quot;type&quot;] == &quot;random&quot;:
-                agent_class = RandomAgent
-            elif spec[agent][&quot;type&quot;] == &quot;human&quot;:
-                agent_class = HumanAgent
-            else:
-                raise ValueError(f&quot;Unknown agent type {spec[agent][&#39;type&#39;]}&quot;)
-            agents[agent] = agent_class(**spec[agent])
+        <span class="n">agent_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adventurer&quot;</span><span class="p">,</span> <span class="s2">&quot;troll&quot;</span><span class="p">]</span>
+        <span class="n">agents</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="n">agent_keys</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">spec</span><span class="p">[</span><span class="n">agent</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+                <span class="n">agent_class</span> <span class="o">=</span> <span class="n">RandomAgent</span>
+            <span class="k">elif</span> <span class="n">spec</span><span class="p">[</span><span class="n">agent</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;human&quot;</span><span class="p">:</span>
+                <span class="n">agent_class</span> <span class="o">=</span> <span class="n">HumanAgent</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown agent type </span><span class="si">{</span><span class="n">spec</span><span class="p">[</span><span class="n">agent</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">agents</span><span class="p">[</span><span class="n">agent</span><span class="p">]</span> <span class="o">=</span> <span class="n">agent_class</span><span class="p">(</span><span class="o">**</span><span class="n">spec</span><span class="p">[</span><span class="n">agent</span><span class="p">])</span>
 
-        return cls(rooms, treasure, agents[&quot;adventurer&quot;], agents[&quot;troll&quot;])
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">rooms</span><span class="p">,</span> <span class="n">treasure</span><span class="p">,</span> <span class="n">agents</span><span class="p">[</span><span class="s2">&quot;adventurer&quot;</span><span class="p">],</span> <span class="n">agents</span><span class="p">[</span><span class="s2">&quot;troll&quot;</span><span class="p">])</span>
 
-    def update(self):
-        &quot;&quot;&quot;
-        Move the adventurer and the troll
-        &quot;&quot;&quot;
-        self.adventurer.move(self.rooms)
-        self.troll.move(self.rooms)
-        if self.verbose:
-            print()
-            self.draw()
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move the adventurer and the troll</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 
-    def outcome(self):
-        &quot;&quot;&quot;
-        Check whether the adventurer found the treasure or the troll
-        found the adventurer
-        &quot;&quot;&quot;
-        if self.adventurer.point == self.troll.point:
-            return -1
-        if self.adventurer.point == self.treasure.point:
-            return 1
-        return 0
+    <span class="k">def</span> <span class="nf">outcome</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check whether the adventurer found the treasure or the troll</span>
+<span class="sd">        found the adventurer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">point</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">point</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">point</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">treasure</span><span class="o">.</span><span class="n">point</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
-    def set_verbose(self, verbose):
-        &quot;&quot;&quot;Set whether to print output&quot;&quot;&quot;
-        self.verbose = verbose
-        self.adventurer.verbose = verbose
-        self.troll.verbose = verbose
+    <span class="k">def</span> <span class="nf">set_verbose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set whether to print output&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
 
-    def draw(self):
-        &quot;&quot;&quot;Draw a map of the dungeon&quot;&quot;&quot;
-        layout = &quot;&quot;
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Draw a map of the dungeon&quot;&quot;&quot;</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-        for y in range(self.ylim[0], self.ylim[1] + 1):
-            for x in range(self.xlim[0], self.xlim[1] + 1):
-                # room and character symbols
-                if (x, y) in self.rooms:
-                    if self.troll.point == (x, y):
-                        layout += self.troll.symbol
-                    elif self.adventurer.point == (x, y):
-                        layout += self.adventurer.symbol
-                    elif self.treasure.point == (x, y):
-                        layout += self.treasure.symbol
-                    else:
-                        layout += &quot;o&quot;
-                else:
-                    layout += &quot; &quot;
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="c1"># room and character symbols</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">point</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+                        <span class="n">layout</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">symbol</span>
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">point</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+                        <span class="n">layout</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">symbol</span>
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">treasure</span><span class="o">.</span><span class="n">point</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+                        <span class="n">layout</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">treasure</span><span class="o">.</span><span class="n">symbol</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot;o&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span>
 
-                # horizontal connections
-                if ((x, y) in self.rooms) and (((x + 1), y) in self.rooms[(x, y)]):
-                    layout += &quot; - &quot;
-                else:
-                    layout += &quot;   &quot;
+                <span class="c1"># horizontal connections</span>
+                <span class="k">if</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(((</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]):</span>
+                    <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot; - &quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot;   &quot;</span>
 
-            # vertical connections
-            if y &lt; self.ylim[1]:
-                layout += &quot;\n&quot;
-                for x in range(self.xlim[0], self.xlim[1] + 1):
-                    if ((x, y) in self.rooms) and ((x, y + 1) in self.rooms[(x, y)]):
-                        layout += &quot;|&quot;
-                    else:
-                        layout += &quot; &quot;
-                    if x &lt; self.xlim[1]:
-                        layout += &quot;   &quot;
-                layout += &quot;\n&quot;
+            <span class="c1"># vertical connections</span>
+            <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]):</span>
+                        <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot;|&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span>
+                    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot;   &quot;</span>
+                <span class="n">layout</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
 
-        print(layout)
+        <span class="nb">print</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1625,75 +1625,75 @@ class Dungeon:
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class runs a dungeon until the adventurer or troll wins, or calls a draw if neither wins in a given number of steps, and can simulate many games to estimate outcome probabilities:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import copy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
 
-from art import tprint
+<span class="kn">from</span> <span class="nn">art</span> <span class="kn">import</span> <span class="n">tprint</span>
 
 
-class Game:
-    def __init__(self, dungeon):
-        self.dungeon = dungeon
+<span class="k">class</span> <span class="nc">Game</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dungeon</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span> <span class="o">=</span> <span class="n">dungeon</span>
 
-    def preamble(self):
-        tprint(&quot;Troll Treasure\n&quot;, font=&quot;small&quot;)
-        print(
-            f&quot;&quot;&quot;
-The {self.dungeon.adventurer.name} is looking for treasure in a mysterious dungeon.
-Will they succeed or be dinner for the {self.dungeon.troll.name} that lurks there?
+    <span class="k">def</span> <span class="nf">preamble</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tprint</span><span class="p">(</span><span class="s2">&quot;Troll Treasure</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is looking for treasure in a mysterious dungeon.</span>
+<span class="s2">Will they succeed or be dinner for the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> that lurks there?</span>
 
-The map of the dungeon is below:
-o : an empty room
-o - o : connected rooms
-{self.dungeon.troll.symbol} : {self.dungeon.troll.name}
-{self.dungeon.adventurer.symbol} : {self.dungeon.adventurer.name}
-{self.dungeon.treasure.symbol} : the treasure
-            &quot;&quot;&quot;
-        )
+<span class="s2">The map of the dungeon is below:</span>
+<span class="s2">o : an empty room</span>
+<span class="s2">o - o : connected rooms</span>
+<span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">symbol</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">name</span><span class="si">}</span>
+<span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">symbol</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span>
+<span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">treasure</span><span class="o">.</span><span class="n">symbol</span><span class="si">}</span><span class="s2"> : the treasure</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+        <span class="p">)</span>
 
-    def run(self, max_steps=1000, verbose=True, start_prompt=False):
-        dungeon = copy.deepcopy(self.dungeon)
-        dungeon.set_verbose(verbose)
-        if verbose:
-            self.preamble()
-            dungeon.draw()
-            if start_prompt:
-                input(&quot;\nPress enter to continue...&quot;)
-            else:
-                print(&quot;\nLet the hunt begin!&quot;)
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">start_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">dungeon</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="p">)</span>
+        <span class="n">dungeon</span><span class="o">.</span><span class="n">set_verbose</span><span class="p">(</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span><span class="p">()</span>
+            <span class="n">dungeon</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">start_prompt</span><span class="p">:</span>
+                <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Press enter to continue...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Let the hunt begin!&quot;</span><span class="p">)</span>
 
-        for turn in range(max_steps):
-            result = dungeon.outcome()
-            if result != 0:
-                if verbose:
-                    if result == 1:
-                        print(
-                            f&quot;\n{self.dungeon.adventurer.name} gets the treasure and returns a hero!&quot;
-                        )
-                        tprint(&quot;WINNER&quot;, font=&quot;small&quot;)
-                    elif result == -1:
-                        print(f&quot;\n{self.dungeon.troll.name} will eat tonight!&quot;)
-                        tprint(&quot;GAME OVER&quot;, font=&quot;small&quot;)
-                return result
-            if verbose:
-                print(f&quot;\nTurn {turn + 1}&quot;)
-            dungeon.update()
-        # no outcome in max steps (e.g. no treasure and troll can&#39;t reach adventurer)
-        if verbose:
-            print(
-                f&quot;\nNo one saw {self.dungeon.adventurer.name} or {self.dungeon.troll.name} again.&quot;
-            )
-            tprint(&quot;STALEMATE&quot;, font=&quot;small&quot;)
+        <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_steps</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">dungeon</span><span class="o">.</span><span class="n">outcome</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> gets the treasure and returns a hero!&quot;</span>
+                        <span class="p">)</span>
+                        <span class="n">tprint</span><span class="p">(</span><span class="s2">&quot;WINNER&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">result</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> will eat tonight!&quot;</span><span class="p">)</span>
+                        <span class="n">tprint</span><span class="p">(</span><span class="s2">&quot;GAME OVER&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">result</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Turn </span><span class="si">{</span><span class="n">turn</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">dungeon</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="c1"># no outcome in max steps (e.g. no treasure and troll can&#39;t reach adventurer)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No one saw </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">adventurer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> or </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dungeon</span><span class="o">.</span><span class="n">troll</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> again.&quot;</span>
+            <span class="p">)</span>
+            <span class="n">tprint</span><span class="p">(</span><span class="s2">&quot;STALEMATE&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">)</span>
 
-        return result
+        <span class="k">return</span> <span class="n">result</span>
 
-    def probability(self, trials=10000, max_steps=1000, verbose=False):
-        outcomes = {-1: 0, 0: 0, 1: 0}
-        for _ in range(trials):
-            result = self.run(max_steps=max_steps, verbose=False)
-            outcomes[result] += 1
-        for result in outcomes:
-            outcomes[result] = outcomes[result] / trials
-        return outcomes
+    <span class="k">def</span> <span class="nf">probability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">outcomes</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">trials</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="n">max_steps</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">outcomes</span><span class="p">[</span><span class="n">result</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">outcomes</span><span class="p">:</span>
+            <span class="n">outcomes</span><span class="p">[</span><span class="n">result</span><span class="p">]</span> <span class="o">=</span> <span class="n">outcomes</span><span class="p">[</span><span class="n">result</span><span class="p">]</span> <span class="o">/</span> <span class="n">trials</span>
+        <span class="k">return</span> <span class="n">outcomes</span>
 </pre></div>
 </div>
 </div>
@@ -1707,18 +1707,18 @@ o - o : connected rooms
 <p>Dungeons can be specified with YAML files, and we have provided a few examples in the <code class="docutils literal notranslate"><span class="pre">dungeons/</span></code> directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-os.listdir(&quot;dungeons&quot;)
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;dungeons&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dungeon.yml&#39;,
- &#39;test_lose100.yml&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;test_win100.yml&#39;,
  &#39;test_stalemate.yml&#39;,
- &#39;test_win100.yml&#39;,
- &#39;test_win50.yml&#39;]
+ &#39;dungeon.yml&#39;,
+ &#39;test_win50.yml&#39;,
+ &#39;test_lose100.yml&#39;]
 </pre></div>
 </div>
 </div>
@@ -1729,9 +1729,9 @@ os.listdir(&quot;dungeons&quot;)
 <h3>Run a single game<a class="headerlink" href="#run-a-single-game" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>d = Dungeon.from_file(&quot;dungeons/dungeon.yml&quot;)
-g = Game(d)
-g.run(max_steps=10)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Dungeon</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;dungeons/dungeon.yml&quot;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Game</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1767,20 +1767,6 @@ Let the hunt begin!
 
 Turn 1
 Adventurer moves down
-Troll moves nowhere
-
-        *           
-        |        
-    o - o - o       
-    |       |    
-o - o       o - T   
-    |       |    
-    a - o - o       
-        |        
-        o           
-
-Turn 2
-Adventurer moves right
 Troll moves left
 
         *           
@@ -1789,54 +1775,12 @@ Troll moves left
     |       |    
 o - o       T - o   
     |       |    
-    o - a - o       
-        |        
-        o           
-
-Turn 3
-Adventurer moves left
-Troll moves nowhere
-
-        *           
-        |        
-    o - o - o       
-    |       |    
-o - o       T - o   
-    |       |    
     a - o - o       
         |        
         o           
 
-Turn 4
+Turn 2
 Adventurer moves right
-Troll moves nowhere
-
-        *           
-        |        
-    o - o - o       
-    |       |    
-o - o       T - o   
-    |       |    
-    o - a - o       
-        |        
-        o           
-
-Turn 5
-Adventurer moves down
-Troll moves nowhere
-
-        *           
-        |        
-    o - o - o       
-    |       |    
-o - o       T - o   
-    |       |    
-    o - o - o       
-        |        
-        a           
-
-Turn 6
-Adventurer moves up
 Troll moves right
 
         *           
@@ -1849,7 +1793,35 @@ o - o       o - T
         |        
         o           
 
-Turn 7
+Turn 3
+Adventurer moves right
+Troll moves left
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       T - o   
+    |       |    
+    o - o - a       
+        |        
+        o           
+
+Turn 4
+Adventurer moves left
+Troll moves down
+
+        *           
+        |        
+    o - o - o       
+    |       |    
+o - o       o - o   
+    |       |    
+    o - a - T       
+        |        
+        o           
+
+Turn 5
 Adventurer moves right
 Troll moves nowhere
 
@@ -1857,63 +1829,21 @@ Troll moves nowhere
         |        
     o - o - o       
     |       |    
-o - o       o - T   
+o - o       o - o   
     |       |    
-    o - o - a       
+    o - o - T       
         |        
         o           
 
-Turn 8
-Adventurer moves up
-Troll moves nowhere
-
-        *           
-        |        
-    o - o - o       
-    |       |    
-o - o       a - T   
-    |       |    
-    o - o - o       
-        |        
-        o           
-
-Turn 9
-Adventurer moves up
-Troll moves nowhere
-
-        *           
-        |        
-    o - o - a       
-    |       |    
-o - o       o - T   
-    |       |    
-    o - o - o       
-        |        
-        o           
-
-Turn 10
-Adventurer moves left
-Troll moves nowhere
-
-        *           
-        |        
-    o - a - o       
-    |       |    
-o - o       o - T   
-    |       |    
-    o - o - o       
-        |        
-        o           
-
-No one saw Adventurer or Troll again.
- ___  _____    _    _     ___  __  __    _    _____  ___ 
-/ __||_   _|  /_\  | |   | __||  \/  |  /_\  |_   _|| __|
-\__ \  | |   / _ \ | |__ | _| | |\/| | / _ \   | |  | _| 
-|___/  |_|  /_/ \_\|____||___||_|  |_|/_/ \_\  |_|  |___|
-                                                         
+Troll will eat tonight!
+  ___    _    __  __  ___    ___  __   __ ___  ___ 
+ / __|  /_\  |  \/  || __|  / _ \ \ \ / /| __|| _ \
+| (_ | / _ \ | |\/| || _|  | (_) | \ V / | _| |   /
+ \___|/_/ \_\|_|  |_||___|  \___/   \_/  |___||_|_\
+                                                   
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
 </pre></div>
 </div>
 </div>
@@ -1923,15 +1853,15 @@ No one saw Adventurer or Troll again.
 <h3>Estimate outcome probabilities<a class="headerlink" href="#estimate-outcome-probabilities" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>d = Dungeon.from_file(&quot;dungeons/dungeon.yml&quot;)
-g = Game(d)
-g.probability(max_steps=10)
-# -1: troll wins, 0: stalemate, +1: adventurer wins
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Dungeon</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;dungeons/dungeon.yml&quot;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Game</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">probability</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># -1: troll wins, 0: stalemate, +1: adventurer wins</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2204, 0: 0.5986, 1: 0.181}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{-1: 0.2189, 0: 0.5933, 1: 0.1878}
 </pre></div>
 </div>
 </div>

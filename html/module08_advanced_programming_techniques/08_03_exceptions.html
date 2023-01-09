@@ -1108,7 +1108,7 @@ title="Print to PDF"
 <p>When we learned about testing, we saw that Python complains when things go wrong by raising an “Exception” naming a type of error:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>1 / 0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -1129,9 +1129,9 @@ information about where this class fits in the hierarchy, we can use <a class="r
 <code class="docutils literal notranslate"><span class="pre">inspect</span></code> module</a> to get a chain of classes, from <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code> up to <code class="docutils literal notranslate"><span class="pre">object</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import inspect
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span>
 
-inspect.getmro(ZeroDivisionError)
+<span class="n">inspect</span><span class="o">.</span><span class="n">getmro</span><span class="p">(</span><span class="ne">ZeroDivisionError</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1144,10 +1144,10 @@ inspect.getmro(ZeroDivisionError)
 <p>So we can see that a zero division error is a particular kind of Arithmetic Error.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 
-for y in x:
-    print(y)
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1166,7 +1166,7 @@ for y in x:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>inspect.getmro(TypeError)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inspect</span><span class="o">.</span><span class="n">getmro</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1183,11 +1183,11 @@ We raise an Exception with <code class="docutils literal notranslate"><span clas
 <p>However, we may want to define our own exceptions. Doing this is as simple as inheriting from Exception (or one of its subclasses):</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class MyCustomErrorType(ArithmeticError):
-    pass
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCustomErrorType</span><span class="p">(</span><span class="ne">ArithmeticError</span><span class="p">):</span>
+    <span class="k">pass</span>
 
 
-raise MyCustomErrorType(&quot;Problem&quot;)
+<span class="k">raise</span> <span class="n">MyCustomErrorType</span><span class="p">(</span><span class="s2">&quot;Problem&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1207,15 +1207,15 @@ raise MyCustomErrorType(&quot;Problem&quot;)
 <p>You can add custom data to your exception:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class MyCustomErrorType(Exception):
-    def __init__(self, category=None):
-        self.category = category
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCustomErrorType</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="n">category</span>
 
-    def __str__(self):
-        return f&quot;Error, category {self.category}&quot;
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Error, category </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s2">&quot;</span>
 
 
-raise MyCustomErrorType(404)
+<span class="k">raise</span> <span class="n">MyCustomErrorType</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1235,20 +1235,20 @@ raise MyCustomErrorType(404)
 <p>The real power of exceptions comes, however, not in letting them crash the program, but in letting your program handle them. We say that an exception has been “thrown” and then “caught”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import yaml
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
 
-try:
-    config = yaml.safe_load(open(&quot;datasource.yaml&quot;))
-    user = config[&quot;userid&quot;]
-    password = config[&quot;password&quot;]
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;datasource.yaml&quot;</span><span class="p">))</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
 
-except FileNotFoundError:
-    print(&quot;No password file found, using anonymous user.&quot;)
-    user = &quot;anonymous&quot;
-    password = None
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No password file found, using anonymous user.&quot;</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-print(user)
+<span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1262,15 +1262,15 @@ anonymous
 <p>Note that we specify only the error we expect to happen and want to handle. Sometimes you see code that catches everything:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>try:
-    config = yaml.safe_lod(open(&quot;datasource.yaml&quot;))
-    user = config[&quot;userid&quot;]
-    password = config[&quot;password&quot;]
-except:
-    user = &quot;anonymous&quot;
-    password = None
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_lod</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;datasource.yaml&quot;</span><span class="p">))</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
 
-print(user)
+<span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1288,13 +1288,13 @@ Therefore, we should be specific and catch only the type of error we want.</p>
 <p>Let’s create two credential files to read</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;datasource2.yaml&quot;, &quot;w&quot;) as outfile:
-    outfile.write(&quot;userid: eidle\n&quot;)
-    outfile.write(&quot;password: secret\n&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;datasource2.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;userid: eidle</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;password: secret</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-with open(&quot;datasource3.yaml&quot;, &quot;w&quot;) as outfile:
-    outfile.write(&quot;user: eidle\n&quot;)
-    outfile.write(&quot;password: secret\n&quot;)
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;datasource3.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;user: eidle</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;password: secret</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1302,29 +1302,29 @@ with open(&quot;datasource3.yaml&quot;, &quot;w&quot;) as outfile:
 <p>And create a function that reads credentials files and returns the username and password to use.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def read_credentials(source):
-    try:
-        datasource = open(source)
-        config = yaml.safe_load(datasource)
-        user = config[&quot;userid&quot;]
-        password = config[&quot;password&quot;]
-        datasource.close()
-    except FileNotFoundError:
-        print(&quot;Password file missing&quot;)
-        user = &quot;anonymous&quot;
-        password = None
-    except KeyError:
-        print(&quot;Expected keys not found in file&quot;)
-        user = &quot;anonymous&quot;
-        password = None
-    return user, password
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_credentials</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">datasource</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="n">datasource</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password file missing&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected keys not found in file&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(read_credentials(&quot;datasource2.yaml&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">read_credentials</span><span class="p">(</span><span class="s2">&quot;datasource2.yaml&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1336,7 +1336,7 @@ with open(&quot;datasource3.yaml&quot;, &quot;w&quot;) as outfile:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(read_credentials(&quot;datasource.yaml&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">read_credentials</span><span class="p">(</span><span class="s2">&quot;datasource.yaml&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1349,7 +1349,7 @@ with open(&quot;datasource3.yaml&quot;, &quot;w&quot;) as outfile:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(read_credentials(&quot;datasource3.yaml&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">read_credentials</span><span class="p">(</span><span class="s2">&quot;datasource3.yaml&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1363,30 +1363,30 @@ with open(&quot;datasource3.yaml&quot;, &quot;w&quot;) as outfile:
 <p>This last code has a flaw: the file was successfully opened, the missing key was noticed, but not explicitly closed. It’s normally OK, as Python will close the file as soon as it notices there are no longer any references to datasource in memory, after the function exits. But this is not good practice, you should keep a file handle for as short a time as possible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def read_credentials(source):
-    try:
-        datasource = open(source)
-        config = yaml.safe_load(datasource)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_credentials</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">datasource</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
 
-        try:
-            print(&quot;File loaded, trying to extract credentials&quot;)
-            user = config[&quot;userid&quot;]
-            password = config[&quot;password&quot;]
-        except KeyError:
-            print(&quot;Expected keys not found in file&quot;)
-            user = &quot;anonymous&quot;
-            password = None
-        finally:
-            # Runs irrespective of whether keys found
-            print(&quot;Closing file&quot;)
-            datasource.close()
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File loaded, trying to extract credentials&quot;</span><span class="p">)</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected keys not found in file&quot;</span><span class="p">)</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Runs irrespective of whether keys found</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closing file&quot;</span><span class="p">)</span>
+            <span class="n">datasource</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    except FileNotFoundError:
-        print(&quot;Password file missing&quot;)
-        user = &quot;anonymous&quot;
-        password = None
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password file missing&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
 
-    return user, password
+    <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span>
 </pre></div>
 </div>
 </div>
@@ -1395,32 +1395,32 @@ with open(&quot;datasource3.yaml&quot;, &quot;w&quot;) as outfile:
 <p>The last optional clause of a <code class="docutils literal notranslate"><span class="pre">try</span></code> statement, an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause is called only if an exception is NOT raised. It can be a better place than the <code class="docutils literal notranslate"><span class="pre">try</span></code> clause to put code other than that which you expect to raise the error, and which you do not want to be executed if the error is raised. It is executed in the same circumstances as code put in the end of the <code class="docutils literal notranslate"><span class="pre">try</span></code> block, the only difference is that errors raised during the <code class="docutils literal notranslate"><span class="pre">else</span></code> clause are not caught.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def read_credentials(source):
-    try:
-        datasource = open(source)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_credentials</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">datasource</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
 
-    except FileNotFoundError:
-        print(&quot;Password file missing&quot;)
-        user = &quot;anonymous&quot;
-        password = None
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password file missing&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
 
-    else:
-        # Runs only if opening the file was successful
-        config = yaml.safe_load(datasource)
-        try:
-            print(&quot;File loaded, trying to extract credentials&quot;)
-            user = config[&quot;userid&quot;]
-            password = config[&quot;password&quot;]
-        except KeyError:
-            print(&quot;Expected keys not found in file&quot;)
-            user = &quot;anonymous&quot;
-            password = None
-        finally:
-            # Runs irrespective of whether keys found
-            print(&quot;Closing file&quot;)
-            datasource.close()
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Runs only if opening the file was successful</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File loaded, trying to extract credentials&quot;</span><span class="p">)</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected keys not found in file&quot;</span><span class="p">)</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Runs irrespective of whether keys found</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closing file&quot;</span><span class="p">)</span>
+            <span class="n">datasource</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    return user, password
+    <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span>
 </pre></div>
 </div>
 </div>
@@ -1428,21 +1428,21 @@ with open(&quot;datasource3.yaml&quot;, &quot;w&quot;) as outfile:
 <p>Don’t worry if <code class="docutils literal notranslate"><span class="pre">else</span></code> seems useless to you; most languages’ implementations of try/except don’t support such a clause. An alternative way of avoiding leaving the file open in the original implementation (and without using <code class="docutils literal notranslate"><span class="pre">else</span></code> or <code class="docutils literal notranslate"><span class="pre">finally</span></code>) is to use a context manager:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def read_credentials(source):
-    try:
-        with open(source) as datasource:  # closes the file when done
-            config = yaml.safe_load(datasource)
-        user = config[&quot;userid&quot;]
-        password = config[&quot;password&quot;]
-    except FileNotFoundError:
-        print(&quot;Password file missing&quot;)
-        user = &quot;anonymous&quot;
-        password = None
-    except KeyError:
-        print(&quot;Expected keys not found in file&quot;)
-        user = &quot;anonymous&quot;
-        password = None
-    return user, password
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_credentials</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="k">as</span> <span class="n">datasource</span><span class="p">:</span>  <span class="c1"># closes the file when done</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password file missing&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected keys not found in file&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;anonymous&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span>
 </pre></div>
 </div>
 </div>
@@ -1455,61 +1455,61 @@ them. They can be caught anywhere “above” the calling point in
 the call stack: control can jump arbitrarily far in the program: up to the <code class="docutils literal notranslate"><span class="pre">except</span></code> clause of the “highest” containing try statement.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def f4(x):
-    if x == 0:
-        return
-    if x == 1:
-        raise ArithmeticError()
-    if x == 2:
-        raise SyntaxError()
-    if x == 3:
-        raise TypeError()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f4</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ArithmeticError</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def f3(x):
-    try:
-        print(&quot;F3Before&quot;)
-        f4(x)
-        print(&quot;F3After&quot;)
-    except ArithmeticError:
-        print(&quot;F3Except (💣)&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f3</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F3Before&quot;</span><span class="p">)</span>
+        <span class="n">f4</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F3After&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ArithmeticError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F3Except (💣)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def f2(x):
-    try:
-        print(&quot;F2Before&quot;)
-        f3(x)
-        print(&quot;F2After&quot;)
-    except SyntaxError:
-        print(&quot;F2Except (💣)&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F2Before&quot;</span><span class="p">)</span>
+        <span class="n">f3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F2After&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F2Except (💣)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def f1(x):
-    try:
-        print(&quot;F1Before&quot;)
-        f2(x)
-        print(&quot;F1After&quot;)
-    except TypeError:
-        print(&quot;F1Except (💣)&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1Before&quot;</span><span class="p">)</span>
+        <span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1After&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1Except (💣)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>f1(0)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1526,7 +1526,7 @@ F1After
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>f1(1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1543,7 +1543,7 @@ F1After
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>f1(2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1559,7 +1559,7 @@ F1After
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>f1(3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1590,24 +1590,24 @@ series <em>or</em> a path to a location on disk where data can be found. We can
 examine the type of the supplied content:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import yaml
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
 
 
-def analysis(source):
-    if type(source) == dict:
-        name = source[&quot;modelname&quot;]
-    else:
-        content = open(source)
-        source = yaml.safe_load(content)
-        name = source[&quot;modelname&quot;]
-    print(name)
+<span class="k">def</span> <span class="nf">analysis</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s2">&quot;modelname&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s2">&quot;modelname&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis({&quot;modelname&quot;: &quot;Super&quot;})
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="p">({</span><span class="s2">&quot;modelname&quot;</span><span class="p">:</span> <span class="s2">&quot;Super&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1619,15 +1619,15 @@ def analysis(source):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with open(&quot;example.yaml&quot;, &quot;w&quot;) as outfile:
-    outfile.write(&quot;modelname: brilliant\n&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;example.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;modelname: brilliant</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis(&quot;example.yaml&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span><span class="p">(</span><span class="s2">&quot;example.yaml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1640,25 +1640,22 @@ def analysis(source):
 <p>However, we can also use the try-it-and-handle-exceptions approach to this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def analysis(source):
-    try:
-        name = source[&quot;modelname&quot;]
-    except TypeError:
-        content = open(source)
-        source = yaml.safe_load(content)
-        name = source[&quot;modelname&quot;]
-    print(name)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analysis</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s2">&quot;modelname&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s2">&quot;modelname&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 
-analysis(&quot;example.yaml&quot;)
+<span class="n">analysis</span><span class="p">(</span><span class="s2">&quot;example.yaml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>brilliant
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1667,24 +1664,24 @@ analysis(&quot;example.yaml&quot;)
 other data-source which responds like a dictionary or string.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def analysis(source):
-    try:
-        name = source[&quot;modelname&quot;]
-    except TypeError:
-        # Source was not a dictionary-like object
-        # Maybe it is a file path
-        try:
-            content = open(source)
-            source = yaml.safe_load(content)
-            name = source[&quot;modelname&quot;]
-        except IOError:
-            # Maybe it was already raw YAML content
-            source = yaml.safe_load(source)
-            name = source[&quot;modelname&quot;]
-    print(name)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analysis</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s2">&quot;modelname&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="c1"># Source was not a dictionary-like object</span>
+        <span class="c1"># Maybe it is a file path</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s2">&quot;modelname&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="c1"># Maybe it was already raw YAML content</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="s2">&quot;modelname&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 
-analysis(&quot;modelname: Amazing&quot;)
+<span class="n">analysis</span><span class="p">(</span><span class="s2">&quot;modelname: Amazing&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1705,12 +1702,12 @@ caught error to be re-thrown. Doing this is the only circumstance where it is
 safe to do <code class="docutils literal notranslate"><span class="pre">except:</span></code> without catching a specific type of error.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>try:
-    # Something
-    pass
-except:
-    # Do this code here if anything goes wrong
-    raise
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Something</span>
+    <span class="k">pass</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="c1"># Do this code here if anything goes wrong</span>
+    <span class="k">raise</span>
 </pre></div>
 </div>
 </div>
@@ -1718,18 +1715,18 @@ except:
 <p>If you want to be more explicit about where the error came from, you can use the <code class="docutils literal notranslate"><span class="pre">raise</span> <span class="pre">from</span></code> syntax, which will create a chain of exceptions:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def lower_function():
-    raise ValueError(&quot;Error in lower function!&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lower_function</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Error in lower function!&quot;</span><span class="p">)</span>
 
 
-def higher_function():
-    try:
-        lower_function()
-    except ValueError as e:
-        raise RuntimeError(&quot;Error in higher function!&quot;) from e
+<span class="k">def</span> <span class="nf">higher_function</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">lower_function</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Error in higher function!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
 
-higher_function()
+<span class="n">higher_function</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
