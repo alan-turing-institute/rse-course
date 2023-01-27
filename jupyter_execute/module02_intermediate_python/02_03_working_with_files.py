@@ -74,7 +74,7 @@ os.path.dirname(os.getcwd())
 # **Supplementary Materials**: If you're not already comfortable with how files fit into folders, and folders form a tree,
 #     with folders containing subfolders, then look at http://swcarpentry.github.io/shell-novice/02-filedir/index.html. 
 # 
-# Satisfy yourself that after using `%%writefile`, you can then find the file on disk with Windows Explorer, OSX Finder, or the Linux Shell.
+# Satisfy yourself that after using `%%writefile`, you can then find the file on disk with Windows Explorer, macOS Finder, or the Linux Shell.
 
 # We can see how in Python we can investigate the file system with functions in the `os` module, using just the same programming approaches as for anything else.
 

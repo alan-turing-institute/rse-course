@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 2.7 Defining your own classes
+# # 2.6 Defining your own classes
 
 # *Estimated time for this notebook: 20 minutes*
 
-# ## 2.7.1 User Defined Types
+# ## 2.6.1 User Defined Types
 
 # A **class** is a user-programmed Python type.
 
@@ -62,7 +62,7 @@ myroom.capacity = 3
 myroom.occupants = ["James", "Sue"]
 
 
-# ## 2.7.2 Methods
+# ## 2.6.2 Methods
 
 # So far, our class doesn't do much!
 
@@ -114,7 +114,7 @@ myroom.overfull()
 
 # This is just a convention for this variable name, not a keyword. You could call it something else if you wanted.
 
-# ## 2.7.3 Constructors
+# ## 2.6.3 Constructors
 
 # Normally, though, we don't want to add data to the class attributes on the fly like that. 
 # Instead, we define a **constructor** that converts input data into an object. 
@@ -148,7 +148,7 @@ living.capacity
 # Methods which begin and end with **two underscores** in their names fulfil special capabilities in Python, such as
 # constructors.
 
-# ## 2.7.4 Object-oriented design
+# ## 2.6.4 Object-oriented design
 
 # In building a computer system to model a problem, therefore, we often want to make:
 # 
@@ -329,7 +329,7 @@ bedroom.add_occupant(bob)
 house.simulate(3)
 
 
-# ## 2.7.5 Alternative object models
+# ## 2.6.5 Alternative object models
 
 # There are many choices for how to design programs to do this. Another choice would be to separately define exits as a different class from rooms. This way, 
 # we can use arrays instead of dictionaries, but we have to first define all our rooms, then define all our exits.

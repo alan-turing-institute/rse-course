@@ -251,7 +251,7 @@ Image(show_green_in_png(map_at(*london_location, satellite=True)))
 
 # ## 2.5.7 Looping
 
-# We can loop over each element in out list of coordinates, and get a map for that place:
+# We can loop over each element in our list of coordinates, and get a map for that place:
 
 # In[24]:
 

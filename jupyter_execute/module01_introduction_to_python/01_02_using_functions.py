@@ -305,4 +305,4 @@ print(2 + 3 * 4)
 print((2 + 3) * 4)
 
 
-# *Supplementary material*: http://www.mathcs.emory.edu/~valerie/courses/fall10/155/resources/op_precedence.html
+# *Supplementary material*: https://docs.python.org/3/reference/expressions.html#operator-precedence

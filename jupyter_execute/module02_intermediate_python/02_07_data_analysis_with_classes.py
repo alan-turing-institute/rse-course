@@ -24,6 +24,8 @@ get_ipython().run_cell_magic('bash', '', 'mkdir -p greengraph  # Create the fold
 get_ipython().run_cell_magic('writefile', 'greengraph/graph.py', 'import numpy as np\nimport geopy\nfrom .map import Map\n\n\nclass Greengraph:\n    def __init__(self, start, end):\n        self.start = start\n        self.end = end\n        self.geocoder = geopy.geocoders.Nominatim(user_agent="rsd-course")\n\n    def geolocate(self, place):\n        return self.geocoder.geocode(place, exactly_one=False)[0][1]\n\n    def location_sequence(self, start, end, steps):\n        lats = np.linspace(start[0], end[0], steps)\n        longs = np.linspace(start[1], end[1], steps)\n        return np.vstack([lats, longs]).transpose()\n\n    def green_between(self, steps):\n        return [\n            Map(*location).count_green()\n            for location in self.location_sequence(\n                self.geolocate(self.start), self.geolocate(self.end), steps\n            )\n        ]\n')
 
 
+# Note that a line like `from .map import Map` will import the definition of `Map` from the file `map.py` in the current directory.
+
 # In[3]:
 
 

@@ -89,7 +89,7 @@ house = {
 # ## Exercise 2d Using Libraries
 # *Relevant Sections: 2.2.1*
 
-# Investigate the similarities and differences between the responses (if any) from the `numpy`, `scipy`, `statistics`, and `math` modules to the following calculations:
+# Investigate the similarities and differences between the responses (if any) from the `numpy`, `scipy`, `statistics` and `math` modules to the following calculations:
 # 
 # 
 # $\pi$
@@ -101,7 +101,7 @@ house = {
 # The mean of the numbers 1 to 9 (inclusive)
 # 
 
-# For those interested, each of these libraries has their own documentation. [NumPy](https://numpy.org/doc/stable/user/whatisnumpy.html), [SciPy](https://docs.scipy.org/doc/scipy/tutorial/general.html), [statistics](https://docs.python.org/3/library/statistics.html), and [math](https://docs.python.org/3/library/math.html)
+# For those interested, each of these libraries has their own documentation. [NumPy](https://numpy.org/doc/stable/user/whatisnumpy.html), [SciPy](https://docs.scipy.org/doc/scipy/tutorial/general.html), [statistics](https://docs.python.org/3/library/statistics.html) and [math](https://docs.python.org/3/library/math.html)
 
 # ## Exercise 2e Longitude and Latitude
 # *Relevant Sections: 2.4.2, 2.4.1*

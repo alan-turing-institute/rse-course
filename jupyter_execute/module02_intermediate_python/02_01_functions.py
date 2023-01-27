@@ -210,7 +210,7 @@ letters = ["a", "b", "c", "d", "e", "f", "g"]
 letters[:] = []
 
 
-# In this example, we're using `[:]` to access into the same list, and write it's data.
+# In this example, we're using `[:]` to access into the same list, and write its data.
 # 
 #     vec = [element*2 for element in vec]
 # 

@@ -30,7 +30,7 @@
 # Not just big scientific simulation codes, but also the small scripts which we use to tidy up data and produce plots.
 # This should be code, so that the whole research pipeline is recorded for reproducibility.
 # Data manipulation in spreadsheets is much harder to share or check.
-# There are many data analysis examples out there, like the on the [software carpentry site](https://swcarpentry.github.io/python-novice-inflammation/01-numpy/index.html).
+# There are many data analysis examples out there, like the on the [software carpentry site](https://swcarpentry.github.io/python-novice-inflammation/01-intro/index.html).
 
 # ## 1.0.2 Why Python?
 
@@ -146,7 +146,7 @@ get_ipython().run_cell_magic('bash', '', '# Above line tells Python to execute t
 get_ipython().run_cell_magic('bash', '', 'echo "print(2 * 4)" > eight.py\npython eight.py\n')
 
 
-# We can make the script directly executable (on Linux or Mac) by inserting a [hashbang](https://en.wikipedia.org/wiki/Shebang_(Unix%29)) and [setting the permissions](http://v4.software-carpentry.org/shell/perm.html) to execute.
+# We can make the script directly executable (on Linux or Mac) by inserting a [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) and [setting the permissions](http://v4.software-carpentry.org/shell/perm.html) to execute.
 
 # In[5]:
 

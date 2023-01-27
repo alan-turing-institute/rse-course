@@ -73,30 +73,29 @@ example_funct(1, 1.99999999999, "three", 20/5, 5, 6, "sju", "8", 9, 10., 11, 12)
 
 # **Answer 2d**
 # 
-# Will have to import libraries.
+# After `import`ing the libraries you can use ```dir(X)``` to list the attributes of each module
 # 
-# Can use ```dir(X)``` to list the attributes of the modules
+# There will be some depreciation warnings from `scipy` instructing users to use `numpy` or `numpy.lib` (which can also be investigated via ```dir(numpy.lib)```
 # 
-# There will be some depreciation warnings from scipy instructing users to go use numpy or numpy.lib (which can also be investigated via ```dir(np.lib)``` 
+# `pi`: Use `numpy.pi`, `scipy.pi`, `math.pi`. `statistics` has `tau` but not `pi`.
 # 
-# Statistics will return the mean as an integer whereas numpy and scipy will return a float.
+# `log`: Use `numpy.log10`, `scipy.log10`, `math.log10`. `statistics` has `log` but not `log10`: `log(n)/log(10)` can be used instead.
 # 
-# All return the same value of pi.
+# For log(+ive) we use +12.01 as an example while for log(-ive) we use -11.99 as an example.
 # 
-# scipy returns a complex number for the negative log example with an imaginary part of pi.
+# | Module     | pi         | log(+ive)  | log(-ive)                | mean |
+# |:-----------|:----------:|:----------:|:------------------------:|:----:|
+# | numpy      | 3.14159... | 1.07954... | nan                      | 5.0  |
+# | scipy      | 3.14159... | 1.07954... | (1.07881...+1.36437...j) | 5.0  |
+# | math       | 3.14159... | 1.07954... | math domain error        | n/a  |
+# | statistics | n/a        | 1.07954... | math domain error        | 5    |
 # 
-# log(+ive) using +12.01 as an example
+# All libraries return the same value of pi.
+# All libraries return the same value of log(+ive).
+# scipy returns a complex number for the negative log example while all others produce an error.
 # 
-# log(-ive) using -11.99 as an example
+# `statistics` returns the mean as an integer whereas `numpy` and `scipy` return a float.
 # 
-# | Module | pi| log(+ive) | log(-ive)| mean|
-# | :-------|:-------------:|:-----:|:-----:|:-----:|
-# |numpy|3.14159...|2.48573...|nan|5.0|
-# |scipy|3.14159...|2.48573...|(2.48407... + 3.14159...j)|5.0|
-# |math|3.14159...|2.48573...|math domain error|§|
-# |statistics|§|2.48573...|math domain error|5|
-# 
-# § module doesn't have method
 
 # **Answer 2e**
 # 

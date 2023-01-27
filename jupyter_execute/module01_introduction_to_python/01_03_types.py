@@ -127,7 +127,7 @@ sum([1 / N] * int(N))
 
 # *Supplementary material*:
 # 
-# * https://docs.python.org/2/tutorial/floatingpoint.html
+# * https://docs.python.org/3/tutorial/floatingpoint.html
 # * http://floating-point-gui.de/formats/fp/
 # * Advanced: http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
 
