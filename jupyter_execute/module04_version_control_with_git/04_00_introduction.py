@@ -89,7 +89,7 @@
 # The text files we create will use a simple "wiki" markup style called [markdown](http://daringfireball.net/projects/markdown/basics) to show formatting.
 # This is the convention used in this file, too.
 # 
-# You can view the content of this file in the way Markdown renders it by looking on the [web](https://github.com/alan-turing-institute/rse-course/blob/main/module04_version_control_with_git/04_00_introduction.html), and compare the [raw text](https://raw.githubusercontent.com/alan-turing-institute/rse-course/main/module04_version_control_with_git/04_00_introduction.ipynb).
+# You can view the content of this file in the way Markdown renders it by looking on the [web](https://alan-turing-institute.github.io/rse-course/html/module04_version_control_with_git/04_00_introduction.html), and compare the [raw text](https://raw.githubusercontent.com/alan-turing-institute/rse-course/main/module04_version_control_with_git/04_00_introduction.ipynb).
 
 # ## Displaying Text in this Tutorial
 # 
