@@ -16,13 +16,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Install linters
-        run: pip install black flake8 isort nbqa pylint
+      - name: Install poetry
+        run: pipx install poetry
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - name: Install required packages
+        run: |
+          poetry update
+          poetry install --no-root
       - name: Run black
-        run: nbqa black module*/*.ipynb --nbqa-diff --verbose
+        run: poetry run nbqa black module*/*.ipynb --nbqa-diff --verbose
       - name: Run isort
-        run: nbqa isort module*/*.ipynb --nbqa-diff
+        run: poetry run nbqa isort module*/*.ipynb --nbqa-diff
       - name: Run pycodestyle
-        run: nbqa pycodestyle module*/*.ipynb --nbqa-diff --ignore=E203,E402,E501,E712,E722,E731,W503
+        run: poetry run nbqa pycodestyle module*/*.ipynb --nbqa-diff --ignore=E203,E402,E501,E712,E722,E731,W503
       - name: Run flake8
-        run: nbqa flake8 module*/*.ipynb --nbqa-diff --ignore=E203,E402,E501,E712,E722,E731,F403,F405,F632,F811,F821,W503
+        run: poetry run nbqa flake8 module*/*.ipynb --nbqa-diff --ignore=E203,E402,E501,E712,E722,E731,F403,F405,F632,F811,F821,W503
