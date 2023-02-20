@@ -194,9 +194,7 @@ R->I: Update staging area to reset commit
 
 note right of J: git checkout test.md
 
-I->J: Update file to reverted version
-
-
+R->J: Update file to reverted version
 """
 wsd(message)
 
