@@ -1459,67 +1459,24 @@ living:
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quakes</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;metadata&quot;:{&quot;generated&quot;:1678992490000,&quot;url&quot;:&quot;https://earthquake.usgs.gov&#39;
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="exercise-3c-answer">
-<h2>Exercise 3c Answer<a class="headerlink" href="#exercise-3c-answer" title="Permalink to this headline">#</a></h2>
-<p><em>Relevant sections: 3.1, 2.5.2, 2.5.1</em></p>
-</section>
-<section id="load-the-data">
-<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Get the text of the web result</p></li>
-<li><p>Parse the data as JSON</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">quakes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s2">&quot;http://earthquake.usgs.gov/fdsnws/event/1/query.geojson&quot;</span><span class="p">,</span>
-    <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;starttime&quot;</span><span class="p">:</span> <span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;maxlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;58.723&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;minlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;50.008&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;maxlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1.67&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;minlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-9.756&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;minmagnitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-11-02&quot;</span><span class="p">,</span> <span class="c1"># Change the date to yesterday</span>
-        <span class="s2">&quot;orderby&quot;</span><span class="p">:</span> <span class="s2">&quot;time-asc&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">requests</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">quakes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="s2">&quot;http://earthquake.usgs.gov/fdsnws/event/1/query.geojson&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="s2">&quot;starttime&quot;</span><span class="p">:</span> <span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="s2">&quot;maxlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;58.723&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="s2">&quot;minlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;50.008&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="s2">&quot;maxlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1.67&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="s2">&quot;minlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-9.756&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>         <span class="s2">&quot;minmagnitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-11-02&quot;</span><span class="p">,</span> <span class="c1"># Change the date to yesterday</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>         <span class="s2">&quot;orderby&quot;</span><span class="p">:</span> <span class="s2">&quot;time-asc&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="p">},</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">quakes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="s2">&quot;http://earthquake.usgs.gov/fdsnws/event/1/query.geojson&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="s2">&quot;starttime&quot;</span><span class="p">:</span> <span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="s2">&quot;maxlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;58.723&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="s2">&quot;minlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;50.008&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="s2">&quot;maxlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1.67&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>         <span class="s2">&quot;minlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-9.756&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="s2">&quot;minmagnitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>         <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-01-19&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>         <span class="s2">&quot;orderby&quot;</span><span class="p">:</span> <span class="s2">&quot;time-asc&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="p">},</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="p">)</span>
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/requests/api.py:73,</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1690,6 +1647,49 @@ living:
 <span class="g g-Whitespace">   </span><span class="mi">1101</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quakes</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;metadata&quot;:{&quot;generated&quot;:1667407904000,&quot;url&quot;:&quot;https://earthquake.usgs.gov&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3c-answer">
+<h2>Exercise 3c Answer<a class="headerlink" href="#exercise-3c-answer" title="Permalink to this headline">#</a></h2>
+<p><em>Relevant sections: 3.1, 2.5.2, 2.5.1</em></p>
+</section>
+<section id="load-the-data">
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Get the text of the web result</p></li>
+<li><p>Parse the data as JSON</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">quakes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;http://earthquake.usgs.gov/fdsnws/event/1/query.geojson&quot;</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;starttime&quot;</span><span class="p">:</span> <span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maxlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;58.723&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;50.008&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maxlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1.67&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-9.756&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minmagnitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-11-02&quot;</span><span class="p">,</span> <span class="c1"># Change the date to yesterday</span>
+        <span class="s2">&quot;orderby&quot;</span><span class="p">:</span> <span class="s2">&quot;time-asc&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
