@@ -1,23 +1,28 @@
 name: Lint all repository code
 
-# Run workflow on PRs to main
 on:
+  # Run workflow on PRs to main
   pull_request:
     branches: [main]
+  # Run on merge to main because caches are inherited from parent branches
+  push:
+    branches:
+      - main
 
 # checkout needs 'contents:read'
 permissions:
   contents: read
 
 jobs:
-    # Note that we have to ignore a *lot* of cases as in many places the modules are deliberately showing incorrect code
+  # Note that we have to ignore a *lot* of cases as in many places the modules are deliberately showing incorrect code
   lint_notebooks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      
       - name: Install linters
-        run: pip install black flake8 isort nbqa pylint
+        run: pip install -r requirements.txt
       - name: Run black
         run: nbqa black module*/*.ipynb --nbqa-diff --verbose
       - name: Run isort
