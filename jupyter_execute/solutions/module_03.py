@@ -379,14 +379,14 @@ IPython.core.display.Image(op)
 # In this instance Pandas probably isn't the first thing that you would use as we have nested dictionaries and JSON works very well in such cases.
 # If we really want to use Pandas we'll need to flatten the nested values before constructing a DataFrame.
 
-# In[35]:
+# In[34]:
 
 
 features = requests_json["features"]
 features[0]
 
 
-# In[36]:
+# In[35]:
 
 
 # We can use ** to convert a dictionary into pairs of (key, value)
@@ -395,7 +395,7 @@ combined_features = [{**f["geometry"], **f["properties"]} for f in features]
 combined_features[0]
 
 
-# In[37]:
+# In[36]:
 
 
 import pandas as pd
@@ -404,7 +404,7 @@ df = pd.DataFrame.from_records(combined_features)
 df.head()
 
 
-# In[38]:
+# In[37]:
 
 
 df.sort_values("mag", ascending=False, inplace=True)
