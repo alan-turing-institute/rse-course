@@ -59,7 +59,7 @@ get_ipython().run_cell_magic('bash', '', '\ngit checkout -b gh-pages\ngit push -
 
 # ## Layout for GitHub pages
 # 
-# You can use GitHub pages to make HTML layouts, here's an [example of how to do it](http://github.com/UCL/ucl-github-pages-example), and [how it looks](http://ucl.github.com/ucl-github-pages-example). We won't go into the detail of this now, but after the class, you might want to try this.
+# You can use GitHub pages to make HTML layouts, here's an [example of how to do it](http://github.com/UCL/ucl-github-pages-example), and [how it looks](http://ucl.github.io/ucl-github-pages-example). We won't go into the detail of this now, but after the class, you might want to try this.
 
 # In[19]:
 

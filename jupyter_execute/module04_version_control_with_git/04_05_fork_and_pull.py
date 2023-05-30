@@ -69,6 +69,7 @@
 # We'll learn more about branches later on.
 # For now, just think of this as a separate area where our changes will be kept not to interfere with other people's work.
 # 
+# (Be sure to first navigate to the cloned directory, or git commands will not use this repository: `cd github-example`)
 # ```
 # git checkout -b southwest
 # ```

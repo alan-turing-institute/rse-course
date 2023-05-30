@@ -1,0 +1,2087 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.1 Field and Record Data &#8212; Research Software Engineering with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.2 Structured Data" href="03_02_structured_data.html" />
+    <link rel="prev" title="3.0 Scientific Python" href="03_00_scientific_python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_git.html">
+     Git &amp; GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/03_editor.html">
+     Text Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/04_jupyter.html">
+     Course Contents in Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   1. Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     1.0 Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_variables.html">
+     1.1 Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_using_functions.html">
+     1.2 Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_types.html">
+     1.3 Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_containers.html">
+     1.4 Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_dictionaries.html">
+     1.5 Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_data_structures.html">
+     1.6 Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_control_and_flow.html">
+     1.7 Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_iteration.html">
+     1.8 Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_classroom_exercises.html">
+     1.9 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   2. Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     2.0 Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     2.1 Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     2.2 Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_working_with_files.html">
+     2.3 Working with files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_getting_data_from_the_internet.html">
+     2.4 Getting data from the Internet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_data_analysis_example.html">
+     2.5 Data analysis example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_06_defining_classes.html">
+     2.6 Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_07_data_analysis_with_classes.html">
+     2.7 Data analysis with classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_08_classroom_exercises.html">
+     2.7 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   3. Research Data in Python
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_00_scientific_python.html">
+     3.0 Scientific Python
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.1 Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_02_structured_data.html">
+     3.2 Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_03_plotting_with_matplotlib.html">
+     3.3 Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_04_NumPy.html">
+     3.4 NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_05_advanced_numpy.html">
+     3.5 Advanced NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_06_boids.html">
+     3.6 The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_07_classroom_exercises.html">
+     3.7 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   4. Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     4.0 Introduction to version control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     4.1 Solo work with git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     4.2 Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     4.3 Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     4.4 Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     4.5 Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     4.6 Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     4.7 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_08_advanced_git_concepts.html">
+     4.8 Advanced git concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_github_pages.html">
+     4.9 Publishing from GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     4.10 Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   5. Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     5.0 Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     5.1 How to test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     5.2 Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     5.3 Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     5.4 Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     5.5 Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     5.6 Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   6. Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
+     6.0 Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
+     6.2 Managing Dependencies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     6.3 Python outside the notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     6.4 Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     6.5 Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     6.6 Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     6.7 Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     6.8 Managing software issues
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
+     6.9 Exercise: Packaging Troll Treasure
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   7. Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     7.0 Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_comments.html">
+     7.1 Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_coding_conventions.html">
+     7.2 Coding conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
+     7.3 Linting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
+     7.4 Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
+     7.5 Object-Oriented Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_classes.html">
+     7.6 Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_design_patterns.html">
+     7.7 Design Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
+     7.8 Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   8. Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     8.0 Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     8.1 Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     8.2 Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     8.3 Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     8.4 Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   9. Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     9.0 Performance Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3.0 How to Build Cython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.4 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance Scaling for Containers and Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   10. Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     10.0 Serialising and normalising data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_databases.html">
+     10.1 Using databases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_deserialisation.html">
+     10.2 Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_binary_formats.html">
+     10.3 Binary formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_markup_languages.html">
+     10.4 Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_beyond_pandas.html">
+     10.5 Larger datasets - beyond pandas and CSV
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_06_processing_in_parallel.html">
+     10.6 Processing in parallel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_07_geospatial_data.html">
+     10.7 Geospatial data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x0_optional_domain_specific_languages.html">
+     10.x.0 (OPTIONAL):  Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x1_optional_controlled_vocabularies.html">
+     10.x.1 (OPTIONAL): Controlled Vocabularies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x2_optional_semantic_models.html">
+     10.x.2 (OPTIONAL):  Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Solutions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../solutions/index.html">
+   Exercise Solutions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_01.html">
+     Module 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_02.html">
+     Module 02
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_03.html">
+     Module 03
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_04.html">
+     Module 04
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_05.html">
+     Module 05
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_06.html">
+     Module 06: Troll Treasure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_07.html">
+     Module 07: Bad Boids
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_08.html">
+     Module 08
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_09.html">
+     Module 09
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_10.html">
+     Module 10
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module03_research_data_in_python/03_01_fields_and_records.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule03_research_data_in_python/03_01_fields_and_records.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module03_research_data_in_python/03_01_fields_and_records.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module03_research_data_in_python/03_01_fields_and_records.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#separated-value-files">
+   3.1.1 Separated Value Files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#csv-variants">
+   3.1.2 CSV variants
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-csv-readers">
+   3.1.3 Python CSV readers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naming-columns">
+   3.1.4 Naming Columns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typed-fields">
+   3.1.5 Typed Fields
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtering-data">
+   3.1.6 Filtering data
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>3.1 Field and Record Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#separated-value-files">
+   3.1.1 Separated Value Files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#csv-variants">
+   3.1.2 CSV variants
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-csv-readers">
+   3.1.3 Python CSV readers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naming-columns">
+   3.1.4 Naming Columns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typed-fields">
+   3.1.5 Typed Fields
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtering-data">
+   3.1.6 Filtering data
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="field-and-record-data">
+<h1>3.1 Field and Record Data<a class="headerlink" href="#field-and-record-data" title="Permalink to this headline">#</a></h1>
+<p><em>Estimated time to complete this notebook: 20 minutes</em></p>
+<section id="separated-value-files">
+<h2>3.1.1 Separated Value Files<a class="headerlink" href="#separated-value-files" title="Permalink to this headline">#</a></h2>
+<p>Let’s go back to the sunspots example <a class="reference internal" href="../module02_intermediate_python/02_04_getting_data_from_the_internet.html"><span class="doc std std-doc">from the previous module</span></a>.
+We had downloaded some semicolon separated data and decided it was better to use a library than to write our own parser.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">spots</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">spots</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1749;01;1749.042;  96.7; -1.0;   -1;1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want to work programmatically with <em>Separated Value</em> files.</p>
+<p>These are files which have:</p>
+<ul class="simple">
+<li><p>Each <em>record</em> on a line</p></li>
+<li><p>Each record has multiple <em>fields</em></p></li>
+<li><p>Fields are separated by some <em>separator</em></p></li>
+</ul>
+<p>Typical separators are the <code class="docutils literal notranslate"><span class="pre">space</span></code>, <code class="docutils literal notranslate"><span class="pre">tab</span></code>, <code class="docutils literal notranslate"><span class="pre">comma</span></code>, and <code class="docutils literal notranslate"><span class="pre">semicolon</span></code> separated values files, e.g.:</p>
+<ul class="simple">
+<li><p>Space separated value (e.g. <code class="docutils literal notranslate"><span class="pre">field1</span> <span class="pre">&quot;field</span> <span class="pre">two&quot;</span> <span class="pre">field3</span></code> )</p></li>
+<li><p>Comma separated value (e.g. <code class="docutils literal notranslate"><span class="pre">field1,</span> <span class="pre">another</span> <span class="pre">field,</span> <span class="pre">&quot;wow,</span> <span class="pre">another</span> <span class="pre">field&quot;</span></code>)</p></li>
+</ul>
+<p>Comma-separated-value is abbreviated CSV, and tab separated value TSV.</p>
+<p>CSV is also used to refer to all the different sub-kinds of separated value files, i.e. some people use CSV to refer to tab, space and semicolon separated files.</p>
+<p>CSV is not a particularly great data format, because it forces your data model to be a list of lists.
+Richer file formats describe “serialisations” for dictionaries and for deeper-than-two nested list structures as well.</p>
+<p>Nevertheless, CSV files are very popular because you can always export <em>spreadsheets</em> as CSV files, (each cell is a field, each row is a record)</p>
+</section>
+<section id="csv-variants">
+<h2>3.1.2 CSV variants<a class="headerlink" href="#csv-variants" title="Permalink to this headline">#</a></h2>
+<p>Some CSV formats define a comment character, so that rows beginning with, e.g., a #, are not treated as data, but give a human comment.</p>
+<p>Some CSV formats define a three-deep list structure, where a double-newline separates records into blocks.</p>
+<p>Some CSV formats assume that the first line defines the names of the fields, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span><span class="p">,</span> <span class="n">age</span>
+<span class="n">James</span><span class="p">,</span> <span class="mi">39</span>
+<span class="n">Will</span><span class="p">,</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+<section id="python-csv-readers">
+<h2>3.1.3 Python CSV readers<a class="headerlink" href="#python-csv-readers" title="Permalink to this headline">#</a></h2>
+<p>The Python standard library has a <code class="docutils literal notranslate"><span class="pre">csv</span></code> module.
+However, it’s less powerful than the CSV capabilities in other libraries such as <a class="reference external" href="https://numpy.org/"><code class="docutils literal notranslate"><span class="pre">numpy</span></code></a>.
+Here we will use <a class="reference external" href="https://pandas.pydata.org/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> which is built on top of <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1749</td>
+      <td>1</td>
+      <td>1749.042</td>
+      <td>96.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1749</td>
+      <td>2</td>
+      <td>1749.123</td>
+      <td>104.3</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1749</td>
+      <td>3</td>
+      <td>1749.204</td>
+      <td>116.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1749</td>
+      <td>4</td>
+      <td>1749.288</td>
+      <td>92.8</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1749</td>
+      <td>5</td>
+      <td>1749.371</td>
+      <td>141.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Pandas <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> is a powerful CSV reader tool.
+A path to the data is given, this can be something on a local machine, or in this case the path is a url.</p>
+<p>We used the <code class="docutils literal notranslate"><span class="pre">sep</span></code> optional argument to specify the delimeter.
+The optional argument <code class="docutils literal notranslate"><span class="pre">header</span></code> specifies if the data contains headers, and if so; the row numbers to use as column names.</p>
+<p>The data is loaded into a DataFrame.
+The <code class="docutils literal notranslate"><span class="pre">head</span></code> method shows us the first 5 entries in the dataframe.
+The <code class="docutils literal notranslate"><span class="pre">tail</span></code> method shows us the last 5 entries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3287</th>
+      <td>2022</td>
+      <td>12</td>
+      <td>2022.958</td>
+      <td>112.8</td>
+      <td>16.6</td>
+      <td>860</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3288</th>
+      <td>2023</td>
+      <td>1</td>
+      <td>2023.042</td>
+      <td>143.6</td>
+      <td>29.2</td>
+      <td>855</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3289</th>
+      <td>2023</td>
+      <td>2</td>
+      <td>2023.122</td>
+      <td>110.9</td>
+      <td>20.7</td>
+      <td>891</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3290</th>
+      <td>2023</td>
+      <td>3</td>
+      <td>2023.204</td>
+      <td>122.6</td>
+      <td>17.1</td>
+      <td>947</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3291</th>
+      <td>2023</td>
+      <td>4</td>
+      <td>2023.286</td>
+      <td>96.4</td>
+      <td>17.1</td>
+      <td>1003</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>96.7
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now plot the “Sunspot cycle”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;2&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/03_01_fields_and_records_24_1.png" src="../_images/03_01_fields_and_records_24_1.png" />
+</div>
+</div>
+<p>The plot command accepted an series of ‘X’ values and an series of ‘Y’ values, identified by their column number in this case, as the dataframe does not have (useful) column headers yet.</p>
+</section>
+<section id="naming-columns">
+<h2>3.1.4 Naming Columns<a class="headerlink" href="#naming-columns" title="Permalink to this headline">#</a></h2>
+<p>As it happens, the columns definitions can be found on the source website (<a class="reference external" href="http://www.sidc.be/silso/infosnmtot">http://www.sidc.be/silso/infosnmtot</a>)</p>
+<blockquote>
+<div><p>CSV</p>
+<p>Filename: SN_m_tot_V2.0.csv
+Format: Comma Separated values (adapted for import in spreadsheets)
+The separator is the semicolon ‘;’.</p>
+<p>Contents:</p>
+<ul class="simple">
+<li><p>Column 1-2: Gregorian calendar date</p>
+<ul>
+<li><p>Year</p></li>
+<li><p>Month</p></li>
+</ul>
+</li>
+<li><p>Column 3: Date in fraction of year.</p></li>
+<li><p>Column 4: Monthly mean total sunspot number.</p></li>
+<li><p>Column 5: Monthly mean standard deviation of the input sunspot numbers.</p></li>
+<li><p>Column 6: Number of observations used to compute the monthly mean total sunspot number.</p></li>
+<li><p>Column 7: Definitive/provisional marker. ‘1’ indicates that the value is definitive. ‘0’ indicates that the value is still provisional.</p></li>
+</ul>
+</div></blockquote>
+<p>We can actually specify this to the formatter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;http://www.sidc.be/silso/INFO/snmtotcsv.php&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;deviation&quot;</span><span class="p">,</span> <span class="s2">&quot;observations&quot;</span><span class="p">,</span> <span class="s2">&quot;definitive&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">df_w_names</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>date</th>
+      <th>mean</th>
+      <th>deviation</th>
+      <th>observations</th>
+      <th>definitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1749</td>
+      <td>1</td>
+      <td>1749.042</td>
+      <td>96.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1749</td>
+      <td>2</td>
+      <td>1749.123</td>
+      <td>104.3</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1749</td>
+      <td>3</td>
+      <td>1749.204</td>
+      <td>116.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1749</td>
+      <td>4</td>
+      <td>1749.288</td>
+      <td>92.8</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1749</td>
+      <td>5</td>
+      <td>1749.371</td>
+      <td>141.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/03_01_fields_and_records_31_1.png" src="../_images/03_01_fields_and_records_31_1.png" />
+</div>
+</div>
+<p>Note: The plot method used for the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is just a wrapper around the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> function <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>:</p>
+</section>
+<section id="typed-fields">
+<h2>3.1.5 Typed Fields<a class="headerlink" href="#typed-fields" title="Permalink to this headline">#</a></h2>
+<p>It’s also often useful to check, and if necessary specify, the datatype of each field.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">dtypes</span>  <span class="c1"># Check the data types of all columns in the DataFrame</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year              int64
+month             int64
+date            float64
+mean            float64
+deviation       float64
+observations      int64
+definitive        int64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case the data types seem sensible, however if we wanted to convert the year into a floating point number instead, we could via:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">df_w_names</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year            float64
+month             int64
+date            float64
+mean            float64
+deviation       float64
+observations      int64
+definitive        int64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_w_names</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>date</th>
+      <th>mean</th>
+      <th>deviation</th>
+      <th>observations</th>
+      <th>definitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1749.0</td>
+      <td>1</td>
+      <td>1749.042</td>
+      <td>96.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1749.0</td>
+      <td>2</td>
+      <td>1749.123</td>
+      <td>104.3</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1749.0</td>
+      <td>3</td>
+      <td>1749.204</td>
+      <td>116.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1749.0</td>
+      <td>4</td>
+      <td>1749.288</td>
+      <td>92.8</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1749.0</td>
+      <td>5</td>
+      <td>1749.371</td>
+      <td>141.7</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="filtering-data">
+<h2>3.1.6 Filtering data<a class="headerlink" href="#filtering-data" title="Permalink to this headline">#</a></h2>
+<p>Sometimes it is necessary to filter data, for example to only see the sunspots for the year 2018 you would use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_twenty_eighteen</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2018</span><span class="p">)]</span>
+<span class="n">df_twenty_eighteen</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>date</th>
+      <th>mean</th>
+      <th>deviation</th>
+      <th>observations</th>
+      <th>definitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3228</th>
+      <td>2018.0</td>
+      <td>1</td>
+      <td>2018.042</td>
+      <td>6.8</td>
+      <td>1.5</td>
+      <td>701</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3229</th>
+      <td>2018.0</td>
+      <td>2</td>
+      <td>2018.122</td>
+      <td>10.7</td>
+      <td>1.1</td>
+      <td>917</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3230</th>
+      <td>2018.0</td>
+      <td>3</td>
+      <td>2018.204</td>
+      <td>2.5</td>
+      <td>0.4</td>
+      <td>1081</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3231</th>
+      <td>2018.0</td>
+      <td>4</td>
+      <td>2018.286</td>
+      <td>8.9</td>
+      <td>1.3</td>
+      <td>996</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3232</th>
+      <td>2018.0</td>
+      <td>5</td>
+      <td>2018.371</td>
+      <td>13.1</td>
+      <td>1.6</td>
+      <td>1234</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3233</th>
+      <td>2018.0</td>
+      <td>6</td>
+      <td>2018.453</td>
+      <td>15.6</td>
+      <td>1.6</td>
+      <td>1070</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3234</th>
+      <td>2018.0</td>
+      <td>7</td>
+      <td>2018.538</td>
+      <td>1.6</td>
+      <td>0.6</td>
+      <td>1438</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3235</th>
+      <td>2018.0</td>
+      <td>8</td>
+      <td>2018.623</td>
+      <td>8.7</td>
+      <td>1.0</td>
+      <td>1297</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3236</th>
+      <td>2018.0</td>
+      <td>9</td>
+      <td>2018.705</td>
+      <td>3.3</td>
+      <td>0.6</td>
+      <td>1223</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3237</th>
+      <td>2018.0</td>
+      <td>10</td>
+      <td>2018.790</td>
+      <td>4.9</td>
+      <td>1.2</td>
+      <td>1097</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3238</th>
+      <td>2018.0</td>
+      <td>11</td>
+      <td>2018.873</td>
+      <td>4.9</td>
+      <td>0.6</td>
+      <td>771</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3239</th>
+      <td>2018.0</td>
+      <td>12</td>
+      <td>2018.958</td>
+      <td>3.1</td>
+      <td>0.5</td>
+      <td>786</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Even though we used</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>df_twenty_eighteen.head<span class="o">(</span><span class="m">20</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>to show us the first 20 results from the dataframe, only 12 are shown as there are only 12 months in a year</p>
+<p>If we wanted all data from 1997 to 1999 we could via:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nineties</span> <span class="o">=</span> <span class="n">df_w_names</span><span class="p">[(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1997</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_w_names</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nineties</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>date</th>
+      <th>mean</th>
+      <th>deviation</th>
+      <th>observations</th>
+      <th>definitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2976</th>
+      <td>1997.0</td>
+      <td>1</td>
+      <td>1997.042</td>
+      <td>7.4</td>
+      <td>3.2</td>
+      <td>497</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2977</th>
+      <td>1997.0</td>
+      <td>2</td>
+      <td>1997.123</td>
+      <td>11.0</td>
+      <td>2.9</td>
+      <td>545</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2978</th>
+      <td>1997.0</td>
+      <td>3</td>
+      <td>1997.204</td>
+      <td>12.1</td>
+      <td>2.4</td>
+      <td>627</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2979</th>
+      <td>1997.0</td>
+      <td>4</td>
+      <td>1997.288</td>
+      <td>23.0</td>
+      <td>3.3</td>
+      <td>663</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2980</th>
+      <td>1997.0</td>
+      <td>5</td>
+      <td>1997.371</td>
+      <td>25.4</td>
+      <td>2.8</td>
+      <td>716</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nineties</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>date</th>
+      <th>mean</th>
+      <th>deviation</th>
+      <th>observations</th>
+      <th>definitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3007</th>
+      <td>1999.0</td>
+      <td>8</td>
+      <td>1999.623</td>
+      <td>142.3</td>
+      <td>12.9</td>
+      <td>649</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3008</th>
+      <td>1999.0</td>
+      <td>9</td>
+      <td>1999.707</td>
+      <td>106.3</td>
+      <td>6.5</td>
+      <td>624</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3009</th>
+      <td>1999.0</td>
+      <td>10</td>
+      <td>1999.790</td>
+      <td>168.7</td>
+      <td>10.4</td>
+      <td>531</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3010</th>
+      <td>1999.0</td>
+      <td>11</td>
+      <td>1999.874</td>
+      <td>188.3</td>
+      <td>12.3</td>
+      <td>406</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3011</th>
+      <td>1999.0</td>
+      <td>12</td>
+      <td>1999.958</td>
+      <td>116.8</td>
+      <td>9.3</td>
+      <td>404</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./module03_research_data_in_python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03_00_scientific_python.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">3.0 Scientific Python</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03_02_structured_data.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3.2 Structured Data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

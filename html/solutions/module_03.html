@@ -1,0 +1,2271 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Module 03 &#8212; Research Software Engineering with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module 04" href="module_04.html" />
+    <link rel="prev" title="Module 02" href="module_02.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_git.html">
+     Git &amp; GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/03_editor.html">
+     Text Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/04_jupyter.html">
+     Course Contents in Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   1. Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     1.0 Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_variables.html">
+     1.1 Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_using_functions.html">
+     1.2 Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_types.html">
+     1.3 Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_containers.html">
+     1.4 Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_dictionaries.html">
+     1.5 Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_data_structures.html">
+     1.6 Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_control_and_flow.html">
+     1.7 Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_iteration.html">
+     1.8 Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_classroom_exercises.html">
+     1.9 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   2. Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     2.0 Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     2.1 Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     2.2 Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_working_with_files.html">
+     2.3 Working with files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_getting_data_from_the_internet.html">
+     2.4 Getting data from the Internet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_data_analysis_example.html">
+     2.5 Data analysis example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_06_defining_classes.html">
+     2.6 Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_07_data_analysis_with_classes.html">
+     2.7 Data analysis with classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_08_classroom_exercises.html">
+     2.7 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   3. Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_scientific_python.html">
+     3.0 Scientific Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_fields_and_records.html">
+     3.1 Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_structured_data.html">
+     3.2 Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_plotting_with_matplotlib.html">
+     3.3 Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy.html">
+     3.4 NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_advanced_numpy.html">
+     3.5 Advanced NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
+     3.7 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   4. Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     4.0 Introduction to version control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     4.1 Solo work with git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     4.2 Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     4.3 Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     4.4 Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     4.5 Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     4.6 Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     4.7 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_08_advanced_git_concepts.html">
+     4.8 Advanced git concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_github_pages.html">
+     4.9 Publishing from GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     4.10 Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   5. Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     5.0 Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     5.1 How to test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     5.2 Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     5.3 Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     5.4 Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     5.5 Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     5.6 Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   6. Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
+     6.0 Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
+     6.2 Managing Dependencies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     6.3 Python outside the notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     6.4 Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     6.5 Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     6.6 Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     6.7 Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     6.8 Managing software issues
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
+     6.9 Exercise: Packaging Troll Treasure
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   7. Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     7.0 Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_comments.html">
+     7.1 Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_coding_conventions.html">
+     7.2 Coding conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
+     7.3 Linting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
+     7.4 Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
+     7.5 Object-Oriented Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_classes.html">
+     7.6 Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_design_patterns.html">
+     7.7 Design Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
+     7.8 Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   8. Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     8.0 Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     8.1 Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     8.2 Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     8.3 Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     8.4 Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module09_programming_for_speed/index.html">
+   9. Programming for Speed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_00_performance_programming.html">
+     9.0 Performance Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_03_optimising_with_cython.html">
+     9.3.0 How to Build Cython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_04_optimising_with_numba.html">
+     9.4 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module09_programming_for_speed/09_05_performance_scaling.html">
+     9.5 Performance Scaling for Containers and Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   10. Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     10.0 Serialising and normalising data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_databases.html">
+     10.1 Using databases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_deserialisation.html">
+     10.2 Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_binary_formats.html">
+     10.3 Binary formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_markup_languages.html">
+     10.4 Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_beyond_pandas.html">
+     10.5 Larger datasets - beyond pandas and CSV
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_06_processing_in_parallel.html">
+     10.6 Processing in parallel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_07_geospatial_data.html">
+     10.7 Geospatial data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x0_optional_domain_specific_languages.html">
+     10.x.0 (OPTIONAL):  Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x1_optional_controlled_vocabularies.html">
+     10.x.1 (OPTIONAL): Controlled Vocabularies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x2_optional_semantic_models.html">
+     10.x.2 (OPTIONAL):  Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Solutions
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Exercise Solutions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_01.html">
+     Module 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_02.html">
+     Module 02
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Module 03
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_04.html">
+     Module 04
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_05.html">
+     Module 05
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_06.html">
+     Module 06: Troll Treasure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_07.html">
+     Module 07: Bad Boids
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_08.html">
+     Module 08
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_09.html">
+     Module 09
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="module_10.html">
+     Module 10
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/solutions/module_03.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fsolutions/module_03.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/solutions/module_03.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/solutions/module_03.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3a-saving-and-loading-data">
+   Exercise 3a  Saving and loading data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3a-answer">
+   Exercise 3a Answer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3b-plotting-with-matplotlib">
+   Exercise 3b Plotting with matplotlib
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3b-answer">
+   Exercise 3b Answer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3c-the-biggest-earthquake-in-the-uk-this-century">
+   Exercise 3c The biggest earthquake in the UK this century
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-problem">
+   The Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3c-answer">
+   Exercise 3c Answer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-data">
+   Load the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#investigate-the-data">
+   Investigate the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#search-through-the-data">
+   Search through the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualise-your-answer">
+   Visualise your answer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-equivalent-solution-using-pandas">
+   [Optional] Equivalent solution using pandas
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Module 03</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3a-saving-and-loading-data">
+   Exercise 3a  Saving and loading data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3a-answer">
+   Exercise 3a Answer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3b-plotting-with-matplotlib">
+   Exercise 3b Plotting with matplotlib
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3b-answer">
+   Exercise 3b Answer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3c-the-biggest-earthquake-in-the-uk-this-century">
+   Exercise 3c The biggest earthquake in the UK this century
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-problem">
+   The Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3c-answer">
+   Exercise 3c Answer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-data">
+   Load the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#investigate-the-data">
+   Investigate the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#search-through-the-data">
+   Search through the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualise-your-answer">
+   Visualise your answer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-equivalent-solution-using-pandas">
+   [Optional] Equivalent solution using pandas
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="module-03">
+<h1>Module 03<a class="headerlink" href="#module-03" title="Permalink to this headline">#</a></h1>
+<section id="exercise-3a-saving-and-loading-data">
+<h2>Exercise 3a  Saving and loading data<a class="headerlink" href="#exercise-3a-saving-and-loading-data" title="Permalink to this headline">#</a></h2>
+<p><em>Relevant sections: 3.1.2, 3.1.3</em></p>
+<p>Use YAML or JSON to save your maze data structure to disk and load it again.</p>
+<p>The maze would have looked something like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">house</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;living&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="s2">&quot;kitchen&quot;</span><span class="p">,</span> <span class="s2">&quot;outside&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">,</span> <span class="s2">&quot;upstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;bedroom&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;James&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;kitchen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">},</span> <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s2">&quot;garden&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inside&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">},</span> <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Sue&quot;</span><span class="p">],</span> <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="s2">&quot;bedroom&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;downstairs&quot;</span><span class="p">:</span> <span class="s2">&quot;living&quot;</span><span class="p">,</span> <span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="s2">&quot;garden&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;people&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3a-answer">
+<h2>Exercise 3a Answer<a class="headerlink" href="#exercise-3a-answer" title="Permalink to this headline">#</a></h2>
+<p><strong>Save as JSON or YAML</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write with json.dump</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">house</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the file on disk</span>
+<span class="o">!</span>cat<span class="w"> </span>myfile.json
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;living&quot;: {&quot;exits&quot;: {&quot;north&quot;: &quot;kitchen&quot;, &quot;outside&quot;: &quot;garden&quot;, &quot;upstairs&quot;: &quot;bedroom&quot;}, &quot;people&quot;: [&quot;James&quot;], &quot;capacity&quot;: 2}, &quot;kitchen&quot;: {&quot;exits&quot;: {&quot;south&quot;: &quot;living&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1}, &quot;garden&quot;: {&quot;exits&quot;: {&quot;inside&quot;: &quot;living&quot;}, &quot;people&quot;: [&quot;Sue&quot;], &quot;capacity&quot;: 3}, &quot;bedroom&quot;: {&quot;exits&quot;: {&quot;downstairs&quot;: &quot;living&quot;, &quot;jump&quot;: &quot;garden&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Or with file.write, using json.dumps to convert to a string</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_maze_out</span><span class="p">:</span>
+    <span class="n">json_maze_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">house</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the file on disk</span>
+<span class="o">!</span>cat<span class="w"> </span>myotherfile.json
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;living&quot;: {&quot;exits&quot;: {&quot;north&quot;: &quot;kitchen&quot;, &quot;outside&quot;: &quot;garden&quot;, &quot;upstairs&quot;: &quot;bedroom&quot;}, &quot;people&quot;: [&quot;James&quot;], &quot;capacity&quot;: 2}, &quot;kitchen&quot;: {&quot;exits&quot;: {&quot;south&quot;: &quot;living&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1}, &quot;garden&quot;: {&quot;exits&quot;: {&quot;inside&quot;: &quot;living&quot;}, &quot;people&quot;: [&quot;Sue&quot;], &quot;capacity&quot;: 3}, &quot;bedroom&quot;: {&quot;exits&quot;: {&quot;downstairs&quot;: &quot;living&quot;, &quot;jump&quot;: &quot;garden&quot;}, &quot;people&quot;: [], &quot;capacity&quot;: 1}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write with yaml.safe_dump</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.yml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">house</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the file on disk</span>
+<span class="o">!</span>cat<span class="w"> </span>myfile.yml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bedroom:
+  capacity: 1
+  exits:
+    downstairs: living
+    jump: garden
+  people: []
+garden:
+  capacity: 3
+  exits:
+    inside: living
+  people:
+  - Sue
+kitchen:
+  capacity: 1
+  exits:
+    south: living
+  people: []
+living:
+  capacity: 2
+  exits:
+    north: kitchen
+    outside: garden
+    upstairs: bedroom
+  people:
+  - James
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Or with file.write, using yaml.dump to convert to a string</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_maze_out</span><span class="p">:</span>
+    <span class="n">yaml_maze_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">house</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the file on disk</span>
+<span class="o">!</span>cat<span class="w"> </span>myotherfile.yaml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{bedroom: {capacity: 1, exits: {downstairs: living, jump: garden}, people: []}, garden: {
+    capacity: 3, exits: {inside: living}, people: [Sue]}, kitchen: {capacity: 1, exits: {
+      south: living}, people: []}, living: {capacity: 2, exits: {north: kitchen, outside: garden,
+      upstairs: bedroom}, people: [James]}}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Loading with JSON or YAML</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read into a string then load with json.loads</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">mydataasstring</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">my_json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">mydataasstring</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_json_data</span><span class="p">[</span><span class="s2">&quot;living&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;exits&#39;: {&#39;north&#39;: &#39;kitchen&#39;, &#39;outside&#39;: &#39;garden&#39;, &#39;upstairs&#39;: &#39;bedroom&#39;}, &#39;people&#39;: [&#39;James&#39;], &#39;capacity&#39;: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read directly with json.load</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_json_maze</span><span class="p">:</span>
+    <span class="n">maze_again</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f_json_maze</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">maze_again</span><span class="p">[</span><span class="s2">&quot;living&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;exits&#39;: {&#39;north&#39;: &#39;kitchen&#39;, &#39;outside&#39;: &#39;garden&#39;, &#39;upstairs&#39;: &#39;bedroom&#39;}, &#39;people&#39;: [&#39;James&#39;], &#39;capacity&#39;: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read into a string then load with yaml.safe_load</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">mydataasstring</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">my_yaml_data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">mydataasstring</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_yaml_data</span><span class="p">[</span><span class="s2">&quot;living&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;exits&#39;: {&#39;north&#39;: &#39;kitchen&#39;, &#39;outside&#39;: &#39;garden&#39;, &#39;upstairs&#39;: &#39;bedroom&#39;}, &#39;people&#39;: [&#39;James&#39;], &#39;capacity&#39;: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read directly with yaml.safe_load</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myotherfile.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_yaml_maze</span><span class="p">:</span>
+    <span class="n">maze_again</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f_yaml_maze</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">maze_again</span><span class="p">[</span><span class="s2">&quot;living&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;capacity&#39;: 2, &#39;exits&#39;: {&#39;north&#39;: &#39;kitchen&#39;, &#39;outside&#39;: &#39;garden&#39;, &#39;upstairs&#39;: &#39;bedroom&#39;}, &#39;people&#39;: [&#39;James&#39;]}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3b-plotting-with-matplotlib">
+<h2>Exercise 3b Plotting with matplotlib<a class="headerlink" href="#exercise-3b-plotting-with-matplotlib" title="Permalink to this headline">#</a></h2>
+<p>Generate two plots, next to each other (on the same row).</p>
+<p>The first plot should show sin(x) and cos(x) for the range of x between -1 pi and +1 pi.</p>
+<p>The second plot should show sin(x), cos(x) and the sum of sin(x) and cos(x) over the same -pi to +pi range. Set suitable limits on the axes and pick colours, markers, or line-styles that will make it easy to differentiate between the curves. Add legends to both axes.</p>
+</section>
+<section id="exercise-3b-answer">
+<h2>Exercise 3b Answer<a class="headerlink" href="#exercise-3b-answer" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Use numpy to get the range of x values (math should work too)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Define figure dimensions</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sin(x)&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;cos(x)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#56B4E9&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sin(x)&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;cos(x)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#56B4E9&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cos(x) + sin(x)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#E69F00&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.5, 1.5)
+</pre></div>
+</div>
+<img alt="../_images/module_03_22_1.png" src="../_images/module_03_22_1.png" />
+</div>
+</div>
+</section>
+<section id="exercise-3c-the-biggest-earthquake-in-the-uk-this-century">
+<h2>Exercise 3c The biggest earthquake in the UK this century<a class="headerlink" href="#exercise-3c-the-biggest-earthquake-in-the-uk-this-century" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="the-problem">
+<h2>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">GeoJSON</span></code> is a json-based file format for sharing geographic data. One example dataset is the USGS earthquake data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">quakes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;http://earthquake.usgs.gov/fdsnws/event/1/query.geojson&quot;</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;starttime&quot;</span><span class="p">:</span> <span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maxlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;58.723&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;50.008&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maxlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1.67&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-9.756&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minmagnitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-01-19&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;orderby&quot;</span><span class="p">:</span> <span class="s2">&quot;time-asc&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quakes</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;metadata&quot;:{&quot;generated&quot;:1685443048000,&quot;url&quot;:&quot;https://earthquake.usgs.gov&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3c-answer">
+<h2>Exercise 3c Answer<a class="headerlink" href="#exercise-3c-answer" title="Permalink to this headline">#</a></h2>
+<p><em>Relevant sections: 3.1, 2.5.2, 2.5.1</em></p>
+</section>
+<section id="load-the-data">
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Get the text of the web result</p></li>
+<li><p>Parse the data as JSON</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">quakes</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;http://earthquake.usgs.gov/fdsnws/event/1/query.geojson&quot;</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;starttime&quot;</span><span class="p">:</span> <span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maxlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;58.723&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minlatitude&quot;</span><span class="p">:</span> <span class="s2">&quot;50.008&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maxlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1.67&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minlongitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-9.756&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;minmagnitude&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;endtime&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-11-02&quot;</span><span class="p">,</span> <span class="c1"># Change the date to yesterday</span>
+        <span class="s2">&quot;orderby&quot;</span><span class="p">:</span> <span class="s2">&quot;time-asc&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="c1"># Can get the data indirectly via the text and then load json text....</span>
+<span class="n">my_quake_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">quakes</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="c1"># Section 3.1 - structured data</span>
+
+<span class="c1"># Requests also has a built in json parser (note this gives exactly the same result as &#39;my_quake_data&#39;)</span>
+<span class="n">requests_json</span> <span class="o">=</span> <span class="n">quakes</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="investigate-the-data">
+<h2>Investigate the data<a class="headerlink" href="#investigate-the-data" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Understand how the data is structured into dictionaries and lists</p>
+<ul>
+<li><p>Where is the magnitude?</p></li>
+<li><p>Where is the place description or coordinates?</p></li>
+</ul>
+</li>
+</ul>
+<p>There is no foolproof way of doing this. A good first step is to see the type of our data!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">requests_json</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can navigate through this dictionary to see how the information is stored in the nested dictionaries and lists. The <code class="docutils literal notranslate"><span class="pre">keys</span></code> method can indicate what kind of information each dictionary holds, and the <code class="docutils literal notranslate"><span class="pre">len</span></code> function tells us how many entries are contained in a list. How you explore is up to you!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">requests_json</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;type&#39;, &#39;metadata&#39;, &#39;features&#39;, &#39;bbox&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>131
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;Feature&#39;,
+ &#39;properties&#39;: {&#39;mag&#39;: 2.6,
+  &#39;place&#39;: &#39;12 km NNW of Penrith, United Kingdom&#39;,
+  &#39;time&#39;: 956553055700,
+  &#39;updated&#39;: 1415322596133,
+  &#39;tz&#39;: None,
+  &#39;url&#39;: &#39;https://earthquake.usgs.gov/earthquakes/eventpage/usp0009rst&#39;,
+  &#39;detail&#39;: &#39;https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=usp0009rst&amp;format=geojson&#39;,
+  &#39;felt&#39;: None,
+  &#39;cdi&#39;: None,
+  &#39;mmi&#39;: None,
+  &#39;alert&#39;: None,
+  &#39;status&#39;: &#39;reviewed&#39;,
+  &#39;tsunami&#39;: 0,
+  &#39;sig&#39;: 104,
+  &#39;net&#39;: &#39;us&#39;,
+  &#39;code&#39;: &#39;p0009rst&#39;,
+  &#39;ids&#39;: &#39;,usp0009rst,&#39;,
+  &#39;sources&#39;: &#39;,us,&#39;,
+  &#39;types&#39;: &#39;,impact-text,origin,phase-data,&#39;,
+  &#39;nst&#39;: None,
+  &#39;dmin&#39;: None,
+  &#39;rms&#39;: None,
+  &#39;gap&#39;: None,
+  &#39;magType&#39;: &#39;ml&#39;,
+  &#39;type&#39;: &#39;earthquake&#39;,
+  &#39;title&#39;: &#39;M 2.6 - 12 km NNW of Penrith, United Kingdom&#39;},
+ &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-2.81, 54.77, 14]},
+ &#39;id&#39;: &#39;usp0009rst&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;type&#39;, &#39;properties&#39;, &#39;geometry&#39;, &#39;id&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like the coordinates are in the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> section and the magnitude is in the <code class="docutils literal notranslate"><span class="pre">properties</span></code> section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-2.81, 54.77, 14]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;mag&#39;, &#39;place&#39;, &#39;time&#39;, &#39;updated&#39;, &#39;tz&#39;, &#39;url&#39;, &#39;detail&#39;, &#39;felt&#39;, &#39;cdi&#39;, &#39;mmi&#39;, &#39;alert&#39;, &#39;status&#39;, &#39;tsunami&#39;, &#39;sig&#39;, &#39;net&#39;, &#39;code&#39;, &#39;ids&#39;, &#39;sources&#39;, &#39;types&#39;, &#39;nst&#39;, &#39;dmin&#39;, &#39;rms&#39;, &#39;gap&#39;, &#39;magType&#39;, &#39;type&#39;, &#39;title&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;mag&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.6
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="search-through-the-data">
+<h2>Search through the data<a class="headerlink" href="#search-through-the-data" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Program a search through all the quakes to find the biggest quake</p></li>
+<li><p>Find the place of the biggest quake</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quakes</span> <span class="o">=</span> <span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">largest_so_far</span> <span class="o">=</span> <span class="n">quakes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">quake</span> <span class="ow">in</span> <span class="n">quakes</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">quake</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;mag&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">largest_so_far</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;mag&quot;</span><span class="p">]:</span>
+        <span class="n">largest_so_far</span> <span class="o">=</span> <span class="n">quake</span>
+<span class="n">largest_so_far</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;mag&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lon</span> <span class="o">=</span> <span class="n">largest_so_far</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">][</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">largest_so_far</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">][</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Latitude: </span><span class="si">{</span><span class="n">lat</span><span class="si">}</span><span class="s2"> Longitude: </span><span class="si">{</span><span class="n">lon</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Latitude: 52.52 Longitude: -2.15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualise-your-answer">
+<h2>Visualise your answer<a class="headerlink" href="#visualise-your-answer" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Form a URL for an online map service at that latitude and longitude: look back at the introductory example</p></li>
+<li><p>Display that image</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">IPython</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a solution to one of the questions in module 2</span>
+<span class="c1"># The only difference here is that the map type is set to map rather than satellite view and the zoom is 10 not 12</span>
+<span class="k">def</span> <span class="nf">op_response</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;https://static-maps.yandex.ru:443/1.x&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="s2">&quot;400,400&quot;</span><span class="p">,</span>  <span class="c1"># size of map</span>
+            <span class="s2">&quot;ll&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span>  <span class="c1"># longitude &amp; latitude of centre</span>
+            <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># zoom level</span>
+            <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;map&quot;</span><span class="p">,</span>  <span class="c1"># map layer (map image)</span>
+            <span class="s2">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;en_US&quot;</span><span class="p">,</span>  <span class="c1"># language</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+
+    
+<span class="n">op</span> <span class="o">=</span> <span class="n">op_response</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+
+<span class="n">IPython</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/module_03_49_0.png" src="../_images/module_03_49_0.png" />
+</div>
+</div>
+</section>
+<section id="optional-equivalent-solution-using-pandas">
+<h2>[Optional] Equivalent solution using pandas<a class="headerlink" href="#optional-equivalent-solution-using-pandas" title="Permalink to this headline">#</a></h2>
+<p>In this instance Pandas probably isn’t the first thing that you would use as we have nested dictionaries and JSON works very well in such cases.
+If we really want to use Pandas we’ll need to flatten the nested values before constructing a DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">requests_json</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
+<span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;Feature&#39;,
+ &#39;properties&#39;: {&#39;mag&#39;: 2.6,
+  &#39;place&#39;: &#39;12 km NNW of Penrith, United Kingdom&#39;,
+  &#39;time&#39;: 956553055700,
+  &#39;updated&#39;: 1415322596133,
+  &#39;tz&#39;: None,
+  &#39;url&#39;: &#39;https://earthquake.usgs.gov/earthquakes/eventpage/usp0009rst&#39;,
+  &#39;detail&#39;: &#39;https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=usp0009rst&amp;format=geojson&#39;,
+  &#39;felt&#39;: None,
+  &#39;cdi&#39;: None,
+  &#39;mmi&#39;: None,
+  &#39;alert&#39;: None,
+  &#39;status&#39;: &#39;reviewed&#39;,
+  &#39;tsunami&#39;: 0,
+  &#39;sig&#39;: 104,
+  &#39;net&#39;: &#39;us&#39;,
+  &#39;code&#39;: &#39;p0009rst&#39;,
+  &#39;ids&#39;: &#39;,usp0009rst,&#39;,
+  &#39;sources&#39;: &#39;,us,&#39;,
+  &#39;types&#39;: &#39;,impact-text,origin,phase-data,&#39;,
+  &#39;nst&#39;: None,
+  &#39;dmin&#39;: None,
+  &#39;rms&#39;: None,
+  &#39;gap&#39;: None,
+  &#39;magType&#39;: &#39;ml&#39;,
+  &#39;type&#39;: &#39;earthquake&#39;,
+  &#39;title&#39;: &#39;M 2.6 - 12 km NNW of Penrith, United Kingdom&#39;},
+ &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-2.81, 54.77, 14]},
+ &#39;id&#39;: &#39;usp0009rst&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can use ** to convert a dictionary into pairs of (key, value)</span>
+<span class="c1"># We can then run `{(k1, v1), (k2, v2)}` to convert a list of keys and values back into a dictionary</span>
+<span class="n">combined_features</span> <span class="o">=</span> <span class="p">[{</span><span class="o">**</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span><span class="p">]</span>
+<span class="n">combined_features</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;earthquake&#39;,
+ &#39;coordinates&#39;: [-2.81, 54.77, 14],
+ &#39;mag&#39;: 2.6,
+ &#39;place&#39;: &#39;12 km NNW of Penrith, United Kingdom&#39;,
+ &#39;time&#39;: 956553055700,
+ &#39;updated&#39;: 1415322596133,
+ &#39;tz&#39;: None,
+ &#39;url&#39;: &#39;https://earthquake.usgs.gov/earthquakes/eventpage/usp0009rst&#39;,
+ &#39;detail&#39;: &#39;https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=usp0009rst&amp;format=geojson&#39;,
+ &#39;felt&#39;: None,
+ &#39;cdi&#39;: None,
+ &#39;mmi&#39;: None,
+ &#39;alert&#39;: None,
+ &#39;status&#39;: &#39;reviewed&#39;,
+ &#39;tsunami&#39;: 0,
+ &#39;sig&#39;: 104,
+ &#39;net&#39;: &#39;us&#39;,
+ &#39;code&#39;: &#39;p0009rst&#39;,
+ &#39;ids&#39;: &#39;,usp0009rst,&#39;,
+ &#39;sources&#39;: &#39;,us,&#39;,
+ &#39;types&#39;: &#39;,impact-text,origin,phase-data,&#39;,
+ &#39;nst&#39;: None,
+ &#39;dmin&#39;: None,
+ &#39;rms&#39;: None,
+ &#39;gap&#39;: None,
+ &#39;magType&#39;: &#39;ml&#39;,
+ &#39;title&#39;: &#39;M 2.6 - 12 km NNW of Penrith, United Kingdom&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">combined_features</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>coordinates</th>
+      <th>mag</th>
+      <th>place</th>
+      <th>time</th>
+      <th>updated</th>
+      <th>tz</th>
+      <th>url</th>
+      <th>detail</th>
+      <th>felt</th>
+      <th>...</th>
+      <th>code</th>
+      <th>ids</th>
+      <th>sources</th>
+      <th>types</th>
+      <th>nst</th>
+      <th>dmin</th>
+      <th>rms</th>
+      <th>gap</th>
+      <th>magType</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>earthquake</td>
+      <td>[-2.81, 54.77, 14]</td>
+      <td>2.6</td>
+      <td>12 km NNW of Penrith, United Kingdom</td>
+      <td>956553055700</td>
+      <td>1415322596133</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p0009rst</td>
+      <td>,usp0009rst,</td>
+      <td>,us,</td>
+      <td>,impact-text,origin,phase-data,</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 2.6 - 12 km NNW of Penrith, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>earthquake</td>
+      <td>[-1.61, 52.28, 13.1]</td>
+      <td>4.0</td>
+      <td>1 km WSW of Warwick, United Kingdom</td>
+      <td>969683025790</td>
+      <td>1415322666913</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000a0pm</td>
+      <td>,usp000a0pm,</td>
+      <td>,us,</td>
+      <td>,impact-text,origin,phase-data,</td>
+      <td>55.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 4.0 - 1 km WSW of Warwick, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>earthquake</td>
+      <td>[1.564, 53.236, 10]</td>
+      <td>4.0</td>
+      <td>38 km NNE of Cromer, United Kingdom</td>
+      <td>977442788510</td>
+      <td>1415322705662</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000a6hd</td>
+      <td>,usp000a6hd,</td>
+      <td>,us,</td>
+      <td>,origin,phase-data,</td>
+      <td>27.0</td>
+      <td>NaN</td>
+      <td>1.12</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 4.0 - 38 km NNE of Cromer, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>earthquake</td>
+      <td>[0.872, 58.097, 10]</td>
+      <td>3.3</td>
+      <td>171 km ENE of Peterhead, United Kingdom</td>
+      <td>984608438660</td>
+      <td>1415322741153</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000abdr</td>
+      <td>,usp000abdr,</td>
+      <td>,us,</td>
+      <td>,origin,phase-data,</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>1.44</td>
+      <td>NaN</td>
+      <td>mb</td>
+      <td>M 3.3 - 171 km ENE of Peterhead, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>earthquake</td>
+      <td>[-1.845, 51.432, 10]</td>
+      <td>2.9</td>
+      <td>8 km W of Marlborough, United Kingdom</td>
+      <td>984879824720</td>
+      <td>1415322742102</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000abnc</td>
+      <td>,usp000abnc,</td>
+      <td>,us,</td>
+      <td>,origin,phase-data,</td>
+      <td>19.0</td>
+      <td>NaN</td>
+      <td>0.57</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 2.9 - 8 km W of Marlborough, United Kingdom</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;mag&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>coordinates</th>
+      <th>mag</th>
+      <th>place</th>
+      <th>time</th>
+      <th>updated</th>
+      <th>tz</th>
+      <th>url</th>
+      <th>detail</th>
+      <th>felt</th>
+      <th>...</th>
+      <th>code</th>
+      <th>ids</th>
+      <th>sources</th>
+      <th>types</th>
+      <th>nst</th>
+      <th>dmin</th>
+      <th>rms</th>
+      <th>gap</th>
+      <th>magType</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>earthquake</td>
+      <td>[-2.15, 52.52, 9.4]</td>
+      <td>4.8</td>
+      <td>2 km ESE of Wombourn, United Kingdom</td>
+      <td>1032738794600</td>
+      <td>1600455819229</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000bcxg</td>
+      <td>,usp000bcxg,atlas20020922235314,</td>
+      <td>,us,atlas,</td>
+      <td>,impact-text,origin,phase-data,shakemap,trump-...</td>
+      <td>268.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>mb</td>
+      <td>M 4.8 - 2 km ESE of Wombourn, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>81</th>
+      <td>earthquake</td>
+      <td>[-0.332, 53.403, 18.4]</td>
+      <td>4.8</td>
+      <td>1 km NNE of Market Rasen, United Kingdom</td>
+      <td>1204073807800</td>
+      <td>1657747150218</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>13654.0</td>
+      <td>...</td>
+      <td>p000g02w</td>
+      <td>,us2008nyae,usp000g02w,atlas20080227005647,</td>
+      <td>,us,us,atlas,</td>
+      <td>,associate,dyfi,impact-text,origin,phase-data,...</td>
+      <td>361.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>19.2</td>
+      <td>mb</td>
+      <td>M 4.8 - 1 km NNE of Market Rasen, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>earthquake</td>
+      <td>[1.009, 51.085, 10]</td>
+      <td>4.6</td>
+      <td>1 km WNW of Lympne, United Kingdom</td>
+      <td>1177744691360</td>
+      <td>1657780288041</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>201.0</td>
+      <td>...</td>
+      <td>p000fase</td>
+      <td>,us2007bsal,usp000fase,atlas20070428071811,</td>
+      <td>,us,us,atlas,</td>
+      <td>,associate,dyfi,impact-text,origin,phase-data,...</td>
+      <td>295.0</td>
+      <td>NaN</td>
+      <td>1.12</td>
+      <td>31.8</td>
+      <td>mb</td>
+      <td>M 4.6 - 1 km WNW of Lympne, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>earthquake</td>
+      <td>[-2.219, 53.478, 5]</td>
+      <td>4.3</td>
+      <td>1 km ESE of Manchester, United Kingdom</td>
+      <td>1035200554900</td>
+      <td>1415323007416</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>p000beyx</td>
+      <td>,usp000beyx,</td>
+      <td>,us,</td>
+      <td>,impact-text,origin,phase-data,</td>
+      <td>46.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ml</td>
+      <td>M 4.3 - 1 km ESE of Manchester, United Kingdom</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>earthquake</td>
+      <td>[-3.8559, 51.7231, 11.55]</td>
+      <td>4.3</td>
+      <td>5 km NE of Clydach, United Kingdom</td>
+      <td>1518877865070</td>
+      <td>1681205336855</td>
+      <td>None</td>
+      <td>https://earthquake.usgs.gov/earthquakes/eventp...</td>
+      <td>https://earthquake.usgs.gov/fdsnws/event/1/que...</td>
+      <td>3410.0</td>
+      <td>...</td>
+      <td>2000d3uw</td>
+      <td>,us2000d3uw,</td>
+      <td>,us,</td>
+      <td>,dyfi,impact-text,origin,phase-data,shakemap,</td>
+      <td>NaN</td>
+      <td>2.167</td>
+      <td>1.14</td>
+      <td>92.0</td>
+      <td>mb</td>
+      <td>M 4.3 - 5 km NE of Clydach, United Kingdom</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<p>You can see that we haven’t really gained much over the JSON solution.
+We still needed to look at the data to see its structure and we had to manually flatten the structure.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./solutions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="module_02.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Module 02</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="module_04.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Module 04</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

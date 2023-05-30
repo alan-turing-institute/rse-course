@@ -1,0 +1,3018 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>9.3.0 How to Build Cython Code &#8212; Research Software Engineering with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.4 Optimising with Numba" href="09_04_optimising_with_numba.html" />
+    <link rel="prev" title="9.2 Optimising with NumPy" href="09_02_optimising_with_numpy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ATI_logo_black_W1024px.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Research Software Engineering with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Research Software Engineering with Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Prerequisites
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../course_prerequisites/index.html">
+   Installation Instructions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/01_git.html">
+     Git &amp; GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/02_python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/03_editor.html">
+     Text Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../course_prerequisites/04_jupyter.html">
+     Course Contents in Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course contents
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module01_introduction_to_python/index.html">
+   1. Introduction to Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_00_introduction_to_python.html">
+     1.0 Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_01_variables.html">
+     1.1 Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_02_using_functions.html">
+     1.2 Using Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_03_types.html">
+     1.3 Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_04_containers.html">
+     1.4 Containers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_05_dictionaries.html">
+     1.5 Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_06_data_structures.html">
+     1.6 Data structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_07_control_and_flow.html">
+     1.7 Control and Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_08_iteration.html">
+     1.8 Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module01_introduction_to_python/01_09_classroom_exercises.html">
+     1.9 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module02_intermediate_python/index.html">
+   2. Intermediate Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_00_comprehensions.html">
+     2.0 Comprehensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_01_functions.html">
+     2.1 Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_02_using_libraries.html">
+     2.2 Using Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_03_working_with_files.html">
+     2.3 Working with files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_04_getting_data_from_the_internet.html">
+     2.4 Getting data from the Internet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_05_data_analysis_example.html">
+     2.5 Data analysis example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_06_defining_classes.html">
+     2.6 Defining your own classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_07_data_analysis_with_classes.html">
+     2.7 Data analysis with classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module02_intermediate_python/02_08_classroom_exercises.html">
+     2.7 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module03_research_data_in_python/index.html">
+   3. Research Data in Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_00_scientific_python.html">
+     3.0 Scientific Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_01_fields_and_records.html">
+     3.1 Field and Record Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_02_structured_data.html">
+     3.2 Structured Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_03_plotting_with_matplotlib.html">
+     3.3 Plotting with Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_04_NumPy.html">
+     3.4 NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_05_advanced_numpy.html">
+     3.5 Advanced NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_06_boids.html">
+     3.6 The Boids!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module03_research_data_in_python/03_07_classroom_exercises.html">
+     3.7 Classroom Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module04_version_control_with_git/index.html">
+   4. Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_00_introduction.html">
+     4.0 Introduction to version control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_01_solo_work_with_git.html">
+     4.1 Solo work with git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_02_fixing_mistakes.html">
+     4.2 Fixing mistakes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_03_publishing.html">
+     4.3 Publishing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_04_collaboration.html">
+     4.4 Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_05_fork_and_pull.html">
+     4.5 Fork and Pull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_06_git_theory.html">
+     4.6 Git Theory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_07_branches.html">
+     4.7 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_08_advanced_git_concepts.html">
+     4.8 Advanced git concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_09_github_pages.html">
+     4.9 Publishing from GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_10_rebasing.html">
+     4.10 Rebasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_11_debugging_with_git_bisect.html">
+     4.11 Debugging With git bisect
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module04_version_control_with_git/04_12_multiple_remotes.html">
+     4.12 Working with multiple remotes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module05_testing_your_code/index.html">
+   5. Testing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_00_introduction.html">
+     5.0 Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_01_how_to_test.html">
+     5.1 How to test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_02_testing_frameworks.html">
+     5.2 Testing frameworks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_03_energy_example.html">
+     5.3 Classroom exercise: energy calculation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_04_mocking.html">
+     5.4 Mocking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_05_using_a_debugger.html">
+     5.5 Using a debugger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_06_continuous_integration.html">
+     5.6 Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module05_testing_your_code/05_07_diffusion_example.html">
+     Recap example: Monte-Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module06_software_projects/index.html">
+   6. Software Projects
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_00_libraries.html">
+     6.0 Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_01_installing_packages.html">
+     6.1 Installing libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_02_managing_dependencies.html">
+     6.2 Managing Dependencies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_03_non_notebook_python.html">
+     6.3 Python outside the notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_04_packaging.html">
+     6.4 Packaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_05_documentation.html">
+     6.5 Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_06_software_development.html">
+     6.6 Software Project Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_07_software_licensing.html">
+     6.7 Software Licensing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_08_software_issues.html">
+     6.8 Managing software issues
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module06_software_projects/06_09_exercise.html">
+     6.9 Exercise: Packaging Troll Treasure
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module07_construction_and_design/index.html">
+   7. Construction and Design
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_00_introduction.html">
+     7.0 Construction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_01_comments.html">
+     7.1 Comments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_02_coding_conventions.html">
+     7.2 Coding conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_03_linters.html">
+     7.3 Linting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_04_refactoring.html">
+     7.4 Refactoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_05_object_oriented_design.html">
+     7.5 Object-Oriented Design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_06_classes.html">
+     7.6 Class design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_07_design_patterns.html">
+     7.7 Design Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module07_construction_and_design/07_08_refactoring_boids.html">
+     7.8 Exercise: Refactoring The Bad Boids
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module08_advanced_programming_techniques/index.html">
+   8. Advanced Programming Techniques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_00_introduction.html">
+     8.0 Advanced Python Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_01_functional_programming.html">
+     8.1 Functional programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_02_iterators_and_generators.html">
+     8.2 Iterators and Generators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_03_exceptions.html">
+     8.3 Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_04_operator_overloading.html">
+     8.4 Operator overloading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_05_metaprogramming.html">
+     8.5 Metaprogramming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module08_advanced_programming_techniques/08_06_advanced_operator_overloading.html">
+     8.6 Advanced operator overloading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   9. Programming for Speed
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="09_00_performance_programming.html">
+     9.0 Performance Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09_02_optimising_with_numpy.html">
+     9.2 Optimising with NumPy
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     9.3.0 How to Build Cython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09_04_optimising_with_numba.html">
+     9.4 Optimising with Numba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09_05_performance_scaling.html">
+     9.5 Performance Scaling for Containers and Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../module10_scientific_file_formats/index.html">
+   10. Scientific file formats
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_00_serialisation_and_normalisation.html">
+     10.0 Serialising and normalising data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_01_databases.html">
+     10.1 Using databases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_02_deserialisation.html">
+     10.2 Deserialisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_03_binary_formats.html">
+     10.3 Binary formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_04_markup_languages.html">
+     10.4 Markup Languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_05_beyond_pandas.html">
+     10.5 Larger datasets - beyond pandas and CSV
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_06_processing_in_parallel.html">
+     10.6 Processing in parallel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_07_geospatial_data.html">
+     10.7 Geospatial data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x0_optional_domain_specific_languages.html">
+     10.x.0 (OPTIONAL):  Domain specific languages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x1_optional_controlled_vocabularies.html">
+     10.x.1 (OPTIONAL): Controlled Vocabularies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../module10_scientific_file_formats/10_x2_optional_semantic_models.html">
+     10.x.2 (OPTIONAL):  Semantic file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Solutions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../solutions/index.html">
+   Exercise Solutions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_01.html">
+     Module 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_02.html">
+     Module 02
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_03.html">
+     Module 03
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_04.html">
+     Module 04
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_05.html">
+     Module 05
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_06.html">
+     Module 06: Troll Treasure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_07.html">
+     Module 07: Bad Boids
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_08.html">
+     Module 08
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_09.html">
+     Module 09
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../solutions/module_10.html">
+     Module 10
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <p>Download notes as <a href="/rse-course/pdf/book.pdf">PDF</a>.</p>
+<p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/alan-turing-institute/rse-course/main?urlpath=tree/module09_programming_for_speed/09_03_optimising_with_cython.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/issues/new?title=Issue%20on%20page%20%2Fmodule09_programming_for_speed/09_03_optimising_with_cython.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/alan-turing-institute/rse-course/edit/main/module09_programming_for_speed/09_03_optimising_with_cython.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/module09_programming_for_speed/09_03_optimising_with_cython.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   9.3.0 How to Build Cython Code
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compiling-a-pure-python-function">
+   9.3.1 Compiling a Pure Python Function
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cython-with-c-types">
+   9.3.2 Cython with C Types
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-annotate-option">
+     The –annotate Option
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#typing-variables">
+     Typing Variables
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#typing-function-parameters-and-return-values">
+     Typing Function Parameters and Return Values
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cython-with-numpy-ndarray">
+     Cython with numpy ndarray
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>9.3.0 How to Build Cython Code</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   9.3.0 How to Build Cython Code
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compiling-a-pure-python-function">
+   9.3.1 Compiling a Pure Python Function
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cython-with-c-types">
+   9.3.2 Cython with C Types
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-annotate-option">
+     The –annotate Option
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#typing-variables">
+     Typing Variables
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#typing-function-parameters-and-return-values">
+     Typing Function Parameters and Return Values
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cython-with-numpy-ndarray">
+     Cython with numpy ndarray
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><em>Estimated time for this notebook: 20 minutes</em></p>
+<p>Cython can be viewed as an extension of Python where variables and functions are annotated with extra information, in particular types. The resulting Cython source code will be compiled into optimized C or C++ code, which can potentially speed up slow Python code. In other words, Cython provides a way of writing Python with comparable performance to that of C/C++.</p>
+<section id="how-to-build-cython-code">
+<h1>9.3.0 How to Build Cython Code<a class="headerlink" href="#how-to-build-cython-code" title="Permalink to this headline">#</a></h1>
+<p>Cython code must, unlike Python, be compiled. This happens in the following stages:</p>
+<ul class="simple">
+<li><p>The cython code in <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> file will be translated to a <code class="docutils literal notranslate"><span class="pre">C</span></code> file.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">C</span></code> file will be compiled by a C compiler into a shared library, which will be directly loaded into Python.</p></li>
+</ul>
+<p>If you’re writing <code class="docutils literal notranslate"><span class="pre">.py</span></code> files, you use the <code class="docutils literal notranslate"><span class="pre">cythonize</span></code> command in your terminal.
+In a Jupyter notebook, everything is a lot easier. One needs only to load the Cython extension (<code class="docutils literal notranslate"><span class="pre">%load_ext</span> <span class="pre">Cython</span></code>) at the beginning and use <code class="docutils literal notranslate"><span class="pre">%%cython</span></code> cell magic. Cells starting with <code class="docutils literal notranslate"><span class="pre">%%cython</span></code> will be treated as a <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> code and, consequently, compiled.</p>
+<p>For details, please see <a class="reference external" href="http://docs.cython.org/src/quickstart/build.html">Building Cython Code</a>.</p>
+</section>
+<section id="compiling-a-pure-python-function">
+<h1>9.3.1 Compiling a Pure Python Function<a class="headerlink" href="#compiling-a-pure-python-function" title="Permalink to this headline">#</a></h1>
+<p>We’ll copy our pure Python <code class="docutils literal notranslate"><span class="pre">mandel()</span></code> function from the earlier notebook and redefine our real and imaginary inputs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">xstep</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">ystep</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span> <span class="o">+</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[(</span><span class="n">ymin</span> <span class="o">+</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">resolution</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mandel</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations.</span>
+
+<span class="sd">    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum</span>
+<span class="sd">    number of iterations.</span>
+
+<span class="sd">    Returns the number of iterations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">constant</span>
+
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">counter</span>
+
+
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">50</span>
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">mandel</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will cythonise our function without adding any type hints.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> Cython
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+
+def mandel_cython():
+    value = 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mandel_cython</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+
+def mandel_cython(constant, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. 
+    
+    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum 
+    number of iterations.
+    
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+    
+    value = 0
+
+    counter = 0
+    while counter &lt; max_iterations:
+        if abs(value) &gt; 2:
+            break
+
+        value = (value * value) + constant
+
+        counter = counter + 1
+
+    return counter
+
+
+assert mandel_cython(0) == 50
+assert mandel_cython(3) == 1
+assert mandel_cython(0.5) == 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s verify the result</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_python</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<span class="n">data_cython</span> <span class="o">=</span> <span class="p">[[</span><span class="n">mandel_cython</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s2">&quot;cividis&quot;</span><span class="p">)</span>  <span class="c1"># use a CVD-friendly palette</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axarr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_python</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Pure Python&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Imaginary&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_cython</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cython&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Imaginary&quot;</span><span class="p">)</span>
+<span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Real&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/09_03_optimising_with_cython_15_1.png" src="../_images/09_03_optimising_with_cython_15_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>  <span class="c1"># pure python</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>490 ms ± 1.41 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel_cython</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>  <span class="c1"># cython</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>332 ms ± 3.11 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have improved the performance of a factor of 1.5 by just using the Cython compiler, <strong>without changing the code</strong>!</p>
+</section>
+<section id="cython-with-c-types">
+<h1>9.3.2 Cython with C Types<a class="headerlink" href="#cython-with-c-types" title="Permalink to this headline">#</a></h1>
+<p>But we can do better by telling Cython what C data types we would use in the code. Note we’re not actually writing C, we’re writing Python with C types.</p>
+<section id="the-annotate-option">
+<h2>The –annotate Option<a class="headerlink" href="#the-annotate-option" title="Permalink to this headline">#</a></h2>
+<p>If we pass the <code class="docutils literal notranslate"><span class="pre">--annotate</span></code>/<code class="docutils literal notranslate"><span class="pre">-a</span></code> option to <code class="docutils literal notranslate"><span class="pre">%%cython</span></code> then it will output information about the line-by-line cost of running your function. You can use this to target the most costly operations first or to estimate how much more optimising there is to do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span> --annotate
+
+def mandel_cython(constant, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. 
+    
+    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum 
+    number of iterations.
+    
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+    
+    value = 0
+
+    counter = 0
+    while counter &lt; max_iterations:
+        if abs(value) &gt; 2:
+            break
+
+        value = (value * value) + constant
+
+        counter = counter + 1
+
+    return counter
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><!DOCTYPE html>
+<!-- Generated by Cython 0.29.35 -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cython: _cython_magic_9be4f4efa1a11edf08799ed5f2168860.pyx</title>
+    <style type="text/css">
+
+body.cython { font-family: courier; font-size: 12; }
+
+.cython.tag  {  }
+.cython.line { margin: 0em }
+.cython.code { font-size: 9; color: #444444; display: none; margin: 0px 0px 0px 8px; border-left: 8px none; }
+
+.cython.line .run { background-color: #B0FFB0; }
+.cython.line .mis { background-color: #FFB0B0; }
+.cython.code.run  { border-left: 8px solid #B0FFB0; }
+.cython.code.mis  { border-left: 8px solid #FFB0B0; }
+
+.cython.code .py_c_api  { color: red; }
+.cython.code .py_macro_api  { color: #FF7000; }
+.cython.code .pyx_c_api  { color: #FF3000; }
+.cython.code .pyx_macro_api  { color: #FF7000; }
+.cython.code .refnanny  { color: #FFA000; }
+.cython.code .trace  { color: #FFA000; }
+.cython.code .error_goto  { color: #FFA000; }
+
+.cython.code .coerce  { color: #008000; border: 1px dotted #008000 }
+.cython.code .py_attr { color: #FF0000; font-weight: bold; }
+.cython.code .c_attr  { color: #0000FF; }
+.cython.code .py_call { color: #FF0000; font-weight: bold; }
+.cython.code .c_call  { color: #0000FF; }
+
+.cython.score-0 {background-color: #FFFFff;}
+.cython.score-1 {background-color: #FFFFe7;}
+.cython.score-2 {background-color: #FFFFd4;}
+.cython.score-3 {background-color: #FFFFc4;}
+.cython.score-4 {background-color: #FFFFb6;}
+.cython.score-5 {background-color: #FFFFaa;}
+.cython.score-6 {background-color: #FFFF9f;}
+.cython.score-7 {background-color: #FFFF96;}
+.cython.score-8 {background-color: #FFFF8d;}
+.cython.score-9 {background-color: #FFFF86;}
+.cython.score-10 {background-color: #FFFF7f;}
+.cython.score-11 {background-color: #FFFF79;}
+.cython.score-12 {background-color: #FFFF73;}
+.cython.score-13 {background-color: #FFFF6e;}
+.cython.score-14 {background-color: #FFFF6a;}
+.cython.score-15 {background-color: #FFFF66;}
+.cython.score-16 {background-color: #FFFF62;}
+.cython.score-17 {background-color: #FFFF5e;}
+.cython.score-18 {background-color: #FFFF5b;}
+.cython.score-19 {background-color: #FFFF57;}
+.cython.score-20 {background-color: #FFFF55;}
+.cython.score-21 {background-color: #FFFF52;}
+.cython.score-22 {background-color: #FFFF4f;}
+.cython.score-23 {background-color: #FFFF4d;}
+.cython.score-24 {background-color: #FFFF4b;}
+.cython.score-25 {background-color: #FFFF48;}
+.cython.score-26 {background-color: #FFFF46;}
+.cython.score-27 {background-color: #FFFF44;}
+.cython.score-28 {background-color: #FFFF43;}
+.cython.score-29 {background-color: #FFFF41;}
+.cython.score-30 {background-color: #FFFF3f;}
+.cython.score-31 {background-color: #FFFF3e;}
+.cython.score-32 {background-color: #FFFF3c;}
+.cython.score-33 {background-color: #FFFF3b;}
+.cython.score-34 {background-color: #FFFF39;}
+.cython.score-35 {background-color: #FFFF38;}
+.cython.score-36 {background-color: #FFFF37;}
+.cython.score-37 {background-color: #FFFF36;}
+.cython.score-38 {background-color: #FFFF35;}
+.cython.score-39 {background-color: #FFFF34;}
+.cython.score-40 {background-color: #FFFF33;}
+.cython.score-41 {background-color: #FFFF32;}
+.cython.score-42 {background-color: #FFFF31;}
+.cython.score-43 {background-color: #FFFF30;}
+.cython.score-44 {background-color: #FFFF2f;}
+.cython.score-45 {background-color: #FFFF2e;}
+.cython.score-46 {background-color: #FFFF2d;}
+.cython.score-47 {background-color: #FFFF2c;}
+.cython.score-48 {background-color: #FFFF2b;}
+.cython.score-49 {background-color: #FFFF2b;}
+.cython.score-50 {background-color: #FFFF2a;}
+.cython.score-51 {background-color: #FFFF29;}
+.cython.score-52 {background-color: #FFFF29;}
+.cython.score-53 {background-color: #FFFF28;}
+.cython.score-54 {background-color: #FFFF27;}
+.cython.score-55 {background-color: #FFFF27;}
+.cython.score-56 {background-color: #FFFF26;}
+.cython.score-57 {background-color: #FFFF26;}
+.cython.score-58 {background-color: #FFFF25;}
+.cython.score-59 {background-color: #FFFF24;}
+.cython.score-60 {background-color: #FFFF24;}
+.cython.score-61 {background-color: #FFFF23;}
+.cython.score-62 {background-color: #FFFF23;}
+.cython.score-63 {background-color: #FFFF22;}
+.cython.score-64 {background-color: #FFFF22;}
+.cython.score-65 {background-color: #FFFF22;}
+.cython.score-66 {background-color: #FFFF21;}
+.cython.score-67 {background-color: #FFFF21;}
+.cython.score-68 {background-color: #FFFF20;}
+.cython.score-69 {background-color: #FFFF20;}
+.cython.score-70 {background-color: #FFFF1f;}
+.cython.score-71 {background-color: #FFFF1f;}
+.cython.score-72 {background-color: #FFFF1f;}
+.cython.score-73 {background-color: #FFFF1e;}
+.cython.score-74 {background-color: #FFFF1e;}
+.cython.score-75 {background-color: #FFFF1e;}
+.cython.score-76 {background-color: #FFFF1d;}
+.cython.score-77 {background-color: #FFFF1d;}
+.cython.score-78 {background-color: #FFFF1c;}
+.cython.score-79 {background-color: #FFFF1c;}
+.cython.score-80 {background-color: #FFFF1c;}
+.cython.score-81 {background-color: #FFFF1c;}
+.cython.score-82 {background-color: #FFFF1b;}
+.cython.score-83 {background-color: #FFFF1b;}
+.cython.score-84 {background-color: #FFFF1b;}
+.cython.score-85 {background-color: #FFFF1a;}
+.cython.score-86 {background-color: #FFFF1a;}
+.cython.score-87 {background-color: #FFFF1a;}
+.cython.score-88 {background-color: #FFFF1a;}
+.cython.score-89 {background-color: #FFFF19;}
+.cython.score-90 {background-color: #FFFF19;}
+.cython.score-91 {background-color: #FFFF19;}
+.cython.score-92 {background-color: #FFFF19;}
+.cython.score-93 {background-color: #FFFF18;}
+.cython.score-94 {background-color: #FFFF18;}
+.cython.score-95 {background-color: #FFFF18;}
+.cython.score-96 {background-color: #FFFF18;}
+.cython.score-97 {background-color: #FFFF17;}
+.cython.score-98 {background-color: #FFFF17;}
+.cython.score-99 {background-color: #FFFF17;}
+.cython.score-100 {background-color: #FFFF17;}
+.cython.score-101 {background-color: #FFFF16;}
+.cython.score-102 {background-color: #FFFF16;}
+.cython.score-103 {background-color: #FFFF16;}
+.cython.score-104 {background-color: #FFFF16;}
+.cython.score-105 {background-color: #FFFF16;}
+.cython.score-106 {background-color: #FFFF15;}
+.cython.score-107 {background-color: #FFFF15;}
+.cython.score-108 {background-color: #FFFF15;}
+.cython.score-109 {background-color: #FFFF15;}
+.cython.score-110 {background-color: #FFFF15;}
+.cython.score-111 {background-color: #FFFF15;}
+.cython.score-112 {background-color: #FFFF14;}
+.cython.score-113 {background-color: #FFFF14;}
+.cython.score-114 {background-color: #FFFF14;}
+.cython.score-115 {background-color: #FFFF14;}
+.cython.score-116 {background-color: #FFFF14;}
+.cython.score-117 {background-color: #FFFF14;}
+.cython.score-118 {background-color: #FFFF13;}
+.cython.score-119 {background-color: #FFFF13;}
+.cython.score-120 {background-color: #FFFF13;}
+.cython.score-121 {background-color: #FFFF13;}
+.cython.score-122 {background-color: #FFFF13;}
+.cython.score-123 {background-color: #FFFF13;}
+.cython.score-124 {background-color: #FFFF13;}
+.cython.score-125 {background-color: #FFFF12;}
+.cython.score-126 {background-color: #FFFF12;}
+.cython.score-127 {background-color: #FFFF12;}
+.cython.score-128 {background-color: #FFFF12;}
+.cython.score-129 {background-color: #FFFF12;}
+.cython.score-130 {background-color: #FFFF12;}
+.cython.score-131 {background-color: #FFFF12;}
+.cython.score-132 {background-color: #FFFF11;}
+.cython.score-133 {background-color: #FFFF11;}
+.cython.score-134 {background-color: #FFFF11;}
+.cython.score-135 {background-color: #FFFF11;}
+.cython.score-136 {background-color: #FFFF11;}
+.cython.score-137 {background-color: #FFFF11;}
+.cython.score-138 {background-color: #FFFF11;}
+.cython.score-139 {background-color: #FFFF11;}
+.cython.score-140 {background-color: #FFFF11;}
+.cython.score-141 {background-color: #FFFF10;}
+.cython.score-142 {background-color: #FFFF10;}
+.cython.score-143 {background-color: #FFFF10;}
+.cython.score-144 {background-color: #FFFF10;}
+.cython.score-145 {background-color: #FFFF10;}
+.cython.score-146 {background-color: #FFFF10;}
+.cython.score-147 {background-color: #FFFF10;}
+.cython.score-148 {background-color: #FFFF10;}
+.cython.score-149 {background-color: #FFFF10;}
+.cython.score-150 {background-color: #FFFF0f;}
+.cython.score-151 {background-color: #FFFF0f;}
+.cython.score-152 {background-color: #FFFF0f;}
+.cython.score-153 {background-color: #FFFF0f;}
+.cython.score-154 {background-color: #FFFF0f;}
+.cython.score-155 {background-color: #FFFF0f;}
+.cython.score-156 {background-color: #FFFF0f;}
+.cython.score-157 {background-color: #FFFF0f;}
+.cython.score-158 {background-color: #FFFF0f;}
+.cython.score-159 {background-color: #FFFF0f;}
+.cython.score-160 {background-color: #FFFF0f;}
+.cython.score-161 {background-color: #FFFF0e;}
+.cython.score-162 {background-color: #FFFF0e;}
+.cython.score-163 {background-color: #FFFF0e;}
+.cython.score-164 {background-color: #FFFF0e;}
+.cython.score-165 {background-color: #FFFF0e;}
+.cython.score-166 {background-color: #FFFF0e;}
+.cython.score-167 {background-color: #FFFF0e;}
+.cython.score-168 {background-color: #FFFF0e;}
+.cython.score-169 {background-color: #FFFF0e;}
+.cython.score-170 {background-color: #FFFF0e;}
+.cython.score-171 {background-color: #FFFF0e;}
+.cython.score-172 {background-color: #FFFF0e;}
+.cython.score-173 {background-color: #FFFF0d;}
+.cython.score-174 {background-color: #FFFF0d;}
+.cython.score-175 {background-color: #FFFF0d;}
+.cython.score-176 {background-color: #FFFF0d;}
+.cython.score-177 {background-color: #FFFF0d;}
+.cython.score-178 {background-color: #FFFF0d;}
+.cython.score-179 {background-color: #FFFF0d;}
+.cython.score-180 {background-color: #FFFF0d;}
+.cython.score-181 {background-color: #FFFF0d;}
+.cython.score-182 {background-color: #FFFF0d;}
+.cython.score-183 {background-color: #FFFF0d;}
+.cython.score-184 {background-color: #FFFF0d;}
+.cython.score-185 {background-color: #FFFF0d;}
+.cython.score-186 {background-color: #FFFF0d;}
+.cython.score-187 {background-color: #FFFF0c;}
+.cython.score-188 {background-color: #FFFF0c;}
+.cython.score-189 {background-color: #FFFF0c;}
+.cython.score-190 {background-color: #FFFF0c;}
+.cython.score-191 {background-color: #FFFF0c;}
+.cython.score-192 {background-color: #FFFF0c;}
+.cython.score-193 {background-color: #FFFF0c;}
+.cython.score-194 {background-color: #FFFF0c;}
+.cython.score-195 {background-color: #FFFF0c;}
+.cython.score-196 {background-color: #FFFF0c;}
+.cython.score-197 {background-color: #FFFF0c;}
+.cython.score-198 {background-color: #FFFF0c;}
+.cython.score-199 {background-color: #FFFF0c;}
+.cython.score-200 {background-color: #FFFF0c;}
+.cython.score-201 {background-color: #FFFF0c;}
+.cython.score-202 {background-color: #FFFF0c;}
+.cython.score-203 {background-color: #FFFF0b;}
+.cython.score-204 {background-color: #FFFF0b;}
+.cython.score-205 {background-color: #FFFF0b;}
+.cython.score-206 {background-color: #FFFF0b;}
+.cython.score-207 {background-color: #FFFF0b;}
+.cython.score-208 {background-color: #FFFF0b;}
+.cython.score-209 {background-color: #FFFF0b;}
+.cython.score-210 {background-color: #FFFF0b;}
+.cython.score-211 {background-color: #FFFF0b;}
+.cython.score-212 {background-color: #FFFF0b;}
+.cython.score-213 {background-color: #FFFF0b;}
+.cython.score-214 {background-color: #FFFF0b;}
+.cython.score-215 {background-color: #FFFF0b;}
+.cython.score-216 {background-color: #FFFF0b;}
+.cython.score-217 {background-color: #FFFF0b;}
+.cython.score-218 {background-color: #FFFF0b;}
+.cython.score-219 {background-color: #FFFF0b;}
+.cython.score-220 {background-color: #FFFF0b;}
+.cython.score-221 {background-color: #FFFF0b;}
+.cython.score-222 {background-color: #FFFF0a;}
+.cython.score-223 {background-color: #FFFF0a;}
+.cython.score-224 {background-color: #FFFF0a;}
+.cython.score-225 {background-color: #FFFF0a;}
+.cython.score-226 {background-color: #FFFF0a;}
+.cython.score-227 {background-color: #FFFF0a;}
+.cython.score-228 {background-color: #FFFF0a;}
+.cython.score-229 {background-color: #FFFF0a;}
+.cython.score-230 {background-color: #FFFF0a;}
+.cython.score-231 {background-color: #FFFF0a;}
+.cython.score-232 {background-color: #FFFF0a;}
+.cython.score-233 {background-color: #FFFF0a;}
+.cython.score-234 {background-color: #FFFF0a;}
+.cython.score-235 {background-color: #FFFF0a;}
+.cython.score-236 {background-color: #FFFF0a;}
+.cython.score-237 {background-color: #FFFF0a;}
+.cython.score-238 {background-color: #FFFF0a;}
+.cython.score-239 {background-color: #FFFF0a;}
+.cython.score-240 {background-color: #FFFF0a;}
+.cython.score-241 {background-color: #FFFF0a;}
+.cython.score-242 {background-color: #FFFF0a;}
+.cython.score-243 {background-color: #FFFF0a;}
+.cython.score-244 {background-color: #FFFF0a;}
+.cython.score-245 {background-color: #FFFF0a;}
+.cython.score-246 {background-color: #FFFF09;}
+.cython.score-247 {background-color: #FFFF09;}
+.cython.score-248 {background-color: #FFFF09;}
+.cython.score-249 {background-color: #FFFF09;}
+.cython.score-250 {background-color: #FFFF09;}
+.cython.score-251 {background-color: #FFFF09;}
+.cython.score-252 {background-color: #FFFF09;}
+.cython.score-253 {background-color: #FFFF09;}
+.cython.score-254 {background-color: #FFFF09;}
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.cython .hll { background-color: #ffffcc }
+.cython { background: #f8f8f8; }
+.cython .c { color: #3D7B7B; font-style: italic } /* Comment */
+.cython .err { border: 1px solid #FF0000 } /* Error */
+.cython .k { color: #008000; font-weight: bold } /* Keyword */
+.cython .o { color: #666666 } /* Operator */
+.cython .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.cython .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.cython .cp { color: #9C6500 } /* Comment.Preproc */
+.cython .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.cython .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.cython .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.cython .gd { color: #A00000 } /* Generic.Deleted */
+.cython .ge { font-style: italic } /* Generic.Emph */
+.cython .gr { color: #E40000 } /* Generic.Error */
+.cython .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.cython .gi { color: #008400 } /* Generic.Inserted */
+.cython .go { color: #717171 } /* Generic.Output */
+.cython .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.cython .gs { font-weight: bold } /* Generic.Strong */
+.cython .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.cython .gt { color: #0044DD } /* Generic.Traceback */
+.cython .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.cython .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.cython .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.cython .kp { color: #008000 } /* Keyword.Pseudo */
+.cython .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.cython .kt { color: #B00040 } /* Keyword.Type */
+.cython .m { color: #666666 } /* Literal.Number */
+.cython .s { color: #BA2121 } /* Literal.String */
+.cython .na { color: #687822 } /* Name.Attribute */
+.cython .nb { color: #008000 } /* Name.Builtin */
+.cython .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.cython .no { color: #880000 } /* Name.Constant */
+.cython .nd { color: #AA22FF } /* Name.Decorator */
+.cython .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.cython .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.cython .nf { color: #0000FF } /* Name.Function */
+.cython .nl { color: #767600 } /* Name.Label */
+.cython .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.cython .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.cython .nv { color: #19177C } /* Name.Variable */
+.cython .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.cython .w { color: #bbbbbb } /* Text.Whitespace */
+.cython .mb { color: #666666 } /* Literal.Number.Bin */
+.cython .mf { color: #666666 } /* Literal.Number.Float */
+.cython .mh { color: #666666 } /* Literal.Number.Hex */
+.cython .mi { color: #666666 } /* Literal.Number.Integer */
+.cython .mo { color: #666666 } /* Literal.Number.Oct */
+.cython .sa { color: #BA2121 } /* Literal.String.Affix */
+.cython .sb { color: #BA2121 } /* Literal.String.Backtick */
+.cython .sc { color: #BA2121 } /* Literal.String.Char */
+.cython .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.cython .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.cython .s2 { color: #BA2121 } /* Literal.String.Double */
+.cython .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.cython .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.cython .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.cython .sx { color: #008000 } /* Literal.String.Other */
+.cython .sr { color: #A45A77 } /* Literal.String.Regex */
+.cython .s1 { color: #BA2121 } /* Literal.String.Single */
+.cython .ss { color: #19177C } /* Literal.String.Symbol */
+.cython .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.cython .fm { color: #0000FF } /* Name.Function.Magic */
+.cython .vc { color: #19177C } /* Name.Variable.Class */
+.cython .vg { color: #19177C } /* Name.Variable.Global */
+.cython .vi { color: #19177C } /* Name.Variable.Instance */
+.cython .vm { color: #19177C } /* Name.Variable.Magic */
+.cython .il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+</head>
+<body class="cython">
+<p><span style="border-bottom: solid 1px grey;">Generated by Cython 0.29.35</span></p>
+<p>
+    <span style="background-color: #FFFF00">Yellow lines</span> hint at Python interaction.<br />
+    Click on a line that starts with a "<code>+</code>" to see the C code that Cython generated for it.
+</p>
+<div class="cython"><pre class="cython line score-0">&#xA0;<span class="">01</span>: </pre>
+<pre class="cython line score-39" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">02</span>: <span class="k">def</span> <span class="nf">mandel_cython</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mf">50</span><span class="p">):</span></pre>
+<pre class='cython code score-39 '>/* Python wrapper */
+static PyObject *__pyx_pw_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_1mandel_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_mandel_cython[] = "Computes the values of the series for up to a maximum number of iterations. \n    \n    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum \n    number of iterations.\n    \n    Returns the number of iterations.\n    ";
+static PyMethodDef __pyx_mdef_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_1mandel_cython = {"mandel_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_1mandel_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_mandel_cython};
+static PyObject *__pyx_pw_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_1mandel_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_constant = 0;
+  PyObject *__pyx_v_max_iterations = 0;
+  PyObject *__pyx_r = 0;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("mandel_cython (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_constant,&amp;__pyx_n_s_max_iterations,0};
+    PyObject* values[2] = {0,0};
+    values[1] = ((PyObject *)__pyx_int_50);
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = <span class='py_c_api'>PyDict_Size</span>(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_constant)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (kw_args &gt; 0) {
+          PyObject* value = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_max_iterations);
+          if (value) { values[1] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args &gt; 0)) {
+        if (unlikely(<span class='pyx_c_api'>__Pyx_ParseOptionalKeywords</span>(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mandel_cython") &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 2, __pyx_L3_error)</span>
+      }
+    } else {
+      switch (<span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)) {
+        case  2: values[1] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_constant = values[0];
+    __pyx_v_max_iterations = values[1];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("mandel_cython", 0, 1, 2, <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)); <span class='error_goto'>__PYX_ERR(0, 2, __pyx_L3_error)</span>
+  __pyx_L3_error:;
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("_cython_magic_9be4f4efa1a11edf08799ed5f2168860.mandel_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_mandel_cython(__pyx_self, __pyx_v_constant, __pyx_v_max_iterations);
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+
+  /* function exit code */
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_mandel_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_constant, PyObject *__pyx_v_max_iterations) {
+  PyObject *__pyx_v_value = NULL;
+  PyObject *__pyx_v_counter = NULL;
+  PyObject *__pyx_r = NULL;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("mandel_cython", 0);
+/* … */
+  /* function exit code */
+  __pyx_L1_error:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("_cython_magic_9be4f4efa1a11edf08799ed5f2168860.mandel_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_value);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_counter);
+  <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+/* … */
+  __pyx_tuple_ = <span class='py_c_api'>PyTuple_Pack</span>(4, __pyx_n_s_constant, __pyx_n_s_max_iterations, __pyx_n_s_value, __pyx_n_s_counter);<span class='error_goto'> if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 2, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple_);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple_);
+/* … */
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_46_cython_magic_9be4f4efa1a11edf08799ed5f2168860_1mandel_cython, NULL, __pyx_n_s_cython_magic_9be4f4efa1a11edf08);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_mandel_cython, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 2, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">03</span>: <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">04</span>: <span class="sd">    </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">05</span>: <span class="sd">    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">06</span>: <span class="sd">    number of iterations.</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">07</span>: <span class="sd">    </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">08</span>: <span class="sd">    Returns the number of iterations.</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">09</span>: <span class="sd">    &quot;&quot;&quot;</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">10</span>: </pre>
+<pre class="cython line score-1" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">11</span>:     <span class="n">value</span> <span class="o">=</span> <span class="mf">0</span></pre>
+<pre class='cython code score-1 '>  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_int_0);
+  __pyx_v_value = __pyx_int_0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">12</span>: </pre>
+<pre class="cython line score-1" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">13</span>:     <span class="n">counter</span> <span class="o">=</span> <span class="mf">0</span></pre>
+<pre class='cython code score-1 '>  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_int_0);
+  __pyx_v_counter = __pyx_int_0;
+</pre><pre class="cython line score-8" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">14</span>:     <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">max_iterations</span><span class="p">:</span></pre>
+<pre class='cython code score-8 '>  while (1) {
+    __pyx_t_1 = <span class='py_c_api'>PyObject_RichCompare</span>(__pyx_v_counter, __pyx_v_max_iterations, Py_LT); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_1);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)</span>
+    __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_IsTrue</span>(__pyx_t_1); if (unlikely(__pyx_t_2 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 14, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    if (!__pyx_t_2) break;
+</pre><pre class="cython line score-11" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">15</span>:         <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">2</span><span class="p">:</span></pre>
+<pre class='cython code score-11 '>    __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyNumber_Absolute</span>(__pyx_v_value);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    __pyx_t_3 = <span class='py_c_api'>PyObject_RichCompare</span>(__pyx_t_1, __pyx_int_2, Py_GT); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_3);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_IsTrue</span>(__pyx_t_3); if (unlikely(__pyx_t_2 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 15, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+    if (__pyx_t_2) {
+/* … */
+    }
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">16</span>:             <span class="k">break</span></pre>
+<pre class='cython code score-0 '>      goto __pyx_L4_break;
+</pre><pre class="cython line score-0">&#xA0;<span class="">17</span>: </pre>
+<pre class="cython line score-12" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">18</span>:         <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">constant</span></pre>
+<pre class='cython code score-12 '>    __pyx_t_3 = <span class='py_c_api'>PyNumber_Multiply</span>(__pyx_v_value, __pyx_v_value);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+    __pyx_t_1 = <span class='py_c_api'>PyNumber_Add</span>(__pyx_t_3, __pyx_v_constant);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_v_value, __pyx_t_1);
+    __pyx_t_1 = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">19</span>: </pre>
+<pre class="cython line score-3" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">20</span>:         <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mf">1</span></pre>
+<pre class='cython code score-3 '>    __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_AddObjC</span>(__pyx_v_counter, __pyx_int_1, 1, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_v_counter, __pyx_t_1);
+    __pyx_t_1 = 0;
+  }
+  __pyx_L4_break:;
+</pre><pre class="cython line score-0">&#xA0;<span class="">21</span>: </pre>
+<pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">22</span>:     <span class="k">return</span> <span class="n">counter</span></pre>
+<pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_counter);
+  __pyx_r = __pyx_v_counter;
+  goto __pyx_L0;
+</pre></div></body></html></div></div>
+</div>
+</section>
+<section id="typing-variables">
+<h2>Typing Variables<a class="headerlink" href="#typing-variables" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+
+def mandel_cython_var_typed(constant, max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. 
+    
+    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum 
+    number of iterations.
+    
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+    cdef double complex value # typed variable
+    value = 0
+
+    counter = 0
+    while counter &lt; max_iterations:
+        if abs(value) &gt; 2:
+            break
+
+        value = (value * value) + constant
+
+        counter = counter + 1
+
+    return counter
+
+
+assert mandel_cython_var_typed(0) == 50
+assert mandel_cython_var_typed(3) == 1
+assert mandel_cython_var_typed(0.5) == 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel_cython_var_typed</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>208 ms ± 857 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="typing-function-parameters-and-return-values">
+<h2>Typing Function Parameters and Return Values<a class="headerlink" href="#typing-function-parameters-and-return-values" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+
+cpdef int mandel_cython_func_typed(double complex constant, int max_iterations=50):
+    &quot;&quot;&quot;Computes the values of the series for up to a maximum number of iterations. 
+    
+    The function stops when the absolute value of the series surpasses 2 or when it reaches the maximum 
+    number of iterations.
+    
+    Returns the number of iterations.
+    &quot;&quot;&quot;
+    cdef double complex value # typed variable
+    value = 0
+
+    cdef int counter = 0
+    while counter &lt; max_iterations:
+        if abs(value) &gt; 2:
+            break
+
+        value = (value * value) + constant
+
+        counter = counter + 1
+
+    return counter
+
+
+assert mandel_cython_func_typed(0) == 50
+assert mandel_cython_func_typed(3) == 1
+assert mandel_cython_func_typed(0.5) == 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">[[</span><span class="n">mandel_cython_func_typed</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45.3 ms ± 12.7 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cython-with-numpy-ndarray">
+<h2>Cython with numpy ndarray<a class="headerlink" href="#cython-with-numpy-ndarray" title="Permalink to this headline">#</a></h2>
+<p>You can use NumPy from Cython exactly the same as in regular Python, but by doing so you are losing potentially high speedups because Cython has support for fast access to NumPy arrays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">cs_listcomp</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cs_listcomp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+
+import numpy as np
+cimport numpy as np 
+
+cpdef int mandel_cython_numpy(np.ndarray[double complex, ndim=2] constants, int max_iterations=50): 
+    cdef np.ndarray[long,ndim=2] diverged_at_count
+    cdef np.ndarray[double complex, ndim=2] value
+    cdef int counter
+
+    diverged_at_count = np.ones((constants.shape[0], constants.shape[1]), dtype=int)*max_iterations
+    value = np.zeros((constants.shape[0], constants.shape[1]), dtype=complex)
+    counter = 0
+    while counter &lt; max_iterations:
+        value = value*value + constants
+        diverging = abs(value) &gt; 2
+        
+        # Any positions which are:
+        # - diverging
+        # - haven&#39;t diverged before
+        # are diverging for the first time
+        first_diverged_this_time = np.logical_and(
+            diverging,
+            diverged_at_count == max_iterations
+        )
+        
+        # Update diverged_at_count for all positions which first diverged at this step
+        diverged_at_count[first_diverged_this_time] = counter
+        # Reset any divergent values to exactly 2
+        value[diverging] = 2
+        counter = counter + 1
+
+    return diverged_at_count
+
+assert mandel_cython_numpy(np.asarray([[0 + 1j*0]])) == np.asarray([[50]])
+assert mandel_cython_numpy(np.asarray([[4 + 1j*0]])) == np.asarray([[0]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the double import of numpy:</p>
+<ul class="simple">
+<li><p>the standard numpy module</p></li>
+<li><p>the Cython-enabled version of numpy that ensures fast indexing of and other operations on arrays.</p></li>
+</ul>
+<p><strong>Both import statements are necessary</strong> in code that uses numpy arrays. The new thing in the code above is declaration of arrays by np.ndarray.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="n">mandel_cython_numpy</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &#39;_cython_magic_0436adfdf50188ad4117d2caa3dec1d8.mandel_cython_numpy&#39;
+Traceback (most recent call last):
+  File &quot;&lt;magic-timeit&gt;&quot;, line 1, in inner
+TypeError: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>39.3 ms ± 288 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./module09_programming_for_speed"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="09_02_optimising_with_numpy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">9.2 Optimising with NumPy</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="09_04_optimising_with_numba.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">9.4 Optimising with Numba</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By various <a href="https://github.com/alan-turing-institute/rse-course/graphs/contributors">contributors</a>.
+Developed at <a href="https://turing.ac.uk">The Alan Turing Institute</a> based on the <a href="https://github.com/UCL/rsd-engineeringcourse">UCL RSD course</a>.
+<br/>
+  
+    <div class="extra_footer">
+      <p>Creative Commons Attribution 2.0 Generic (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
