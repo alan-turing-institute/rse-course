@@ -1171,7 +1171,7 @@ For now, just follow along and try get the feel for how programming for data-foc
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Location(Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom, (52.2055314, 0.1186637, 0.0)),
- Location(Cambridge, Middlesex County, Massachusetts, United States, (42.3750997, -71.1056157, 0.0)),
+ Location(Cambridge, Middlesex County, Massachusetts, United States, (42.3655767, -71.1040018, 0.0)),
  Location(Cambridge, Region of Waterloo, Southwestern Ontario, Ontario, Canada, (43.3600536, -80.3123023, 0.0)),
  Location(Cambridge, Henry County, Illinois, United States, (41.3025257, -90.1962861, 0.0)),
  Location(Cambridge, Isanti County, Minnesota, 55008, United States, (45.5727408, -93.2243921, 0.0)),
@@ -1456,16 +1456,16 @@ with each of the three layers being red, green, and blue pixels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11426/3094229650.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11856/3094229650.py:2: DeprecationWarning: Starting with ImageIO v3 the behavior of this function will switch to that of iio.v3.imread. To keep the current behavior (and make this warning disappear) use `import imageio.v2 as imageio` or call `imageio.v2.imread` directly.
   pixels = imageio.imread(BytesIO(data))  # Get our PNG image as rows of pixels
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/PIL/Image.py:3089,</span> in <span class="ni">fromarray</span><span class="nt">(obj, mode)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3088</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3089</span>     <span class="n">mode</span><span class="p">,</span> <span class="n">rawmode</span> <span class="o">=</span> <span class="n">_fromarray_typemap</span><span class="p">[</span><span class="n">typekey</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">3090</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.17/x64/lib/python3.8/site-packages/PIL/Image.py:3070,</span> in <span class="ni">fromarray</span><span class="nt">(obj, mode)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3069</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3070</span>     <span class="n">mode</span><span class="p">,</span> <span class="n">rawmode</span> <span class="o">=</span> <span class="n">_fromarray_typemap</span><span class="p">[</span><span class="n">typekey</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">3071</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
 <span class="ne">KeyError</span>: ((1, 1, 3), &#39;&lt;i8&#39;)
 
@@ -1481,24 +1481,24 @@ with each of the three layers being red, green, and blue pixels.</p>
 <span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/imageio/v2.py:386,</span> in <span class="ni">imwrite</span><span class="nt">(uri, im, format, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span> <span class="n">imopen_args</span><span class="p">[</span><span class="s2">&quot;legacy_mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="k">with</span> <span class="n">imopen</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="s2">&quot;wi&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">imopen_args</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">386</span>     <span class="k">return</span> <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.17/x64/lib/python3.8/site-packages/imageio/v2.py:397,</span> in <span class="ni">imwrite</span><span class="nt">(uri, im, format, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span> <span class="n">imopen_args</span><span class="p">[</span><span class="s2">&quot;legacy_mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span> <span class="k">with</span> <span class="n">imopen</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="s2">&quot;wi&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">imopen_args</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">397</span>     <span class="k">return</span> <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/imageio/plugins/pillow.py:387,</span> in <span class="ni">PillowPlugin.write</span><span class="nt">(self, ndimage, mode, format, is_batch, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span>     <span class="n">ndimage</span> <span class="o">=</span> <span class="n">ndimage</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">ndimage</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">387</span>     <span class="n">pil_frame</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">388</span>     <span class="k">if</span> <span class="s2">&quot;bits&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span>         <span class="n">pil_frame</span> <span class="o">=</span> <span class="n">pil_frame</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;bits&quot;</span><span class="p">])</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.17/x64/lib/python3.8/site-packages/imageio/plugins/pillow.py:416,</span> in <span class="ni">PillowPlugin.write</span><span class="nt">(self, ndimage, mode, format, is_batch, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">413</span>     <span class="n">ndimage</span> <span class="o">=</span> <span class="n">ndimage</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">ndimage</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">416</span>     <span class="n">pil_frame</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="k">if</span> <span class="s2">&quot;bits&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span>         <span class="n">pil_frame</span> <span class="o">=</span> <span class="n">pil_frame</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="mi">2</span> <span class="o">**</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;bits&quot;</span><span class="p">])</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/PIL/Image.py:3092,</span> in <span class="ni">fromarray</span><span class="nt">(obj, mode)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3090</span>     <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3091</span>         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Cannot handle this data type: </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">typekey</span>
-<span class="ne">-&gt; </span><span class="mi">3092</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
-<span class="g g-Whitespace">   </span><span class="mi">3093</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3094</span>     <span class="n">rawmode</span> <span class="o">=</span> <span class="n">mode</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.17/x64/lib/python3.8/site-packages/PIL/Image.py:3073,</span> in <span class="ni">fromarray</span><span class="nt">(obj, mode)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3071</span>     <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3072</span>         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Cannot handle this data type: </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">typekey</span>
+<span class="ne">-&gt; </span><span class="mi">3073</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+<span class="g g-Whitespace">   </span><span class="mi">3074</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3075</span>     <span class="n">rawmode</span> <span class="o">=</span> <span class="n">mode</span>
 
 <span class="ne">TypeError</span>: Cannot handle this data type: (1, 1, 3), &lt;i8
 </pre></div>

@@ -146,7 +146,7 @@ get_ipython().run_cell_magic('bash', '', 'ls\n')
 
 # * With `-f`: don't prompt
 # * with `-d`: remove directories
-# * with `-x`: Also remote `.gitignored` files
+# * with `-x`: Also remove `.gitignored` files
 # * with `-X`: Only remove `.gitignored` files
 
 # # Hunks
